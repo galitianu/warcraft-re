@@ -2,10 +2,11 @@
 
 As of 30 September 2026.
 
-**Current stage:** Phase 1 complete; Phase 2 is next.
+**Current stage:** Phase 2 complete; Phase 3 is next.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps × 3
 fresh-process captures, all payload-identical within each map.
-**C++ compatibility:** unobserved; no new engine exists yet.
+**C++ compatibility:** MOV-0001 passes; MOV-0002–MOV-0010 fail fixed provisional
+tolerances, with complete numeric comparisons and first divergences.
 **First release:** v0.0.1 — one Footman's movement compared numerically with WC3.
 
 The [plan](Warcraft-III-Reimplementation-Plan.md) is the detailed roadmap. GitHub
@@ -60,17 +61,34 @@ thresholds; the simulation quantum; seed effects; expansion-format maps; other
 machines; and precision beyond six printed decimals. R2SW's 9-decimal digits are not
 exact floats.
 
-## Next task: Phase 2 — native C++ headless equivalent
+**Phase 2** ([issue #3](https://github.com/galitianu/warcraft-re/issues/3)):
+a dependency-free CMake C++20 headless world, seeded Random owner, move/stop orders
+and all ten movement setups. [Results](docs/phase-2-results.md),
+[hypotheses](docs/phase-2-model.md), [build/reproduction](docs/phase-2-procedure.md).
+Both model versions and the observation-phase diagnostic have committed reports
+and reproducible trace hashes in [results/phase-2](results/phase-2/).
 
-Tracked in [issue #3](https://github.com/galitianu/warcraft-re/issues/3).
+Clean ARM Mac Release build and CTest passed; 17 Python tests passed; separate
+executable repetitions matched all 63 output-file hashes. Re-parsed 39 retained
+WC3 captures and checked exact derived sample/event equality. MOV-0001 agrees;
+v2's MOV-0002 first differs at callback 1 in Y (−0.014648), ending 3.990174 units
+behind WC3 in X. All nine movement failures remain under unchanged tolerances.
+The numerical v0.0.1 gate is met; no tag created. Arrival, replacement latency,
+heading/grid drift, residual facing and long-clock offset remain unresolved.
 
-Build the tiny native ARM Mac headless C++ world (plan §5), without raylib. Run all
-ten MOV setups and emit traces with the same fields as the WC3 SAMPLE rows
-(callback, time, X, Y, facing, order). Then compare numerically with
-`oracle/derived/wc3-1.29.2-9231-x86/`. MOV-0001 and MOV-0002 are the v0.0.1 gate;
-MOV-0003–MOV-0010 report pass or first divergence. Treat the observed
-0.005 s / 0.03 s cadences as hypotheses to test, not a chosen timestep. A failing
-numerical comparison is acceptable progress.
+PR #4 follow-up: numeric overflow in malformed comparator input now returns exit 2
+instead of numerical-divergence exit 1. Regression checks cover oversized callback
+and unit counts; all 19 Python tests pass. Retained Phase 2 reports remain evidence
+of their recorded build and comparison-tool revisions.
+
+## Next task: Phase 3 — stabilize traces and comparison
+
+Define plan §6's canonical trace contract from the retained WC3 records and C++
+samples/actions: identity, units, global sequence, interleaved events, completion,
+reported/requested time and numeric precision. Normalize without losing equal-time
+order; adapt the comparator with explicit tolerances and observation-phase handling,
+preserving current failures. Record repeatability's measured scope. Detailed handoff
+and proposed missing-observation experiments: [Phase 2 results](docs/phase-2-results.md#exact-phase-3-handoff).
 
 ## Roadmap status
 
@@ -78,8 +96,8 @@ numerical comparison is acceptable progress.
 |---|---|---|
 | 0 | Automatic map experiment with reliably recoverable WC3 text | Complete — [evidence](docs/phase-0-capture.md) |
 | 1 | Small manual map library with shared JASS instrumentation and parseable traces | Complete — [results](docs/phase-1-results.md) |
-| 2 | Native C++ headless equivalent and two numerically comparable traces | Next |
-| 3 | Normalized traces, explicit tolerances, first-divergence report | Planned |
+| 2 | Native C++ headless equivalent and ten numerically comparable traces | Complete — [results](docs/phase-2-results.md); nine movement failures retained |
+| 3 | Canonical normalized traces and stable comparison contract | Next |
 | 4 | C++ compatibility CI against committed WC3 references | Planned |
 | 5 | Declarative scenarios extracted from repeated manual tests | Planned |
 | 6 | One scenario drives C++ and generates a runnable WC3 map | Planned |

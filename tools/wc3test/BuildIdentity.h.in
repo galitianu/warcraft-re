@@ -1,0 +1,22 @@
+#pragma once
+// Git fields are JSON tokens: a quoted string/boolean, or null when unknown.
+inline constexpr const char* build_git_commit_json = R"(@BUILD_GIT_COMMIT_JSON@)";
+inline constexpr const char* build_git_dirty_json = "@BUILD_GIT_DIRTY@";
+inline constexpr const char* build_source_sha256 = "@BUILD_SOURCE_SHA256@";
+inline constexpr const char* build_compiler = "@CMAKE_CXX_COMPILER_ID@ @CMAKE_CXX_COMPILER_VERSION@";
+inline constexpr const char* build_type = "@CMAKE_BUILD_TYPE@";
+// The architecture this translation unit was compiled for, not the configure host.
+#if defined(__aarch64__) || defined(_M_ARM64)
+inline constexpr const char* build_architecture = "arm64";
+#elif defined(__x86_64__) || defined(_M_X64)
+inline constexpr const char* build_architecture = "x86_64";
+#elif defined(__i386__) || defined(_M_IX86)
+inline constexpr const char* build_architecture = "x86";
+#else
+inline constexpr const char* build_architecture = "unknown";
+#endif
+#ifdef WC3_FP_CONTRACT_OFF
+inline constexpr const char* build_fp_contract = "off";
+#else
+inline constexpr const char* build_fp_contract = "compiler default";
+#endif

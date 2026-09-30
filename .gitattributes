@@ -6,3 +6,4 @@
 *.w3x binary
 *.w3m binary
 *.png binary
+oracle/captures/** -text

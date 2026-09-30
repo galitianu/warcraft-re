@@ -8,15 +8,15 @@ Warcraft III. Read `README.md`, `PROGRESS.md`, and the relevant section of
 decisions and Phase 0–8 sequence govern; Appendix A preserves historical proposals
 and illustrative results, not current requirements or measurements.
 
-The reference is **Warcraft III 1.29.2 (9321), x86 32-bit**, identified as
-`wc3-1.29.2-9321-x86`. The user has run it successfully in a **Windows 11 Pro ARM64
+The reference is **Warcraft III 1.29.2 (9231), x86 32-bit**, identified as
+`wc3-1.29.2-9231-x86`. The user has run it successfully in a **Windows 11 Pro ARM64
 VM**. Verify and record the installation when capturing evidence; do not reopen
 platform selection or infer an x64 WC3 target from the guest OS.
 
-Start with the salvage assessment in `docs/salvage.md`, then Phase 0: one manually
-authored map runs scripted movement after loading and reliably produces recoverable
-text. The first release, v0.0.1, is one Footman's movement compared numerically with
-real WC3. An honest numerical mismatch is useful progress.
+Read the salvage assessment in `docs/salvage.md` and Phase 0's proven capture procedure
+in `docs/phase-0-capture.md`. Phase 0 is complete; `PROGRESS.md` gives the current
+next task. The first release, v0.0.1, is one Footman's movement compared numerically
+with real WC3. An honest numerical mismatch is useful progress.
 
 ## Keep the project small
 

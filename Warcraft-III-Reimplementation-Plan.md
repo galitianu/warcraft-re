@@ -14,9 +14,13 @@ The checkboxes and acceptance gates below turn the discussion into executable wo
 
 ### Target correction — 29 September 2026
 
-The compatibility target is **Warcraft III 1.29.2 (9321), x86 32-bit only**. The user has tested it successfully in a **virtualized Windows 11 Pro ARM64 VM**, which is the selected oracle environment. The earlier assumptions about an x64 WC3 build, comparisons between x86 and x64 WC3, and a Windows 10 x64/QEMU setup are superseded. No x86-versus-x64 WC3 comparison is planned.
+Build-number correction, 30 September 2026: executable metadata from both installed
+copies verifies **1.29.2.9231**, x86. Andrei confirmed that the previously written
+`9321` was a typo; the active target and reference identifier below use `9231`.
 
-Use `wc3-1.29.2-9321-x86` as the reference build identifier. Record the Windows 11 Pro ARM64 VM configuration separately from the game's architecture. Running the game successfully is established by the user's test; automated experiment execution and trace extraction remain Phase 0 work.
+The compatibility target is **Warcraft III 1.29.2 (9231), x86 32-bit only**. The user has tested it successfully in a **virtualized Windows 11 Pro ARM64 VM**, which is the selected oracle environment. The earlier assumptions about an x64 WC3 build, comparisons between x86 and x64 WC3, and a Windows 10 x64/QEMU setup are superseded. No x86-versus-x64 WC3 comparison is planned.
+
+Use `wc3-1.29.2-9231-x86` as the reference build identifier. Record the Windows 11 Pro ARM64 VM configuration separately from the game's architecture. Running the game successfully was established by the user's test; Phase 0 now records automatic experiment execution and repeatable trace extraction below.
 
 ## 1. Decisions and precedence
 
@@ -25,7 +29,7 @@ Use `wc3-1.29.2-9321-x86` as the reference build identifier. Record the Windows 
 | Project | Build a C++ Warcraft III reimplementation, using real WC3 behavior as the specification. | Do not turn this into a mandatory Warsmash port. |
 | Rendering | Start with raylib behind a thin renderer boundary; replace it if concrete limitations arise. | Avoid designing a hypothetical Vulkan abstraction up front. |
 | Reference platform | **Windows 11 Pro ARM64 VM**, already tested successfully by the user. | Reuse the working virtualized ARM environment; the earlier Windows 10 x64/QEMU proposal is superseded. |
-| WC3 executable | **Warcraft III 1.29.2 (9321), x86 32-bit only.** | No x64 WC3 build or x86/x64 comparison belongs in this plan. |
+| WC3 executable | **Warcraft III 1.29.2 (9231), x86 32-bit only.** | No x64 WC3 build or x86/x64 comparison belongs in this plan. |
 | Oracle | Start with black-box JASS experiments in real WC3 and recover machine-readable observations. | Debuggers, hooks, and memory inspection are later research tools. |
 | Bootstrap order | Manual maps → tiny C++ world → common traces/comparator → CI → scenario format → map generation → VM automation → expansion. | The earlier “design the scenario schema first” suggestion is superseded by the final phased answer. |
 | Warsmash | Optional source of hypotheses/formulas when stuck; WC3 evidence decides correctness. | The earlier three-engine adapter/matrix is retained as an optional future facility, not a dependency. |
@@ -57,15 +61,15 @@ Use `wc3-1.29.2-9321-x86` as the reference build identifier. Record the Windows 
 
 ### Work
 
-- [x] Select Warcraft III 1.29.2 (9321), x86 32-bit, as the compatibility target.
+- [x] Select Warcraft III 1.29.2 (9231), x86 32-bit, as the compatibility target.
 - [x] Establish that the game runs in the Windows 11 Pro ARM64 VM (tested by the user).
-- [ ] Record the installed executable identity and working VM configuration for reproducible captures.
-- [ ] Reuse that VM for the first oracle map experiment.
-- [ ] Make one tiny test map by hand, with two Footmen, a timer, and JASS instrumentation.
-- [ ] Issue the movement order programmatically so the experiment runs without interaction once the map loads.
-- [ ] Emit recognizable start/end markers and position/facing observations.
-- [ ] Investigate and prove an output extraction mechanism: scripting-supported file output, log/debug output, or another minimally invasive capture method.
-- [ ] Run the same simple experiment repeatedly to establish basic reliability.
+- [x] Record the installed executable identity and working VM configuration for reproducible captures.
+- [x] Reuse that VM for the first oracle map experiment.
+- [x] Make one tiny test map by hand, with two Footmen, a timer, and JASS instrumentation.
+- [x] Issue the movement order programmatically so the experiment runs without interaction once the map loads.
+- [x] Emit recognizable start/end markers and position/facing observations.
+- [x] Investigate and prove an output extraction mechanism: scripting-supported file output, log/debug output, or another minimally invasive capture method.
+- [x] Run the same simple experiment repeatedly to establish basic reliability.
 
 Illustrative raw output:
 
@@ -80,11 +84,13 @@ TEST_END
 
 These timestamps and values are placeholders. Establish timestamp units and actual observation cadence experimentally.
 
+Evidence, 30 September 2026: [Phase 0 capture procedure and 20-run results](docs/phase-0-capture.md).
+
 ### Deliverable and gate
 
 A test map plus a documented procedure that reliably yields **WC3 → text file**. Loading the map and retrieving the file may still be manual. Do not require VM launch automation here.
 
-**Open blocker to resolve first:** the conversation did not establish a working output extraction API or transport. Do not build a large framework assuming that this already works.
+**Resolved, 30 September 2026:** the native PreloadGen route reliably writes complete text in the verified installation. The linked evidence records the mechanism and limits.
 
 ## 4. Phase 1 — Build a small manual oracle library
 
@@ -192,7 +198,7 @@ Minimal illustrative structure, extending the conversation's sample to make unit
 ```json
 {
   "test": "MOV-0002",
-  "engine": "wc3-1.29.2-9321-x86",
+  "engine": "wc3-1.29.2-9231-x86",
   "environment": "windows-11-pro-arm64-vm",
   "time_unit": "ms",
   "samples": [
@@ -235,7 +241,7 @@ Here the illustrative time tolerance is in seconds; convert explicitly if the tr
 Proposed command:
 
 ```bash
-wc3test compare reference/wc3-1.29.2-9321-x86/MOV-0002.json build/tests/MOV-0002.json
+wc3test compare reference/wc3-1.29.2-9231-x86/MOV-0002.json build/tests/MOV-0002.json
 ```
 
 A useful report identifies, for example, “Facing first differs at sample 17: WC3 14.0625°, ours 14.0000°,” or shows position drift growing from +0.006 to +0.013 to +0.021.
@@ -267,7 +273,7 @@ Both implementations emit compatible traces; comparison produces actionable fail
 
 ```text
 reference/
-  wc3-1.29.2-9321-x86/
+  wc3-1.29.2-9231-x86/
     MOV-0001.json
     MOV-0002.json
     ORD-0001.json
@@ -366,7 +372,7 @@ Initially, `wc3oracle build MOV-0017` followed by manual execution and result co
 - [ ] Retrieve the raw trace.
 - [ ] Normalize it and produce a candidate reference.
 - [ ] Run repeated captures and validate reproducibility before treating a result as canonical.
-- [ ] If a result is suspicious, optionally run the same WC3 1.29.2 (9321) x86 executable on the Windows laptop as a control. This checks environment-dependent behavior, not different game architectures.
+- [ ] If a result is suspicious, optionally run the same WC3 1.29.2 (9231) x86 executable on the Windows laptop as a control. This checks environment-dependent behavior, not different game architectures.
 
 Proposed endpoint:
 
@@ -610,9 +616,9 @@ A JASS interpreter and arbitrary W3X loading can be deferred for the early month
 |---|---|
 | ARM MacBook Pro | Interactive development |
 | ARM Mac Mini | Remote agents, native clang/CMake builds, wc3core, raylib client, long tests, ARM CI, optional Docker/Linux ARM tests; intended host for routine VM oracle captures |
-| Windows 11 Pro ARM64 VM | Selected oracle environment; the user has already tested that WC3 1.29.2 (9321) x86 runs successfully here |
+| Windows 11 Pro ARM64 VM | Selected oracle environment; the user has already tested that WC3 1.29.2 (9231) x86 runs successfully here |
 | Hosted CI, e.g. GitHub Actions | macOS ARM64, Linux x64, Windows x64 builds of the new C++ engine, subject to runner availability |
-| Windows laptop | Optional control for disputed observations, running the same WC3 1.29.2 (9321) x86 executable |
+| Windows laptop | Optional control for disputed observations, running the same WC3 1.29.2 (9231) x86 executable |
 | Steam Deck | Later Linux x86_64 native-client and Wine/Proton testing |
 
 Do not require all machines to participate initially. Reuse the working VM where it is currently hosted; record or reproduce its configuration on the Mac Mini when moving routine captures there. A self-hosted Windows runner remains an optional later convenience.
@@ -628,7 +634,7 @@ Apple Silicon Mac
 Virtualized Windows 11 Pro ARM64 VM
     │
     ▼
-Warcraft III 1.29.2 (9321)
+Warcraft III 1.29.2 (9231)
 x86 32-bit executable
     │
     ▼
@@ -658,13 +664,13 @@ Keep the Windows laptop available if a specific capture or compatibility investi
 |---|---|---|
 | 1 — Fast | Every commit/PR: compilation, unit tests, parsers, deterministic simulations, committed compatibility fixtures; aim for a few minutes | None at runtime |
 | 2 — Heavy | Nightly/manual: thousands of scenarios/maps when supported, rendering regressions, replays, parser fuzzing, long deterministic runs | Normally existing references |
-| 3 — Oracle | New reference creation, validation, and incompatibility research | Executes WC3 1.29.2 (9321) x86 in the Windows 11 Pro ARM64 VM |
+| 3 — Oracle | New reference creation, validation, and incompatibility research | Executes WC3 1.29.2 (9231) x86 in the Windows 11 Pro ARM64 VM |
 
 Useful future interfaces:
 
 ```bash
 wc3test run --scenario movement/turn_rate_001.yaml --ticks 10000 --output actual.json
-wc3test compare actual.json reference/wc3-1.29.2-9321-x86/movement/turn_rate_001.json
+wc3test compare actual.json reference/wc3-1.29.2-9231-x86/movement/turn_rate_001.json
 wc3oracle generate combat/armor.yaml
 wc3oracle import wc3-output.txt
 ```
@@ -710,7 +716,7 @@ warcraft-re/
     rendering/
     rng/
   reference/
-    wc3-1.29.2-9321-x86/
+    wc3-1.29.2-9231-x86/
 ```
 
 Use permanent families such as MOV, COM, ORD, JASS, PATH, and RNG. Connect non-obvious compatibility code to specific experiments, e.g. a comment citing MOV-0047 for a measured turn-rate/displacement ordering rule. The example rule in the conversation is illustrative until actually verified.
@@ -734,8 +740,8 @@ Introduce Oracle B only when a concrete unanswered question needs it. Use its fi
 
 ## 19. First ten milestones
 
-1. [ ] A WC3 map executes its test automatically after loading and produces a recognizable result.
-2. [ ] WC3 trace extraction works reliably.
+1. [x] A WC3 map executes its test automatically after loading and produces a recognizable result.
+2. [x] WC3 trace extraction works reliably.
 3. [ ] The C++ project builds on the ARM Mac and contains a tiny headless World.
 4. [ ] C++ emits the same trace representation as WC3.
 5. [ ] The comparator identifies the first divergence.
@@ -756,9 +762,9 @@ test description → WC3 → observed behavior
 
 ## 20. Immediate next actions and unresolved questions
 
-Start with Phase 0, not the complete infrastructure.
+Phase 0 is complete as of 30 September 2026; the following is the original bootstrap sequence. Current next work is recorded in [PROGRESS.md](PROGRESS.md).
 
-1. Record the WC3 1.29.2 (9321) x86 executable identity and the working Windows 11 Pro ARM64 VM configuration.
+1. Record the WC3 1.29.2 (9231) x86 executable identity and the working Windows 11 Pro ARM64 VM configuration.
 2. Prepare the first oracle experiment in that already-tested VM.
 3. Create one manually authored test map with automatic scripted actions.
 4. Prove a reliable, minimally invasive output extraction path.
@@ -785,7 +791,7 @@ Appendix A preserves every retrieved message in full. Its older recommendations 
 
 # Appendix A — Complete retrieved conversation
 
-> **Superseded platform assumptions:** The user corrected the target on 29 September 2026 to Warcraft III 1.29.2 (9321), x86 32-bit only, running successfully in a virtualized Windows 11 Pro ARM64 VM. Historical claims below about an x64 WC3 build, x86/x64 comparisons, or selecting Windows 10 x64/QEMU are retained solely as the original conversation record. They are not active plan requirements.
+> **Superseded platform assumptions:** The user corrected the target on 29 September 2026 to Warcraft III 1.29.2 (9231), x86 32-bit only, running successfully in a virtualized Windows 11 Pro ARM64 VM. Historical claims below about an x64 WC3 build, x86/x64 comparisons, or selecting Windows 10 x64/QEMU are retained solely as the original conversation record. They are not active plan requirements.
 
 
 The following is the chronological source record. It is preserved verbatim at the message-text level, apart from adding role headings. Original chat citation markers and code-fence identifiers may appear; they are source artifacts, not independently checked citations. Requests and suggestions inside this appendix are historical conversation content, not additional tasks being executed.

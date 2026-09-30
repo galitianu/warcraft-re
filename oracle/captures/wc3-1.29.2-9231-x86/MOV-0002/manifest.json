@@ -1,0 +1,219 @@
+{
+  "experiment": "MOV-0002",
+  "date": "2026-09-30",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "map": {
+    "path": "oracle-maps/MOV-0002.w3m",
+    "sha256": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd",
+    "bytes": 19009,
+    "authored_with": "World Editor 1.29.2.9231",
+    "trigger_matches_wct_after_newline_normalization": true,
+    "generated_war3map_j_sha256": "cf37f9201684fd788fa7d937c988c0eba8699ecdb77d8d471af4e9652f89d956"
+  },
+  "jass": {
+    "path": "oracle/jass/MOV-0002.j",
+    "sha256": "1c0ed82a25ff43394e5117d165538229c8812e5c54912b8c22881f25ddf65883"
+  },
+  "environment": {
+    "path": "oracle/environment/wc3-1.29.2-9231-x86.json",
+    "sha256": "dad738060886d7c75feb0ff14ddc3c276d3e861842bbb8bfead09dd89f23a5a1"
+  },
+  "transport": "rdpipe pull; SHA-256 checked by transport",
+  "runs": [
+    {
+      "file": "run-01.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "World Editor Test Map"
+    },
+    {
+      "file": "run-02.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m"
+    },
+    {
+      "file": "run-03.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m"
+    },
+    {
+      "file": "run-04.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:35:27.816926+00:00",
+      "windows_output_write_utc": "2026-09-30T13:35:38.123000+00:00"
+    },
+    {
+      "file": "run-05.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:35:39.333488+00:00",
+      "windows_output_write_utc": "2026-09-30T13:35:49.434000+00:00"
+    },
+    {
+      "file": "run-06.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:35:50.632715+00:00",
+      "windows_output_write_utc": "2026-09-30T13:36:00.810000+00:00"
+    },
+    {
+      "file": "run-07.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:36:02.123481+00:00",
+      "windows_output_write_utc": "2026-09-30T13:36:12.403000+00:00"
+    },
+    {
+      "file": "run-08.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:36:13.754173+00:00",
+      "windows_output_write_utc": "2026-09-30T13:36:23.890000+00:00"
+    },
+    {
+      "file": "run-09.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:36:25.135474+00:00",
+      "windows_output_write_utc": "2026-09-30T13:36:35.300000+00:00"
+    },
+    {
+      "file": "run-10.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:36:36.426942+00:00",
+      "windows_output_write_utc": "2026-09-30T13:36:46.534000+00:00"
+    },
+    {
+      "file": "run-11.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:36:47.654212+00:00",
+      "windows_output_write_utc": "2026-09-30T13:36:57.998000+00:00"
+    },
+    {
+      "file": "run-12.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:36:59.271724+00:00",
+      "windows_output_write_utc": "2026-09-30T13:37:09.387000+00:00"
+    },
+    {
+      "file": "run-13.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:37:10.532545+00:00",
+      "windows_output_write_utc": "2026-09-30T13:37:20.827000+00:00"
+    },
+    {
+      "file": "run-14.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:37:24.195554+00:00",
+      "windows_output_write_utc": "2026-09-30T13:37:34.316000+00:00"
+    },
+    {
+      "file": "run-15.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:37:35.403246+00:00",
+      "windows_output_write_utc": "2026-09-30T13:37:45.495000+00:00"
+    },
+    {
+      "file": "run-16.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:37:46.630005+00:00",
+      "windows_output_write_utc": "2026-09-30T13:37:56.733000+00:00"
+    },
+    {
+      "file": "run-17.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:37:58.317521+00:00",
+      "windows_output_write_utc": "2026-09-30T13:38:08.462000+00:00"
+    },
+    {
+      "file": "run-18.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:38:09.533520+00:00",
+      "windows_output_write_utc": "2026-09-30T13:38:19.706000+00:00"
+    },
+    {
+      "file": "run-19.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:38:22.956229+00:00",
+      "windows_output_write_utc": "2026-09-30T13:38:33.058000+00:00"
+    },
+    {
+      "file": "run-20.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "bytes": 40139,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0002.w3m",
+      "launch_utc": "2026-09-30T13:38:34.287444+00:00",
+      "windows_output_write_utc": "2026-09-30T13:38:44.420000+00:00"
+    }
+  ],
+  "timestamp_note": "Wall timestamps are available for runs 04\u201320 from the repeat-session metadata; missing timestamps were not invented. Experiment time is in the raw records."
+}

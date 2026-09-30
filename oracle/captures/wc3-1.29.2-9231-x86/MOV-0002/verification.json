@@ -1,0 +1,437 @@
+{
+  "experiment": "MOV-0002",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "run_count": 20,
+  "all_payloads_identical": true,
+  "distinct_raw_file_hashes": 2,
+  "classification": "repeatable-under-recorded-setup; broader determinism unestablished",
+  "negative_controls": {
+    "truncation": "rejected, CLI exit 1",
+    "sequence_gap": "rejected, CLI exit 1",
+    "wrong_build": "rejected, CLI exit 1",
+    "rejected_move_order": "rejected, CLI exit 1",
+    "malformed_sample": "rejected, CLI exit 1"
+  },
+  "captures": [
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-01.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-02.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-03.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-04.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-05.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-06.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-07.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-08.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-09.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-10.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-11.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-12.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-13.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-14.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-15.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-16.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-17.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-18.txt",
+      "sha256": "c5b5af87eac9c4ec2f3fa942efd626229bccd4d322f1ac32bc188081a4e1f55a",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-19.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    },
+    {
+      "file": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/run-20.txt",
+      "sha256": "2396a5b4fa5eeaff32b6254bf208ea27dfdda025f3a9f7dfa94ff741ac386baf",
+      "records": 506,
+      "samples_per_unit": 251,
+      "elapsed_seconds": "5.000000",
+      "observed_callback_intervals_seconds": [
+        "0.019958",
+        "0.019959",
+        "0.020019",
+        "0.020020"
+      ],
+      "control_unchanged": true,
+      "moving_final": {
+        "x": "988.133301",
+        "y": "0.033203",
+        "facing": "0.388643",
+        "order": "0"
+      },
+      "payload_sha256": "6af0b61f3ee6c7a93add3afc38c011bfabbe392c9f668c67e60852467312cf19"
+    }
+  ]
+}

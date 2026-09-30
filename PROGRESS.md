@@ -81,6 +81,15 @@ instead of numerical-divergence exit 1. Regression checks cover oversized callba
 and unit counts; all 19 Python tests pass. Retained Phase 2 reports remain evidence
 of their recorded build and comparison-tool revisions.
 
+Pre-Phase 3 research: [Warsmash movement analysis](docs/warsmash-movement-research.md)
+suggests separate movement heading/reported facing and 30 ms movement batches.
+Matching game archives confirm Footman defaults 0.6 rad turn rate, 60° propulsion
+window and orientation mode 0. These explain turn onset/direction and arrival
+counts much better than v2's 135° gate, but remain hypotheses; no C++ changes,
+new captures or compatibility passes. Grid/angle drift remains unexplained.
+Implementation follow-up: [issue #6](https://github.com/galitianu/warcraft-re/issues/6),
+after Phase 3's trace contract in [issue #5](https://github.com/galitianu/warcraft-re/issues/5).
+
 ## Next task: Phase 3 — stabilize traces and comparison
 
 Define plan §6's canonical trace contract from the retained WC3 records and C++

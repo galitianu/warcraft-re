@@ -24,10 +24,13 @@ hashes of all 21 output files. All units are sampled in creation order; callback
 and callback-50 actions follow sampling. Requests are at multiples of 0.02 seconds;
 the integration step is a declared 0.001 seconds.
 
-Identity includes the compiler, architecture, build type, configured Git revision
-and dirty flag, source digest, model, step, seed, parameters and observation phase.
-Run configure explicitly after changing Git revisions; source changes trigger
-reconfiguration automatically. The source digest hashes the ordered list of build,
+Identity includes the compiler, compile-target architecture, build type, applied
+floating-point contraction, configured Git revision and dirty flag (both `null`
+when Git is unavailable, never reported clean), source digest, model, step, seed,
+every model parameter and observation phase. Sample `t` is the requested callback
+time; `state_lag_us` records that the before-update diagnostic's state omits the
+step due at `t`. Run configure explicitly after changing Git revisions; source
+changes trigger reconfiguration automatically. The source digest hashes the ordered list of build,
 core and runner files in `CMakeLists.txt` (path, colon, file SHA-256, newline), then
 SHA-256 hashes that string. It distinguishes dirty source builds without relying
 on the revision alone. Default compilation disables floating-point contraction;
@@ -42,8 +45,10 @@ python3 tools/compare_movement.py --actual build/phase2/v2 \
 
 The comparator returns **0** for ten passes, **1** for numerical divergence and
 **2** for malformed/missing inputs. It checks complete, ordered callback/unit rows,
-finite values and monotonic time; it retains equal-time row order. Tolerances live
-only in `tools/compare_movement.py`. Reports include first mismatch and full-run
+finite values and monotonic time; it retains equal-time row order. Expected
+callback and unit counts come from the runner's case table via `identity.json`;
+the WC3 reference must match them independently. Tolerances live only in
+`tools/compare_movement.py`. Reports include first mismatch and full-run
 sample counts, failing counts, maximum absolute deltas and signed final deltas per
 unit for X, Y, circular facing, exact order and an auxiliary clock check. No rows
 are resampled, discarded or substituted by the before-update diagnostic.

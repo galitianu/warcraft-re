@@ -61,6 +61,8 @@ Only these changes from v1 are proposed:
   **Inferred approximation** from MOV-0007/0009's first movement. This alone cannot
   explain MOV-0006's three frozen callbacks. Exactly opposite directions turn
   clockwise (negative angle); this tie choice is **guessed** and MOV-0007 may fail.
+  *Clarified after the PR #4 review:* float headings of a true reversal are not
+  exactly 180° apart, so directions within 0.0001° of opposite take this tie.
 
 No grid quantization or synthetic lateral/facing noise is added: captures show
 these effects, but do not establish a causal rule. The model is expected to fail

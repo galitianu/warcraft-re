@@ -9,9 +9,13 @@ of MOV-0001/0002 is the basis of v0.0.1; no release tag was created.
 
 ## Artifacts and identity
 
-- Source/build commit: `c14c263685eeb843a8a1c8d10ef3eac760a726ea` (clean checkout).
+- Source/build commit: `29fe88f163233816d0b1c95fd932f77c02146d79` (clean checkout).
   Build/runner source digest:
-  `20a9be4179a0f7d17960dbb2e2beb476c31036c426e5475e658e394b0b75db34`.
+  `f4db60eb9e6fca2530a0d6b113bf6523c2948a82ff31a77aac588b62c26615a6`.
+  Originally produced at `c14c263`; the PR #4 review revision made identity derive
+  from the model and build and removed version branches. All 60 sample/action CSVs
+  and every numerical result are byte-identical; only identity and tool hashes
+  changed.
 - [World](../src/core/World.h), [implementation](../src/core/World.cpp),
   [seeded Random](../src/core/Random.h), [ten cases](../tools/wc3test/Cases.cpp),
   [runner](../tools/wc3test/main.cpp), [CMake](../CMakeLists.txt).
@@ -119,8 +123,9 @@ Inspection used raw run-01 records as well as derived values:
    not describe these interruptions, and the 135° threshold alone cannot explain
    the 90° pause. In
    [MOV-0007](../oracle/captures/wc3-1.29.2-9231-x86/MOV-0007/run-01.txt), WC3 faces
-   +46.814968° at callback 58; v2 faces 313.590363°, turning clockwise on its exact
-   180° tie. WC3's pre-command heading is +0.137590°, so this does **not** establish
+   +46.814968° at callback 58; v2 faces 313.590363°, turning clockwise under its
+   declared tie for directions within 0.0001° of opposite (float headings are not
+   exactly 180° apart). WC3's pre-command heading is +0.137590°, so this does **not** establish
    the game's exact-tie policy. The unmodelled small initial heading can change
    which circular direction is shortest. No ID-specific turn direction was added.
 
@@ -162,10 +167,11 @@ experiments. No further model rules were guessed to fill these missing observati
 
 A clean detached checkout of the source commit above was configured and built with
 the documented native Release command. CTest: **1/1 entry passed**, checking RNG
-seeding, stationary invariance, finite/circular state and repeated ten-case bytes
-for both versions. Python: **17 tests passed** (4 comparator integrity tests and
-13 existing oracle parser tests). Independent executable repetitions of v1, v2
-and v2-before matched **all 63 output hashes**, including identities. Numerical
+seeding, stationary invariance, finite/circular state, repeated ten-case bytes
+for both versions and the clockwise tie one float step either side of opposite.
+Python: **18 tests passed** (5 comparator integrity tests, including malformed CSV
+exiting 2, and 13 existing oracle parser tests). Independent executable
+repetitions of v1, v2 and v2-before matched **all 63 output hashes**, including identities. Numerical
 comparison CLI exited 1 for the nine mismatches; missing input and an out-of-range
 seed exited 2. A float-angle normalization bug found during initial execution was
 corrected before the source commit; the circular-range invariant now checks all

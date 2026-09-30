@@ -40,6 +40,8 @@ Andrei confirmed 9321 was a typo; active documents and capture identities use 92
 
 ## Next task: Phase 1 — a small manual oracle library
 
+Tracked in [issue #2](https://github.com/galitianu/warcraft-re/issues/2).
+
 Start with a separate MOV-0001 stationary case; this map's u1 control does not
 substitute for that case. Extract the working log/sample functions into small
 shared JASS instrumentation, then add narrow movement experiments manually.

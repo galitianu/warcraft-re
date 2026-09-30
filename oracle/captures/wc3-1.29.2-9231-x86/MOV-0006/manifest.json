@@ -1,0 +1,110 @@
+{
+  "experiment": "MOV-0006",
+  "map_label": "MOV-0006",
+  "date": "2026-09-30",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "definition": "docs/phase-1-experiments.md",
+  "procedure": "docs/phase-1-procedure.md",
+  "map": {
+    "path": "oracle-maps/MOV-0006.w3m",
+    "sha256": "2d9ad890ebf061d0ca1b16fab945c6b8039a2007dcba159fa98c78ac07bc2913",
+    "bytes": 22152,
+    "authored_with": "World Editor 1.29.2.9231, from a copy of oracle-maps/MOV-0002.w3m",
+    "w3i_format": 18,
+    "header_custom_script": "absent",
+    "trigger_matches_library_newline_case": true,
+    "war3map_j_contains_source": true,
+    "war3map_j_runs_init_triggers": false,
+    "generated_war3map_j_sha256": "8bac454055f234b733018d4f0ef3a711328719caee032c91dbedb7c1d2f7dcd8"
+  },
+  "library": {
+    "path": "oracle/jass/lib/oracle-v1.j",
+    "sha256": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca"
+  },
+  "case": {
+    "path": "oracle/jass/MOV-0006.j",
+    "sha256": "dd6d6fdba5c576587c5d5debde192a2b15bb5e7b68b3db67ae0bf80b2c13d2f9"
+  },
+  "environment": {
+    "path": "oracle/environment/wc3-1.29.2-9231-x86.json",
+    "sha256": "dad738060886d7c75feb0ff14ddc3c276d3e861842bbb8bfead09dd89f23a5a1",
+    "reverified": "2026-09-30: game/editor SHA-256 and 1.29.2.9231, Windows 11 Pro 26200 ARM64, 4 logical processors, Allow Local Files absent"
+  },
+  "sampling": {
+    "requested_period_seconds": "0.020000",
+    "callbacks": 250,
+    "clock_duration_seconds": "1000",
+    "numeric_format": "R2SW(value,1,6); *_9 fields R2SW(value,1,9)"
+  },
+  "rng_seed": "not set; seed influence untested",
+  "transport": "rdpipe pull; SHA-256 checked by transport",
+  "runs": [
+    {
+      "run": 1,
+      "file": "run-01.txt",
+      "game_pid": 2244,
+      "start_unix_seconds": 1790779744.482132,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0006.w3m",
+      "map_sha256": "2d9ad890ebf061d0ca1b16fab945c6b8039a2007dcba159fa98c78ac07bc2913",
+      "output": {
+        "Length": 34775,
+        "LastWriteTimeUtc": "/Date(1790779754656)/"
+      },
+      "sha256": "05c9f01ba19fd7d3d9c597995c94347be5930bb90fbee3eae694b0e4c6c17f1d",
+      "payload_sha256": "0af551587f76135d655ce8b4d60fc899c86a3af932ec3ab3ff3c62c0e2ec229e",
+      "footer": "call PreloadEnd( 5.1 )"
+    },
+    {
+      "run": 2,
+      "file": "run-02.txt",
+      "game_pid": 7528,
+      "start_unix_seconds": 1790779755.778985,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0006.w3m",
+      "map_sha256": "2d9ad890ebf061d0ca1b16fab945c6b8039a2007dcba159fa98c78ac07bc2913",
+      "output": {
+        "Length": 34775,
+        "LastWriteTimeUtc": "/Date(1790779765890)/"
+      },
+      "sha256": "05c9f01ba19fd7d3d9c597995c94347be5930bb90fbee3eae694b0e4c6c17f1d",
+      "payload_sha256": "0af551587f76135d655ce8b4d60fc899c86a3af932ec3ab3ff3c62c0e2ec229e",
+      "footer": "call PreloadEnd( 5.1 )"
+    },
+    {
+      "run": 3,
+      "file": "run-03.txt",
+      "game_pid": 7724,
+      "start_unix_seconds": 1790779766.9962728,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0006.w3m",
+      "map_sha256": "2d9ad890ebf061d0ca1b16fab945c6b8039a2007dcba159fa98c78ac07bc2913",
+      "output": {
+        "Length": 34775,
+        "LastWriteTimeUtc": "/Date(1790779777035)/"
+      },
+      "sha256": "76cc9e0f808bd8fa8d1393e2ee1ec4db42c84d1c48aa9e221a2ec723dcdbf420",
+      "payload_sha256": "0af551587f76135d655ce8b4d60fc899c86a3af932ec3ab3ff3c62c0e2ec229e",
+      "footer": "call PreloadEnd( 5.0 )"
+    }
+  ],
+  "verification": {
+    "tool": "tools/oracle_parse.py",
+    "all_runs_parsed": true,
+    "payloads_identical": true,
+    "payload_sha256": [
+      "0af551587f76135d655ce8b4d60fc899c86a3af932ec3ab3ff3c62c0e2ec229e"
+    ],
+    "distinct_raw_sha256": 2,
+    "footers": [
+      "call PreloadEnd( 5.0 )",
+      "call PreloadEnd( 5.1 )"
+    ],
+    "generated_preload_entries": 26,
+    "generated_entries_identical": true,
+    "classification": "repeatable under recorded setup (3 fresh processes); broader determinism unestablished"
+  }
+}

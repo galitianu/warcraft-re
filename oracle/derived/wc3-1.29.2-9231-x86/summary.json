@@ -1,0 +1,2409 @@
+[
+ {
+  "map": "MOV-0001",
+  "experiment": "MOV-0001",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "3ddc9e7bb8594f171b0ca3384b26d80acdc36ba10a739d5d2f143db209d4e1c2"
+  ],
+  "raw_sha256": [
+   "ac14bf54c9f545f322b14fbf014d1d1a8b666dbf416e8ca63f7c202a1f26bb82",
+   "f7ca9d5981bfcc0d5e1a4ab36ca1328ff39b500943e13e02d76d70b0874f9ace"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 507,
+  "callbacks": 250,
+  "requested_period": "0.020000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": null,
+    "first_facing_change": null,
+    "order_changes": [],
+    "moving_callbacks": 0,
+    "max_step": "0",
+    "most_common_steps": [],
+    "final": {
+     "callback": 250,
+     "t": "5.000000",
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    }
+   }
+  }
+ },
+ {
+  "map": "MOV-0002-r2",
+  "experiment": "MOV-0002",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "4c4f75f3947a52e40b6d33bf6faaae470d5f5e40f347bee1b32b2a10b9937bf7"
+  ],
+  "raw_sha256": [
+   "54bee22340e2b88dc4aac079eda4b080f9a2d200b370a742e18abb4fa2938f16",
+   "d519cab8c35515c7a457bf223079b665ec27247f6ed5f644353426692d6f01d7"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 760,
+  "callbacks": 250,
+  "requested_period": "0.020000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   },
+   {
+    "name": "u1",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.020020",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 184,
+      "t": "3.680054",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 184,
+    "max_step": "5.399987",
+    "most_common_steps": [
+     [
+      "5.399903",
+      9
+     ],
+     [
+      "5.399902",
+      9
+     ],
+     [
+      "5.399414",
+      9
+     ]
+    ],
+    "final": {
+     "callback": 250,
+     "t": "5.000000",
+     "x": "988.133301",
+     "y": "0.033203",
+     "facing": "0.388643",
+     "order": "0"
+    }
+   },
+   "u1": {
+    "initial": {
+     "x": "0.000000",
+     "y": "384.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": null,
+    "first_facing_change": null,
+    "order_changes": [],
+    "moving_callbacks": 0,
+    "max_step": "0",
+    "most_common_steps": [],
+    "final": {
+     "callback": 250,
+     "t": "5.000000",
+     "x": "0.000000",
+     "y": "384.000000",
+     "facing": "0.000000",
+     "order": "0"
+    }
+   }
+  }
+ },
+ {
+  "map": "MOV-0003",
+  "experiment": "MOV-0003",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "c9f59fdda00360da7e73c8185bfc262adb27e03e17b76c474637e3cc11e65018"
+  ],
+  "raw_sha256": [
+   "b49b83210dd777f7dc509102c8c886540f21c13582a5b1d8a48af64d5d5054fd"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 508,
+  "callbacks": 250,
+  "requested_period": "0.020000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|707.106750|707.106750|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "44.999996",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "1.908691",
+     "y": "1.908691",
+     "facing": "45.000530"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "1.908691",
+     "y": "1.908691",
+     "facing": "45.000530"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.020020",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 184,
+      "t": "3.680054",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 184,
+    "max_step": "5.399976",
+    "most_common_steps": [
+     [
+      "5.399285",
+      96
+     ],
+     [
+      "5.399975",
+      32
+     ],
+     [
+      "5.399976",
+      26
+     ]
+    ],
+    "final": {
+     "callback": 250,
+     "t": "5.000000",
+     "x": "698.700195",
+     "y": "698.700684",
+     "facing": "44.998810",
+     "order": "0"
+    }
+   }
+  }
+ },
+ {
+  "map": "MOV-0004",
+  "experiment": "MOV-0004",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "d0b82f1f2cf59ae3e619cbd3260955df336e39c79e5fd2ffc73de8c81831d023"
+  ],
+  "raw_sha256": [
+   "0408e59e6f13eada917ab38598a7469abfe73ecbc32864b590c85743d124ebd8",
+   "bf7a6216bb9d24bf1c17bc7fb5b25ed2ff7e8367e447e83bb3783bd5bf1ca270"
+  ],
+  "footers": [
+   "call PreloadEnd( 12.0 )",
+   "call PreloadEnd( 12.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 1208,
+  "callbacks": 600,
+  "requested_period": "0.020000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "150.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "1.499512",
+     "y": "0.007813",
+     "facing": "0.156594"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "1.499512",
+     "y": "0.007813",
+     "facing": "0.156594"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.020020",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 329,
+      "t": "6.580017",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 329,
+    "max_step": "3.000053",
+    "most_common_steps": [
+     [
+      "2.999512",
+      58
+     ],
+     [
+      "2.999511",
+      17
+     ],
+     [
+      "2.999513",
+      16
+     ]
+    ],
+    "final": {
+     "callback": 600,
+     "t": "11.999939",
+     "x": "985.393066",
+     "y": "-0.018555",
+     "facing": "359.638000",
+     "order": "0"
+    }
+   }
+  }
+ },
+ {
+  "map": "MOV-0005",
+  "experiment": "MOV-0005",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "2348f59054943a6e2e0a0b0f3a0f197f1d222b290adff25066a0c9b9d18d6c44"
+  ],
+  "raw_sha256": [
+   "417e305dc3afda708eba53410e4569a42b3e0595c5b75d6b7c012518966a890f",
+   "9eb6874d18df11c3509ba4ab6457fa42effdfdb18f91bd3d4d99aaf2f2e23447"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 508,
+  "callbacks": 250,
+  "requested_period": "0.020000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "400.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "3.999512",
+     "y": "0.021484",
+     "facing": "0.124252"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "3.999512",
+     "y": "0.021484",
+     "facing": "0.124252"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.020020",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 125,
+      "t": "2.500000",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 125,
+    "max_step": "8.000140",
+    "most_common_steps": [
+     [
+      "7.999512",
+      13
+     ],
+     [
+      "7.999511",
+      7
+     ],
+     [
+      "7.999617",
+      3
+     ]
+    ],
+    "final": {
+     "callback": 250,
+     "t": "5.000000",
+     "x": "995.957520",
+     "y": "0.001465",
+     "facing": "359.780609",
+     "order": "0"
+    }
+   }
+  }
+ },
+ {
+  "map": "MOV-0006",
+  "experiment": "MOV-0006",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "0af551587f76135d655ce8b4d60fc899c86a3af932ec3ab3ff3c62c0e2ec229e"
+  ],
+  "raw_sha256": [
+   "05c9f01ba19fd7d3d9c597995c94347be5930bb90fbee3eae694b0e4c6c17f1d",
+   "76cc9e0f808bd8fa8d1393e2ee1ec4db42c84d1c48aa9e221a2ec723dcdbf420"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 509,
+  "callbacks": 250,
+  "requested_period": "0.020000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   },
+   {
+    "callback": 50,
+    "t": "1.000000",
+    "name": "u0",
+    "detail": "move|267.287109|999.976807|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.020020",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 236,
+      "t": "4.720032",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 233,
+    "max_step": "5.399987",
+    "most_common_steps": [
+     [
+      "5.399437",
+      80
+     ],
+     [
+      "5.399925",
+      39
+     ],
+     [
+      "5.399926",
+      33
+     ]
+    ],
+    "final": {
+     "callback": 250,
+     "t": "5.000000",
+     "x": "267.322754",
+     "y": "987.575195",
+     "facing": "90.165085",
+     "order": "0"
+    }
+   }
+  }
+ },
+ {
+  "map": "MOV-0007",
+  "experiment": "MOV-0007",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "3019cbf01b8e3c8840d920c7c525161faac5d2fefa56bddfd6f22b41db1482cc"
+  ],
+  "raw_sha256": [
+   "0f41ef6d0ed9f6ecbd23dcff34dbbac098269e7215e19936662b72694e3b57da",
+   "0f5cc9f17c9ecbe0bfa4c76efbff0dac5bcac1d859863b7b8b7f8007e96e4894"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 509,
+  "callbacks": 250,
+  "requested_period": "0.020000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   },
+   {
+    "callback": 50,
+    "t": "1.000000",
+    "name": "u0",
+    "detail": "move|-732.712891|-0.023193|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.020020",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 241,
+      "t": "4.820007",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 234,
+    "max_step": "5.400459",
+    "most_common_steps": [
+     [
+      "5.399658",
+      8
+     ],
+     [
+      "5.399659",
+      7
+     ],
+     [
+      "5.399903",
+      6
+     ]
+    ],
+    "final": {
+     "callback": 250,
+     "t": "5.000000",
+     "x": "-720.797363",
+     "y": "0.000000",
+     "facing": "179.631012",
+     "order": "0"
+    }
+   }
+  }
+ },
+ {
+  "map": "MOV-0008",
+  "experiment": "MOV-0008",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "0a9f24e5c49333bece801b3aac4a66458e15a77eed660730b5537be2c2a5d661"
+  ],
+  "raw_sha256": [
+   "c7803979deb6c12316d91b8290fce62032ef12bb6409623dbf55f1de8954b930",
+   "ef9d34d58143016ca3c9af6341f79bf25eee83d0cf3a30dbfc19009513cba080"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 509,
+  "callbacks": 250,
+  "requested_period": "0.020000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   },
+   {
+    "callback": 50,
+    "t": "1.000000",
+    "name": "u0",
+    "detail": "move|500.000000|0.000000|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.020020",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 92,
+      "t": "1.840027",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 91,
+    "max_step": "5.399987",
+    "most_common_steps": [
+     [
+      "5.399902",
+      8
+     ],
+     [
+      "5.399903",
+      4
+     ],
+     [
+      "5.399948",
+      3
+     ]
+    ],
+    "final": {
+     "callback": 250,
+     "t": "5.000000",
+     "x": "485.974609",
+     "y": "0.015625",
+     "facing": "0.344798",
+     "order": "0"
+    }
+   }
+  }
+ },
+ {
+  "map": "MOV-0009",
+  "experiment": "MOV-0009",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "810c67d559548a785761885688baecb8d111fca66f0bf9fbd506a8a15e5d6a2c"
+  ],
+  "raw_sha256": [
+   "65d256a5d0a3cc26875a53760df9c3032ebe134fa4ef712131dd40d6b5248dfb",
+   "b2309a50943e425682c4dbd61539d5750697c9d89635aa5ebb69f78faca69e45"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 508,
+  "callbacks": 250,
+  "requested_period": "0.020000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "179.999985",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 7,
+     "t": "0.140015",
+     "x": "2.672852",
+     "y": "0.380859",
+     "facing": "133.590378"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "175.989273"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.020020",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 190,
+      "t": "3.800049",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 184,
+    "max_step": "5.399988",
+    "most_common_steps": [
+     [
+      "5.399414",
+      13
+     ],
+     [
+      "5.399902",
+      6
+     ],
+     [
+      "5.399415",
+      5
+     ]
+    ],
+    "final": {
+     "callback": 250,
+     "t": "5.000000",
+     "x": "988.048340",
+     "y": "-0.017578",
+     "facing": "359.625214",
+     "order": "0"
+    }
+   }
+  }
+ },
+ {
+  "map": "MOV-0010",
+  "experiment": "MOV-0010",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "d86dd2b7085385f72a88ae475f91b5b3e2deb5acde59e8ec823b524a206c013b"
+  ],
+  "raw_sha256": [
+   "22258d433eed7add9e1e59d185dbba86d11d4e2bf845de670eaf333e7631f70b",
+   "2b4304dddc5566bd968ec822c4badf2bfecd6830de696b83744b5e7c7c3f43bd"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 509,
+  "callbacks": 250,
+  "requested_period": "0.020000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   },
+   {
+    "callback": 50,
+    "t": "1.000000",
+    "name": "u0",
+    "detail": "stop|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.020020",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 51,
+      "t": "1.020020",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 50,
+    "max_step": "5.399987",
+    "most_common_steps": [
+     [
+      "5.399902",
+      3
+     ],
+     [
+      "5.399948",
+      2
+     ],
+     [
+      "5.399907",
+      2
+     ]
+    ],
+    "final": {
+     "callback": 250,
+     "t": "5.000000",
+     "x": "267.287109",
+     "y": "-0.023193",
+     "facing": "0.329718",
+     "order": "0"
+    }
+   }
+  }
+ },
+ {
+  "map": "JASS-0001-p001",
+  "experiment": "JASS-0001",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "09473db5a9d821d094d4871c7f88cf9abe0ebd8c653bb942c2db30c56abcfeba"
+  ],
+  "raw_sha256": [
+   "0ca7e17be2f2597916f3dc926745e23abfb289b182104ddcd09601b828560ddb",
+   "6517461d5609b15d8f157a9f8dc32d2d2a10757888228ab1eba501473b070bce"
+  ],
+  "footers": [
+   "call PreloadEnd( 0.6 )",
+   "call PreloadEnd( 0.7 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 1509,
+  "callbacks": 500,
+  "requested_period": "0.001000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 15,
+     "t": "0.015015",
+     "x": "1.349609",
+     "y": "0.007324",
+     "facing": "0.174245"
+    },
+    "first_facing_change": {
+     "callback": 11,
+     "t": "0.011047",
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.174245"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.001038",
+      "from": "0",
+      "to": "851986"
+     }
+    ],
+    "moving_callbacks": 97,
+    "max_step": "1.350121",
+    "most_common_steps": [
+     [
+      "1.350118",
+      7
+     ],
+     [
+      "1.350099",
+      6
+     ],
+     [
+      "1.350108",
+      6
+     ]
+    ],
+    "final": {
+     "callback": 500,
+     "t": "0.500000",
+     "x": "130.943359",
+     "y": "0.036133",
+     "facing": "0.162922",
+     "order": "851986"
+    }
+   }
+  },
+  "timing": {
+   "tick_intervals_1000s_clock": [
+    [
+     "0.000977",
+     172
+    ],
+    [
+     "0.000976",
+     136
+    ],
+    [
+     "0.001038",
+     116
+    ],
+    [
+     "0.001037",
+     76
+    ]
+   ],
+   "c10_intervals_9dp": [
+    [
+     "0.000999456",
+     134
+    ],
+    [
+     "0.001000416",
+     103
+    ],
+    [
+     "0.001000400",
+     75
+    ],
+    [
+     "0.001000384",
+     46
+    ],
+    [
+     "0.001000404",
+     28
+    ],
+    [
+     "0.000999448",
+     25
+    ],
+    [
+     "0.001000408",
+     22
+    ],
+    [
+     "0.000999440",
+     18
+    ]
+   ],
+   "c100_intervals_9dp": [
+    [
+     "0.000999456",
+     281
+    ],
+    [
+     "0.000999448",
+     53
+    ],
+    [
+     "0.000999440",
+     42
+    ],
+    [
+     "0.000999424",
+     36
+    ],
+    [
+     "0.000999452",
+     26
+    ],
+    [
+     "0.000999450",
+     17
+    ],
+    [
+     "0.001007072",
+     16
+    ],
+    [
+     "0.000999451",
+     9
+    ]
+   ],
+   "zero_c10_intervals": 0,
+   "c10_last": "0.499994272",
+   "c10_remaining_plus_elapsed": [
+    "10.000000000",
+    "9.999999936",
+    "9.999999938",
+    "9.999999939",
+    "9.999999940",
+    "9.999999942",
+    "9.999999944",
+    "9.999999946",
+    "9.999999948",
+    "9.999999952",
+    "9.999999954",
+    "9.999999955",
+    "9.999999956",
+    "9.999999958",
+    "9.999999959",
+    "9.999999960",
+    "9.999999962",
+    "9.999999964",
+    "9.999999968",
+    "9.999999969",
+    "9.999999972",
+    "9.999999974",
+    "9.999999976",
+    "9.999999977",
+    "9.999999978",
+    "9.999999980",
+    "9.999999984",
+    "9.999999986",
+    "9.999999988",
+    "9.999999989",
+    "9.999999992",
+    "9.999999993",
+    "9.999999996"
+   ],
+   "state_changes": 98,
+   "first_state_changes": [
+    [
+     11,
+     "0.011000633"
+    ],
+    [
+     15,
+     "0.015000343"
+    ],
+    [
+     20,
+     "0.020000456"
+    ],
+    [
+     25,
+     "0.025000572"
+    ],
+    [
+     30,
+     "0.029999732"
+    ],
+    [
+     35,
+     "0.034999844"
+    ]
+   ],
+   "state_change_gaps_c10": [
+    [
+     "0.005000112",
+     28
+    ],
+    [
+     "0.005000128",
+     23
+    ],
+    [
+     "0.005000096",
+     17
+    ],
+    [
+     "0.004999168",
+     11
+    ],
+    [
+     "0.004999160",
+     5
+    ],
+    [
+     "0.005000116",
+     4
+    ],
+    [
+     "0.005000120",
+     3
+    ],
+    [
+     "0.004999152",
+     2
+    ]
+   ],
+   "last_state_change": [
+    496,
+    "0.495993600"
+   ]
+  }
+ },
+ {
+  "map": "JASS-0001-p010",
+  "experiment": "JASS-0001",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "6e8e08b66af1ef3cb51e95fb2c716170352562131073a22649025125bb9871ae"
+  ],
+  "raw_sha256": [
+   "33e7a8b7b3f2d9fa1dcab4b3d55263f364e02993d94fbda7661c9a61425c25da",
+   "de0b74a66bcb2c9a68294afdc5159ce78ffa8b7678d1df3d56a279a0fc91b0a4"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 1509,
+  "callbacks": 500,
+  "requested_period": "0.010000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 2,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.010010",
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.174245"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.010010",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 368,
+      "t": "3.679993",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 366,
+    "max_step": "2.700240",
+    "most_common_steps": [
+     [
+      "2.699707",
+      21
+     ],
+     [
+      "2.699747",
+      15
+     ],
+     [
+      "2.699711",
+      15
+     ]
+    ],
+    "final": {
+     "callback": 500,
+     "t": "5.000000",
+     "x": "988.133301",
+     "y": "0.033203",
+     "facing": "0.388643",
+     "order": "0"
+    }
+   }
+  },
+  "timing": {
+   "tick_intervals_1000s_clock": [
+    [
+     "0.010010",
+     330
+    ],
+    [
+     "0.010009",
+     90
+    ],
+    [
+     "0.009949",
+     50
+    ],
+    [
+     "0.009948",
+     30
+    ]
+   ],
+   "c10_intervals_9dp": [
+    [
+     "0.009999744",
+     157
+    ],
+    [
+     "0.010000224",
+     85
+    ],
+    [
+     "0.010000256",
+     66
+    ],
+    [
+     "0.010000192",
+     36
+    ],
+    [
+     "0.009999752",
+     22
+    ],
+    [
+     "0.009999296",
+     19
+    ],
+    [
+     "0.009999760",
+     15
+    ],
+    [
+     "0.009999808",
+     14
+    ]
+   ],
+   "c100_intervals_9dp": [
+    [
+     "0.010002112",
+     124
+    ],
+    [
+     "0.010002144",
+     89
+    ],
+    [
+     "0.009994496",
+     88
+    ],
+    [
+     "0.010002176",
+     63
+    ],
+    [
+     "0.010002136",
+     44
+    ],
+    [
+     "0.010002128",
+     30
+    ],
+    [
+     "0.009994512",
+     20
+    ],
+    [
+     "0.009994528",
+     15
+    ]
+   ],
+   "zero_c10_intervals": 0,
+   "c10_last": "4.999959424",
+   "c10_remaining_plus_elapsed": [
+    "10.000000000",
+    "9.999999936",
+    "9.999999938",
+    "9.999999940",
+    "9.999999942",
+    "9.999999944",
+    "9.999999948",
+    "9.999999950",
+    "9.999999952",
+    "9.999999955",
+    "9.999999956",
+    "9.999999960",
+    "9.999999963",
+    "9.999999964",
+    "9.999999966",
+    "9.999999968",
+    "9.999999970",
+    "9.999999972",
+    "9.999999976",
+    "9.999999978",
+    "9.999999979",
+    "9.999999980",
+    "9.999999981",
+    "9.999999982",
+    "9.999999984",
+    "9.999999985",
+    "9.999999987",
+    "9.999999988",
+    "9.999999989",
+    "9.999999991",
+    "9.999999992",
+    "9.999999994",
+    "9.999999996",
+    "9.999999998",
+    "9.999999999"
+   ],
+   "state_changes": 372,
+   "first_state_changes": [
+    [
+     1,
+     "0.010000228"
+    ],
+    [
+     2,
+     "0.020000456"
+    ],
+    [
+     3,
+     "0.030000686"
+    ],
+    [
+     4,
+     "0.039999960"
+    ],
+    [
+     5,
+     "0.050000188"
+    ],
+    [
+     6,
+     "0.060000416"
+    ]
+   ],
+   "state_change_gaps_c10": [
+    [
+     "0.010000224",
+     85
+    ],
+    [
+     "0.010000256",
+     66
+    ],
+    [
+     "0.009999744",
+     62
+    ],
+    [
+     "0.010000192",
+     36
+    ],
+    [
+     "0.009999296",
+     19
+    ],
+    [
+     "0.010000232",
+     11
+    ],
+    [
+     "0.009999264",
+     11
+    ],
+    [
+     "0.009999752",
+     10
+    ]
+   ],
+   "last_state_change": [
+    380,
+    "3.799989184"
+   ]
+  }
+ },
+ {
+  "map": "JASS-0001-p020",
+  "experiment": "JASS-0001",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "f93fd7e76131e91bd7b2ac6b84b4e916a7d43c94b93f52377cb002ba23f0494a"
+  ],
+  "raw_sha256": [
+   "2373eaa561c81543d9293ceb94cc58a732f8c65f5e8c3973ca688845faab269d",
+   "87db35b64708b1ae59d3e679485f973b2205c2951e3e284fb065c5f434f04937"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 759,
+  "callbacks": 250,
+  "requested_period": "0.020000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.020020",
+     "x": "2.699707",
+     "y": "0.014648",
+     "facing": "0.174245"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.020020",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 184,
+      "t": "3.680054",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 184,
+    "max_step": "5.399987",
+    "most_common_steps": [
+     [
+      "5.399903",
+      9
+     ],
+     [
+      "5.399902",
+      9
+     ],
+     [
+      "5.399414",
+      9
+     ]
+    ],
+    "final": {
+     "callback": 250,
+     "t": "5.000000",
+     "x": "988.133301",
+     "y": "0.033203",
+     "facing": "0.388643",
+     "order": "0"
+    }
+   }
+  },
+  "timing": {
+   "tick_intervals_1000s_clock": [
+    [
+     "0.020020",
+     95
+    ],
+    [
+     "0.020019",
+     75
+    ],
+    [
+     "0.019958",
+     45
+    ],
+    [
+     "0.019959",
+     35
+    ]
+   ],
+   "c10_intervals_9dp": [
+    [
+     "0.020000000",
+     63
+    ],
+    [
+     "0.020000448",
+     31
+    ],
+    [
+     "0.019999968",
+     29
+    ],
+    [
+     "0.019999488",
+     26
+    ],
+    [
+     "0.019999984",
+     24
+    ],
+    [
+     "0.019999936",
+     21
+    ],
+    [
+     "0.019999504",
+     12
+    ],
+    [
+     "0.020000456",
+     6
+    ]
+   ],
+   "c100_intervals_9dp": [
+    [
+     "0.020004288",
+     48
+    ],
+    [
+     "0.019996640",
+     46
+    ],
+    [
+     "0.019996672",
+     46
+    ],
+    [
+     "0.020004272",
+     27
+    ],
+    [
+     "0.019996608",
+     27
+    ],
+    [
+     "0.020004256",
+     18
+    ],
+    [
+     "0.020004224",
+     13
+    ],
+    [
+     "0.019996648",
+     5
+    ]
+   ],
+   "zero_c10_intervals": 0,
+   "c10_last": "4.999995200",
+   "c10_remaining_plus_elapsed": [
+    "10.000000000",
+    "9.999999936",
+    "9.999999938",
+    "9.999999940",
+    "9.999999942",
+    "9.999999944",
+    "9.999999948",
+    "9.999999952",
+    "9.999999954",
+    "9.999999960",
+    "9.999999964",
+    "9.999999968",
+    "9.999999972",
+    "9.999999975",
+    "9.999999976",
+    "9.999999980",
+    "9.999999981",
+    "9.999999984",
+    "9.999999987",
+    "9.999999992",
+    "9.999999994",
+    "9.999999998"
+   ],
+   "state_changes": 188,
+   "first_state_changes": [
+    [
+     1,
+     "0.020000456"
+    ],
+    [
+     2,
+     "0.039999960"
+    ],
+    [
+     3,
+     "0.060000416"
+    ],
+    [
+     4,
+     "0.079999920"
+    ],
+    [
+     5,
+     "0.100000376"
+    ],
+    [
+     6,
+     "0.119999880"
+    ]
+   ],
+   "state_change_gaps_c10": [
+    [
+     "0.020000448",
+     31
+    ],
+    [
+     "0.020000000",
+     31
+    ],
+    [
+     "0.019999488",
+     26
+    ],
+    [
+     "0.019999968",
+     19
+    ],
+    [
+     "0.019999984",
+     16
+    ],
+    [
+     "0.019999504",
+     12
+    ],
+    [
+     "0.019999936",
+     11
+    ],
+    [
+     "0.019999520",
+     6
+    ]
+   ],
+   "last_state_change": [
+    190,
+    "3.799996352"
+   ]
+  }
+ },
+ {
+  "map": "JASS-0001-p025",
+  "experiment": "JASS-0001",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "edf84904d3ce7fc3fac37887936b61c13aa96ece597aa519383c8cdeede846ee"
+  ],
+  "raw_sha256": [
+   "785c0024c20bd30af4a94a5bdbdf5b80c94d920c6bd11140b011adae4c23abd7",
+   "b1cacb132e316a0a0310c809fa2542c4392f223d87a8f25a3afffa84d7b249aa"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 609,
+  "callbacks": 200,
+  "requested_period": "0.025000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 1,
+     "t": "0.025024",
+     "x": "4.049805",
+     "y": "0.021973",
+     "facing": "0.174245"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.025024",
+     "x": "4.049805",
+     "y": "0.021973",
+     "facing": "0.174245"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.025024",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 147,
+      "t": "3.674988",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 147,
+    "max_step": "6.750078",
+    "most_common_steps": [
+     [
+      "6.749514",
+      7
+     ],
+     [
+      "6.749512",
+      6
+     ],
+     [
+      "6.749515",
+      4
+     ]
+    ],
+    "final": {
+     "callback": 200,
+     "t": "5.000000",
+     "x": "988.133301",
+     "y": "0.033203",
+     "facing": "0.388643",
+     "order": "0"
+    }
+   }
+  },
+  "timing": {
+   "tick_intervals_1000s_clock": [
+    [
+     "0.025025",
+     61
+    ],
+    [
+     "0.024963",
+     61
+    ],
+    [
+     "0.025024",
+     59
+    ],
+    [
+     "0.024964",
+     19
+    ]
+   ],
+   "c10_intervals_9dp": [
+    [
+     "0.024999616",
+     118
+    ],
+    [
+     "0.025000576",
+     16
+    ],
+    [
+     "0.025000096",
+     16
+    ],
+    [
+     "0.024999680",
+     5
+    ],
+    [
+     "0.025000128",
+     5
+    ],
+    [
+     "0.025000064",
+     5
+    ],
+    [
+     "0.024999624",
+     4
+    ],
+    [
+     "0.025000544",
+     4
+    ]
+   ],
+   "c100_intervals_9dp": [
+    [
+     "0.025001536",
+     89
+    ],
+    [
+     "0.025001504",
+     21
+    ],
+    [
+     "0.024993920",
+     20
+    ],
+    [
+     "0.025001520",
+     18
+    ],
+    [
+     "0.025001472",
+     11
+    ],
+    [
+     "0.025001524",
+     8
+    ],
+    [
+     "0.024993888",
+     8
+    ],
+    [
+     "0.025001528",
+     7
+    ]
+   ],
+   "zero_c10_intervals": 0,
+   "c10_last": "4.999964224",
+   "c10_remaining_plus_elapsed": [
+    "10.000000000",
+    "9.999999936",
+    "9.999999938",
+    "9.999999940",
+    "9.999999960",
+    "9.999999962",
+    "9.999999964",
+    "9.999999966",
+    "9.999999968",
+    "9.999999972",
+    "9.999999975",
+    "9.999999976",
+    "9.999999978",
+    "9.999999980",
+    "9.999999984",
+    "9.999999987",
+    "9.999999988",
+    "9.999999992",
+    "9.999999994",
+    "9.999999996"
+   ],
+   "state_changes": 151,
+   "first_state_changes": [
+    [
+     1,
+     "0.025000572"
+    ],
+    [
+     2,
+     "0.050000188"
+    ],
+    [
+     3,
+     "0.075000760"
+    ],
+    [
+     4,
+     "0.100000376"
+    ],
+    [
+     5,
+     "0.125000000"
+    ],
+    [
+     6,
+     "0.150000560"
+    ]
+   ],
+   "state_change_gaps_c10": [
+    [
+     "0.024999616",
+     74
+    ],
+    [
+     "0.025000576",
+     16
+    ],
+    [
+     "0.025000096",
+     16
+    ],
+    [
+     "0.025000128",
+     5
+    ],
+    [
+     "0.025000064",
+     5
+    ],
+    [
+     "0.025000544",
+     4
+    ],
+    [
+     "0.024999648",
+     4
+    ],
+    [
+     "0.024999680",
+     4
+    ]
+   ],
+   "last_state_change": [
+    152,
+    "3.799982528"
+   ]
+  }
+ },
+ {
+  "map": "JASS-0001-p050",
+  "experiment": "JASS-0001",
+  "runs": 3,
+  "payloads_identical": true,
+  "payload_sha256": [
+   "77e32a7c71b829e5ffef14294b7a64ece53eb62d8be13e6287bd714d60a05fc9"
+  ],
+  "raw_sha256": [
+   "27dc99410b532b04b0b1552b70ba704e27c9bb0bdda4b6d915e28cabf9d32312",
+   "fa970db7e32e4d99449fc8f77a1502fa4225e9c604b079d60a36cc8d0fd6ea06"
+  ],
+  "footers": [
+   "call PreloadEnd( 5.0 )",
+   "call PreloadEnd( 5.1 )"
+  ],
+  "generated_entries_identical": true,
+  "generated_entries": 26,
+  "records": 309,
+  "callbacks": 100,
+  "requested_period": "0.050000",
+  "watched": [
+   {
+    "name": "u0",
+    "type": "footman",
+    "speed": "270.000000",
+    "default_speed": "270.000000"
+   }
+  ],
+  "actions": [
+   {
+    "callback": 0,
+    "t": "0.000000",
+    "name": "u0",
+    "detail": "move|1000.000000|0.000000|accepted=1"
+   }
+  ],
+  "units": {
+   "u0": {
+    "initial": {
+     "x": "0.000000",
+     "y": "0.000000",
+     "facing": "0.000000",
+     "order": "0"
+    },
+    "first_position_change": {
+     "callback": 1,
+     "t": "0.050049",
+     "x": "10.799316",
+     "y": "0.034668",
+     "facing": "359.952728"
+    },
+    "first_facing_change": {
+     "callback": 1,
+     "t": "0.050049",
+     "x": "10.799316",
+     "y": "0.034668",
+     "facing": "359.952728"
+    },
+    "order_changes": [
+     {
+      "callback": 1,
+      "t": "0.050049",
+      "from": "0",
+      "to": "851986"
+     },
+     {
+      "callback": 74,
+      "t": "3.700012",
+      "from": "851986",
+      "to": "0"
+     }
+    ],
+    "moving_callbacks": 74,
+    "max_step": "13.499629",
+    "most_common_steps": [
+     [
+      "13.499529",
+      2
+     ],
+     [
+      "13.499536",
+      2
+     ],
+     [
+      "13.499043",
+      2
+     ]
+    ],
+    "final": {
+     "callback": 100,
+     "t": "5.000000",
+     "x": "988.133301",
+     "y": "0.033203",
+     "facing": "0.388643",
+     "order": "0"
+    }
+   }
+  },
+  "timing": {
+   "tick_intervals_1000s_clock": [
+    [
+     "0.049988",
+     60
+    ],
+    [
+     "0.050049",
+     20
+    ],
+    [
+     "0.049987",
+     20
+    ]
+   ],
+   "c10_intervals_9dp": [
+    [
+     "0.050000192",
+     34
+    ],
+    [
+     "0.049999712",
+     16
+    ],
+    [
+     "0.049999744",
+     13
+    ],
+    [
+     "0.049999680",
+     11
+    ],
+    [
+     "0.049999232",
+     7
+    ],
+    [
+     "0.050000188",
+     3
+    ],
+    [
+     "0.050000184",
+     2
+    ],
+    [
+     "0.050000160",
+     2
+    ]
+   ],
+   "c100_intervals_9dp": [
+    [
+     "0.050003072",
+     20
+    ],
+    [
+     "0.049995424",
+     19
+    ],
+    [
+     "0.050003008",
+     14
+    ],
+    [
+     "0.049995456",
+     14
+    ],
+    [
+     "0.050003040",
+     10
+    ],
+    [
+     "0.050003048",
+     8
+    ],
+    [
+     "0.049995392",
+     6
+    ],
+    [
+     "0.050003056",
+     5
+    ]
+   ],
+   "zero_c10_intervals": 0,
+   "c10_last": "4.999988032",
+   "c10_remaining_plus_elapsed": [
+    "10.000000000",
+    "9.999999936",
+    "9.999999940",
+    "9.999999944",
+    "9.999999948",
+    "9.999999952",
+    "9.999999953",
+    "9.999999960",
+    "9.999999968",
+    "9.999999976",
+    "9.999999981",
+    "9.999999984",
+    "9.999999987",
+    "9.999999991",
+    "9.999999992",
+    "9.999999994",
+    "9.999999996"
+   ],
+   "state_changes": 76,
+   "first_state_changes": [
+    [
+     1,
+     "0.050000188"
+    ],
+    [
+     2,
+     "0.100000376"
+    ],
+    [
+     3,
+     "0.150000560"
+    ],
+    [
+     4,
+     "0.199999808"
+    ],
+    [
+     5,
+     "0.250000000"
+    ],
+    [
+     6,
+     "0.300000160"
+    ]
+   ],
+   "state_change_gaps_c10": [
+    [
+     "0.050000192",
+     34
+    ],
+    [
+     "0.049999712",
+     10
+    ],
+    [
+     "0.049999232",
+     7
+    ],
+    [
+     "0.049999744",
+     6
+    ],
+    [
+     "0.049999680",
+     4
+    ],
+    [
+     "0.050000188",
+     2
+    ],
+    [
+     "0.050000184",
+     2
+    ],
+    [
+     "0.050000160",
+     2
+    ]
+   ],
+   "last_state_change": [
+    76,
+    "3.799994944"
+   ]
+  }
+ }
+]

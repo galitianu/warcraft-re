@@ -33,9 +33,13 @@ Trace run(int case_number, wc3::ModelVersion version, std::uint32_t seed,
     if (case_number == 4) world.set_move_speed(moving, 100);
     if (case_number == 5) world.set_move_speed(moving, 522);
     Trace trace;
+    for (std::size_t id = 0; id < world.unit_count(); ++id)
+        trace.speeds.push_back(world.unit(id).move_speed());
+    std::size_t sequence = 2 + world.unit_count(); // BEGIN, WATCH units, RUN.
     const auto move = [&](int callback, wc3::Vec2 target) {
         const bool accepted = world.issue_point_order(moving, wc3::order_move, target);
-        trace.actions.push_back({callback, wc3::order_move, target, accepted});
+        trace.actions.push_back({callback, wc3::order_move, target, accepted,
+                                 sequence++, world.steps() * step_us});
     };
     for (int callback = 0; callback <= callbacks; ++callback) {
         const std::uint64_t sample_step =
@@ -46,10 +50,12 @@ Trace run(int case_number, wc3::ModelVersion version, std::uint32_t seed,
         const auto steps_before_sample = sample_step -
             (before_due_update && callback > 0 ? 1 : 0);
         while (world.steps() < steps_before_sample) world.step();
+        trace.tick_sequences.push_back(sequence++);
         for (std::size_t id = 0; id < world.unit_count(); ++id) {
             const auto& unit = world.unit(id);
             trace.samples.push_back({callback, sample_step * step_us,
-                id, unit.position(), unit.facing(), unit.current_order()});
+                id, unit.position(), unit.facing(), unit.current_order(),
+                sequence++, world.steps() * step_us});
         }
         while (world.steps() < sample_step) world.step();
         if (callback == 0 && case_number != 1) {
@@ -64,7 +70,8 @@ Trace run(int case_number, wc3::ModelVersion version, std::uint32_t seed,
             if (case_number == 8) move(callback, {500, 0});
             if (case_number == 10) {
                 const bool accepted = world.issue_immediate_order(moving, wc3::order_stop);
-                trace.actions.push_back({callback, wc3::order_stop, {}, accepted});
+                trace.actions.push_back({callback, wc3::order_stop, {}, accepted,
+                                         sequence++, world.steps() * step_us});
             }
         }
     }

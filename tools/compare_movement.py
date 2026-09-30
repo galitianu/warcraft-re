@@ -8,7 +8,7 @@ import math
 from pathlib import Path
 
 # Fixed before running either model. Units: world units, degrees, seconds.
-TOLERANCES = {"x": 0.001, "y": 0.001, "facing": 0.001, "order": 0, "t": 0.0000615}
+from trace_contract import TOLERANCES
 PROPERTIES = tuple(TOLERANCES)
 REFERENCE_BUILD = "wc3-1.29.2-9231-x86"
 ROOT = Path(__file__).resolve().parents[1]

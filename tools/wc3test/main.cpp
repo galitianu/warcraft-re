@@ -1,10 +1,13 @@
 #include "BuildIdentity.h"
 #include "Cases.h"
+#include "Canonical.h"
 #include <charconv>
 #include <cmath>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <iomanip>
+#include <limits>
 #include <locale>
 #include <sstream>
 #include <string>
@@ -21,7 +24,7 @@ std::string json_number(float value) {
     if (std::isinf(value)) return "\"unlimited\"";
     std::ostringstream out;
     out.imbue(std::locale::classic());
-    out << value;
+    out << std::setprecision(std::numeric_limits<float>::max_digits10) << value;
     return out.str();
 }
 }
@@ -70,7 +73,11 @@ int main(int argc, char** argv) {
             << "  \"sample_period_us\": " << movement::sample_period_us << ",\n"
             // t is the requested callback time; before-phase state omits the step due then.
             << "  \"state_lag_us\": " << (before ? p.step_us : 0) << ",\n"
-            << "  \"parameters\": {\n"
+            << "  \"parameters\": ";
+        std::ostringstream parameters;
+        parameters.imbue(std::locale::classic());
+        parameters << std::setprecision(std::numeric_limits<float>::max_digits10);
+        parameters << "{\n"
             << "    \"position_period_steps\": " << p.position_period_steps << ",\n"
             << "    \"facing_period_steps\": " << p.facing_period_steps << ",\n"
             << "    \"facing_phase_steps\": " << p.facing_phase_steps << ",\n"
@@ -82,10 +89,13 @@ int main(int argc, char** argv) {
             << "    \"turn_ramp_radians\": [" << json_number(p.turn_ramp_radians[0]) << ", "
             << json_number(p.turn_ramp_radians[1]) << ", " << json_number(p.turn_ramp_radians[2]) << "],\n"
             << "    \"opposite_angle_tie\": {\"turn\": \"clockwise\", \"within_degrees\": "
-            << json_number(p.opposite_tie_degrees) << "}\n  },\n  \"cases\": [\n";
+            << json_number(p.opposite_tie_degrees) << "}\n  }";
+        identity << parameters.str() << ",\n  \"cases\": [\n";
+        std::vector<movement::Trace> traces;
         for (int number = 1; number <= 10; ++number) {
             const auto name = movement::case_name(number);
             const auto trace = movement::run(number, version, seed, before);
+            traces.push_back(trace);
             write(output / (name + ".csv"), movement::samples_csv(trace));
             write(output / (name + "-actions.csv"), movement::actions_csv(trace));
             identity << "    {\"test\": \"" << name << "\", \"callbacks\": "
@@ -95,6 +105,10 @@ int main(int argc, char** argv) {
         }
         identity << "  ]\n}\n";
         write(output / "identity.json", identity.str());
+        for (int number = 1; number <= 10; ++number)
+            write(output / (movement::case_name(number) + ".json"),
+                  movement::canonical_json(traces[number - 1], number, identity.str(),
+                                           version, seed, before, build_source_sha256, parameters.str()));
         std::cout << p.name << ": wrote ten finite traces to " << output << '\n';
         return 0;
     } catch (const std::exception& error) {

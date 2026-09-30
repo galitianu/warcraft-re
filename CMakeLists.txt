@@ -16,7 +16,7 @@ target_compile_options(wc3world PUBLIC
 target_compile_definitions(wc3world PUBLIC
   $<$<CXX_COMPILER_ID:AppleClang,Clang,GNU>:WC3_FP_CONTRACT_OFF>)
 
-add_library(movement_cases STATIC tools/wc3test/Cases.cpp)
+add_library(movement_cases STATIC tools/wc3test/Cases.cpp tools/wc3test/Canonical.cpp)
 target_include_directories(movement_cases PUBLIC tools/wc3test)
 target_link_libraries(movement_cases PUBLIC wc3world)
 
@@ -45,6 +45,7 @@ endif()
 set(BUILD_SOURCE_INPUT "")
 foreach(path CMakeLists.txt src/core/World.h src/core/World.cpp src/core/Random.h
     tools/wc3test/Cases.h tools/wc3test/Cases.cpp tools/wc3test/main.cpp
+    tools/wc3test/Canonical.h tools/wc3test/Canonical.cpp
     tools/wc3test/BuildIdentity.h.in)
   set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${path}")
   file(SHA256 "${CMAKE_SOURCE_DIR}/${path}" digest)

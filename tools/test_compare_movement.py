@@ -80,6 +80,23 @@ class ComparisonTests(unittest.TestCase):
                                 capture_output=True, text=True)
         self.assertEqual(result.returncode, 2, result.stderr)
 
+    def test_overflowing_identity_counts_exit_malformed_not_divergent(self):
+        actual = Path(self.temp.name) / "act"
+        actual.mkdir()
+        for callbacks, units in (("1e999", "1"), ("250", "1e999")):
+            with self.subTest(callbacks=callbacks, units=units):
+                # Valid JSON numbers overflow Python's float conversion to infinity.
+                (actual / "identity.json").write_text(
+                    '{"cases":[{"test":"MOV-0001","callbacks":' + callbacks +
+                    ',"units":' + units + '}]}'
+                )
+                result = subprocess.run(
+                    [sys.executable, str(Path(__file__).with_name("compare_movement.py")),
+                     "--actual", str(actual)], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 2, result.stderr)
+                self.assertIn("compare_movement:", result.stderr)
+                self.assertNotIn("Traceback", result.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

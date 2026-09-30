@@ -76,6 +76,11 @@ behind WC3 in X. All nine movement failures remain under unchanged tolerances.
 The numerical v0.0.1 gate is met; no tag created. Arrival, replacement latency,
 heading/grid drift, residual facing and long-clock offset remain unresolved.
 
+PR #4 follow-up: numeric overflow in malformed comparator input now returns exit 2
+instead of numerical-divergence exit 1. Regression checks cover oversized callback
+and unit counts; all 19 Python tests pass. Retained Phase 2 reports remain evidence
+of their recorded build and comparison-tool revisions.
+
 ## Next task: Phase 3 — stabilize traces and comparison
 
 Define plan §6's canonical trace contract from the retained WC3 records and C++

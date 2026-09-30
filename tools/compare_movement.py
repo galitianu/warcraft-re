@@ -169,7 +169,7 @@ def main():
             print(f"{case['case']} {case['status']}: {format_first(case['first_divergence'])}")
         return int(any(case["status"] == "FAIL" for case in report["cases"]))
     # Everything short of a completed comparison is malformed input, never exit 1.
-    except (OSError, ValueError, KeyError, TypeError, IndexError, csv.Error) as error:
+    except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError, csv.Error) as error:
         parser.exit(2, f"compare_movement: {error}\n")
 
 

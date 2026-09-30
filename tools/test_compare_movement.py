@@ -1,5 +1,8 @@
 """Checks of comparison integrity, separate from engine/gameplay outcomes."""
 import csv
+import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -30,14 +33,14 @@ class ComparisonTests(unittest.TestCase):
             row["facing"] = "0.0002"
         self.rows[1]["t"] = "0.020061"
         self.write(self.actual, self.rows)
-        self.assertEqual(compare_case(self.reference, self.actual, "MOV-0001")["status"], "PASS")
+        self.assertEqual(compare_case(self.reference, self.actual, "MOV-0001", 250, 1)["status"], "PASS")
 
     def test_first_failure_and_accumulated_deltas(self):
         self.rows[1]["x"] = "0.0011"
         self.rows[2]["order"] = "851986"
         self.rows[-1]["x"] = "12"
         self.write(self.actual, self.rows)
-        report = compare_case(self.reference, self.actual, "MOV-0001")
+        report = compare_case(self.reference, self.actual, "MOV-0001", 250, 1)
         self.assertEqual(report["status"], "FAIL")
         self.assertEqual(report["first_divergence"]["callback"], 1)
         self.assertEqual(report["properties"]["x"]["max_abs_delta"], 12)
@@ -54,13 +57,28 @@ class ComparisonTests(unittest.TestCase):
             with self.subTest(rows=rows[0]):
                 self.write(self.actual, rows)
                 with self.assertRaises(ValueError):
-                    compare_case(self.reference, self.actual, "MOV-0001")
+                    compare_case(self.reference, self.actual, "MOV-0001", 250, 1)
 
     def test_equal_time_callbacks_preserve_order(self):
         self.rows[1]["t"] = "0.000000"
         self.write(self.actual, self.rows)
         rows = read_samples(self.actual, 250, 1)
         self.assertEqual([int(row["callback"]) for row in rows[:2]], [0, 1])
+
+    def test_unparseable_csv_exits_malformed_not_divergent(self):
+        root = Path(self.temp.name)
+        (root / "ref" / "MOV-0001").mkdir(parents=True)
+        self.write(root / "ref" / "MOV-0001" / "run-01-samples.csv", self.rows)
+        (root / "act").mkdir()
+        cases = [{"test": f"MOV-{n:04d}", "callbacks": 250, "units": 1} for n in range(1, 11)]
+        (root / "act" / "identity.json").write_text(json.dumps({"cases": cases}))
+        # Longer than csv's default field limit, so the reader raises csv.Error.
+        (root / "act" / "MOV-0001.csv").write_text(
+            "callback,t,unit,x,y,facing,order\n0," + "9" * 200000 + "\n")
+        result = subprocess.run([sys.executable, str(Path(__file__).with_name("compare_movement.py")),
+                                 "--reference", str(root / "ref"), "--actual", str(root / "act")],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 2, result.stderr)
 
 
 if __name__ == "__main__":

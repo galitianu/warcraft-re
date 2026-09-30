@@ -45,7 +45,17 @@ int main() {
                 }
             }
         }
-        std::cout << "RNG, stationary state and repeated ten-case bytes passed (both models).\n";
+        // A reversal turns clockwise even when float headings sit a few ULPs off 180.
+        for (float facing : {0.0f, 0.00002f, 359.99998f}) {
+            wc3::World world(wc3::ModelVersion::v2);
+            const auto id = world.create_footman({0, 0}, facing);
+            world.issue_point_order(id, wc3::order_move, {-1000, 0});
+            while (world.steps() < world.parameters().facing_phase_steps) world.step();
+            const float turned = world.unit(id).facing();
+            check(turned > 350 && turned < 356, "opposite target did not turn clockwise");
+        }
+        std::cout << "RNG, stationary state, repeated ten-case bytes (both models) and "
+                     "opposite-direction tie passed.\n";
         return 0;
     } catch (const std::exception& error) {
         std::cerr << error.what() << '\n';

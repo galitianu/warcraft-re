@@ -12,20 +12,33 @@ add_library(wc3world STATIC src/core/World.cpp)
 target_include_directories(wc3world PUBLIC src)
 target_compile_options(wc3world PUBLIC
   $<$<CXX_COMPILER_ID:AppleClang,Clang,GNU>:-Wall;-Wextra;-Wpedantic;-ffp-contract=off>)
+# Lets identity report contraction from the flags actually applied.
+target_compile_definitions(wc3world PUBLIC
+  $<$<CXX_COMPILER_ID:AppleClang,Clang,GNU>:WC3_FP_CONTRACT_OFF>)
 
 add_library(movement_cases STATIC tools/wc3test/Cases.cpp)
 target_include_directories(movement_cases PUBLIC tools/wc3test)
 target_link_libraries(movement_cases PUBLIC wc3world)
 
-execute_process(COMMAND git rev-parse HEAD WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+# Without a readable checkout, revision and dirty state are unknown, not clean.
+execute_process(COMMAND git rev-parse --verify HEAD WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+  RESULT_VARIABLE git_commit_result ERROR_QUIET
   OUTPUT_VARIABLE BUILD_GIT_COMMIT OUTPUT_STRIP_TRAILING_WHITESPACE)
 execute_process(COMMAND git status --porcelain --untracked-files=normal
-  WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+  WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}" RESULT_VARIABLE git_status_result ERROR_QUIET
   OUTPUT_VARIABLE BUILD_GIT_STATUS OUTPUT_STRIP_TRAILING_WHITESPACE)
-if(BUILD_GIT_STATUS STREQUAL "")
-  set(BUILD_GIT_DIRTY false)
+if(NOT git_commit_result EQUAL 0 OR NOT git_status_result EQUAL 0
+    OR NOT BUILD_GIT_COMMIT MATCHES "^[0-9a-f]+$")
+  message(WARNING "git revision unavailable; identity records it as null")
+  set(BUILD_GIT_COMMIT_JSON null)
+  set(BUILD_GIT_DIRTY null)
 else()
-  set(BUILD_GIT_DIRTY true)
+  set(BUILD_GIT_COMMIT_JSON "\"${BUILD_GIT_COMMIT}\"")
+  if(BUILD_GIT_STATUS STREQUAL "")
+    set(BUILD_GIT_DIRTY false)
+  else()
+    set(BUILD_GIT_DIRTY true)
+  endif()
 endif()
 # Exact source identity even for an uncommitted build. Hash only build/runner
 # sources, not generated evidence (which would create a self-reference).

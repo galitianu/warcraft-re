@@ -20,6 +20,10 @@ struct Action {
     bool accepted;
 };
 struct Trace { std::vector<Sample> samples; std::vector<Action> actions; };
+// Callbacks are requested at multiples of this, matching the JASS timer period.
+inline constexpr std::uint64_t sample_period_us = 20000;
+int case_callbacks(int number);
+std::size_t case_units(int number);
 Trace run(int case_number, wc3::ModelVersion version, std::uint32_t seed = 1,
           bool before_due_update = false);
 std::string samples_csv(const Trace& trace);

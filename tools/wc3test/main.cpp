@@ -1,6 +1,7 @@
 #include "BuildIdentity.h"
 #include "Cases.h"
 #include <charconv>
+#include <cmath>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -14,6 +15,14 @@ void write(const std::filesystem::path& path, const std::string& bytes) {
     std::ofstream file(path, std::ios::binary);
     file.exceptions(std::ios::badbit | std::ios::failbit);
     file << bytes;
+}
+// JSON has no infinity; an infinite turn limit turns the whole remaining angle.
+std::string json_number(float value) {
+    if (std::isinf(value)) return "\"unlimited\"";
+    std::ostringstream out;
+    out.imbue(std::locale::classic());
+    out << value;
+    return out.str();
 }
 }
 int main(int argc, char** argv) {
@@ -47,33 +56,40 @@ int main(int argc, char** argv) {
         const auto p = wc3::model(version);
         std::ostringstream identity;
         identity.imbue(std::locale::classic());
-        identity << "{\n  \"git_commit\": \"" << build_git_commit << "\",\n"
-            << "  \"git_dirty_at_configure\": " << (build_git_dirty ? "true" : "false") << ",\n"
+        identity << "{\n  \"git_commit\": " << build_git_commit_json << ",\n"
+            << "  \"git_dirty_at_configure\": " << build_git_dirty_json << ",\n"
             << "  \"source_sha256\": \"" << build_source_sha256 << "\",\n"
             << "  \"compiler\": \"" << build_compiler << "\",\n"
             << "  \"build_type\": \"" << build_type << "\",\n"
             << "  \"architecture\": \"" << build_architecture << "\",\n"
-            << "  \"fp_contract\": \"off\",\n  \"model\": \"" << p.name << "\",\n"
+            << "  \"fp_contract\": \"" << build_fp_contract << "\",\n"
+            << "  \"model\": \"" << p.name << "\",\n"
             << "  \"time_unit\": \"seconds\",\n  \"step_us\": " << p.step_us << ",\n"
             << "  \"seed\": " << seed << ",\n  \"rng\": \"std::mt19937; unused by movement\",\n"
             << "  \"observation_phase\": \"" << (before ? "before" : "after") << "-due-update\",\n"
-            << "  \"sample_period_us\": 20000,\n  \"parameters\": {\n"
+            << "  \"sample_period_us\": " << movement::sample_period_us << ",\n"
+            // t is the requested callback time; before-phase state omits the step due then.
+            << "  \"state_lag_us\": " << (before ? p.step_us : 0) << ",\n"
+            << "  \"parameters\": {\n"
             << "    \"position_period_steps\": " << p.position_period_steps << ",\n"
             << "    \"facing_period_steps\": " << p.facing_period_steps << ",\n"
             << "    \"facing_phase_steps\": " << p.facing_phase_steps << ",\n"
             << "    \"move_delay_steps\": " << p.move_delay_steps << ",\n"
             << "    \"stop_radius\": " << p.stop_radius << ",\n"
-            << "    \"default_speed\": 270, \"speed_clamp\": [150, 400],\n"
-            << "    \"movement_angle_limit_degrees_v2\": " << p.movement_angle_limit << ",\n"
-            << "    \"turn_ramp_radians_v2\": [0.07, 0.14, 0.2],\n"
-            << "    \"opposite_angle_tie_v2\": \"clockwise\"\n  },\n  \"cases\": [\n";
+            << "    \"default_speed\": " << json_number(p.default_speed) << ", \"speed_clamp\": ["
+            << json_number(p.min_speed) << ", " << json_number(p.max_speed) << "],\n"
+            << "    \"movement_angle_limit_degrees\": " << json_number(p.movement_angle_limit) << ",\n"
+            << "    \"turn_ramp_radians\": [" << json_number(p.turn_ramp_radians[0]) << ", "
+            << json_number(p.turn_ramp_radians[1]) << ", " << json_number(p.turn_ramp_radians[2]) << "],\n"
+            << "    \"opposite_angle_tie\": {\"turn\": \"clockwise\", \"within_degrees\": "
+            << json_number(p.opposite_tie_degrees) << "}\n  },\n  \"cases\": [\n";
         for (int number = 1; number <= 10; ++number) {
             const auto name = movement::case_name(number);
             const auto trace = movement::run(number, version, seed, before);
             write(output / (name + ".csv"), movement::samples_csv(trace));
             write(output / (name + "-actions.csv"), movement::actions_csv(trace));
             identity << "    {\"test\": \"" << name << "\", \"callbacks\": "
-                << (number == 4 ? 600 : 250) << ", \"units\": " << (number == 2 ? 2 : 1)
+                << movement::case_callbacks(number) << ", \"units\": " << movement::case_units(number)
                 << ", \"samples\": " << trace.samples.size() << "}"
                 << (number == 10 ? "\n" : ",\n");
         }

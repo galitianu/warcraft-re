@@ -6,10 +6,8 @@ import json
 from pathlib import Path
 import subprocess
 
-from compare_movement import REFERENCE_BUILD, compare_suite, format_first, markdown, sha256
+from compare_movement import REFERENCE_BUILD, ROOT, compare_suite, format_first, markdown, sha256
 from oracle_parse import parse
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 def write_json(path, value):
@@ -40,7 +38,7 @@ def verify_references(reference):
         if len({c["payload_sha256"] for c in captures}) != 1:
             raise ValueError(f"{label}: raw payloads differ")
         for suffix, key in (("samples", "_samples"), ("events", "_events")):
-            with (reference / label / f"run-01-{suffix}.csv").open() as source:
+            with (reference / label / f"run-01-{suffix}.csv").open(newline="") as source:
                 rows = list(csv.DictReader(source))
             raw_rows = [{k: str(v) for k, v in row.items()} for row in captures[0][key]]
             if rows != raw_rows:
@@ -99,7 +97,8 @@ def main():
               "|---|---|---|---|"]
     for after, before in zip(reports["v2"]["cases"], reports["v2-before"]["cases"]):
         case = after["case"]
-        with (args.out / "v2" / f"{case}.csv").open() as a, (args.out / "v2-before" / f"{case}.csv").open() as b:
+        with (args.out / "v2" / f"{case}.csv").open(newline="") as a, \
+                (args.out / "v2-before" / f"{case}.csv").open(newline="") as b:
             changed = sum(x != y for x, y in zip(csv.DictReader(a), csv.DictReader(b)))
         lines.append(f"| {case} | {changed} | {format_first(after['first_divergence'])} | "
                      f"{format_first(before['first_divergence'])} |")

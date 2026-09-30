@@ -11,6 +11,7 @@ from pathlib import Path
 TOLERANCES = {"x": 0.001, "y": 0.001, "facing": 0.001, "order": 0, "t": 0.0000615}
 PROPERTIES = tuple(TOLERANCES)
 REFERENCE_BUILD = "wc3-1.29.2-9231-x86"
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def sha256(path):
@@ -66,8 +67,8 @@ def delta(prop, reference, actual):
     return (value + 180) % 360 - 180 if prop == "facing" else value
 
 
-def compare_case(reference_path, actual_path, case):
-    callbacks, units = (600 if case == "MOV-0004" else 250), (2 if case == "MOV-0002" else 1)
+def compare_case(reference_path, actual_path, case, callbacks, units):
+    # Counts come from the runner's case table; the WC3 reference must agree.
     reference = read_samples(reference_path, callbacks, units)
     actual = read_samples(actual_path, callbacks, units)
     properties = {prop: {"samples": len(reference), "failures": 0,
@@ -101,12 +102,16 @@ def compare_case(reference_path, actual_path, case):
 
 def compare_suite(reference_root, actual_root):
     identity = json.loads((Path(actual_root) / "identity.json").read_text())
+    shapes = {entry["test"]: (int(entry["callbacks"]), int(entry["units"]))
+              for entry in identity["cases"]}
     cases = []
     for number in range(1, 11):
         case = f"MOV-{number:04d}"
         label = "MOV-0002-r2" if number == 2 else case
+        if case not in shapes:
+            raise ValueError(f"identity.json lacks {case}")
         cases.append(compare_case(Path(reference_root) / label / "run-01-samples.csv",
-                                  Path(actual_root) / f"{case}.csv", case))
+                                  Path(actual_root) / f"{case}.csv", case, *shapes[case]))
     return {"reference_build": REFERENCE_BUILD, "identity": identity,
             "alignment": "ordered (callback, unit); requested schedule, no time resampling",
             "delta_convention": "actual minus reference; facing wrapped to [-180,180)",
@@ -149,7 +154,7 @@ def markdown(report):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--reference", type=Path,
-                        default=Path("oracle/derived") / REFERENCE_BUILD)
+                        default=ROOT / "oracle/derived" / REFERENCE_BUILD)
     parser.add_argument("--actual", type=Path, required=True)
     parser.add_argument("--json", type=Path)
     parser.add_argument("--markdown", type=Path)
@@ -163,7 +168,8 @@ def main():
         for case in report["cases"]:
             print(f"{case['case']} {case['status']}: {format_first(case['first_divergence'])}")
         return int(any(case["status"] == "FAIL" for case in report["cases"]))
-    except (OSError, ValueError, KeyError) as error:
+    # Everything short of a completed comparison is malformed input, never exit 1.
+    except (OSError, ValueError, KeyError, TypeError, IndexError, csv.Error) as error:
         parser.exit(2, f"compare_movement: {error}\n")
 
 

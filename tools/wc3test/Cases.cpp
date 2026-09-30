@@ -12,31 +12,43 @@ std::string case_name(int number) {
     out << "MOV-" << std::setw(4) << std::setfill('0') << number;
     return out.str();
 }
+int case_callbacks(int number) {
+    case_name(number);
+    return number == 4 ? 600 : 250;
+}
+std::size_t case_units(int number) {
+    case_name(number);
+    return number == 2 ? 2 : 1;
+}
 Trace run(int case_number, wc3::ModelVersion version, std::uint32_t seed,
           bool before_due_update) {
-    case_name(case_number); // Validate before constructing anything.
+    const int callbacks = case_callbacks(case_number); // Validates first.
     wc3::World world(version, seed);
+    const auto step_us = world.parameters().step_us;
+    if (sample_period_us % step_us != 0)
+        throw std::invalid_argument("step_us must divide the sample period");
     const float facing = case_number == 3 ? 45.0f : case_number == 9 ? 180.0f : 0.0f;
     const auto moving = world.create_footman({0, 0}, facing);
-    if (case_number == 2) world.create_footman({0, 384}, 0);
+    if (case_units(case_number) == 2) world.create_footman({0, 384}, 0);
     if (case_number == 4) world.set_move_speed(moving, 100);
     if (case_number == 5) world.set_move_speed(moving, 522);
-    const int callbacks = case_number == 4 ? 600 : 250;
     Trace trace;
     const auto move = [&](int callback, wc3::Vec2 target) {
         const bool accepted = world.issue_point_order(moving, wc3::order_move, target);
         trace.actions.push_back({callback, wc3::order_move, target, accepted});
     };
     for (int callback = 0; callback <= callbacks; ++callback) {
-        const std::uint64_t sample_step = static_cast<std::uint64_t>(callback) * 20;
-        // Diagnostic before-phase omits only updates exactly at the sample time.
+        const std::uint64_t sample_step =
+            static_cast<std::uint64_t>(callback) * (sample_period_us / step_us);
+        // Diagnostic before-phase omits only updates exactly at the sample time, so
+        // its state lags the stamped callback time by one step (see identity).
         // The due step still runs before issuing callback actions in both phases.
         const auto steps_before_sample = sample_step -
             (before_due_update && callback > 0 ? 1 : 0);
         while (world.steps() < steps_before_sample) world.step();
         for (std::size_t id = 0; id < world.unit_count(); ++id) {
             const auto& unit = world.unit(id);
-            trace.samples.push_back({callback, sample_step * world.parameters().step_us,
+            trace.samples.push_back({callback, sample_step * step_us,
                 id, unit.position(), unit.facing(), unit.current_order()});
         }
         while (world.steps() < sample_step) world.step();
@@ -77,7 +89,8 @@ std::string actions_csv(const Trace& trace) {
     out << "callback,t,unit,order,target_x,target_y,accepted\n";
     for (const auto& action : trace.actions) {
         out << action.callback << ',' << std::fixed << std::setprecision(6)
-            << action.callback * 0.02 << ",u0," << action.order << ',' << std::defaultfloat
+            << static_cast<double>(action.callback * sample_period_us) / 1000000.0
+            << ",u0," << action.order << ',' << std::defaultfloat
             << std::setprecision(std::numeric_limits<float>::max_digits10);
         if (action.order == wc3::order_move) out << action.target.x << ',' << action.target.y;
         else out << ',';

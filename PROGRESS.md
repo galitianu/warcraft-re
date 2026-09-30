@@ -62,10 +62,13 @@ exact floats.
 
 ## Next task: Phase 2 — native C++ headless equivalent
 
-Build the tiny native ARM Mac headless C++ world (plan §5). Run the MOV-0001 and
-MOV-0002 setups and emit traces with the same fields as the WC3 SAMPLE rows
+Tracked in [issue #3](https://github.com/galitianu/warcraft-re/issues/3).
+
+Build the tiny native ARM Mac headless C++ world (plan §5), without raylib. Run all
+ten MOV setups and emit traces with the same fields as the WC3 SAMPLE rows
 (callback, time, X, Y, facing, order). Then compare numerically with
-`oracle/derived/wc3-1.29.2-9231-x86/MOV-0001/` and `MOV-0002-r2/`. Treat the observed
+`oracle/derived/wc3-1.29.2-9231-x86/`. MOV-0001 and MOV-0002 are the v0.0.1 gate;
+MOV-0003–MOV-0010 report pass or first divergence. Treat the observed
 0.005 s / 0.03 s cadences as hypotheses to test, not a chosen timestep. A failing
 numerical comparison is acceptable progress.
 

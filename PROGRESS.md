@@ -2,8 +2,9 @@
 
 As of 30 September 2026.
 
-**Current stage:** Phase 0 complete; Phase 1 is next.
-**Retail observations:** 20 retained MOV-0002 captures, identical observation payloads.
+**Current stage:** Phase 1 complete; Phase 2 is next.
+**Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps × 3
+fresh-process captures, all payload-identical within each map.
 **C++ compatibility:** unobserved; no new engine exists yet.
 **First release:** v0.0.1 — one Footman's movement compared numerically with WC3.
 
@@ -13,56 +14,68 @@ Repository: [galitianu/warcraft-re](https://github.com/galitianu/warcraft-re), p
 
 ## Delivered
 
-The [salvage assessment](docs/salvage.md) inspected the old workspace and sibling
-engine without modifying them. The old C++ unit executable passed 58 checks, which
-establish no retail gameplay compatibility. No old code, fixtures or agent machinery
-was imported; the old repositories remain intact.
+**Phase 0** ([issue #1](https://github.com/galitianu/warcraft-re/issues/1),
+[evidence](docs/phase-0-capture.md)): the manually authored MOV-0002 map runs
+automatically and yields complete WC3 text through native PreloadGen functions, with
+20 retained, payload-identical captures. The [salvage assessment](docs/salvage.md)
+imported nothing from the old workspace.
 
-[Issue #1](https://github.com/galitianu/warcraft-re/issues/1)'s Phase 0 exit gate is met:
-the [MOV-0002 map](oracle-maps/MOV-0002.w3m) runs automatically after loading and
-yields complete, recoverable WC3 text. Its [JASS source](oracle/jass/MOV-0002.j),
-[installation/VM identity](oracle/environment/wc3-1.29.2-9231-x86.json),
-[20 raw captures](oracle/captures/wc3-1.29.2-9231-x86/MOV-0002/), and
-[reproduction procedure](docs/phase-0-capture.md) are committed together.
+**Phase 1** ([issue #2](https://github.com/galitianu/warcraft-re/issues/2)): a manual
+oracle library.
 
-Each fresh process start produced 506 complete records and 251 samples per unit
-over five reported seconds. Observation payloads agree across all 20 runs; the
-generated preload footer can vary. The stationary control stays unchanged.
-The moving unit ends at X=988.133301, Y=0.033203, facing=0.388643, order=0, after an
-accepted move order to (1000,0). These are observations of this setup, not universal rules.
+- Shared JASS instrumentation [oracle-v1](oracle/jass/lib/oracle-v1.j) provides
+  begin/end markers, named units, per-callback samples and ordered action/event
+  records. Each map pastes it with one [case file](oracle/jass/) into its single
+  custom-text trigger. Header script is avoided because it makes the map require the expansion.
+- 15 World Editor maps in [oracle-maps](oracle-maps/): MOV-0001, MOV-0002-r2,
+  MOV-0003–MOV-0010, JASS-0001-p001/p010/p020/p025/p050. Definitions:
+  [phase-1-experiments.md](docs/phase-1-experiments.md). Each saved map was
+  verified to contain exactly the intended source.
+- 45 raw captures with manifests under [oracle/captures](oracle/captures/wc3-1.29.2-9231-x86/),
+  parsed CSVs under [oracle/derived](oracle/derived/wc3-1.29.2-9231-x86/). Tools:
+  [oracle_parse.py](tools/oracle_parse.py), [check_map.py](tools/check_map.py),
+  [capture_runs.py](tools/capture_runs.py), [we_author.py](tools/we_author.py),
+  [summarize_phase1.py](tools/summarize_phase1.py). The parser rejects altered copies
+  and keeps equal-time order ([tests](tools/test_oracle_parse.py)).
+- Results: [phase-1-results.md](docs/phase-1-results.md). Reproduction:
+  [phase-1-procedure.md](docs/phase-1-procedure.md). Agent notes:
+  [agent-wc3-workflow.md](docs/agent-wc3-workflow.md).
 
-Output extraction uses native PreloadGen functions. No local-file registry setting
-was added. The Python inspector checks completeness/identity/order and rejects
-truncation, sequence gaps, wrong builds and rejected movement orders.
+Key observations (these setups only):
 
-**Correction:** both installed copies verify Warcraft III **1.29.2.9231**, x86.
-Andrei confirmed 9321 was a typo; active documents and capture identities use 9231.
+- MOV-0002-r2 reproduces Phase 0's 502 SAMPLE payloads exactly.
+- Phase 0's uneven 0.019958/0.020020 s intervals come from the 1000 s clock's float
+  resolution. A 10 s clock shows callbacks within ±1e-6 s of every requested period
+  from 0.001 to 0.05 s.
+- At 1 ms sampling, Footman position changes about every 0.005 s and facing every
+  0.03 s. Different sampling periods observe subsequences of one state sequence.
+- `SetUnitMoveSpeed` 100 → 150 and 522 → 400, and the traces move at the reported
+  speeds. Straight moves stop 11.87 short of (1000,0).
+- New orders cause pauses: 1 frozen callback for a collinear replacement, 3 for a 90°
+  redirect, 7 for a 180° redirect, and 6 when starting from 180° facing. `stop` halts
+  at once.
 
-## Next task: Phase 1 — a small manual oracle library
+**Still unresolved:** mechanisms behind the update cadences, stop distances and turn
+thresholds; the simulation quantum; seed effects; expansion-format maps; other
+machines; and precision beyond six printed decimals. R2SW's 9-decimal digits are not
+exact floats.
 
-Tracked in [issue #2](https://github.com/galitianu/warcraft-re/issues/2).
+## Next task: Phase 2 — native C++ headless equivalent
 
-Start with a separate MOV-0001 stationary case; this map's u1 control does not
-substitute for that case. Extract the working log/sample functions into small
-shared JASS instrumentation, then add narrow movement experiments manually.
-Measure sampling behavior with varied timer requests before choosing a simulation quantum.
-
-Grow toward the plan's approximately 10–20 manual maps with permanent IDs and
-parseable outputs. Preserve map/source identity, raw capture and repeatability.
-Do not introduce a scenario schema, generated maps or a full VM controller here.
-
-**Still unresolved:** independent movement update cadence, precision beyond emitted
-six-decimal values, seed effects, other setups and other-machine agreement.
-The 20-run agreement is repeatability under the recorded setup. Normalized reference
-contracts, a C++ world, numerical comparison and compatibility CI remain later work.
+Build the tiny native ARM Mac headless C++ world (plan §5). Run the MOV-0001 and
+MOV-0002 setups and emit traces with the same fields as the WC3 SAMPLE rows
+(callback, time, X, Y, facing, order). Then compare numerically with
+`oracle/derived/wc3-1.29.2-9231-x86/MOV-0001/` and `MOV-0002-r2/`. Treat the observed
+0.005 s / 0.03 s cadences as hypotheses to test, not a chosen timestep. A failing
+numerical comparison is acceptable progress.
 
 ## Roadmap status
 
 | Phase | Capability / acceptance evidence | Status |
 |---|---|---|
 | 0 | Automatic map experiment with reliably recoverable WC3 text | Complete — [evidence](docs/phase-0-capture.md) |
-| 1 | Small manual map library with shared JASS instrumentation and parseable traces | Next |
-| 2 | Native C++ headless equivalent and two numerically comparable traces | Planned |
+| 1 | Small manual map library with shared JASS instrumentation and parseable traces | Complete — [results](docs/phase-1-results.md) |
+| 2 | Native C++ headless equivalent and two numerically comparable traces | Next |
 | 3 | Normalized traces, explicit tolerances, first-divergence report | Planned |
 | 4 | C++ compatibility CI against committed WC3 references | Planned |
 | 5 | Declarative scenarios extracted from repeated manual tests | Planned |

@@ -59,6 +59,7 @@ first.** Use its documented commands for status, execution, UI, and file transfe
 Record which machine you reached and its architecture; availability alone does not
 prove it is the selected oracle VM. Use a desktop lease if sharing the machine,
 refresh UI state after changes, and verify transfers and retrieved results.
+Before authoring or capturing maps, read `docs/agent-wc3-workflow.md`.
 
 ## Progress and delivery
 

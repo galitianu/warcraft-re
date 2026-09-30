@@ -24,16 +24,19 @@ Start with:
   and which pieces may help this plan.
 - [Phase 0 capture](docs/phase-0-capture.md): the working map, real observations,
   measured limits, and text extraction procedure.
+- [Phase 1 results](docs/phase-1-results.md), [experiments](docs/phase-1-experiments.md)
+  and [procedure](docs/phase-1-procedure.md): the manual oracle library.
+- [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
+  efficiently through rdpipe.
 
-This repository holds the plan, a manually authored movement map, its JASS source,
-and 20 retained WC3 captures with identical observation payloads. Phase 0 is complete.
-The engine, oracle tooling, experiments, and eventual reference fixtures will grow
-together here. C++ gameplay compatibility has not been demonstrated yet.
+This repository holds the plan, 16 manually authored WC3 maps with their JASS,
+shared oracle instrumentation, raw captures with identities, parsers and derived
+CSVs. Phases 0 and 1 are complete. C++ gameplay compatibility has not been
+demonstrated yet.
 
 Use GitHub issues for concrete work and `PROGRESS.md` for the concise status. Keep
 results linked to their experiments and commits. There is no separate agent harness
 or task database to maintain here.
 
 Windows access is available through `rdpipe`; run `rdpipe guide` before using it.
-Next: Phase 1's small manual experiment library, starting with the separate stationary
-`MOV-0001` case and shared JASS instrumentation.
+Next: Phase 2, a tiny native C++ headless world compared with MOV-0001 and MOV-0002.

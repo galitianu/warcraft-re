@@ -1,0 +1,17 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+/build/
+/build-*/
+/out/
+/.cache/
+/.venv/
+__pycache__/
+*.pyc
+/.bb/
+/.claude/
+/.codex/
+/local/

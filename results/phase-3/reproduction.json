@@ -1,0 +1,20 @@
+{
+  "commands": [
+    "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=/usr/bin/clang++",
+    "cmake --build build -j 4",
+    "ctest --test-dir build --output-on-failure",
+    "python3 -m unittest discover -s tools -p 'test_*.py' -v",
+    "python3 tools/run_phase3.py --runner build/wc3test --out build/phase3 --reports build/phase3-reports"
+  ],
+  "normalized_maps": 15,
+  "validated_raw_runs": 45,
+  "models": [
+    "v1",
+    "v2",
+    "v2-before"
+  ],
+  "original_wc3_required": false,
+  "legacy_csv_hashes_unchanged": 60,
+  "legacy_state_reports_equal": 30,
+  "separate_process_output_files_equal": 93
+}

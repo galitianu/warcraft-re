@@ -1,0 +1,19 @@
+{
+  "classification": "RNG-DETERMINISTIC-WITH-SEED",
+  "runs": 2,
+  "seed": 1,
+  "scope": "two separate processes; same native binary/model/phase and seed; movement RNG unused",
+  "payload_sha256": {
+    "MOV-0001": "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+    "MOV-0002": "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+    "MOV-0003": "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+    "MOV-0004": "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+    "MOV-0005": "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+    "MOV-0006": "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+    "MOV-0007": "2133393fbb0a8e6f92025749a6494a36d292d4c52b652caddb308a2243d9d715",
+    "MOV-0008": "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+    "MOV-0009": "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+    "MOV-0010": "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+  },
+  "retail_rng_equivalence": "UNKNOWN"
+}

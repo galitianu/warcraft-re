@@ -1,0 +1,88 @@
+[
+  {
+    "case": "MOV-0001",
+    "legacy_state_verdict": "PASS",
+    "canonical_verdict": "PASS",
+    "samples_actions_bytes_identical": true,
+    "all_legacy_property_statistics_identical": true,
+    "new_action_differences": {}
+  },
+  {
+    "case": "MOV-0002",
+    "legacy_state_verdict": "FAIL",
+    "canonical_verdict": "FAIL",
+    "samples_actions_bytes_identical": true,
+    "all_legacy_property_statistics_identical": true,
+    "new_action_differences": {}
+  },
+  {
+    "case": "MOV-0003",
+    "legacy_state_verdict": "FAIL",
+    "canonical_verdict": "FAIL",
+    "samples_actions_bytes_identical": true,
+    "all_legacy_property_statistics_identical": true,
+    "new_action_differences": {}
+  },
+  {
+    "case": "MOV-0004",
+    "legacy_state_verdict": "FAIL",
+    "canonical_verdict": "FAIL",
+    "samples_actions_bytes_identical": true,
+    "all_legacy_property_statistics_identical": true,
+    "new_action_differences": {}
+  },
+  {
+    "case": "MOV-0005",
+    "legacy_state_verdict": "FAIL",
+    "canonical_verdict": "FAIL",
+    "samples_actions_bytes_identical": true,
+    "all_legacy_property_statistics_identical": true,
+    "new_action_differences": {}
+  },
+  {
+    "case": "MOV-0006",
+    "legacy_state_verdict": "FAIL",
+    "canonical_verdict": "FAIL",
+    "samples_actions_bytes_identical": true,
+    "all_legacy_property_statistics_identical": true,
+    "new_action_differences": {
+      "target_x": 1,
+      "target_y": 1
+    }
+  },
+  {
+    "case": "MOV-0007",
+    "legacy_state_verdict": "FAIL",
+    "canonical_verdict": "FAIL",
+    "samples_actions_bytes_identical": true,
+    "all_legacy_property_statistics_identical": true,
+    "new_action_differences": {
+      "target_x": 1,
+      "target_y": 1
+    }
+  },
+  {
+    "case": "MOV-0008",
+    "legacy_state_verdict": "FAIL",
+    "canonical_verdict": "FAIL",
+    "samples_actions_bytes_identical": true,
+    "all_legacy_property_statistics_identical": true,
+    "new_action_differences": {}
+  },
+  {
+    "case": "MOV-0009",
+    "legacy_state_verdict": "FAIL",
+    "canonical_verdict": "FAIL",
+    "samples_actions_bytes_identical": true,
+    "all_legacy_property_statistics_identical": true,
+    "new_action_differences": {}
+  },
+  {
+    "case": "MOV-0010",
+    "legacy_state_verdict": "FAIL",
+    "canonical_verdict": "FAIL",
+    "samples_actions_bytes_identical": true,
+    "all_legacy_property_statistics_identical": true,
+    "new_action_differences": {}
+  }
+]

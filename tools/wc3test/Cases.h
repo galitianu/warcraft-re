@@ -12,14 +12,23 @@ struct Sample {
     wc3::Vec2 position;
     float facing;
     std::uint32_t order;
+    std::size_t seq;
+    std::uint64_t state_us;
 };
 struct Action {
     int callback;
     std::uint32_t order;
     wc3::Vec2 target;
     bool accepted;
+    std::size_t seq;
+    std::uint64_t state_us;
 };
-struct Trace { std::vector<Sample> samples; std::vector<Action> actions; };
+struct Trace {
+    std::vector<Sample> samples;
+    std::vector<Action> actions;
+    std::vector<std::size_t> tick_sequences;
+    std::vector<float> speeds;
+};
 // Callbacks are requested at multiples of this, matching the JASS timer period.
 inline constexpr std::uint64_t sample_period_us = 20000;
 int case_callbacks(int number);

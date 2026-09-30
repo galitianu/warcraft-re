@@ -1,0 +1,755 @@
+{
+  "schema": "wc3-trace",
+  "version": 1,
+  "scenario": {
+    "experiment": "JASS-0001",
+    "map_revision": "JASS-0001-p050",
+    "callbacks": 100,
+    "requested_period": "0.050000"
+  },
+  "identity": {
+    "engine": "wc3",
+    "build": "wc3-1.29.2-9231-x86",
+    "source": {
+      "map": {
+        "path": "oracle-maps/JASS-0001-p050.w3m",
+        "sha256": "745e846166c16c55e1e26871ccca10741fc7d4a4f72d4acf5258218cc598f8fa",
+        "bytes": 23210,
+        "authored_with": "World Editor 1.29.2.9231, from a copy of oracle-maps/MOV-0002.w3m",
+        "w3i_format": 18,
+        "header_custom_script": "absent",
+        "trigger_matches_library_newline_case": true,
+        "war3map_j_contains_source": true,
+        "war3map_j_runs_init_triggers": false,
+        "generated_war3map_j_sha256": "080c8dcd88b5f3028f851e6f2a14015ede1478f2671c2135fe644d131a362550"
+      },
+      "library": {
+        "path": "oracle/jass/lib/oracle-v1.j",
+        "sha256": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca"
+      },
+      "case": {
+        "path": "oracle/jass/JASS-0001-p050.j",
+        "sha256": "3aad2d2fa830e09de13dab766264a1f2a96e53f14c31db617f808fe202b986c7"
+      }
+    },
+    "environment": {
+      "path": "oracle/environment/wc3-1.29.2-9231-x86.json",
+      "sha256": "dad738060886d7c75feb0ff14ddc3c276d3e861842bbb8bfead09dd89f23a5a1",
+      "reverified": "2026-09-30: game/editor SHA-256 and 1.29.2.9231, Windows 11 Pro 26200 ARM64, 4 logical processors, Allow Local Files absent"
+    },
+    "seed": {
+      "status": "unset-unobserved",
+      "value": null,
+      "retail_equivalent": false
+    },
+    "model": null
+  },
+  "units": [
+    {
+      "name": "u0",
+      "type": "footman",
+      "speed": "270.000000",
+      "default_speed": "270.000000"
+    }
+  ],
+  "time": {
+    "unit": "seconds",
+    "position_unit": "world-units",
+    "facing_unit": "degrees",
+    "numeric_format": "R2SW_6; CLOCKS R2SW_9",
+    "clock_duration": "1000.000000",
+    "step_us": null,
+    "observation_phase": "unknown-relative-to-due-update",
+    "state_lag_us": null
+  },
+  "completion": {
+    "complete": true,
+    "records": 309,
+    "ticks": 101,
+    "samples": 101,
+    "actions": 1,
+    "events": 101
+  },
+  "provenance": {
+    "manifest": {
+      "path": "oracle/captures/wc3-1.29.2-9231-x86/JASS-0001-p050/manifest.json",
+      "sha256": "7db9369f174c485e63b4d52a73f5f24910ac305c127b3404b2ab1bb0e96028f7"
+    },
+    "representative_run": 1,
+    "runs": [
+      {
+        "run": 1,
+        "path": "oracle/captures/wc3-1.29.2-9231-x86/JASS-0001-p050/run-01.txt",
+        "sha256": "27dc99410b532b04b0b1552b70ba704e27c9bb0bdda4b6d915e28cabf9d32312",
+        "payload_sha256": "77e32a7c71b829e5ffef14294b7a64ece53eb62d8be13e6287bd714d60a05fc9",
+        "footer": "call PreloadEnd( 5.0 )",
+        "generated_preload_entries": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/JASS-0001-p050.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "fresh_game_process": true,
+        "previous_output_removed": true
+      },
+      {
+        "run": 2,
+        "path": "oracle/captures/wc3-1.29.2-9231-x86/JASS-0001-p050/run-02.txt",
+        "sha256": "fa970db7e32e4d99449fc8f77a1502fa4225e9c604b079d60a36cc8d0fd6ea06",
+        "payload_sha256": "77e32a7c71b829e5ffef14294b7a64ece53eb62d8be13e6287bd714d60a05fc9",
+        "footer": "call PreloadEnd( 5.1 )",
+        "generated_preload_entries": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/JASS-0001-p050.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "fresh_game_process": true,
+        "previous_output_removed": true
+      },
+      {
+        "run": 3,
+        "path": "oracle/captures/wc3-1.29.2-9231-x86/JASS-0001-p050/run-03.txt",
+        "sha256": "fa970db7e32e4d99449fc8f77a1502fa4225e9c604b079d60a36cc8d0fd6ea06",
+        "payload_sha256": "77e32a7c71b829e5ffef14294b7a64ece53eb62d8be13e6287bd714d60a05fc9",
+        "footer": "call PreloadEnd( 5.1 )",
+        "generated_preload_entries": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/JASS-0001-p050.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "fresh_game_process": true,
+        "previous_output_removed": true
+      }
+    ],
+    "repeatability": {
+      "classification": "DETERMINISTIC",
+      "runs": 3,
+      "canonical_payload_sha256": [
+        "01694dbf525976ea3d351604435258ba5ea36ca4bd8b6e8cea13f2cc836f06a4",
+        "01694dbf525976ea3d351604435258ba5ea36ca4bd8b6e8cea13f2cc836f06a4",
+        "01694dbf525976ea3d351604435258ba5ea36ca4bd8b6e8cea13f2cc836f06a4"
+      ],
+      "observation_payload_sha256": [
+        "77e32a7c71b829e5ffef14294b7a64ece53eb62d8be13e6287bd714d60a05fc9",
+        "77e32a7c71b829e5ffef14294b7a64ece53eb62d8be13e6287bd714d60a05fc9",
+        "77e32a7c71b829e5ffef14294b7a64ece53eb62d8be13e6287bd714d60a05fc9"
+      ],
+      "distinct_raw_files": 2,
+      "scope": "retained map/build/Windows 11 Pro ARM64 VM; 3 fresh processes; recorded procedure",
+      "other_seeds_or_machines": "UNKNOWN"
+    }
+  },
+  "records": [
+    {"seq":0,"kind":"BEGIN","source":{"seq":0,"payload":"@O|0|BEGIN|JASS-0001|wc3-1.29.2-9231-x86|map=JASS-0001-p050|lib=oracle-v1|time_unit=seconds|numeric_format=R2SW_6|clock_duration=1000.000000"},"fields":["JASS-0001","wc3-1.29.2-9231-x86","map=JASS-0001-p050","lib=oracle-v1","time_unit=seconds","numeric_format=R2SW_6","clock_duration=1000.000000"]},
+    {"seq":1,"kind":"WATCH","source":{"seq":1,"payload":"@O|1|WATCH|u0|type=footman|speed=270.000000|default_speed=270.000000"},"fields":["u0","type=footman","speed=270.000000","default_speed=270.000000"]},
+    {"seq":2,"kind":"SETUP","source":{"seq":2,"payload":"@O|2|SETUP|u0=hfoo,0,0,0|order_at_callback_0=move,1000,0|aux_clocks=100,10|variant=p050"},"fields":["u0=hfoo,0,0,0","order_at_callback_0=move,1000,0","aux_clocks=100,10","variant=p050"]},
+    {"seq":3,"kind":"RUN","source":{"seq":3,"payload":"@O|3|RUN|requested_period=0.050000|callbacks=100"},"fields":["requested_period=0.050000","callbacks=100"]},
+    {"seq":4,"kind":"TICK","source":{"seq":4,"payload":"@O|4|TICK|0.000000|0"},"callback":0,"time":{"requested":"0.000000","reported":"0.000000","state_us":null}},
+    {"seq":5,"kind":"SAMPLE","source":{"seq":5,"payload":"@O|5|SAMPLE|0.000000|u0|0.000000|0.000000|0.000000|0"},"callback":0,"time":{"requested":"0.000000","reported":"0.000000","state_us":null},"unit":"u0","values":{"x":"0.000000","y":"0.000000","facing":"0.000000","order":"0"}},
+    {"seq":6,"kind":"ACTION","source":{"seq":6,"payload":"@O|6|ACTION|0.000000|u0|move|1000.000000|0.000000|accepted=1"},"callback":0,"time":{"requested":"0.000000","reported":"0.000000","state_us":null},"unit":"u0","command":"move","accepted":true,"target":{"x":"1000.000000","y":"0.000000"}},
+    {"seq":7,"kind":"EVENT","source":{"seq":7,"payload":"@O|7|EVENT|0.000000|CLOCKS|c1000_9=0.000000000|c100=0.000000|c100_9=0.000000000|c10=0.000000|c10_9=0.000000000|c10_remaining_9=10.000000000|x_9=0.000000000|y_9=0.000000000|facing_9=0.000000000"},"callback":0,"time":{"requested":"0.000000","reported":"0.000000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.000000000","c100":"0.000000","c100_9":"0.000000000","c10":"0.000000","c10_9":"0.000000000","c10_remaining_9":"10.000000000","x_9":"0.000000000","y_9":"0.000000000","facing_9":"0.000000000"}},
+    {"seq":8,"kind":"TICK","source":{"seq":8,"payload":"@O|8|TICK|0.050049|1"},"callback":1,"time":{"requested":"0.050000","reported":"0.050049","state_us":null}},
+    {"seq":9,"kind":"SAMPLE","source":{"seq":9,"payload":"@O|9|SAMPLE|0.050049|u0|10.799316|0.034668|359.952728|851986"},"callback":1,"time":{"requested":"0.050000","reported":"0.050049","state_us":null},"unit":"u0","values":{"x":"10.799316","y":"0.034668","facing":"359.952728","order":"851986"}},
+    {"seq":10,"kind":"EVENT","source":{"seq":10,"payload":"@O|10|EVENT|0.050049|CLOCKS|c1000_9=0.050048828|c100=0.050003|c100_9=0.050003048|c10=0.050000|c10_9=0.050000188|c10_remaining_9=9.949999808|x_9=10.799316352|y_9=0.034667968|facing_9=359.952728256"},"callback":1,"time":{"requested":"0.050000","reported":"0.050049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.050048828","c100":"0.050003","c100_9":"0.050003048","c10":"0.050000","c10_9":"0.050000188","c10_remaining_9":"9.949999808","x_9":"10.799316352","y_9":"0.034667968","facing_9":"359.952728256"}},
+    {"seq":11,"kind":"TICK","source":{"seq":11,"payload":"@O|11|TICK|0.100037|2"},"callback":2,"time":{"requested":"0.100000","reported":"0.100037","state_us":null}},
+    {"seq":12,"kind":"SAMPLE","source":{"seq":12,"payload":"@O|12|SAMPLE|0.100037|u0|24.298828|-0.021484|0.019784|851986"},"callback":2,"time":{"requested":"0.100000","reported":"0.100037","state_us":null},"unit":"u0","values":{"x":"24.298828","y":"-0.021484","facing":"0.019784","order":"851986"}},
+    {"seq":13,"kind":"EVENT","source":{"seq":13,"payload":"@O|13|EVENT|0.100037|CLOCKS|c1000_9=0.100036616|c100=0.100006|c100_9=0.100006096|c10=0.100000|c10_9=0.100000376|c10_remaining_9=9.899999616|x_9=24.298828096|y_9=-0.021484374|facing_9=0.019783970"},"callback":2,"time":{"requested":"0.100000","reported":"0.100037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.100036616","c100":"0.100006","c100_9":"0.100006096","c10":"0.100000","c10_9":"0.100000376","c10_remaining_9":"9.899999616","x_9":"24.298828096","y_9":"-0.021484374","facing_9":"0.019783970"}},
+    {"seq":14,"kind":"TICK","source":{"seq":14,"payload":"@O|14|TICK|0.150024|3"},"callback":3,"time":{"requested":"0.150000","reported":"0.150024","state_us":null}},
+    {"seq":15,"kind":"SAMPLE","source":{"seq":15,"payload":"@O|15|SAMPLE|0.150024|u0|37.797852|0.012207|0.149390|851986"},"callback":3,"time":{"requested":"0.150000","reported":"0.150024","state_us":null},"unit":"u0","values":{"x":"37.797852","y":"0.012207","facing":"0.149390","order":"851986"}},
+    {"seq":16,"kind":"EVENT","source":{"seq":16,"payload":"@O|16|EVENT|0.150024|CLOCKS|c1000_9=0.150024400|c100=0.150002|c100_9=0.150001520|c10=0.150001|c10_9=0.150000560|c10_remaining_9=9.849999424|x_9=37.797851520|y_9=0.012207031|facing_9=0.149389696"},"callback":3,"time":{"requested":"0.150000","reported":"0.150024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.150024400","c100":"0.150002","c100_9":"0.150001520","c10":"0.150001","c10_9":"0.150000560","c10_remaining_9":"9.849999424","x_9":"37.797851520","y_9":"0.012207031","facing_9":"0.149389696"}},
+    {"seq":17,"kind":"TICK","source":{"seq":17,"payload":"@O|17|TICK|0.200012|4"},"callback":4,"time":{"requested":"0.200000","reported":"0.200012","state_us":null}},
+    {"seq":18,"kind":"SAMPLE","source":{"seq":18,"payload":"@O|18|SAMPLE|0.200012|u0|51.297363|-0.012451|0.069008|851986"},"callback":4,"time":{"requested":"0.200000","reported":"0.200012","state_us":null},"unit":"u0","values":{"x":"51.297363","y":"-0.012451","facing":"0.069008","order":"851986"}},
+    {"seq":19,"kind":"EVENT","source":{"seq":19,"payload":"@O|19|EVENT|0.200012|CLOCKS|c1000_9=0.200012192|c100=0.200005|c100_9=0.200004576|c10=0.200000|c10_9=0.199999808|c10_remaining_9=9.800000128|x_9=51.297363264|y_9=-0.012451171|facing_9=0.069007864"},"callback":4,"time":{"requested":"0.200000","reported":"0.200012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.200012192","c100":"0.200005","c100_9":"0.200004576","c10":"0.200000","c10_9":"0.199999808","c10_remaining_9":"9.800000128","x_9":"51.297363264","y_9":"-0.012451171","facing_9":"0.069007864"}},
+    {"seq":20,"kind":"TICK","source":{"seq":20,"payload":"@O|20|TICK|0.250000|5"},"callback":5,"time":{"requested":"0.250000","reported":"0.250000","state_us":null}},
+    {"seq":21,"kind":"SAMPLE","source":{"seq":21,"payload":"@O|21|SAMPLE|0.250000|u0|64.796875|-0.034180|0.127072|851986"},"callback":5,"time":{"requested":"0.250000","reported":"0.250000","state_us":null},"unit":"u0","values":{"x":"64.796875","y":"-0.034180","facing":"0.127072","order":"851986"}},
+    {"seq":22,"kind":"EVENT","source":{"seq":22,"payload":"@O|22|EVENT|0.250000|CLOCKS|c1000_9=0.250000000|c100=0.250000|c100_9=0.250000000|c10=0.250000|c10_9=0.250000000|c10_remaining_9=9.750000000|x_9=64.796874944|y_9=-0.034179684|facing_9=0.127072328"},"callback":5,"time":{"requested":"0.250000","reported":"0.250000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.250000000","c100":"0.250000","c100_9":"0.250000000","c10":"0.250000","c10_9":"0.250000000","c10_remaining_9":"9.750000000","x_9":"64.796874944","y_9":"-0.034179684","facing_9":"0.127072328"}},
+    {"seq":23,"kind":"TICK","source":{"seq":23,"payload":"@O|23|TICK|0.300049|6"},"callback":6,"time":{"requested":"0.300000","reported":"0.300049","state_us":null}},
+    {"seq":24,"kind":"SAMPLE","source":{"seq":24,"payload":"@O|24|SAMPLE|0.300049|u0|78.295898|-0.007080|359.929962|851986"},"callback":6,"time":{"requested":"0.300000","reported":"0.300049","state_us":null},"unit":"u0","values":{"x":"78.295898","y":"-0.007080","facing":"359.929962","order":"851986"}},
+    {"seq":25,"kind":"EVENT","source":{"seq":25,"payload":"@O|25|EVENT|0.300049|CLOCKS|c1000_9=0.300048800|c100=0.300003|c100_9=0.300003040|c10=0.300000|c10_9=0.300000160|c10_remaining_9=9.699999808|x_9=78.295898432|y_9=-0.007080078|facing_9=359.929962112"},"callback":6,"time":{"requested":"0.300000","reported":"0.300049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.300048800","c100":"0.300003","c100_9":"0.300003040","c10":"0.300000","c10_9":"0.300000160","c10_remaining_9":"9.699999808","x_9":"78.295898432","y_9":"-0.007080078","facing_9":"359.929962112"}},
+    {"seq":26,"kind":"TICK","source":{"seq":26,"payload":"@O|26|TICK|0.350037|7"},"callback":7,"time":{"requested":"0.350000","reported":"0.350037","state_us":null}},
+    {"seq":27,"kind":"SAMPLE","source":{"seq":27,"payload":"@O|27|SAMPLE|0.350037|u0|91.795410|0.018555|359.957214|851986"},"callback":7,"time":{"requested":"0.350000","reported":"0.350037","state_us":null},"unit":"u0","values":{"x":"91.795410","y":"0.018555","facing":"359.957214","order":"851986"}},
+    {"seq":28,"kind":"EVENT","source":{"seq":28,"payload":"@O|28|EVENT|0.350037|CLOCKS|c1000_9=0.350036608|c100=0.350006|c100_9=0.350006080|c10=0.350000|c10_9=0.350000352|c10_remaining_9=9.649999616|x_9=91.795410112|y_9=0.018554686|facing_9=359.957214336"},"callback":7,"time":{"requested":"0.350000","reported":"0.350037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.350036608","c100":"0.350006","c100_9":"0.350006080","c10":"0.350000","c10_9":"0.350000352","c10_remaining_9":"9.649999616","x_9":"91.795410112","y_9":"0.018554686","facing_9":"359.957214336"}},
+    {"seq":29,"kind":"TICK","source":{"seq":29,"payload":"@O|29|TICK|0.400024|8"},"callback":8,"time":{"requested":"0.400000","reported":"0.400024","state_us":null}},
+    {"seq":30,"kind":"SAMPLE","source":{"seq":30,"payload":"@O|30|SAMPLE|0.400024|u0|105.294922|-0.022705|0.102310|851986"},"callback":8,"time":{"requested":"0.400000","reported":"0.400024","state_us":null},"unit":"u0","values":{"x":"105.294922","y":"-0.022705","facing":"0.102310","order":"851986"}},
+    {"seq":31,"kind":"EVENT","source":{"seq":31,"payload":"@O|31|EVENT|0.400024|CLOCKS|c1000_9=0.400024384|c100=0.400002|c100_9=0.400001504|c10=0.400000|c10_9=0.399999616|c10_remaining_9=9.600000320|x_9=105.294921856|y_9=-0.022705078|facing_9=0.102310168"},"callback":8,"time":{"requested":"0.400000","reported":"0.400024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.400024384","c100":"0.400002","c100_9":"0.400001504","c10":"0.400000","c10_9":"0.399999616","c10_remaining_9":"9.600000320","x_9":"105.294921856","y_9":"-0.022705078","facing_9":"0.102310168"}},
+    {"seq":32,"kind":"TICK","source":{"seq":32,"payload":"@O|32|TICK|0.450012|9"},"callback":9,"time":{"requested":"0.450000","reported":"0.450012","state_us":null}},
+    {"seq":33,"kind":"SAMPLE","source":{"seq":33,"payload":"@O|33|SAMPLE|0.450012|u0|118.793945|0.006348|359.930634|851986"},"callback":9,"time":{"requested":"0.450000","reported":"0.450012","state_us":null},"unit":"u0","values":{"x":"118.793945","y":"0.006348","facing":"359.930634","order":"851986"}},
+    {"seq":34,"kind":"EVENT","source":{"seq":34,"payload":"@O|34|EVENT|0.450012|CLOCKS|c1000_9=0.450012192|c100=0.450005|c100_9=0.450004576|c10=0.450000|c10_9=0.449999808|c10_remaining_9=9.550000128|x_9=118.793945280|y_9=0.006347656|facing_9=359.930633536"},"callback":9,"time":{"requested":"0.450000","reported":"0.450012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.450012192","c100":"0.450005","c100_9":"0.450004576","c10":"0.450000","c10_9":"0.449999808","c10_remaining_9":"9.550000128","x_9":"118.793945280","y_9":"0.006347656","facing_9":"359.930633536"}},
+    {"seq":35,"kind":"TICK","source":{"seq":35,"payload":"@O|35|TICK|0.500000|10"},"callback":10,"time":{"requested":"0.500000","reported":"0.500000","state_us":null}},
+    {"seq":36,"kind":"SAMPLE","source":{"seq":36,"payload":"@O|36|SAMPLE|0.500000|u0|132.293457|0.036133|0.162922|851986"},"callback":10,"time":{"requested":"0.500000","reported":"0.500000","state_us":null},"unit":"u0","values":{"x":"132.293457","y":"0.036133","facing":"0.162922","order":"851986"}},
+    {"seq":37,"kind":"EVENT","source":{"seq":37,"payload":"@O|37|EVENT|0.500000|CLOCKS|c1000_9=0.500000000|c100=0.500000|c100_9=0.500000000|c10=0.500000|c10_9=0.500000000|c10_remaining_9=9.500000000|x_9=132.293457024|y_9=0.036132812|facing_9=0.162921840"},"callback":10,"time":{"requested":"0.500000","reported":"0.500000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.500000000","c100":"0.500000","c100_9":"0.500000000","c10":"0.500000","c10_9":"0.500000000","c10_remaining_9":"9.500000000","x_9":"132.293457024","y_9":"0.036132812","facing_9":"0.162921840"}},
+    {"seq":38,"kind":"TICK","source":{"seq":38,"payload":"@O|38|TICK|0.550049|11"},"callback":11,"time":{"requested":"0.550000","reported":"0.550049","state_us":null}},
+    {"seq":39,"kind":"SAMPLE","source":{"seq":39,"payload":"@O|39|SAMPLE|0.550049|u0|145.792969|0.008301|359.809174|851986"},"callback":11,"time":{"requested":"0.550000","reported":"0.550049","state_us":null},"unit":"u0","values":{"x":"145.792969","y":"0.008301","facing":"359.809174","order":"851986"}},
+    {"seq":40,"kind":"EVENT","source":{"seq":40,"payload":"@O|40|EVENT|0.550049|CLOCKS|c1000_9=0.550048768|c100=0.550003|c100_9=0.550003008|c10=0.550000|c10_9=0.550000128|c10_remaining_9=9.449999808|x_9=145.792968704|y_9=0.008300781|facing_9=359.809173568"},"callback":11,"time":{"requested":"0.550000","reported":"0.550049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.550048768","c100":"0.550003","c100_9":"0.550003008","c10":"0.550000","c10_9":"0.550000128","c10_remaining_9":"9.449999808","x_9":"145.792968704","y_9":"0.008300781","facing_9":"359.809173568"}},
+    {"seq":41,"kind":"TICK","source":{"seq":41,"payload":"@O|41|TICK|0.600037|12"},"callback":12,"time":{"requested":"0.600000","reported":"0.600037","state_us":null}},
+    {"seq":42,"kind":"SAMPLE","source":{"seq":42,"payload":"@O|42|SAMPLE|0.600037|u0|159.292480|-0.023682|0.015020|851986"},"callback":12,"time":{"requested":"0.600000","reported":"0.600037","state_us":null},"unit":"u0","values":{"x":"159.292480","y":"-0.023682","facing":"0.015020","order":"851986"}},
+    {"seq":43,"kind":"EVENT","source":{"seq":43,"payload":"@O|43|EVENT|0.600037|CLOCKS|c1000_9=0.600036608|c100=0.600006|c100_9=0.600006080|c10=0.599999|c10_9=0.599999424|c10_remaining_9=9.400000544|x_9=159.292480448|y_9=-0.023681640|facing_9=0.015020369"},"callback":12,"time":{"requested":"0.600000","reported":"0.600037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.600036608","c100":"0.600006","c100_9":"0.600006080","c10":"0.599999","c10_9":"0.599999424","c10_remaining_9":"9.400000544","x_9":"159.292480448","y_9":"-0.023681640","facing_9":"0.015020369"}},
+    {"seq":44,"kind":"TICK","source":{"seq":44,"payload":"@O|44|TICK|0.650024|13"},"callback":13,"time":{"requested":"0.650000","reported":"0.650024","state_us":null}},
+    {"seq":45,"kind":"SAMPLE","source":{"seq":45,"payload":"@O|45|SAMPLE|0.650024|u0|172.791504|-0.000977|359.888306|851986"},"callback":13,"time":{"requested":"0.650000","reported":"0.650024","state_us":null},"unit":"u0","values":{"x":"172.791504","y":"-0.000977","facing":"359.888306","order":"851986"}},
+    {"seq":46,"kind":"EVENT","source":{"seq":46,"payload":"@O|46|EVENT|0.650024|CLOCKS|c1000_9=0.650024384|c100=0.650002|c100_9=0.650001472|c10=0.650000|c10_9=0.649999616|c10_remaining_9=9.350000352|x_9=172.791503872|y_9=-0.000976563|facing_9=359.888305664"},"callback":13,"time":{"requested":"0.650000","reported":"0.650024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.650024384","c100":"0.650002","c100_9":"0.650001472","c10":"0.650000","c10_9":"0.649999616","c10_remaining_9":"9.350000352","x_9":"172.791503872","y_9":"-0.000976563","facing_9":"359.888305664"}},
+    {"seq":47,"kind":"TICK","source":{"seq":47,"payload":"@O|47|TICK|0.700012|14"},"callback":14,"time":{"requested":"0.700000","reported":"0.700012","state_us":null}},
+    {"seq":48,"kind":"SAMPLE","source":{"seq":48,"payload":"@O|48|SAMPLE|0.700012|u0|186.291016|-0.009033|0.187893|851986"},"callback":14,"time":{"requested":"0.700000","reported":"0.700012","state_us":null},"unit":"u0","values":{"x":"186.291016","y":"-0.009033","facing":"0.187893","order":"851986"}},
+    {"seq":49,"kind":"EVENT","source":{"seq":49,"payload":"@O|49|EVENT|0.700012|CLOCKS|c1000_9=0.700012160|c100=0.700005|c100_9=0.700004544|c10=0.700000|c10_9=0.699999808|c10_remaining_9=9.300000160|x_9=186.291015616|y_9=-0.009033203|facing_9=0.187893376"},"callback":14,"time":{"requested":"0.700000","reported":"0.700012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.700012160","c100":"0.700005","c100_9":"0.700004544","c10":"0.700000","c10_9":"0.699999808","c10_remaining_9":"9.300000160","x_9":"186.291015616","y_9":"-0.009033203","facing_9":"0.187893376"}},
+    {"seq":50,"kind":"TICK","source":{"seq":50,"payload":"@O|50|TICK|0.750000|15"},"callback":15,"time":{"requested":"0.750000","reported":"0.750000","state_us":null}},
+    {"seq":51,"kind":"SAMPLE","source":{"seq":51,"payload":"@O|51|SAMPLE|0.750000|u0|199.790527|0.028809|0.204822|851986"},"callback":15,"time":{"requested":"0.750000","reported":"0.750000","state_us":null},"unit":"u0","values":{"x":"199.790527","y":"0.028809","facing":"0.204822","order":"851986"}},
+    {"seq":52,"kind":"EVENT","source":{"seq":52,"payload":"@O|52|EVENT|0.750000|CLOCKS|c1000_9=0.750000000|c100=0.750000|c100_9=0.750000000|c10=0.750000|c10_9=0.750000000|c10_remaining_9=9.250000000|x_9=199.790527296|y_9=0.028808592|facing_9=0.204822480"},"callback":15,"time":{"requested":"0.750000","reported":"0.750000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.750000000","c100":"0.750000","c100_9":"0.750000000","c10":"0.750000","c10_9":"0.750000000","c10_remaining_9":"9.250000000","x_9":"199.790527296","y_9":"0.028808592","facing_9":"0.204822480"}},
+    {"seq":53,"kind":"TICK","source":{"seq":53,"payload":"@O|53|TICK|0.800049|16"},"callback":16,"time":{"requested":"0.800000","reported":"0.800049","state_us":null}},
+    {"seq":54,"kind":"SAMPLE","source":{"seq":54,"payload":"@O|54|SAMPLE|0.800049|u0|213.289551|0.013672|0.151148|851986"},"callback":16,"time":{"requested":"0.800000","reported":"0.800049","state_us":null},"unit":"u0","values":{"x":"213.289551","y":"0.013672","facing":"0.151148","order":"851986"}},
+    {"seq":55,"kind":"EVENT","source":{"seq":55,"payload":"@O|55|EVENT|0.800049|CLOCKS|c1000_9=0.800048768|c100=0.800003|c100_9=0.800003008|c10=0.799999|c10_9=0.799999232|c10_remaining_9=9.200000752|x_9=213.289550752|y_9=0.013671875|facing_9=0.151147840"},"callback":16,"time":{"requested":"0.800000","reported":"0.800049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.800048768","c100":"0.800003","c100_9":"0.800003008","c10":"0.799999","c10_9":"0.799999232","c10_remaining_9":"9.200000752","x_9":"213.289550752","y_9":"0.013671875","facing_9":"0.151147840"}},
+    {"seq":56,"kind":"TICK","source":{"seq":56,"payload":"@O|56|TICK|0.850037|17"},"callback":17,"time":{"requested":"0.850000","reported":"0.850037","state_us":null}},
+    {"seq":57,"kind":"SAMPLE","source":{"seq":57,"payload":"@O|57|SAMPLE|0.850037|u0|226.789063|0.027832|359.836609|851986"},"callback":17,"time":{"requested":"0.850000","reported":"0.850037","state_us":null},"unit":"u0","values":{"x":"226.789063","y":"0.027832","facing":"359.836609","order":"851986"}},
+    {"seq":58,"kind":"EVENT","source":{"seq":58,"payload":"@O|58|EVENT|0.850037|CLOCKS|c1000_9=0.850036608|c100=0.850006|c100_9=0.850006080|c10=0.849999|c10_9=0.849999424|c10_remaining_9=9.150000560|x_9=226.789062464|y_9=0.027832030|facing_9=359.836608832"},"callback":17,"time":{"requested":"0.850000","reported":"0.850037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.850036608","c100":"0.850006","c100_9":"0.850006080","c10":"0.849999","c10_9":"0.849999424","c10_remaining_9":"9.150000560","x_9":"226.789062464","y_9":"0.027832030","facing_9":"359.836608832"}},
+    {"seq":59,"kind":"TICK","source":{"seq":59,"payload":"@O|59|TICK|0.900024|18"},"callback":18,"time":{"requested":"0.900000","reported":"0.900024","state_us":null}},
+    {"seq":60,"kind":"SAMPLE","source":{"seq":60,"payload":"@O|60|SAMPLE|0.900024|u0|240.288086|0.024414|0.112181|851986"},"callback":18,"time":{"requested":"0.900000","reported":"0.900024","state_us":null},"unit":"u0","values":{"x":"240.288086","y":"0.024414","facing":"0.112181","order":"851986"}},
+    {"seq":61,"kind":"EVENT","source":{"seq":61,"payload":"@O|61|EVENT|0.900024|CLOCKS|c1000_9=0.900024384|c100=0.900002|c100_9=0.900001472|c10=0.900000|c10_9=0.899999616|c10_remaining_9=9.100000376|x_9=240.288085920|y_9=0.024414062|facing_9=0.112180696"},"callback":18,"time":{"requested":"0.900000","reported":"0.900024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.900024384","c100":"0.900002","c100_9":"0.900001472","c10":"0.900000","c10_9":"0.899999616","c10_remaining_9":"9.100000376","x_9":"240.288085920","y_9":"0.024414062","facing_9":"0.112180696"}},
+    {"seq":62,"kind":"TICK","source":{"seq":62,"payload":"@O|62|TICK|0.950012|19"},"callback":19,"time":{"requested":"0.950000","reported":"0.950012","state_us":null}},
+    {"seq":63,"kind":"SAMPLE","source":{"seq":63,"payload":"@O|63|SAMPLE|0.950012|u0|253.787598|0.002930|359.807190|851986"},"callback":19,"time":{"requested":"0.950000","reported":"0.950012","state_us":null},"unit":"u0","values":{"x":"253.787598","y":"0.002930","facing":"359.807190","order":"851986"}},
+    {"seq":64,"kind":"EVENT","source":{"seq":64,"payload":"@O|64|EVENT|0.950012|CLOCKS|c1000_9=0.950012160|c100=0.950005|c100_9=0.950004544|c10=0.950000|c10_9=0.949999808|c10_remaining_9=9.050000188|x_9=253.787597632|y_9=0.002929688|facing_9=359.807189888"},"callback":19,"time":{"requested":"0.950000","reported":"0.950012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"0.950012160","c100":"0.950005","c100_9":"0.950004544","c10":"0.950000","c10_9":"0.949999808","c10_remaining_9":"9.050000188","x_9":"253.787597632","y_9":"0.002929688","facing_9":"359.807189888"}},
+    {"seq":65,"kind":"TICK","source":{"seq":65,"payload":"@O|65|TICK|1.000000|20"},"callback":20,"time":{"requested":"1.000000","reported":"1.000000","state_us":null}},
+    {"seq":66,"kind":"SAMPLE","source":{"seq":66,"payload":"@O|66|SAMPLE|1.000000|u0|267.287109|-0.023193|0.137590|851986"},"callback":20,"time":{"requested":"1.000000","reported":"1.000000","state_us":null},"unit":"u0","values":{"x":"267.287109","y":"-0.023193","facing":"0.137590","order":"851986"}},
+    {"seq":67,"kind":"EVENT","source":{"seq":67,"payload":"@O|67|EVENT|1.000000|CLOCKS|c1000_9=1.000000000|c100=1.000000|c100_9=1.000000000|c10=0.999999|c10_9=0.999999040|c10_remaining_9=9.000000954|x_9=267.287109344|y_9=-0.023193358|facing_9=0.137590032"},"callback":20,"time":{"requested":"1.000000","reported":"1.000000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.000000000","c100":"1.000000","c100_9":"1.000000000","c10":"0.999999","c10_9":"0.999999040","c10_remaining_9":"9.000000954","x_9":"267.287109344","y_9":"-0.023193358","facing_9":"0.137590032"}},
+    {"seq":68,"kind":"TICK","source":{"seq":68,"payload":"@O|68|TICK|1.050049|21"},"callback":21,"time":{"requested":"1.050000","reported":"1.050049","state_us":null}},
+    {"seq":69,"kind":"SAMPLE","source":{"seq":69,"payload":"@O|69|SAMPLE|1.050049|u0|280.786133|-0.023193|359.885895|851986"},"callback":21,"time":{"requested":"1.050000","reported":"1.050049","state_us":null},"unit":"u0","values":{"x":"280.786133","y":"-0.023193","facing":"359.885895","order":"851986"}},
+    {"seq":70,"kind":"EVENT","source":{"seq":70,"payload":"@O|70|EVENT|1.050049|CLOCKS|c1000_9=1.050048828|c100=1.050003|c100_9=1.050003048|c10=1.049999|c10_9=1.049999236|c10_remaining_9=8.950000704|x_9=280.786132800|y_9=-0.023193358|facing_9=359.885894720"},"callback":21,"time":{"requested":"1.050000","reported":"1.050049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.050048828","c100":"1.050003","c100_9":"1.050003048","c10":"1.049999","c10_9":"1.049999236","c10_remaining_9":"8.950000704","x_9":"280.786132800","y_9":"-0.023193358","facing_9":"359.885894720"}},
+    {"seq":71,"kind":"TICK","source":{"seq":71,"payload":"@O|71|TICK|1.100037|22"},"callback":22,"time":{"requested":"1.100000","reported":"1.100037","state_us":null}},
+    {"seq":72,"kind":"SAMPLE","source":{"seq":72,"payload":"@O|72|SAMPLE|1.100037|u0|294.285645|0.007324|0.196632|851986"},"callback":22,"time":{"requested":"1.100000","reported":"1.100037","state_us":null},"unit":"u0","values":{"x":"294.285645","y":"0.007324","facing":"0.196632","order":"851986"}},
+    {"seq":73,"kind":"EVENT","source":{"seq":73,"payload":"@O|73|EVENT|1.100037|CLOCKS|c1000_9=1.100036616|c100=1.100006|c100_9=1.100006096|c10=1.099999|c10_9=1.099999424|c10_remaining_9=8.900000512|x_9=294.285644512|y_9=0.007324218|facing_9=0.196631904"},"callback":22,"time":{"requested":"1.100000","reported":"1.100037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.100036616","c100":"1.100006","c100_9":"1.100006096","c10":"1.099999","c10_9":"1.099999424","c10_remaining_9":"8.900000512","x_9":"294.285644512","y_9":"0.007324218","facing_9":"0.196631904"}},
+    {"seq":74,"kind":"TICK","source":{"seq":74,"payload":"@O|74|TICK|1.150024|23"},"callback":23,"time":{"requested":"1.150000","reported":"1.150024","state_us":null}},
+    {"seq":75,"kind":"SAMPLE","source":{"seq":75,"payload":"@O|75|SAMPLE|1.150024|u0|307.785156|-0.007080|0.133767|851986"},"callback":23,"time":{"requested":"1.150000","reported":"1.150024","state_us":null},"unit":"u0","values":{"x":"307.785156","y":"-0.007080","facing":"0.133767","order":"851986"}},
+    {"seq":76,"kind":"EVENT","source":{"seq":76,"payload":"@O|76|EVENT|1.150024|CLOCKS|c1000_9=1.150024400|c100=1.150002|c100_9=1.150001520|c10=1.150000|c10_9=1.149999616|c10_remaining_9=8.850000320|x_9=307.785156224|y_9=-0.007080078|facing_9=0.133767112"},"callback":23,"time":{"requested":"1.150000","reported":"1.150024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.150024400","c100":"1.150002","c100_9":"1.150001520","c10":"1.150000","c10_9":"1.149999616","c10_remaining_9":"8.850000320","x_9":"307.785156224","y_9":"-0.007080078","facing_9":"0.133767112"}},
+    {"seq":77,"kind":"TICK","source":{"seq":77,"payload":"@O|77|TICK|1.200012|24"},"callback":24,"time":{"requested":"1.200000","reported":"1.200012","state_us":null}},
+    {"seq":78,"kind":"SAMPLE","source":{"seq":78,"payload":"@O|78|SAMPLE|1.200012|u0|321.284180|0.004395|359.884888|851986"},"callback":24,"time":{"requested":"1.200000","reported":"1.200012","state_us":null},"unit":"u0","values":{"x":"321.284180","y":"0.004395","facing":"359.884888","order":"851986"}},
+    {"seq":79,"kind":"EVENT","source":{"seq":79,"payload":"@O|79|EVENT|1.200012|CLOCKS|c1000_9=1.200012192|c100=1.200005|c100_9=1.200004576|c10=1.199999|c10_9=1.199998848|c10_remaining_9=8.800001088|x_9=321.284179680|y_9=0.004394531|facing_9=359.884887680"},"callback":24,"time":{"requested":"1.200000","reported":"1.200012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.200012192","c100":"1.200005","c100_9":"1.200004576","c10":"1.199999","c10_9":"1.199998848","c10_remaining_9":"8.800001088","x_9":"321.284179680","y_9":"0.004394531","facing_9":"359.884887680"}},
+    {"seq":80,"kind":"TICK","source":{"seq":80,"payload":"@O|80|TICK|1.250000|25"},"callback":25,"time":{"requested":"1.250000","reported":"1.250000","state_us":null}},
+    {"seq":81,"kind":"SAMPLE","source":{"seq":81,"payload":"@O|81|SAMPLE|1.250000|u0|334.783691|-0.001221|0.129415|851986"},"callback":25,"time":{"requested":"1.250000","reported":"1.250000","state_us":null},"unit":"u0","values":{"x":"334.783691","y":"-0.001221","facing":"0.129415","order":"851986"}},
+    {"seq":82,"kind":"EVENT","source":{"seq":82,"payload":"@O|82|EVENT|1.250000|CLOCKS|c1000_9=1.250000000|c100=1.250000|c100_9=1.250000000|c10=1.249999|c10_9=1.249999040|c10_remaining_9=8.750000896|x_9=334.783691392|y_9=-0.001220703|facing_9=0.129414600"},"callback":25,"time":{"requested":"1.250000","reported":"1.250000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.250000000","c100":"1.250000","c100_9":"1.250000000","c10":"1.249999","c10_9":"1.249999040","c10_remaining_9":"8.750000896","x_9":"334.783691392","y_9":"-0.001220703","facing_9":"0.129414600"}},
+    {"seq":83,"kind":"TICK","source":{"seq":83,"payload":"@O|83|TICK|1.300049|26"},"callback":26,"time":{"requested":"1.300000","reported":"1.300049","state_us":null}},
+    {"seq":84,"kind":"SAMPLE","source":{"seq":84,"payload":"@O|84|SAMPLE|1.300049|u0|348.283203|-0.011963|0.097117|851986"},"callback":26,"time":{"requested":"1.300000","reported":"1.300049","state_us":null},"unit":"u0","values":{"x":"348.283203","y":"-0.011963","facing":"0.097117","order":"851986"}},
+    {"seq":85,"kind":"EVENT","source":{"seq":85,"payload":"@O|85|EVENT|1.300049|CLOCKS|c1000_9=1.300048800|c100=1.300003|c100_9=1.300003040|c10=1.299999|c10_9=1.299999232|c10_remaining_9=8.700000704|x_9=348.283203104|y_9=-0.011962890|facing_9=0.097117424"},"callback":26,"time":{"requested":"1.300000","reported":"1.300049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.300048800","c100":"1.300003","c100_9":"1.300003040","c10":"1.299999","c10_9":"1.299999232","c10_remaining_9":"8.700000704","x_9":"348.283203104","y_9":"-0.011962890","facing_9":"0.097117424"}},
+    {"seq":86,"kind":"TICK","source":{"seq":86,"payload":"@O|86|TICK|1.350037|27"},"callback":27,"time":{"requested":"1.350000","reported":"1.350037","state_us":null}},
+    {"seq":87,"kind":"SAMPLE","source":{"seq":87,"payload":"@O|87|SAMPLE|1.350037|u0|361.782227|-0.006836|359.910919|851986"},"callback":27,"time":{"requested":"1.350000","reported":"1.350037","state_us":null},"unit":"u0","values":{"x":"361.782227","y":"-0.006836","facing":"359.910919","order":"851986"}},
+    {"seq":88,"kind":"EVENT","source":{"seq":88,"payload":"@O|88|EVENT|1.350037|CLOCKS|c1000_9=1.350036608|c100=1.350006|c100_9=1.350006080|c10=1.349999|c10_9=1.349999424|c10_remaining_9=8.650000512|x_9=361.782226560|y_9=-0.006835937|facing_9=359.910919168"},"callback":27,"time":{"requested":"1.350000","reported":"1.350037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.350036608","c100":"1.350006","c100_9":"1.350006080","c10":"1.349999","c10_9":"1.349999424","c10_remaining_9":"8.650000512","x_9":"361.782226560","y_9":"-0.006835937","facing_9":"359.910919168"}},
+    {"seq":89,"kind":"TICK","source":{"seq":89,"payload":"@O|89|TICK|1.400024|28"},"callback":28,"time":{"requested":"1.400000","reported":"1.400024","state_us":null}},
+    {"seq":90,"kind":"SAMPLE","source":{"seq":90,"payload":"@O|90|SAMPLE|1.400024|u0|375.281738|0.003906|359.895538|851986"},"callback":28,"time":{"requested":"1.400000","reported":"1.400024","state_us":null},"unit":"u0","values":{"x":"375.281738","y":"0.003906","facing":"359.895538","order":"851986"}},
+    {"seq":91,"kind":"EVENT","source":{"seq":91,"payload":"@O|91|EVENT|1.400024|CLOCKS|c1000_9=1.400024384|c100=1.400002|c100_9=1.400001504|c10=1.399999|c10_9=1.399998656|c10_remaining_9=8.600001280|x_9=375.281738272|y_9=0.003906250|facing_9=359.895538304"},"callback":28,"time":{"requested":"1.400000","reported":"1.400024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.400024384","c100":"1.400002","c100_9":"1.400001504","c10":"1.399999","c10_9":"1.399998656","c10_remaining_9":"8.600001280","x_9":"375.281738272","y_9":"0.003906250","facing_9":"359.895538304"}},
+    {"seq":92,"kind":"TICK","source":{"seq":92,"payload":"@O|92|TICK|1.450012|29"},"callback":29,"time":{"requested":"1.450000","reported":"1.450012","state_us":null}},
+    {"seq":93,"kind":"SAMPLE","source":{"seq":93,"payload":"@O|93|SAMPLE|1.450012|u0|388.781250|0.018555|359.881836|851986"},"callback":29,"time":{"requested":"1.450000","reported":"1.450012","state_us":null},"unit":"u0","values":{"x":"388.781250","y":"0.018555","facing":"359.881836","order":"851986"}},
+    {"seq":94,"kind":"EVENT","source":{"seq":94,"payload":"@O|94|EVENT|1.450012|CLOCKS|c1000_9=1.450012192|c100=1.450005|c100_9=1.450004576|c10=1.449999|c10_9=1.449998848|c10_remaining_9=8.550001088|x_9=388.781249984|y_9=0.018554686|facing_9=359.881835904"},"callback":29,"time":{"requested":"1.450000","reported":"1.450012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.450012192","c100":"1.450005","c100_9":"1.450004576","c10":"1.449999","c10_9":"1.449998848","c10_remaining_9":"8.550001088","x_9":"388.781249984","y_9":"0.018554686","facing_9":"359.881835904"}},
+    {"seq":95,"kind":"TICK","source":{"seq":95,"payload":"@O|95|TICK|1.500000|30"},"callback":30,"time":{"requested":"1.500000","reported":"1.500000","state_us":null}},
+    {"seq":96,"kind":"SAMPLE","source":{"seq":96,"payload":"@O|96|SAMPLE|1.500000|u0|402.280273|0.006348|0.124454|851986"},"callback":30,"time":{"requested":"1.500000","reported":"1.500000","state_us":null},"unit":"u0","values":{"x":"402.280273","y":"0.006348","facing":"0.124454","order":"851986"}},
+    {"seq":97,"kind":"EVENT","source":{"seq":97,"payload":"@O|97|EVENT|1.500000|CLOCKS|c1000_9=1.500000000|c100=1.500000|c100_9=1.500000000|c10=1.499999|c10_9=1.499999040|c10_remaining_9=8.500000928|x_9=402.280273408|y_9=0.006347656|facing_9=0.124454488"},"callback":30,"time":{"requested":"1.500000","reported":"1.500000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.500000000","c100":"1.500000","c100_9":"1.500000000","c10":"1.499999","c10_9":"1.499999040","c10_remaining_9":"8.500000928","x_9":"402.280273408","y_9":"0.006347656","facing_9":"0.124454488"}},
+    {"seq":98,"kind":"TICK","source":{"seq":98,"payload":"@O|98|TICK|1.550049|31"},"callback":31,"time":{"requested":"1.550000","reported":"1.550049","state_us":null}},
+    {"seq":99,"kind":"SAMPLE","source":{"seq":99,"payload":"@O|99|SAMPLE|1.550049|u0|415.779297|-0.026611|0.032272|851986"},"callback":31,"time":{"requested":"1.550000","reported":"1.550049","state_us":null},"unit":"u0","values":{"x":"415.779297","y":"-0.026611","facing":"0.032272","order":"851986"}},
+    {"seq":100,"kind":"EVENT","source":{"seq":100,"payload":"@O|100|EVENT|1.550049|CLOCKS|c1000_9=1.550048768|c100=1.550003|c100_9=1.550003008|c10=1.549999|c10_9=1.549999232|c10_remaining_9=8.450000736|x_9=415.779296832|y_9=-0.026611328|facing_9=0.032272334"},"callback":31,"time":{"requested":"1.550000","reported":"1.550049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.550048768","c100":"1.550003","c100_9":"1.550003008","c10":"1.549999","c10_9":"1.549999232","c10_remaining_9":"8.450000736","x_9":"415.779296832","y_9":"-0.026611328","facing_9":"0.032272334"}},
+    {"seq":101,"kind":"TICK","source":{"seq":101,"payload":"@O|101|TICK|1.600037|32"},"callback":32,"time":{"requested":"1.600000","reported":"1.600037","state_us":null}},
+    {"seq":102,"kind":"SAMPLE","source":{"seq":102,"payload":"@O|102|SAMPLE|1.600037|u0|429.278809|-0.013428|0.180479|851986"},"callback":32,"time":{"requested":"1.600000","reported":"1.600037","state_us":null},"unit":"u0","values":{"x":"429.278809","y":"-0.013428","facing":"0.180479","order":"851986"}},
+    {"seq":103,"kind":"EVENT","source":{"seq":103,"payload":"@O|103|EVENT|1.600037|CLOCKS|c1000_9=1.600036608|c100=1.599998|c100_9=1.599998464|c10=1.599998|c10_9=1.599998464|c10_remaining_9=8.400001504|x_9=429.278808576|y_9=-0.013427734|facing_9=0.180479040"},"callback":32,"time":{"requested":"1.600000","reported":"1.600037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.600036608","c100":"1.599998","c100_9":"1.599998464","c10":"1.599998","c10_9":"1.599998464","c10_remaining_9":"8.400001504","x_9":"429.278808576","y_9":"-0.013427734","facing_9":"0.180479040"}},
+    {"seq":104,"kind":"TICK","source":{"seq":104,"payload":"@O|104|TICK|1.650024|33"},"callback":33,"time":{"requested":"1.650000","reported":"1.650024","state_us":null}},
+    {"seq":105,"kind":"SAMPLE","source":{"seq":105,"payload":"@O|105|SAMPLE|1.650024|u0|442.777832|-0.010742|359.957947|851986"},"callback":33,"time":{"requested":"1.650000","reported":"1.650024","state_us":null},"unit":"u0","values":{"x":"442.777832","y":"-0.010742","facing":"359.957947","order":"851986"}},
+    {"seq":106,"kind":"EVENT","source":{"seq":106,"payload":"@O|106|EVENT|1.650024|CLOCKS|c1000_9=1.650024384|c100=1.650002|c100_9=1.650001472|c10=1.649999|c10_9=1.649998656|c10_remaining_9=8.350001312|x_9=442.777832000|y_9=-0.010742187|facing_9=359.957946752"},"callback":33,"time":{"requested":"1.650000","reported":"1.650024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.650024384","c100":"1.650002","c100_9":"1.650001472","c10":"1.649999","c10_9":"1.649998656","c10_remaining_9":"8.350001312","x_9":"442.777832000","y_9":"-0.010742187","facing_9":"359.957946752"}},
+    {"seq":107,"kind":"TICK","source":{"seq":107,"payload":"@O|107|TICK|1.700012|34"},"callback":34,"time":{"requested":"1.700000","reported":"1.700012","state_us":null}},
+    {"seq":108,"kind":"SAMPLE","source":{"seq":108,"payload":"@O|108|SAMPLE|1.700012|u0|456.277344|-0.000732|359.906921|851986"},"callback":34,"time":{"requested":"1.700000","reported":"1.700012","state_us":null},"unit":"u0","values":{"x":"456.277344","y":"-0.000732","facing":"359.906921","order":"851986"}},
+    {"seq":109,"kind":"EVENT","source":{"seq":109,"payload":"@O|109|EVENT|1.700012|CLOCKS|c1000_9=1.700012160|c100=1.700005|c100_9=1.700004544|c10=1.699999|c10_9=1.699998848|c10_remaining_9=8.300001120|x_9=456.277343744|y_9=-0.000732422|facing_9=359.906921344"},"callback":34,"time":{"requested":"1.700000","reported":"1.700012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.700012160","c100":"1.700005","c100_9":"1.700004544","c10":"1.699999","c10_9":"1.699998848","c10_remaining_9":"8.300001120","x_9":"456.277343744","y_9":"-0.000732422","facing_9":"359.906921344"}},
+    {"seq":110,"kind":"TICK","source":{"seq":110,"payload":"@O|110|TICK|1.750000|35"},"callback":35,"time":{"requested":"1.750000","reported":"1.750000","state_us":null}},
+    {"seq":111,"kind":"SAMPLE","source":{"seq":111,"payload":"@O|111|SAMPLE|1.750000|u0|469.775879|0.012207|359.893250|851986"},"callback":35,"time":{"requested":"1.750000","reported":"1.750000","state_us":null},"unit":"u0","values":{"x":"469.775879","y":"0.012207","facing":"359.893250","order":"851986"}},
+    {"seq":112,"kind":"EVENT","source":{"seq":112,"payload":"@O|112|EVENT|1.750000|CLOCKS|c1000_9=1.750000000|c100=1.750000|c100_9=1.750000000|c10=1.749999|c10_9=1.749999040|c10_remaining_9=8.250000944|x_9=469.775878848|y_9=0.012207031|facing_9=359.893249472"},"callback":35,"time":{"requested":"1.750000","reported":"1.750000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.750000000","c100":"1.750000","c100_9":"1.750000000","c10":"1.749999","c10_9":"1.749999040","c10_remaining_9":"8.250000944","x_9":"469.775878848","y_9":"0.012207031","facing_9":"359.893249472"}},
+    {"seq":113,"kind":"TICK","source":{"seq":113,"payload":"@O|113|TICK|1.800049|36"},"callback":36,"time":{"requested":"1.800000","reported":"1.800049","state_us":null}},
+    {"seq":114,"kind":"SAMPLE","source":{"seq":114,"payload":"@O|114|SAMPLE|1.800049|u0|483.274414|0.000488|0.113640|851986"},"callback":36,"time":{"requested":"1.800000","reported":"1.800049","state_us":null},"unit":"u0","values":{"x":"483.274414","y":"0.000488","facing":"0.113640","order":"851986"}},
+    {"seq":115,"kind":"EVENT","source":{"seq":115,"payload":"@O|115|EVENT|1.800049|CLOCKS|c1000_9=1.800048768|c100=1.800003|c100_9=1.800003008|c10=1.799998|c10_9=1.799998272|c10_remaining_9=8.200001712|x_9=483.274414048|y_9=0.000488281|facing_9=0.113639824"},"callback":36,"time":{"requested":"1.800000","reported":"1.800049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.800048768","c100":"1.800003","c100_9":"1.800003008","c10":"1.799998","c10_9":"1.799998272","c10_remaining_9":"8.200001712","x_9":"483.274414048","y_9":"0.000488281","facing_9":"0.113639824"}},
+    {"seq":116,"kind":"TICK","source":{"seq":116,"payload":"@O|116|TICK|1.850037|37"},"callback":37,"time":{"requested":"1.850000","reported":"1.850037","state_us":null}},
+    {"seq":117,"kind":"SAMPLE","source":{"seq":117,"payload":"@O|117|SAMPLE|1.850037|u0|496.772949|-0.020020|0.070810|851986"},"callback":37,"time":{"requested":"1.850000","reported":"1.850037","state_us":null},"unit":"u0","values":{"x":"496.772949","y":"-0.020020","facing":"0.070810","order":"851986"}},
+    {"seq":118,"kind":"EVENT","source":{"seq":118,"payload":"@O|118|EVENT|1.850037|CLOCKS|c1000_9=1.850036608|c100=1.849998|c100_9=1.849998464|c10=1.849998|c10_9=1.849998464|c10_remaining_9=8.150001520|x_9=496.772949184|y_9=-0.020019530|facing_9=0.070810312"},"callback":37,"time":{"requested":"1.850000","reported":"1.850037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.850036608","c100":"1.849998","c100_9":"1.849998464","c10":"1.849998","c10_9":"1.849998464","c10_remaining_9":"8.150001520","x_9":"496.772949184","y_9":"-0.020019530","facing_9":"0.070810312"}},
+    {"seq":119,"kind":"TICK","source":{"seq":119,"payload":"@O|119|TICK|1.900024|38"},"callback":38,"time":{"requested":"1.900000","reported":"1.900024","state_us":null}},
+    {"seq":120,"kind":"SAMPLE","source":{"seq":120,"payload":"@O|120|SAMPLE|1.900024|u0|510.272461|0.011230|359.895233|851986"},"callback":38,"time":{"requested":"1.900000","reported":"1.900024","state_us":null},"unit":"u0","values":{"x":"510.272461","y":"0.011230","facing":"359.895233","order":"851986"}},
+    {"seq":121,"kind":"EVENT","source":{"seq":121,"payload":"@O|121|EVENT|1.900024|CLOCKS|c1000_9=1.900024384|c100=1.900002|c100_9=1.900001472|c10=1.899999|c10_9=1.899998656|c10_remaining_9=8.100001328|x_9=510.272460928|y_9=0.011230468|facing_9=359.895233152"},"callback":38,"time":{"requested":"1.900000","reported":"1.900024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.900024384","c100":"1.900002","c100_9":"1.900001472","c10":"1.899999","c10_9":"1.899998656","c10_remaining_9":"8.100001328","x_9":"510.272460928","y_9":"0.011230468","facing_9":"359.895233152"}},
+    {"seq":122,"kind":"TICK","source":{"seq":122,"payload":"@O|122|TICK|1.950012|39"},"callback":39,"time":{"requested":"1.950000","reported":"1.950012","state_us":null}},
+    {"seq":123,"kind":"SAMPLE","source":{"seq":123,"payload":"@O|123|SAMPLE|1.950012|u0|523.770996|-0.008789|0.095315|851986"},"callback":39,"time":{"requested":"1.950000","reported":"1.950012","state_us":null},"unit":"u0","values":{"x":"523.770996","y":"-0.008789","facing":"0.095315","order":"851986"}},
+    {"seq":124,"kind":"EVENT","source":{"seq":124,"payload":"@O|124|EVENT|1.950012|CLOCKS|c1000_9=1.950012160|c100=1.950005|c100_9=1.950004544|c10=1.949999|c10_9=1.949998848|c10_remaining_9=8.050001144|x_9=523.770996032|y_9=-0.008789062|facing_9=0.095314968"},"callback":39,"time":{"requested":"1.950000","reported":"1.950012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"1.950012160","c100":"1.950005","c100_9":"1.950004544","c10":"1.949999","c10_9":"1.949998848","c10_remaining_9":"8.050001144","x_9":"523.770996032","y_9":"-0.008789062","facing_9":"0.095314968"}},
+    {"seq":125,"kind":"TICK","source":{"seq":125,"payload":"@O|125|TICK|2.000000|40"},"callback":40,"time":{"requested":"2.000000","reported":"2.000000","state_us":null}},
+    {"seq":126,"kind":"SAMPLE","source":{"seq":126,"payload":"@O|126|SAMPLE|2.000000|u0|537.270020|-0.019043|359.865112|851986"},"callback":40,"time":{"requested":"2.000000","reported":"2.000000","state_us":null},"unit":"u0","values":{"x":"537.270020","y":"-0.019043","facing":"359.865112","order":"851986"}},
+    {"seq":127,"kind":"EVENT","source":{"seq":127,"payload":"@O|127|EVENT|2.000000|CLOCKS|c1000_9=2.000000000|c100=2.000000|c100_9=2.000000000|c10=1.999998|c10_9=1.999998080|c10_remaining_9=8.000001907|x_9=537.270019520|y_9=-0.019042968|facing_9=359.865112256"},"callback":40,"time":{"requested":"2.000000","reported":"2.000000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.000000000","c100":"2.000000","c100_9":"2.000000000","c10":"1.999998","c10_9":"1.999998080","c10_remaining_9":"8.000001907","x_9":"537.270019520","y_9":"-0.019042968","facing_9":"359.865112256"}},
+    {"seq":128,"kind":"TICK","source":{"seq":128,"payload":"@O|128|TICK|2.050049|41"},"callback":41,"time":{"requested":"2.050000","reported":"2.050049","state_us":null}},
+    {"seq":129,"kind":"SAMPLE","source":{"seq":129,"payload":"@O|129|SAMPLE|2.050049|u0|550.769043|0.020508|359.910400|851986"},"callback":41,"time":{"requested":"2.050000","reported":"2.050049","state_us":null},"unit":"u0","values":{"x":"550.769043","y":"0.020508","facing":"359.910400","order":"851986"}},
+    {"seq":130,"kind":"EVENT","source":{"seq":130,"payload":"@O|130|EVENT|2.050049|CLOCKS|c1000_9=2.050048828|c100=2.050003|c100_9=2.050003048|c10=2.049998|c10_9=2.049998280|c10_remaining_9=7.950001664|x_9=550.769042944|y_9=0.020507812|facing_9=359.910400384"},"callback":41,"time":{"requested":"2.050000","reported":"2.050049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.050048828","c100":"2.050003","c100_9":"2.050003048","c10":"2.049998","c10_9":"2.049998280","c10_remaining_9":"7.950001664","x_9":"550.769042944","y_9":"0.020507812","facing_9":"359.910400384"}},
+    {"seq":131,"kind":"TICK","source":{"seq":131,"payload":"@O|131|TICK|2.100037|42"},"callback":42,"time":{"requested":"2.100000","reported":"2.100037","state_us":null}},
+    {"seq":132,"kind":"SAMPLE","source":{"seq":132,"payload":"@O|132|SAMPLE|2.100037|u0|564.268066|0.001953|0.069137|851986"},"callback":42,"time":{"requested":"2.100000","reported":"2.100037","state_us":null},"unit":"u0","values":{"x":"564.268066","y":"0.001953","facing":"0.069137","order":"851986"}},
+    {"seq":133,"kind":"EVENT","source":{"seq":133,"payload":"@O|133|EVENT|2.100037|CLOCKS|c1000_9=2.100036616|c100=2.099998|c100_9=2.099998472|c10=2.099998|c10_9=2.099997992|c10_remaining_9=7.900001984|x_9=564.268066400|y_9=0.001953125|facing_9=0.069136608"},"callback":42,"time":{"requested":"2.100000","reported":"2.100037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.100036616","c100":"2.099998","c100_9":"2.099998472","c10":"2.099998","c10_9":"2.099997992","c10_remaining_9":"7.900001984","x_9":"564.268066400","y_9":"0.001953125","facing_9":"0.069136608"}},
+    {"seq":134,"kind":"TICK","source":{"seq":134,"payload":"@O|134|TICK|2.150024|43"},"callback":43,"time":{"requested":"2.150000","reported":"2.150024","state_us":null}},
+    {"seq":135,"kind":"SAMPLE","source":{"seq":135,"payload":"@O|135|SAMPLE|2.150024|u0|577.767090|-0.025391|0.086603|851986"},"callback":43,"time":{"requested":"2.150000","reported":"2.150024","state_us":null},"unit":"u0","values":{"x":"577.767090","y":"-0.025391","facing":"0.086603","order":"851986"}},
+    {"seq":136,"kind":"EVENT","source":{"seq":136,"payload":"@O|136|EVENT|2.150024|CLOCKS|c1000_9=2.150024400|c100=2.150002|c100_9=2.150001520|c10=2.149998|c10_9=2.149998176|c10_remaining_9=7.850001792|x_9=577.767089792|y_9=-0.025390624|facing_9=0.086603152"},"callback":43,"time":{"requested":"2.150000","reported":"2.150024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.150024400","c100":"2.150002","c100_9":"2.150001520","c10":"2.149998","c10_9":"2.149998176","c10_remaining_9":"7.850001792","x_9":"577.767089792","y_9":"-0.025390624","facing_9":"0.086603152"}},
+    {"seq":137,"kind":"TICK","source":{"seq":137,"payload":"@O|137|TICK|2.200012|44"},"callback":44,"time":{"requested":"2.200000","reported":"2.200012","state_us":null}},
+    {"seq":138,"kind":"SAMPLE","source":{"seq":138,"payload":"@O|138|SAMPLE|2.200012|u0|591.266113|0.024414|359.982300|851986"},"callback":44,"time":{"requested":"2.200000","reported":"2.200012","state_us":null},"unit":"u0","values":{"x":"591.266113","y":"0.024414","facing":"359.982300","order":"851986"}},
+    {"seq":139,"kind":"EVENT","source":{"seq":139,"payload":"@O|139|EVENT|2.200012|CLOCKS|c1000_9=2.200012192|c100=2.200005|c100_9=2.200004576|c10=2.199998|c10_9=2.199997888|c10_remaining_9=7.800002048|x_9=591.266113280|y_9=0.024414062|facing_9=359.982299776"},"callback":44,"time":{"requested":"2.200000","reported":"2.200012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.200012192","c100":"2.200005","c100_9":"2.200004576","c10":"2.199998","c10_9":"2.199997888","c10_remaining_9":"7.800002048","x_9":"591.266113280","y_9":"0.024414062","facing_9":"359.982299776"}},
+    {"seq":140,"kind":"TICK","source":{"seq":140,"payload":"@O|140|TICK|2.250000|45"},"callback":45,"time":{"requested":"2.250000","reported":"2.250000","state_us":null}},
+    {"seq":141,"kind":"SAMPLE","source":{"seq":141,"payload":"@O|141|SAMPLE|2.250000|u0|604.765137|-0.010986|359.818604|851986"},"callback":45,"time":{"requested":"2.250000","reported":"2.250000","state_us":null},"unit":"u0","values":{"x":"604.765137","y":"-0.010986","facing":"359.818604","order":"851986"}},
+    {"seq":142,"kind":"EVENT","source":{"seq":142,"payload":"@O|142|EVENT|2.250000|CLOCKS|c1000_9=2.250000000|c100=2.250000|c100_9=2.250000000|c10=2.249998|c10_9=2.249998080|c10_remaining_9=7.750001856|x_9=604.765136704|y_9=-0.010986328|facing_9=359.818603456"},"callback":45,"time":{"requested":"2.250000","reported":"2.250000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.250000000","c100":"2.250000","c100_9":"2.250000000","c10":"2.249998","c10_9":"2.249998080","c10_remaining_9":"7.750001856","x_9":"604.765136704","y_9":"-0.010986328","facing_9":"359.818603456"}},
+    {"seq":143,"kind":"TICK","source":{"seq":143,"payload":"@O|143|TICK|2.300049|46"},"callback":46,"time":{"requested":"2.300000","reported":"2.300049","state_us":null}},
+    {"seq":144,"kind":"SAMPLE","source":{"seq":144,"payload":"@O|144|SAMPLE|2.300049|u0|618.263672|0.001953|359.918396|851986"},"callback":46,"time":{"requested":"2.300000","reported":"2.300049","state_us":null},"unit":"u0","values":{"x":"618.263672","y":"0.001953","facing":"359.918396","order":"851986"}},
+    {"seq":145,"kind":"EVENT","source":{"seq":145,"payload":"@O|145|EVENT|2.300049|CLOCKS|c1000_9=2.300048800|c100=2.300003|c100_9=2.300003040|c10=2.299998|c10_9=2.299997792|c10_remaining_9=7.700002176|x_9=618.263671872|y_9=0.001953125|facing_9=359.918395968"},"callback":46,"time":{"requested":"2.300000","reported":"2.300049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.300048800","c100":"2.300003","c100_9":"2.300003040","c10":"2.299998","c10_9":"2.299997792","c10_remaining_9":"7.700002176","x_9":"618.263671872","y_9":"0.001953125","facing_9":"359.918395968"}},
+    {"seq":146,"kind":"TICK","source":{"seq":146,"payload":"@O|146|TICK|2.350037|47"},"callback":47,"time":{"requested":"2.350000","reported":"2.350037","state_us":null}},
+    {"seq":147,"kind":"SAMPLE","source":{"seq":147,"payload":"@O|147|SAMPLE|2.350037|u0|631.762695|0.038086|359.905731|851986"},"callback":47,"time":{"requested":"2.350000","reported":"2.350037","state_us":null},"unit":"u0","values":{"x":"631.762695","y":"0.038086","facing":"359.905731","order":"851986"}},
+    {"seq":148,"kind":"EVENT","source":{"seq":148,"payload":"@O|148|EVENT|2.350037|CLOCKS|c1000_9=2.350036608|c100=2.349998|c100_9=2.349998464|c10=2.349998|c10_9=2.349997984|c10_remaining_9=7.650001984|x_9=631.762695296|y_9=0.038085936|facing_9=359.905731200"},"callback":47,"time":{"requested":"2.350000","reported":"2.350037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.350036608","c100":"2.349998","c100_9":"2.349998464","c10":"2.349998","c10_9":"2.349997984","c10_remaining_9":"7.650001984","x_9":"631.762695296","y_9":"0.038085936","facing_9":"359.905731200"}},
+    {"seq":149,"kind":"TICK","source":{"seq":149,"payload":"@O|149|TICK|2.400024|48"},"callback":48,"time":{"requested":"2.400000","reported":"2.400024","state_us":null}},
+    {"seq":150,"kind":"SAMPLE","source":{"seq":150,"payload":"@O|150|SAMPLE|2.400024|u0|645.261230|-0.001953|0.049224|851986"},"callback":48,"time":{"requested":"2.400000","reported":"2.400024","state_us":null},"unit":"u0","values":{"x":"645.261230","y":"-0.001953","facing":"0.049224","order":"851986"}},
+    {"seq":151,"kind":"EVENT","source":{"seq":151,"payload":"@O|151|EVENT|2.400024|CLOCKS|c1000_9=2.400024384|c100=2.400002|c100_9=2.400001504|c10=2.399998|c10_9=2.399997696|c10_remaining_9=7.600002240|x_9=645.261230464|y_9=-0.001953125|facing_9=0.049223896"},"callback":48,"time":{"requested":"2.400000","reported":"2.400024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.400024384","c100":"2.400002","c100_9":"2.400001504","c10":"2.399998","c10_9":"2.399997696","c10_remaining_9":"7.600002240","x_9":"645.261230464","y_9":"-0.001953125","facing_9":"0.049223896"}},
+    {"seq":152,"kind":"TICK","source":{"seq":152,"payload":"@O|152|TICK|2.450012|49"},"callback":49,"time":{"requested":"2.450000","reported":"2.450012","state_us":null}},
+    {"seq":153,"kind":"SAMPLE","source":{"seq":153,"payload":"@O|153|SAMPLE|2.450012|u0|658.760742|0.007324|359.934570|851986"},"callback":49,"time":{"requested":"2.450000","reported":"2.450012","state_us":null},"unit":"u0","values":{"x":"658.760742","y":"0.007324","facing":"359.934570","order":"851986"}},
+    {"seq":154,"kind":"EVENT","source":{"seq":154,"payload":"@O|154|EVENT|2.450012|CLOCKS|c1000_9=2.450012192|c100=2.450005|c100_9=2.450004576|c10=2.449998|c10_9=2.449997888|c10_remaining_9=7.550002048|x_9=658.760742144|y_9=0.007324218|facing_9=359.934570304"},"callback":49,"time":{"requested":"2.450000","reported":"2.450012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.450012192","c100":"2.450005","c100_9":"2.450004576","c10":"2.449998","c10_9":"2.449997888","c10_remaining_9":"7.550002048","x_9":"658.760742144","y_9":"0.007324218","facing_9":"359.934570304"}},
+    {"seq":155,"kind":"TICK","source":{"seq":155,"payload":"@O|155|TICK|2.500000|50"},"callback":50,"time":{"requested":"2.500000","reported":"2.500000","state_us":null}},
+    {"seq":156,"kind":"SAMPLE","source":{"seq":156,"payload":"@O|156|SAMPLE|2.500000|u0|672.259766|0.023438|359.897308|851986"},"callback":50,"time":{"requested":"2.500000","reported":"2.500000","state_us":null},"unit":"u0","values":{"x":"672.259766","y":"0.023438","facing":"359.897308","order":"851986"}},
+    {"seq":157,"kind":"EVENT","source":{"seq":157,"payload":"@O|157|EVENT|2.500000|CLOCKS|c1000_9=2.500000000|c100=2.500000|c100_9=2.500000000|c10=2.499998|c10_9=2.499997600|c10_remaining_9=7.500002368|x_9=672.259765616|y_9=0.023437500|facing_9=359.897308288"},"callback":50,"time":{"requested":"2.500000","reported":"2.500000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.500000000","c100":"2.500000","c100_9":"2.500000000","c10":"2.499998","c10_9":"2.499997600","c10_remaining_9":"7.500002368","x_9":"672.259765616","y_9":"0.023437500","facing_9":"359.897308288"}},
+    {"seq":158,"kind":"TICK","source":{"seq":158,"payload":"@O|158|TICK|2.550049|51"},"callback":51,"time":{"requested":"2.550000","reported":"2.550049","state_us":null}},
+    {"seq":159,"kind":"SAMPLE","source":{"seq":159,"payload":"@O|159|SAMPLE|2.550049|u0|685.758301|0.012695|0.118017|851986"},"callback":51,"time":{"requested":"2.550000","reported":"2.550049","state_us":null},"unit":"u0","values":{"x":"685.758301","y":"0.012695","facing":"0.118017","order":"851986"}},
+    {"seq":160,"kind":"EVENT","source":{"seq":160,"payload":"@O|160|EVENT|2.550049|CLOCKS|c1000_9=2.550048768|c100=2.550003|c100_9=2.550003008|c10=2.549998|c10_9=2.549997760|c10_remaining_9=7.450002176|x_9=685.758300736|y_9=0.012695312|facing_9=0.118017192"},"callback":51,"time":{"requested":"2.550000","reported":"2.550049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.550048768","c100":"2.550003","c100_9":"2.550003008","c10":"2.549998","c10_9":"2.549997760","c10_remaining_9":"7.450002176","x_9":"685.758300736","y_9":"0.012695312","facing_9":"0.118017192"}},
+    {"seq":161,"kind":"TICK","source":{"seq":161,"payload":"@O|161|TICK|2.600037|52"},"callback":52,"time":{"requested":"2.600000","reported":"2.600037","state_us":null}},
+    {"seq":162,"kind":"SAMPLE","source":{"seq":162,"payload":"@O|162|SAMPLE|2.600037|u0|699.256836|-0.001953|0.129862|851986"},"callback":52,"time":{"requested":"2.600000","reported":"2.600037","state_us":null},"unit":"u0","values":{"x":"699.256836","y":"-0.001953","facing":"0.129862","order":"851986"}},
+    {"seq":163,"kind":"EVENT","source":{"seq":163,"payload":"@O|163|EVENT|2.600037|CLOCKS|c1000_9=2.600036608|c100=2.599998|c100_9=2.599998464|c10=2.599998|c10_9=2.599997504|c10_remaining_9=7.400002464|x_9=699.256835936|y_9=-0.001953125|facing_9=0.129861816"},"callback":52,"time":{"requested":"2.600000","reported":"2.600037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.600036608","c100":"2.599998","c100_9":"2.599998464","c10":"2.599998","c10_9":"2.599997504","c10_remaining_9":"7.400002464","x_9":"699.256835936","y_9":"-0.001953125","facing_9":"0.129861816"}},
+    {"seq":164,"kind":"TICK","source":{"seq":164,"payload":"@O|164|TICK|2.650024|53"},"callback":53,"time":{"requested":"2.650000","reported":"2.650024","state_us":null}},
+    {"seq":165,"kind":"SAMPLE","source":{"seq":165,"payload":"@O|165|SAMPLE|2.650024|u0|712.755859|0.021484|359.860504|851986"},"callback":53,"time":{"requested":"2.650000","reported":"2.650024","state_us":null},"unit":"u0","values":{"x":"712.755859","y":"0.021484","facing":"359.860504","order":"851986"}},
+    {"seq":166,"kind":"EVENT","source":{"seq":166,"payload":"@O|166|EVENT|2.650024|CLOCKS|c1000_9=2.650024384|c100=2.650002|c100_9=2.650001472|c10=2.649998|c10_9=2.649997696|c10_remaining_9=7.350002272|x_9=712.755859328|y_9=0.021484374|facing_9=359.860504128"},"callback":53,"time":{"requested":"2.650000","reported":"2.650024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.650024384","c100":"2.650002","c100_9":"2.650001472","c10":"2.649998","c10_9":"2.649997696","c10_remaining_9":"7.350002272","x_9":"712.755859328","y_9":"0.021484374","facing_9":"359.860504128"}},
+    {"seq":167,"kind":"TICK","source":{"seq":167,"payload":"@O|167|TICK|2.700012|54"},"callback":54,"time":{"requested":"2.700000","reported":"2.700012","state_us":null}},
+    {"seq":168,"kind":"SAMPLE","source":{"seq":168,"payload":"@O|168|SAMPLE|2.700012|u0|726.254883|0.019043|0.075917|851986"},"callback":54,"time":{"requested":"2.700000","reported":"2.700012","state_us":null},"unit":"u0","values":{"x":"726.254883","y":"0.019043","facing":"0.075917","order":"851986"}},
+    {"seq":169,"kind":"EVENT","source":{"seq":169,"payload":"@O|169|EVENT|2.700012|CLOCKS|c1000_9=2.700012160|c100=2.700005|c100_9=2.700004544|c10=2.699997|c10_9=2.699997376|c10_remaining_9=7.300002560|x_9=726.254882800|y_9=0.019042968|facing_9=0.075917240"},"callback":54,"time":{"requested":"2.700000","reported":"2.700012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.700012160","c100":"2.700005","c100_9":"2.700004544","c10":"2.699997","c10_9":"2.699997376","c10_remaining_9":"7.300002560","x_9":"726.254882800","y_9":"0.019042968","facing_9":"0.075917240"}},
+    {"seq":170,"kind":"TICK","source":{"seq":170,"payload":"@O|170|TICK|2.750000|55"},"callback":55,"time":{"requested":"2.750000","reported":"2.750000","state_us":null}},
+    {"seq":171,"kind":"SAMPLE","source":{"seq":171,"payload":"@O|171|SAMPLE|2.750000|u0|739.753906|0.004395|0.115957|851986"},"callback":55,"time":{"requested":"2.750000","reported":"2.750000","state_us":null},"unit":"u0","values":{"x":"739.753906","y":"0.004395","facing":"0.115957","order":"851986"}},
+    {"seq":172,"kind":"EVENT","source":{"seq":172,"payload":"@O|172|EVENT|2.750000|CLOCKS|c1000_9=2.750000000|c100=2.750000|c100_9=2.750000000|c10=2.749998|c10_9=2.749997568|c10_remaining_9=7.250002384|x_9=739.753906240|y_9=0.004394531|facing_9=0.115957248"},"callback":55,"time":{"requested":"2.750000","reported":"2.750000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.750000000","c100":"2.750000","c100_9":"2.750000000","c10":"2.749998","c10_9":"2.749997568","c10_remaining_9":"7.250002384","x_9":"739.753906240","y_9":"0.004394531","facing_9":"0.115957248"}},
+    {"seq":173,"kind":"TICK","source":{"seq":173,"payload":"@O|173|TICK|2.800049|56"},"callback":56,"time":{"requested":"2.800000","reported":"2.800049","state_us":null}},
+    {"seq":174,"kind":"SAMPLE","source":{"seq":174,"payload":"@O|174|SAMPLE|2.800049|u0|753.252930|0.012207|359.812866|851986"},"callback":56,"time":{"requested":"2.800000","reported":"2.800049","state_us":null},"unit":"u0","values":{"x":"753.252930","y":"0.012207","facing":"359.812866","order":"851986"}},
+    {"seq":175,"kind":"EVENT","source":{"seq":175,"payload":"@O|175|EVENT|2.800049|CLOCKS|c1000_9=2.800048768|c100=2.800003|c100_9=2.800003008|c10=2.799997|c10_9=2.799997312|c10_remaining_9=7.200002656|x_9=753.252929680|y_9=0.012207031|facing_9=359.812866176"},"callback":56,"time":{"requested":"2.800000","reported":"2.800049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.800048768","c100":"2.800003","c100_9":"2.800003008","c10":"2.799997","c10_9":"2.799997312","c10_remaining_9":"7.200002656","x_9":"753.252929680","y_9":"0.012207031","facing_9":"359.812866176"}},
+    {"seq":176,"kind":"TICK","source":{"seq":176,"payload":"@O|176|TICK|2.850037|57"},"callback":57,"time":{"requested":"2.850000","reported":"2.850037","state_us":null}},
+    {"seq":177,"kind":"SAMPLE","source":{"seq":177,"payload":"@O|177|SAMPLE|2.850037|u0|766.751465|-0.017822|0.015836|851986"},"callback":57,"time":{"requested":"2.850000","reported":"2.850037","state_us":null},"unit":"u0","values":{"x":"766.751465","y":"-0.017822","facing":"0.015836","order":"851986"}},
+    {"seq":178,"kind":"EVENT","source":{"seq":178,"payload":"@O|178|EVENT|2.850037|CLOCKS|c1000_9=2.850036608|c100=2.849998|c100_9=2.849998464|c10=2.849998|c10_9=2.849997504|c10_remaining_9=7.150002464|x_9=766.751464832|y_9=-0.017822264|facing_9=0.015835762"},"callback":57,"time":{"requested":"2.850000","reported":"2.850037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.850036608","c100":"2.849998","c100_9":"2.849998464","c10":"2.849998","c10_9":"2.849997504","c10_remaining_9":"7.150002464","x_9":"766.751464832","y_9":"-0.017822264","facing_9":"0.015835762"}},
+    {"seq":179,"kind":"TICK","source":{"seq":179,"payload":"@O|179|TICK|2.900024|58"},"callback":58,"time":{"requested":"2.900000","reported":"2.900024","state_us":null}},
+    {"seq":180,"kind":"SAMPLE","source":{"seq":180,"payload":"@O|180|SAMPLE|2.900024|u0|780.250488|0.022461|0.185557|851986"},"callback":58,"time":{"requested":"2.900000","reported":"2.900024","state_us":null},"unit":"u0","values":{"x":"780.250488","y":"0.022461","facing":"0.185557","order":"851986"}},
+    {"seq":181,"kind":"EVENT","source":{"seq":181,"payload":"@O|181|EVENT|2.900024|CLOCKS|c1000_9=2.900024384|c100=2.900002|c100_9=2.900001472|c10=2.899997|c10_9=2.899997184|c10_remaining_9=7.100002760|x_9=780.250488272|y_9=0.022460936|facing_9=0.185556592"},"callback":58,"time":{"requested":"2.900000","reported":"2.900024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.900024384","c100":"2.900002","c100_9":"2.900001472","c10":"2.899997","c10_9":"2.899997184","c10_remaining_9":"7.100002760","x_9":"780.250488272","y_9":"0.022460936","facing_9":"0.185556592"}},
+    {"seq":182,"kind":"TICK","source":{"seq":182,"payload":"@O|182|TICK|2.950012|59"},"callback":59,"time":{"requested":"2.950000","reported":"2.950012","state_us":null}},
+    {"seq":183,"kind":"SAMPLE","source":{"seq":183,"payload":"@O|183|SAMPLE|2.950012|u0|793.749512|-0.010498|0.151191|851986"},"callback":59,"time":{"requested":"2.950000","reported":"2.950012","state_us":null},"unit":"u0","values":{"x":"793.749512","y":"-0.010498","facing":"0.151191","order":"851986"}},
+    {"seq":184,"kind":"EVENT","source":{"seq":184,"payload":"@O|184|EVENT|2.950012|CLOCKS|c1000_9=2.950012160|c100=2.950005|c100_9=2.950004544|c10=2.949997|c10_9=2.949997376|c10_remaining_9=7.050002572|x_9=793.749511680|y_9=-0.010498046|facing_9=0.151190752"},"callback":59,"time":{"requested":"2.950000","reported":"2.950012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"2.950012160","c100":"2.950005","c100_9":"2.950004544","c10":"2.949997","c10_9":"2.949997376","c10_remaining_9":"7.050002572","x_9":"793.749511680","y_9":"-0.010498046","facing_9":"0.151190752"}},
+    {"seq":185,"kind":"TICK","source":{"seq":185,"payload":"@O|185|TICK|3.000000|60"},"callback":60,"time":{"requested":"3.000000","reported":"3.000000","state_us":null}},
+    {"seq":186,"kind":"SAMPLE","source":{"seq":186,"payload":"@O|186|SAMPLE|3.000000|u0|807.248047|0.019531|359.951294|851986"},"callback":60,"time":{"requested":"3.000000","reported":"3.000000","state_us":null},"unit":"u0","values":{"x":"807.248047","y":"0.019531","facing":"359.951294","order":"851986"}},
+    {"seq":187,"kind":"EVENT","source":{"seq":187,"payload":"@O|187|EVENT|3.000000|CLOCKS|c1000_9=3.000000000|c100=3.000000|c100_9=3.000000000|c10=2.999997|c10_9=2.999997120|c10_remaining_9=7.000002861|x_9=807.248046864|y_9=0.019531250|facing_9=359.951293888"},"callback":60,"time":{"requested":"3.000000","reported":"3.000000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.000000000","c100":"3.000000","c100_9":"3.000000000","c10":"2.999997","c10_9":"2.999997120","c10_remaining_9":"7.000002861","x_9":"807.248046864","y_9":"0.019531250","facing_9":"359.951293888"}},
+    {"seq":188,"kind":"TICK","source":{"seq":188,"payload":"@O|188|TICK|3.050049|61"},"callback":61,"time":{"requested":"3.050000","reported":"3.050049","state_us":null}},
+    {"seq":189,"kind":"SAMPLE","source":{"seq":189,"payload":"@O|189|SAMPLE|3.050049|u0|820.747070|-0.027344|0.013304|851986"},"callback":61,"time":{"requested":"3.050000","reported":"3.050049","state_us":null},"unit":"u0","values":{"x":"820.747070","y":"-0.027344","facing":"0.013304","order":"851986"}},
+    {"seq":190,"kind":"EVENT","source":{"seq":190,"payload":"@O|190|EVENT|3.050049|CLOCKS|c1000_9=3.050048828|c100=3.050003|c100_9=3.050003048|c10=3.049997|c10_9=3.049997328|c10_remaining_9=6.950002624|x_9=820.747070272|y_9=-0.027343750|facing_9=0.013303756"},"callback":61,"time":{"requested":"3.050000","reported":"3.050049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.050048828","c100":"3.050003","c100_9":"3.050003048","c10":"3.049997","c10_9":"3.049997328","c10_remaining_9":"6.950002624","x_9":"820.747070272","y_9":"-0.027343750","facing_9":"0.013303756"}},
+    {"seq":191,"kind":"TICK","source":{"seq":191,"payload":"@O|191|TICK|3.100037|62"},"callback":62,"time":{"requested":"3.100000","reported":"3.100037","state_us":null}},
+    {"seq":192,"kind":"SAMPLE","source":{"seq":192,"payload":"@O|192|SAMPLE|3.100037|u0|834.246582|0.012207|359.895142|851986"},"callback":62,"time":{"requested":"3.100000","reported":"3.100037","state_us":null},"unit":"u0","values":{"x":"834.246582","y":"0.012207","facing":"359.895142","order":"851986"}},
+    {"seq":193,"kind":"EVENT","source":{"seq":193,"payload":"@O|193|EVENT|3.100037|CLOCKS|c1000_9=3.100036616|c100=3.099998|c100_9=3.099998472|c10=3.099997|c10_9=3.099997040|c10_remaining_9=6.900002944|x_9=834.246582016|y_9=0.012207031|facing_9=359.895141568"},"callback":62,"time":{"requested":"3.100000","reported":"3.100037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.100036616","c100":"3.099998","c100_9":"3.099998472","c10":"3.099997","c10_9":"3.099997040","c10_remaining_9":"6.900002944","x_9":"834.246582016","y_9":"0.012207031","facing_9":"359.895141568"}},
+    {"seq":194,"kind":"TICK","source":{"seq":194,"payload":"@O|194|TICK|3.150024|63"},"callback":63,"time":{"requested":"3.150000","reported":"3.150024","state_us":null}},
+    {"seq":195,"kind":"SAMPLE","source":{"seq":195,"payload":"@O|195|SAMPLE|3.150024|u0|847.745117|-0.030029|0.044160|851986"},"callback":63,"time":{"requested":"3.150000","reported":"3.150024","state_us":null},"unit":"u0","values":{"x":"847.745117","y":"-0.030029","facing":"0.044160","order":"851986"}},
+    {"seq":196,"kind":"EVENT","source":{"seq":196,"payload":"@O|196|EVENT|3.150024|CLOCKS|c1000_9=3.150024400|c100=3.150002|c100_9=3.150001520|c10=3.149997|c10_9=3.149997232|c10_remaining_9=6.850002752|x_9=847.745117184|y_9=-0.030029296|facing_9=0.044159884"},"callback":63,"time":{"requested":"3.150000","reported":"3.150024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.150024400","c100":"3.150002","c100_9":"3.150001520","c10":"3.149997","c10_9":"3.149997232","c10_remaining_9":"6.850002752","x_9":"847.745117184","y_9":"-0.030029296","facing_9":"0.044159884"}},
+    {"seq":197,"kind":"TICK","source":{"seq":197,"payload":"@O|197|TICK|3.200012|64"},"callback":64,"time":{"requested":"3.200000","reported":"3.200012","state_us":null}},
+    {"seq":198,"kind":"SAMPLE","source":{"seq":198,"payload":"@O|198|SAMPLE|3.200012|u0|861.244629|0.014160|0.249591|851986"},"callback":64,"time":{"requested":"3.200000","reported":"3.200012","state_us":null},"unit":"u0","values":{"x":"861.244629","y":"0.014160","facing":"0.249591","order":"851986"}},
+    {"seq":199,"kind":"EVENT","source":{"seq":199,"payload":"@O|199|EVENT|3.200012|CLOCKS|c1000_9=3.200012192|c100=3.199997|c100_9=3.199996944|c10=3.199997|c10_9=3.199996944|c10_remaining_9=6.800003008|x_9=861.244628896|y_9=0.014160156|facing_9=0.249590704"},"callback":64,"time":{"requested":"3.200000","reported":"3.200012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.200012192","c100":"3.199997","c100_9":"3.199996944","c10":"3.199997","c10_9":"3.199996944","c10_remaining_9":"6.800003008","x_9":"861.244628896","y_9":"0.014160156","facing_9":"0.249590704"}},
+    {"seq":200,"kind":"TICK","source":{"seq":200,"payload":"@O|200|TICK|3.250000|65"},"callback":65,"time":{"requested":"3.250000","reported":"3.250000","state_us":null}},
+    {"seq":201,"kind":"SAMPLE","source":{"seq":201,"payload":"@O|201|SAMPLE|3.250000|u0|874.743164|-0.007324|0.096388|851986"},"callback":65,"time":{"requested":"3.250000","reported":"3.250000","state_us":null},"unit":"u0","values":{"x":"874.743164","y":"-0.007324","facing":"0.096388","order":"851986"}},
+    {"seq":202,"kind":"EVENT","source":{"seq":202,"payload":"@O|202|EVENT|3.250000|CLOCKS|c1000_9=3.250000000|c100=3.250000|c100_9=3.250000000|c10=3.249997|c10_9=3.249997136|c10_remaining_9=6.750002816|x_9=874.743164032|y_9=-0.007324218|facing_9=0.096387856"},"callback":65,"time":{"requested":"3.250000","reported":"3.250000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.250000000","c100":"3.250000","c100_9":"3.250000000","c10":"3.249997","c10_9":"3.249997136","c10_remaining_9":"6.750002816","x_9":"874.743164032","y_9":"-0.007324218","facing_9":"0.096387856"}},
+    {"seq":203,"kind":"TICK","source":{"seq":203,"payload":"@O|203|TICK|3.300049|66"},"callback":66,"time":{"requested":"3.300000","reported":"3.300049","state_us":null}},
+    {"seq":204,"kind":"SAMPLE","source":{"seq":204,"payload":"@O|204|SAMPLE|3.300049|u0|888.242188|0.001465|359.904388|851986"},"callback":66,"time":{"requested":"3.300000","reported":"3.300049","state_us":null},"unit":"u0","values":{"x":"888.242188","y":"0.001465","facing":"359.904388","order":"851986"}},
+    {"seq":205,"kind":"EVENT","source":{"seq":205,"payload":"@O|205|EVENT|3.300049|CLOCKS|c1000_9=3.300048800|c100=3.300003|c100_9=3.300003040|c10=3.299997|c10_9=3.299996832|c10_remaining_9=6.700003136|x_9=888.242187488|y_9=0.001464844|facing_9=359.904388416"},"callback":66,"time":{"requested":"3.300000","reported":"3.300049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.300048800","c100":"3.300003","c100_9":"3.300003040","c10":"3.299997","c10_9":"3.299996832","c10_remaining_9":"6.700003136","x_9":"888.242187488","y_9":"0.001464844","facing_9":"359.904388416"}},
+    {"seq":206,"kind":"TICK","source":{"seq":206,"payload":"@O|206|TICK|3.350037|67"},"callback":67,"time":{"requested":"3.350000","reported":"3.350037","state_us":null}},
+    {"seq":207,"kind":"SAMPLE","source":{"seq":207,"payload":"@O|207|SAMPLE|3.350037|u0|901.741211|0.016113|359.927612|851986"},"callback":67,"time":{"requested":"3.350000","reported":"3.350037","state_us":null},"unit":"u0","values":{"x":"901.741211","y":"0.016113","facing":"359.927612","order":"851986"}},
+    {"seq":208,"kind":"EVENT","source":{"seq":208,"payload":"@O|208|EVENT|3.350037|CLOCKS|c1000_9=3.350036608|c100=3.349998|c100_9=3.349998464|c10=3.349997|c10_9=3.349997024|c10_remaining_9=6.650002944|x_9=901.741210880|y_9=0.016113281|facing_9=359.927612288"},"callback":67,"time":{"requested":"3.350000","reported":"3.350037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.350036608","c100":"3.349998","c100_9":"3.349998464","c10":"3.349997","c10_9":"3.349997024","c10_remaining_9":"6.650002944","x_9":"901.741210880","y_9":"0.016113281","facing_9":"359.927612288"}},
+    {"seq":209,"kind":"TICK","source":{"seq":209,"payload":"@O|209|TICK|3.400024|68"},"callback":68,"time":{"requested":"3.400000","reported":"3.400024","state_us":null}},
+    {"seq":210,"kind":"SAMPLE","source":{"seq":210,"payload":"@O|210|SAMPLE|3.400024|u0|915.240723|-0.021973|0.086131|851986"},"callback":68,"time":{"requested":"3.400000","reported":"3.400024","state_us":null},"unit":"u0","values":{"x":"915.240723","y":"-0.021973","facing":"0.086131","order":"851986"}},
+    {"seq":211,"kind":"EVENT","source":{"seq":211,"payload":"@O|211|EVENT|3.400024|CLOCKS|c1000_9=3.400024384|c100=3.400002|c100_9=3.400001504|c10=3.399997|c10_9=3.399996736|c10_remaining_9=6.600003200|x_9=915.240722656|y_9=-0.021972656|facing_9=0.086131088"},"callback":68,"time":{"requested":"3.400000","reported":"3.400024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.400024384","c100":"3.400002","c100_9":"3.400001504","c10":"3.399997","c10_9":"3.399996736","c10_remaining_9":"6.600003200","x_9":"915.240722656","y_9":"-0.021972656","facing_9":"0.086131088"}},
+    {"seq":212,"kind":"TICK","source":{"seq":212,"payload":"@O|212|TICK|3.450012|69"},"callback":69,"time":{"requested":"3.450000","reported":"3.450012","state_us":null}},
+    {"seq":213,"kind":"SAMPLE","source":{"seq":213,"payload":"@O|213|SAMPLE|3.450012|u0|928.739258|0.007324|359.938629|851986"},"callback":69,"time":{"requested":"3.450000","reported":"3.450012","state_us":null},"unit":"u0","values":{"x":"928.739258","y":"0.007324","facing":"359.938629","order":"851986"}},
+    {"seq":214,"kind":"EVENT","source":{"seq":214,"payload":"@O|214|EVENT|3.450012|CLOCKS|c1000_9=3.450012192|c100=3.449997|c100_9=3.449996928|c10=3.449997|c10_9=3.449996928|c10_remaining_9=6.550003008|x_9=928.739257792|y_9=0.007324218|facing_9=359.938629120"},"callback":69,"time":{"requested":"3.450000","reported":"3.450012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.450012192","c100":"3.449997","c100_9":"3.449996928","c10":"3.449997","c10_9":"3.449996928","c10_remaining_9":"6.550003008","x_9":"928.739257792","y_9":"0.007324218","facing_9":"359.938629120"}},
+    {"seq":215,"kind":"TICK","source":{"seq":215,"payload":"@O|215|TICK|3.500000|70"},"callback":70,"time":{"requested":"3.500000","reported":"3.500000","state_us":null}},
+    {"seq":216,"kind":"SAMPLE","source":{"seq":216,"payload":"@O|216|SAMPLE|3.500000|u0|942.238281|-0.033203|0.046906|851986"},"callback":70,"time":{"requested":"3.500000","reported":"3.500000","state_us":null},"unit":"u0","values":{"x":"942.238281","y":"-0.033203","facing":"0.046906","order":"851986"}},
+    {"seq":217,"kind":"EVENT","source":{"seq":217,"payload":"@O|217|EVENT|3.500000|CLOCKS|c1000_9=3.500000000|c100=3.500000|c100_9=3.500000000|c10=3.499997|c10_9=3.499996640|c10_remaining_9=6.500003328|x_9=942.238281248|y_9=-0.033203124|facing_9=0.046906468"},"callback":70,"time":{"requested":"3.500000","reported":"3.500000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.500000000","c100":"3.500000","c100_9":"3.500000000","c10":"3.499997","c10_9":"3.499996640","c10_remaining_9":"6.500003328","x_9":"942.238281248","y_9":"-0.033203124","facing_9":"0.046906468"}},
+    {"seq":218,"kind":"TICK","source":{"seq":218,"payload":"@O|218|TICK|3.550049|71"},"callback":71,"time":{"requested":"3.550000","reported":"3.550049","state_us":null}},
+    {"seq":219,"kind":"SAMPLE","source":{"seq":219,"payload":"@O|219|SAMPLE|3.550049|u0|955.736816|-0.012207|0.166311|851986"},"callback":71,"time":{"requested":"3.550000","reported":"3.550049","state_us":null},"unit":"u0","values":{"x":"955.736816","y":"-0.012207","facing":"0.166311","order":"851986"}},
+    {"seq":220,"kind":"EVENT","source":{"seq":220,"payload":"@O|220|EVENT|3.550049|CLOCKS|c1000_9=3.550048768|c100=3.550003|c100_9=3.550003008|c10=3.549996|c10_9=3.549996352|c10_remaining_9=6.450003616|x_9=955.736816384|y_9=-0.012207031|facing_9=0.166311248"},"callback":71,"time":{"requested":"3.550000","reported":"3.550049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.550048768","c100":"3.550003","c100_9":"3.550003008","c10":"3.549996","c10_9":"3.549996352","c10_remaining_9":"6.450003616","x_9":"955.736816384","y_9":"-0.012207031","facing_9":"0.166311248"}},
+    {"seq":221,"kind":"TICK","source":{"seq":221,"payload":"@O|221|TICK|3.600037|72"},"callback":72,"time":{"requested":"3.600000","reported":"3.600037","state_us":null}},
+    {"seq":222,"kind":"SAMPLE","source":{"seq":222,"payload":"@O|222|SAMPLE|3.600037|u0|969.235352|0.023926|0.256269|851986"},"callback":72,"time":{"requested":"3.600000","reported":"3.600037","state_us":null},"unit":"u0","values":{"x":"969.235352","y":"0.023926","facing":"0.256269","order":"851986"}},
+    {"seq":223,"kind":"EVENT","source":{"seq":223,"payload":"@O|223|EVENT|3.600037|CLOCKS|c1000_9=3.600036608|c100=3.599998|c100_9=3.599998464|c10=3.599996|c10_9=3.599996032|c10_remaining_9=6.400003904|x_9=969.235351552|y_9=0.023925780|facing_9=0.256269392"},"callback":72,"time":{"requested":"3.600000","reported":"3.600037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.600036608","c100":"3.599998","c100_9":"3.599998464","c10":"3.599996","c10_9":"3.599996032","c10_remaining_9":"6.400003904","x_9":"969.235351552","y_9":"0.023925780","facing_9":"0.256269392"}},
+    {"seq":224,"kind":"TICK","source":{"seq":224,"payload":"@O|224|TICK|3.650024|73"},"callback":73,"time":{"requested":"3.650000","reported":"3.650024","state_us":null}},
+    {"seq":225,"kind":"SAMPLE","source":{"seq":225,"payload":"@O|225|SAMPLE|3.650024|u0|982.733887|0.005371|0.133080|851986"},"callback":73,"time":{"requested":"3.650000","reported":"3.650024","state_us":null},"unit":"u0","values":{"x":"982.733887","y":"0.005371","facing":"0.133080","order":"851986"}},
+    {"seq":226,"kind":"EVENT","source":{"seq":226,"payload":"@O|226|EVENT|3.650024|CLOCKS|c1000_9=3.650024384|c100=3.650002|c100_9=3.650001472|c10=3.649996|c10_9=3.649995776|c10_remaining_9=6.350004192|x_9=982.733886656|y_9=0.005371093|facing_9=0.133080464"},"callback":73,"time":{"requested":"3.650000","reported":"3.650024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.650024384","c100":"3.650002","c100_9":"3.650001472","c10":"3.649996","c10_9":"3.649995776","c10_remaining_9":"6.350004192","x_9":"982.733886656","y_9":"0.005371093","facing_9":"0.133080464"}},
+    {"seq":227,"kind":"TICK","source":{"seq":227,"payload":"@O|227|TICK|3.700012|74"},"callback":74,"time":{"requested":"3.700000","reported":"3.700012","state_us":null}},
+    {"seq":228,"kind":"SAMPLE","source":{"seq":228,"payload":"@O|228|SAMPLE|3.700012|u0|988.133301|0.033203|0.285470|0"},"callback":74,"time":{"requested":"3.700000","reported":"3.700012","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.285470","order":"0"}},
+    {"seq":229,"kind":"EVENT","source":{"seq":229,"payload":"@O|229|EVENT|3.700012|CLOCKS|c1000_9=3.700012160|c100=3.699997|c100_9=3.699996928|c10=3.699996|c10_9=3.699995456|c10_remaining_9=6.300004480|x_9=988.133300776|y_9=0.033203124|facing_9=0.285470240"},"callback":74,"time":{"requested":"3.700000","reported":"3.700012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.700012160","c100":"3.699997","c100_9":"3.699996928","c10":"3.699996","c10_9":"3.699995456","c10_remaining_9":"6.300004480","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.285470240"}},
+    {"seq":230,"kind":"TICK","source":{"seq":230,"payload":"@O|230|TICK|3.750000|75"},"callback":75,"time":{"requested":"3.750000","reported":"3.750000","state_us":null}},
+    {"seq":231,"kind":"SAMPLE","source":{"seq":231,"payload":"@O|231|SAMPLE|3.750000|u0|988.133301|0.033203|0.317251|0"},"callback":75,"time":{"requested":"3.750000","reported":"3.750000","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.317251","order":"0"}},
+    {"seq":232,"kind":"EVENT","source":{"seq":232,"payload":"@O|232|EVENT|3.750000|CLOCKS|c1000_9=3.750000000|c100=3.750000|c100_9=3.750000000|c10=3.749995|c10_9=3.749995200|c10_remaining_9=6.250004768|x_9=988.133300776|y_9=0.033203124|facing_9=0.317251328"},"callback":75,"time":{"requested":"3.750000","reported":"3.750000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.750000000","c100":"3.750000","c100_9":"3.750000000","c10":"3.749995","c10_9":"3.749995200","c10_remaining_9":"6.250004768","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.317251328"}},
+    {"seq":233,"kind":"TICK","source":{"seq":233,"payload":"@O|233|TICK|3.800049|76"},"callback":76,"time":{"requested":"3.800000","reported":"3.800049","state_us":null}},
+    {"seq":234,"kind":"SAMPLE","source":{"seq":234,"payload":"@O|234|SAMPLE|3.800049|u0|988.133301|0.033203|0.388643|0"},"callback":76,"time":{"requested":"3.800000","reported":"3.800049","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":235,"kind":"EVENT","source":{"seq":235,"payload":"@O|235|EVENT|3.800049|CLOCKS|c1000_9=3.800048768|c100=3.799995|c100_9=3.799995392|c10=3.799995|c10_9=3.799994944|c10_remaining_9=6.200005040|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":76,"time":{"requested":"3.800000","reported":"3.800049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.800048768","c100":"3.799995","c100_9":"3.799995392","c10":"3.799995","c10_9":"3.799994944","c10_remaining_9":"6.200005040","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":236,"kind":"TICK","source":{"seq":236,"payload":"@O|236|TICK|3.850037|77"},"callback":77,"time":{"requested":"3.850000","reported":"3.850037","state_us":null}},
+    {"seq":237,"kind":"SAMPLE","source":{"seq":237,"payload":"@O|237|SAMPLE|3.850037|u0|988.133301|0.033203|0.388643|0"},"callback":77,"time":{"requested":"3.850000","reported":"3.850037","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":238,"kind":"EVENT","source":{"seq":238,"payload":"@O|238|EVENT|3.850037|CLOCKS|c1000_9=3.850036608|c100=3.849998|c100_9=3.849998464|c10=3.849995|c10_9=3.849994624|c10_remaining_9=6.150005328|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":77,"time":{"requested":"3.850000","reported":"3.850037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.850036608","c100":"3.849998","c100_9":"3.849998464","c10":"3.849995","c10_9":"3.849994624","c10_remaining_9":"6.150005328","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":239,"kind":"TICK","source":{"seq":239,"payload":"@O|239|TICK|3.900024|78"},"callback":78,"time":{"requested":"3.900000","reported":"3.900024","state_us":null}},
+    {"seq":240,"kind":"SAMPLE","source":{"seq":240,"payload":"@O|240|SAMPLE|3.900024|u0|988.133301|0.033203|0.388643|0"},"callback":78,"time":{"requested":"3.900000","reported":"3.900024","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":241,"kind":"EVENT","source":{"seq":241,"payload":"@O|241|EVENT|3.900024|CLOCKS|c1000_9=3.900024384|c100=3.900002|c100_9=3.900001472|c10=3.899994|c10_9=3.899994368|c10_remaining_9=6.100005624|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":78,"time":{"requested":"3.900000","reported":"3.900024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.900024384","c100":"3.900002","c100_9":"3.900001472","c10":"3.899994","c10_9":"3.899994368","c10_remaining_9":"6.100005624","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":242,"kind":"TICK","source":{"seq":242,"payload":"@O|242|TICK|3.950012|79"},"callback":79,"time":{"requested":"3.950000","reported":"3.950012","state_us":null}},
+    {"seq":243,"kind":"SAMPLE","source":{"seq":243,"payload":"@O|243|SAMPLE|3.950012|u0|988.133301|0.033203|0.388643|0"},"callback":79,"time":{"requested":"3.950000","reported":"3.950012","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":244,"kind":"EVENT","source":{"seq":244,"payload":"@O|244|EVENT|3.950012|CLOCKS|c1000_9=3.950012160|c100=3.949997|c100_9=3.949996928|c10=3.949994|c10_9=3.949994048|c10_remaining_9=6.050005912|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":79,"time":{"requested":"3.950000","reported":"3.950012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"3.950012160","c100":"3.949997","c100_9":"3.949996928","c10":"3.949994","c10_9":"3.949994048","c10_remaining_9":"6.050005912","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":245,"kind":"TICK","source":{"seq":245,"payload":"@O|245|TICK|4.000000|80"},"callback":80,"time":{"requested":"4.000000","reported":"4.000000","state_us":null}},
+    {"seq":246,"kind":"SAMPLE","source":{"seq":246,"payload":"@O|246|SAMPLE|4.000000|u0|988.133301|0.033203|0.388643|0"},"callback":80,"time":{"requested":"4.000000","reported":"4.000000","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":247,"kind":"EVENT","source":{"seq":247,"payload":"@O|247|EVENT|4.000000|CLOCKS|c1000_9=4.000000000|c100=4.000000|c100_9=4.000000000|c10=3.999994|c10_9=3.999993792|c10_remaining_9=6.000006199|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":80,"time":{"requested":"4.000000","reported":"4.000000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.000000000","c100":"4.000000","c100_9":"4.000000000","c10":"3.999994","c10_9":"3.999993792","c10_remaining_9":"6.000006199","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":248,"kind":"TICK","source":{"seq":248,"payload":"@O|248|TICK|4.050049|81"},"callback":81,"time":{"requested":"4.050000","reported":"4.050049","state_us":null}},
+    {"seq":249,"kind":"SAMPLE","source":{"seq":249,"payload":"@O|249|SAMPLE|4.050049|u0|988.133301|0.033203|0.388643|0"},"callback":81,"time":{"requested":"4.050000","reported":"4.050049","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":250,"kind":"EVENT","source":{"seq":250,"payload":"@O|250|EVENT|4.050049|CLOCKS|c1000_9=4.050048828|c100=4.049995|c100_9=4.049995420|c10=4.049994|c10_9=4.049993512|c10_remaining_9=5.950006464|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":81,"time":{"requested":"4.050000","reported":"4.050049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.050048828","c100":"4.049995","c100_9":"4.049995420","c10":"4.049994","c10_9":"4.049993512","c10_remaining_9":"5.950006464","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":251,"kind":"TICK","source":{"seq":251,"payload":"@O|251|TICK|4.100037|82"},"callback":82,"time":{"requested":"4.100000","reported":"4.100037","state_us":null}},
+    {"seq":252,"kind":"SAMPLE","source":{"seq":252,"payload":"@O|252|SAMPLE|4.100037|u0|988.133301|0.033203|0.388643|0"},"callback":82,"time":{"requested":"4.100000","reported":"4.100037","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":253,"kind":"EVENT","source":{"seq":253,"payload":"@O|253|EVENT|4.100037|CLOCKS|c1000_9=4.100036616|c100=4.099998|c100_9=4.099998472|c10=4.099993|c10_9=4.099993224|c10_remaining_9=5.900006720|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":82,"time":{"requested":"4.100000","reported":"4.100037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.100036616","c100":"4.099998","c100_9":"4.099998472","c10":"4.099993","c10_9":"4.099993224","c10_remaining_9":"5.900006720","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":254,"kind":"TICK","source":{"seq":254,"payload":"@O|254|TICK|4.150024|83"},"callback":83,"time":{"requested":"4.150000","reported":"4.150024","state_us":null}},
+    {"seq":255,"kind":"SAMPLE","source":{"seq":255,"payload":"@O|255|SAMPLE|4.150024|u0|988.133301|0.033203|0.388643|0"},"callback":83,"time":{"requested":"4.150000","reported":"4.150024","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":256,"kind":"EVENT","source":{"seq":256,"payload":"@O|256|EVENT|4.150024|CLOCKS|c1000_9=4.150024400|c100=4.149994|c100_9=4.149993888|c10=4.149993|c10_9=4.149992928|c10_remaining_9=5.850007040|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":83,"time":{"requested":"4.150000","reported":"4.150024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.150024400","c100":"4.149994","c100_9":"4.149993888","c10":"4.149993","c10_9":"4.149992928","c10_remaining_9":"5.850007040","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":257,"kind":"TICK","source":{"seq":257,"payload":"@O|257|TICK|4.200012|84"},"callback":84,"time":{"requested":"4.200000","reported":"4.200012","state_us":null}},
+    {"seq":258,"kind":"SAMPLE","source":{"seq":258,"payload":"@O|258|SAMPLE|4.200012|u0|988.133301|0.033203|0.388643|0"},"callback":84,"time":{"requested":"4.200000","reported":"4.200012","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":259,"kind":"EVENT","source":{"seq":259,"payload":"@O|259|EVENT|4.200012|CLOCKS|c1000_9=4.200012192|c100=4.199997|c100_9=4.199996944|c10=4.199993|c10_9=4.199992656|c10_remaining_9=5.800007296|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":84,"time":{"requested":"4.200000","reported":"4.200012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.200012192","c100":"4.199997","c100_9":"4.199996944","c10":"4.199993","c10_9":"4.199992656","c10_remaining_9":"5.800007296","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":260,"kind":"TICK","source":{"seq":260,"payload":"@O|260|TICK|4.250000|85"},"callback":85,"time":{"requested":"4.250000","reported":"4.250000","state_us":null}},
+    {"seq":261,"kind":"SAMPLE","source":{"seq":261,"payload":"@O|261|SAMPLE|4.250000|u0|988.133301|0.033203|0.388643|0"},"callback":85,"time":{"requested":"4.250000","reported":"4.250000","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":262,"kind":"EVENT","source":{"seq":262,"payload":"@O|262|EVENT|4.250000|CLOCKS|c1000_9=4.250000000|c100=4.249992|c100_9=4.249992368|c10=4.249992|c10_9=4.249992368|c10_remaining_9=5.750007616|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":85,"time":{"requested":"4.250000","reported":"4.250000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.250000000","c100":"4.249992","c100_9":"4.249992368","c10":"4.249992","c10_9":"4.249992368","c10_remaining_9":"5.750007616","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":263,"kind":"TICK","source":{"seq":263,"payload":"@O|263|TICK|4.300049|86"},"callback":86,"time":{"requested":"4.300000","reported":"4.300049","state_us":null}},
+    {"seq":264,"kind":"SAMPLE","source":{"seq":264,"payload":"@O|264|SAMPLE|4.300049|u0|988.133301|0.033203|0.388643|0"},"callback":86,"time":{"requested":"4.300000","reported":"4.300049","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":265,"kind":"EVENT","source":{"seq":265,"payload":"@O|265|EVENT|4.300049|CLOCKS|c1000_9=4.300048800|c100=4.299995|c100_9=4.299995392|c10=4.299992|c10_9=4.299992064|c10_remaining_9=5.700007872|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":86,"time":{"requested":"4.300000","reported":"4.300049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.300048800","c100":"4.299995","c100_9":"4.299995392","c10":"4.299992","c10_9":"4.299992064","c10_remaining_9":"5.700007872","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":266,"kind":"TICK","source":{"seq":266,"payload":"@O|266|TICK|4.350037|87"},"callback":87,"time":{"requested":"4.350000","reported":"4.350037","state_us":null}},
+    {"seq":267,"kind":"SAMPLE","source":{"seq":267,"payload":"@O|267|SAMPLE|4.350037|u0|988.133301|0.033203|0.388643|0"},"callback":87,"time":{"requested":"4.350000","reported":"4.350037","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":268,"kind":"EVENT","source":{"seq":268,"payload":"@O|268|EVENT|4.350037|CLOCKS|c1000_9=4.350036608|c100=4.349998|c100_9=4.349998464|c10=4.349992|c10_9=4.349991776|c10_remaining_9=5.650008192|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":87,"time":{"requested":"4.350000","reported":"4.350037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.350036608","c100":"4.349998","c100_9":"4.349998464","c10":"4.349992","c10_9":"4.349991776","c10_remaining_9":"5.650008192","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":269,"kind":"TICK","source":{"seq":269,"payload":"@O|269|TICK|4.400024|88"},"callback":88,"time":{"requested":"4.400000","reported":"4.400024","state_us":null}},
+    {"seq":270,"kind":"SAMPLE","source":{"seq":270,"payload":"@O|270|SAMPLE|4.400024|u0|988.133301|0.033203|0.388643|0"},"callback":88,"time":{"requested":"4.400000","reported":"4.400024","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":271,"kind":"EVENT","source":{"seq":271,"payload":"@O|271|EVENT|4.400024|CLOCKS|c1000_9=4.400024384|c100=4.399994|c100_9=4.399993888|c10=4.399992|c10_9=4.399991488|c10_remaining_9=5.600008448|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":88,"time":{"requested":"4.400000","reported":"4.400024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.400024384","c100":"4.399994","c100_9":"4.399993888","c10":"4.399992","c10_9":"4.399991488","c10_remaining_9":"5.600008448","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":272,"kind":"TICK","source":{"seq":272,"payload":"@O|272|TICK|4.450012|89"},"callback":89,"time":{"requested":"4.450000","reported":"4.450012","state_us":null}},
+    {"seq":273,"kind":"SAMPLE","source":{"seq":273,"payload":"@O|273|SAMPLE|4.450012|u0|988.133301|0.033203|0.388643|0"},"callback":89,"time":{"requested":"4.450000","reported":"4.450012","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":274,"kind":"EVENT","source":{"seq":274,"payload":"@O|274|EVENT|4.450012|CLOCKS|c1000_9=4.450012192|c100=4.449997|c100_9=4.449996928|c10=4.449991|c10_9=4.449991200|c10_remaining_9=5.550008768|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":89,"time":{"requested":"4.450000","reported":"4.450012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.450012192","c100":"4.449997","c100_9":"4.449996928","c10":"4.449991","c10_9":"4.449991200","c10_remaining_9":"5.550008768","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":275,"kind":"TICK","source":{"seq":275,"payload":"@O|275|TICK|4.500000|90"},"callback":90,"time":{"requested":"4.500000","reported":"4.500000","state_us":null}},
+    {"seq":276,"kind":"SAMPLE","source":{"seq":276,"payload":"@O|276|SAMPLE|4.500000|u0|988.133301|0.033203|0.388643|0"},"callback":90,"time":{"requested":"4.500000","reported":"4.500000","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":277,"kind":"EVENT","source":{"seq":277,"payload":"@O|277|EVENT|4.500000|CLOCKS|c1000_9=4.500000000|c100=4.499992|c100_9=4.499992352|c10=4.499991|c10_9=4.499990912|c10_remaining_9=5.500009056|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":90,"time":{"requested":"4.500000","reported":"4.500000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.500000000","c100":"4.499992","c100_9":"4.499992352","c10":"4.499991","c10_9":"4.499990912","c10_remaining_9":"5.500009056","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":278,"kind":"TICK","source":{"seq":278,"payload":"@O|278|TICK|4.550049|91"},"callback":91,"time":{"requested":"4.550000","reported":"4.550049","state_us":null}},
+    {"seq":279,"kind":"SAMPLE","source":{"seq":279,"payload":"@O|279|SAMPLE|4.550049|u0|988.133301|0.033203|0.388643|0"},"callback":91,"time":{"requested":"4.550000","reported":"4.550049","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":280,"kind":"EVENT","source":{"seq":280,"payload":"@O|280|EVENT|4.550049|CLOCKS|c1000_9=4.550048768|c100=4.549995|c100_9=4.549995392|c10=4.549991|c10_9=4.549990592|c10_remaining_9=5.450009344|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":91,"time":{"requested":"4.550000","reported":"4.550049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.550048768","c100":"4.549995","c100_9":"4.549995392","c10":"4.549991","c10_9":"4.549990592","c10_remaining_9":"5.450009344","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":281,"kind":"TICK","source":{"seq":281,"payload":"@O|281|TICK|4.600037|92"},"callback":92,"time":{"requested":"4.600000","reported":"4.600037","state_us":null}},
+    {"seq":282,"kind":"SAMPLE","source":{"seq":282,"payload":"@O|282|SAMPLE|4.600037|u0|988.133301|0.033203|0.388643|0"},"callback":92,"time":{"requested":"4.600000","reported":"4.600037","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":283,"kind":"EVENT","source":{"seq":283,"payload":"@O|283|EVENT|4.600037|CLOCKS|c1000_9=4.600036608|c100=4.599991|c100_9=4.599990784|c10=4.599990|c10_9=4.599990336|c10_remaining_9=5.400009632|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":92,"time":{"requested":"4.600000","reported":"4.600037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.600036608","c100":"4.599991","c100_9":"4.599990784","c10":"4.599990","c10_9":"4.599990336","c10_remaining_9":"5.400009632","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":284,"kind":"TICK","source":{"seq":284,"payload":"@O|284|TICK|4.650024|93"},"callback":93,"time":{"requested":"4.650000","reported":"4.650024","state_us":null}},
+    {"seq":285,"kind":"SAMPLE","source":{"seq":285,"payload":"@O|285|SAMPLE|4.650024|u0|988.133301|0.033203|0.388643|0"},"callback":93,"time":{"requested":"4.650000","reported":"4.650024","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":286,"kind":"EVENT","source":{"seq":286,"payload":"@O|286|EVENT|4.650024|CLOCKS|c1000_9=4.650024384|c100=4.649994|c100_9=4.649993856|c10=4.649990|c10_9=4.649990080|c10_remaining_9=5.350009888|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":93,"time":{"requested":"4.650000","reported":"4.650024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.650024384","c100":"4.649994","c100_9":"4.649993856","c10":"4.649990","c10_9":"4.649990080","c10_remaining_9":"5.350009888","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":287,"kind":"TICK","source":{"seq":287,"payload":"@O|287|TICK|4.700012|94"},"callback":94,"time":{"requested":"4.700000","reported":"4.700012","state_us":null}},
+    {"seq":288,"kind":"SAMPLE","source":{"seq":288,"payload":"@O|288|SAMPLE|4.700012|u0|988.133301|0.033203|0.388643|0"},"callback":94,"time":{"requested":"4.700000","reported":"4.700012","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":289,"kind":"EVENT","source":{"seq":289,"payload":"@O|289|EVENT|4.700012|CLOCKS|c1000_9=4.700012160|c100=4.699997|c100_9=4.699996928|c10=4.699990|c10_9=4.699989760|c10_remaining_9=5.300010176|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":94,"time":{"requested":"4.700000","reported":"4.700012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.700012160","c100":"4.699997","c100_9":"4.699996928","c10":"4.699990","c10_9":"4.699989760","c10_remaining_9":"5.300010176","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":290,"kind":"TICK","source":{"seq":290,"payload":"@O|290|TICK|4.750000|95"},"callback":95,"time":{"requested":"4.750000","reported":"4.750000","state_us":null}},
+    {"seq":291,"kind":"SAMPLE","source":{"seq":291,"payload":"@O|291|SAMPLE|4.750000|u0|988.133301|0.033203|0.388643|0"},"callback":95,"time":{"requested":"4.750000","reported":"4.750000","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":292,"kind":"EVENT","source":{"seq":292,"payload":"@O|292|EVENT|4.750000|CLOCKS|c1000_9=4.750000000|c100=4.749992|c100_9=4.749992320|c10=4.749990|c10_9=4.749989504|c10_remaining_9=5.250010480|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":95,"time":{"requested":"4.750000","reported":"4.750000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.750000000","c100":"4.749992","c100_9":"4.749992320","c10":"4.749990","c10_9":"4.749989504","c10_remaining_9":"5.250010480","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":293,"kind":"TICK","source":{"seq":293,"payload":"@O|293|TICK|4.800049|96"},"callback":96,"time":{"requested":"4.800000","reported":"4.800049","state_us":null}},
+    {"seq":294,"kind":"SAMPLE","source":{"seq":294,"payload":"@O|294|SAMPLE|4.800049|u0|988.133301|0.033203|0.388643|0"},"callback":96,"time":{"requested":"4.800000","reported":"4.800049","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":295,"kind":"EVENT","source":{"seq":295,"payload":"@O|295|EVENT|4.800049|CLOCKS|c1000_9=4.800048768|c100=4.799995|c100_9=4.799995392|c10=4.799989|c10_9=4.799989184|c10_remaining_9=5.200010768|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":96,"time":{"requested":"4.800000","reported":"4.800049","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.800048768","c100":"4.799995","c100_9":"4.799995392","c10":"4.799989","c10_9":"4.799989184","c10_remaining_9":"5.200010768","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":296,"kind":"TICK","source":{"seq":296,"payload":"@O|296|TICK|4.850037|97"},"callback":97,"time":{"requested":"4.850000","reported":"4.850037","state_us":null}},
+    {"seq":297,"kind":"SAMPLE","source":{"seq":297,"payload":"@O|297|SAMPLE|4.850037|u0|988.133301|0.033203|0.388643|0"},"callback":97,"time":{"requested":"4.850000","reported":"4.850037","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":298,"kind":"EVENT","source":{"seq":298,"payload":"@O|298|EVENT|4.850037|CLOCKS|c1000_9=4.850036608|c100=4.849991|c100_9=4.849990784|c10=4.849989|c10_9=4.849988928|c10_remaining_9=5.150011056|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":97,"time":{"requested":"4.850000","reported":"4.850037","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.850036608","c100":"4.849991","c100_9":"4.849990784","c10":"4.849989","c10_9":"4.849988928","c10_remaining_9":"5.150011056","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":299,"kind":"TICK","source":{"seq":299,"payload":"@O|299|TICK|4.900024|98"},"callback":98,"time":{"requested":"4.900000","reported":"4.900024","state_us":null}},
+    {"seq":300,"kind":"SAMPLE","source":{"seq":300,"payload":"@O|300|SAMPLE|4.900024|u0|988.133301|0.033203|0.388643|0"},"callback":98,"time":{"requested":"4.900000","reported":"4.900024","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":301,"kind":"EVENT","source":{"seq":301,"payload":"@O|301|EVENT|4.900024|CLOCKS|c1000_9=4.900024384|c100=4.899994|c100_9=4.899993856|c10=4.899989|c10_9=4.899988608|c10_remaining_9=5.100011344|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":98,"time":{"requested":"4.900000","reported":"4.900024","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.900024384","c100":"4.899994","c100_9":"4.899993856","c10":"4.899989","c10_9":"4.899988608","c10_remaining_9":"5.100011344","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":302,"kind":"TICK","source":{"seq":302,"payload":"@O|302|TICK|4.950012|99"},"callback":99,"time":{"requested":"4.950000","reported":"4.950012","state_us":null}},
+    {"seq":303,"kind":"SAMPLE","source":{"seq":303,"payload":"@O|303|SAMPLE|4.950012|u0|988.133301|0.033203|0.388643|0"},"callback":99,"time":{"requested":"4.950000","reported":"4.950012","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":304,"kind":"EVENT","source":{"seq":304,"payload":"@O|304|EVENT|4.950012|CLOCKS|c1000_9=4.950012160|c100=4.949989|c100_9=4.949989312|c10=4.949988|c10_9=4.949988352|c10_remaining_9=5.050011632|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":99,"time":{"requested":"4.950000","reported":"4.950012","state_us":null},"name":"CLOCKS","values":{"c1000_9":"4.950012160","c100":"4.949989","c100_9":"4.949989312","c10":"4.949988","c10_9":"4.949988352","c10_remaining_9":"5.050011632","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":305,"kind":"TICK","source":{"seq":305,"payload":"@O|305|TICK|5.000000|100"},"callback":100,"time":{"requested":"5.000000","reported":"5.000000","state_us":null}},
+    {"seq":306,"kind":"SAMPLE","source":{"seq":306,"payload":"@O|306|SAMPLE|5.000000|u0|988.133301|0.033203|0.388643|0"},"callback":100,"time":{"requested":"5.000000","reported":"5.000000","state_us":null},"unit":"u0","values":{"x":"988.133301","y":"0.033203","facing":"0.388643","order":"0"}},
+    {"seq":307,"kind":"EVENT","source":{"seq":307,"payload":"@O|307|EVENT|5.000000|CLOCKS|c1000_9=5.000000000|c100=4.999992|c100_9=4.999992320|c10=4.999988|c10_9=4.999988032|c10_remaining_9=5.000011921|x_9=988.133300776|y_9=0.033203124|facing_9=0.388643168"},"callback":100,"time":{"requested":"5.000000","reported":"5.000000","state_us":null},"name":"CLOCKS","values":{"c1000_9":"5.000000000","c100":"4.999992","c100_9":"4.999992320","c10":"4.999988","c10_9":"4.999988032","c10_remaining_9":"5.000011921","x_9":"988.133300776","y_9":"0.033203124","facing_9":"0.388643168"}},
+    {"seq":308,"kind":"END","source":{"seq":308,"payload":"@O|308|END|JASS-0001|map=JASS-0001-p050|callbacks=100"},"fields":["JASS-0001","map=JASS-0001-p050","callbacks=100"]}
+  ]
+}

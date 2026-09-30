@@ -3,7 +3,8 @@
 
 Values are kept as the exact strings WC3 emitted. Rows keep capture sequence order,
 including callbacks whose clock readings coincide; nothing is sorted by time.
-This is observation parsing, not the later canonical trace format or comparator.
+Phase 3 normalization reuses these validated records; this parser does not read
+the simulation or grade gameplay.
 """
 import argparse
 import csv
@@ -76,6 +77,8 @@ def parse(path, build=BUILD, experiment=None, map_label=None):
             raise Invalid(f"record {seq}: unknown kind")
         fields_by_seq.append(fields[2:])
 
+    if not fields_by_seq:
+        raise Invalid("missing BEGIN")
     begin = fields_by_seq[0]
     if begin[0] != "BEGIN" or len(begin) != 8:
         raise Invalid("first record is not a well-formed BEGIN")
@@ -205,6 +208,7 @@ def parse(path, build=BUILD, experiment=None, map_label=None):
         "actions": [e for e in events if e["kind"] == "ACTION"],
         "final": finals,
         "_ticks": ticks, "_samples": samples, "_events": events,
+        "_records": records, "_build": begin[2],
     }
 
 

@@ -2,7 +2,7 @@
 
 As of 30 September 2026.
 
-**Current stage:** Phase 2 complete; Phase 3 is next.
+**Current stage:** Phase 3 complete; Phase 4 is next.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps × 3
 fresh-process captures, all payload-identical within each map.
 **C++ compatibility:** MOV-0001 passes; MOV-0002–MOV-0010 fail fixed provisional
@@ -90,14 +90,29 @@ new captures or compatibility passes. Grid/angle drift remains unexplained.
 Implementation follow-up: [issue #6](https://github.com/galitianu/warcraft-re/issues/6),
 after Phase 3's trace contract in [issue #5](https://github.com/galitianu/warcraft-re/issues/5).
 
-## Next task: Phase 3 — stabilize traces and comparison
+**Phase 3** ([issue #5](https://github.com/galitianu/warcraft-re/issues/5)):
+[canonical v1 contract](docs/trace-contract-v1.md), [results](docs/phase-3-results.md),
+[reproduction](docs/phase-3-procedure.md). All 45 Phase 1 runs validate independently;
+15 [canonical fixtures](oracle/canonical/wc3-1.29.2-9231-x86/) retain exact raw numeric
+strings, global sample/action/event order, reported/requested time and all-run
+provenance. Both C++ models and before-update diagnostic emit the same contract.
 
-Define plan §6's canonical trace contract from the retained WC3 records and C++
-samples/actions: identity, units, global sequence, interleaved events, completion,
-reported/requested time and numeric precision. Normalize without losing equal-time
-order; adapt the comparator with explicit tolerances and observation-phase handling,
-preserving current failures. Record repeatability's measured scope. Detailed handoff
-and proposed missing-observation experiments: [Phase 2 results](docs/phase-2-results.md#exact-phase-3-handoff).
+Clean ARM Mac Release build, CTest 1/1 and 35 Python tests passed. All 60 legacy CSV
+hashes and 30 Phase 2 state reports match exactly; MOV-0001 passes and nine movement
+cases fail unchanged tolerances. Added relative redirect action target deltas;
+MOV-0004 retains 53 clock failures from callback 503. 93 output files match separate
+process runs. [Evidence](results/phase-3/) records scoped repeatability; C++ CLOCKS
+properties remain UNOBSERVED. No fresh captures or movement-model changes.
+
+## Next task: Phase 4 — compatibility CI
+
+Build the headless runner, validate committed canonical references and compare the
+ten MOV cases in CI with explicit baseline verdicts (MOV-0001 PASS, nine documented
+FAILs). Keep malformed/unsupported input fatal and preserve numerical diagnostics;
+add small compiler/configuration and repeatability coverage under named scope.
+The first moving primitive improvement is [issue #6](https://github.com/galitianu/warcraft-re/issues/6),
+using unchanged fixtures/tolerances and before/after reports. Detailed handoff:
+[Phase 3 results](docs/phase-3-results.md#verification-and-phase-4-handoff).
 
 ## Roadmap status
 
@@ -106,8 +121,8 @@ and proposed missing-observation experiments: [Phase 2 results](docs/phase-2-res
 | 0 | Automatic map experiment with reliably recoverable WC3 text | Complete — [evidence](docs/phase-0-capture.md) |
 | 1 | Small manual map library with shared JASS instrumentation and parseable traces | Complete — [results](docs/phase-1-results.md) |
 | 2 | Native C++ headless equivalent and ten numerically comparable traces | Complete — [results](docs/phase-2-results.md); nine movement failures retained |
-| 3 | Canonical normalized traces and stable comparison contract | Next |
-| 4 | C++ compatibility CI against committed WC3 references | Planned |
+| 3 | Canonical normalized traces and stable comparison contract | Complete — [results](docs/phase-3-results.md); all 45 retained runs validated |
+| 4 | C++ compatibility CI against committed WC3 references | Next |
 | 5 | Declarative scenarios extracted from repeated manual tests | Planned |
 | 6 | One scenario drives C++ and generates a runnable WC3 map | Planned |
 | 7 | Reliable unattended VM capture, when manual work becomes costly | Planned |

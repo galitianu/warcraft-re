@@ -29,13 +29,17 @@ Start with:
 - [Phase 2 results](docs/phase-2-results.md), [model hypotheses](docs/phase-2-model.md)
   and [build/reproduction](docs/phase-2-procedure.md): the native C++ headless world
   and all ten numerical movement comparisons.
+- [Phase 3 contract](docs/trace-contract-v1.md), [results](docs/phase-3-results.md)
+  and [reproduction](docs/phase-3-procedure.md): lossless canonical WC3/C++ traces,
+  scoped repeatability and validated full-run comparison.
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
 This repository holds the plan, 16 manually authored WC3 maps with their JASS,
 shared oracle instrumentation, raw captures with identities, parsers and derived
-CSVs, and a dependency-free C++20 simulation. Phases 0–2 are complete. The C++
-stationary case passes; all nine movement cases have documented numerical failures
+CSVs, and a dependency-free C++20 simulation. Phases 0–3 are complete. All 45 Phase 1
+raw runs normalize to 15 versioned canonical fixtures with complete provenance.
+The C++ stationary case passes; all nine movement cases have documented numerical failures
 under unchanged provisional tolerances. The v0.0.1 comparison gate is met; no
 release tag has been created.
 
@@ -45,7 +49,8 @@ Build and run without a window (CMake, system clang and Python standard library)
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=/usr/bin/clang++
 cmake --build build -j 4
 ctest --test-dir build --output-on-failure
-python3 tools/run_phase2.py --runner build/wc3test --out build/phase2 --reports build/phase2-reports
+python3 -m unittest discover -s tools -p 'test_*.py' -v
+python3 tools/run_phase3.py --runner build/wc3test --out build/phase3 --reports build/phase3-reports
 ```
 
 Use GitHub issues for concrete work and `PROGRESS.md` for the concise status. Keep
@@ -53,5 +58,5 @@ results linked to their experiments and commits. There is no separate agent harn
 or task database to maintain here.
 
 Windows access is available through `rdpipe`; run `rdpipe guide` before using it.
-Next: Phase 3, the canonical trace and comparison contract, preserving the measured
-differences and observation-phase limits.
+Next: Phase 4 compatibility CI against committed canonical WC3 fixtures, keeping
+known movement failures and invalid-input errors explicit.

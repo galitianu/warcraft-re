@@ -2,7 +2,7 @@
 
 As of 1 October 2026.
 
-**Current stage:** Phase 3 complete; Phase 4 is next.
+**Current stage:** Phase 4 CI implemented locally; hosted workflow verification in progress.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
 8 MOV-0012 maps × 3 fresh-process captures, all payload-identical within each map.
 **C++ compatibility:** footman-v4 passes MOV-0001–MOV-0010 under the fixed tolerances.
@@ -142,9 +142,22 @@ v1/v2/v3 evidence unchanged, Release/Debug bytes identical. **10/10 PASS**, and
 clocks/timers identical; X/Y differ at five early callbacks in each 1 ms run, and facing at
 25 update-frame callbacks of p010/p025. That sampling order is unexplained and listed explicitly.
 
-## Next task: Phase 4 — compatibility CI
+**Phase 4 CI** ([issue #8](https://github.com/galitianu/warcraft-re/issues/8)):
+[entry point, policy and artifacts](docs/phase-4-ci.md). Local ARM AppleClang
+Release/Debug pass CTest 2/2, Python 50/50, all 45 Phase 1 runs and all 15 fixtures.
+v4 is required at 10/10; historical models remain 1/10 and have no protected
+regression. Separate processes repeat for every model/phase; Release/Debug
+observation hashes agree locally. Native Release also reproduces archival
+Phase 2 migration evidence. Negative controls exercise regression, improvement,
+invalid/incomplete input, runner failure and timeout. GitHub runner measurements
+and real PR workflow results are pending; main-push evidence requires merge.
 
-Run `ctest` in CI on every commit. `footman_v4_wc3` compares v4 with the committed
+## Next task: verify Phase 4 hosted workflows
+
+Run the PR workflow on the proposed macOS ARM64, Linux x64 and Windows x64
+configurations and retain measured evidence. Investigate changed historical
+metrics before adopting any platform baseline. After merge, retain a real
+main-push run. `ctest` runs in every configured CI job. `footman_v4_wc3` compares v4 with the committed
 fixtures and captures, and fails on any difference beyond the listed sampling-order
 callbacks. Keep malformed/unsupported input fatal and add small
 compiler/configuration coverage under named scope. Then design a capture that
@@ -162,7 +175,7 @@ Handoffs: [Phase 3](docs/phase-3-results.md#verification-and-phase-4-handoff),
 | 1 | Small manual map library with shared JASS instrumentation and parseable traces | Complete — [results](docs/phase-1-results.md) |
 | 2 | Native C++ headless equivalent and ten numerically comparable traces | Complete — [results](docs/phase-2-results.md); nine movement failures retained |
 | 3 | Canonical normalized traces and stable comparison contract | Complete — [results](docs/phase-3-results.md); all 45 retained runs validated |
-| 4 | C++ compatibility CI against committed WC3 references | Next |
+| 4 | C++ compatibility CI against committed WC3 references | Local gates pass; hosted verification pending |
 | 5 | Declarative scenarios extracted from repeated manual tests | Planned |
 | 6 | One scenario drives C++ and generates a runnable WC3 map | Planned |
 | 7 | Reliable unattended VM capture, when manual work becomes costly | Planned |

@@ -11,10 +11,11 @@ include(CTest)
 add_library(wc3world STATIC src/core/World.cpp src/core/SoftFloat.cpp)
 target_include_directories(wc3world PUBLIC src)
 target_compile_options(wc3world PUBLIC
-  $<$<CXX_COMPILER_ID:AppleClang,Clang,GNU>:-Wall;-Wextra;-Wpedantic;-ffp-contract=off>)
+  $<$<CXX_COMPILER_ID:AppleClang,Clang,GNU>:-Wall;-Wextra;-Wpedantic;-fno-fast-math;-ffp-contract=off>
+  $<$<CXX_COMPILER_ID:MSVC>:/W4;/fp:strict>)
 # Lets identity report contraction from the flags actually applied.
 target_compile_definitions(wc3world PUBLIC
-  $<$<CXX_COMPILER_ID:AppleClang,Clang,GNU>:WC3_FP_CONTRACT_OFF>)
+  $<$<CXX_COMPILER_ID:AppleClang,Clang,GNU,MSVC>:WC3_FP_CONTRACT_OFF>)
 
 add_library(movement_cases STATIC tools/wc3test/Cases.cpp tools/wc3test/Canonical.cpp)
 target_include_directories(movement_cases PUBLIC tools/wc3test)
@@ -47,7 +48,7 @@ foreach(path CMakeLists.txt src/core/World.h src/core/World.cpp src/core/Random.
     src/core/SoftFloat.h src/core/SoftFloat.cpp
     tools/wc3test/Cases.h tools/wc3test/Cases.cpp tools/wc3test/main.cpp
     tools/wc3test/Canonical.h tools/wc3test/Canonical.cpp
-    tools/wc3test/BuildIdentity.h.in)
+    tools/wc3test/BuildIdentity.h.in tools/wc3states/main.cpp)
   set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${path}")
   file(SHA256 "${CMAKE_SOURCE_DIR}/${path}" digest)
   string(APPEND BUILD_SOURCE_INPUT "${path}:${digest}\n")
@@ -65,11 +66,10 @@ if(BUILD_TESTING)
   target_link_libraries(world_tests PRIVATE movement_cases)
   add_test(NAME world_invariants COMMAND world_tests)
   # Bit-exact footman-v4 gate against the committed WC3 fixtures and captures.
-  find_package(Python3 COMPONENTS Interpreter)
-  if(Python3_FOUND)
-    add_test(NAME footman_v4_wc3 COMMAND Python3::Interpreter
-      "${CMAKE_SOURCE_DIR}/tools/run_footman_v4.py" --runner $<TARGET_FILE:wc3test>
-      --states $<TARGET_FILE:wc3states> --out "${CMAKE_BINARY_DIR}/footman-v4-test"
-      --reports "${CMAKE_BINARY_DIR}/footman-v4-test/reports")
-  endif()
+  find_package(Python3 REQUIRED COMPONENTS Interpreter)
+  add_test(NAME footman_v4_wc3 COMMAND Python3::Interpreter
+    "${CMAKE_SOURCE_DIR}/tools/run_footman_v4.py" --runner $<TARGET_FILE:wc3test>
+    --states $<TARGET_FILE:wc3states> --out "${CMAKE_BINARY_DIR}/footman-v4-test"
+    --reports "${CMAKE_BINARY_DIR}/footman-v4-test/reports")
+  set_tests_properties(world_invariants footman_v4_wc3 PROPERTIES TIMEOUT 180)
 endif()

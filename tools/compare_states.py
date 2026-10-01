@@ -48,7 +48,7 @@ CLOCK_START = 0x3f000000  # 0.5 s, World.h HeadingModel::clock_start
 def model_states(runner, scenario, steps):
     (x, y), facing, (tx, ty) = scenario
     out = subprocess.run([str(runner), repr(x), repr(y), repr(facing), repr(tx), repr(ty), str(steps)],
-                         check=True, capture_output=True, text=True).stdout
+                         check=True, capture_output=True, text=True, timeout=60).stdout
     return [tuple(int(v, 16) for v in line.split()[1:]) for line in out.splitlines()]
 
 
@@ -149,7 +149,7 @@ def main():
     args = parser.parse_args()
     try:
         report = compare_all(args.runner, args.captures)
-    except (OSError, Invalid, subprocess.CalledProcessError, ValueError, KeyError) as error:
+    except (OSError, Invalid, subprocess.SubprocessError, ValueError, KeyError, IndexError) as error:
         print(f'invalid input: {error}', file=sys.stderr)
         return 2
     for run, row in report.items():

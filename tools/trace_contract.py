@@ -63,7 +63,7 @@ def write_json(path, value, compact_records=False):
         encoded = header[:-2] + ',\n  "records": [\n' + records + '\n  ]\n}'
     else:
         encoded = json.dumps(value, indent=2, allow_nan=False)
-    Path(path).write_text(encoded + '\n')
+    Path(path).write_text(encoded + '\n', encoding='utf-8', newline='\n')
 
 
 def load(path):

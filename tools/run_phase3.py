@@ -34,7 +34,7 @@ def run(runner, out, reports):
         dest, report_dir = out / name, reports / name
         report_dir.mkdir(parents=True, exist_ok=True)
         command = [str(runner), '--out', str(dest), '--model', model, '--phase', phase, '--seed', '1']
-        subprocess.run(command, check=True)
+        subprocess.run(command, check=True, timeout=60)
         report = compare_suite(references, dest)
         migration, payload_hashes = [], {}
         retained = load(ROOT / 'results/phase-2' / name / 'comparison.json')
@@ -62,7 +62,7 @@ def run(runner, out, reports):
             payload_hashes[case_name] = digest(payload(trace))
         # Separate process, same binary/seed; compare all canonical observations and CSV bytes.
         with tempfile.TemporaryDirectory() as temp:
-            subprocess.run([str(runner), '--out', temp, '--model', model, '--phase', phase, '--seed', '1'], check=True, stdout=subprocess.DEVNULL)
+            subprocess.run([str(runner), '--out', temp, '--model', model, '--phase', phase, '--seed', '1'], check=True, stdout=subprocess.DEVNULL, timeout=60)
             for path in dest.iterdir():
                 if path.suffix in ('.json', '.csv') and path.read_bytes() != (Path(temp) / path.name).read_bytes():
                     raise ValueError(f'{name}: separate process output differs: {path.name}')
@@ -105,7 +105,7 @@ def main():
     try:
         run(args.runner.resolve(), args.out, args.reports)
         return 0
-    except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError, RecursionError, csv.Error, subprocess.CalledProcessError) as error:
+    except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError, RecursionError, csv.Error, subprocess.SubprocessError) as error:
         parser.exit(2, f'run_phase3: {error}\n')
 
 

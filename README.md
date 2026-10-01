@@ -37,6 +37,8 @@ Start with:
 - [footman-v4 model](docs/footman-v4-model.md) and [results](docs/footman-v4-results.md):
   WC3's own soft-float arithmetic; bit-exact on all ten movement fixtures.
   [MOV-0012](docs/mov-0012.md) explains the east/west heading noise.
+- [Phase 4 CI](docs/phase-4-ci.md): reusable build/evidence gate, regression policy,
+  workflow matrix and artifact interpretation.
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
@@ -65,5 +67,6 @@ results linked to their experiments and commits. There is no separate agent harn
 or task database to maintain here.
 
 Windows access is available through `rdpipe`; run `rdpipe guide` before using it.
-Next: Phase 4 compatibility CI against committed canonical WC3 fixtures, gating on
-footman-v4's exact match and keeping invalid-input errors explicit.
+Reproduce the complete compatibility CI locally with
+`python3 tools/run_ci.py --build build-ci --compiler clang++ --config Release`.
+See [Phase 4 CI](docs/phase-4-ci.md) for named build scopes and baseline maintenance.

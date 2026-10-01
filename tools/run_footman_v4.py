@@ -36,7 +36,7 @@ def known(run):
 
 def run_model(runner, dest):
     subprocess.run([str(runner), '--out', str(dest), '--model', 'v4', '--seed', '1'],
-                   check=True, stdout=subprocess.DEVNULL)
+                   check=True, stdout=subprocess.DEVNULL, timeout=60)
 
 
 def exact_markdown(report):
@@ -83,7 +83,7 @@ def main():
         suite = compare_suite(references, dest)
         exact = compare_exact.compare_all(references, dest)
         states = compare_states.compare_all(args.states.resolve(), ROOT / 'oracle/captures' / BUILD)
-    except (OSError, ValueError, KeyError, compare_states.Invalid, subprocess.CalledProcessError) as error:
+    except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError, compare_states.Invalid, subprocess.SubprocessError) as error:
         parser.exit(2, f'run_footman_v4: {error}\n')
     reports = args.reports
     reports.mkdir(parents=True, exist_ok=True)

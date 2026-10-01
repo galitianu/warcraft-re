@@ -1,0 +1,17 @@
+{
+  "oracle/canonical/wc3-1.29.2-9231-x86/MOV-0001.json": "cf3c4349f6dbae356a17c6b59a22cec873b5ff65c4b9e9dbca06a5b2696386d7",
+  "oracle/canonical/wc3-1.29.2-9231-x86/MOV-0002-r2.json": "cd0b9484a618501ec9e9dc04527fc4db4a2260036434293e46477569a9668644",
+  "oracle/canonical/wc3-1.29.2-9231-x86/MOV-0003.json": "18d267f857fb03dd87406119e4f1bdca73f9f5fcdb871af2d870e38ed94da330",
+  "oracle/canonical/wc3-1.29.2-9231-x86/MOV-0004.json": "c95f5d9913bf2d7206ea17cfa1463fc02aee7ec81eed864ceb664d561fa0ee95",
+  "oracle/canonical/wc3-1.29.2-9231-x86/MOV-0005.json": "6c2954430a4e3768bb2ba15784f9a26b8e0a776f657c1a05d6c18fa6bb9ed997",
+  "oracle/canonical/wc3-1.29.2-9231-x86/MOV-0006.json": "d8badb910e61d815376fc4202406040df82adf301080012392345de62e556e3d",
+  "oracle/canonical/wc3-1.29.2-9231-x86/MOV-0007.json": "de114d827cef2bc4879a7a6c0b03531253efc0cb4fcbeda7953b3ed0b09ce7c0",
+  "oracle/canonical/wc3-1.29.2-9231-x86/MOV-0008.json": "766a8f5839694227ddda319de32132f1d982037d2b6b0f42933f174503b2c5ab",
+  "oracle/canonical/wc3-1.29.2-9231-x86/MOV-0009.json": "59436ddd42134812f02e9aded2d6ca0d8045b15801273ae22f8802f9d2d77e5b",
+  "oracle/canonical/wc3-1.29.2-9231-x86/MOV-0010.json": "5e2bf72e496c0ec6496bb14be43487567a086240d0d17aa4e016e2a2b21b6083",
+  "tools/trace_contract.py": "b9730263697e1f631bf8771f67788957c80953f9c6d49503146333c395df9e4a",
+  "tools/compare_traces.py": "722dbe9583cc6912756b66799a0cb2a65773fb56810c6d77700dc774084620f1",
+  "tools/run_footman_v3.py": "abc5264b55b97f4bb585aa0ebd36c70b88cfe2287715699173d8092292a832c3",
+  "docs/footman-v3-model.md": "23aa68b2f31fb65f524f17df33758911cbe5f2e4adb9a3bb754d505f3d311280",
+  "docs/trace-contract-v1.md": "15e63380b75f548733fb00becc67e43fb80fe7c74fdbd14e0cb3883c37553070"
+}

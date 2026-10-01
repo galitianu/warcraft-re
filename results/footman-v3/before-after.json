@@ -1,0 +1,1950 @@
+[
+  {
+    "case": "MOV-0001",
+    "v2": {
+      "status": "PASS",
+      "first_divergence": null,
+      "properties": {
+        "x": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        },
+        "y": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        },
+        "facing": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3": {
+      "status": "PASS",
+      "first_divergence": null,
+      "properties": {
+        "x": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        },
+        "y": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        },
+        "facing": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3_before_update_diagnostic": {
+      "status": "PASS",
+      "first_divergence": null
+    }
+  },
+  {
+    "case": "MOV-0002",
+    "v2": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 10,
+        "actual_seq": 9,
+        "kind": "SAMPLE",
+        "sample_index": 2,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.014648",
+        "actual": "0",
+        "delta": -0.014648,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 247,
+          "samples": 502,
+          "first_callback": 4,
+          "first_unit": "u0",
+          "max_abs_delta": 3.990173999999911,
+          "final_delta_by_unit": {
+            "u0": -3.990173999999911,
+            "u1": 0.0
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 239,
+          "samples": 502,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.043945,
+          "final_delta_by_unit": {
+            "u0": -0.033203,
+            "u1": 0.0
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 250,
+          "samples": 502,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.38864300000000185,
+          "final_delta_by_unit": {
+            "u0": -0.38864300000000185,
+            "u1": 0.0
+          }
+        },
+        "order": {
+          "status": "FAIL",
+          "failures": 1,
+          "samples": 502,
+          "first_callback": 183,
+          "first_unit": "u0",
+          "max_abs_delta": 851986,
+          "final_delta_by_unit": {
+            "u0": 0,
+            "u1": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 502,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0,
+            "u1": 0.0
+          }
+        }
+      }
+    },
+    "v3": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 10,
+        "actual_seq": 9,
+        "kind": "SAMPLE",
+        "sample_index": 2,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.014648",
+        "actual": "0",
+        "delta": -0.014648,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 163,
+          "samples": 502,
+          "first_callback": 88,
+          "first_unit": "u0",
+          "max_abs_delta": 0.01904300000001058,
+          "final_delta_by_unit": {
+            "u0": 0.01904300000001058,
+            "u1": 0.0
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 239,
+          "samples": 502,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.043945,
+          "final_delta_by_unit": {
+            "u0": -0.033203,
+            "u1": 0.0
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 250,
+          "samples": 502,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.38864300000000185,
+          "final_delta_by_unit": {
+            "u0": -0.38864300000000185,
+            "u1": 0.0
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 502,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0,
+            "u1": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 502,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0,
+            "u1": 0.0
+          }
+        }
+      }
+    },
+    "v3_before_update_diagnostic": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 10,
+        "actual_seq": 9,
+        "kind": "SAMPLE",
+        "sample_index": 2,
+        "callback": 1,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 19000
+        },
+        "reference": "2.699707",
+        "actual": "1.34960938",
+        "delta": -1.35009762,
+        "tolerance": 0.001
+      }
+    }
+  },
+  {
+    "case": "MOV-0003",
+    "v2": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 12,
+        "actual_seq": 11,
+        "kind": "SAMPLE",
+        "sample_index": 3,
+        "callback": 3,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "0.060059",
+        "actual_t": "0.060000",
+        "reference_time": {
+          "requested": "0.060000",
+          "reported": "0.060059",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.060000",
+          "reported": null,
+          "state_us": 60000
+        },
+        "reference": "9.544922",
+        "actual": "9.54594231",
+        "delta": 0.0010203099999994691,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 248,
+          "samples": 251,
+          "first_callback": 3,
+          "first_unit": "u0",
+          "max_abs_delta": 2.803404999999998,
+          "final_delta_by_unit": {
+            "u0": -2.803404999999998
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 248,
+          "samples": 251,
+          "first_callback": 3,
+          "first_unit": "u0",
+          "max_abs_delta": 2.803894000000014,
+          "final_delta_by_unit": {
+            "u0": -2.803894000000014
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 92,
+          "samples": 251,
+          "first_callback": 8,
+          "first_unit": "u0",
+          "max_abs_delta": 0.0015369999999848005,
+          "final_delta_by_unit": {
+            "u0": 0.00119000000000824
+          }
+        },
+        "order": {
+          "status": "FAIL",
+          "failures": 1,
+          "samples": 251,
+          "first_callback": 183,
+          "first_unit": "u0",
+          "max_abs_delta": 851986,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 14,
+        "actual_seq": 13,
+        "kind": "SAMPLE",
+        "sample_index": 4,
+        "callback": 4,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "0.080017",
+        "actual_t": "0.080000",
+        "reference_time": {
+          "requested": "0.080000",
+          "reported": "0.080017",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.080000",
+          "reported": null,
+          "state_us": 80000
+        },
+        "reference": "13.362793",
+        "actual": "13.3642578",
+        "delta": 0.001464800000000821,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 247,
+          "samples": 251,
+          "first_callback": 4,
+          "first_unit": "u0",
+          "max_abs_delta": 0.05957100000000537,
+          "final_delta_by_unit": {
+            "u0": 0.05957100000000537
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 247,
+          "samples": 251,
+          "first_callback": 4,
+          "first_unit": "u0",
+          "max_abs_delta": 0.05908199999998942,
+          "final_delta_by_unit": {
+            "u0": 0.05908199999998942
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 92,
+          "samples": 251,
+          "first_callback": 8,
+          "first_unit": "u0",
+          "max_abs_delta": 0.001533199999983026,
+          "final_delta_by_unit": {
+            "u0": 0.0011862000000064654
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3_before_update_diagnostic": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 19000
+        },
+        "reference": "1.908691",
+        "actual": "0.954589844",
+        "delta": -0.9541011559999999,
+        "tolerance": 0.001
+      }
+    }
+  },
+  {
+    "case": "MOV-0004",
+    "v2": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.007813",
+        "actual": "0",
+        "delta": -0.007813,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 597,
+          "samples": 601,
+          "first_callback": 4,
+          "first_unit": "u0",
+          "max_abs_delta": 1.3930659999999762,
+          "final_delta_by_unit": {
+            "u0": -1.3930659999999762
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 589,
+          "samples": 601,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.024414,
+          "final_delta_by_unit": {
+            "u0": 0.018555
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 600,
+          "samples": 601,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.3620000000000232,
+          "final_delta_by_unit": {
+            "u0": 0.3620000000000232
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 601,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "FAIL",
+          "failures": 53,
+          "samples": 601,
+          "first_callback": 503,
+          "first_unit": "u0",
+          "max_abs_delta": 0.00011199999999966792,
+          "final_delta_by_unit": {
+            "u0": 6.100000000053285e-05
+          }
+        }
+      }
+    },
+    "v3": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.007813",
+        "actual": "0",
+        "delta": -0.007813,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 601,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 1.0000001111620804e-06,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 589,
+          "samples": 601,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.024414,
+          "final_delta_by_unit": {
+            "u0": 0.018555
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 600,
+          "samples": 601,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.3620000000000232,
+          "final_delta_by_unit": {
+            "u0": 0.3620000000000232
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 601,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "FAIL",
+          "failures": 53,
+          "samples": 601,
+          "first_callback": 503,
+          "first_unit": "u0",
+          "max_abs_delta": 0.00011199999999966792,
+          "final_delta_by_unit": {
+            "u0": 6.100000000053285e-05
+          }
+        }
+      }
+    },
+    "v3_before_update_diagnostic": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 19000
+        },
+        "reference": "1.499512",
+        "actual": "0.749511719",
+        "delta": -0.7500002809999999,
+        "tolerance": 0.001
+      }
+    }
+  },
+  {
+    "case": "MOV-0005",
+    "v2": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.021484",
+        "actual": "0",
+        "delta": -0.021484,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 247,
+          "samples": 251,
+          "first_callback": 4,
+          "first_unit": "u0",
+          "max_abs_delta": 11.957520000000045,
+          "final_delta_by_unit": {
+            "u0": -11.957520000000045
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 242,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.065918,
+          "final_delta_by_unit": {
+            "u0": -0.001465
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 245,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.21939099999997325,
+          "final_delta_by_unit": {
+            "u0": 0.21939099999997325
+          }
+        },
+        "order": {
+          "status": "FAIL",
+          "failures": 1,
+          "samples": 251,
+          "first_callback": 124,
+          "first_unit": "u0",
+          "max_abs_delta": 851986,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.021484",
+        "actual": "0",
+        "delta": -0.021484,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 138,
+          "samples": 251,
+          "first_callback": 113,
+          "first_unit": "u0",
+          "max_abs_delta": 0.001952999999957683,
+          "final_delta_by_unit": {
+            "u0": 0.001952999999957683
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 242,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.065918,
+          "final_delta_by_unit": {
+            "u0": -0.001465
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 245,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.21939099999997325,
+          "final_delta_by_unit": {
+            "u0": 0.21939099999997325
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3_before_update_diagnostic": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 19000
+        },
+        "reference": "3.999512",
+        "actual": "1.99951172",
+        "delta": -2.00000028,
+        "tolerance": 0.001
+      }
+    }
+  },
+  {
+    "case": "MOV-0006",
+    "v2": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.014648",
+        "actual": "0",
+        "delta": -0.014648,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 247,
+          "samples": 251,
+          "first_callback": 4,
+          "first_unit": "u0",
+          "max_abs_delta": 2.8693849999999657,
+          "final_delta_by_unit": {
+            "u0": -0.022216999999955078
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 249,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 14.115662000000043,
+          "final_delta_by_unit": {
+            "u0": -3.4320679999999584
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 250,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.4053897999999947,
+          "final_delta_by_unit": {
+            "u0": -0.16509260000000836
+          }
+        },
+        "order": {
+          "status": "FAIL",
+          "failures": 3,
+          "samples": 251,
+          "first_callback": 233,
+          "first_unit": "u0",
+          "max_abs_delta": 851986,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.014648",
+        "actual": "0",
+        "delta": -0.014648,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 180,
+          "samples": 251,
+          "first_callback": 54,
+          "first_unit": "u0",
+          "max_abs_delta": 0.043945000000007894,
+          "final_delta_by_unit": {
+            "u0": 0.00048800000001847366
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 249,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.043945,
+          "final_delta_by_unit": {
+            "u0": 0.026855999999952473
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 250,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.4053916000000015,
+          "final_delta_by_unit": {
+            "u0": 0.0027845999999840387
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3_before_update_diagnostic": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 19000
+        },
+        "reference": "2.699707",
+        "actual": "1.34960938",
+        "delta": -1.35009762,
+        "tolerance": 0.001
+      }
+    }
+  },
+  {
+    "case": "MOV-0007",
+    "v2": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.014648",
+        "actual": "0",
+        "delta": -0.014648,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 247,
+          "samples": 251,
+          "first_callback": 4,
+          "first_unit": "u0",
+          "max_abs_delta": 3.949463000000037,
+          "final_delta_by_unit": {
+            "u0": 3.949463000000037
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 233,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 1.073242,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 250,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 175.10212,
+          "final_delta_by_unit": {
+            "u0": 0.3689730000000111
+          }
+        },
+        "order": {
+          "status": "FAIL",
+          "failures": 1,
+          "samples": 251,
+          "first_callback": 240,
+          "first_unit": "u0",
+          "max_abs_delta": 851986,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.014648",
+        "actual": "0",
+        "delta": -0.014648,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 183,
+          "samples": 251,
+          "first_callback": 58,
+          "first_unit": "u0",
+          "max_abs_delta": 0.046386999999981526,
+          "final_delta_by_unit": {
+            "u0": -0.046386999999981526
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 249,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.860107812,
+          "final_delta_by_unit": {
+            "u0": 0.0131835938
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 248,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.43344099999998775,
+          "final_delta_by_unit": {
+            "u0": 0.43344099999998775
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3_before_update_diagnostic": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 19000
+        },
+        "reference": "2.699707",
+        "actual": "1.34960938",
+        "delta": -1.35009762,
+        "tolerance": 0.001
+      }
+    }
+  },
+  {
+    "case": "MOV-0008",
+    "v2": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.014648",
+        "actual": "0",
+        "delta": -0.014648,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 247,
+          "samples": 251,
+          "first_callback": 4,
+          "first_unit": "u0",
+          "max_abs_delta": 5.4257200000000125,
+          "final_delta_by_unit": {
+            "u0": -1.3230889999999818
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 249,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.043945,
+          "final_delta_by_unit": {
+            "u0": -0.015625
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 250,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.3447979999999973,
+          "final_delta_by_unit": {
+            "u0": -0.3447979999999973
+          }
+        },
+        "order": {
+          "status": "FAIL",
+          "failures": 1,
+          "samples": 251,
+          "first_callback": 91,
+          "first_unit": "u0",
+          "max_abs_delta": 851986,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.014648",
+        "actual": "0",
+        "delta": -0.014648,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 160,
+          "samples": 251,
+          "first_callback": 91,
+          "first_unit": "u0",
+          "max_abs_delta": 0.0019530000000145264,
+          "final_delta_by_unit": {
+            "u0": 0.0019530000000145264
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 249,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.043945,
+          "final_delta_by_unit": {
+            "u0": -0.015625
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 250,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.3447979999999973,
+          "final_delta_by_unit": {
+            "u0": -0.3447979999999973
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3_before_update_diagnostic": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 19000
+        },
+        "reference": "2.699707",
+        "actual": "1.34960938",
+        "delta": -1.35009762,
+        "tolerance": 0.001
+      }
+    }
+  },
+  {
+    "case": "MOV-0009",
+    "v2": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 20,
+        "actual_seq": 19,
+        "kind": "SAMPLE",
+        "sample_index": 7,
+        "callback": 7,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "0.140015",
+        "actual_t": "0.140000",
+        "reference_time": {
+          "requested": "0.140000",
+          "reported": "0.140015",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.140000",
+          "reported": null,
+          "state_us": 140000
+        },
+        "reference": "2.672852",
+        "actual": "4.05000019",
+        "delta": 1.3771481900000007,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 244,
+          "samples": 251,
+          "first_callback": 7,
+          "first_unit": "u0",
+          "max_abs_delta": 3.9052130000000034,
+          "final_delta_by_unit": {
+            "u0": -3.9052130000000034
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 238,
+          "samples": 251,
+          "first_callback": 7,
+          "first_unit": "u0",
+          "max_abs_delta": 1.142578,
+          "final_delta_by_unit": {
+            "u0": 0.017578
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 226,
+          "samples": 251,
+          "first_callback": 25,
+          "first_unit": "u0",
+          "max_abs_delta": 0.40386899999998604,
+          "final_delta_by_unit": {
+            "u0": 0.37478599999997186
+          }
+        },
+        "order": {
+          "status": "FAIL",
+          "failures": 1,
+          "samples": 251,
+          "first_callback": 189,
+          "first_unit": "u0",
+          "max_abs_delta": 851986,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 24,
+        "actual_seq": 23,
+        "kind": "SAMPLE",
+        "sample_index": 9,
+        "callback": 9,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.180054",
+        "actual_t": "0.180000",
+        "reference_time": {
+          "requested": "0.180000",
+          "reported": "0.180054",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.180000",
+          "reported": null,
+          "state_us": 180000
+        },
+        "reference": "1.130371",
+        "actual": "1.13623047",
+        "delta": 0.005859470000000089,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 166,
+          "samples": 251,
+          "first_callback": 85,
+          "first_unit": "u0",
+          "max_abs_delta": 0.022948999999925945,
+          "final_delta_by_unit": {
+            "u0": 0.022948999999925945
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 241,
+          "samples": 251,
+          "first_callback": 9,
+          "first_unit": "u0",
+          "max_abs_delta": 0.787598125,
+          "final_delta_by_unit": {
+            "u0": 0.0307615938
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 226,
+          "samples": 251,
+          "first_callback": 25,
+          "first_unit": "u0",
+          "max_abs_delta": 0.32104500000002645,
+          "final_delta_by_unit": {
+            "u0": 0.3104849999999715
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3_before_update_diagnostic": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 10,
+        "actual_seq": 9,
+        "kind": "SAMPLE",
+        "sample_index": 2,
+        "callback": 2,
+        "unit": "u0",
+        "property": "facing",
+        "reference_t": "0.040039",
+        "actual_t": "0.040000",
+        "reference_time": {
+          "requested": "0.040000",
+          "reported": "0.040039",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.040000",
+          "reported": null,
+          "state_us": 39000
+        },
+        "reference": "167.967850",
+        "actual": "175.989273",
+        "delta": 8.021422999999999,
+        "tolerance": 0.001
+      }
+    }
+  },
+  {
+    "case": "MOV-0010",
+    "v2": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.014648",
+        "actual": "0",
+        "delta": -0.014648,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "FAIL",
+          "failures": 247,
+          "samples": 251,
+          "first_callback": 4,
+          "first_unit": "u0",
+          "max_abs_delta": 0.01342800000003308,
+          "final_delta_by_unit": {
+            "u0": 0.01342800000003308
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 249,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.043945,
+          "final_delta_by_unit": {
+            "u0": 0.023193
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 250,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.32971800000001394,
+          "final_delta_by_unit": {
+            "u0": -0.32971800000001394
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 20000
+        },
+        "reference": "0.014648",
+        "actual": "0",
+        "delta": -0.014648,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0.00048800000001847366,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        },
+        "y": {
+          "status": "FAIL",
+          "failures": 249,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.043945,
+          "final_delta_by_unit": {
+            "u0": 0.023193
+          }
+        },
+        "facing": {
+          "status": "FAIL",
+          "failures": 250,
+          "samples": 251,
+          "first_callback": 1,
+          "first_unit": "u0",
+          "max_abs_delta": 0.32971800000001394,
+          "final_delta_by_unit": {
+            "u0": -0.32971800000001394
+          }
+        },
+        "order": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 0,
+          "final_delta_by_unit": {
+            "u0": 0
+          }
+        },
+        "t": {
+          "status": "PASS",
+          "failures": 0,
+          "samples": 251,
+          "first_callback": null,
+          "first_unit": null,
+          "max_abs_delta": 5.900000000003125e-05,
+          "final_delta_by_unit": {
+            "u0": 0.0
+          }
+        }
+      }
+    },
+    "v3_before_update_diagnostic": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 8,
+        "actual_seq": 7,
+        "kind": "SAMPLE",
+        "sample_index": 1,
+        "callback": 1,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "0.020020",
+        "actual_t": "0.020000",
+        "reference_time": {
+          "requested": "0.020000",
+          "reported": "0.020020",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "0.020000",
+          "reported": null,
+          "state_us": 19000
+        },
+        "reference": "2.699707",
+        "actual": "1.34960938",
+        "delta": -1.35009762,
+        "tolerance": 0.001
+      }
+    }
+  }
+]

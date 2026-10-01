@@ -1,12 +1,13 @@
 # Progress
 
-As of 30 September 2026.
+As of 1 October 2026.
 
 **Current stage:** Phase 3 complete; Phase 4 is next.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps × 3
 fresh-process captures, all payload-identical within each map.
 **C++ compatibility:** MOV-0001 passes; MOV-0002–MOV-0010 fail fixed provisional
-tolerances, with complete numeric comparisons and first divergences.
+tolerances under footman-v1/v2/v3, with complete numeric comparisons and first
+divergences. footman-v3 matches every order sample, plus all X in MOV-0004/0010.
 **First release:** v0.0.1 — one Footman's movement compared numerically with WC3.
 
 The [plan](Warcraft-III-Reimplementation-Plan.md) is the detailed roadmap. GitHub
@@ -104,15 +105,34 @@ MOV-0004 retains 53 clock failures from callback 503. 93 output files match sepa
 process runs. [Evidence](results/phase-3/) records scoped repeatability; C++ CLOCKS
 properties remain UNOBSERVED. No fresh captures or movement-model changes.
 
+**Issue #6 movement follow-up** ([issue #6](https://github.com/galitianu/warcraft-re/issues/6)):
+[footman-v3](docs/footman-v3-model.md) adds a hidden movement heading (0.6 rad turns,
+pre-turn 60° gate), 30 ms logical updates from 10 ms, six 5 ms exposures per batch,
+reported facing that accelerates/caps/brakes as `err·(err/0.2 rad)^¼`, and
+round-toward-zero float32 coordinates offset from the map corner.
+[Results](docs/footman-v3-results.md), [reports](results/footman-v3/).
+The rounding rule is inferred from the retained grid (no odd 1/4096 multiple at ≥ 0)
+and from 180/45 reading 179.999985/44.999996.
+
+Clean build of `781c7a2`: CTest 1/1, Python 37/37, v1/v2 evidence unchanged and v3
+repeatable. Still 1/10 PASS. All 12 movement onsets, 9 idle transitions and order samples now
+match. MOV-0004/0010 X pass entirely; MOV-0002 X first fails at callback 88
+instead of 4; MOV-0009 turns as WC3 for 24 callbacks. MOV-0002 still fails Y/facing
+at callback 1, because east/west heading noise is unmodelled. Arithmetic ties that noise
+to `acos` near 0°/180° and X's position on a 1/64 grid, but cannot determine it;
+no fitted rule was added. Proposed **MOV-0012**: 1 ms east travel from x=1/512 and
+3/512, from (0,256), and at 30°.
+
 ## Next task: Phase 4 — compatibility CI
 
 Build the headless runner, validate committed canonical references and compare the
 ten MOV cases in CI with explicit baseline verdicts (MOV-0001 PASS, nine documented
-FAILs). Keep malformed/unsupported input fatal and preserve numerical diagnostics;
+FAILs) for footman-v3, keeping v2 as the retained baseline. Keep malformed/unsupported input fatal and preserve numerical diagnostics;
 add small compiler/configuration and repeatability coverage under named scope.
-The first moving primitive improvement is [issue #6](https://github.com/galitianu/warcraft-re/issues/6),
-using unchanged fixtures/tolerances and before/after reports. Detailed handoff:
-[Phase 3 results](docs/phase-3-results.md#verification-and-phase-4-handoff).
+Making MOV-0002 pass requires the heading-noise mechanism; capture MOV-0012 under
+the [documented workflow](docs/agent-wc3-workflow.md) before changing v3.
+Handoffs: [Phase 3](docs/phase-3-results.md#verification-and-phase-4-handoff),
+[footman-v3](docs/footman-v3-results.md#unmet-gate-and-next-experiment).
 
 ## Roadmap status
 

@@ -1,0 +1,22 @@
+# How does a diagonal move differ from the straight baseline?
+# Migrated from the hard-coded runner; WC3 setup: oracle/jass/MOV-0003.j
+# (docs/phase-1-experiments.md). Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0003
+map_revision: MOV-0003
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 45
+observe:
+  period: 0.02
+  callbacks: 250
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [707.106781, 707.106781]
+...

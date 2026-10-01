@@ -1,0 +1,28 @@
+# How do facing and displacement change when a moving unit is redirected by
+# 180 degrees?
+# Migrated from the hard-coded runner; WC3 setup: oracle/jass/MOV-0007.j
+# (docs/phase-1-experiments.md). Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0007
+map_revision: MOV-0007
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+observe:
+  period: 0.02
+  callbacks: 250
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 0]
+  # (x - 1000, y) from this unit's position when the order executes.
+  - at: 1.0
+    unit: u0
+    order: move
+    offset: [-1000, 0]
+...

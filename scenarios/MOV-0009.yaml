@@ -1,0 +1,23 @@
+# How does a stationary unit initially facing away from its destination begin
+# moving toward a target behind it?
+# Migrated from the hard-coded runner; WC3 setup: oracle/jass/MOV-0009.j
+# (docs/phase-1-experiments.md). Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0009
+map_revision: MOV-0009
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 180
+observe:
+  period: 0.02
+  callbacks: 250
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 0]
+...

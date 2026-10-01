@@ -1,0 +1,19 @@
+# Does an uncommanded Footman keep its position, facing and current order over
+# the capture interval?
+# Migrated from the hard-coded runner; WC3 setup: oracle/jass/MOV-0001.j
+# (docs/phase-1-experiments.md). Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0001
+map_revision: MOV-0001
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+observe:
+  period: 0.02
+  callbacks: 250
+  properties: [x, "y", facing, order]
+actions: []
+...

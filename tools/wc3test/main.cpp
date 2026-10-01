@@ -1,7 +1,9 @@
 #include "BuildIdentity.h"
 #include "Cases.h"
 #include "Canonical.h"
+#include <algorithm>
 #include <charconv>
+#include <cstdio>
 #include <cmath>
 #include <filesystem>
 #include <fstream>
@@ -12,12 +14,71 @@
 #include <sstream>
 #include <string>
 #include <stdexcept>
+#include <vector>
 
 namespace {
 void write(const std::filesystem::path& path, const std::string& bytes) {
     std::ofstream file(path, std::ios::binary);
     file.exceptions(std::ios::badbit | std::ios::failbit);
     file << bytes;
+}
+std::string json_string(const std::string& text) {
+    std::string quoted = "\"";
+    for (const char c : text) {
+        if (c == '"' || c == '\\') quoted += '\\';
+        if (static_cast<unsigned char>(c) < 0x20) {
+            char escape[8];
+            std::snprintf(escape, sizeof escape, "\\u%04x", static_cast<unsigned>(c));
+            quoted += escape;
+        } else {
+            quoted += c;
+        }
+    }
+    return quoted + '"';
+}
+struct Input {
+    std::string path;  // as named on the command line, '/' separated
+    std::string sha256;  // of the exact bytes parsed
+    scenario::Scenario description;
+};
+// Reads and validates every description before any simulation or output.
+std::vector<Input> load_scenarios(const std::vector<std::string>& arguments) {
+    std::vector<std::filesystem::path> files;
+    for (const auto& argument : arguments) {
+        const std::filesystem::path path(argument);
+        if (std::filesystem::is_directory(path)) {
+            std::vector<std::filesystem::path> found;
+            for (const auto& entry : std::filesystem::directory_iterator(path))
+                if (entry.is_regular_file() && entry.path().extension() == ".yaml") found.push_back(entry.path());
+            if (found.empty()) throw std::invalid_argument("no *.yaml scenarios in " + argument);
+            std::sort(found.begin(), found.end(), [](const auto& a, const auto& b) {
+                return a.filename().generic_string() < b.filename().generic_string();
+            });
+            files.insert(files.end(), found.begin(), found.end());
+        } else if (std::filesystem::is_regular_file(path)) {
+            files.push_back(path);
+        } else {
+            throw std::invalid_argument("scenario not found: " + argument);
+        }
+    }
+    std::vector<Input> inputs;
+    for (const auto& file : files) {
+        const auto name = file.generic_string();
+        std::ifstream stream(file, std::ios::binary);
+        std::ostringstream bytes;
+        bytes << stream.rdbuf();
+        if (!stream) throw std::invalid_argument("cannot read scenario " + name);
+        try {
+            inputs.push_back({name, scenario::sha256_hex(bytes.str()), scenario::parse(bytes.str())});
+        } catch (const scenario::Error& error) {
+            throw std::invalid_argument("scenario " + name + ": " + error.what());
+        }
+        for (std::size_t i = 0; i + 1 < inputs.size(); ++i)
+            if (inputs[i].description.experiment == inputs.back().description.experiment)
+                throw std::invalid_argument("scenario " + name + ": experiment " +
+                    inputs.back().description.experiment + " already declared by " + inputs[i].path);
+    }
+    return inputs;
 }
 // JSON has no infinity; an infinite turn limit turns the whole remaining angle.
 std::string json_number(float value) {
@@ -31,6 +92,7 @@ std::string json_number(float value) {
 int main(int argc, char** argv) {
     try {
         std::filesystem::path output;
+        std::vector<std::string> scenarios;
         auto version = wc3::ModelVersion::v2;
         std::uint32_t seed = 1;
         bool before = false;
@@ -38,12 +100,15 @@ int main(int argc, char** argv) {
             const std::string option = argv[i];
             if (option == "--help") {
                 std::cout << "wc3test --out DIR [--model v1|v2|v3|v4] [--seed UINT32] "
-                             "[--phase after|before]\n";
+                             "[--phase after|before] [--scenario FILE_OR_DIR]...\n"
+                             "Without --scenario, runs the ten hard-coded MOV cases. Each --scenario\n"
+                             "names a v1 scenario file or a directory of *.yaml files (sorted).\n";
                 return 0;
             }
             if (i + 1 == argc) throw std::invalid_argument("missing option value");
             const std::string value = argv[++i];
             if (option == "--out") output = value;
+            else if (option == "--scenario") scenarios.push_back(value);
             else if (option == "--model" && (value == "v1" || value == "v2" || value == "v3" || value == "v4"))
                 version = value == "v1" ? wc3::ModelVersion::v1
                         : value == "v2" ? wc3::ModelVersion::v2
@@ -57,6 +122,11 @@ int main(int argc, char** argv) {
             } else throw std::invalid_argument("unknown option or invalid value: " + option);
         }
         if (output.empty()) throw std::invalid_argument("--out DIR is required");
+        // Invalid descriptions or unsupported schedules fail before any output exists.
+        const auto inputs = load_scenarios(scenarios);
+        std::vector<movement::Trace> scenario_traces;
+        for (const auto& input : inputs)
+            scenario_traces.push_back(movement::run(input.description, version, seed, before));
         std::filesystem::create_directories(output);
         const auto p = wc3::model(version);
         std::ostringstream identity;
@@ -130,6 +200,35 @@ int main(int argc, char** argv) {
                 << json_number(p.opposite_tie_degrees) << "}\n  }";
         }
         identity << parameters.str() << ",\n  \"cases\": [\n";
+        if (!inputs.empty()) {
+            for (std::size_t i = 0; i < inputs.size(); ++i) {
+                const auto& d = inputs[i].description;
+                identity << "    {\"test\": \"" << d.experiment << "\", \"callbacks\": " << d.callbacks
+                    << ", \"units\": " << d.units.size() << ", \"samples\": " << scenario_traces[i].samples.size()
+                    << "}" << (i + 1 == inputs.size() ? "\n" : ",\n");
+            }
+            identity << "  ],\n  \"scenarios\": [\n";
+            for (std::size_t i = 0; i < inputs.size(); ++i)
+                identity << "    {\"experiment\": \"" << inputs[i].description.experiment
+                    << "\", \"map_revision\": \"" << inputs[i].description.map_revision
+                    << "\", \"path\": " << json_string(inputs[i].path)
+                    << ", \"sha256\": \"" << inputs[i].sha256 << "\"}" << (i + 1 == inputs.size() ? "\n" : ",\n");
+            identity << "  ]\n}\n";
+            write(output / "identity.json", identity.str());
+            for (std::size_t i = 0; i < inputs.size(); ++i) {
+                const auto& d = inputs[i].description;
+                const auto& trace = scenario_traces[i];
+                write(output / (d.experiment + ".csv"), movement::samples_csv(trace));
+                write(output / (d.experiment + "-actions.csv"), movement::actions_csv(trace));
+                const auto provenance = "{\"scenario\":{\"schema\":\"wc3-scenario\",\"version\":1,\"path\":"
+                    + json_string(inputs[i].path) + ",\"sha256\":\"" + inputs[i].sha256 + "\"}}";
+                write(output / (d.experiment + ".json"),
+                      movement::canonical_json(trace, {d.experiment, d.map_revision, d.callbacks}, identity.str(),
+                                               version, seed, before, build_source_sha256, parameters.str(), provenance));
+            }
+            std::cout << p.name << ": wrote " << inputs.size() << " finite scenario traces to " << output << '\n';
+            return 0;
+        }
         std::vector<movement::Trace> traces;
         for (int number = 1; number <= 10; ++number) {
             const auto name = movement::case_name(number);
@@ -146,7 +245,7 @@ int main(int argc, char** argv) {
         write(output / "identity.json", identity.str());
         for (int number = 1; number <= 10; ++number)
             write(output / (movement::case_name(number) + ".json"),
-                  movement::canonical_json(traces[number - 1], number, identity.str(),
+                  movement::canonical_json(traces[number - 1], movement::case_identity(number), identity.str(),
                                            version, seed, before, build_source_sha256, parameters.str()));
         std::cout << p.name << ": wrote ten finite traces to " << output << '\n';
         return 0;

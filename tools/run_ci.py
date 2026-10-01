@@ -85,6 +85,53 @@ def repeatability(first, second):
                 full_file_sha256=full)
 
 
+def differences(a, b, path=''):
+    """Dotted paths whose values differ, including keys present on one side only."""
+    if isinstance(a, dict) and isinstance(b, dict):
+        found = []
+        for key in sorted(set(a) | set(b)):
+            child = f'{path}.{key}' if path else key
+            found += [child] if key not in a or key not in b else differences(a[key], b[key], child)
+        return found
+    return [] if a == b else [path]
+
+
+def migration(control, declared, control_suite, declared_suite):
+    """Phase 5 gate: scenario traces equal the hard-coded control in every
+    observation/action payload and CSV byte; metadata differences are named."""
+    cases = []
+    for n in range(1, 11):
+        case = f'MOV-{n:04d}'
+        coded, scenario = (validate(load(root / f'{case}.json')) for root in (control, declared))
+        payloads = [digest(payload(t)) for t in (coded, scenario)]
+        if payloads[0] != payloads[1]:
+            raise ValueError(f'{case}: scenario observation payload differs from the hard-coded control')
+        for suffix in ('.csv', '-actions.csv'):
+            if (control / f'{case}{suffix}').read_bytes() != (declared / f'{case}{suffix}').read_bytes():
+                raise ValueError(f'{case}{suffix}: scenario CSV differs from the hard-coded control')
+        metadata = differences(coded, scenario)
+        if metadata != ['identity.build.scenarios', 'provenance.scenario']:
+            raise ValueError(f'{case}: unexpected metadata differences {metadata}')
+        used = scenario['provenance']['scenario']
+        if sha256(ROOT / used['path']) != used['sha256']:
+            raise ValueError(f'{case}: scenario hash differs from the committed {used["path"]}')
+        cases.append(dict(case=case, scenario=used, observation_payload_sha256=payloads[0],
+                          csv_bytes_identical=True, metadata_differences=metadata,
+                          full_trace_sha256=dict(hard_coded=sha256(control / f'{case}.json'),
+                                                 scenario=sha256(declared / f'{case}.json'))))
+    identities = [load(root / 'identity.json') for root in (control, declared)]
+    if differences(*identities) != ['scenarios']:
+        raise ValueError('run identity differs beyond the scenario list')
+    def graded(suite):
+        return dict(suite, identity=None, cases=[{k: v for k, v in c.items() if k != 'actual_sha256'}
+                                                 for c in suite['cases']])
+    if graded(control_suite) != graded(declared_suite):
+        raise ValueError('scenario comparison report differs from the hard-coded control')
+    return dict(status='EQUIVALENT', cases=cases, identity_differences=['scenarios'],
+                comparison_differences=['identity.build.scenarios', 'cases[].actual_sha256'],
+                scope='same binary/model/phase/seed; scenarios/*.yaml against the hard-coded MOV-0001..0010 control')
+
+
 def summarize(result, reports):
     lines = ['# Primitive compatibility CI', '',
              f"CI gate: **{result['status']}**. Retail reference: `{BUILD}` (x86 32-bit).", '',
@@ -92,9 +139,14 @@ def summarize(result, reports):
              f"{result['host']['architecture']}; Python {result['host']['python']}.", '',
              'Primary: footman-v4, after-due-update, seed 1. Missing canonical JASS/CLOCKS: **UNOBSERVED**.',
              'The separate state-capture probe has named sampling-order exceptions; it is not a JASS producer.', '',
-             '| Model / phase | Compatibility | Regression gate | Improvements |', '|---|---|---|---|']
+             'Scenario runs use the committed scenarios/*.yaml; migration compares them with the hard-coded control.', '',
+             '| Model / phase | Compatibility | Regression gate | Improvements | Scenario compatibility | Scenario migration |',
+             '|---|---|---|---|---|---|']
     for name, info in result['models'].items():
-        lines.append(f"| {name} | {info['compatibility_passes']}/10 PASS | {info['regression_verdict']} | {info['improvements']} |")
+        scenario = info.get('scenario') or {}
+        lines.append(f"| {name} | {info['compatibility_passes']}/10 PASS | {info['regression_verdict']} | {info['improvements']} | "
+                     f"{scenario.get('compatibility_passes', '—')}/10 PASS, regression {scenario.get('regression_verdict', 'MISSING')} | "
+                     f"{scenario.get('migration', 'MISSING')} |")
     for name, error in result['errors'].items():
         lines += ['', f'**{name}:** {error}']
     for name in result['models']:
@@ -201,6 +253,37 @@ def run(args):
                     result['errors'][name] = 'primary compatibility requires all ten MOV passes'
             except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:
                 result['errors'][name] = str(error)
+                continue
+            # Phase 5: the same suite from the committed scenarios, graded identically
+            # and checked against the hard-coded control above.
+            try:
+                scenario_dir = report_dir / 'scenario'
+                declared, declared_again = traces / f'{name}-scenario', traces / f'{name}-scenario-repeat'
+                from_scenarios = [*command, '--scenario', 'scenarios']
+                execute([*from_scenarios, '--out', declared], logs, f'{name}-scenario-runner', timeout=60)
+                execute([*from_scenarios, '--out', declared_again], logs, f'{name}-scenario-repeat', timeout=60)
+                write_json(scenario_dir / 'repeatability.json', repeatability(declared, declared_again))
+                comparison = scenario_dir / 'comparison.json'
+                code = execute([sys.executable, ROOT / 'tools/compare_traces.py', '--actual', declared,
+                                '--reference', references, '--json', comparison, '--markdown', scenario_dir / 'comparison.md'],
+                               logs, f'{name}-scenario-compare', accepted=(0, 1))
+                declared_suite = load(comparison)
+                if code != int(declared_suite['status'] == 'FAIL'):
+                    raise ValueError('scenario comparator exit/report disagreement')
+                write_json(scenario_dir / 'migration.json', migration(dest, declared, suite, declared_suite))
+                assessment = assess(load(baseline), declared_suite)
+                assessment.update(baseline_path=selected_baseline, baseline_sha256=sha256(baseline), comparator_exit=code)
+                write_json(scenario_dir / 'regression.json', assessment)
+                (scenario_dir / 'regression.md').write_text(regression_markdown(assessment), encoding='utf-8')
+                result['models'][name]['scenario'] = dict(
+                    migration='EQUIVALENT', compatibility_passes=assessment['compatibility_passes'],
+                    regression_verdict=assessment['regression_verdict'])
+                if assessment['regression_verdict'] != 'PASS':
+                    result['errors'][f'{name}-scenario'] = f"{len(assessment['regressions'])} protected metrics regressed"
+                if name == 'v4' and (code != 0 or assessment['compatibility_passes'] != 10):
+                    result['errors'][f'{name}-scenario'] = 'primary compatibility requires all ten MOV passes'
+            except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:
+                result['errors'][f'{name}-scenario'] = str(error)
         # CTest's strict exact-text/state-capture check writes its full reports here.
         if (build / 'footman-v4-test/reports').exists():
             shutil.copytree(build / 'footman-v4-test/reports', reports / 'v4-state-probe', dirs_exist_ok=True)
@@ -211,7 +294,8 @@ def run(args):
                         logs, 'archival-migration', timeout=300)
             except (OSError, ValueError) as error:
                 result['errors']['archival-migration'] = str(error)
-        result['status'] = 'PASS' if not result['errors'] and len(result['models']) == 5 else 'FAIL'
+        result['status'] = 'PASS' if not result['errors'] and len(result['models']) == 5 and all(
+            'scenario' in info for info in result['models'].values()) else 'FAIL'
     except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:
         result['errors']['pipeline'] = str(error)
     finally:

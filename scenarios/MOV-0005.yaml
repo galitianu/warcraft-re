@@ -1,0 +1,23 @@
+# What movement trace and reported speed result when speed is set to 522?
+# Migrated from the hard-coded runner; WC3 setup: oracle/jass/MOV-0005.j
+# (docs/phase-1-experiments.md). Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0005
+map_revision: MOV-0005
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+    move_speed: 522
+observe:
+  period: 0.02
+  callbacks: 250
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 0]
+...

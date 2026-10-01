@@ -1,4 +1,5 @@
 #pragma once
+#include "Scenario.h"
 #include "core/World.h"
 #include <cstdint>
 #include <string>
@@ -22,6 +23,7 @@ struct Action {
     bool accepted;
     std::size_t seq;
     std::uint64_t state_us;
+    std::size_t unit = 0;
 };
 struct Trace {
     std::vector<Sample> samples;
@@ -30,12 +32,26 @@ struct Trace {
     std::vector<float> speeds;
     // footman-v4 only: the oracle library's TimerGetElapsed at each callback.
     std::vector<float> reported_time;
+    std::vector<std::string> names;  // watch order
+    std::uint64_t period_us = 0;
 };
 // Callbacks are requested at multiples of this, matching the JASS timer period.
 inline constexpr std::uint64_t sample_period_us = 20000;
+// The canonical v1 contract's record limit; longer schedules are rejected.
+inline constexpr std::size_t max_records = 50000;
+struct CaseIdentity {
+    std::string experiment;
+    std::string map_revision;
+    int callbacks;
+};
+CaseIdentity case_identity(int number);
 int case_callbacks(int number);
 std::size_t case_units(int number);
 Trace run(int case_number, wc3::ModelVersion version, std::uint32_t seed = 1,
+          bool before_due_update = false);
+// The same schedule driven by a validated scenario description (docs/scenario-v1.md).
+// Throws std::invalid_argument for schedules this runner cannot represent.
+Trace run(const scenario::Scenario& description, wc3::ModelVersion version, std::uint32_t seed = 1,
           bool before_due_update = false);
 std::string samples_csv(const Trace& trace);
 std::string actions_csv(const Trace& trace);

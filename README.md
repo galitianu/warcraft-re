@@ -32,6 +32,8 @@ Start with:
 - [Phase 3 contract](docs/trace-contract-v1.md), [results](docs/phase-3-results.md)
   and [reproduction](docs/phase-3-procedure.md): lossless canonical WC3/C++ traces,
   scoped repeatability and validated full-run comparison.
+- [footman-v3 model](docs/footman-v3-model.md) and [results](docs/footman-v3-results.md):
+  hidden heading, 30 ms updates and truncating float32 state (issue #6).
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
@@ -40,7 +42,8 @@ shared oracle instrumentation, raw captures with identities, parsers and derived
 CSVs, and a dependency-free C++20 simulation. Phases 0–3 are complete. All 45 Phase 1
 raw runs normalize to 15 versioned canonical fixtures with complete provenance.
 The C++ stationary case passes; all nine movement cases have documented numerical failures
-under unchanged provisional tolerances. The v0.0.1 comparison gate is met; no
+under unchanged provisional tolerances. footman-v3 matches all order samples and
+arrival callbacks but not east/west heading noise. The v0.0.1 comparison gate is met; no
 release tag has been created.
 
 Build and run without a window (CMake, system clang and Python standard library):
@@ -51,6 +54,7 @@ cmake --build build -j 4
 ctest --test-dir build --output-on-failure
 python3 -m unittest discover -s tools -p 'test_*.py' -v
 python3 tools/run_phase3.py --runner build/wc3test --out build/phase3 --reports build/phase3-reports
+python3 tools/run_footman_v3.py --runner build/wc3test --out build/issue6 --reports build/footman-v3
 ```
 
 Use GitHub issues for concrete work and `PROGRESS.md` for the concise status. Keep

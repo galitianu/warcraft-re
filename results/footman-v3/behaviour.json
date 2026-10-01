@@ -1,0 +1,575 @@
+[
+  {
+    "case": "MOV-0001",
+    "wc3": {
+      "commands": [],
+      "final_x": "0.000000",
+      "final_y": "0.000000",
+      "final_facing": "0.000000",
+      "last_facing_change_callback": null
+    },
+    "v2": {
+      "commands": [],
+      "final_x": "0",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    },
+    "v3": {
+      "commands": [],
+      "final_x": "0",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    }
+  },
+  {
+    "case": "MOV-0002",
+    "wc3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.310871,
+          "facing_at_onset": "0.174245",
+          "idle_callback": 184
+        }
+      ],
+      "final_x": "988.133301",
+      "final_y": "0.033203",
+      "final_facing": "0.388643",
+      "last_facing_change_callback": 190
+    },
+    "v2": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": 183
+        }
+      ],
+      "final_x": "984.143127",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    },
+    "v3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": 184
+        }
+      ],
+      "final_x": "988.152344",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    }
+  },
+  {
+    "case": "MOV-0003",
+    "wc3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 45.0,
+          "facing_at_onset": "45.000530",
+          "idle_callback": 184
+        }
+      ],
+      "final_x": "698.700195",
+      "final_y": "698.700684",
+      "final_facing": "44.998810",
+      "last_facing_change_callback": 181
+    },
+    "v2": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 45.0,
+          "facing_at_onset": "45",
+          "idle_callback": 183
+        }
+      ],
+      "final_x": "695.89679",
+      "final_y": "695.89679",
+      "final_facing": "45",
+      "last_facing_change_callback": null
+    },
+    "v3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 45.0,
+          "facing_at_onset": "44.9999962",
+          "idle_callback": 184
+        }
+      ],
+      "final_x": "698.759766",
+      "final_y": "698.759766",
+      "final_facing": "44.9999962",
+      "last_facing_change_callback": null
+    }
+  },
+  {
+    "case": "MOV-0004",
+    "wc3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.298529,
+          "facing_at_onset": "0.156594",
+          "idle_callback": 329
+        }
+      ],
+      "final_x": "985.393066",
+      "final_y": "-0.018555",
+      "final_facing": "359.638000",
+      "last_facing_change_callback": 335
+    },
+    "v2": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": 329
+        }
+      ],
+      "final_x": "984",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    },
+    "v3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": 329
+        }
+      ],
+      "final_x": "985.393066",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    }
+  },
+  {
+    "case": "MOV-0005",
+    "wc3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.30777,
+          "facing_at_onset": "0.124252",
+          "idle_callback": 125
+        }
+      ],
+      "final_x": "995.957520",
+      "final_y": "0.001465",
+      "final_facing": "359.780609",
+      "last_facing_change_callback": 131
+    },
+    "v2": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": 124
+        }
+      ],
+      "final_x": "984",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    },
+    "v3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": 125
+        }
+      ],
+      "final_x": "995.959473",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    }
+  },
+  {
+    "case": "MOV-0006",
+    "wc3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.310871,
+          "facing_at_onset": "0.174245",
+          "idle_callback": null
+        },
+        {
+          "command": "move",
+          "callback": 50,
+          "onset_callback": 54,
+          "first_travel_degrees": 69.087669,
+          "facing_at_onset": "12.437501",
+          "idle_callback": 236
+        }
+      ],
+      "final_x": "267.322754",
+      "final_y": "987.575195",
+      "final_facing": "90.165085",
+      "last_facing_change_callback": 235
+    },
+    "v2": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": null
+        },
+        {
+          "command": "move",
+          "callback": 50,
+          "onset_callback": 51,
+          "first_travel_degrees": 90.0,
+          "facing_at_onset": "0",
+          "idle_callback": 233
+        }
+      ],
+      "final_x": "267.300537",
+      "final_y": "984.143127",
+      "final_facing": "89.9999924",
+      "last_facing_change_callback": 64
+    },
+    "v3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": null
+        },
+        {
+          "command": "move",
+          "callback": 50,
+          "onset_callback": 54,
+          "first_travel_degrees": 68.755664,
+          "facing_at_onset": "12.0321131",
+          "idle_callback": 236
+        }
+      ],
+      "final_x": "267.323242",
+      "final_y": "987.602051",
+      "final_facing": "90.1678696",
+      "last_facing_change_callback": 235
+    }
+  },
+  {
+    "case": "MOV-0007",
+    "wc3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.310871,
+          "facing_at_onset": "0.174245",
+          "idle_callback": null
+        },
+        {
+          "command": "move",
+          "callback": 50,
+          "onset_callback": 58,
+          "first_travel_degrees": 172.220846,
+          "facing_at_onset": "46.814968",
+          "idle_callback": 241
+        }
+      ],
+      "final_x": "-720.797363",
+      "final_y": "0.000000",
+      "final_facing": "179.631012",
+      "last_facing_change_callback": 247
+    },
+    "v2": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": null
+        },
+        {
+          "command": "move",
+          "callback": 50,
+          "onset_callback": 58,
+          "first_travel_degrees": 180.0,
+          "facing_at_onset": "313.590363",
+          "idle_callback": 240
+        }
+      ],
+      "final_x": "-716.8479",
+      "final_y": "0",
+      "final_facing": "179.999985",
+      "last_facing_change_callback": 76
+    },
+    "v3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": null
+        },
+        {
+          "command": "move",
+          "callback": 50,
+          "onset_callback": 58,
+          "first_travel_degrees": 171.891873,
+          "facing_at_onset": "46.4095764",
+          "idle_callback": 241
+        }
+      ],
+      "final_x": "-720.84375",
+      "final_y": "0.0131835938",
+      "final_facing": "180.064453",
+      "last_facing_change_callback": 239
+    }
+  },
+  {
+    "case": "MOV-0008",
+    "wc3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.310871,
+          "facing_at_onset": "0.174245",
+          "idle_callback": null
+        },
+        {
+          "command": "move",
+          "callback": 50,
+          "onset_callback": 52,
+          "first_travel_degrees": 0.222798,
+          "facing_at_onset": "0.210723",
+          "idle_callback": 92
+        }
+      ],
+      "final_x": "485.974609",
+      "final_y": "0.015625",
+      "final_facing": "0.344798",
+      "last_facing_change_callback": 98
+    },
+    "v2": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": null
+        },
+        {
+          "command": "move",
+          "callback": 50,
+          "onset_callback": 51,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": 91
+        }
+      ],
+      "final_x": "484.65152",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    },
+    "v3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": null
+        },
+        {
+          "command": "move",
+          "callback": 50,
+          "onset_callback": 52,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": 92
+        }
+      ],
+      "final_x": "485.976562",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    }
+  },
+  {
+    "case": "MOV-0009",
+    "wc3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 7,
+          "first_travel_degrees": 8.109577,
+          "facing_at_onset": "133.590378",
+          "idle_callback": 190
+        }
+      ],
+      "final_x": "988.048340",
+      "final_y": "-0.017578",
+      "final_facing": "359.625214",
+      "last_facing_change_callback": 196
+    },
+    "v2": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 7,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "133.590424",
+          "idle_callback": 189
+        }
+      ],
+      "final_x": "984.143127",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": 25
+    },
+    "v3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 7,
+          "first_travel_degrees": 8.109586,
+          "facing_at_onset": "133.590378",
+          "idle_callback": 190
+        }
+      ],
+      "final_x": "988.071289",
+      "final_y": "0.0131835938",
+      "final_facing": "359.935699",
+      "last_facing_change_callback": 188
+    }
+  },
+  {
+    "case": "MOV-0010",
+    "wc3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.310871,
+          "facing_at_onset": "0.174245",
+          "idle_callback": null
+        },
+        {
+          "command": "stop",
+          "callback": 50,
+          "displaced_after_stop": false,
+          "idle_callback": 51
+        }
+      ],
+      "final_x": "267.287109",
+      "final_y": "-0.023193",
+      "final_facing": "0.329718",
+      "last_facing_change_callback": 58
+    },
+    "v2": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": null
+        },
+        {
+          "command": "stop",
+          "callback": 50,
+          "displaced_after_stop": false,
+          "idle_callback": 51
+        }
+      ],
+      "final_x": "267.300537",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    },
+    "v3": {
+      "commands": [
+        {
+          "command": "move",
+          "callback": 0,
+          "onset_callback": 1,
+          "first_travel_degrees": 0.0,
+          "facing_at_onset": "0",
+          "idle_callback": null
+        },
+        {
+          "command": "stop",
+          "callback": 50,
+          "displaced_after_stop": false,
+          "idle_callback": 51
+        }
+      ],
+      "final_x": "267.287109",
+      "final_y": "0",
+      "final_facing": "0",
+      "last_facing_change_callback": null
+    }
+  }
+]

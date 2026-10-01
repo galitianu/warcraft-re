@@ -141,6 +141,50 @@ def raw_record(raw, period, callback=None):
     return rec
 
 
+def validate_cadence_parameters(parameters):
+    """footman-v1/v2 parameters."""
+    keys(parameters, ('position_period_steps', 'facing_period_steps', 'facing_phase_steps', 'move_delay_steps', 'stop_radius', 'default_speed', 'speed_clamp', 'movement_angle_limit_degrees', 'turn_ramp_radians', 'opposite_angle_tie'))
+    for key in ('position_period_steps', 'facing_period_steps'):
+        integer(parameters[key], 1, 10000)
+    for key in ('facing_phase_steps', 'move_delay_steps'):
+        integer(parameters[key], 0, 10000)
+    for key in ('stop_radius', 'default_speed'):
+        require(type(parameters[key]) in (int, float) and parameters[key] >= 0, 'invalid model parameter')
+    require(parameters['movement_angle_limit_degrees'] == 'unlimited' or
+            (type(parameters['movement_angle_limit_degrees']) in (int, float) and 0 <= parameters['movement_angle_limit_degrees'] <= 180), 'invalid angle limit')
+    for key, size in (('speed_clamp', 2), ('turn_ramp_radians', 3)):
+        require(isinstance(parameters[key], list) and len(parameters[key]) == size
+                and all((type(v) in (int, float) and v >= 0) or
+                        (key == 'turn_ramp_radians' and v == 'unlimited')
+                        for v in parameters[key]), 'invalid parameter array')
+    keys(parameters['opposite_angle_tie'], ('turn', 'within_degrees'))
+    require(parameters['opposite_angle_tie']['turn'] == 'clockwise' and
+            type(parameters['opposite_angle_tie']['within_degrees']) in (int, float) and
+            0 <= parameters['opposite_angle_tie']['within_degrees'] <= 180, 'invalid angle tie')
+
+
+def validate_v3_parameters(parameters):
+    """footman-v3: separate heading, phased logical updates, truncating float32."""
+    keys(parameters, ('update_period_steps', 'update_phase_steps', 'exposure_period_steps', 'stop_radius',
+                      'default_speed', 'speed_clamp', 'turn_rate_radians', 'propulsion_window_degrees',
+                      'facing_acceleration_radians', 'facing_max_velocity_radians', 'facing_snap_radians',
+                      'facing_braking', 'frame_origin', 'float_rounding', 'opposite_angle_tie'))
+    for key in ('update_period_steps', 'exposure_period_steps'):
+        integer(parameters[key], 1, 10000)
+    integer(parameters['update_phase_steps'], 0, 10000)
+    require(parameters['update_period_steps'] % parameters['exposure_period_steps'] == 0, 'exposures must divide updates')
+    for key in ('stop_radius', 'default_speed', 'turn_rate_radians', 'facing_acceleration_radians',
+                'facing_max_velocity_radians', 'facing_snap_radians'):
+        require(type(parameters[key]) in (int, float) and parameters[key] >= 0, 'invalid model parameter')
+    require(type(parameters['propulsion_window_degrees']) in (int, float) and 0 <= parameters['propulsion_window_degrees'] <= 180, 'invalid propulsion window')
+    require(type(parameters['frame_origin']) in (int, float), 'invalid frame origin')
+    require(isinstance(parameters['speed_clamp'], list) and len(parameters['speed_clamp']) == 2
+            and all(type(v) in (int, float) and v >= 0 for v in parameters['speed_clamp']), 'invalid parameter array')
+    require(parameters['facing_braking'] == 'error * (error / max_velocity)^0.25'
+            and parameters['float_rounding'] == 'toward-zero'
+            and parameters['opposite_angle_tie'] == {'turn': 'counter-clockwise', 'within_degrees': 0}, 'unsupported v3 rule')
+
+
 def validate(trace):
     finite_json(trace)
     keys(trace, ('schema', 'version', 'scenario', 'identity', 'units', 'time', 'records', 'completion', 'provenance'))
@@ -180,30 +224,16 @@ def validate(trace):
         require(HASH.fullmatch(build['source_sha256']), 'invalid C++ source digest')
         require(ident['source'] == {'sha256': build['source_sha256']} and ident['environment'] is None, 'C++ source/environment mismatch')
         require(ident['model'] == {'name': build['model'], 'parameters': build['parameters']}, 'C++ model identity mismatch')
-        require(build['model'] in ('footman-v1', 'footman-v2'), 'unsupported model')
+        require(build['model'] in ('footman-v1', 'footman-v2', 'footman-v3'), 'unsupported model')
         for key in ('compiler', 'build_type', 'architecture', 'fp_contract', 'rng'):
             require(isinstance(build[key], str) and build[key], f'invalid C++ {key}')
         require(build['git_commit'] is None or (isinstance(build['git_commit'], str) and re.fullmatch(r'[a-f0-9]{40}', build['git_commit'])), 'invalid revision')
         require(build['git_dirty_at_configure'] is None or type(build['git_dirty_at_configure']) is bool, 'invalid git dirty state')
         parameters = build['parameters']
-        keys(parameters, ('position_period_steps', 'facing_period_steps', 'facing_phase_steps', 'move_delay_steps', 'stop_radius', 'default_speed', 'speed_clamp', 'movement_angle_limit_degrees', 'turn_ramp_radians', 'opposite_angle_tie'))
-        for key in ('position_period_steps', 'facing_period_steps'):
-            integer(parameters[key], 1, 10000)
-        for key in ('facing_phase_steps', 'move_delay_steps'):
-            integer(parameters[key], 0, 10000)
-        for key in ('stop_radius', 'default_speed'):
-            require(type(parameters[key]) in (int, float) and parameters[key] >= 0, 'invalid model parameter')
-        require(parameters['movement_angle_limit_degrees'] == 'unlimited' or
-                (type(parameters['movement_angle_limit_degrees']) in (int, float) and 0 <= parameters['movement_angle_limit_degrees'] <= 180), 'invalid angle limit')
-        for key, size in (('speed_clamp', 2), ('turn_ramp_radians', 3)):
-            require(isinstance(parameters[key], list) and len(parameters[key]) == size
-                    and all((type(v) in (int, float) and v >= 0) or
-                            (key == 'turn_ramp_radians' and v == 'unlimited')
-                            for v in parameters[key]), 'invalid parameter array')
-        keys(parameters['opposite_angle_tie'], ('turn', 'within_degrees'))
-        require(parameters['opposite_angle_tie']['turn'] == 'clockwise' and
-                type(parameters['opposite_angle_tie']['within_degrees']) in (int, float) and
-                0 <= parameters['opposite_angle_tie']['within_degrees'] <= 180, 'invalid angle tie')
+        if build['model'] == 'footman-v3':
+            validate_v3_parameters(parameters)
+        else:
+            validate_cadence_parameters(parameters)
         require(isinstance(build['cases'], list) and len(build['cases']) == 10, 'invalid build case table')
         for n, case in enumerate(build['cases'], 1):
             _, cb_count, _, unit_count = shape('MOV-0002-r2' if n == 2 else f'MOV-{n:04d}')

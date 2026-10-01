@@ -1,0 +1,12 @@
+{
+  "classification": "RNG-DETERMINISTIC-WITH-SEED",
+  "runs": 2,
+  "seed": 1,
+  "scope": "two separate processes per model/phase; same native binary; all JSON/CSV/identity bytes equal; movement RNG unused",
+  "suites": [
+    "v2",
+    "v3",
+    "v3-before"
+  ],
+  "retail_rng_equivalence": "UNKNOWN"
+}

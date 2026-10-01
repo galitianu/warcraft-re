@@ -14,7 +14,9 @@ Every JSON document has `schema: "wc3-trace"`, integer `version: 1`, `scenario`,
   `seed` status/value/retail equivalence, and `model` (null for WC3). WC3 sources
   bind map, library and case paths/hashes; environment binds its recorded JSON.
   C++ source/build/model parameters describe the binary actually used. It has no
-  WC3 map dependency. WC3 seed is unset/unobserved; C++ seed is not a retail seed.
+  WC3 map dependency. Parameter keys are model-specific: footman-v1/v2 declare
+  their cadence/turn-ramp parameters, footman-v3 its update/exposure periods, turn
+  rate, propulsion window, facing law, frame origin and rounding (issue #6). WC3 seed is unset/unobserved; C++ seed is not a retail seed.
 - `units`: creation/watch order, names, observed type, speed and default speed.
   Speed strings retain emitted precision. World positions use world units and
   facing uses degrees; orders are unsigned integer strings.

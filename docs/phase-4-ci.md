@@ -167,8 +167,9 @@ Local native ARM AppleClang Release and Debug: CTest 2/2, Python 50/50, 45 runs,
 15 fixtures, v4 10/10, v1/v2/v3 and v2-before 1/10, with no protected regression.
 Release/Debug observation payloads match for all five suites. Release archival
 migration reproduces the 60 Phase 2 CSVs and 30 historical state reports.
-Hosted evidence is retained below; a real main-push execution remains
-unverified until this PR is merged. No release tag is part of this work.
+PR and real main-push evidence are retained below; both workflow triggers
+have executed successfully on the five measured configurations. No release tag
+is part of this work.
 
 ### First hosted execution and reviewed Linux baseline
 
@@ -259,8 +260,35 @@ five measured configurations; v1/v2/v2-before have exactly two MOV-0007 payloads
 have five variants per case because build identities differ. No broader byte,
 JASS, RNG or untested compiler/host claim follows.
 
-**Exact next action:** review/merge [PR #11](https://github.com/galitianu/warcraft-re/pull/11),
-then retain the first real main-push workflow run. The main trigger is configured;
-its actual execution is **UNVERIFIED until merge**. This PR does not merge itself,
-create a release tag, or make a new retail capture. After that handoff, design the
-sampler/update-order experiment named in the [v4 results](footman-v4-results.md#sampling-order).
+### Main-push verification and completed handoff
+
+[PR #11](https://github.com/galitianu/warcraft-re/pull/11) merged as
+`bdaa9ac55c7f425f0b10c67f3c12161879f69988` on 1 October 2026.
+[Main run 36861964114](https://github.com/galitianu/warcraft-re/actions/runs/36861964114)
+is a real **push** workflow on that merge commit. All five configurations and the
+aggregate job pass. [Permanent JSON evidence](../results/phase-4/main-verification.json)
+and [summary](../results/phase-4/main-verification.md) bind the run to its actual
+source/build/model/compiler/host/seed identities. Every configuration records
+`git_dirty_at_configure=false` and the exact merge SHA; runner metadata records
+`GITHUB_EVENT_NAME=push` and the same SHA.
+
+Downloaded artifacts were rechecked locally using the committed standard-library
+tools. All observation/full file hashes reproduce; all **25 canonical suite
+comparisons and regression assessments** recomputed from the downloaded traces
+match the published reports. Fixture-validation reports confirm **45** runs,
+**15** fixtures and no byte differences; logs and recorded exits confirm CTest
+**2/2** and Python **50/50** per configuration. v4 remains **10/10**, historical
+suites **1/10**, with zero protected-metric changes under the reviewed baselines.
+Native ARM Release also passes the separate archival migration gate. Earlier
+PR failures and their explanations remain independent evidence.
+
+Both the CI/regression capability gate in issue #8 and the first moving primitive
+requirement promoted from issue #6 are demonstrated under this scope. Phase 4's
+handoff is complete. Canonical JASS/CLOCKS properties remain UNOBSERVED; the state
+probe's named sampling-order exceptions and untested host/compiler/RNG scope
+remain the previously documented limits. No tolerance, fixture or raw capture
+changed, and no release tag or fresh retail capture was created.
+
+**Exact next action:** design the sampler/update-order experiment named in the
+[v4 results](footman-v4-results.md#sampling-order), using the documented capture
+workflow before authoring or running a new map.

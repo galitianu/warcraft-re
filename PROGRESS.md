@@ -2,7 +2,7 @@
 
 As of 1 October 2026.
 
-**Current stage:** Phase 4 PR compatibility CI verified; first main-push run awaits merge.
+**Current stage:** Phase 4 complete — PR and main-push compatibility CI verified.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
 8 MOV-0012 maps × 3 fresh-process captures, all payload-identical within each map.
 **C++ compatibility:** footman-v4 passes MOV-0001–MOV-0010 under the fixed tolerances.
@@ -145,8 +145,12 @@ clocks/timers identical; X/Y differ at five early callbacks in each 1 ms run, an
 **Phase 4 CI** ([issue #8](https://github.com/galitianu/warcraft-re/issues/8),
 [PR #11](https://github.com/galitianu/warcraft-re/pull/11)):
 [entry point, policy and reproduction](docs/phase-4-ci.md),
-[successful hosted run](https://github.com/galitianu/warcraft-re/actions/runs/36860045397),
-[retained build-scope evidence](results/phase-4/hosted-verification.json).
+[PR verification](https://github.com/galitianu/warcraft-re/actions/runs/36860946737),
+[main-push verification](https://github.com/galitianu/warcraft-re/actions/runs/36861964114),
+[retained main evidence](results/phase-4/main-verification.json).
+PR #11 merged as `bdaa9ac`; the real push workflow passes all five configurations
+and the aggregate job. Downloaded artifact hashes and all 25 comparisons/regression
+assessments reproduce locally, with clean build identities bound to the merge commit.
 All five configurations pass: ARM macOS AppleClang Release/Debug, Linux x64 GCC
 Release/Clang Debug, Windows x64 MSVC Release. Each passes CTest 2/2, Python 50/50,
 45 raw runs, 15 exact fixtures, full comparisons and two separate process runs per
@@ -163,11 +167,9 @@ unchanged; canonical JASS/CLOCKS properties remain UNOBSERVED. Issue #6's moveme
 result is promoted to the primary required pass, while that GitHub issue remains
 open. No release tag or fresh retail capture is included.
 
-## Next task: retain the first main-push CI run
+## Next task: design the sampler/update-order capture
 
-Review/merge PR #11 and link the first real main-push workflow and its artifacts.
-The trigger is configured, but its execution is unverified until merge. Then
-design the capture that separates sampler/update ordering
+Design the capture that separates sampler/update ordering
 ([v4 limitation](docs/footman-v4-results.md#sampling-order)) using the
 [documented workflow](docs/agent-wc3-workflow.md). Do not confuse the CI handoff
 with a new gameplay observation or begin a scenario framework prematurely.
@@ -180,7 +182,7 @@ with a new gameplay observation or begin a scenario framework prematurely.
 | 1 | Small manual map library with shared JASS instrumentation and parseable traces | Complete — [results](docs/phase-1-results.md) |
 | 2 | Native C++ headless equivalent and ten numerically comparable traces | Complete — [results](docs/phase-2-results.md); nine movement failures retained |
 | 3 | Canonical normalized traces and stable comparison contract | Complete — [results](docs/phase-3-results.md); all 45 retained runs validated |
-| 4 | C++ compatibility CI against committed WC3 references | Five PR configurations verified; first main-push run pending merge |
+| 4 | C++ compatibility CI against committed WC3 references | Complete — five configurations pass on PR and main push; [evidence](results/phase-4/main-verification.json) |
 | 5 | Declarative scenarios extracted from repeated manual tests | Planned |
 | 6 | One scenario drives C++ and generates a runnable WC3 map | Planned |
 | 7 | Reliable unattended VM capture, when manual work becomes costly | Planned |

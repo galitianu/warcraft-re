@@ -167,8 +167,8 @@ Local native ARM AppleClang Release and Debug: CTest 2/2, Python 50/50, 45 runs,
 15 fixtures, v4 10/10, v1/v2/v3 and v2-before 1/10, with no protected regression.
 Release/Debug observation payloads match for all five suites. Release archival
 migration reproduces the 60 Phase 2 CSVs and 30 historical state reports.
-Actual hosted-run evidence will be recorded after the PR workflow executes;
-main-push evidence requires merging the PR. No release tag is part of this work.
+Hosted evidence is retained below; a real main-push execution remains
+unverified until this PR is merged. No release tag is part of this work.
 
 ### First hosted execution and reviewed Linux baseline
 
@@ -228,3 +228,39 @@ Runtime `math_scope` results: ARM AppleClang `atan2_bits=40490fda`,
 `degrees_per_radian_bits=42652ee0`. This directly measures the float libm boundary
 responsible for the retained historical west-facing difference; it establishes
 no new retail compatibility claim.
+
+
+### Successful hosted verification
+
+[PR run 36860045397](https://github.com/galitianu/warcraft-re/actions/runs/36860045397)
+passes **all five configurations and the aggregate job**. Permanent
+[JSON evidence](../results/phase-4/hosted-verification.json) and
+[scope summary](../results/phase-4/hosted-verification.md) retain actual host/target,
+compiler versions, build/source/model/seed identities, observation/full trace
+hashes, compatibility counts and workflow identity. Complete per-property reports,
+traces, logs, fixture validation and state sensitivity remain in the run artifacts
+(30-day retention). Earlier failures remain committed independently.
+
+| Verified configuration | Compiler | Result |
+|---|---|---|
+| macOS ARM64 Release / Debug | AppleClang 17.0.0.17000013 | Both PASS |
+| Linux x64 Release | GCC 13.3.0 | PASS |
+| Linux x64 Debug | Clang 18.1.3 | PASS |
+| Windows Server 2022 x64 Release | MSVC 19.44.35229.0 | PASS |
+
+Every configuration passes CTest **2/2**, Python **50/50**, all **45** retained
+Phase 1 runs, all **15** byte-reproduced fixtures plus the index, two fresh
+processes per suite, and full ten-case comparison. v4 is **10/10 PASS** with
+exact six-decimal text. Historical suites are **1/10**, with no regression under
+the named native/x64 baselines. Native ARM Release also passes the separate
+archival migration gates. v3/v4 observation payloads are identical across all
+five measured configurations; v1/v2/v2-before have exactly two MOV-0007 payloads
+(the explained libm difference) and one for every other case. Full trace hashes
+have five variants per case because build identities differ. No broader byte,
+JASS, RNG or untested compiler/host claim follows.
+
+**Exact next action:** review/merge [PR #11](https://github.com/galitianu/warcraft-re/pull/11),
+then retain the first real main-push workflow run. The main trigger is configured;
+its actual execution is **UNVERIFIED until merge**. This PR does not merge itself,
+create a release tag, or make a new retail capture. After that handoff, design the
+sampler/update-order experiment named in the [v4 results](footman-v4-results.md#sampling-order).

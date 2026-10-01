@@ -54,7 +54,8 @@ def summarize(artifacts, out):
         full_variants = {case: len({c['full_trace_sha256'][f'{case}.json'] for c in configs.values()}) for case in CASES}
         report['models'][model] = dict(configurations_compared=list(configs),
                     observation_payload_variants=variants, full_trace_variants=full_variants,
-                    observation_byte_equality='IDENTICAL' if configs and all(v == 1 for v in variants.values()) else 'DIFFERENT-OR-UNVERIFIED',
+                    observation_byte_equality=('UNVERIFIED' if len(configs) < 2 else
+                                              'IDENTICAL' if all(v == 1 for v in variants.values()) else 'DIFFERENT'),
                     compatibility_passes={k: v['compatibility_passes'] for k, v in configs.items()})
     report['status'] = 'PASS' if not report['errors'] and len(report['configurations']) == len(CONFIGURATIONS) else 'FAIL'
     write_json(out / 'scope.json', report)

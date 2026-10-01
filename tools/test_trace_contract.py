@@ -265,4 +265,33 @@ class CanonicalComparisonTests(unittest.TestCase):
             self.assertEqual(subprocess.run(cli, capture_output=True).returncode, 2)
 
 
+class FootmanV3ContractTests(unittest.TestCase):
+    """footman-v3 emits the same contract; its parameters are validated separately."""
+    @classmethod
+    def setUpClass(cls):
+        cls.temp = tempfile.TemporaryDirectory()
+        cls.out = Path(cls.temp.name)
+        cls.addClassCleanup(cls.temp.cleanup)
+        subprocess.run([str(ROOT / 'build/wc3test'), '--out', str(cls.out), '--model', 'v3'], check=True, stdout=subprocess.DEVNULL)
+
+    def test_v3_traces_validate_and_keep_honest_verdicts(self):
+        for n in range(1, 11):
+            label = 'MOV-0002-r2' if n == 2 else f'MOV-{n:04d}'
+            report = compare(load(FIXTURES / f'{label}.json'), validate(load(self.out / f'MOV-{n:04d}.json')))
+            self.assertEqual(report['status'], 'PASS' if n == 1 else 'FAIL')
+        first = compare(load(FIXTURES / 'MOV-0002-r2.json'), load(self.out / 'MOV-0002.json'))['state_first_divergence']
+        self.assertEqual((first['callback'], first['property']), (1, 'y'))
+
+    def test_v3_parameter_rules_cannot_be_redefined(self):
+        trace = load(self.out / 'MOV-0001.json')
+        for mutation in (lambda p: p.update(float_rounding='nearest'),
+                         lambda p: p.update(exposure_period_steps=7),
+                         lambda p: p.pop('turn_rate_radians'),
+                         lambda p: p.update(position_period_steps=5)):
+            bad = copy.deepcopy(trace)
+            mutation(bad['identity']['build']['parameters'])
+            bad['identity']['model']['parameters'] = bad['identity']['build']['parameters']
+            with self.assertRaises(ValueError): validate(bad)
+
+
 if __name__ == '__main__': unittest.main()

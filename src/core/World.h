@@ -9,7 +9,24 @@ inline constexpr std::uint32_t order_none = 0;
 inline constexpr std::uint32_t order_move = 851986;
 inline constexpr std::uint32_t order_stop = 851972;
 struct Vec2 { float x = 0; float y = 0; };
-enum class ModelVersion { v1, v2 };
+enum class ModelVersion { v1, v2, v3 };
+// footman-v3 only: hidden movement heading, globally phased logical updates and
+// round-toward-zero float32 state. Hypotheses: docs/footman-v3-model.md.
+struct HeadingModel {
+    bool enabled = false;
+    std::uint32_t update_period_steps = 30;
+    std::uint32_t update_phase_steps = 10;
+    // Reported position moves toward the update's result in equal exposures.
+    std::uint32_t exposure_period_steps = 5;
+    float turn_rate_radians = 0.6f;
+    // Movement waits while the pre-turn heading error exceeds this window.
+    float propulsion_window_degrees = 60.0f;
+    float facing_acceleration_radians = 0.07f;
+    float facing_max_velocity_radians = 0.2f;
+    float facing_snap_radians = 0.001f;
+    // Positions are stored relative to the map's minimum corner (64x64 oracle map).
+    float frame_origin = -4096.0f;
+};
 // Every behavioral difference between versions is one of these parameters.
 struct Model {
     const char* name;
@@ -28,6 +45,7 @@ struct Model {
     float turn_ramp_radians[3] = {0.07f, 0.14f, 0.2f};
     // Directions within this of exactly opposite take the clockwise tie (-180).
     float opposite_tie_degrees = 0.0001f;
+    HeadingModel heading;
 };
 Model model(ModelVersion version);
 
@@ -47,6 +65,14 @@ private:
     std::uint32_t order_ = order_none;
     std::uint64_t command_step_ = 0;
     std::uint32_t turn_updates_ = 0;
+    // footman-v3: float32 radians in [0, 2pi); velocity is signed radians per update.
+    float facing_radians_ = 0;
+    float heading_radians_ = 0;
+    float facing_velocity_ = 0;
+    bool batch_active_ = false;
+    std::uint64_t batch_step_ = 0;
+    Vec2 batch_start_;
+    Vec2 batch_end_;
 };
 
 // Simulation owns state and seeded randomness. No clock, file or renderer APIs.
@@ -64,6 +90,7 @@ public:
     const Model& parameters() const { return model_; }
     Random& random() { return random_; }
 private:
+    void step_heading();
     Model model_;
     Random random_;
     std::vector<Unit> units_;

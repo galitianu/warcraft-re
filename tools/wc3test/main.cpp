@@ -37,15 +37,16 @@ int main(int argc, char** argv) {
         for (int i = 1; i < argc; ++i) {
             const std::string option = argv[i];
             if (option == "--help") {
-                std::cout << "wc3test --out DIR [--model v1|v2] [--seed UINT32] "
+                std::cout << "wc3test --out DIR [--model v1|v2|v3] [--seed UINT32] "
                              "[--phase after|before]\n";
                 return 0;
             }
             if (i + 1 == argc) throw std::invalid_argument("missing option value");
             const std::string value = argv[++i];
             if (option == "--out") output = value;
-            else if (option == "--model" && (value == "v1" || value == "v2"))
-                version = value == "v1" ? wc3::ModelVersion::v1 : wc3::ModelVersion::v2;
+            else if (option == "--model" && (value == "v1" || value == "v2" || value == "v3"))
+                version = value == "v1" ? wc3::ModelVersion::v1
+                        : value == "v2" ? wc3::ModelVersion::v2 : wc3::ModelVersion::v3;
             else if (option == "--phase" && (value == "after" || value == "before"))
                 before = value == "before";
             else if (option == "--seed") {
@@ -77,19 +78,39 @@ int main(int argc, char** argv) {
         std::ostringstream parameters;
         parameters.imbue(std::locale::classic());
         parameters << std::setprecision(std::numeric_limits<float>::max_digits10);
-        parameters << "{\n"
-            << "    \"position_period_steps\": " << p.position_period_steps << ",\n"
-            << "    \"facing_period_steps\": " << p.facing_period_steps << ",\n"
-            << "    \"facing_phase_steps\": " << p.facing_phase_steps << ",\n"
-            << "    \"move_delay_steps\": " << p.move_delay_steps << ",\n"
-            << "    \"stop_radius\": " << p.stop_radius << ",\n"
-            << "    \"default_speed\": " << json_number(p.default_speed) << ", \"speed_clamp\": ["
-            << json_number(p.min_speed) << ", " << json_number(p.max_speed) << "],\n"
-            << "    \"movement_angle_limit_degrees\": " << json_number(p.movement_angle_limit) << ",\n"
-            << "    \"turn_ramp_radians\": [" << json_number(p.turn_ramp_radians[0]) << ", "
-            << json_number(p.turn_ramp_radians[1]) << ", " << json_number(p.turn_ramp_radians[2]) << "],\n"
-            << "    \"opposite_angle_tie\": {\"turn\": \"clockwise\", \"within_degrees\": "
-            << json_number(p.opposite_tie_degrees) << "}\n  }";
+        if (p.heading.enabled) {
+            const auto& h = p.heading;
+            parameters << "{\n"
+                << "    \"update_period_steps\": " << h.update_period_steps << ",\n"
+                << "    \"update_phase_steps\": " << h.update_phase_steps << ",\n"
+                << "    \"exposure_period_steps\": " << h.exposure_period_steps << ",\n"
+                << "    \"stop_radius\": " << p.stop_radius << ",\n"
+                << "    \"default_speed\": " << json_number(p.default_speed) << ", \"speed_clamp\": ["
+                << json_number(p.min_speed) << ", " << json_number(p.max_speed) << "],\n"
+                << "    \"turn_rate_radians\": " << json_number(h.turn_rate_radians) << ",\n"
+                << "    \"propulsion_window_degrees\": " << json_number(h.propulsion_window_degrees) << ",\n"
+                << "    \"facing_acceleration_radians\": " << json_number(h.facing_acceleration_radians) << ",\n"
+                << "    \"facing_max_velocity_radians\": " << json_number(h.facing_max_velocity_radians) << ",\n"
+                << "    \"facing_snap_radians\": " << json_number(h.facing_snap_radians) << ",\n"
+                << "    \"facing_braking\": \"error * (error / max_velocity)^0.25\",\n"
+                << "    \"frame_origin\": " << json_number(h.frame_origin) << ",\n"
+                << "    \"float_rounding\": \"toward-zero\",\n"
+                << "    \"opposite_angle_tie\": {\"turn\": \"counter-clockwise\", \"within_degrees\": 0}\n  }";
+        } else {
+            parameters << "{\n"
+                << "    \"position_period_steps\": " << p.position_period_steps << ",\n"
+                << "    \"facing_period_steps\": " << p.facing_period_steps << ",\n"
+                << "    \"facing_phase_steps\": " << p.facing_phase_steps << ",\n"
+                << "    \"move_delay_steps\": " << p.move_delay_steps << ",\n"
+                << "    \"stop_radius\": " << p.stop_radius << ",\n"
+                << "    \"default_speed\": " << json_number(p.default_speed) << ", \"speed_clamp\": ["
+                << json_number(p.min_speed) << ", " << json_number(p.max_speed) << "],\n"
+                << "    \"movement_angle_limit_degrees\": " << json_number(p.movement_angle_limit) << ",\n"
+                << "    \"turn_ramp_radians\": [" << json_number(p.turn_ramp_radians[0]) << ", "
+                << json_number(p.turn_ramp_radians[1]) << ", " << json_number(p.turn_ramp_radians[2]) << "],\n"
+                << "    \"opposite_angle_tie\": {\"turn\": \"clockwise\", \"within_degrees\": "
+                << json_number(p.opposite_tie_degrees) << "}\n  }";
+        }
         identity << parameters.str() << ",\n  \"cases\": [\n";
         std::vector<movement::Trace> traces;
         for (int number = 1; number <= 10; ++number) {

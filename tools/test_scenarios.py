@@ -123,7 +123,7 @@ class ScenarioRunnerTests(unittest.TestCase):
     def test_a_description_cannot_redefine_a_retained_shape(self):
         with tempfile.TemporaryDirectory() as temp:
             path = Path(temp) / 'MOV-0006.yaml'
-            path.write_text((SCENARIOS / 'MOV-0006.yaml').read_text().replace('callbacks: 250', 'callbacks: 300'))
+            path.write_text((SCENARIOS / 'MOV-0006.yaml').read_text().replace('callbacks: 250', 'callbacks: 300'), newline='\n')
             out = Path(temp) / 'out'
             self.assertEqual(runner('--model', 'v4', '--scenario', path, '--out', out).returncode, 0)
             with self.assertRaisesRegex(ValueError, 'build case table cannot redefine|scenario identity/shape'):

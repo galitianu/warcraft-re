@@ -1,0 +1,1513 @@
+{
+  "run": "https://github.com/galitianu/warcraft-re/actions/runs/36859644989",
+  "event": "pull_request",
+  "result": {
+    "status": "FAIL",
+    "host": {
+      "system": "Windows",
+      "release": "2022Server",
+      "architecture": "x86_64",
+      "python": "3.12.10"
+    },
+    "models": {
+      "v1": {
+        "compatibility_passes": 1,
+        "regression_verdict": "FAIL",
+        "improvements": 0
+      },
+      "v2": {
+        "compatibility_passes": 1,
+        "regression_verdict": "FAIL",
+        "improvements": 0
+      },
+      "v2-before": {
+        "compatibility_passes": 1,
+        "regression_verdict": "FAIL",
+        "improvements": 0
+      },
+      "v3": {
+        "compatibility_passes": 1,
+        "regression_verdict": "PASS",
+        "improvements": 0
+      },
+      "v4": {
+        "compatibility_passes": 10,
+        "regression_verdict": "PASS",
+        "improvements": 0
+      }
+    },
+    "errors": {
+      "v1": "3 protected metrics regressed; see D:\\a\\warcraft-re\\warcraft-re\\build-ci\\ci\\reports\\v1\\regression.md",
+      "v2": "1 protected metrics regressed; see D:\\a\\warcraft-re\\warcraft-re\\build-ci\\ci\\reports\\v2\\regression.md",
+      "v2-before": "1 protected metrics regressed; see D:\\a\\warcraft-re\\warcraft-re\\build-ci\\ci\\reports\\v2-before\\regression.md"
+    },
+    "original_wc3_required": false
+  },
+  "environment": {
+    "host": {
+      "system": "Windows",
+      "release": "2022Server",
+      "architecture": "x86_64",
+      "python": "3.12.10"
+    },
+    "requested_compiler": "cl",
+    "build_type": "Release",
+    "expected_architecture": "x86_64",
+    "seed": 1,
+    "github": {
+      "GITHUB_RUN_ID": "36859644989",
+      "GITHUB_RUN_ATTEMPT": "1",
+      "GITHUB_SHA": "36dacb1491e64a7a62491da5c5f421f1f652c720",
+      "GITHUB_EVENT_NAME": "pull_request",
+      "RUNNER_OS": "Windows",
+      "RUNNER_ARCH": "X64",
+      "ImageOS": "win22",
+      "ImageVersion": "20260927.320.1"
+    }
+  },
+  "math_scope": {
+    "scope": "runtime std::atan2(float(+0), float(-1)); historical v1/v2 heading",
+    "atan2_bits": "40490fdb",
+    "degrees_per_radian_bits": "42652ee0",
+    "heading_bits": "43340000",
+    "heading_degrees": 180
+  },
+  "approved_baseline": "x64-libm for v1/v2/v2-before; Windows observation payloads match Linux for all cases/models",
+  "models": {
+    "v1": {
+      "identity": {
+        "git_commit": "36dacb1491e64a7a62491da5c5f421f1f652c720",
+        "git_dirty_at_configure": false,
+        "source_sha256": "b2af2408547bbee1a703b34651fe5a39f7e6170045ce5020870ce00946377249",
+        "compiler": "MSVC 19.44.35229.0",
+        "build_type": "Release",
+        "architecture": "x86_64",
+        "fp_contract": "off",
+        "model": "footman-v1",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "position_period_steps": 1,
+          "facing_period_steps": 1,
+          "facing_phase_steps": 1,
+          "move_delay_steps": 0,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "movement_angle_limit_degrees": 180,
+          "turn_ramp_radians": [
+            "unlimited",
+            "unlimited",
+            "unlimited"
+          ],
+          "opposite_angle_tie": {
+            "turn": "clockwise",
+            "within_degrees": 9.99999975e-05
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ]
+      },
+      "comparison_sha256": "d1fe8062014c7a1c70ae899331c531c0c729d86e207ab3355866f3d41a18e608",
+      "repeatability": {
+        "classification": "RNG-DETERMINISTIC-WITH-SEED",
+        "runs": 2,
+        "seed": 1,
+        "scope": "same binary/model/phase in two fresh processes; movement does not draw RNG",
+        "retail_rng_equivalence": "UNKNOWN",
+        "observation_payload_sha256": {
+          "MOV-0001.json": [
+            "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64"
+          ],
+          "MOV-0002.json": [
+            "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877",
+            "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877"
+          ],
+          "MOV-0003.json": [
+            "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3",
+            "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3"
+          ],
+          "MOV-0004.json": [
+            "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41",
+            "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41"
+          ],
+          "MOV-0005.json": [
+            "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20",
+            "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20"
+          ],
+          "MOV-0006.json": [
+            "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849",
+            "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849"
+          ],
+          "MOV-0007.json": [
+            "df19f069ab5ebf09e3a56a687dbfc837d526bf824941dd4b954e447977480e53",
+            "df19f069ab5ebf09e3a56a687dbfc837d526bf824941dd4b954e447977480e53"
+          ],
+          "MOV-0008.json": [
+            "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab",
+            "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab"
+          ],
+          "MOV-0009.json": [
+            "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7",
+            "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7"
+          ],
+          "MOV-0010.json": [
+            "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6",
+            "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6"
+          ]
+        },
+        "full_file_sha256": {
+          "MOV-0001-actions.csv": [
+            "58eca40fa2aa69e44dfdc96466e843a5fe392d95c8f1c5c7b558fd114df807b2",
+            "58eca40fa2aa69e44dfdc96466e843a5fe392d95c8f1c5c7b558fd114df807b2"
+          ],
+          "MOV-0001.csv": [
+            "c6b8a1899577aec75ef72e554f8816f6adc7e50b91167cedf16accd856528a97",
+            "c6b8a1899577aec75ef72e554f8816f6adc7e50b91167cedf16accd856528a97"
+          ],
+          "MOV-0001.json": [
+            "1ebd4ebe0d1fb19614d9c0d0889e9d3b7f94551e50092f37a61eae5f6f004dfa",
+            "1ebd4ebe0d1fb19614d9c0d0889e9d3b7f94551e50092f37a61eae5f6f004dfa"
+          ],
+          "MOV-0002-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0002.csv": [
+            "1cb941010ba7b0c41e792e5c8b6be656a7fed1442e739a5ea24e858032dbb735",
+            "1cb941010ba7b0c41e792e5c8b6be656a7fed1442e739a5ea24e858032dbb735"
+          ],
+          "MOV-0002.json": [
+            "d6ea36eb97b5ded7a2decc7b3ff9f5d2c72cd2dd5eaaa795d2cc8133cb066e7d",
+            "d6ea36eb97b5ded7a2decc7b3ff9f5d2c72cd2dd5eaaa795d2cc8133cb066e7d"
+          ],
+          "MOV-0003-actions.csv": [
+            "32e2f6d358b289ec553675e7ace9302c9bb75e41107371e8ad29e9731624099c",
+            "32e2f6d358b289ec553675e7ace9302c9bb75e41107371e8ad29e9731624099c"
+          ],
+          "MOV-0003.csv": [
+            "69704607393a6d2df6af30efd067603146a20b8f2d9d90e45358c744cf5bd5d0",
+            "69704607393a6d2df6af30efd067603146a20b8f2d9d90e45358c744cf5bd5d0"
+          ],
+          "MOV-0003.json": [
+            "604ef53f1842ea81a8b03b8ecd6980206aa73d0d0af7c249eda1df27957f5828",
+            "604ef53f1842ea81a8b03b8ecd6980206aa73d0d0af7c249eda1df27957f5828"
+          ],
+          "MOV-0004-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0004.csv": [
+            "078f88b4319974d3ea7ae577050ddfba48f0fee97cc9920430181ddccad2e51c",
+            "078f88b4319974d3ea7ae577050ddfba48f0fee97cc9920430181ddccad2e51c"
+          ],
+          "MOV-0004.json": [
+            "3e86f2e6d46257622f8dd1b19757df800689d395c53690365462f3bcee9b2d20",
+            "3e86f2e6d46257622f8dd1b19757df800689d395c53690365462f3bcee9b2d20"
+          ],
+          "MOV-0005-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0005.csv": [
+            "e2100bf83b77358208a02b9b9889fbb5b9a43e46e6b19610e031f7c91ce30975",
+            "e2100bf83b77358208a02b9b9889fbb5b9a43e46e6b19610e031f7c91ce30975"
+          ],
+          "MOV-0005.json": [
+            "6dbd57d34a6f0a3356eade71f417fdfb6612cd798cb56f34d01bb49cd2891809",
+            "6dbd57d34a6f0a3356eade71f417fdfb6612cd798cb56f34d01bb49cd2891809"
+          ],
+          "MOV-0006-actions.csv": [
+            "0a58957931f507deccb400466c1755a19770c8af3b12aea680b5e331437a7bde",
+            "0a58957931f507deccb400466c1755a19770c8af3b12aea680b5e331437a7bde"
+          ],
+          "MOV-0006.csv": [
+            "45b02bab537e63bd2bac4d2fbbe698caf31c16f1e2598e8f580a61dc035b804a",
+            "45b02bab537e63bd2bac4d2fbbe698caf31c16f1e2598e8f580a61dc035b804a"
+          ],
+          "MOV-0006.json": [
+            "cf84dcbf654c4ca785c400be544c902d2777a8197da2687e3d80ce7bd05cad79",
+            "cf84dcbf654c4ca785c400be544c902d2777a8197da2687e3d80ce7bd05cad79"
+          ],
+          "MOV-0007-actions.csv": [
+            "cf21c15d02c23b7a8908a7f6d531445f6729add2cb620eb9efc4fb411a9f6bb5",
+            "cf21c15d02c23b7a8908a7f6d531445f6729add2cb620eb9efc4fb411a9f6bb5"
+          ],
+          "MOV-0007.csv": [
+            "345b7597e25e6ecb24c1628f5842ad1441b2a5cfeebaa255115c2c7d42881a89",
+            "345b7597e25e6ecb24c1628f5842ad1441b2a5cfeebaa255115c2c7d42881a89"
+          ],
+          "MOV-0007.json": [
+            "409a391b78b56d2d10b89a94cce26d889e22649825c78e56bd92f9723ac4c563",
+            "409a391b78b56d2d10b89a94cce26d889e22649825c78e56bd92f9723ac4c563"
+          ],
+          "MOV-0008-actions.csv": [
+            "a7b506ec3b322576693cdd94d856fa116c8f4ee6a68f6749c9dd9cc59970bc72",
+            "a7b506ec3b322576693cdd94d856fa116c8f4ee6a68f6749c9dd9cc59970bc72"
+          ],
+          "MOV-0008.csv": [
+            "73b2dab5806c832fea0bdc5f86405934c2ead3d3eb1a65b59747a864af2f3d3b",
+            "73b2dab5806c832fea0bdc5f86405934c2ead3d3eb1a65b59747a864af2f3d3b"
+          ],
+          "MOV-0008.json": [
+            "3131d4d1186de795d8e2334d043c30bd02faa9a8402eee98394186c002960eee",
+            "3131d4d1186de795d8e2334d043c30bd02faa9a8402eee98394186c002960eee"
+          ],
+          "MOV-0009-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0009.csv": [
+            "e69bf50aa795cf40d24e0d8cc99e7618bfb9a1f41bce8527b2d77db54ae7ee38",
+            "e69bf50aa795cf40d24e0d8cc99e7618bfb9a1f41bce8527b2d77db54ae7ee38"
+          ],
+          "MOV-0009.json": [
+            "dd64980dc49ae1f236cd44079115669d20ce53a89d709ffbd4ac6c54c1215698",
+            "dd64980dc49ae1f236cd44079115669d20ce53a89d709ffbd4ac6c54c1215698"
+          ],
+          "MOV-0010-actions.csv": [
+            "a1a805207bda6ab6b788be66b70334ec41660a3f4d2771cbd516fa985dad0e36",
+            "a1a805207bda6ab6b788be66b70334ec41660a3f4d2771cbd516fa985dad0e36"
+          ],
+          "MOV-0010.csv": [
+            "e2f4915ddc17ac1ddbc15e8bebe7b79077db08f44f104ccb7c2bc4ab3b9412de",
+            "e2f4915ddc17ac1ddbc15e8bebe7b79077db08f44f104ccb7c2bc4ab3b9412de"
+          ],
+          "MOV-0010.json": [
+            "90b245277c2adcb7a6ea6828f75f1f766e902683f0c7452bb601c9ab7d50d0ad",
+            "90b245277c2adcb7a6ea6828f75f1f766e902683f0c7452bb601c9ab7d50d0ad"
+          ],
+          "identity.json": [
+            "9ac37eb16a9efb49bfc955854a952fa901c27dd5f9891f1a93d66133bb503b01",
+            "9ac37eb16a9efb49bfc955854a952fa901c27dd5f9891f1a93d66133bb503b01"
+          ]
+        }
+      },
+      "initial_regressions": [
+        {
+          "path": "MOV-0007/properties/facing",
+          "metric": "max_abs_delta",
+          "before": 179.862395,
+          "after": 179.86241,
+          "classification": "REGRESSION"
+        },
+        {
+          "path": "MOV-0007/properties/facing",
+          "metric": "max_abs_delta_by_unit/u0",
+          "before": 179.862395,
+          "after": 179.86241,
+          "classification": "REGRESSION"
+        },
+        {
+          "path": "MOV-0007/properties/facing",
+          "metric": "final_delta_by_unit/u0",
+          "before": 0.3689730000000111,
+          "after": 0.36898800000000165,
+          "classification": "REGRESSION"
+        }
+      ]
+    },
+    "v2": {
+      "identity": {
+        "git_commit": "36dacb1491e64a7a62491da5c5f421f1f652c720",
+        "git_dirty_at_configure": false,
+        "source_sha256": "b2af2408547bbee1a703b34651fe5a39f7e6170045ce5020870ce00946377249",
+        "compiler": "MSVC 19.44.35229.0",
+        "build_type": "Release",
+        "architecture": "x86_64",
+        "fp_contract": "off",
+        "model": "footman-v2",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "position_period_steps": 5,
+          "facing_period_steps": 30,
+          "facing_phase_steps": 10,
+          "move_delay_steps": 10,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "movement_angle_limit_degrees": 135,
+          "turn_ramp_radians": [
+            0.0700000003,
+            0.140000001,
+            0.200000003
+          ],
+          "opposite_angle_tie": {
+            "turn": "clockwise",
+            "within_degrees": 9.99999975e-05
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ]
+      },
+      "comparison_sha256": "9c795d31c0f5c65750d5d3300af92cc6e10e9f46a14267682d2b01d477cb3e60",
+      "repeatability": {
+        "classification": "RNG-DETERMINISTIC-WITH-SEED",
+        "runs": 2,
+        "seed": 1,
+        "scope": "same binary/model/phase in two fresh processes; movement does not draw RNG",
+        "retail_rng_equivalence": "UNKNOWN",
+        "observation_payload_sha256": {
+          "MOV-0001.json": [
+            "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64"
+          ],
+          "MOV-0002.json": [
+            "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d",
+            "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d"
+          ],
+          "MOV-0003.json": [
+            "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63",
+            "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63"
+          ],
+          "MOV-0004.json": [
+            "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671",
+            "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671"
+          ],
+          "MOV-0005.json": [
+            "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0",
+            "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0"
+          ],
+          "MOV-0006.json": [
+            "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543",
+            "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543"
+          ],
+          "MOV-0007.json": [
+            "3eeb2289e5eec5b6d4408caac91cc106ab7ffc475d4589229f64ca85184bd70d",
+            "3eeb2289e5eec5b6d4408caac91cc106ab7ffc475d4589229f64ca85184bd70d"
+          ],
+          "MOV-0008.json": [
+            "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f",
+            "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f"
+          ],
+          "MOV-0009.json": [
+            "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c",
+            "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c"
+          ],
+          "MOV-0010.json": [
+            "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f",
+            "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f"
+          ]
+        },
+        "full_file_sha256": {
+          "MOV-0001-actions.csv": [
+            "58eca40fa2aa69e44dfdc96466e843a5fe392d95c8f1c5c7b558fd114df807b2",
+            "58eca40fa2aa69e44dfdc96466e843a5fe392d95c8f1c5c7b558fd114df807b2"
+          ],
+          "MOV-0001.csv": [
+            "c6b8a1899577aec75ef72e554f8816f6adc7e50b91167cedf16accd856528a97",
+            "c6b8a1899577aec75ef72e554f8816f6adc7e50b91167cedf16accd856528a97"
+          ],
+          "MOV-0001.json": [
+            "c70e16bdcee47e9de81de94d4830b7113babf9a3dd918c92e37abbfe05e3d1a7",
+            "c70e16bdcee47e9de81de94d4830b7113babf9a3dd918c92e37abbfe05e3d1a7"
+          ],
+          "MOV-0002-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0002.csv": [
+            "27b5dc11cef032b6a992b27ad74e352f5a88c72ecba52927e317d2b3ab786c88",
+            "27b5dc11cef032b6a992b27ad74e352f5a88c72ecba52927e317d2b3ab786c88"
+          ],
+          "MOV-0002.json": [
+            "842a823b366daf49213a5004ded92a736c9cf40a2b1f28a6a5b6db60f9f2b52c",
+            "842a823b366daf49213a5004ded92a736c9cf40a2b1f28a6a5b6db60f9f2b52c"
+          ],
+          "MOV-0003-actions.csv": [
+            "32e2f6d358b289ec553675e7ace9302c9bb75e41107371e8ad29e9731624099c",
+            "32e2f6d358b289ec553675e7ace9302c9bb75e41107371e8ad29e9731624099c"
+          ],
+          "MOV-0003.csv": [
+            "ec79f2f69ffaf0c7137df06bc4ce737792bd9712e874471cb2050b5d85c2cafd",
+            "ec79f2f69ffaf0c7137df06bc4ce737792bd9712e874471cb2050b5d85c2cafd"
+          ],
+          "MOV-0003.json": [
+            "922ee92a548463389fd4a70c17ef0709a6d8e1b97859f25fb09ec2f4d9b3cab4",
+            "922ee92a548463389fd4a70c17ef0709a6d8e1b97859f25fb09ec2f4d9b3cab4"
+          ],
+          "MOV-0004-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0004.csv": [
+            "e54f1288b6d9d8977069854f953519c2831316ecc8f5107c84c65fc676d7f9da",
+            "e54f1288b6d9d8977069854f953519c2831316ecc8f5107c84c65fc676d7f9da"
+          ],
+          "MOV-0004.json": [
+            "8e101ef70371ea30136fa9b38bda8b571adbad34f61351c5f6c77394263ef991",
+            "8e101ef70371ea30136fa9b38bda8b571adbad34f61351c5f6c77394263ef991"
+          ],
+          "MOV-0005-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0005.csv": [
+            "35290f047b483b39b85b9b725ace3cde6f6be327038e0e1547f0e10f03917d14",
+            "35290f047b483b39b85b9b725ace3cde6f6be327038e0e1547f0e10f03917d14"
+          ],
+          "MOV-0005.json": [
+            "cbaf9f351911f1aec0859baa25c5d6720055de896f571097bbb2b521b9f11262",
+            "cbaf9f351911f1aec0859baa25c5d6720055de896f571097bbb2b521b9f11262"
+          ],
+          "MOV-0006-actions.csv": [
+            "b885ef9aff9fd982fda7c0f9ce6cc61099a4e6107850f4c4cb58f4959731d30a",
+            "b885ef9aff9fd982fda7c0f9ce6cc61099a4e6107850f4c4cb58f4959731d30a"
+          ],
+          "MOV-0006.csv": [
+            "63957aeb4637db45dec410de83148333c640e15f208bb95dea0f9e950974dff4",
+            "63957aeb4637db45dec410de83148333c640e15f208bb95dea0f9e950974dff4"
+          ],
+          "MOV-0006.json": [
+            "4af383634d02035f69dbdfc289f8f6347b3d5ed18fdeba0d32c44bcd63c9892a",
+            "4af383634d02035f69dbdfc289f8f6347b3d5ed18fdeba0d32c44bcd63c9892a"
+          ],
+          "MOV-0007-actions.csv": [
+            "f4003f912cf8e0535d642131ea4a02a80330505723b7a77ee9aec411d51a1cce",
+            "f4003f912cf8e0535d642131ea4a02a80330505723b7a77ee9aec411d51a1cce"
+          ],
+          "MOV-0007.csv": [
+            "aa34a76665a849f0bbacebc4b32e88fce60b6385b37214889ef118c6fe53fcbf",
+            "aa34a76665a849f0bbacebc4b32e88fce60b6385b37214889ef118c6fe53fcbf"
+          ],
+          "MOV-0007.json": [
+            "e86dc51e3d3228bb0ede801df2f96137746d2de35bde5bf75e1122c8d7ce3aae",
+            "e86dc51e3d3228bb0ede801df2f96137746d2de35bde5bf75e1122c8d7ce3aae"
+          ],
+          "MOV-0008-actions.csv": [
+            "a7b506ec3b322576693cdd94d856fa116c8f4ee6a68f6749c9dd9cc59970bc72",
+            "a7b506ec3b322576693cdd94d856fa116c8f4ee6a68f6749c9dd9cc59970bc72"
+          ],
+          "MOV-0008.csv": [
+            "9eaac671f2c9616dc6694189c4925622dcb9b50581b012edfc376a78cc6fe8f1",
+            "9eaac671f2c9616dc6694189c4925622dcb9b50581b012edfc376a78cc6fe8f1"
+          ],
+          "MOV-0008.json": [
+            "ed9ffc61c4d4cee37b18c6cbd6be4a66a2c524ff11dae65aa09212fe9e314134",
+            "ed9ffc61c4d4cee37b18c6cbd6be4a66a2c524ff11dae65aa09212fe9e314134"
+          ],
+          "MOV-0009-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0009.csv": [
+            "4c1f223cc97e12383f1147729a903f2df2ee4f4c169ce05271786764ff7fb2dd",
+            "4c1f223cc97e12383f1147729a903f2df2ee4f4c169ce05271786764ff7fb2dd"
+          ],
+          "MOV-0009.json": [
+            "7451bdc2f356ac943f851676b8ecedf6f7cea7c4f5a64182b7227b9b4af49858",
+            "7451bdc2f356ac943f851676b8ecedf6f7cea7c4f5a64182b7227b9b4af49858"
+          ],
+          "MOV-0010-actions.csv": [
+            "a1a805207bda6ab6b788be66b70334ec41660a3f4d2771cbd516fa985dad0e36",
+            "a1a805207bda6ab6b788be66b70334ec41660a3f4d2771cbd516fa985dad0e36"
+          ],
+          "MOV-0010.csv": [
+            "1f789b93340d6f846357e459ab2b4bb5f5497ef49aabfd9e8d3af9c5dd4a4eec",
+            "1f789b93340d6f846357e459ab2b4bb5f5497ef49aabfd9e8d3af9c5dd4a4eec"
+          ],
+          "MOV-0010.json": [
+            "5211193791cb5f17b232add3a8662ff00e6de266d976232f6079fd1a83b41087",
+            "5211193791cb5f17b232add3a8662ff00e6de266d976232f6079fd1a83b41087"
+          ],
+          "identity.json": [
+            "605a05580bfb7bd7440da65f2c58a2e7cf597ee9aa958cad74978036556d3226",
+            "605a05580bfb7bd7440da65f2c58a2e7cf597ee9aa958cad74978036556d3226"
+          ]
+        }
+      },
+      "initial_regressions": [
+        {
+          "path": "MOV-0007/properties/facing",
+          "metric": "final_delta_by_unit/u0",
+          "before": 0.3689730000000111,
+          "after": 0.36898800000000165,
+          "classification": "REGRESSION"
+        }
+      ]
+    },
+    "v2-before": {
+      "identity": {
+        "git_commit": "36dacb1491e64a7a62491da5c5f421f1f652c720",
+        "git_dirty_at_configure": false,
+        "source_sha256": "b2af2408547bbee1a703b34651fe5a39f7e6170045ce5020870ce00946377249",
+        "compiler": "MSVC 19.44.35229.0",
+        "build_type": "Release",
+        "architecture": "x86_64",
+        "fp_contract": "off",
+        "model": "footman-v2",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "before-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 1000,
+        "parameters": {
+          "position_period_steps": 5,
+          "facing_period_steps": 30,
+          "facing_phase_steps": 10,
+          "move_delay_steps": 10,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "movement_angle_limit_degrees": 135,
+          "turn_ramp_radians": [
+            0.0700000003,
+            0.140000001,
+            0.200000003
+          ],
+          "opposite_angle_tie": {
+            "turn": "clockwise",
+            "within_degrees": 9.99999975e-05
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ]
+      },
+      "comparison_sha256": "24ad4b997cf7dc6599a53a9759850c37d97b8f471c690fad6ede66ac0e2f6e60",
+      "repeatability": {
+        "classification": "RNG-DETERMINISTIC-WITH-SEED",
+        "runs": 2,
+        "seed": 1,
+        "scope": "same binary/model/phase in two fresh processes; movement does not draw RNG",
+        "retail_rng_equivalence": "UNKNOWN",
+        "observation_payload_sha256": {
+          "MOV-0001.json": [
+            "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+            "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819"
+          ],
+          "MOV-0002.json": [
+            "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+            "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42"
+          ],
+          "MOV-0003.json": [
+            "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+            "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c"
+          ],
+          "MOV-0004.json": [
+            "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+            "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763"
+          ],
+          "MOV-0005.json": [
+            "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+            "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101"
+          ],
+          "MOV-0006.json": [
+            "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+            "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1"
+          ],
+          "MOV-0007.json": [
+            "5776dbf0abea3d5185ec0d5a1dc8f198eaf1291d9b76048a2341d735ddefafab",
+            "5776dbf0abea3d5185ec0d5a1dc8f198eaf1291d9b76048a2341d735ddefafab"
+          ],
+          "MOV-0008.json": [
+            "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+            "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e"
+          ],
+          "MOV-0009.json": [
+            "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+            "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1"
+          ],
+          "MOV-0010.json": [
+            "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e",
+            "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+          ]
+        },
+        "full_file_sha256": {
+          "MOV-0001-actions.csv": [
+            "58eca40fa2aa69e44dfdc96466e843a5fe392d95c8f1c5c7b558fd114df807b2",
+            "58eca40fa2aa69e44dfdc96466e843a5fe392d95c8f1c5c7b558fd114df807b2"
+          ],
+          "MOV-0001.csv": [
+            "c6b8a1899577aec75ef72e554f8816f6adc7e50b91167cedf16accd856528a97",
+            "c6b8a1899577aec75ef72e554f8816f6adc7e50b91167cedf16accd856528a97"
+          ],
+          "MOV-0001.json": [
+            "7e04d55d06d3066e875f4350fb63d57b5f5710168ca3dae914dd7ec1df8aee4c",
+            "7e04d55d06d3066e875f4350fb63d57b5f5710168ca3dae914dd7ec1df8aee4c"
+          ],
+          "MOV-0002-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0002.csv": [
+            "8129008b6e3f770fbdaff14be54d3f486560475be3b549b3c4b13c4eef226cc1",
+            "8129008b6e3f770fbdaff14be54d3f486560475be3b549b3c4b13c4eef226cc1"
+          ],
+          "MOV-0002.json": [
+            "9e0df4c315f7e4f6d39a1c7648ba47f9d8c43339a4dd842191e8d3a9bac62de9",
+            "9e0df4c315f7e4f6d39a1c7648ba47f9d8c43339a4dd842191e8d3a9bac62de9"
+          ],
+          "MOV-0003-actions.csv": [
+            "32e2f6d358b289ec553675e7ace9302c9bb75e41107371e8ad29e9731624099c",
+            "32e2f6d358b289ec553675e7ace9302c9bb75e41107371e8ad29e9731624099c"
+          ],
+          "MOV-0003.csv": [
+            "c1dabcf0a8c07ab00085b4bd5144b11b659afb8d9721e41faf2b281ff2ee75e6",
+            "c1dabcf0a8c07ab00085b4bd5144b11b659afb8d9721e41faf2b281ff2ee75e6"
+          ],
+          "MOV-0003.json": [
+            "74fe18a26a29e2d96691f6acb72c0e20aa62ca0f2b9b97bb3dbef3ac204f17ed",
+            "74fe18a26a29e2d96691f6acb72c0e20aa62ca0f2b9b97bb3dbef3ac204f17ed"
+          ],
+          "MOV-0004-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0004.csv": [
+            "9b79de066d92c5343dd7262ed54a247f2963ce3b5f8dedb444b7b43a8d73651f",
+            "9b79de066d92c5343dd7262ed54a247f2963ce3b5f8dedb444b7b43a8d73651f"
+          ],
+          "MOV-0004.json": [
+            "66ce752c4eeeaf46d795f420a475cff81b68bf4a0b5427678ad089ff31f5ac58",
+            "66ce752c4eeeaf46d795f420a475cff81b68bf4a0b5427678ad089ff31f5ac58"
+          ],
+          "MOV-0005-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0005.csv": [
+            "55c59479d75d09865aff9ae5d7f4058daa0508aceb86bc77aa68700e0d5e3428",
+            "55c59479d75d09865aff9ae5d7f4058daa0508aceb86bc77aa68700e0d5e3428"
+          ],
+          "MOV-0005.json": [
+            "067ba53ee65f3e2cde7a65d2f2d2a634cc0e79af845fb01483bc3a929b18a3e5",
+            "067ba53ee65f3e2cde7a65d2f2d2a634cc0e79af845fb01483bc3a929b18a3e5"
+          ],
+          "MOV-0006-actions.csv": [
+            "b885ef9aff9fd982fda7c0f9ce6cc61099a4e6107850f4c4cb58f4959731d30a",
+            "b885ef9aff9fd982fda7c0f9ce6cc61099a4e6107850f4c4cb58f4959731d30a"
+          ],
+          "MOV-0006.csv": [
+            "c58ce93a12df6cfc5990186be1a14bd2383722322f21d1e96db96b98bec8f7b7",
+            "c58ce93a12df6cfc5990186be1a14bd2383722322f21d1e96db96b98bec8f7b7"
+          ],
+          "MOV-0006.json": [
+            "247399e86edb02efea5016cb1a4861aae6d39bc3269d3c9ca51721121f3e2287",
+            "247399e86edb02efea5016cb1a4861aae6d39bc3269d3c9ca51721121f3e2287"
+          ],
+          "MOV-0007-actions.csv": [
+            "f4003f912cf8e0535d642131ea4a02a80330505723b7a77ee9aec411d51a1cce",
+            "f4003f912cf8e0535d642131ea4a02a80330505723b7a77ee9aec411d51a1cce"
+          ],
+          "MOV-0007.csv": [
+            "2fe5049e155563c11223e4560607aafe9b46aa0d2a0fb70331a306aff1baf393",
+            "2fe5049e155563c11223e4560607aafe9b46aa0d2a0fb70331a306aff1baf393"
+          ],
+          "MOV-0007.json": [
+            "930c0931bf33ac6526baaa4925042bd7968a73ac68821ca81a565c6d95525788",
+            "930c0931bf33ac6526baaa4925042bd7968a73ac68821ca81a565c6d95525788"
+          ],
+          "MOV-0008-actions.csv": [
+            "a7b506ec3b322576693cdd94d856fa116c8f4ee6a68f6749c9dd9cc59970bc72",
+            "a7b506ec3b322576693cdd94d856fa116c8f4ee6a68f6749c9dd9cc59970bc72"
+          ],
+          "MOV-0008.csv": [
+            "04dc5cf7e6ffc7539b952c2eebe8a9d4b4007662b7e5a60eed29498fce7d3b34",
+            "04dc5cf7e6ffc7539b952c2eebe8a9d4b4007662b7e5a60eed29498fce7d3b34"
+          ],
+          "MOV-0008.json": [
+            "08a1eff8af5ce44d0ded3d117395ad43a4ccab7e531d7b694cd1188b95b1f50e",
+            "08a1eff8af5ce44d0ded3d117395ad43a4ccab7e531d7b694cd1188b95b1f50e"
+          ],
+          "MOV-0009-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0009.csv": [
+            "69c4f0f8be5e5349107c319613137295b3d53c7faaa80176c52b04c82b405c76",
+            "69c4f0f8be5e5349107c319613137295b3d53c7faaa80176c52b04c82b405c76"
+          ],
+          "MOV-0009.json": [
+            "912b8f71ce9bfcb0d748c9fab77f57f371a2255ab73f28351583006090c74bf4",
+            "912b8f71ce9bfcb0d748c9fab77f57f371a2255ab73f28351583006090c74bf4"
+          ],
+          "MOV-0010-actions.csv": [
+            "a1a805207bda6ab6b788be66b70334ec41660a3f4d2771cbd516fa985dad0e36",
+            "a1a805207bda6ab6b788be66b70334ec41660a3f4d2771cbd516fa985dad0e36"
+          ],
+          "MOV-0010.csv": [
+            "d584ce4c380745c250040b2c676e034203993c15dc8bbe438c8b8729227de678",
+            "d584ce4c380745c250040b2c676e034203993c15dc8bbe438c8b8729227de678"
+          ],
+          "MOV-0010.json": [
+            "5d02ae4bb1146af1d19b65bb5492d2b26f2d40469b79895406e8e98b041325d4",
+            "5d02ae4bb1146af1d19b65bb5492d2b26f2d40469b79895406e8e98b041325d4"
+          ],
+          "identity.json": [
+            "fc7a49504de1b049eea7f352ccfca867eed98970b5b2c322f24d7931567e95c2",
+            "fc7a49504de1b049eea7f352ccfca867eed98970b5b2c322f24d7931567e95c2"
+          ]
+        }
+      },
+      "initial_regressions": [
+        {
+          "path": "MOV-0007/properties/facing",
+          "metric": "final_delta_by_unit/u0",
+          "before": 0.3689730000000111,
+          "after": 0.36898800000000165,
+          "classification": "REGRESSION"
+        }
+      ]
+    },
+    "v3": {
+      "identity": {
+        "git_commit": "36dacb1491e64a7a62491da5c5f421f1f652c720",
+        "git_dirty_at_configure": false,
+        "source_sha256": "b2af2408547bbee1a703b34651fe5a39f7e6170045ce5020870ce00946377249",
+        "compiler": "MSVC 19.44.35229.0",
+        "build_type": "Release",
+        "architecture": "x86_64",
+        "fp_contract": "off",
+        "model": "footman-v3",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "exposure_period_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": 0.600000024,
+          "propulsion_window_degrees": 60,
+          "facing_acceleration_radians": 0.0700000003,
+          "facing_max_velocity_radians": 0.200000003,
+          "facing_snap_radians": 0.00100000005,
+          "facing_braking": "error * (error / max_velocity)^0.25",
+          "frame_origin": -4096,
+          "float_rounding": "toward-zero",
+          "opposite_angle_tie": {
+            "turn": "counter-clockwise",
+            "within_degrees": 0
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ]
+      },
+      "comparison_sha256": "0877463cd9f689fce1886cae20d1daf16799000b4b77d2ea20477c605b7b2c51",
+      "repeatability": {
+        "classification": "RNG-DETERMINISTIC-WITH-SEED",
+        "runs": 2,
+        "seed": 1,
+        "scope": "same binary/model/phase in two fresh processes; movement does not draw RNG",
+        "retail_rng_equivalence": "UNKNOWN",
+        "observation_payload_sha256": {
+          "MOV-0001.json": [
+            "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64"
+          ],
+          "MOV-0002.json": [
+            "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd",
+            "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd"
+          ],
+          "MOV-0003.json": [
+            "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad",
+            "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad"
+          ],
+          "MOV-0004.json": [
+            "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed",
+            "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed"
+          ],
+          "MOV-0005.json": [
+            "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5",
+            "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5"
+          ],
+          "MOV-0006.json": [
+            "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b",
+            "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b"
+          ],
+          "MOV-0007.json": [
+            "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f",
+            "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f"
+          ],
+          "MOV-0008.json": [
+            "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646",
+            "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646"
+          ],
+          "MOV-0009.json": [
+            "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944",
+            "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944"
+          ],
+          "MOV-0010.json": [
+            "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783",
+            "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783"
+          ]
+        },
+        "full_file_sha256": {
+          "MOV-0001-actions.csv": [
+            "58eca40fa2aa69e44dfdc96466e843a5fe392d95c8f1c5c7b558fd114df807b2",
+            "58eca40fa2aa69e44dfdc96466e843a5fe392d95c8f1c5c7b558fd114df807b2"
+          ],
+          "MOV-0001.csv": [
+            "c6b8a1899577aec75ef72e554f8816f6adc7e50b91167cedf16accd856528a97",
+            "c6b8a1899577aec75ef72e554f8816f6adc7e50b91167cedf16accd856528a97"
+          ],
+          "MOV-0001.json": [
+            "d331cb2ffc05826de282514e4db844c5cf98c54a9a18f11a4057174fbbd0d5c3",
+            "d331cb2ffc05826de282514e4db844c5cf98c54a9a18f11a4057174fbbd0d5c3"
+          ],
+          "MOV-0002-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0002.csv": [
+            "dac78f86767390e339877e202a144cf7be09785f3e82a1de4b89023453b597d3",
+            "dac78f86767390e339877e202a144cf7be09785f3e82a1de4b89023453b597d3"
+          ],
+          "MOV-0002.json": [
+            "2fa3fca258a386dfffc4830ebb0ea498f493a2e9b1cd8dad1ebfac0f0fb2e2a1",
+            "2fa3fca258a386dfffc4830ebb0ea498f493a2e9b1cd8dad1ebfac0f0fb2e2a1"
+          ],
+          "MOV-0003-actions.csv": [
+            "32e2f6d358b289ec553675e7ace9302c9bb75e41107371e8ad29e9731624099c",
+            "32e2f6d358b289ec553675e7ace9302c9bb75e41107371e8ad29e9731624099c"
+          ],
+          "MOV-0003.csv": [
+            "5542d98fcaaab70733cf298fba53db0158a0a9fda83add7de30f663d321b2593",
+            "5542d98fcaaab70733cf298fba53db0158a0a9fda83add7de30f663d321b2593"
+          ],
+          "MOV-0003.json": [
+            "91f65ac5f43f2a82186acba4ff4939dc50fd9a14a7093f40a1ffb8351b346d1e",
+            "91f65ac5f43f2a82186acba4ff4939dc50fd9a14a7093f40a1ffb8351b346d1e"
+          ],
+          "MOV-0004-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0004.csv": [
+            "eec1c1440b37f36e1002d828688899c815ede73f76ad1f79251d878f1d125267",
+            "eec1c1440b37f36e1002d828688899c815ede73f76ad1f79251d878f1d125267"
+          ],
+          "MOV-0004.json": [
+            "0b588d5c5c8f53cc87d399068b3d27bfc5352a3c2a0808ac355bcf04e6a792d9",
+            "0b588d5c5c8f53cc87d399068b3d27bfc5352a3c2a0808ac355bcf04e6a792d9"
+          ],
+          "MOV-0005-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0005.csv": [
+            "ae6d2a1366ca9ab40ad0d416f681dcf706b3f54572c86cc298934bfd3c338e51",
+            "ae6d2a1366ca9ab40ad0d416f681dcf706b3f54572c86cc298934bfd3c338e51"
+          ],
+          "MOV-0005.json": [
+            "79042751084f6d51f0bb0e201a4c38e0129daaee734517663096d320ad782047",
+            "79042751084f6d51f0bb0e201a4c38e0129daaee734517663096d320ad782047"
+          ],
+          "MOV-0006-actions.csv": [
+            "e8ab1edf3627876c78f65335667550fa4bda38e3a447ea6742aa2db532418364",
+            "e8ab1edf3627876c78f65335667550fa4bda38e3a447ea6742aa2db532418364"
+          ],
+          "MOV-0006.csv": [
+            "8f40dfa4858f712412cde16ea86676d96eeb7fe6477f307ddc57235b209fd107",
+            "8f40dfa4858f712412cde16ea86676d96eeb7fe6477f307ddc57235b209fd107"
+          ],
+          "MOV-0006.json": [
+            "81085ba4927ddc951953246ebfeb39f4a94028b164473884ef8350b15f8d6f72",
+            "81085ba4927ddc951953246ebfeb39f4a94028b164473884ef8350b15f8d6f72"
+          ],
+          "MOV-0007-actions.csv": [
+            "819f97147f31af1af47ae3a214862828ad14cfb0aa2b7eeaa24630d3b0460d3c",
+            "819f97147f31af1af47ae3a214862828ad14cfb0aa2b7eeaa24630d3b0460d3c"
+          ],
+          "MOV-0007.csv": [
+            "ee400b6c8825928990380f150855292e423685c41b434cb2ef4cfd99634feccb",
+            "ee400b6c8825928990380f150855292e423685c41b434cb2ef4cfd99634feccb"
+          ],
+          "MOV-0007.json": [
+            "230dacb294815454e6b86b4adb97805d6e9f2724566e47362cb0a5abf2c4980b",
+            "230dacb294815454e6b86b4adb97805d6e9f2724566e47362cb0a5abf2c4980b"
+          ],
+          "MOV-0008-actions.csv": [
+            "a7b506ec3b322576693cdd94d856fa116c8f4ee6a68f6749c9dd9cc59970bc72",
+            "a7b506ec3b322576693cdd94d856fa116c8f4ee6a68f6749c9dd9cc59970bc72"
+          ],
+          "MOV-0008.csv": [
+            "ce8fbb1933a423a5544a745e51e6cd0329a8ac6607b87d9db1f3bdb52452b367",
+            "ce8fbb1933a423a5544a745e51e6cd0329a8ac6607b87d9db1f3bdb52452b367"
+          ],
+          "MOV-0008.json": [
+            "2d504ccd6872835616a83678476e76e3f40c8bdea2ecb2b563a20911d9fda524",
+            "2d504ccd6872835616a83678476e76e3f40c8bdea2ecb2b563a20911d9fda524"
+          ],
+          "MOV-0009-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0009.csv": [
+            "e53a7fa05447a7350a4a2825228a4649c82479ac2c3a2ee74d298ca2097d5ea2",
+            "e53a7fa05447a7350a4a2825228a4649c82479ac2c3a2ee74d298ca2097d5ea2"
+          ],
+          "MOV-0009.json": [
+            "808b35dc23d814819cf1bab1988425301ee6fc93b3a8a7d491f96decdcdc9035",
+            "808b35dc23d814819cf1bab1988425301ee6fc93b3a8a7d491f96decdcdc9035"
+          ],
+          "MOV-0010-actions.csv": [
+            "a1a805207bda6ab6b788be66b70334ec41660a3f4d2771cbd516fa985dad0e36",
+            "a1a805207bda6ab6b788be66b70334ec41660a3f4d2771cbd516fa985dad0e36"
+          ],
+          "MOV-0010.csv": [
+            "e86270fb4d4e4058b40d1f7cbe5d6138fc6fc56f7f875af6d7dbfc4178db867c",
+            "e86270fb4d4e4058b40d1f7cbe5d6138fc6fc56f7f875af6d7dbfc4178db867c"
+          ],
+          "MOV-0010.json": [
+            "a2227cd368de684cd6a70f381fda82b73144aa814f73fc9a36c76d276c98c65f",
+            "a2227cd368de684cd6a70f381fda82b73144aa814f73fc9a36c76d276c98c65f"
+          ],
+          "identity.json": [
+            "c5b6f3645194b31cfb430aac2bc1596937877bfa4b193371ca29905dea9b1962",
+            "c5b6f3645194b31cfb430aac2bc1596937877bfa4b193371ca29905dea9b1962"
+          ]
+        }
+      },
+      "initial_regressions": []
+    },
+    "v4": {
+      "identity": {
+        "git_commit": "36dacb1491e64a7a62491da5c5f421f1f652c720",
+        "git_dirty_at_configure": false,
+        "source_sha256": "b2af2408547bbee1a703b34651fe5a39f7e6170045ce5020870ce00946377249",
+        "compiler": "MSVC 19.44.35229.0",
+        "build_type": "Release",
+        "architecture": "x86_64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float"
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ]
+      },
+      "comparison_sha256": "88c4f58b1911bae8099d2ec3378660d2d855a91118cf3c95959dfe19e1afe351",
+      "repeatability": {
+        "classification": "RNG-DETERMINISTIC-WITH-SEED",
+        "runs": 2,
+        "seed": 1,
+        "scope": "same binary/model/phase in two fresh processes; movement does not draw RNG",
+        "retail_rng_equivalence": "UNKNOWN",
+        "observation_payload_sha256": {
+          "MOV-0001.json": [
+            "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc",
+            "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc"
+          ],
+          "MOV-0002.json": [
+            "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+            "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51"
+          ],
+          "MOV-0003.json": [
+            "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7",
+            "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7"
+          ],
+          "MOV-0004.json": [
+            "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+            "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621"
+          ],
+          "MOV-0005.json": [
+            "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d",
+            "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d"
+          ],
+          "MOV-0006.json": [
+            "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+            "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a"
+          ],
+          "MOV-0007.json": [
+            "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e",
+            "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e"
+          ],
+          "MOV-0008.json": [
+            "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5",
+            "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5"
+          ],
+          "MOV-0009.json": [
+            "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612",
+            "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612"
+          ],
+          "MOV-0010.json": [
+            "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e",
+            "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+          ]
+        },
+        "full_file_sha256": {
+          "MOV-0001-actions.csv": [
+            "58eca40fa2aa69e44dfdc96466e843a5fe392d95c8f1c5c7b558fd114df807b2",
+            "58eca40fa2aa69e44dfdc96466e843a5fe392d95c8f1c5c7b558fd114df807b2"
+          ],
+          "MOV-0001.csv": [
+            "c6b8a1899577aec75ef72e554f8816f6adc7e50b91167cedf16accd856528a97",
+            "c6b8a1899577aec75ef72e554f8816f6adc7e50b91167cedf16accd856528a97"
+          ],
+          "MOV-0001.json": [
+            "e6e9c00a36ec9bde0f88bb4fc408341b7a67a6c0e8f9d809896dd6d1769e7081",
+            "e6e9c00a36ec9bde0f88bb4fc408341b7a67a6c0e8f9d809896dd6d1769e7081"
+          ],
+          "MOV-0002-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0002.csv": [
+            "b700f818504a9ff17bc5030364d377316ebf596464ef605ed06c1928e62f5641",
+            "b700f818504a9ff17bc5030364d377316ebf596464ef605ed06c1928e62f5641"
+          ],
+          "MOV-0002.json": [
+            "7047dcefb9dbaa0586ebd7a2b06a6e0339eff20a13a3f5d14939285c6ed8453f",
+            "7047dcefb9dbaa0586ebd7a2b06a6e0339eff20a13a3f5d14939285c6ed8453f"
+          ],
+          "MOV-0003-actions.csv": [
+            "32e2f6d358b289ec553675e7ace9302c9bb75e41107371e8ad29e9731624099c",
+            "32e2f6d358b289ec553675e7ace9302c9bb75e41107371e8ad29e9731624099c"
+          ],
+          "MOV-0003.csv": [
+            "1337ba6bc987b3c43c0e9630c8644181e78777b5ef444370fa24d33c8e97a45e",
+            "1337ba6bc987b3c43c0e9630c8644181e78777b5ef444370fa24d33c8e97a45e"
+          ],
+          "MOV-0003.json": [
+            "716f9f94b5e0c49d401a4e14521e059e62994a8f279305614b214e405e1c961b",
+            "716f9f94b5e0c49d401a4e14521e059e62994a8f279305614b214e405e1c961b"
+          ],
+          "MOV-0004-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0004.csv": [
+            "e2c81bba933ef994f47e4967247f6e81b71cc6a1d2353e48ab89f017cfdffa6c",
+            "e2c81bba933ef994f47e4967247f6e81b71cc6a1d2353e48ab89f017cfdffa6c"
+          ],
+          "MOV-0004.json": [
+            "e7dd8cb2bebdbd097807b862c57b11eb8429ddd5c0e7eb79f0c55b2769d5e838",
+            "e7dd8cb2bebdbd097807b862c57b11eb8429ddd5c0e7eb79f0c55b2769d5e838"
+          ],
+          "MOV-0005-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0005.csv": [
+            "6c8afe63ef78c9e05503f76efd00d906d0470f04aa8f2b27a2290a1ee67abf33",
+            "6c8afe63ef78c9e05503f76efd00d906d0470f04aa8f2b27a2290a1ee67abf33"
+          ],
+          "MOV-0005.json": [
+            "a382779fceae8ebb6719143c1ec18c6c65b229164bf47c9b2bb784f19ff16795",
+            "a382779fceae8ebb6719143c1ec18c6c65b229164bf47c9b2bb784f19ff16795"
+          ],
+          "MOV-0006-actions.csv": [
+            "eb554fd436e6b95cb5b02575278dce32c93faf9e37adca14e0e7f55fd3ebf765",
+            "eb554fd436e6b95cb5b02575278dce32c93faf9e37adca14e0e7f55fd3ebf765"
+          ],
+          "MOV-0006.csv": [
+            "0414d2729505c4be2218724af58d252db1205612f863e89ba7576aaad9c4ce5d",
+            "0414d2729505c4be2218724af58d252db1205612f863e89ba7576aaad9c4ce5d"
+          ],
+          "MOV-0006.json": [
+            "4762cf2efef7a75c39262f149449dfda77d893285f1cce70bdbcdd93ad035c08",
+            "4762cf2efef7a75c39262f149449dfda77d893285f1cce70bdbcdd93ad035c08"
+          ],
+          "MOV-0007-actions.csv": [
+            "be8b9d5e56a78f235d80f9aac8965ec1ed23f3de6315b2d77fe9ebc58bbf8bfa",
+            "be8b9d5e56a78f235d80f9aac8965ec1ed23f3de6315b2d77fe9ebc58bbf8bfa"
+          ],
+          "MOV-0007.csv": [
+            "1f4c4f8dbbd51038ee59ccc33771a00b159b584ac162e1d2dface397bed81c93",
+            "1f4c4f8dbbd51038ee59ccc33771a00b159b584ac162e1d2dface397bed81c93"
+          ],
+          "MOV-0007.json": [
+            "1dce8ac020288d879b0c11a3f71080d351c07882d2fdb42e760c6df19be6fba9",
+            "1dce8ac020288d879b0c11a3f71080d351c07882d2fdb42e760c6df19be6fba9"
+          ],
+          "MOV-0008-actions.csv": [
+            "a7b506ec3b322576693cdd94d856fa116c8f4ee6a68f6749c9dd9cc59970bc72",
+            "a7b506ec3b322576693cdd94d856fa116c8f4ee6a68f6749c9dd9cc59970bc72"
+          ],
+          "MOV-0008.csv": [
+            "0e8446bc6ea75fe5fbc1f8b50d063f1f074a396abf2f3b63c68e1e5c35c4fa15",
+            "0e8446bc6ea75fe5fbc1f8b50d063f1f074a396abf2f3b63c68e1e5c35c4fa15"
+          ],
+          "MOV-0008.json": [
+            "6c2a2bcd4856872d975c11aca95989cdf9f739577cfaf555b0dc72ea0ec8810f",
+            "6c2a2bcd4856872d975c11aca95989cdf9f739577cfaf555b0dc72ea0ec8810f"
+          ],
+          "MOV-0009-actions.csv": [
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761",
+            "7c6ca3d767d9266640af64a2e6906cd261db976376074875839b25a1ec40d761"
+          ],
+          "MOV-0009.csv": [
+            "272411cfc2c21abc1008871081f65be726203edaff4fdccca1b6171a363f91a9",
+            "272411cfc2c21abc1008871081f65be726203edaff4fdccca1b6171a363f91a9"
+          ],
+          "MOV-0009.json": [
+            "37fac97674e6171fb4505d1530256a9280156813954706aba30273c47f701322",
+            "37fac97674e6171fb4505d1530256a9280156813954706aba30273c47f701322"
+          ],
+          "MOV-0010-actions.csv": [
+            "a1a805207bda6ab6b788be66b70334ec41660a3f4d2771cbd516fa985dad0e36",
+            "a1a805207bda6ab6b788be66b70334ec41660a3f4d2771cbd516fa985dad0e36"
+          ],
+          "MOV-0010.csv": [
+            "17ff2cffb25ce9a051f78b4bcfae1fe3a131e28a36db2afcbd86b75a839ef7eb",
+            "17ff2cffb25ce9a051f78b4bcfae1fe3a131e28a36db2afcbd86b75a839ef7eb"
+          ],
+          "MOV-0010.json": [
+            "7865fc2240d00cc408fe69e2f3ff09547d3ed40dfe6dda66563ccda98d8fbb76",
+            "7865fc2240d00cc408fe69e2f3ff09547d3ed40dfe6dda66563ccda98d8fbb76"
+          ],
+          "identity.json": [
+            "4236644bcaa087d6b895b69a2ca3dca37c047d306673610ed2ae36603f6e743f",
+            "4236644bcaa087d6b895b69a2ca3dca37c047d306673610ed2ae36603f6e743f"
+          ]
+        }
+      },
+      "initial_regressions": []
+    }
+  }
+}

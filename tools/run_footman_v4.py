@@ -36,7 +36,7 @@ def known(run):
 
 def run_model(runner, dest):
     subprocess.run([str(runner), '--out', str(dest), '--model', 'v4', '--seed', '1'],
-                   check=True, stdout=subprocess.DEVNULL)
+                   check=True, stdout=subprocess.DEVNULL, timeout=60)
 
 
 def exact_markdown(report):
@@ -83,16 +83,16 @@ def main():
         suite = compare_suite(references, dest)
         exact = compare_exact.compare_all(references, dest)
         states = compare_states.compare_all(args.states.resolve(), ROOT / 'oracle/captures' / BUILD)
-    except (OSError, ValueError, KeyError, compare_states.Invalid, subprocess.CalledProcessError) as error:
+    except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError, compare_states.Invalid, subprocess.SubprocessError) as error:
         parser.exit(2, f'run_footman_v4: {error}\n')
     reports = args.reports
     reports.mkdir(parents=True, exist_ok=True)
     write_json(reports / 'comparison.json', suite)
-    (reports / 'comparison.md').write_text(markdown(suite))
+    (reports / 'comparison.md').write_text(markdown(suite), encoding='utf-8')
     write_json(reports / 'exact.json', exact)
-    (reports / 'exact.md').write_text(exact_markdown(exact))
+    (reports / 'exact.md').write_text(exact_markdown(exact), encoding='utf-8')
     write_json(reports / 'states.json', states)
-    (reports / 'states.md').write_text(states_markdown(states))
+    (reports / 'states.md').write_text(states_markdown(states), encoding='utf-8')
     write_json(reports / 'trace-hashes.json', {p.name: sha256(p) for p in sorted(dest.iterdir())})
     passed = sum(c['status'] == 'PASS' for c in suite['cases'])
     identical = sum(not row['first'] for row in exact.values())

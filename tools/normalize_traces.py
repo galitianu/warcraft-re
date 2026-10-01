@@ -58,7 +58,7 @@ def normalize_all(out):
                 raise ValueError(f'{label}: manifest run procedure mismatch')
             captures.append(capture)
             traces.append(normalize_capture(capture, manifest))
-            runs.append(dict(run=entry['run'], path=str(path.relative_to(ROOT)), sha256=capture['sha256'],
+            runs.append(dict(run=entry['run'], path=path.relative_to(ROOT).as_posix(), sha256=capture['sha256'],
                              payload_sha256=capture['payload_sha256'], footer=capture['footer'],
                              generated_preload_entries=capture['generated_preload_entries'],
                              fresh_game_process=entry['fresh_game_process'], previous_output_removed=entry['previous_output_removed']))
@@ -79,7 +79,7 @@ def normalize_all(out):
                              distinct_raw_files=len({r['sha256'] for r in runs}),
                              scope='retained map/build/Windows 11 Pro ARM64 VM; 3 fresh processes; recorded procedure',
                              other_seeds_or_machines='UNKNOWN')
-        provenance = dict(manifest={'path': str(manifest_path.relative_to(ROOT)), 'sha256': sha256(manifest_path)},
+        provenance = dict(manifest={'path': manifest_path.relative_to(ROOT).as_posix(), 'sha256': sha256(manifest_path)},
                           representative_run=1, runs=runs, repeatability=repeatability)
         for trace in traces:
             trace['provenance'] = provenance

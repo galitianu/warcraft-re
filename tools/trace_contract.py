@@ -63,7 +63,7 @@ def write_json(path, value, compact_records=False):
         encoded = header[:-2] + ',\n  "records": [\n' + records + '\n  ]\n}'
     else:
         encoded = json.dumps(value, indent=2, allow_nan=False)
-    Path(path).write_text(encoded + '\n')
+    Path(path).write_text(encoded + '\n', encoding='utf-8', newline='\n')
 
 
 def load(path):
@@ -75,7 +75,7 @@ def load(path):
         return result
     def constant(value):
         raise ValueError(f'nonfinite JSON constant {value}')
-    value = json.loads(Path(path).read_text(), object_pairs_hook=pairs, parse_constant=constant)
+    value = json.loads(Path(path).read_text(encoding='utf-8'), object_pairs_hook=pairs, parse_constant=constant)
     finite_json(value)
     return value
 

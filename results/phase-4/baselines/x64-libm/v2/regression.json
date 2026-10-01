@@ -1,0 +1,305 @@
+{
+  "policy": "wc3-regression-v1",
+  "regression_verdict": "FAIL",
+  "compatibility_verdict": "FAIL",
+  "compatibility_passes": 1,
+  "cases": 10,
+  "regressions": [
+    {
+      "path": "MOV-0007/properties/facing",
+      "metric": "final_delta_by_unit/u0",
+      "before": 0.3689730000000111,
+      "after": 0.36898800000000165,
+      "classification": "REGRESSION"
+    }
+  ],
+  "improvements": [],
+  "changes": [
+    {
+      "path": "MOV-0007/properties/facing",
+      "metric": "final_delta_by_unit/u0",
+      "before": 0.3689730000000111,
+      "after": 0.36898800000000165,
+      "classification": "REGRESSION"
+    }
+  ],
+  "baseline_identity": {
+    "engine": "cpp",
+    "build": {
+      "git_commit": "7b3b4c25b430548dae904bf8d3e96e2ca0b3ac2f",
+      "git_dirty_at_configure": false,
+      "source_sha256": "fed4eb0c41dc9172a1068944754defb7142eaf180d69aa42295adb1880cdd52f",
+      "compiler": "AppleClang 21.0.0.21000334",
+      "build_type": "Release",
+      "architecture": "arm64",
+      "fp_contract": "off",
+      "model": "footman-v2",
+      "time_unit": "seconds",
+      "step_us": 1000,
+      "seed": 1,
+      "rng": "std::mt19937; unused by movement",
+      "observation_phase": "after-due-update",
+      "sample_period_us": 20000,
+      "state_lag_us": 0,
+      "parameters": {
+        "position_period_steps": 5,
+        "facing_period_steps": 30,
+        "facing_phase_steps": 10,
+        "move_delay_steps": 10,
+        "stop_radius": 16,
+        "default_speed": 270,
+        "speed_clamp": [
+          150,
+          400
+        ],
+        "movement_angle_limit_degrees": 135,
+        "turn_ramp_radians": [
+          0.0700000003,
+          0.140000001,
+          0.200000003
+        ],
+        "opposite_angle_tie": {
+          "turn": "clockwise",
+          "within_degrees": 9.99999975e-05
+        }
+      },
+      "cases": [
+        {
+          "test": "MOV-0001",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0002",
+          "callbacks": 250,
+          "units": 2,
+          "samples": 502
+        },
+        {
+          "test": "MOV-0003",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0004",
+          "callbacks": 600,
+          "units": 1,
+          "samples": 601
+        },
+        {
+          "test": "MOV-0005",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0006",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0007",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0008",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0009",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0010",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        }
+      ]
+    },
+    "source": {
+      "sha256": "fed4eb0c41dc9172a1068944754defb7142eaf180d69aa42295adb1880cdd52f"
+    },
+    "environment": null,
+    "seed": {
+      "status": "explicit-cpp-only",
+      "value": 1,
+      "retail_equivalent": false
+    },
+    "model": {
+      "name": "footman-v2",
+      "parameters": {
+        "position_period_steps": 5,
+        "facing_period_steps": 30,
+        "facing_phase_steps": 10,
+        "move_delay_steps": 10,
+        "stop_radius": 16,
+        "default_speed": 270,
+        "speed_clamp": [
+          150,
+          400
+        ],
+        "movement_angle_limit_degrees": 135,
+        "turn_ramp_radians": [
+          0.0700000003,
+          0.140000001,
+          0.200000003
+        ],
+        "opposite_angle_tie": {
+          "turn": "clockwise",
+          "within_degrees": 9.99999975e-05
+        }
+      }
+    }
+  },
+  "actual_identity": {
+    "engine": "cpp",
+    "build": {
+      "git_commit": "8a68d384583892190aecb1ed8833c1b6376873e1",
+      "git_dirty_at_configure": false,
+      "source_sha256": "327566ab79a9f97af0ee8f40922682829927f34db705451be386a1dde7382c75",
+      "compiler": "GNU 13.3.0",
+      "build_type": "Release",
+      "architecture": "x86_64",
+      "fp_contract": "off",
+      "model": "footman-v2",
+      "time_unit": "seconds",
+      "step_us": 1000,
+      "seed": 1,
+      "rng": "std::mt19937; unused by movement",
+      "observation_phase": "after-due-update",
+      "sample_period_us": 20000,
+      "state_lag_us": 0,
+      "parameters": {
+        "position_period_steps": 5,
+        "facing_period_steps": 30,
+        "facing_phase_steps": 10,
+        "move_delay_steps": 10,
+        "stop_radius": 16,
+        "default_speed": 270,
+        "speed_clamp": [
+          150,
+          400
+        ],
+        "movement_angle_limit_degrees": 135,
+        "turn_ramp_radians": [
+          0.0700000003,
+          0.140000001,
+          0.200000003
+        ],
+        "opposite_angle_tie": {
+          "turn": "clockwise",
+          "within_degrees": 9.99999975e-05
+        }
+      },
+      "cases": [
+        {
+          "test": "MOV-0001",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0002",
+          "callbacks": 250,
+          "units": 2,
+          "samples": 502
+        },
+        {
+          "test": "MOV-0003",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0004",
+          "callbacks": 600,
+          "units": 1,
+          "samples": 601
+        },
+        {
+          "test": "MOV-0005",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0006",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0007",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0008",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0009",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0010",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        }
+      ]
+    },
+    "source": {
+      "sha256": "327566ab79a9f97af0ee8f40922682829927f34db705451be386a1dde7382c75"
+    },
+    "environment": null,
+    "seed": {
+      "status": "explicit-cpp-only",
+      "value": 1,
+      "retail_equivalent": false
+    },
+    "model": {
+      "name": "footman-v2",
+      "parameters": {
+        "position_period_steps": 5,
+        "facing_period_steps": 30,
+        "facing_phase_steps": 10,
+        "move_delay_steps": 10,
+        "stop_radius": 16,
+        "default_speed": 270,
+        "speed_clamp": [
+          150,
+          400
+        ],
+        "movement_angle_limit_degrees": 135,
+        "turn_ramp_radians": [
+          0.0700000003,
+          0.140000001,
+          0.200000003
+        ],
+        "opposite_angle_tie": {
+          "turn": "clockwise",
+          "within_degrees": 9.99999975e-05
+        }
+      }
+    }
+  },
+  "baseline_path": "results/phase-3/v2/comparison.json",
+  "baseline_sha256": "16ea5d66a8f925bd7cceea23064e42ec9cc897f3c6dc1047eb91948f93605eb3",
+  "comparator_exit": 1
+}

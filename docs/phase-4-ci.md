@@ -169,3 +169,43 @@ Release/Debug observation payloads match for all five suites. Release archival
 migration reproduces the 60 Phase 2 CSVs and 30 historical state reports.
 Actual hosted-run evidence will be recorded after the PR workflow executes;
 main-push evidence requires merging the PR. No release tag is part of this work.
+
+### First hosted execution and reviewed Linux baseline
+
+[PR run 36858894376](https://github.com/galitianu/warcraft-re/actions/runs/36858894376)
+executed all five requested configurations; the repo/account permitted all runners.
+[Retained identities, repeatability hashes and assessments](../results/phase-4/initial-hosted.json)
+record the run's actual PR merge source identity separately from its head commit.
+Both ARM macOS jobs passed all gates. Linux GCC 13.3.0 Release and Clang 18.1.3
+Debug passed v4 10/10 and all integrity checks, but **correctly failed the initial
+ARM baseline** on historical MOV-0007 facing. Windows MSVC built and passed CTest
+2/2; provenance path separators and Unicode CLI output prevented its evidence
+pipeline from completing. Those are portability bugs, not gameplay passes.
+
+Comparing every record shows Linux differs from native ARM only in MOV-0007
+SAMPLE facing: v1 callbacks 51–250 (200 records); v2 and v2-before callbacks
+76–250 (175 each). ARM prints `179.999985`; Linux prints `180`. GCC Release and
+Clang Debug payloads agree for every case/model, and v3/v4 payloads also agree
+with ARM. Historical `heading()` calls float `std::atan2` and multiplies by
+`180.0f / pi_v<float>`; the westward result is sensitive to the platform's libm.
+The added `math_scope` runtime probe measures this exact boundary separately
+from retail evidence. The library explanation is an inference from that code and
+these records until the hosted probe result is recorded.
+
+The complete [Linux v1](../results/phase-4/baselines/linux-x64/v1/comparison.json),
+[v2](../results/phase-4/baselines/linux-x64/v2/comparison.json) and
+[v2-before](../results/phase-4/baselines/linux-x64/v2-before/comparison.json)
+baselines retain comparison reports, original ARM regression assessments and
+two-process hashes. Only these historical suites select the measured Linux x64
+baseline. The actual protected changes are:
+
+| Metric | ARM | Linux |
+|---|---|---|
+| v1 MOV-0007 facing max absolute delta (overall/u0) | 179.862395° | 179.862410° |
+| v1/v2/v2-before MOV-0007 facing final signed delta u0 | +0.3689730000000111° | +0.36898800000000165° |
+
+Failure counts, first divergences, other properties, action/structure diagnostics,
+reference hashes and tolerances are unchanged. This is a measured platform
+baseline for historical models, not a tolerance relaxation or a new retail match.
+All historical suites remain 1/10, and v4's original native baseline still gates
+every host. The initial failures and full before/after evidence remain visible.

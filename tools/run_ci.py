@@ -22,6 +22,14 @@ BASELINES = {'v1': 'results/phase-3/v1/comparison.json',
              'v4': 'results/footman-v4/comparison.json'}
 
 
+def baseline_for(model, system, arch):
+    # Only measured profiles are promoted. Unknown scopes still face the original
+    # native baseline, and differences fail for investigation rather than vanish.
+    if system == 'Linux' and arch == 'x86_64' and model in ('v1', 'v2', 'v2-before'):
+        return f'results/phase-4/baselines/linux-x64/{model}/comparison.json'
+    return BASELINES[model]
+
+
 def architecture(value):
     return {'aarch64': 'arm64', 'ARM64': 'arm64', 'AMD64': 'x86_64'}.get(value, value)
 
@@ -35,7 +43,10 @@ def execute(command, logs, name, *, accepted=(0,), env=None, timeout=180):
     print(f'{name}: running', flush=True)
     try:
         with log.open('w', encoding='utf-8') as output:
-            result = subprocess.run(info['command'], cwd=ROOT, env=env,
+            process_env = dict(os.environ, PYTHONUTF8='1', PYTHONIOENCODING='utf-8')
+            if env is not None:
+                process_env.update(env)
+            result = subprocess.run(info['command'], cwd=ROOT, env=process_env,
                                     stdout=output, stderr=subprocess.STDOUT, timeout=timeout)
         info['exit_code'] = result.returncode
         if result.returncode not in accepted:
@@ -126,6 +137,8 @@ def run(args):
                 shutil.copyfile(build / name, reports / name)
         ext = '.exe' if os.name == 'nt' else ''
         runner = build / f'wc3test{ext}'
+        execute([build / f'math_scope{ext}'], logs, 'math-scope', timeout=10)
+        write_json(reports / 'math-scope.json', load(logs / 'math-scope.log'))
         test_env = dict(os.environ, WC3TEST_RUNNER=str(runner))
         if (build / 'footman-v4-test').exists():
             shutil.rmtree(build / 'footman-v4-test')
@@ -147,7 +160,7 @@ def run(args):
         write_json(reports / 'fixture-validation.json', validation)
         if validation['byte_differences']:
             raise ValueError(f"regenerated fixture differs: {validation['byte_differences']}")
-        for name, baseline_path in BASELINES.items():
+        for name in BASELINES:
             report_dir = reports / name
             report_dir.mkdir(parents=True)
             dest, again = traces / name, traces / f'{name}-repeat'
@@ -174,9 +187,10 @@ def run(args):
                     raise ValueError('compiled target architecture differs from verified host/scope')
                 if identity['build_type'] != args.config or identity['fp_contract'] != 'off':
                     raise ValueError('wrong build type or floating-point configuration')
-                baseline = ROOT / baseline_path
+                selected_baseline = baseline_for(name, result['host']['system'], identity['architecture'])
+                baseline = ROOT / selected_baseline
                 assessment = assess(load(baseline), suite)
-                assessment.update(baseline_path=baseline_path, baseline_sha256=sha256(baseline), comparator_exit=code)
+                assessment.update(baseline_path=selected_baseline, baseline_sha256=sha256(baseline), comparator_exit=code)
                 write_json(report_dir / 'regression.json', assessment)
                 (report_dir / 'regression.md').write_text(regression_markdown(assessment), encoding='utf-8')
                 result['models'][name] = dict(compatibility_passes=assessment['compatibility_passes'],

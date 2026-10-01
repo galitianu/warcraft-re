@@ -5,6 +5,7 @@ import csv
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 
 # Fixed before running either model. Units: world units, degrees, seconds.
@@ -152,6 +153,7 @@ def markdown(report):
 
 
 def main():
+    sys.stdout.reconfigure(encoding='utf-8')
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--reference", type=Path,
                         default=ROOT / "oracle/derived" / REFERENCE_BUILD)
@@ -164,7 +166,7 @@ def main():
         if args.json:
             args.json.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
         if args.markdown:
-            args.markdown.write_text(markdown(report))
+            args.markdown.write_text(markdown(report), encoding='utf-8')
         for case in report["cases"]:
             print(f"{case['case']} {case['status']}: {format_first(case['first_divergence'])}")
         return int(any(case["status"] == "FAIL" for case in report["cases"]))

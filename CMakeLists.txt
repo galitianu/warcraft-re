@@ -48,7 +48,7 @@ foreach(path CMakeLists.txt src/core/World.h src/core/World.cpp src/core/Random.
     src/core/SoftFloat.h src/core/SoftFloat.cpp
     tools/wc3test/Cases.h tools/wc3test/Cases.cpp tools/wc3test/main.cpp
     tools/wc3test/Canonical.h tools/wc3test/Canonical.cpp
-    tools/wc3test/BuildIdentity.h.in tools/wc3states/main.cpp)
+    tools/wc3test/BuildIdentity.h.in tools/wc3states/main.cpp tools/math_scope.cpp)
   set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${path}")
   file(SHA256 "${CMAKE_SOURCE_DIR}/${path}" digest)
   string(APPEND BUILD_SOURCE_INPUT "${path}:${digest}\n")
@@ -61,6 +61,8 @@ target_include_directories(wc3test PRIVATE "${CMAKE_BINARY_DIR}/generated")
 target_link_libraries(wc3test PRIVATE movement_cases)
 add_executable(wc3states tools/wc3states/main.cpp)
 target_link_libraries(wc3states PRIVATE wc3world)
+add_executable(math_scope tools/math_scope.cpp)
+target_link_libraries(math_scope PRIVATE wc3world)
 if(BUILD_TESTING)
   add_executable(world_tests tests/world_tests.cpp)
   target_link_libraries(world_tests PRIVATE movement_cases)

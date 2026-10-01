@@ -2,6 +2,7 @@
 """Compare canonical v1 traces; 0 compatible, 1 incompatible, 2 invalid input."""
 import argparse
 from pathlib import Path
+import sys
 
 from compare_movement import delta, format_first
 from trace_contract import BUILD, ROOT, TOLERANCES, load, sha256, validate, write_json
@@ -194,6 +195,7 @@ def markdown(report):
 
 
 def main():
+    sys.stdout.reconfigure(encoding='utf-8')
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--reference', type=Path, default=ROOT / 'oracle/canonical' / BUILD)
     parser.add_argument('--actual', type=Path, required=True)
@@ -206,7 +208,7 @@ def main():
         if args.json: write_json(args.json, report)
         if args.markdown:
             args.markdown.parent.mkdir(parents=True, exist_ok=True)
-            args.markdown.write_text(markdown(report))
+            args.markdown.write_text(markdown(report), encoding='utf-8')
         for case in report['cases']: print(f"{case['case']} {case['status']}: {format_first(case['first_divergence'])}")
         return int(report['status'] == 'FAIL')
     except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError, RecursionError) as error:

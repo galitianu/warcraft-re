@@ -75,7 +75,7 @@ def load(path):
         return result
     def constant(value):
         raise ValueError(f'nonfinite JSON constant {value}')
-    value = json.loads(Path(path).read_text(), object_pairs_hook=pairs, parse_constant=constant)
+    value = json.loads(Path(path).read_text(encoding='utf-8'), object_pairs_hook=pairs, parse_constant=constant)
     finite_json(value)
     return value
 

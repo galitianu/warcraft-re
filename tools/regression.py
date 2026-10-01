@@ -5,6 +5,7 @@ This is separate from compare_traces' compatibility verdict. No reference or
 property tolerance is changed. See docs/phase-4-ci.md for the protected metrics.
 """
 import argparse
+import math
 from pathlib import Path
 
 from trace_contract import BUILD, ROOT, TOLERANCES, load, write_json
@@ -55,13 +56,13 @@ def validate_report(report):
                         raise ValueError('invalid first divergence sequence')
                     if type(first['callback']) is not int or not 0 <= first['callback'] <= 20000:
                         raise ValueError('invalid first divergence callback')
-                    if type(first['delta']) not in (int, float) or not abs(first['delta']) <= 2e9:
+                    if type(first['delta']) not in (int, float) or not math.isfinite(first['delta']) or not abs(first['delta']) <= 2e12:
                         raise ValueError('invalid first divergence delta')
                 if status in ('UNOBSERVED', 'NOT-APPLICABLE') and stat['samples']:
                     raise ValueError('unobserved property has observations')
                 for value in [stat['max_abs_delta'], *stat['max_abs_delta_by_unit'].values(),
                               *stat['final_delta_by_unit'].values()]:
-                    if type(value) not in (int, float) or not abs(value) <= 2e9:
+                    if type(value) not in (int, float) or not math.isfinite(value) or not abs(value) <= 2e12:
                         raise ValueError('invalid/overflowing report delta')
         failed = bool(case['structural_differences']) or any(
             s['failures'] for g in GROUPS for s in case[g].values())
@@ -119,7 +120,7 @@ def assess(baseline, actual):
                     fixed(pp, f'{metric}.units', sorted(a[metric]), sorted(b[metric]))
                     for unit in a[metric].keys() & b[metric].keys():
                         smaller(pp, f'{metric}/{unit}', abs(a[metric][unit]), abs(b[metric][unit]), tol)
-                        if a[metric][unit] != b[metric][unit] and abs(a[metric][unit]) == abs(b[metric][unit]):
+                        if metric == 'final_delta_by_unit' and a[metric][unit] * b[metric][unit] < 0:
                             change(pp, f'{metric}/{unit}.sign', a[metric][unit], b[metric][unit], 'REGRESSION' if abs(b[metric][unit]) > tol else 'WITHIN-TOLERANCE')
                 af, bf = a['first_divergence'], b['first_divergence']
                 if af and bf:
@@ -162,7 +163,7 @@ def main():
     try:
         report = assess(load(args.baseline), load(args.actual))
         write_json(args.out.with_suffix('.json'), report)
-        args.out.with_suffix('.md').write_text(markdown(report))
+        args.out.with_suffix('.md').write_text(markdown(report), encoding='utf-8')
         print(f"regression {report['regression_verdict']}; compatibility {report['compatibility_passes']}/10 PASS")
         return int(report['regression_verdict'] == 'FAIL')
     except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:

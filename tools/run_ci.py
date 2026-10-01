@@ -25,8 +25,8 @@ BASELINES = {'v1': 'results/phase-3/v1/comparison.json',
 def baseline_for(model, system, arch):
     # Only measured profiles are promoted. Unknown scopes still face the original
     # native baseline, and differences fail for investigation rather than vanish.
-    if system == 'Linux' and arch == 'x86_64' and model in ('v1', 'v2', 'v2-before'):
-        return f'results/phase-4/baselines/linux-x64/{model}/comparison.json'
+    if system in ('Linux', 'Windows') and arch == 'x86_64' and model in ('v1', 'v2', 'v2-before'):
+        return f'results/phase-4/baselines/x64-libm/{model}/comparison.json'
     return BASELINES[model]
 
 

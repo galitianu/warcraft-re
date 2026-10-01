@@ -190,14 +190,15 @@ with ARM. Historical `heading()` calls float `std::atan2` and multiplies by
 `180.0f / pi_v<float>`; the westward result is sensitive to the platform's libm.
 The added `math_scope` runtime probe measures this exact boundary separately
 from retail evidence. The library explanation is an inference from that code and
-these records until the hosted probe result is recorded.
+these records; the subsequent hosted probe directly confirms the adjacent
+`atan2` results at this westward boundary.
 
-The complete [Linux v1](../results/phase-4/baselines/linux-x64/v1/comparison.json),
-[v2](../results/phase-4/baselines/linux-x64/v2/comparison.json) and
-[v2-before](../results/phase-4/baselines/linux-x64/v2-before/comparison.json)
+The complete [Linux v1](../results/phase-4/baselines/x64-libm/v1/comparison.json),
+[v2](../results/phase-4/baselines/x64-libm/v2/comparison.json) and
+[v2-before](../results/phase-4/baselines/x64-libm/v2-before/comparison.json)
 baselines retain comparison reports, original ARM regression assessments and
-two-process hashes. Only these historical suites select the measured Linux x64
-baseline. The actual protected changes are:
+two-process hashes. Only these historical suites select the measured x64 libm baseline on
+Linux/Windows x64; the baseline reports identify their original Linux producer. The actual protected changes are:
 
 | Metric | ARM | Linux |
 |---|---|---|
@@ -209,3 +210,21 @@ reference hashes and tolerances are unchanged. This is a measured platform
 baseline for historical models, not a tolerance relaxation or a new retail match.
 All historical suites remain 1/10, and v4's original native baseline still gates
 every host. The initial failures and full before/after evidence remain visible.
+
+
+[The second hosted run](https://github.com/galitianu/warcraft-re/actions/runs/36859644989)
+passes every macOS/Linux job. Windows now validates 45 captures and 15 fixtures,
+passes CTest 2/2 and Python 50/50, and compares all five suites. Its only remaining
+failures are the same historical facing metrics against the initial ARM baseline.
+[Windows review evidence](../results/phase-4/windows-review.json) retains those
+failures, complete identity and two-process hashes. Every Windows observation
+payload equals Linux for every case/model, and the reviewed x64 baseline gives
+zero protected-metric changes. It is shared rather than duplicating identical
+reports under another host name.
+
+Runtime `math_scope` results: ARM AppleClang `atan2_bits=40490fda`,
+`heading_bits=4333ffff` (179.999985°); Linux GCC and Windows MSVC
+`atan2_bits=40490fdb`, `heading_bits=43340000` (180°). All use
+`degrees_per_radian_bits=42652ee0`. This directly measures the float libm boundary
+responsible for the retained historical west-facing difference; it establishes
+no new retail compatibility claim.

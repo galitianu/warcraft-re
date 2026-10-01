@@ -28,6 +28,8 @@ struct Trace {
     std::vector<Action> actions;
     std::vector<std::size_t> tick_sequences;
     std::vector<float> speeds;
+    // footman-v4 only: the oracle library's TimerGetElapsed at each callback.
+    std::vector<float> reported_time;
 };
 // Callbacks are requested at multiples of this, matching the JASS timer period.
 inline constexpr std::uint64_t sample_period_us = 20000;

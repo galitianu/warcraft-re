@@ -3,11 +3,13 @@
 As of 1 October 2026.
 
 **Current stage:** Phase 3 complete; Phase 4 is next.
-**Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps × 3
-fresh-process captures, all payload-identical within each map.
-**C++ compatibility:** MOV-0001 passes; MOV-0002–MOV-0010 fail fixed provisional
-tolerances under footman-v1/v2/v3, with complete numeric comparisons and first
-divergences. footman-v3 matches every order sample, plus all X in MOV-0004/0010.
+**Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
+8 MOV-0012 maps × 3 fresh-process captures, all payload-identical within each map.
+**C++ compatibility:** footman-v4 passes MOV-0001–MOV-0010 under the fixed tolerances.
+Every sample and clock prints the same R2SW_6 text as WC3. It also reproduces every
+recorded state of the 1–50 ms JASS-0001/MOV-0012 captures. A few callbacks read a
+neighbouring frame for reasons not yet explained. footman-v1/v2/v3 keep their
+documented failures.
 **First release:** v0.0.1 — one Footman's movement compared numerically with WC3.
 
 The [plan](Warcraft-III-Reimplementation-Plan.md) is the detailed roadmap. GitHub
@@ -123,16 +125,34 @@ to `acos` near 0°/180° and X's position on a 1/64 grid, but cannot determine i
 no fitted rule was added. Proposed **MOV-0012**: 1 ms east travel from x=1/512 and
 3/512, from (0,256), and at 30°.
 
+**MOV-0012 and footman-v4** (branch `mov-0012`): [MOV-0012](docs/mov-0012.md) captured
+eight 1 ms variants (off-grid starts, shifted target, Y=256, 30°, west, short
+arrival). It shows that the east/west heading noise is deterministic float32
+arithmetic, and that 30° travel is quiet. The game's square root is biased high, so
+`acos` of a near-1 cosine lands 0.3–0.4° off axis.
+[footman-v4](docs/footman-v4-model.md) runs v3's cadence in a C++ reimplementation of
+the retail soft-float. Its lookup tables are generated from formulas, with no game data.
+It adds three rules from the retail update order: the heading is re-derived from the
+velocity, orders store the moving direction, and the movement clock starts at 0.5 s.
+[Results](docs/footman-v4-results.md), [reports](results/footman-v4/).
+
+Clean build of `6247107`: CTest 2/2 (including the `footman_v4_wc3` gate), Python 40/40,
+v1/v2/v3 evidence unchanged, Release/Debug bytes identical. **10/10 PASS**, and
+3,111 sample rows and 2,860 clocks are text-identical. 26,581 state-capture readings: all
+clocks/timers identical; X/Y differ at five early callbacks in each 1 ms run, and facing at
+25 update-frame callbacks of p010/p025. That sampling order is unexplained and listed explicitly.
+
 ## Next task: Phase 4 — compatibility CI
 
-Build the headless runner, validate committed canonical references and compare the
-ten MOV cases in CI with explicit baseline verdicts (MOV-0001 PASS, nine documented
-FAILs) for footman-v3, keeping v2 as the retained baseline. Keep malformed/unsupported input fatal and preserve numerical diagnostics;
-add small compiler/configuration and repeatability coverage under named scope.
-Making MOV-0002 pass requires the heading-noise mechanism; capture MOV-0012 under
-the [documented workflow](docs/agent-wc3-workflow.md) before changing v3.
+Run `ctest` in CI on every commit. `footman_v4_wc3` compares v4 with the committed
+fixtures and captures, and fails on any difference beyond the listed sampling-order
+callbacks. Keep malformed/unsupported input fatal and add small
+compiler/configuration coverage under named scope. Then design a capture that
+separates the sampler/update ordering
+([results](docs/footman-v4-results.md#sampling-order)) under the
+[documented workflow](docs/agent-wc3-workflow.md).
 Handoffs: [Phase 3](docs/phase-3-results.md#verification-and-phase-4-handoff),
-[footman-v3](docs/footman-v3-results.md#unmet-gate-and-next-experiment).
+[footman-v4](docs/footman-v4-results.md#next).
 
 ## Roadmap status
 

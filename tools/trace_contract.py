@@ -185,6 +185,32 @@ def validate_v3_parameters(parameters):
             and parameters['opposite_angle_tie'] == {'turn': 'counter-clockwise', 'within_degrees': 0}, 'unsupported v3 rule')
 
 
+# footman-v4's reported callback time: TimerGetElapsed of the library's 1000 s timer.
+LIBRARY_CLOCK = 'sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback'
+
+
+def validate_v4_parameters(parameters):
+    """footman-v4: retail soft-float arithmetic on the footman-v3 cadence."""
+    keys(parameters, ('update_period_steps', 'update_phase_steps', 'frame_steps', 'stop_radius',
+                      'default_speed', 'speed_clamp', 'turn_rate_radians', 'propulsion_window_degrees',
+                      'facing', 'frame_origin', 'clock_start_seconds', 'library_clock', 'arithmetic'))
+    for key in ('update_period_steps', 'frame_steps'):
+        integer(parameters[key], 1, 10000)
+    integer(parameters['update_phase_steps'], 0, 10000)
+    require(parameters['update_period_steps'] % parameters['frame_steps'] == 0, 'frames must divide updates')
+    for key in ('stop_radius', 'default_speed'):
+        require(type(parameters[key]) in (int, float) and parameters[key] >= 0, 'invalid model parameter')
+    require(type(parameters['propulsion_window_degrees']) in (int, float) and 0 <= parameters['propulsion_window_degrees'] <= 180, 'invalid propulsion window')
+    require(type(parameters['frame_origin']) in (int, float), 'invalid frame origin')
+    require(type(parameters['clock_start_seconds']) in (int, float) and parameters['clock_start_seconds'] >= 0, 'invalid clock start')
+    require(isinstance(parameters['speed_clamp'], list) and len(parameters['speed_clamp']) == 2
+            and all(type(v) in (int, float) and v >= 0 for v in parameters['speed_clamp']), 'invalid parameter array')
+    require(parameters['turn_rate_radians'] == 'atof(0.6)'
+            and parameters['facing'] == 'atof(0.07, 0.2, 0.2, 0.25, 0.001)'
+            and parameters['library_clock'] == LIBRARY_CLOCK
+            and parameters['arithmetic'] == 'wc3::sf retail soft-float', 'unsupported v4 rule')
+
+
 def validate(trace):
     finite_json(trace)
     keys(trace, ('schema', 'version', 'scenario', 'identity', 'units', 'time', 'records', 'completion', 'provenance'))
@@ -198,6 +224,7 @@ def validate(trace):
     keys(ident, ('engine', 'build', 'source', 'environment', 'seed', 'model'))
     require(ident['engine'] in ('wc3', 'cpp'), 'unsupported engine')
     retail = ident['engine'] == 'wc3'
+    model_clock = not retail and isinstance(ident.get('model'), dict) and ident['model'].get('name') == 'footman-v4'
     keys(ident['seed'], ('status', 'value', 'retail_equivalent'))
     require(ident['seed']['retail_equivalent'] is False, 'retail seed equivalence unobserved')
     if retail:
@@ -224,7 +251,7 @@ def validate(trace):
         require(HASH.fullmatch(build['source_sha256']), 'invalid C++ source digest')
         require(ident['source'] == {'sha256': build['source_sha256']} and ident['environment'] is None, 'C++ source/environment mismatch')
         require(ident['model'] == {'name': build['model'], 'parameters': build['parameters']}, 'C++ model identity mismatch')
-        require(build['model'] in ('footman-v1', 'footman-v2', 'footman-v3'), 'unsupported model')
+        require(build['model'] in ('footman-v1', 'footman-v2', 'footman-v3', 'footman-v4'), 'unsupported model')
         for key in ('compiler', 'build_type', 'architecture', 'fp_contract', 'rng'):
             require(isinstance(build[key], str) and build[key], f'invalid C++ {key}')
         require(build['git_commit'] is None or (isinstance(build['git_commit'], str) and re.fullmatch(r'[a-f0-9]{40}', build['git_commit'])), 'invalid revision')
@@ -232,6 +259,8 @@ def validate(trace):
         parameters = build['parameters']
         if build['model'] == 'footman-v3':
             validate_v3_parameters(parameters)
+        elif build['model'] == 'footman-v4':
+            validate_v4_parameters(parameters)
         else:
             validate_cadence_parameters(parameters)
         require(isinstance(build['cases'], list) and len(build['cases']) == 10, 'invalid build case table')
@@ -281,8 +310,12 @@ def validate(trace):
                 t = number(rec['time']['reported'])
                 require(re.fullmatch(r'-?\d+\.\d{6}', rec['time']['reported']) and rec['time']['state_us'] is None, 'invalid observed time')
             else:
-                require(rec['time']['reported'] is None, 'C++ cannot claim observed WC3 time')
-                t = number(rec['time']['requested'])
+                # Only footman-v4 models the library clock; that is a prediction, not an observation.
+                if model_clock:
+                    t = number(rec['time']['reported'])
+                else:
+                    require(rec['time']['reported'] is None, 'C++ cannot claim observed WC3 time')
+                    t = number(rec['time']['requested'])
                 lag = time['state_lag_us'] if cb > 0 and kind in ('TICK', 'SAMPLE') else 0
                 integer(rec['time']['state_us'], 0, 20000000)
                 require(rec['time']['state_us'] == cb * 20000 - lag, 'invalid C++ state timing')

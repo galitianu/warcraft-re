@@ -34,17 +34,19 @@ Start with:
   scoped repeatability and validated full-run comparison.
 - [footman-v3 model](docs/footman-v3-model.md) and [results](docs/footman-v3-results.md):
   hidden heading, 30 ms updates and truncating float32 state (issue #6).
+- [footman-v4 model](docs/footman-v4-model.md) and [results](docs/footman-v4-results.md):
+  WC3's own soft-float arithmetic; bit-exact on all ten movement fixtures.
+  [MOV-0012](docs/mov-0012.md) explains the east/west heading noise.
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
-This repository holds the plan, 16 manually authored WC3 maps with their JASS,
+This repository holds the plan, 24 manually authored WC3 maps with their JASS,
 shared oracle instrumentation, raw captures with identities, parsers and derived
 CSVs, and a dependency-free C++20 simulation. Phases 0–3 are complete. All 45 Phase 1
 raw runs normalize to 15 versioned canonical fixtures with complete provenance.
-The C++ stationary case passes; all nine movement cases have documented numerical failures
-under unchanged provisional tolerances. footman-v3 matches all order samples and
-arrival callbacks but not east/west heading noise. The v0.0.1 comparison gate is met; no
-release tag has been created.
+footman-v4 passes all ten movement cases, and every sample and clock prints
+the same six-decimal text as WC3. footman-v1–v3 and their documented failures are
+retained. The v0.0.1 comparison gate is met; no release tag has been created.
 
 Build and run without a window (CMake, system clang and Python standard library):
 
@@ -55,6 +57,7 @@ ctest --test-dir build --output-on-failure
 python3 -m unittest discover -s tools -p 'test_*.py' -v
 python3 tools/run_phase3.py --runner build/wc3test --out build/phase3 --reports build/phase3-reports
 python3 tools/run_footman_v3.py --runner build/wc3test --out build/issue6 --reports build/footman-v3
+python3 tools/run_footman_v4.py --runner build/wc3test --states build/wc3states --out build/v4 --reports build/footman-v4
 ```
 
 Use GitHub issues for concrete work and `PROGRESS.md` for the concise status. Keep
@@ -62,5 +65,5 @@ results linked to their experiments and commits. There is no separate agent harn
 or task database to maintain here.
 
 Windows access is available through `rdpipe`; run `rdpipe guide` before using it.
-Next: Phase 4 compatibility CI against committed canonical WC3 fixtures, keeping
-known movement failures and invalid-input errors explicit.
+Next: Phase 4 compatibility CI against committed canonical WC3 fixtures, gating on
+footman-v4's exact match and keeping invalid-input errors explicit.

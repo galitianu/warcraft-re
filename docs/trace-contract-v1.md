@@ -16,7 +16,9 @@ Every JSON document has `schema: "wc3-trace"`, integer `version: 1`, `scenario`,
   C++ source/build/model parameters describe the binary actually used. It has no
   WC3 map dependency. Parameter keys are model-specific: footman-v1/v2 declare
   their cadence/turn-ramp parameters, footman-v3 its update/exposure periods, turn
-  rate, propulsion window, facing law, frame origin and rounding (issue #6). WC3 seed is unset/unobserved; C++ seed is not a retail seed.
+  rate, propulsion window, facing law, frame origin and rounding (issue #6), and
+  footman-v4 the same cadence plus its soft-float arithmetic, movement clock start and
+  library-clock rule ([model](footman-v4-model.md)). WC3 seed is unset/unobserved; C++ seed is not a retail seed.
 - `units`: creation/watch order, names, observed type, speed and default speed.
   Speed strings retain emitted precision. World positions use world units and
   facing uses degrees; orders are unsigned integer strings.
@@ -30,7 +32,8 @@ Every JSON document has `schema: "wc3-trace"`, integer `version: 1`, `scenario`,
   they are producer evidence, not fields that must be equal between engines.
   Timed records carry callback and `time`: `requested` decimal seconds,
   `reported` WC3 elapsed-clock string or null, and `state_us` explicit C++ state
-  time or null. TICK precedes samples in watch order; actions/events follow all
+  time or null. Only footman-v4 fills C++ `reported`, with its *predicted*
+  library-clock value (max_digits10); every other C++ model leaves it null. TICK precedes samples in watch order; actions/events follow all
   samples. Callback 0 samples precede initial orders and callback 50 samples
   precede replacement/stop. No sorting, resampling, dropped rows or phase shifts.
 - SAMPLE: unit, `values` containing x/y/facing/order strings. ACTION: unit,

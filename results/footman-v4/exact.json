@@ -1,0 +1,172 @@
+{
+  "MOV-0001": {
+    "compared": {
+      "x": 251,
+      "y": 251,
+      "facing": 251,
+      "order": 251,
+      "t": 251
+    },
+    "different": {
+      "x": 0,
+      "y": 0,
+      "facing": 0,
+      "order": 0,
+      "t": 0
+    },
+    "first": {}
+  },
+  "MOV-0002": {
+    "compared": {
+      "x": 502,
+      "y": 502,
+      "facing": 502,
+      "order": 502,
+      "t": 251
+    },
+    "different": {
+      "x": 0,
+      "y": 0,
+      "facing": 0,
+      "order": 0,
+      "t": 0
+    },
+    "first": {}
+  },
+  "MOV-0003": {
+    "compared": {
+      "x": 251,
+      "y": 251,
+      "facing": 251,
+      "order": 251,
+      "t": 251
+    },
+    "different": {
+      "x": 0,
+      "y": 0,
+      "facing": 0,
+      "order": 0,
+      "t": 0
+    },
+    "first": {}
+  },
+  "MOV-0004": {
+    "compared": {
+      "x": 601,
+      "y": 601,
+      "facing": 601,
+      "order": 601,
+      "t": 601
+    },
+    "different": {
+      "x": 0,
+      "y": 0,
+      "facing": 0,
+      "order": 0,
+      "t": 0
+    },
+    "first": {}
+  },
+  "MOV-0005": {
+    "compared": {
+      "x": 251,
+      "y": 251,
+      "facing": 251,
+      "order": 251,
+      "t": 251
+    },
+    "different": {
+      "x": 0,
+      "y": 0,
+      "facing": 0,
+      "order": 0,
+      "t": 0
+    },
+    "first": {}
+  },
+  "MOV-0006": {
+    "compared": {
+      "x": 251,
+      "y": 251,
+      "facing": 251,
+      "order": 251,
+      "t": 251
+    },
+    "different": {
+      "x": 0,
+      "y": 0,
+      "facing": 0,
+      "order": 0,
+      "t": 0
+    },
+    "first": {}
+  },
+  "MOV-0007": {
+    "compared": {
+      "x": 251,
+      "y": 251,
+      "facing": 251,
+      "order": 251,
+      "t": 251
+    },
+    "different": {
+      "x": 0,
+      "y": 0,
+      "facing": 0,
+      "order": 0,
+      "t": 0
+    },
+    "first": {}
+  },
+  "MOV-0008": {
+    "compared": {
+      "x": 251,
+      "y": 251,
+      "facing": 251,
+      "order": 251,
+      "t": 251
+    },
+    "different": {
+      "x": 0,
+      "y": 0,
+      "facing": 0,
+      "order": 0,
+      "t": 0
+    },
+    "first": {}
+  },
+  "MOV-0009": {
+    "compared": {
+      "x": 251,
+      "y": 251,
+      "facing": 251,
+      "order": 251,
+      "t": 251
+    },
+    "different": {
+      "x": 0,
+      "y": 0,
+      "facing": 0,
+      "order": 0,
+      "t": 0
+    },
+    "first": {}
+  },
+  "MOV-0010": {
+    "compared": {
+      "x": 251,
+      "y": 251,
+      "facing": 251,
+      "order": 251,
+      "t": 251
+    },
+    "different": {
+      "x": 0,
+      "y": 0,
+      "facing": 0,
+      "order": 0,
+      "t": 0
+    },
+    "first": {}
+  }
+}

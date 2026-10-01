@@ -1,5 +1,6 @@
 #pragma once
 #include "core/Random.h"
+#include "core/SoftFloat.h"
 #include <cstddef>
 #include <cstdint>
 #include <vector>
@@ -9,7 +10,7 @@ inline constexpr std::uint32_t order_none = 0;
 inline constexpr std::uint32_t order_move = 851986;
 inline constexpr std::uint32_t order_stop = 851972;
 struct Vec2 { float x = 0; float y = 0; };
-enum class ModelVersion { v1, v2, v3 };
+enum class ModelVersion { v1, v2, v3, v4 };
 // footman-v3 only: hidden movement heading, globally phased logical updates and
 // round-toward-zero float32 state. Hypotheses: docs/footman-v3-model.md.
 struct HeadingModel {
@@ -26,6 +27,9 @@ struct HeadingModel {
     float facing_snap_radians = 0.001f;
     // Positions are stored relative to the map's minimum corner (64x64 oracle map).
     float frame_origin = -4096.0f;
+    // footman-v4: movement clock at step 0 (float32 bits, 0.5 s). The fixtures
+    // admit roughly 0.496-0.505 s; the clock's binade sets each frame's truncation.
+    std::uint32_t clock_start = 0x3f000000;
 };
 // Every behavioral difference between versions is one of these parameters.
 struct Model {
@@ -46,6 +50,9 @@ struct Model {
     // Directions within this of exactly opposite take the clockwise tie (-180).
     float opposite_tie_degrees = 0.0001f;
     HeadingModel heading;
+    // footman-v4: retail soft-float movement (docs/footman-v4-model.md). Uses the
+    // heading block's cadence and frame origin; arithmetic is wc3::sf throughout.
+    bool soft_float = false;
 };
 Model model(ModelVersion version);
 
@@ -73,6 +80,19 @@ private:
     std::uint64_t batch_step_ = 0;
     Vec2 batch_start_;
     Vec2 batch_end_;
+    // footman-v4 state, float32 bit patterns in the map-corner frame.
+    struct Soft {
+        sf::F x = 0, y = 0;             // integrated position
+        sf::F vx = 0, vy = 0;           // velocity, units per second
+        sf::F heading = 0;              // stored heading [0, 2pi), used while not moving
+        sf::F facing = 0;               // reported facing, radians
+        sf::F facing_velocity = 0;      // radians per update
+        sf::F facing_target = 0;
+        sf::F target_x = 0, target_y = 0;
+        sf::F speed = 0;
+        std::uint64_t integrated_step = 0;  // velocity applies from here
+        bool settle = false;            // stop processing due at the next update
+    } soft_;
 };
 
 // Simulation owns state and seeded randomness. No clock, file or renderer APIs.
@@ -91,6 +111,13 @@ public:
     Random& random() { return random_; }
 private:
     void step_heading();
+    void step_soft();
+    void soft_integrate(Unit& unit) const;
+    void soft_expose(Unit& unit) const;
+    void soft_halt(Unit& unit) const;
+    sf::F clock_at(std::uint64_t frame) const;
+    sf::F frames_to_seconds(std::uint64_t from_step, std::uint64_t to_step) const;
+    mutable std::vector<sf::F> clock_;
     Model model_;
     Random random_;
     std::vector<Unit> units_;

@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 #include <stdexcept>
+#include <utility>
 
 namespace {
 void check(bool condition, const char* message) {
@@ -18,14 +19,17 @@ int main() {
             distinct |= draw != c.next();
         }
         check(distinct, "different RNG seeds produced identical streams");
-        for (auto version : {wc3::ModelVersion::v1, wc3::ModelVersion::v2, wc3::ModelVersion::v3}) {
+        for (auto version : {wc3::ModelVersion::v1, wc3::ModelVersion::v2, wc3::ModelVersion::v3,
+                             wc3::ModelVersion::v4}) {
             wc3::World world(version, 13);
             wc3::Random unused(13);
             const auto id = world.create_footman({-123.25f, 384.5f}, 45);
-            // v3 stores truncated float32 radians; 45 reads one float below.
             const float facing = world.unit(id).facing();
-            check(facing == (version == wc3::ModelVersion::v3 ? std::nextafter(45.0f, 0.0f) : 45.0f),
-                  "initial facing reading");
+            // v3 stores truncated float32 radians; 45 reads one float below. v4 reads
+            // 45 * (pi/180) * (180/pi) with truncating soft-float multiplies.
+            const float expected = version == wc3::ModelVersion::v3 ? std::nextafter(45.0f, 0.0f)
+                : version == wc3::ModelVersion::v4 ? wc3::sf::value(0x4233ffff) : 45.0f;
+            check(facing == expected, "initial facing reading");
             for (int i = 0; i < 12000; ++i) {
                 world.step();
                 const auto& unit = world.unit(id);
@@ -111,8 +115,36 @@ int main() {
             check(world.unit(id).position().x == stopped.x && world.unit(id).current_order() == 0,
                   "stop did not freeze position");
         }
-        std::cout << "RNG, stationary state, repeated ten-case bytes (three models), "
-                     "opposite-direction tie and footman-v3 rules passed.\n";
+        {
+            // footman-v4 soft-float: fixed vectors from the reconstruction
+            // (docs/footman-v4-model.md), guarding the formula-generated tables.
+            namespace sf = wc3::sf;
+            const std::pair<sf::F, sf::F> vectors[] = {
+                {sf::sqrt(sf::bits(2.0f)), 0x3fb504f3}, {sf::sin(sf::one), 0x3f576ad1},
+                {sf::cos(sf::one), 0x3f0a50f7}, {sf::acos(sf::bits(0.5f)), 0x3f860a91},
+                {sf::acos(0x3f7fff07), 0x3bb2dd2f}, {sf::recip(sf::bits(3.0f)), 0x3eaaaaab},
+                {sf::pow(sf::bits(0.5f), sf::atof("0.25")), 0x3f574500},
+                {sf::atof("0.6"), 0x3f19999a}, {sf::exp(sf::one), 0x402df853},
+                {sf::log(sf::bits(10.0f)), 0x40135d8d}, {sf::wrap_angle(sf::bits(-0.1f)), 0x40c5dca7},
+                {sf::angle_to(0x40c8e323, 0x3b70844c), 0xbc159200},
+                // Alignment rounds toward minus infinity: 4096 + 13/2048 - 0.0441940 -> -156/4096.
+                {sf::add(0x4580000d, sf::mul(0xbfbc8fa0, 0x3cf5c280)), 0x457fff64}};
+            for (const auto& [got, want] : vectors) check(got == want, "soft-float vector");
+            // MOV-0002 callback 53: the heading is re-derived from the velocity each
+            // update, which keeps this batch's Y at -155/4096 as in WC3.
+            wc3::World world(wc3::ModelVersion::v4);
+            const auto id = world.create_footman({0, 0}, 0);
+            world.issue_point_order(id, wc3::order_move, {1000, 0});
+            while (world.steps() < 1060) world.step();
+            check(world.unit(id).position().y == -155.0f / 4096, "footman-v4 MOV-0002 callback 53");
+            // The library clock: MOV-0004 callback 503 reads 10.059937, not 10.06.
+            const auto trace = movement::run(4, wc3::ModelVersion::v4);
+            check(trace.reported_time.at(503) == sf::value(0x4120f580), "footman-v4 library clock");
+            check(movement::run(1, wc3::ModelVersion::v3).reported_time.empty(),
+                  "only footman-v4 models the library clock");
+        }
+        std::cout << "RNG, stationary state, repeated ten-case bytes (four models), "
+                     "opposite-direction tie, footman-v3 rules and footman-v4 vectors passed.\n";
         return 0;
     } catch (const std::exception& error) {
         std::cerr << error.what() << '\n';

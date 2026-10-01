@@ -1,4 +1,5 @@
 #include "Cases.h"
+#include "core/SoftFloat.h"
 #include <iomanip>
 #include <limits>
 #include <locale>
@@ -20,6 +21,7 @@ std::size_t case_units(int number) {
     case_name(number);
     return number == 2 ? 2 : 1;
 }
+using sf_time = wc3::sf::F;
 Trace run(int case_number, wc3::ModelVersion version, std::uint32_t seed,
           bool before_due_update) {
     const int callbacks = case_callbacks(case_number); // Validates first.
@@ -36,6 +38,13 @@ Trace run(int case_number, wc3::ModelVersion version, std::uint32_t seed,
     for (std::size_t id = 0; id < world.unit_count(); ++id)
         trace.speeds.push_back(world.unit(id).move_speed());
     std::size_t sequence = 2 + world.unit_count(); // BEGIN, WATCH units, RUN.
+    // footman-v4 models the library clock: a one-shot 1000 s timer read from the
+    // periodic sampler, whose scheduled time advances by add(time, period) from
+    // the movement clock's start. Elapsed is timeout - (expiry - now).
+    const bool timer_model = world.parameters().soft_float;
+    const sf_time start = world.parameters().heading.clock_start;
+    const sf_time timeout = wc3::sf::bits(1000.0f), expiry = wc3::sf::add(start, timeout);
+    sf_time scheduled = start;
     const auto move = [&](int callback, wc3::Vec2 target) {
         const bool accepted = world.issue_point_order(moving, wc3::order_move, target);
         trace.actions.push_back({callback, wc3::order_move, target, accepted,
@@ -51,6 +60,11 @@ Trace run(int case_number, wc3::ModelVersion version, std::uint32_t seed,
             (before_due_update && callback > 0 ? 1 : 0);
         while (world.steps() < steps_before_sample) world.step();
         trace.tick_sequences.push_back(sequence++);
+        if (timer_model) {
+            if (callback > 0) scheduled = wc3::sf::add(scheduled, wc3::sf::bits(0.02f));
+            trace.reported_time.push_back(wc3::sf::value(
+                wc3::sf::sub(timeout, wc3::sf::sub(expiry, scheduled))));
+        }
         for (std::size_t id = 0; id < world.unit_count(); ++id) {
             const auto& unit = world.unit(id);
             trace.samples.push_back({callback, sample_step * step_us,

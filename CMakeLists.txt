@@ -8,7 +8,7 @@ include(CTest)
 
 # A fresh, dependency-free build. Consulted the archived sim/CMakeLists.txt for
 # its standalone static-library boundary; no archived code or flags imported.
-add_library(wc3world STATIC src/core/World.cpp)
+add_library(wc3world STATIC src/core/World.cpp src/core/SoftFloat.cpp)
 target_include_directories(wc3world PUBLIC src)
 target_compile_options(wc3world PUBLIC
   $<$<CXX_COMPILER_ID:AppleClang,Clang,GNU>:-Wall;-Wextra;-Wpedantic;-ffp-contract=off>)
@@ -44,6 +44,7 @@ endif()
 # sources, not generated evidence (which would create a self-reference).
 set(BUILD_SOURCE_INPUT "")
 foreach(path CMakeLists.txt src/core/World.h src/core/World.cpp src/core/Random.h
+    src/core/SoftFloat.h src/core/SoftFloat.cpp
     tools/wc3test/Cases.h tools/wc3test/Cases.cpp tools/wc3test/main.cpp
     tools/wc3test/Canonical.h tools/wc3test/Canonical.cpp
     tools/wc3test/BuildIdentity.h.in)
@@ -57,8 +58,18 @@ configure_file(tools/wc3test/BuildIdentity.h.in generated/BuildIdentity.h @ONLY)
 add_executable(wc3test tools/wc3test/main.cpp)
 target_include_directories(wc3test PRIVATE "${CMAKE_BINARY_DIR}/generated")
 target_link_libraries(wc3test PRIVATE movement_cases)
+add_executable(wc3states tools/wc3states/main.cpp)
+target_link_libraries(wc3states PRIVATE wc3world)
 if(BUILD_TESTING)
   add_executable(world_tests tests/world_tests.cpp)
   target_link_libraries(world_tests PRIVATE movement_cases)
   add_test(NAME world_invariants COMMAND world_tests)
+  # Bit-exact footman-v4 gate against the committed WC3 fixtures and captures.
+  find_package(Python3 COMPONENTS Interpreter)
+  if(Python3_FOUND)
+    add_test(NAME footman_v4_wc3 COMMAND Python3::Interpreter
+      "${CMAKE_SOURCE_DIR}/tools/run_footman_v4.py" --runner $<TARGET_FILE:wc3test>
+      --states $<TARGET_FILE:wc3states> --out "${CMAKE_BINARY_DIR}/footman-v4-test"
+      --reports "${CMAKE_BINARY_DIR}/footman-v4-test/reports")
+  endif()
 endif()

@@ -56,7 +56,10 @@ std::string canonical_json(const Trace& trace, int number, const std::string& bu
     };
     auto timing = [&](int cb, std::uint64_t state_us) {
         out << ",\"callback\":" << cb << ",\"time\":{\"requested\":\""
-            << time_string(cb * sample_period_us) << "\",\"reported\":null,\"state_us\":" << state_us << '}';
+            << time_string(cb * sample_period_us) << "\",\"reported\":";
+        if (trace.reported_time.empty()) out << "null";
+        else out << '"' << value(trace.reported_time.at(cb)) << '"';
+        out << ",\"state_us\":" << state_us << '}';
     };
     control("BEGIN");
     for (std::size_t id = 0; id < trace.speeds.size(); ++id) control("WATCH");

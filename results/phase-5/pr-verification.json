@@ -1,0 +1,2354 @@
+{
+  "status": "PASS",
+  "configurations": {
+    "mac-arm-release": {
+      "ci_status": "PASS",
+      "host": {
+        "system": "Darwin",
+        "release": "24.6.0",
+        "architecture": "arm64",
+        "python": "3.12.10"
+      },
+      "environment": {
+        "host": {
+          "system": "Darwin",
+          "release": "24.6.0",
+          "architecture": "arm64",
+          "python": "3.12.10"
+        },
+        "requested_compiler": "/usr/bin/clang++",
+        "build_type": "Release",
+        "expected_architecture": "arm64",
+        "seed": 1,
+        "github": {
+          "GITHUB_RUN_ID": "36887017447",
+          "GITHUB_RUN_ATTEMPT": "1",
+          "GITHUB_SHA": "cbf9d0f046a36c045348321137ca9db9efcd9d57",
+          "GITHUB_EVENT_NAME": "pull_request",
+          "RUNNER_OS": "macOS",
+          "RUNNER_ARCH": "ARM64",
+          "ImageOS": "macos15",
+          "ImageVersion": "20260907.0337.1"
+        }
+      },
+      "primary_identity": {
+        "git_commit": "cbf9d0f046a36c045348321137ca9db9efcd9d57",
+        "git_dirty_at_configure": false,
+        "source_sha256": "fd893cf671587d4e12bcf0b3869f587a6d118621b0c6a4b8051796173f769e68",
+        "compiler": "AppleClang 17.0.0.17000013",
+        "build_type": "Release",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float"
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ]
+      },
+      "models": {
+        "v1": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877",
+            "MOV-0003.json": "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3",
+            "MOV-0004.json": "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41",
+            "MOV-0005.json": "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20",
+            "MOV-0006.json": "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849",
+            "MOV-0007.json": "286117047d150e559b4f7eff378515d8d8e7d85d0ecc437b1f4829cab6c81d40",
+            "MOV-0008.json": "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab",
+            "MOV-0009.json": "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7",
+            "MOV-0010.json": "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "2603e5722222b79fa3125b152d126f12e5fb3c11bbea8dfc4697560023bee4a0",
+            "MOV-0002.json": "7a4b5af114c18e741c4124bbf11767683216f23eba1013a52cacb4abf601da4d",
+            "MOV-0003.json": "fd35d54988dadaea737bae5fb2d9bc612f298d6c94d2de011420ed0bad5a48e3",
+            "MOV-0004.json": "91700db64e5ea3a53cd8ee3231916a3d9335d75ba291dd1b7e88c42f56d39d74",
+            "MOV-0005.json": "13195db54a42c7b7fd17911ae3bbda459d187900c15b67a99eb9ffff4eedaa30",
+            "MOV-0006.json": "f64238449a48214c2fb5eaaecd619acd0eabaca067e61c45cec320b0da34446a",
+            "MOV-0007.json": "133040d690c5097a6c232c2bced6df3fe692b680f8fd88400ad565142d609f51",
+            "MOV-0008.json": "eb716742edafb30cb7ae3be9645290598edeecef192e0eb11d3e56e77ddd5b2a",
+            "MOV-0009.json": "ddf02957ef68dfc9c91ec7519942672b72dcbbd2020371eb78846a99d8f5a373",
+            "MOV-0010.json": "615bd7ebde2aff0c028235379af4735bece636caf0395ee7959a73eb1d94bc3a",
+            "identity.json": "657e4d81549d4d76e3f5012816abc71b676d5d5a273bf01189bd5ba44a2c1c2f"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "d2105a3060ff11dadf583058802b1f453490e8bfd363c1e9c4f91011dddabefc",
+              "MOV-0002.json": "9ce3cf7cf09d3f3228783400cbc086c569f27e30b4f947d9fc79dd9d9ef3ccfd",
+              "MOV-0003.json": "cb142dba5996f32e3c52a3bf960cd72fc224c06ca02e523605eb52fd7132e31b",
+              "MOV-0004.json": "f60ceacc419ae7cfcaf0b559d515ab5a4aeb0f2327f03a0a4d7db85f31929c7b",
+              "MOV-0005.json": "166fd8f150046a5d72f544337971db2928c91a8c0dd9221e13d55d2e2c1a0dcf",
+              "MOV-0006.json": "bb2a0f77cc3f1aa142b429d8ab31fa954bb32ab34bc247ae07d15ffab910a2ca",
+              "MOV-0007.json": "7bb746675d1f1b2da70b7fd69b71e35f2e53225d0b67075a7dd77932f1159f66",
+              "MOV-0008.json": "f5ae450ea438bdf44fe0f7f56e3ae67a5e1a9637ed73ab7f0db0ebc5936afb74",
+              "MOV-0009.json": "4e366ff46a13a32e35a3f64328913f59db64daf57c98bd654b9555cdee34804e",
+              "MOV-0010.json": "70414f6bd9e2a2b1cf7ae2ea51672de3d480e0c419516313e4e06ecd5c5f399f",
+              "identity.json": "9033c7dbb6fe99da5b0b0d479614d28ffd14a88bf4eb48e983592989fcc0e648"
+            }
+          }
+        },
+        "v2": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d",
+            "MOV-0003.json": "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63",
+            "MOV-0004.json": "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671",
+            "MOV-0005.json": "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0",
+            "MOV-0006.json": "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543",
+            "MOV-0007.json": "b4e047f36499c06edb3243f13f36c91fa6e594158e0bb0e8752973c7ac662fc6",
+            "MOV-0008.json": "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f",
+            "MOV-0009.json": "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c",
+            "MOV-0010.json": "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "b5260c4be55c37924c9882b901b677a946b87ed943cb2e22dd8362dffbc56749",
+            "MOV-0002.json": "601c5b2ca05c1fd0ff1cad300517990deb1f19816db4c551a224897c7402d007",
+            "MOV-0003.json": "4c0b7ec0d345d8b133f1a369a4e6b19cae1f087be8df479d5841ae113b5b2cdb",
+            "MOV-0004.json": "41aad57b89aa8bfaa79c569b3b4d74f1c776b2acb1f96b26a6f4a6407788ff93",
+            "MOV-0005.json": "93a236f0cf106e6ae16717e0836bce8028a615f1db932ebf1883be9b5086bc0b",
+            "MOV-0006.json": "6c36b7c7576fd92063d54062ec7302e055c653f436f87df6ef013759e5ed24d7",
+            "MOV-0007.json": "7f9ba318f98a99e5ee8f909b2ba48664bd9279b968d40fc153295847edc48f08",
+            "MOV-0008.json": "d53f136d6bc5c97be9825a86b7786dee020636ecdbd3e78b94660691b2667829",
+            "MOV-0009.json": "753df6d891a01430fc3e0e39488a0a8865e534b7fe6310d48f9ac08a6c0c1329",
+            "MOV-0010.json": "e478b16cebcd5e09059c804a79c0fe21748e67cc72bdec4550d530c9defbadd6",
+            "identity.json": "92d3e232f5ccdf97764c9157d9406fabbc1d478b4e709c0af6d1128875e10085"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "f69fcf698b1110f7d25c1b236c69439740fc4c01b7387057bf02adb1e79db404",
+              "MOV-0002.json": "3169d17f4d755d2643b33653a0b9bd4db24f523ec981881941f45b504c30dd22",
+              "MOV-0003.json": "0f800d1c9c24119791c42d2f27e5193a7b80ef393c590dd64bc7a7cc6cbce5b6",
+              "MOV-0004.json": "29ea8a53193b2191ced36fa4dc2b120b1b28645b667b7598128afe601febfbbe",
+              "MOV-0005.json": "3c659b3f76f26a816b77099bf11c47b2508d10e3f29158d229c17928c21c0c53",
+              "MOV-0006.json": "4cd3f3b993bfe1190d461fe134dbb0967e9818e5c23649d9c548a923f579f355",
+              "MOV-0007.json": "59c931375fc8e5cfc2e8ecb005e6d3c407e55c279ae5f9a63f88c016ba3d07ac",
+              "MOV-0008.json": "2744b055085b1d5aff4aa8387ef092a1e7a91036be009db0d117afed7f50060b",
+              "MOV-0009.json": "479fe39f870fac668c17a69501593412012a099549b4b30599d9985da4378844",
+              "MOV-0010.json": "0838b7f0f8a96fc64d8cc3eadba04042a545c29d4ebff45a6edc7ee5243dc326",
+              "identity.json": "90ba2f835ae6ae341bb8992f1033d25a4ae6646e899e872a54f0a923a271739f"
+            }
+          }
+        },
+        "v2-before": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+            "MOV-0002.json": "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+            "MOV-0003.json": "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+            "MOV-0004.json": "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+            "MOV-0005.json": "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+            "MOV-0006.json": "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+            "MOV-0007.json": "2133393fbb0a8e6f92025749a6494a36d292d4c52b652caddb308a2243d9d715",
+            "MOV-0008.json": "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+            "MOV-0009.json": "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+            "MOV-0010.json": "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "29b1c3ae4627dc3bce3bfc1a091fa5a2fdb7a9b9ad08ef69f3a47c42fe8071e4",
+            "MOV-0002.json": "cdaaf80cebaaefa1601962b8b8f72690cdc31ea0aecd061f894557ece951f3d8",
+            "MOV-0003.json": "59766ee85912f8ed5715cc27ec6d569e1945bd848853cbd687236c02ebc0573e",
+            "MOV-0004.json": "ffaf62af9f3a45c0af9e7501e2866e333f58b5f606abdbf15cd2a4a5663baecd",
+            "MOV-0005.json": "146007891a8995493ee518cd21f8ce8239b71d5a7d9a8a471541e76f738432ac",
+            "MOV-0006.json": "bf4c738abfb6f6c117b7f601bf7624d35ab8fec8a7ba53002d6be423c724d788",
+            "MOV-0007.json": "d414f1fbf3580d93fc849d13672930f1eddeac13611b76714a78c011ca7b1bc8",
+            "MOV-0008.json": "549f267dfa75239716296b7662f5d947ef1491618b91d813423ceeee5ba89c14",
+            "MOV-0009.json": "de3dd97535e51b693dacfc521f3ad6075aa9356ed893418de79e141f473fafac",
+            "MOV-0010.json": "e4823c2961e5fdf9f68c7983eb8363a00a90549935ba93e33da095de1c0d735d",
+            "identity.json": "cc21bee21569143846f415b0019b891e5b527e36c39475b3d7c0f1471beec03f"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "0dc641e29e7ee7074cd919051d35926cb66cfda8745e00d99e77360d9ceb03c6",
+              "MOV-0002.json": "5b9589d6b4a382fb8812b13f248225d2018081792e55575cf224eef5872db573",
+              "MOV-0003.json": "638473ba7d3807debd3ff93a26ca633115c7d59a2cc21239169b4b7968be8ce0",
+              "MOV-0004.json": "749cf0380c24dab3b603c075caa971931a2687ab319aaf5da9706e6afac46f3b",
+              "MOV-0005.json": "ef000ceaba13a19ae191963acc701400bd8cc36e8cea311ee9503f21c688c13a",
+              "MOV-0006.json": "ae761c89dec5f9a510e4363c1935e4d7670164023a99a5dd5b62ed4dcc3c77e7",
+              "MOV-0007.json": "69b355e4d048b248ca639d1dc9e42f23d7ace9465263d23cbd631dd1aae614dd",
+              "MOV-0008.json": "6a2e4bb3eff79b52544a899b7c63397a003d89317fd38cebbfdde3186429d2db",
+              "MOV-0009.json": "607d86601a190f6c13f5e1519e6e73b2b7e37d0cca48946e32363b4175d59e42",
+              "MOV-0010.json": "9311d0396ba52d6bf43cd332b40a8bd33475897f9eee9f499a61c78e0b10ef74",
+              "identity.json": "39689c1b2250177dfcce41435892a0189d6fa6248d626918aecd7a11ae303836"
+            }
+          }
+        },
+        "v3": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd",
+            "MOV-0003.json": "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad",
+            "MOV-0004.json": "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed",
+            "MOV-0005.json": "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5",
+            "MOV-0006.json": "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b",
+            "MOV-0007.json": "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f",
+            "MOV-0008.json": "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646",
+            "MOV-0009.json": "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944",
+            "MOV-0010.json": "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "4076348692b6c98f3a449b1d6fdc4865020263dee5902aff33c6cb3f14e24f86",
+            "MOV-0002.json": "5b2ed9c470b04a1bc3a36d8b20a155c0e8cf22efc724bf2fb0a4e4e03f2404a4",
+            "MOV-0003.json": "6f00cda7a8d0724ab6a73cf984e357ac129dd64fe2020d7d9111dced40a23a07",
+            "MOV-0004.json": "d96f773fe572f677398960f3168da400c420234728c8fa20318b8227b7ebbd77",
+            "MOV-0005.json": "c6489921e0095a7ac9295314445fd3776492408e37b15461b50f8f777b7de30a",
+            "MOV-0006.json": "bd3c12cdf2779921286091b5487811dfb773dd587616d0f854d6965a151814c2",
+            "MOV-0007.json": "269d50192894ab7605366657d260219278762e7daf332f6f1d2a5fd2697d3331",
+            "MOV-0008.json": "19e075fd0ec2788f6f9e6159ad82e783228db3f21a7dc51d1fa831531ad05bb8",
+            "MOV-0009.json": "3153e7e227c97a6ff26ccce27c3f0deb06e9b3820b9d3124aa2ff12bcc03fb69",
+            "MOV-0010.json": "be168fc9e1af92a81b50c39aea070385aba7cb10292791cfb096e82b86af2fce",
+            "identity.json": "3e5b80774406d274f63a0246e39b37e46ca7f24bb9ee73bfecc9b65c120eed9d"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "9c9e9eaa20f23b0a72a428f886991d5d3e187dcacd493d2d1bb4d8a1cfec31c6",
+              "MOV-0002.json": "32d78710c406e139a4022b38d25040dd00ac43ba11186de20ba795278bfb5f56",
+              "MOV-0003.json": "fbe8a15b9248bbb1730ffd87888c6bc57648502c771c838a0d6f331df7768193",
+              "MOV-0004.json": "5ec60204ce37427f05b912f206a31fa273a66e42afa2efcc08bdce87dfec9eae",
+              "MOV-0005.json": "dd7484b5e3063e5c8c0dc739c04afa9021d7ce9f0c3b5915af89471a9c9bc985",
+              "MOV-0006.json": "b0b63571b638294dc6759a133e99b95b0dd804ff3ebb24c47312950826ed2b01",
+              "MOV-0007.json": "01de955f81870db88e2d7689dfaa071b97e25ff5a9135a174d7f6d7047382b96",
+              "MOV-0008.json": "e99b5455dfe7f874ea7e444bd98b4103bb84193e5e45ac70c20c4225a4803f73",
+              "MOV-0009.json": "bc910375fee2b28f7455153fb46bb587d9fc9bf756c69b702bafdc862d701281",
+              "MOV-0010.json": "013a04ff267bf07e50570fe7c5d89a8a8f6d432f89ac4f1903de88bdfd0a2edb",
+              "identity.json": "3fadc4c961dc6e810242a877fe4c73966dc425cfe21d0ca8c2d4ee41a676acb4"
+            }
+          }
+        },
+        "v4": {
+          "compatibility_passes": 10,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc",
+            "MOV-0002.json": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+            "MOV-0003.json": "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7",
+            "MOV-0004.json": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+            "MOV-0005.json": "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d",
+            "MOV-0006.json": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+            "MOV-0007.json": "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e",
+            "MOV-0008.json": "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5",
+            "MOV-0009.json": "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612",
+            "MOV-0010.json": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "e61ca7095fee4c23dd223ca3b3baa88283cb921a7e3c8959463faf730d96a19a",
+            "MOV-0002.json": "985ef22325193cba623918b65f7521bae20efa297187d8a0c309cc3c13ab51d8",
+            "MOV-0003.json": "53ea1d1357bc0f9a8df5655461b5ce4e1dca9756c208150e0694eeb5324bb299",
+            "MOV-0004.json": "46b7f9092a4c7069cf1a395945bb2dc450f1af8f186340bc7ea5e6a1f8328c13",
+            "MOV-0005.json": "70a4de4228576200ad70b10f244147de5eb8373964f665e30d3dfcf28078443d",
+            "MOV-0006.json": "b978d22a8233132a638b8bbc48e0c51b64092f5c31b8322879d77bb1cff4c131",
+            "MOV-0007.json": "86201ac079783381b5227249fdfbc696167b0b7265cd1534eab0bfd222a50946",
+            "MOV-0008.json": "fa87195894458a7639b0ed9ee1f656e9b0c0a938967e85c11e1212af06fcc139",
+            "MOV-0009.json": "9fba5838f3d5fa2fab9238a42367a9375fd0a5af5b42b68c4c48e82ca7346491",
+            "MOV-0010.json": "2c2b671d5101ae92544664ae954a2a58f7bd077e423642f9ee2314cb5e8562d6",
+            "identity.json": "204c07ebd8f48a51011b78ae883604fb47edbcf6f0eea9a8156844002a61b43e"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 10,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "e2db738abeae11db2935b7985fc9eab93a60640e9927d96efad386500e7b6a0e",
+              "MOV-0002.json": "0ee9afbf48f6fe2f642f5229bd90a541e247d999afe01d29c1dc4acc58fb5218",
+              "MOV-0003.json": "0ab425e20d3db792157fa656c451763608ebb0647400a97d8d304e39a3deb468",
+              "MOV-0004.json": "300e1893683c15e19366c9d5c8b071dbba5c704da5b5d3606af1da735a968b64",
+              "MOV-0005.json": "611fc46108634aad14827bcd1f8d5e1adac33352915988736bdba7bb03ab99b8",
+              "MOV-0006.json": "10a1fe3e70d00bac3c7a3b1d08abe86887acf28f8f24bc642e2773c59f4354ec",
+              "MOV-0007.json": "f64eceb3f6a72c5b4f0fc2c22f9b7299ca8151dc3c398ed8cde4721599de5b19",
+              "MOV-0008.json": "a4b1538c6e37c6c6067386286df8684ded274ffbdb16a40fb6de487bf304a2b0",
+              "MOV-0009.json": "d77c70b45a47d87c8132b8d96ec1aa1cd04e4c8823540b4974b23769821a0268",
+              "MOV-0010.json": "f169fa8a8274f2abd23790e0af010c04fbaaaa42f1f2a197a02acf576da55e5f",
+              "identity.json": "192b86cc74b0ff2a96d47d2c68dc5803ce2f5cc1b771ad1328f252a6a1e946d7"
+            }
+          }
+        }
+      }
+    },
+    "mac-arm-debug": {
+      "ci_status": "PASS",
+      "host": {
+        "system": "Darwin",
+        "release": "24.6.0",
+        "architecture": "arm64",
+        "python": "3.12.10"
+      },
+      "environment": {
+        "host": {
+          "system": "Darwin",
+          "release": "24.6.0",
+          "architecture": "arm64",
+          "python": "3.12.10"
+        },
+        "requested_compiler": "/usr/bin/clang++",
+        "build_type": "Debug",
+        "expected_architecture": "arm64",
+        "seed": 1,
+        "github": {
+          "GITHUB_RUN_ID": "36887017447",
+          "GITHUB_RUN_ATTEMPT": "1",
+          "GITHUB_SHA": "cbf9d0f046a36c045348321137ca9db9efcd9d57",
+          "GITHUB_EVENT_NAME": "pull_request",
+          "RUNNER_OS": "macOS",
+          "RUNNER_ARCH": "ARM64",
+          "ImageOS": "macos15",
+          "ImageVersion": "20260907.0337.1"
+        }
+      },
+      "primary_identity": {
+        "git_commit": "cbf9d0f046a36c045348321137ca9db9efcd9d57",
+        "git_dirty_at_configure": false,
+        "source_sha256": "fd893cf671587d4e12bcf0b3869f587a6d118621b0c6a4b8051796173f769e68",
+        "compiler": "AppleClang 17.0.0.17000013",
+        "build_type": "Debug",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float"
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ]
+      },
+      "models": {
+        "v1": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877",
+            "MOV-0003.json": "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3",
+            "MOV-0004.json": "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41",
+            "MOV-0005.json": "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20",
+            "MOV-0006.json": "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849",
+            "MOV-0007.json": "286117047d150e559b4f7eff378515d8d8e7d85d0ecc437b1f4829cab6c81d40",
+            "MOV-0008.json": "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab",
+            "MOV-0009.json": "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7",
+            "MOV-0010.json": "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "cd913291cbb23eb55654c688d26c81fd4df19b137f686e2271f68c86b855b1ee",
+            "MOV-0002.json": "e38bb0f4ab16cce3896e272d8399c51074ce8b26df9282a5f2c7a93f9e93b21d",
+            "MOV-0003.json": "f7cb332589f02d44ae41503ee9e77d2dfb4be4d548b0b4fa691a1210a8ccf3ce",
+            "MOV-0004.json": "bdd0d961cf5ad52fd80bd31117611d5dde99e745c478a2fe1a5bed80aae6ae63",
+            "MOV-0005.json": "2a52a10f42e50f0a129a42137727305fd483e3e3b555cb32baf3f55c9537eba9",
+            "MOV-0006.json": "0ef8230934f6b63b537dc0d8cfaba6428c66a8c1bb636007c748d80403005c9c",
+            "MOV-0007.json": "c2df6ddfe1ddb73a7ea236db74b7428f6ef551bbc8162bac0444838a773fb9e4",
+            "MOV-0008.json": "8269f4f04c2aff446926ea328a040afc64797624edcb007c2b170a0d94fe54ef",
+            "MOV-0009.json": "d03471ac24b3298d3630de1e30296f19d983573b90b43016fcaf3df50ed47130",
+            "MOV-0010.json": "b1664119f355b07c61572bb509975fed50950d95605baae0de4f92a9eb489a70",
+            "identity.json": "8e1f16c548e2157c84bc42e9fcb073c2f07c71319fca630ee932df1417b21f12"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "1f01f78241b56c40893b56561d494a9563e652e2e01adaf1ed81375b6a71d32c",
+              "MOV-0002.json": "3c20fb64cec5827c71fad88224b9dac860c99232e063536bd06496752497b1d5",
+              "MOV-0003.json": "a963d58e25b7f3b672fc8dcff18e5b72a241b02cdcd3b6bf9b84c65e6dc8f29d",
+              "MOV-0004.json": "71dd81dee9c0a3db3a8d17a73deb169967aaf392e8b0dc76e97dd981784c4a68",
+              "MOV-0005.json": "046e37eaa4b1fb99dd2483c56f7183b615cba021a90caf23a314e1147694e864",
+              "MOV-0006.json": "f6b6fb17cfbf65f179122e2e928802224a4d71e10d864d612aa43265b7288f56",
+              "MOV-0007.json": "fb69f242568dd872e6635e3db21c30c18e7c7120e74fcfd2ab4f04fbe95b17d4",
+              "MOV-0008.json": "d5e16f9d031b700510b60638f8b079edf3ba0c8ec20bc1af60e0e8984597ad4d",
+              "MOV-0009.json": "db2789d8af0e61fa77f6cfbbdbf59a851382454aaf6669221c17b58d044ea811",
+              "MOV-0010.json": "fc8d86188e812606c1a58ae5a1aada3191e3eafd64971ca65b73f8e62bfcf915",
+              "identity.json": "3cb20533410b646227822f64e0b7f5776e6d59dfdeae1acec2cdac1cf5743e6e"
+            }
+          }
+        },
+        "v2": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d",
+            "MOV-0003.json": "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63",
+            "MOV-0004.json": "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671",
+            "MOV-0005.json": "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0",
+            "MOV-0006.json": "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543",
+            "MOV-0007.json": "b4e047f36499c06edb3243f13f36c91fa6e594158e0bb0e8752973c7ac662fc6",
+            "MOV-0008.json": "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f",
+            "MOV-0009.json": "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c",
+            "MOV-0010.json": "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "6a7ce1299b902f18a5d4b564e07e52ac66357123380e3602a81c4858bd63c287",
+            "MOV-0002.json": "bf031f8aadcc13812069c49c681ac14bbaa5375aba80d1b94b9939b5c477d448",
+            "MOV-0003.json": "f8848b2cbc525e94abfde1789d94278b2bf26b204aa87a5af67dcd16b03f60f0",
+            "MOV-0004.json": "2c74c9a498517c7d388e3c187ac277bcc91223b598e9cf2bc165226335e44fbe",
+            "MOV-0005.json": "c99479e219852fe0205334ba31b7bbb04a9a4eba2f1049830c12e6ad51f05ba6",
+            "MOV-0006.json": "ccbdb7269ce2423727ead7e7948285a749b571b5ddb5c783415203b87a0dfd02",
+            "MOV-0007.json": "de5a8628c77dcc8e390c86d1e2e68a2a12dbc875d91c337b28810a805549cccf",
+            "MOV-0008.json": "843e2a6efa3243116b491c79481e0c003bd4d376bd468f531ac5abe8d9d60353",
+            "MOV-0009.json": "f3c1fa142d4650c1fcc446a49b3f0a679a36b4dc5b2d1b0ace4e8c894b10871a",
+            "MOV-0010.json": "2da46b96030e8cea0a36acb55412953aea8f861b1b979ee41b61604317e8e8ba",
+            "identity.json": "1354d472b90550612562df64b5e6a3f014e3e2af9a8c2349ada39d540e7b037a"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "e5f9180dfb24a74d61034a4745ad822e9d4067c5e32e24e72630625a46f72d92",
+              "MOV-0002.json": "02173de37de814102a6d86632d7abb85f3934a5a042820923210506ce6619dae",
+              "MOV-0003.json": "64277e0538a356ae16cd950c234e5594ad105eb4f6f4546a5a55067058c398b6",
+              "MOV-0004.json": "3c742db752b7601e9980feb16c5ad737d57e8c986a645682b5ec07d02e9d5c59",
+              "MOV-0005.json": "549cf74ecc1fcb705e108cf709692e5ade2da3c37593ab17bd45fcf3a014fbe5",
+              "MOV-0006.json": "73f1923d0d1194bd5ad046886e43a0b32c6a928a184b5c788ef5be3fe2171cc6",
+              "MOV-0007.json": "a043052e60c1190b0fdacca437feef6520c8b7f15559e8d7d7eaedd785f69635",
+              "MOV-0008.json": "813ea9b4d344a769acc15a6831412029b1c261a040bce2818f96d4259be26eea",
+              "MOV-0009.json": "6b74cfe37ffb0503f865226f6fdd44dd1c83fe5519f43e9bc8b0712936455642",
+              "MOV-0010.json": "2bc1584e56494e9651aee26b354acf3d1b3c04448894d424fe01070910d24f5a",
+              "identity.json": "3e0ab60008da4759b546c440acbef9a6fc3cdbe00be778f12cd49e1255dac5d5"
+            }
+          }
+        },
+        "v2-before": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+            "MOV-0002.json": "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+            "MOV-0003.json": "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+            "MOV-0004.json": "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+            "MOV-0005.json": "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+            "MOV-0006.json": "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+            "MOV-0007.json": "2133393fbb0a8e6f92025749a6494a36d292d4c52b652caddb308a2243d9d715",
+            "MOV-0008.json": "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+            "MOV-0009.json": "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+            "MOV-0010.json": "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "91ce330aeb919ae983f28b29ab537f78d186d9fd7e88546e6bbc1255ebbebaac",
+            "MOV-0002.json": "46f698043ee2542ecdd44fbac7556af0762ec66c75d3f3602d0746732238e5d1",
+            "MOV-0003.json": "a25c352f01fc8637ed38fa9f8224652a854dc02654b687ccadd2625efc5b531d",
+            "MOV-0004.json": "1faf2dcf78ef6650455f8e6fed2be851b83e2a5c62268f843039453d00fadbd8",
+            "MOV-0005.json": "74116580dad74300922e6464eb060f8059b2daa2d5b76ea6d4cb43dc2a03993d",
+            "MOV-0006.json": "b57f36de3d242001ca2eb90307381fa94404879ca80761f1f2d53ccc62375ea8",
+            "MOV-0007.json": "ccdea1cafd821ca2732c09ae53930c13a5c112e8303d9270de6cea8bb2c80dfe",
+            "MOV-0008.json": "7606c1864b367fb51eb0e94a949141ba2d21a0c0e366a3e51209fbbc8a4dcfbc",
+            "MOV-0009.json": "397c1fc873ebe48a41b7066f75cb0004836603793b71625c78a89d0f49c701a8",
+            "MOV-0010.json": "9c3de8c6dc46478864be56657fc30b86c5a5d6c05b5e6cffde45268b59cbf528",
+            "identity.json": "d02c72248352dd7cd8d52a87f64ccf3380cbd09d9440056e712d20eb29263033"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "eb2ef4b5abbef4b988c182c3f54ab121c6cd67b07f4bd563fde82755dc11605b",
+              "MOV-0002.json": "5b9cd75e8bc1810714f38bdb761bbf0a573d69cb53b7a8e6be178a6e476df927",
+              "MOV-0003.json": "edc84015d8d2a93a2235ae5cc4fbff9f6141df00dbb8a81be7fcabd6a4b76efd",
+              "MOV-0004.json": "495adbaaf98a5a72067e7c6d49fc22d914c8d63756dab05fc9f1844ec276e684",
+              "MOV-0005.json": "7609f9081e59110a47681c731f3132c5c43674f9cd1885d0f261fd70ebf7038b",
+              "MOV-0006.json": "5da70f491537ccb8a6719b431440964219800c101b23e8614de5c4efdfcba5ae",
+              "MOV-0007.json": "e0031f81e33e34c415360dc15ee93ed48caf5d46c0c99e70d7ab29628c34ad47",
+              "MOV-0008.json": "daf602ee6bade887f1db9dfd9a281c5ee2b2ab85590e389313d24ff0507c614c",
+              "MOV-0009.json": "9a283234d764dbe9e4dc556091bb0fd87b7731a24a0fcda55e12d3cd86f08c4d",
+              "MOV-0010.json": "c2aca3efebbf4844e6155a4b0dc014c08a99743561218344e34960b7b8aeec81",
+              "identity.json": "e68b1e7bad3561c17656930774424bbc59e8c75dd70378e3107a6c274ef53ee7"
+            }
+          }
+        },
+        "v3": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd",
+            "MOV-0003.json": "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad",
+            "MOV-0004.json": "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed",
+            "MOV-0005.json": "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5",
+            "MOV-0006.json": "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b",
+            "MOV-0007.json": "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f",
+            "MOV-0008.json": "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646",
+            "MOV-0009.json": "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944",
+            "MOV-0010.json": "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "5f88d9ed9b43d640e3c5b6ee70f7616b8690e431fe9884a7134cd61f61992cd2",
+            "MOV-0002.json": "b74c68e79b6f8c62330b556ce21b86a83c9a1fe260e5dc5c81256e9db25bca0c",
+            "MOV-0003.json": "665cb40e747ff09fa4d9b1e19afa0fb47ac6fd19232c71f696220c20933dfe39",
+            "MOV-0004.json": "8e1e6e3fce2d359702d2b710adafca51b2c662cccdc23f53996501d05163aad0",
+            "MOV-0005.json": "16bceb52794078d284443e5804d49396ff728da6089c873eb9002f5ea9d10dbc",
+            "MOV-0006.json": "16cd847d9755a4839a4e09120e5a1c8ad805b7d8c1d5d23e58dc2ee39ea2478c",
+            "MOV-0007.json": "d00ed2b09662ebdda761b7c76fda12d075015f00a6148c5368299490bb48036a",
+            "MOV-0008.json": "41bf7a8a0d42fa88a983fd3af728eb417e107a6ac1fd5d36b3bcec735a95a8d6",
+            "MOV-0009.json": "2c0c6165707babfea93a403731d61ca8c9f241c60008130031ae126786c933b6",
+            "MOV-0010.json": "6df3bf0b92b398f4410f112b2658c242e8c533e8bdec19a244b361534d712343",
+            "identity.json": "b0064790c91f71f461772785f53ef1309becc8182341e02dc5b8269a05f74f68"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "6f4260eda2618818435dee1fcb0891ad26686f405825a52ff1ed2f0d4977e7c6",
+              "MOV-0002.json": "61a07e9e856bcd91a189cdcefa896aa3b9b269fcfbf1a6cfdb4db78125be2622",
+              "MOV-0003.json": "81ac167201479b7369bde16d953b2d51907c35c2d1eb3e66e44b592d59a199f3",
+              "MOV-0004.json": "7fc3571f5fdbd8550bc4e71862c5a65d40a16d4493bae484d87d195767e7fb70",
+              "MOV-0005.json": "e8d2a2daa0b14b7f89fa5a87fcb4c306c5262f42f88f351a3008000ba066856b",
+              "MOV-0006.json": "ecc5d13103c8c8eab2c2e8835b4b13433035f9996543f5e54b771bfb0007009f",
+              "MOV-0007.json": "de03454199b83899ac49dccf67f0876b7b7730688bb795a0a7d4c2ed7cb0c93d",
+              "MOV-0008.json": "e786cb1f19f0306b52be21947ffe55e670d3744e66751262d8d023f382d93b1c",
+              "MOV-0009.json": "a00af89d530e918b232d88505ddb92fb4c11c3693887d7405b8ac0664d2e2c07",
+              "MOV-0010.json": "01a19400d8672cd1e489a6a24f1df60c6bde8a1d8dca0807ad0dfed12622b222",
+              "identity.json": "1cad804dd85ff418f51b0d55516542d742d200bf39b37e6c6a5c1a80a150ba2d"
+            }
+          }
+        },
+        "v4": {
+          "compatibility_passes": 10,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc",
+            "MOV-0002.json": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+            "MOV-0003.json": "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7",
+            "MOV-0004.json": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+            "MOV-0005.json": "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d",
+            "MOV-0006.json": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+            "MOV-0007.json": "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e",
+            "MOV-0008.json": "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5",
+            "MOV-0009.json": "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612",
+            "MOV-0010.json": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "10090bffe256c37d701860fdf73d9b4252a0f2236cbe47780e20191df38a0f65",
+            "MOV-0002.json": "077d8b9daf7161ac7a3e77bebe0f3ef96e081389f32371f1ed242f744970fba7",
+            "MOV-0003.json": "e418fd56a383ced8e6837bd6cd2385de668e4d4a75aec02283c19b4757fcc7d3",
+            "MOV-0004.json": "f34aaae2e7b0a35a67f46255ea47d4406a5b357a5dfbafec0d6e574caccfee41",
+            "MOV-0005.json": "3ce444b7f39172f0b8b156c41813493e4603f508604ec5d8d88954d7374b2565",
+            "MOV-0006.json": "5d3acc5494748bd29ebd852d2e020b3f03e97ff42a4213c4795b9523e59cf300",
+            "MOV-0007.json": "e5519a26a5ce24e48a28e8f9f99ccd89816cf6ec8145cb672718f398c526a1e3",
+            "MOV-0008.json": "dbba9beab333f9ae06bc6686263cee970c53a1fb11c36c822df3289348a051fd",
+            "MOV-0009.json": "4d60e224f17e9e76e0b757c733c892d39a83896b756df26f956ca5798140af15",
+            "MOV-0010.json": "26f8e8e3b28b43b961449e545522639517f47d9856042df650c1df766d2737c1",
+            "identity.json": "94a1ebaad758059af33db334f82701be3646925d19dd1f25a02813576e265a7e"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 10,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "9b01c7d5529ef1208e11b4bc96b5f48ca14d3fb9ea69a2f5ebe711b7fa33ae06",
+              "MOV-0002.json": "8463ac782d91036eaa73991b9aa4f4ce1377d750082d1e48d4afbef470d5a4f7",
+              "MOV-0003.json": "a6cb3f8c93a5a4b44688371d2007f310fec57ae3e1df28b2fbb84f36f4ba0be6",
+              "MOV-0004.json": "b352e8a1849430c3dbdc453231234cdfe3768322976a5bb2e36bad4ec7204712",
+              "MOV-0005.json": "a07123d906339ab21db2ccd280715eac8d69da70d0f0aae80055e61e5724d982",
+              "MOV-0006.json": "996ef27812a66dc51a6b73d0b77c6869d4adc01e076d55f248177a53326ca6bd",
+              "MOV-0007.json": "e38269516994997fa350c002747d936af65f2949ba2633b71057e272f2b7a416",
+              "MOV-0008.json": "e08dae7dbb4d6e5c64d5d82503430888778eca0be621cbf8392ea3f0fcd69497",
+              "MOV-0009.json": "75cfc81aaf45d5b41cb8698eb967b05618edd10d5c407fd92a395936bdf18374",
+              "MOV-0010.json": "faedb2bdcc63209731ec9f41fdc361a2b59c4cdc46728b8f31c0af0834e05635",
+              "identity.json": "52dab2412e61ff9749d4ad41ba194000edd39fc13502eaa53df3271d19c61805"
+            }
+          }
+        }
+      }
+    },
+    "linux-gcc-release": {
+      "ci_status": "PASS",
+      "host": {
+        "system": "Linux",
+        "release": "6.17.0-1022-azure",
+        "architecture": "x86_64",
+        "python": "3.12.14"
+      },
+      "environment": {
+        "host": {
+          "system": "Linux",
+          "release": "6.17.0-1022-azure",
+          "architecture": "x86_64",
+          "python": "3.12.14"
+        },
+        "requested_compiler": "g++",
+        "build_type": "Release",
+        "expected_architecture": "x86_64",
+        "seed": 1,
+        "github": {
+          "GITHUB_RUN_ID": "36887017447",
+          "GITHUB_RUN_ATTEMPT": "1",
+          "GITHUB_SHA": "cbf9d0f046a36c045348321137ca9db9efcd9d57",
+          "GITHUB_EVENT_NAME": "pull_request",
+          "RUNNER_OS": "Linux",
+          "RUNNER_ARCH": "X64",
+          "ImageOS": "ubuntu24",
+          "ImageVersion": "20260927.320.1"
+        }
+      },
+      "primary_identity": {
+        "git_commit": "cbf9d0f046a36c045348321137ca9db9efcd9d57",
+        "git_dirty_at_configure": false,
+        "source_sha256": "fd893cf671587d4e12bcf0b3869f587a6d118621b0c6a4b8051796173f769e68",
+        "compiler": "GNU 13.3.0",
+        "build_type": "Release",
+        "architecture": "x86_64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float"
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ]
+      },
+      "models": {
+        "v1": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877",
+            "MOV-0003.json": "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3",
+            "MOV-0004.json": "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41",
+            "MOV-0005.json": "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20",
+            "MOV-0006.json": "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849",
+            "MOV-0007.json": "df19f069ab5ebf09e3a56a687dbfc837d526bf824941dd4b954e447977480e53",
+            "MOV-0008.json": "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab",
+            "MOV-0009.json": "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7",
+            "MOV-0010.json": "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "a3501dd4a9da1c4278119b6b44cace214391fdf0e6d24947f2c1923224a884d0",
+            "MOV-0002.json": "e2f68d0db5622783be19148b83b954afdc1f95b6a35f02f936fc0b712ace0160",
+            "MOV-0003.json": "4d4480a65d7e8c4bb7276283ac79c8d1654baf57b1bc00102d0f188b3c6329e3",
+            "MOV-0004.json": "7330aab73d92e3e23fa09c9d1f9d7a0affac5c54da6a27101607cdecc8bb904c",
+            "MOV-0005.json": "67ae18441ccc95dcc93d4b5b9a9e4d5617af861955ac5ef1cdd94f09666a12d6",
+            "MOV-0006.json": "221650f01dd7c9dab5525d0d6ebcafdeb31652d30e57ecab35355cceaf49789c",
+            "MOV-0007.json": "fbf5f46e4f2e91f42d2792698e6531f611822ed3d322e326c5ba78bdaebfe08d",
+            "MOV-0008.json": "40c2825f2fccef6fa7c9cf32dab8f4e4baee831cc369760f2037d27e33d3d865",
+            "MOV-0009.json": "9daceefe8204cb631381dae086c91272c5a56d67aa2d35e1217385f6e4abc7ac",
+            "MOV-0010.json": "96b759d14f7c4808a8d17b80a4c242a04e271947b0ca8f69dbcaa497cdd90929",
+            "identity.json": "70e360f17ccf8bc8288cf3fcea01a83a6403fa0b35c75de353e1c54c615d4400"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "69e894f97a8636836b4234db2d9603fbf0b05d633a83afc8186634dd5ccfeed7",
+              "MOV-0002.json": "a863c9274730eafe169a4058c74e8e8a0b9ddadbe432bb46ba1e075b1e746198",
+              "MOV-0003.json": "095001f3bf0e016f98d041b5d8611d628874219829ad114967839d36fbc8b5fe",
+              "MOV-0004.json": "91e0317cdfb3b2889228114143ad60f4aaf2a477daf8fa6400dc1dae66362e01",
+              "MOV-0005.json": "0715114d0f2218df76b938e18bdd1a8f9cedab529bdd23689dcf23ce963f777d",
+              "MOV-0006.json": "1e13db77268d1c0e274eca7b2ab83667b7762b5b66c2412fd0e72cfbe500ee6e",
+              "MOV-0007.json": "a255173263a25e0a6438d2a3a5451a95dc320a89780a7db7590680c2a6faf5e9",
+              "MOV-0008.json": "ce8834704418148f2443ca3150754fa2e51da6b6ff29b0f1070efaba426e3372",
+              "MOV-0009.json": "86bd52ec11ac60114f89a67b20f8de01a5c1eb50dc4a78cf0bd7e73381811da2",
+              "MOV-0010.json": "70a23e490495542f2ec50b1dfffe837d2d3757e239689988e95346fa08bddcd9",
+              "identity.json": "f336ef3caac088a4961b96e286c2503ddae7b1e355caec0a02423b601894eb88"
+            }
+          }
+        },
+        "v2": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d",
+            "MOV-0003.json": "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63",
+            "MOV-0004.json": "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671",
+            "MOV-0005.json": "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0",
+            "MOV-0006.json": "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543",
+            "MOV-0007.json": "3eeb2289e5eec5b6d4408caac91cc106ab7ffc475d4589229f64ca85184bd70d",
+            "MOV-0008.json": "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f",
+            "MOV-0009.json": "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c",
+            "MOV-0010.json": "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "d5d03d97e46480e3c367b705e5f373d42a3dd942c9c7f6ac6a0284238e3bdbd7",
+            "MOV-0002.json": "6ddd7bd498b401bb25118d6fdb1b557e7661a4d44b9edada90e14db2fca9fabd",
+            "MOV-0003.json": "6d8b3b2ea963374685af82ef4e4acb838487affe2708e55c40da86e97de86666",
+            "MOV-0004.json": "55a71c7a69a75f62367b3aeadadf46794d9598520b29eaff31613cffcaebff23",
+            "MOV-0005.json": "7e78749426df73d2da2c0587c630178eaeb7efaea81f2813aa0a12cda4963e6c",
+            "MOV-0006.json": "af6c367ba44efb9127dc492c97aa56e5bee7aa49a5518b2226afa25f6fcad663",
+            "MOV-0007.json": "58130764f72f08dfcec8422fca789b3a2e9ea7d06877dc9328071ea1705c86b1",
+            "MOV-0008.json": "68601c07feaaf7c53dd3a2c7e5558ecb8a343ec888aa4ec297c66fc7df02807c",
+            "MOV-0009.json": "96d4d6cde735bea4e7aaaf815cbfc5ede1b8ea3bfbea85e2061dae72d6949504",
+            "MOV-0010.json": "d846cde560ea453197a3581a011f6d4cf183b369058f0a85de47002760e9714b",
+            "identity.json": "31e44deeb9a968cc08d586c5d6a3b6b97007f11a2a56aa986d9b3d223ac53bfe"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "e152b53883e6981217ec9d7dfe6bc3bfe5a98321fb84897795c7e6244873b01c",
+              "MOV-0002.json": "a7d409005de11835c1804dd56ac7168c1a3cfdc0baffd96ae36e4165e8f0174c",
+              "MOV-0003.json": "90c8d92705e922fd283b99e6f6f104851dff524347e092efcdfb20dff5d24034",
+              "MOV-0004.json": "d5efccca41226ceb79e46f7c0efb9a3d3cea53fc81dc2aaa8593d729cc6c89cd",
+              "MOV-0005.json": "3d3ce532dd536e15894112e96a037243daeef070b1e10946f53f6452417e8117",
+              "MOV-0006.json": "7266522909b60c20613be02532f47c9b6f0ccf7c1478c1a4da48623a0847e74c",
+              "MOV-0007.json": "756f1132b09c5cd0d094f86dbe9ceacdbe773e354abacde55ab6f12631bd053d",
+              "MOV-0008.json": "e125872042ae6c9bb41a15d6b818416398d3315bf463f45c233b029573fb19c0",
+              "MOV-0009.json": "5499d734bec26e5cdb9552a7b279b73fedb9faac0e354fb773a974ba09f43347",
+              "MOV-0010.json": "04a756f78787e54aa7283b30bc9107d12c93df05a9d38cfc96100c44285436dc",
+              "identity.json": "f81a97e378e97fd95cbfa545a89b4f8aca80f247c22764b82e34783301098e75"
+            }
+          }
+        },
+        "v2-before": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+            "MOV-0002.json": "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+            "MOV-0003.json": "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+            "MOV-0004.json": "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+            "MOV-0005.json": "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+            "MOV-0006.json": "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+            "MOV-0007.json": "5776dbf0abea3d5185ec0d5a1dc8f198eaf1291d9b76048a2341d735ddefafab",
+            "MOV-0008.json": "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+            "MOV-0009.json": "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+            "MOV-0010.json": "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "c15872eb9b8bc0bd6d7d2bedee43454ce513f653e3bad22630ad4e2e49bb67d9",
+            "MOV-0002.json": "08a2985d0f4a8f03818b80b9dd43789511435d2415d4e56f0b3e9987fa3e930a",
+            "MOV-0003.json": "1cdfba207fe2235160c6938dd5488c3750af59dc05575a07a1e4d24458804db8",
+            "MOV-0004.json": "72c99c680c8b8a9f453eb40da00e6044b186d4a7e90f217d61e6c31ae1c2938e",
+            "MOV-0005.json": "60ef483d2208b77bddc5e26b56fc1d6a221b430bcb2e7cd8b1e9876adeed6b57",
+            "MOV-0006.json": "26e2911755923d608f2a28b1d13968edf78187d6f18f763e4eade10f2b6dc714",
+            "MOV-0007.json": "e8876685e8ca20a1a690eb9cf0ac03ebda6d44f76fa4314f7e8d3559385c8d8e",
+            "MOV-0008.json": "6d5172e469bc12137c22bacd0cb51a451f24579c6b64f677c22842eb96b0b6e5",
+            "MOV-0009.json": "b3c54be223b319fba6e31ef1f30ec26edd730a69d6c2dc554a90c3d313179e18",
+            "MOV-0010.json": "8e83fd6e2039c111ae725d3753d8b61d540de4e2e6363752b5672681b07d8a2f",
+            "identity.json": "0fdd67d0409b3e822209329884a772e0e1bab7e2512094a4ec45e2f94d000c46"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "7286aa0f21566b6ba3dde8fc7347be08278cb448e4286ac208e86eeae0c01d4d",
+              "MOV-0002.json": "77cdcc801b315cc18fa6d097c471a488f5eb4aea33662f08de5ea1c3d3eed9ab",
+              "MOV-0003.json": "131be9677e71ffe17a475890ff876e913a2aa47250d44f081cc87fc57b85e36a",
+              "MOV-0004.json": "264216bf07b708d729b8349635adce69c298ac718bc16d3b59835dbe42473752",
+              "MOV-0005.json": "e218bba1d4eda3402768b026cf3248b4969747bf9b085e4acf65a44b7b688245",
+              "MOV-0006.json": "55c9f88c7d43de742cc04a0419af3889cc1949c90d7721f2524c0b6f908c8e01",
+              "MOV-0007.json": "025d92fb88e4ee7984da17e0acb3a9b36b824b33144b6c0ee80ceb16250d8ed6",
+              "MOV-0008.json": "d875006cdba474d25ddf3089abc8c3aaf386377e8f6d736b18d34251ba770432",
+              "MOV-0009.json": "76bb9333cea0edd6deb9fe25e7db6f91a2127bf50ead5142a10f698b518de213",
+              "MOV-0010.json": "0c34d4f8fa3866b2d9f2430f83f8f0480c09bcd7bdc4f936443686d2f878e687",
+              "identity.json": "201f06fe98cce921b6fb43c834a3677696a18a417c6778005dc0b48570cde2be"
+            }
+          }
+        },
+        "v3": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd",
+            "MOV-0003.json": "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad",
+            "MOV-0004.json": "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed",
+            "MOV-0005.json": "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5",
+            "MOV-0006.json": "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b",
+            "MOV-0007.json": "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f",
+            "MOV-0008.json": "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646",
+            "MOV-0009.json": "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944",
+            "MOV-0010.json": "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "e74a56cc4f341e9d1b52778dd0b14684746b4a8ca9bd96150993d4600aacd34d",
+            "MOV-0002.json": "6a7b88267e87cf3b29c0ecc666a16917e0fe4d0ab165a6e2a8a74d9ca41c88d9",
+            "MOV-0003.json": "63f95c408d64208ef6fe00aae2c7b050d192b4d1aa11cb849e5de0b7d57cdc57",
+            "MOV-0004.json": "712712b68f1044c83d80cf2ca2684d0d67ea5f2746f28cbdd56f953f55a44496",
+            "MOV-0005.json": "333280af9ee20f8df68b4e12b1d0328136b1b5aa36c4b40bcde34aadfa9e6c82",
+            "MOV-0006.json": "547175230a3e72c1778cf806b54c9fddfa84fc6c7074aeb0e113c40cb0435063",
+            "MOV-0007.json": "dc326bdfc52cd47e76fb9c2cf6ec77ea83d5ce424bcc66dde387ff84c4bfb4c9",
+            "MOV-0008.json": "72eb2f91d839d613eff693f643a4ad0cfbe24e89a5a43cdff8e9b07baf57b45f",
+            "MOV-0009.json": "ad6077a97ad25c0bba181dda1baefcfb9a4c09245c8a14ba154db8d5bc919e43",
+            "MOV-0010.json": "786115c850768e2d7e3bbb623b098c8fb18ca7aca5fcbe58fcbca2a6052db8eb",
+            "identity.json": "aad708f7de3fcb7545a93d9cb0190a41662a99e12cf0eae04b59f9d433d37c08"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "de4a1ff4f3b8ad96a500ea803f827198980a07d8cf481336d86e431922d3896b",
+              "MOV-0002.json": "60455c1dad2b2c9ad93c8f3a8989dffc8bb2a508fd27ee7b8b76969a5c9284e7",
+              "MOV-0003.json": "5d36789338e63a91f16fa988240859e02f6032569a4753bacd8a7a6275dea627",
+              "MOV-0004.json": "9fe6e5f483738c319bda97eb515edee1f554805a8df35a2f53ba07e954442242",
+              "MOV-0005.json": "f951e89f1e52b70b8dbd54da9071751c2cbb0ebb670f9b19b9484e486f1f0c6e",
+              "MOV-0006.json": "a3b1260c5612bfd4b6800b5bde26e73a870533d5e2fe5073c5155fe1c0823b45",
+              "MOV-0007.json": "fc2314ccca4d39c323e3ed19fd92c5fb8292f5519a829d43144f9f15d0d7f5f1",
+              "MOV-0008.json": "bffc77de6031c39fa6f1c4834f9f17b42da2f21b17aab788fb8485a7322cf13a",
+              "MOV-0009.json": "89dc1c71317b549ad39f678790834f1de9fb2127b7bb91ab8a93d04291d93c1c",
+              "MOV-0010.json": "baba2452b48f5a44cd666e7a19944345372775b55df49386fcd21362c20c2fc0",
+              "identity.json": "cccb85df69f74b41016c4e11b14f5cd540e54b87188e85670a4b3cf923110b79"
+            }
+          }
+        },
+        "v4": {
+          "compatibility_passes": 10,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc",
+            "MOV-0002.json": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+            "MOV-0003.json": "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7",
+            "MOV-0004.json": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+            "MOV-0005.json": "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d",
+            "MOV-0006.json": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+            "MOV-0007.json": "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e",
+            "MOV-0008.json": "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5",
+            "MOV-0009.json": "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612",
+            "MOV-0010.json": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "97bc0b7af63c4119a8da4494edc74b1520c20c004ccf69fe5dd6311b08d347db",
+            "MOV-0002.json": "559d2f2df2cc81596a09c95f8d55afb4200eeadcc7f2ea8927e7044fb1542021",
+            "MOV-0003.json": "17cebd1a9611cd98597026ede1a2d26094bff35c5bca8ce1320948e0a30b1b68",
+            "MOV-0004.json": "5ff60b0ab628d4e1cade29b41814ed27e2c6fefd9200ab7456bcf5e603306917",
+            "MOV-0005.json": "4957abf123b12dc333bc52d3bf57f4226faf022070381f9117ce822ad515c49b",
+            "MOV-0006.json": "fb83ae4a66adb28811c45682828c54e9b62f25ab7333021c8dc137c812d8103b",
+            "MOV-0007.json": "3cf82f94b9d970317597e064c14e6e55a38c7149a6b340193ed018ef57e8a7e9",
+            "MOV-0008.json": "1f2cb5011a6d5d2fb6a20ec5beae9f1c0b1d52304868f82b9a8a24e894d8f9d2",
+            "MOV-0009.json": "2c729522bb814dc3da64946cbe5396d18f526b779a9c56527b81134c665b4d62",
+            "MOV-0010.json": "e07344f5768a229fae7074e56caf5be64f223c64ea74571a0fe66a21bed029af",
+            "identity.json": "18475d4342495b112793aec1a5bbb1a5c1f7c6bb12aa83789806a5e59af55afc"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 10,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "8e580c2d425a31cd5c4da26b0036e3bb7bc78e8f6a978afaa8ebae3e856952f8",
+              "MOV-0002.json": "4becb3789eb863d51eb8bd89a27f4e4193cd9d5b683a1fa1ebfdf869fd1e926f",
+              "MOV-0003.json": "cf4c93f65c44d283448937ad7bcce4effbce339a7777d130a2485450f94390d9",
+              "MOV-0004.json": "792a0ba65f2f7c7f84ff98ade4b5cc6e53d48fb81c66789063d7a2ac2e89b06b",
+              "MOV-0005.json": "77f23004da2f673aea34d1119634bc425d1dda16837489a7d852d451be10d38c",
+              "MOV-0006.json": "c4a6e4280b126d888df5dd326ba2dc080669dc8dae03ab87a60b88cec0f4cc4c",
+              "MOV-0007.json": "e2afbfa2661886d9afcf3b81c03162ef84a9e268ae6c6f3c97430d866afce614",
+              "MOV-0008.json": "024cd44247e36c5595975ed14135a82c501630706e58a5214700b52eff990415",
+              "MOV-0009.json": "78d3e2d648213ca762d6fdbb94e409bd1396d76f0c2df0799d47e2f2c4b6aed3",
+              "MOV-0010.json": "975fe36dbfa1cc0883cd27f658f565d487212966ab4ff9563ece29b3377e795e",
+              "identity.json": "595e3af3495a0d8f1e29d45820b6e0816da408fb0e47c3bc0299353a8aa9076c"
+            }
+          }
+        }
+      }
+    },
+    "linux-clang-debug": {
+      "ci_status": "PASS",
+      "host": {
+        "system": "Linux",
+        "release": "6.17.0-1022-azure",
+        "architecture": "x86_64",
+        "python": "3.12.14"
+      },
+      "environment": {
+        "host": {
+          "system": "Linux",
+          "release": "6.17.0-1022-azure",
+          "architecture": "x86_64",
+          "python": "3.12.14"
+        },
+        "requested_compiler": "clang++",
+        "build_type": "Debug",
+        "expected_architecture": "x86_64",
+        "seed": 1,
+        "github": {
+          "GITHUB_RUN_ID": "36887017447",
+          "GITHUB_RUN_ATTEMPT": "1",
+          "GITHUB_SHA": "cbf9d0f046a36c045348321137ca9db9efcd9d57",
+          "GITHUB_EVENT_NAME": "pull_request",
+          "RUNNER_OS": "Linux",
+          "RUNNER_ARCH": "X64",
+          "ImageOS": "ubuntu24",
+          "ImageVersion": "20260927.320.1"
+        }
+      },
+      "primary_identity": {
+        "git_commit": "cbf9d0f046a36c045348321137ca9db9efcd9d57",
+        "git_dirty_at_configure": false,
+        "source_sha256": "fd893cf671587d4e12bcf0b3869f587a6d118621b0c6a4b8051796173f769e68",
+        "compiler": "Clang 18.1.3",
+        "build_type": "Debug",
+        "architecture": "x86_64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float"
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ]
+      },
+      "models": {
+        "v1": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877",
+            "MOV-0003.json": "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3",
+            "MOV-0004.json": "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41",
+            "MOV-0005.json": "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20",
+            "MOV-0006.json": "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849",
+            "MOV-0007.json": "df19f069ab5ebf09e3a56a687dbfc837d526bf824941dd4b954e447977480e53",
+            "MOV-0008.json": "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab",
+            "MOV-0009.json": "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7",
+            "MOV-0010.json": "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "86340759f4e49276da411a3748133a59789fe389d6d35d82d84a3d9d196d94bf",
+            "MOV-0002.json": "55c2782352e046f785965e1acc838164c7b313717a6a529e73cd18476f2a60ac",
+            "MOV-0003.json": "60f441a4ef79c82d41bcc92292c03d95570f7751d725dbf08dedcc518351ef95",
+            "MOV-0004.json": "11518cc5dae21cf17341e32a289a3378e788747d73eb063148b1f3c2e6e5296e",
+            "MOV-0005.json": "0411d0224a4f09ef42a197104fd11b3d6382b6357b4a5159c8003ae9bb83d4e8",
+            "MOV-0006.json": "214ec15b59a3ebd5d2cd0cc2ca1b0871f9b3d5ec90585f9878d5c3672263acbb",
+            "MOV-0007.json": "94a3213ade0602e18a4a53faf21e5ef9d9214522d9973d0ea9c1f9f5c599f166",
+            "MOV-0008.json": "f9713b4155182d31473329c5564e6ffa775b339462c55d7eee57994af7d7632d",
+            "MOV-0009.json": "461d21dbcc9b5bedc38530f1db56a37af678c673fa662f089b4c5644d80beae0",
+            "MOV-0010.json": "36f19775cc79fae4ea74bf333bac173576c3dca8424d979e45a0c5fb1f166e3e",
+            "identity.json": "4fa3ab82ccb94059507ad2fbd856eacd7faebcf667b7a675b37f095a1dd556d3"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "824fcd24d4553f33d685b5191875c2819df1c7f4d293316ee43d7d1ac6e9f3aa",
+              "MOV-0002.json": "29e8995eb6409bca71a7923941758859dfd4d96c4475c2cda6299313c2b43677",
+              "MOV-0003.json": "09e1e1519dd339b0eeca0ac2260968ad886fe9f137913fdfe30df1579673fe72",
+              "MOV-0004.json": "221db0acd58ce4c2c0bb279ee356bad03138275e2d368609399daea8a534897c",
+              "MOV-0005.json": "d634e92a596e153dd617c46fe82bb55221b34a32395a84c439db35f7eb7ef46f",
+              "MOV-0006.json": "d85c7d4fca07ce8b5d252fd81f31c84e82961e94d53c32f72699405be22e58c5",
+              "MOV-0007.json": "474980332ff209eceb8111f26fadf47667013fee17c20a5b7dc9b1175a420466",
+              "MOV-0008.json": "3ca12a3ce47fbfccf47d6b06e720a6dffb53901123949d0aaaa02b9aa399cd58",
+              "MOV-0009.json": "e81b2f8aeb1ead7892cf7a5686c01f4fe67f0e4b23027d41a735f5918bd6c702",
+              "MOV-0010.json": "e959f5891455b08f993a6e3b75058f61e3b795d87ad6f80c17924866c8b31a07",
+              "identity.json": "dfffbdc9dd454e6329a42b95727fd97a075f6bc2e6681f58515c66535124d7a3"
+            }
+          }
+        },
+        "v2": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d",
+            "MOV-0003.json": "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63",
+            "MOV-0004.json": "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671",
+            "MOV-0005.json": "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0",
+            "MOV-0006.json": "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543",
+            "MOV-0007.json": "3eeb2289e5eec5b6d4408caac91cc106ab7ffc475d4589229f64ca85184bd70d",
+            "MOV-0008.json": "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f",
+            "MOV-0009.json": "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c",
+            "MOV-0010.json": "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "2f5047f91d8183343b6354739dc411be3ee07e2380d6b2a988bbe8a2297bc034",
+            "MOV-0002.json": "1402e878bdbb5ef7e9cf588936fed081bcdec5b428a4a3c58f2d49987c4e1d7c",
+            "MOV-0003.json": "85facbc9548ad030f737fbe6ab1e1ad66db0b27511b63c82cecf1f5abfd5f338",
+            "MOV-0004.json": "6d07694c9035d24d310381de3656d178a36038e930825bab077ccd5496c343e1",
+            "MOV-0005.json": "a642e0db7f62543699aac4a6df79cbe1149707f57c299ade4c91912b4f00b408",
+            "MOV-0006.json": "1ba335b597536bf89f504b682092ff72635b445741904e95719e950ae3c85a7f",
+            "MOV-0007.json": "b079ae3c7cd965657cfa973e204f41cfeefa1092fe5b1f4e45b4e1e42be55370",
+            "MOV-0008.json": "2111fcb6d9a4bb83b9b331e3a047791af531158bb51ddb822ab12f38286519c4",
+            "MOV-0009.json": "75e4842d6eabb277074b7e29186db1523a54f4f5f8f703d000bd871dc4e07626",
+            "MOV-0010.json": "b6489e97a88c987b26a8f90bae67f984dc8ba73e19ea9291626f10c2481d744e",
+            "identity.json": "ae80cba1f20217c521959c01af1577dbc48e6af295bd819f85ae6bc361296a38"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "1791ffa7cf4dc2cc5d149898ba5c93f5aa3dc9e870426fc4102c7a32df26dfe3",
+              "MOV-0002.json": "5c8b556bf270592d0a9c36a377f4b00fa1f2a9d855f66c4605108e6e5bdf8466",
+              "MOV-0003.json": "89611642a8e1ba26a7db31ef4c240066f513a532a363c74b5aee05adb44bba84",
+              "MOV-0004.json": "29313e590754bb80fb92f6f94a99f54f70aa8cebf92c5b85d13d06ac92df03e0",
+              "MOV-0005.json": "d0940a1df6956e9328136d16638a4b3e12a3989dc0f5e4b2dd7fa47b14c5e6a0",
+              "MOV-0006.json": "1f8e5a2a6d7feab665721b96fce2e41623de0cda2e6d4d3a527c26379a993ccb",
+              "MOV-0007.json": "a6263807fa93d00bf43dc58f69589cd6c9a864f8870de4236956774272701c72",
+              "MOV-0008.json": "ab3deecb1271cd30657573d7b3a6a116a961ea98a0da0d85fd01faeff1ccc11f",
+              "MOV-0009.json": "d4a640d5c6af7e91dcd1456e294ce02f702ff9519b3cde6d753fb2b36d6ea21a",
+              "MOV-0010.json": "bea7c73c2ca15d20465c3f8de7d3460e0d0061b6cd17c48590d60a6da1064366",
+              "identity.json": "b46ceeb4e3af84ecb2d1dea8b691f2fb7c9261141b0f43c6fffd66198eed6be2"
+            }
+          }
+        },
+        "v2-before": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+            "MOV-0002.json": "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+            "MOV-0003.json": "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+            "MOV-0004.json": "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+            "MOV-0005.json": "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+            "MOV-0006.json": "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+            "MOV-0007.json": "5776dbf0abea3d5185ec0d5a1dc8f198eaf1291d9b76048a2341d735ddefafab",
+            "MOV-0008.json": "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+            "MOV-0009.json": "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+            "MOV-0010.json": "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "d0c6ad84f9582737c6069f611826700ae638a6d1f19392d868f87a6c183ad741",
+            "MOV-0002.json": "c36c5a824d22e2389253a49dc0a1eed0019e827bb6e86cdf3cffba4c52e26117",
+            "MOV-0003.json": "4336aff9d0687caf46735e31082f0ac752d9e921a2703f9e5f92b345c7b90cc8",
+            "MOV-0004.json": "473184f653ff9832c988bab7af62e1336579cd32edffaac87e18289f6ba83f58",
+            "MOV-0005.json": "9bf0bab3450a1c76982ab57394af7796a8d7e0b3e9c2d151f6e0daadf8536a5b",
+            "MOV-0006.json": "6286fe052327661625a1018cb7b821d92b12ad7086b92042b442e722bb975381",
+            "MOV-0007.json": "4a5b91335d12cf8f5ad41665fe205d390d26c17895adae833b88754fa18c63ac",
+            "MOV-0008.json": "1103727f2ccdd790d44bb614ecc5a46fc43182e4d93477ea1067fc380a1f202d",
+            "MOV-0009.json": "88f1ed299b9895738ec46e0ebd9439d9006f86370c9c6f6ec6e2030a35a2e3fe",
+            "MOV-0010.json": "18b697d7eb15c247836728e689b7a0f6e07769728bdbdc6bec3f9dc8d0858739",
+            "identity.json": "1055c03803df95b8035f46b6304c8f1417b712adda3baf2db15b6ca3b56ad633"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "dd4a9b74760a1d7f89ceb1d6e921c7cf62a97a72c63683a5a5e581a3c7ae02b8",
+              "MOV-0002.json": "b76b473ef92623d020f7db943fd3c8b09f88bc212eb25a28e93e7cd22e1e1796",
+              "MOV-0003.json": "e038753122c9fb461eb0e00c257ff723dccf8782355da8398823cd3a17d6f461",
+              "MOV-0004.json": "234f65d8e27455f6c497d394e4c22b275ef6ac092beb29bb9b52b1291970702c",
+              "MOV-0005.json": "283284ab81dd7528a4ec28812885d9769b20485ef6aafec75aa074665420ec9d",
+              "MOV-0006.json": "3c0303054cbff2bf6e5454df7f9a7516ed5c863057cdfa35c495e8b31e5e1178",
+              "MOV-0007.json": "8980384eacdfd6a9f95177fb9355bcee52b7d5746e917b0b72561f02db2cd87a",
+              "MOV-0008.json": "99d5a91e32a5d891e496250749d195342e9e543fb906505cdd5b8c0a8f31119b",
+              "MOV-0009.json": "8bfb98149bbfa86efaca1d1004cbfa0a6275e309f16a058183a76f9dde14ae89",
+              "MOV-0010.json": "24d0264227227a6b35d7fcb1ad197d873af5257a0ea6f2b3285e1ef0000c4fdf",
+              "identity.json": "606ef689a2fba034ab5dd54266eb188612f535233e84484ebcf42b6a6090e550"
+            }
+          }
+        },
+        "v3": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd",
+            "MOV-0003.json": "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad",
+            "MOV-0004.json": "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed",
+            "MOV-0005.json": "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5",
+            "MOV-0006.json": "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b",
+            "MOV-0007.json": "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f",
+            "MOV-0008.json": "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646",
+            "MOV-0009.json": "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944",
+            "MOV-0010.json": "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "b2ed4aabb1f9afeb653b0d01f31ae0cf992b598131781be56cb0e6ce1c544d18",
+            "MOV-0002.json": "528d4b63d283228a43519b9082169a2fd9d6d9be5871781b227bc8c1267eed6a",
+            "MOV-0003.json": "c04325d21c9b4dc12360d060550cd15a0fd13f3b4ce35f339e10ab994738439b",
+            "MOV-0004.json": "c1ba94e042e3ce36bbfc1358bf526000c04651fd1a4063886755e087bf3b99ec",
+            "MOV-0005.json": "7ad23e6453fe1a8f0bcf9fd7d99e1aa144fbad17fa27303ba6fe0deda41969f1",
+            "MOV-0006.json": "53457650f65692cfd2a19c38b10d292b18f221b1218dee5b7e99162c34e2b3dd",
+            "MOV-0007.json": "c65ad7d6e4e214a95086865b64135dc018e0a302ec3d8f07abdc0d0f972474dd",
+            "MOV-0008.json": "21cf83b14c0be3aebef1b2ad5594b5712df2ba2b3d648856a45139d22c0b98d2",
+            "MOV-0009.json": "50b535b7f494752bfeff0b7bcb4c7bdf946effb4b9a58022188a0d9d4964f5bf",
+            "MOV-0010.json": "3a84968c3497deedb57bd7e860154d644474b0e9786b4fcd596647c174711874",
+            "identity.json": "76a2af2dcce46c8fea0089e6b58f20863f9dfb9e2b2efa178caf6bcbd3f9a939"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "563bcdcb1bc46d5a39bb4dc1935361de3276793b3bd08419161e100052fe50cb",
+              "MOV-0002.json": "166a2c217b6a4c9431ac9414939b2fbcfbe4d7513e3817d5b6ea6c5f47ab1316",
+              "MOV-0003.json": "1e60c977f5dcc38713c6b723a1f0604618340b945aa9b105db572b62db188f7b",
+              "MOV-0004.json": "849a34f6730224fb52d0fb9ae98082626ed234f2f2e48b263701b6a3be013e60",
+              "MOV-0005.json": "fd619ced5ceb583662d3b3441e9fa0ce9f0ada7645228a29906227f574abaf08",
+              "MOV-0006.json": "5f0a48e51a20f154445b44fbd4d9c199c7b3f3a4f2ca43723119a7e35cb365d0",
+              "MOV-0007.json": "e991a36da973fc418b3644138ea8e12dcd3f67c51ba0d033b0fcc28f95757a87",
+              "MOV-0008.json": "a0cac86019decadf0c38058b24da5f84fc50fed6f88165066fc0dd95def0cf93",
+              "MOV-0009.json": "9fdd6ce16cd2656f33f7259ecfd3f6059227810188e33e3d534dbc5702dbe41c",
+              "MOV-0010.json": "0e84c1ab6596e21645644f7bdf93aa33e62716f9134c1818e898ba4d8c90d102",
+              "identity.json": "9f0e264d8abad47c5dadbabf2a259541d443a080cc544ebd12a3362ba31436ea"
+            }
+          }
+        },
+        "v4": {
+          "compatibility_passes": 10,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc",
+            "MOV-0002.json": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+            "MOV-0003.json": "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7",
+            "MOV-0004.json": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+            "MOV-0005.json": "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d",
+            "MOV-0006.json": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+            "MOV-0007.json": "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e",
+            "MOV-0008.json": "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5",
+            "MOV-0009.json": "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612",
+            "MOV-0010.json": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "ce0b9b98d0ceec04141d07632975a2d49472d1fb26d1e595c327ec28d9124afc",
+            "MOV-0002.json": "dc9f49b7498eafc6f4fdffc5c36bc18c619414ba7e9339d9ed48469e9b66c4f4",
+            "MOV-0003.json": "498e63de3d88900089d440e5637123c4a80492e9e4638ea7bff5728f4aec0e83",
+            "MOV-0004.json": "348e4bea47d3dab432493a148530a2b321710a814ad258fac714e3f4ed84f0a3",
+            "MOV-0005.json": "bc2c5c4581b72cf7825efc05a3f19688143dd13fd2dc24e1f421eb4475f35e45",
+            "MOV-0006.json": "32def0abfa01e818c15cc4227830b4d0164935deacf348a41b825c9409e97d06",
+            "MOV-0007.json": "f7a096e3af63da75a703fdf23099af879bec05cd6af9a2115e1c9bf41fb42f7b",
+            "MOV-0008.json": "0162fe449eeec6a916655c474e5cb3f82dba9fe51bdc6665120661fe571dd5aa",
+            "MOV-0009.json": "c693f5bde0fc6e9adfe80f45f40a9cc81d011c2de7a167daf83c7a2de1a63aa5",
+            "MOV-0010.json": "28660e2cca97c602af41d52ddd4ec3a1b80f3fd82db8e99bfe00623d349fb361",
+            "identity.json": "488abbc87c5a3b2685fd1b022a113b55a632660e7b5ffa37cf103c7cfab45963"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 10,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "fbb5596694e85e4dd5e6ab4a2b4b768a20c46be4ba6a0c9ad463341e9b09f743",
+              "MOV-0002.json": "7af0d01d9792aa9f28f87d93cf8390b3aa80132c48b7a07f0375796b9433a88b",
+              "MOV-0003.json": "f0b270dd9578d22ea5fb4316b2f52cf7a33678c7b3505c3b15af2ccd5e3528a7",
+              "MOV-0004.json": "88d8c259d5a8e0d236e229b4f3f2f243dbe37311992279fa24c17ee714bf7723",
+              "MOV-0005.json": "ef0d9a4da48990aefa57bdc932ac5cbd9fcfa273fdbc55541121cf0b09e0173a",
+              "MOV-0006.json": "b4be15086cb88c387e51e34737246a0fdb692fd63af73fdbfb293224f56ef79b",
+              "MOV-0007.json": "6cef7524fd3efbed736251f656133f0f9beb986e29e34199a70605ee2ce5fd50",
+              "MOV-0008.json": "fecf483c916d10fda2848601dd691fe9656a1ba71c2335cbbcf17566bc6c39b0",
+              "MOV-0009.json": "c94bce7b5638cc2b631d466ed19e9a88d07dea612dfe2b1dc7537cc1d7e75364",
+              "MOV-0010.json": "dc650ba3e978015e10591825cf25642cafa68f6251eac2148d602e871af9976e",
+              "identity.json": "c47406d179fe9eff08c175d264df14077f3dd3f4536371c0f1e55abf075f067c"
+            }
+          }
+        }
+      }
+    },
+    "windows-msvc-release": {
+      "ci_status": "PASS",
+      "host": {
+        "system": "Windows",
+        "release": "2022Server",
+        "architecture": "x86_64",
+        "python": "3.12.10"
+      },
+      "environment": {
+        "host": {
+          "system": "Windows",
+          "release": "2022Server",
+          "architecture": "x86_64",
+          "python": "3.12.10"
+        },
+        "requested_compiler": "cl",
+        "build_type": "Release",
+        "expected_architecture": "x86_64",
+        "seed": 1,
+        "github": {
+          "GITHUB_RUN_ID": "36887017447",
+          "GITHUB_RUN_ATTEMPT": "1",
+          "GITHUB_SHA": "cbf9d0f046a36c045348321137ca9db9efcd9d57",
+          "GITHUB_EVENT_NAME": "pull_request",
+          "RUNNER_OS": "Windows",
+          "RUNNER_ARCH": "X64",
+          "ImageOS": "win22",
+          "ImageVersion": "20260927.320.1"
+        }
+      },
+      "primary_identity": {
+        "git_commit": "cbf9d0f046a36c045348321137ca9db9efcd9d57",
+        "git_dirty_at_configure": false,
+        "source_sha256": "fd893cf671587d4e12bcf0b3869f587a6d118621b0c6a4b8051796173f769e68",
+        "compiler": "MSVC 19.44.35229.0",
+        "build_type": "Release",
+        "architecture": "x86_64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float"
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ]
+      },
+      "models": {
+        "v1": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877",
+            "MOV-0003.json": "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3",
+            "MOV-0004.json": "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41",
+            "MOV-0005.json": "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20",
+            "MOV-0006.json": "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849",
+            "MOV-0007.json": "df19f069ab5ebf09e3a56a687dbfc837d526bf824941dd4b954e447977480e53",
+            "MOV-0008.json": "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab",
+            "MOV-0009.json": "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7",
+            "MOV-0010.json": "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "808bd9ac3bc010d17d60a06b8a7ae57a5e63fb64efef047fd8f312ce8c5f0c67",
+            "MOV-0002.json": "c0da2ce6d50d87f1a2c97cb5998a0a5393aae9bc5752cd1ef696921650e00878",
+            "MOV-0003.json": "6102d8e02ddf32870433b7b2ebd04899a0ee4e78abeb40b563953940652a76f5",
+            "MOV-0004.json": "2ba1560c89a95df861af762ede2826ce16c70f3468ea23bd34fe7417aa15cc32",
+            "MOV-0005.json": "f428574966e8c52dfac9722581be5cfc35ad54a64b459884e2d4bad29cb527a7",
+            "MOV-0006.json": "6aa52f106860cc782f1173632baa3d6cf48e2ed18ea7ad69577282e1b045628f",
+            "MOV-0007.json": "ade9cbe1b5e69378661f0a7163dd635d5ece799d0c380c91d4784ac1b57b8805",
+            "MOV-0008.json": "642f991a1129b1df0ab0cf7ceaba6013e2fd47c21392ced2e719666de98d133a",
+            "MOV-0009.json": "ac7d633ad46b9b1b29b5ad97ed98fbb5b1ed37f3d99cb2c3a9a092c91ce8ae21",
+            "MOV-0010.json": "d31250dba9cb3079c6afb3b7d7d9141627adada261e9116bfc9ee0607d791c76",
+            "identity.json": "f718d758667b961fb9abfc82e04daffde6630a4f69076a48bf5376d969924c8c"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "4960e3b7e4ac1d70dcf0145c778fcc9c72d543620c1c7e8d1394965e09ed9954",
+              "MOV-0002.json": "16aa655b4025c5c212570440f463f1c640470354b3bf2d74ba670360707b36a1",
+              "MOV-0003.json": "aaf7fa791a448e093daeda43766bb7c628758eb6ea758735463e6bcc4fadce16",
+              "MOV-0004.json": "2cc07f25af05ae4e071f3daa72b7ce95a99d7f76e81d5c99907f3b221d45d714",
+              "MOV-0005.json": "ec57c004588b8fb92bf2fbf3e32863bc080c072c1b6bd2f6a78cbc8dddbaf90a",
+              "MOV-0006.json": "c44a87a22f4af4f3feb2b8e7c1a0ad653c9bca2d1d04e3891dbfd61b5b6b3387",
+              "MOV-0007.json": "7bf62e164e3de3dac0895771f1d95a2f078a7b2d710df0243265780ae8fe0f6b",
+              "MOV-0008.json": "5e6c6ff7f0610300d76ac2afd2dbd74d28bbe43353c8ebc73b913a656d8d2bb6",
+              "MOV-0009.json": "02785ca471b1421ab3b7ae00b6c7357c66b14b682a7239f020e4a1bf163ebafb",
+              "MOV-0010.json": "0d514e73959cdc06008c3e6ae9096b8faf5eacfaef7cfb17087c715e335e8db7",
+              "identity.json": "174af4ea3e46d73d768c7f49d363393756fc2731e6b55af52f7aeaac60d0ed34"
+            }
+          }
+        },
+        "v2": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d",
+            "MOV-0003.json": "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63",
+            "MOV-0004.json": "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671",
+            "MOV-0005.json": "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0",
+            "MOV-0006.json": "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543",
+            "MOV-0007.json": "3eeb2289e5eec5b6d4408caac91cc106ab7ffc475d4589229f64ca85184bd70d",
+            "MOV-0008.json": "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f",
+            "MOV-0009.json": "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c",
+            "MOV-0010.json": "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "6ab27f83d79677d81ab52377cb28a79558a8fd6ee205b45d069ba2925e590e35",
+            "MOV-0002.json": "c87c0122d989070471966953c904cd6176bf2f7f46402ad7a385f8087432487e",
+            "MOV-0003.json": "2ea3930e2a59f5ce748e98aaf313af6c8999df1ad21d6cdf168a930f43ffb567",
+            "MOV-0004.json": "d491ab1f0491fd51c7c3a640aa4fe152d94aa2859b8eedf4fac6171f03dd9e7b",
+            "MOV-0005.json": "fe5d35e7e791ab65f200d09e80fc1bb26bc256e288d21eb22f5dbe6f48aace68",
+            "MOV-0006.json": "1f986b529489b947d463e308e1fd36997afb6f67556802d3bff3c185a5bf88bc",
+            "MOV-0007.json": "8b65a30b4d16730ff92189cde976f3a21f4cee2856d193cfa0909cac3d7f241f",
+            "MOV-0008.json": "59441e46667ee20e528ffe1ce7667c261d14ad85abc17b66784e1b688186d61f",
+            "MOV-0009.json": "ec8d2365c834b1f54f2996b15e624fb7f447aed67f4f1912f1d48e452cc36fbf",
+            "MOV-0010.json": "c9f88215e382e792e648b0e933c071bd9244f3993adf02857f7e5ce258830f2d",
+            "identity.json": "fa8c6e3b2e6d94059e8dbbbf6d0f252563f98e284194476ab19ef28a29e6461c"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "a4b08cb3947b5815ff45d3a13e374684925761139d6467cf270b868483b1a531",
+              "MOV-0002.json": "0677b67a1a666d24837fdd3e329f88075f593e23e9962ef2d6f7f82fe9fe48a6",
+              "MOV-0003.json": "017477afa3906aae4411f1d3983035b3d58e2b9058c0402a193d790e929d5865",
+              "MOV-0004.json": "150f7f6ae1e7618421d12a8974af2a571e56bcc5ddddbb5e7eabf36b9241f073",
+              "MOV-0005.json": "ac4006df0161ee4d2ed1eb4edf9195465ff8094ab7e26382edbd23c397b07eec",
+              "MOV-0006.json": "511f0353cad79bea22b5250a7d95e7222ed488541eae9c4a6ab9d61528a40f64",
+              "MOV-0007.json": "6b633afd93e23cd88cf238edc65c7520406b4367b4ca4e8d86881bcd25177024",
+              "MOV-0008.json": "ac6a85f753d2617b29c04d97262959d9905125b67d14ca413d460bb783c68a29",
+              "MOV-0009.json": "420470c27adaed3a166b7bf9ff240ca7d1973563002345bd3fd853fab241325d",
+              "MOV-0010.json": "be66878287946a7d4176432a8a2cc6ac241701266900278a9a5e0ddebf089190",
+              "identity.json": "6f7a1a0436f29bcda32e04b70302e9289211a660b78a8ae9260825446f31df00"
+            }
+          }
+        },
+        "v2-before": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+            "MOV-0002.json": "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+            "MOV-0003.json": "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+            "MOV-0004.json": "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+            "MOV-0005.json": "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+            "MOV-0006.json": "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+            "MOV-0007.json": "5776dbf0abea3d5185ec0d5a1dc8f198eaf1291d9b76048a2341d735ddefafab",
+            "MOV-0008.json": "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+            "MOV-0009.json": "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+            "MOV-0010.json": "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "9d1a5a1455e80a717644a010c6951d9f76243aa356438d0514df332a5218932d",
+            "MOV-0002.json": "1a4b52ee8a4c2a67d10fbc0eaa17490481102978fbf7c5d388415fe4d65d0d55",
+            "MOV-0003.json": "cf4e90cfa30e2884ccca58d9c1086b465fc18743a5141f9e97a71fcc01180a55",
+            "MOV-0004.json": "5cb51cead0b31b5025a8124b06d7b52443c441cd36272d830b0540c26a913db3",
+            "MOV-0005.json": "69333a3b68fd8da071fb7dcf82c734c57fabae94584b2955d299b0b496046c07",
+            "MOV-0006.json": "e320b86d19a770f78bc9673930b65d826fee8c13297211b4aaae2c378ddae122",
+            "MOV-0007.json": "a628fbcee55c2afc60bd2e880cd688df08a8cbb0c8c2538757dd61a98719eb29",
+            "MOV-0008.json": "9b1fb2de2f8b19fa902434f5d26052a05aa9bbeb19953f74b5f0e26a377e410f",
+            "MOV-0009.json": "70c7ce4006f43333e9b4c92611de52ef56a1395dd1f1b24c2b1deffd85ee3ee2",
+            "MOV-0010.json": "b4a5152bdb1d8a81f57c797d3a96a054b881232bf8a8ae34a6e3f122e469822c",
+            "identity.json": "837ed028cbc0f6881c9ce0828c7028eca98ebf8db9339e12dc8aa39e19adbda4"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "1a8d87e59148d8f162abc53be52370c186f104806cf8b9b278e8314ff9659ada",
+              "MOV-0002.json": "0f536f55c379825fc3e98567974b3cea416ee0d5ae8c4abf585758e0241fd9fa",
+              "MOV-0003.json": "dc59cdf1341251ea435a8843fef280504bdf8b60ff07f3d6d42644eab2b63f03",
+              "MOV-0004.json": "0e9ebe167e65979b769cf75dd4f8a7dbbfb153433797a72f64a7224f8c3bf0c6",
+              "MOV-0005.json": "5e832d0ea951ab46bf333136fc5a53579b49da7645ce409aee42ec2bf1dbd356",
+              "MOV-0006.json": "c196c32c8534526a8a3091c1eeade894852419ff76a533c4eb27903e072897d1",
+              "MOV-0007.json": "338d51b0c9fefdcc9863a183f05feebe10fff917384e85d7c11482310a711e70",
+              "MOV-0008.json": "e5c4242b1b349d9bd1f0aa2a12621f52b25a09345f13c559f701c7743eb10969",
+              "MOV-0009.json": "9458ec62fc6e8ecc834f225a1e5a7aa9578ac6fe1ce03958bbc4c907616aecc3",
+              "MOV-0010.json": "5232cb571bae9b9ec471aaf6de8b8331399dd90984ef91e4179d62539d6788d8",
+              "identity.json": "3a69d098cdb2f00e75f70343ea5c127918f3fd1569a835687bfc988bfeb9c3cf"
+            }
+          }
+        },
+        "v3": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd",
+            "MOV-0003.json": "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad",
+            "MOV-0004.json": "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed",
+            "MOV-0005.json": "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5",
+            "MOV-0006.json": "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b",
+            "MOV-0007.json": "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f",
+            "MOV-0008.json": "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646",
+            "MOV-0009.json": "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944",
+            "MOV-0010.json": "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "b3e021b813d99b790a0aaec051bd457e39ed13d7499251e9ced73247e0e138c0",
+            "MOV-0002.json": "396b855a5ee7163fa750e4d4b361e9143c4ff743b98b5469bdf67be8faee612b",
+            "MOV-0003.json": "13749def36d5dd7e2373ea7493b342f295cceed0950c00d2b48992d57981ace3",
+            "MOV-0004.json": "16627716c1dea210d3801ae0dcff0d560adf98c04c85812c1211191b080373f6",
+            "MOV-0005.json": "9d28987b9bffcd5d81a34170e91c718175c2ec91527762c14a894126815672e7",
+            "MOV-0006.json": "b317ff66eb03b3d3d4719d78f714ee1f3eac0300c3eec0da2579e38c271d318a",
+            "MOV-0007.json": "7b952dd233073292aa6bc1cb890a1f362f761c81c1bc3260adff3994c238f2cd",
+            "MOV-0008.json": "f27c765754b729fe04b39ca160a1b1cc35eeb439d14ececd03324b5231575c50",
+            "MOV-0009.json": "a4b8c02e769761ec146ebc1e7611d8812434fa6f176f07a961b2446ae060df1e",
+            "MOV-0010.json": "8d2a0a1d598293c9a80a2473953c864534220e171d75faa09eeca46b03f9431f",
+            "identity.json": "9f5a9496e9f9e1f0e512f5321fe903055b436bef7c62dd499bc9a1513bb0b2c9"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 1,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "1b69b20eb135e72f86d554b444147ceec10f53ceeb69528b91d5fbc88ac8e2a6",
+              "MOV-0002.json": "82b2852a466cd6e44235781526afdb92aeb995b8db9d6d2b3a1685614fb6649e",
+              "MOV-0003.json": "ad6e9dfad7e24d103590b828ef46b44cf83d51c4f885ac554fec67d6908b4b18",
+              "MOV-0004.json": "44268281616d48ea69ff0dd6cd5457f9e1e1a5d85ce4175d273d85ab1ecd8506",
+              "MOV-0005.json": "b18541935ebf8afc801a48e8796b3f9b9acf99318f877cc521e12ce29368c170",
+              "MOV-0006.json": "f6fe47ac95f0214d2708f9b466d1862d1c7b457685287131388e0846e80c9ba5",
+              "MOV-0007.json": "fb0fa5c76e7f65d3b38c256513ba321bd84aba7f400f399c5598f163ec9dbd7b",
+              "MOV-0008.json": "ab7e291cbaf96cb8f256a6278baa67b0203859710e239a98d09e0d56ad5ad4c7",
+              "MOV-0009.json": "5de80ee02ef6fc72ff7446a47bed29519f964a7349ec86c15a1df9b5ea2ed13f",
+              "MOV-0010.json": "b328ffa0618b804793e5973bb6872e5c016318e8d2d6f0b0296e398479859ed9",
+              "identity.json": "74cc342b9edd32aa0e86a9c85fdb32042e066fa9b41203a8bfd4f71c9a28f5c4"
+            }
+          }
+        },
+        "v4": {
+          "compatibility_passes": 10,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc",
+            "MOV-0002.json": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+            "MOV-0003.json": "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7",
+            "MOV-0004.json": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+            "MOV-0005.json": "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d",
+            "MOV-0006.json": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+            "MOV-0007.json": "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e",
+            "MOV-0008.json": "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5",
+            "MOV-0009.json": "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612",
+            "MOV-0010.json": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "df3aacf2f571a47ae30f9265c4dc9890e28eb59826ce378c49e88185c25bf7f6",
+            "MOV-0002.json": "bf0e5fbdb9cdde0301776d8ff2936c601dfe1733184cd7f5ecfb54b127d4d6f7",
+            "MOV-0003.json": "192c69b7307960e25c9781b020272fcd5d247680fdd5edaae75069547b5a0339",
+            "MOV-0004.json": "9a60f8b6277671d56dafcc87e21d02b31d0ea49c855e13a2497469d79f87d9cb",
+            "MOV-0005.json": "eaa8313e64bf5e97b11a5b1bdbe0a0291b7b1ed39b778fbecd17c89116fb8cb6",
+            "MOV-0006.json": "c727a465bb532bb59bd5084c1022f058047719f8cc96eedf698c1916dc04746b",
+            "MOV-0007.json": "680e934a153dd20c0039e986071f48bfd4ca4947e2dd06d61e1d32361cd3ec58",
+            "MOV-0008.json": "fe8681bd48ccf2260859d823062471c0c1b7bf408c58d44bdd54b63d6cdd63cd",
+            "MOV-0009.json": "111fabfb1375582c066098d62b7062e4e17bfe3c9008aa1aec8bff6c7009b039",
+            "MOV-0010.json": "5380d5ef07ff63dd4f825b3196a12945a2f4279f8f5737f91f458f50b1d5b8b8",
+            "identity.json": "353550440455a49d5137ab6724ae9c77c2c9cdac6bc55ae74c3a31d9d60406ba"
+          },
+          "scenario": {
+            "migration": "EQUIVALENT",
+            "compatibility_passes": 10,
+            "scenario_sha256": {
+              "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+              "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+              "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+              "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+              "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+              "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+              "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+              "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+              "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+              "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+            },
+            "full_trace_sha256": {
+              "MOV-0001.json": "e0ef0e067054062da74bd21fe4fd5b7884a382c4cb4fabcc8b4ac8484c7d7b62",
+              "MOV-0002.json": "8246980ea257c26620196aa0f4a8ec689871817bbc350fbe14c04dff5fec2bff",
+              "MOV-0003.json": "bb790e2f6e3c1fcb65fac062c363803d5d841f5623a45683bfddb21f0efcd9a9",
+              "MOV-0004.json": "0a0b0a5a7644402945647da3788f14996426aa37c5d55837fcbe32c6a80a6c1e",
+              "MOV-0005.json": "aa2bc53471e841f84f1f191872ed6058dbfaa0f583634e3ed74eabfaac157962",
+              "MOV-0006.json": "f7eee0d5f92b43da8b3cbbb9641023ea933d75533dded551e9f00d36f0c1d5b0",
+              "MOV-0007.json": "3f8b5bde0c57be31023355543af42a4b8770ddafcfaa9d07286bb373e45ba10d",
+              "MOV-0008.json": "7ca48b7c2324d27a52447b3177a7b7a592fa8fa7c556d5795190f05ac9932200",
+              "MOV-0009.json": "f41d06c5ae0bb88d2c5a3008768f3a256d562c35306d559d4d68301fd6464194",
+              "MOV-0010.json": "bb48c4a37be379d08357e74caf705feaf816a2bd4d8e91da0693dcef48b1765e",
+              "identity.json": "0ebfc74958e72fb087a40aec0c2692f776d0ef0969dcf147887f8f1bb0451a21"
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {},
+  "models": {
+    "v1": {
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ],
+      "scenario_migration": {
+        "mac-arm-release": "EQUIVALENT",
+        "mac-arm-debug": "EQUIVALENT",
+        "linux-gcc-release": "EQUIVALENT",
+        "linux-clang-debug": "EQUIVALENT",
+        "windows-msvc-release": "EQUIVALENT"
+      },
+      "scenario_inputs": "IDENTICAL",
+      "observation_payload_variants": {
+        "MOV-0001": 1,
+        "MOV-0002": 1,
+        "MOV-0003": 1,
+        "MOV-0004": 1,
+        "MOV-0005": 1,
+        "MOV-0006": 1,
+        "MOV-0007": 2,
+        "MOV-0008": 1,
+        "MOV-0009": 1,
+        "MOV-0010": 1
+      },
+      "full_trace_variants": {
+        "MOV-0001": 5,
+        "MOV-0002": 5,
+        "MOV-0003": 5,
+        "MOV-0004": 5,
+        "MOV-0005": 5,
+        "MOV-0006": 5,
+        "MOV-0007": 5,
+        "MOV-0008": 5,
+        "MOV-0009": 5,
+        "MOV-0010": 5
+      },
+      "observation_byte_equality": "DIFFERENT",
+      "compatibility_passes": {
+        "mac-arm-release": 1,
+        "mac-arm-debug": 1,
+        "linux-gcc-release": 1,
+        "linux-clang-debug": 1,
+        "windows-msvc-release": 1
+      }
+    },
+    "v2": {
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ],
+      "scenario_migration": {
+        "mac-arm-release": "EQUIVALENT",
+        "mac-arm-debug": "EQUIVALENT",
+        "linux-gcc-release": "EQUIVALENT",
+        "linux-clang-debug": "EQUIVALENT",
+        "windows-msvc-release": "EQUIVALENT"
+      },
+      "scenario_inputs": "IDENTICAL",
+      "observation_payload_variants": {
+        "MOV-0001": 1,
+        "MOV-0002": 1,
+        "MOV-0003": 1,
+        "MOV-0004": 1,
+        "MOV-0005": 1,
+        "MOV-0006": 1,
+        "MOV-0007": 2,
+        "MOV-0008": 1,
+        "MOV-0009": 1,
+        "MOV-0010": 1
+      },
+      "full_trace_variants": {
+        "MOV-0001": 5,
+        "MOV-0002": 5,
+        "MOV-0003": 5,
+        "MOV-0004": 5,
+        "MOV-0005": 5,
+        "MOV-0006": 5,
+        "MOV-0007": 5,
+        "MOV-0008": 5,
+        "MOV-0009": 5,
+        "MOV-0010": 5
+      },
+      "observation_byte_equality": "DIFFERENT",
+      "compatibility_passes": {
+        "mac-arm-release": 1,
+        "mac-arm-debug": 1,
+        "linux-gcc-release": 1,
+        "linux-clang-debug": 1,
+        "windows-msvc-release": 1
+      }
+    },
+    "v2-before": {
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ],
+      "scenario_migration": {
+        "mac-arm-release": "EQUIVALENT",
+        "mac-arm-debug": "EQUIVALENT",
+        "linux-gcc-release": "EQUIVALENT",
+        "linux-clang-debug": "EQUIVALENT",
+        "windows-msvc-release": "EQUIVALENT"
+      },
+      "scenario_inputs": "IDENTICAL",
+      "observation_payload_variants": {
+        "MOV-0001": 1,
+        "MOV-0002": 1,
+        "MOV-0003": 1,
+        "MOV-0004": 1,
+        "MOV-0005": 1,
+        "MOV-0006": 1,
+        "MOV-0007": 2,
+        "MOV-0008": 1,
+        "MOV-0009": 1,
+        "MOV-0010": 1
+      },
+      "full_trace_variants": {
+        "MOV-0001": 5,
+        "MOV-0002": 5,
+        "MOV-0003": 5,
+        "MOV-0004": 5,
+        "MOV-0005": 5,
+        "MOV-0006": 5,
+        "MOV-0007": 5,
+        "MOV-0008": 5,
+        "MOV-0009": 5,
+        "MOV-0010": 5
+      },
+      "observation_byte_equality": "DIFFERENT",
+      "compatibility_passes": {
+        "mac-arm-release": 1,
+        "mac-arm-debug": 1,
+        "linux-gcc-release": 1,
+        "linux-clang-debug": 1,
+        "windows-msvc-release": 1
+      }
+    },
+    "v3": {
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ],
+      "scenario_migration": {
+        "mac-arm-release": "EQUIVALENT",
+        "mac-arm-debug": "EQUIVALENT",
+        "linux-gcc-release": "EQUIVALENT",
+        "linux-clang-debug": "EQUIVALENT",
+        "windows-msvc-release": "EQUIVALENT"
+      },
+      "scenario_inputs": "IDENTICAL",
+      "observation_payload_variants": {
+        "MOV-0001": 1,
+        "MOV-0002": 1,
+        "MOV-0003": 1,
+        "MOV-0004": 1,
+        "MOV-0005": 1,
+        "MOV-0006": 1,
+        "MOV-0007": 1,
+        "MOV-0008": 1,
+        "MOV-0009": 1,
+        "MOV-0010": 1
+      },
+      "full_trace_variants": {
+        "MOV-0001": 5,
+        "MOV-0002": 5,
+        "MOV-0003": 5,
+        "MOV-0004": 5,
+        "MOV-0005": 5,
+        "MOV-0006": 5,
+        "MOV-0007": 5,
+        "MOV-0008": 5,
+        "MOV-0009": 5,
+        "MOV-0010": 5
+      },
+      "observation_byte_equality": "IDENTICAL",
+      "compatibility_passes": {
+        "mac-arm-release": 1,
+        "mac-arm-debug": 1,
+        "linux-gcc-release": 1,
+        "linux-clang-debug": 1,
+        "windows-msvc-release": 1
+      }
+    },
+    "v4": {
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ],
+      "scenario_migration": {
+        "mac-arm-release": "EQUIVALENT",
+        "mac-arm-debug": "EQUIVALENT",
+        "linux-gcc-release": "EQUIVALENT",
+        "linux-clang-debug": "EQUIVALENT",
+        "windows-msvc-release": "EQUIVALENT"
+      },
+      "scenario_inputs": "IDENTICAL",
+      "observation_payload_variants": {
+        "MOV-0001": 1,
+        "MOV-0002": 1,
+        "MOV-0003": 1,
+        "MOV-0004": 1,
+        "MOV-0005": 1,
+        "MOV-0006": 1,
+        "MOV-0007": 1,
+        "MOV-0008": 1,
+        "MOV-0009": 1,
+        "MOV-0010": 1
+      },
+      "full_trace_variants": {
+        "MOV-0001": 5,
+        "MOV-0002": 5,
+        "MOV-0003": 5,
+        "MOV-0004": 5,
+        "MOV-0005": 5,
+        "MOV-0006": 5,
+        "MOV-0007": 5,
+        "MOV-0008": 5,
+        "MOV-0009": 5,
+        "MOV-0010": 5
+      },
+      "observation_byte_equality": "IDENTICAL",
+      "compatibility_passes": {
+        "mac-arm-release": 10,
+        "mac-arm-debug": 10,
+        "linux-gcc-release": 10,
+        "linux-clang-debug": 10,
+        "windows-msvc-release": 10
+      }
+    }
+  },
+  "scope": "measured artifact-producing configurations of this workflow run only; movement RNG unused; retail RNG/other hosts remain UNKNOWN"
+}

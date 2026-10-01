@@ -152,6 +152,31 @@ pass compatibility and its declared regression gate. Two separate process runs
 with one binary/seed establish only RNG-DETERMINISTIC-WITH-SEED in that scope;
 movement draws no RNG and retail RNG equivalence remains UNKNOWN.
 
+## Phase 5 scenario suites
+
+Added for [issue #12](https://github.com/galitianu/warcraft-re/issues/12)
+([scenario v1](scenario-v1.md), [results](phase-5-scenarios.md)). After each hard-coded
+suite, the entry point runs `wc3test … --scenario scenarios` twice in fresh
+processes. It compares that output with the unchanged `compare_traces.py` and
+checks it against the same regression baseline. The hard-coded run stays the
+migration control. Additional artifacts per suite:
+
+- `traces/<suite>-scenario/` and `<suite>-scenario-repeat/`: the same 31 files, with
+  scenario path/hash identity.
+- `reports/<suite>/scenario/{comparison,regression,repeatability}.{json,md}` and
+  `migration.json`. Migration is EQUIVALENT only when, against the control:
+  - every observation payload and CSV byte matches;
+  - the metadata differs only in `identity.build.scenarios` and `provenance.scenario`;
+  - each recorded scenario hash matches the committed file;
+  - the comparison reports are equal apart from identity and trace hashes.
+
+The gate needs all five suites EQUIVALENT with no protected regression, and v4
+10/10 from scenarios too. The aggregate job rechecks scenario payloads, repeat
+hashes and migration in every downloaded configuration. It also reports whether
+the scenario inputs are identical across hosts. CTest adds `scenario_v1`
+(parser, exact decimals, 80 byte-identical migrated model/phase runs), and
+Python adds `test_scenarios.py`.
+
 ## Baseline maintenance and delivery evidence
 
 Never change raw captures, fixtures or tolerances to make a job green. Investigate

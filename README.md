@@ -39,12 +39,16 @@ Start with:
   [MOV-0012](docs/mov-0012.md) explains the east/west heading noise.
 - [Phase 4 CI](docs/phase-4-ci.md): reusable build/evidence gate, regression policy,
   workflow matrix and artifact interpretation.
+- [Scenario v1](docs/scenario-v1.md) and [Phase 5 results](docs/phase-5-scenarios.md):
+  versioned YAML descriptions of MOV-0001–MOV-0010 ([scenarios/](scenarios/)) drive
+  the C++ runner with payloads identical to the hard-coded cases.
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
 This repository holds the plan, 24 manually authored WC3 maps with their JASS,
 shared oracle instrumentation, raw captures with identities, parsers and derived
-CSVs, and a dependency-free C++20 simulation. Phases 0–4 are complete; compatibility
+CSVs, versioned v1 scenarios, and a dependency-free C++20 simulation. Phases 0–4 are
+complete and Phase 5's scenario extraction is in review; compatibility
 CI passes on pull requests and main pushes across five measured macOS ARM64, Linux
 x64 and Windows x64 configurations. All 45 Phase 1
 raw runs normalize to 15 versioned canonical fixtures with complete provenance.
@@ -62,6 +66,7 @@ python3 -m unittest discover -s tools -p 'test_*.py' -v
 python3 tools/run_phase3.py --runner build/wc3test --out build/phase3 --reports build/phase3-reports
 python3 tools/run_footman_v3.py --runner build/wc3test --out build/issue6 --reports build/footman-v3
 python3 tools/run_footman_v4.py --runner build/wc3test --states build/wc3states --out build/v4 --reports build/footman-v4
+build/wc3test --model v4 --scenario scenarios --out build/scenario-v4   # Phase 5 scenarios
 ```
 
 Use GitHub issues for concrete work and `PROGRESS.md` for the concise status. Keep

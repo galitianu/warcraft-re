@@ -17,6 +17,7 @@ from pathlib import Path
 import re
 import struct
 import subprocess
+import sys
 import tempfile
 
 from trace_contract import BUILD, ROOT, load, write_json
@@ -117,8 +118,10 @@ def analyse(runner, states_runner, path):
         trace = model(runner, path, temp)
     events = [r for r in trace['records'] if r['kind'] == 'EVENT']
     ticks = [r for r in trace['records'] if r['kind'] == 'TICK']
-    # Bind this schedule to the C++ runner's: M0 is exactly what footman-v4 reports.
-    if clock('M0', s) != [r2sw(bits(float(t['time']['reported'])), 6) for t in ticks]:
+    # Bind this schedule to the C++ runner's. footman-v4 reported M0 when these
+    # predictions were written and Q17 once MOV-0014 confirmed it; neither feeds them.
+    runner_clock = 'Q17' if '2^-17' in trace['identity']['build']['parameters']['library_clock'] else 'M0'
+    if clock(runner_clock, s) != [r2sw(bits(float(t['time']['reported'])), 6) for t in ticks]:
         raise ValueError(f'{path}: predictor schedule differs from wc3test')
     frames = [e['time']['state_us'] // 5000 for e in events]
     c = frame_clocks(max(frames) + 2)
@@ -180,12 +183,56 @@ def observed(fixture, s, frames, sequence):
     return nxt, neither, ticks
 
 
+def grade(args):
+    """Apply the pre-registered decision rules (docs/mov-0014.md) to the captures."""
+    with tempfile.TemporaryDirectory() as temp:
+        regenerated = Path(temp) / 'predictions.json'
+        subprocess.run([sys.executable, __file__, '--runner', str(args.runner), '--states', str(args.states),
+                        '--out', str(regenerated)], check=True, capture_output=True, timeout=600)
+        committed = ROOT / 'results/mov-0014/predictions.json'
+        if regenerated.read_bytes() != committed.read_bytes():
+            raise SystemExit('predictions differ from the committed pre-registration')
+    predictions = load(committed)['predictions']
+    maps = {}
+    for path in PREDICTED:
+        label = Path(path).stem
+        p = predictions[label]
+        _, (s, frames, sequence) = analyse(args.runner, args.states, path)
+        fixture = load(ROOT / 'oracle/canonical-generated' / BUILD / f'{label}.json')
+        nxt, neither, ticks = observed(fixture, s, frames, sequence)
+        tick_sha = hashlib.sha256(json.dumps(ticks).encode()).hexdigest()
+        aux = [r2sw(sub(bits(10.0), sub(add(SETUP, bits(10.0)), now)), 9) for now in s]
+        events = [r for r in fixture['records'] if r['kind'] == 'EVENT']
+        samples = [r for r in fixture['records'] if r['kind'] == 'SAMPLE']
+        onset = next(r['callback'] for r in samples if float(r['values']['x']) != 0)
+        maps[label] = dict(observed_next_xy=nxt, observed_neither=neither, observed_onset_callback=onset,
+                           tick_sha256=tick_sha,
+                           aux_clock_mismatches=[k for k, (e, a) in enumerate(zip(events, aux)) if e['values']['c10_9'] != a],
+                           frame={r: p['frame'][r]['visible_xy'] == nxt and not neither for r in FRAME_RULES},
+                           clock={r: p['clock'][r]['sha256'] == tick_sha for r in CLOCK_RULES},
+                           clock_mismatches={r: sum(a != b for a, b in zip(clock(r, s), ticks)) for r in CLOCK_RULES})
+    frame = [r for r in FRAME_RULES if all(m['frame'][r] for m in maps.values())]
+    clocks = [r for r in CLOCK_RULES if all(m['clock'][r] for m in maps.values())]
+    write_json(args.grade, dict(experiment='MOV-0014', reference_build=BUILD,
+                                predictions_sha256=hashlib.sha256(committed.read_bytes()).hexdigest(),
+                                maps=maps, frame_rules_surviving=frame, clock_rules_surviving=clocks))
+    print('surviving frame rules:', frame, 'clock rules:', clocks)
+    for label, m in maps.items():
+        print(label, 'next-frame X/Y at', m['observed_next_xy'], 'neither', m['observed_neither'],
+              'onset', m['observed_onset_callback'], 'aux mismatches', len(m['aux_clock_mismatches']),
+              'clock mismatches', m['clock_mismatches'])
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument('--runner', type=Path, default=ROOT / 'build' / f'wc3test{EXT}')
     parser.add_argument('--states', type=Path, default=ROOT / 'build' / f'wc3states{EXT}')
     parser.add_argument('--out', type=Path, default=ROOT / 'results/mov-0014/predictions.json')
+    parser.add_argument('--grade', type=Path, help='after capture: regenerate the predictions, require the '
+                        'committed bytes, and grade the MOV-0014 fixtures into this file')
     args = parser.parse_args()
+    if args.grade:
+        return grade(args)
     check = {}
     for label, path in CHECKED.items():
         prediction, (s, frames, sequence) = analyse(args.runner, args.states, path)

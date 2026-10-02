@@ -53,7 +53,7 @@ def main():
         attempts.append(dict(file=attempt.name, sha256=report['sha256'], payload_sha256=report['payload_sha256'],
                              footer=report['footer'], reason=args.rejected_reason))
     manifest = dict(experiment=exp, map_label=label, reference_build=BUILD,
-                    definition='docs/mov-0013.md' if experiment else 'docs/phase-6-generation.md',
+                    definition=experiment['definition'] if experiment else 'docs/phase-6-generation.md',
                     procedure='docs/phase-1-procedure.md',
                     map=dict(**source(map_path), bytes=map_path.stat().st_size), library=source(library), case=source(case),
                     scenario=dict(schema='wc3-scenario', version=2 if experiment else 1, **source(scenario)),

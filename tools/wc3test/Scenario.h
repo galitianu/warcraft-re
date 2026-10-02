@@ -5,6 +5,7 @@
 // the World API and rejects what the current runner cannot represent.
 #include "core/World.h"
 #include <cstdint>
+#include <array>
 #include <optional>
 #include <stdexcept>
 #include <string>
@@ -22,6 +23,11 @@ struct Unit {
     wc3::Vec2 position;              // float32 of the declared decimal
     float facing = 0;                // degrees in [0, 360)
     std::optional<float> move_speed; // requested SetUnitMoveSpeed value, never pre-clamped
+    // Original validated decimal tokens: oracle generation must not print the
+    // rounded host float in place of the declared JASS real literal.
+    std::array<std::string, 2> position_text;
+    std::string facing_text;
+    std::optional<std::string> move_speed_text;
 };
 enum class Order { move, stop };
 struct Action {
@@ -31,6 +37,7 @@ struct Action {
     bool relative = false;    // move: offset from the unit's position at execution
     wc3::Vec2 point;          // move target, or offset when relative
     int line = 0;
+    std::array<std::string, 2> point_text;
 };
 struct Scenario {
     std::string experiment;
@@ -39,6 +46,7 @@ struct Scenario {
     std::uint64_t period_us = 0; // requested sampler period
     int callbacks = 0;           // periodic callbacks after callback 0
     std::vector<Action> actions; // file order; equal times execute in this order
+    std::string period_text;
 };
 Scenario parse(std::string_view text);
 // Exact decimal to nearest float32 (ties to even), as a C++ float literal would.

@@ -8,3 +8,4 @@
 *.w3m binary
 *.png binary
 oracle/captures/** -text
+oracle/environment/phase-6-verification.json -text

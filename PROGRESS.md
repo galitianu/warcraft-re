@@ -1,10 +1,12 @@
 # Progress
 
-As of 1 October 2026.
+As of 2 October 2026.
 
-**Current stage:** Phase 5 complete: v1 scenarios drive the C++ runner, verified on PR and main push. Phase 6 is tracked in issue #14.
+**Current stage:** Phase 6's scenario → generated WC3 map → fixture / same scenario → C++ loop passes on four real maps. PR/main-push CI delivery remains tracked in issue #14; sampler/update-order work is split into issue #17.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
-8 MOV-0012 maps × 3 fresh-process captures, all payload-identical within each map.
+8 MOV-0012 maps × 3 fresh-process captures, plus four generated revisions × 3,
+all payload-identical within each map. Generated observations reproduce their
+hand-authored controls exactly.
 **C++ compatibility:** footman-v4 passes MOV-0001–MOV-0010 under the fixed tolerances.
 Every sample and clock prints the same R2SW_6 text as WC3. It also reproduces every
 recorded state of the 1–50 ms JASS-0001/MOV-0012 captures. A few callbacks read a
@@ -197,14 +199,67 @@ With equivalence shown on both triggers, the hard-coded control was then removed
 `wc3test` requires `--scenario`, and every CI suite runs the committed scenarios
 ([control removed](docs/phase-5-scenarios.md#control-removed)).
 
-## Next task: Phase 6 — generate oracle maps from scenarios
+## Phase 6 scenario loop
 
-[Issue #14](https://github.com/galitianu/warcraft-re/issues/14): generate case JASS
-and maps from the committed scenarios. Reproduce the retained captures through
-generated map revisions. Then take the sampler/update-order capture
-([v4 limitation](docs/footman-v4-results.md#sampling-order)) through the same
-pipeline under a new permanent experiment ID, following the
-[documented workflow](docs/agent-wc3-workflow.md).
+[Issue #14](https://github.com/galitianu/warcraft-re/issues/14),
+[PR #16](https://github.com/galitianu/warcraft-re/pull/16):
+[route, supported input and reproduction](docs/phase-6-generation.md).
+`oracle_codegen` shares the strict v1 parser with wc3test, preserves real tokens,
+and binds generated JASS to the original scenario SHA-256. Ten
+[goldens](oracle/generated/v1/) pass [pjass](results/phase-6/pjass.json) and the
+[independent ordered-call audit](results/phase-6/generator-audit.json).
+The World Editor packaging route and oracle-v1 remain unchanged.
+
+The restored selected Windows 11 ARM64 VM's
+[installation verification](oracle/environment/phase-6-verification.json) confirms
+WC3 1.29.2.9231 x86 and all seven reference-file hashes. MOV-0002-g1, MOV-0004-g1,
+MOV-0006-g1 and MOV-0010-g1 are new verified editor-saved maps. Each has three
+fresh-process WC3 runs, byte-identical within its revision. Their ordered WATCH,
+RUN, TICK, SAMPLE, ACTION and EVENT observations equal the independent controls
+exactly; map labels, SETUP and preload/footer metadata are reported separately.
+Four new [canonical fixtures](oracle/canonical-generated/wc3-1.29.2-9231-x86/)
+and the same unchanged scenarios pass C++ comparisons under the original contract
+and tolerances: [full evidence](results/phase-6/generated-loop.json),
+[summary](results/phase-6/generated-loop.md). The v0.1 infrastructure comparison
+capability is demonstrated; no release tag is created.
+
+Native ARM64 AppleClang Release CI with `--archive`: CTest 3/3, Python 65/65,
+4/4 generated comparisons and all historical compatibility/regression gates PASS.
+footman-v4 remains 10/10; all [50 before/after payload hashes](results/phase-6/runner-before-after.json)
+match. The original 45 Phase 1 runs, 15 fixtures, scenarios, model behavior,
+baselines and tolerances remain unchanged. CI retains/regrades downloaded generated
+fixtures and C++ traces alongside byte-identical golden JASS and scenario inputs.
+Phase 5's scenario-only main-push evidence was
+[downloaded and rechecked](results/phase-5/control-removed-main-verification/summary.md).
+The real-capture [PR workflow 37005207059](https://github.com/galitianu/warcraft-re/actions/runs/37005207059)
+at `37cb228` passes all five configurations and the aggregate job; each passes
+CTest 3/3, Python 65/65, generated loop 4/4 and v4 10/10. Downloaded artifacts
+[regrade independently](results/phase-6/capture-pr-verification/summary.md),
+matching the hosted aggregate report exactly. Generated JASS and scenario inputs
+are identical across configurations; historical baselines pass. Phase 6's
+main-push gate awaits merge.
+
+PR review follow-up makes generated capture comparison unconditional: missing
+manifests/fixtures and disabled/missing downloaded gate reports fail. The
+real-capture integrity test no longer skips; historical CI artifacts require an
+explicit legacy recheck option. No retail evidence or numeric comparison changes.
+Fix `36ad6f0`: native Release with `--archive` and
+[PR workflow 37008399150](https://github.com/galitianu/warcraft-re/actions/runs/37008399150)
+PASS; all five configurations pass CTest 3/3, Python 66/66, generated loop 4/4
+and v4 10/10. Downloaded artifacts [regrade locally](results/phase-6/review-pr-verification/summary.md)
+and match the hosted aggregate exactly; every configuration declares the
+generated capture gate mandatory. Historical Phase 5 main artifacts also recheck
+PASS using the explicit legacy option.
+
+## Exact next action
+
+Review/merge PR #16, then download/regrade and retain the real five-configuration
+main-push evidence before closing #14.
+Then implement [issue #17](https://github.com/galitianu/warcraft-re/issues/17):
+**MOV-0013** measures sampler start phase/update ordering through generated scenarios.
+No MOV-0013 map or capture exists yet. It requires a narrow timing/state schema
+extension beyond v1 and before/after-proven runner timing; issue #14 explicitly
+permits this split after the generator reproduction gate passes.
 
 ## Roadmap status
 
@@ -216,7 +271,7 @@ pipeline under a new permanent experiment ID, following the
 | 3 | Canonical normalized traces and stable comparison contract | Complete — [results](docs/phase-3-results.md); all 45 retained runs validated |
 | 4 | C++ compatibility CI against committed WC3 references | Complete — five configurations pass on PR and main push; [evidence](results/phase-4/main-verification.json) |
 | 5 | Declarative scenarios extracted from repeated manual tests | Complete — [results](docs/phase-5-scenarios.md); PR and main push pass; [evidence](results/phase-5/main-verification.md) |
-| 6 | One scenario drives C++ and generates a runnable WC3 map | Planned — [issue #14](https://github.com/galitianu/warcraft-re/issues/14) |
+| 6 | One scenario drives C++ and generates a runnable WC3 map | Retail loop and five-configuration PR PASS — four maps/12 runs; main push awaits merge |
 | 7 | Reliable unattended VM capture, when manual work becomes costly | Planned |
 | 8 | Microscopic tests, sweeps, and measured compatibility expansion | Planned |
 

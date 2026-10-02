@@ -1,0 +1,113 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "case": "oracle/generated/v1/MOV-0001.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      178 lines: local/phase6-syntax.j\nParse successful:    12972 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "84bd98cb90c06e2feb4dab034a7f8c865821906ccdb31308c4f2413359dc677d"
+    },
+    {
+      "case": "oracle/generated/v1/MOV-0002-r2.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      186 lines: local/phase6-syntax.j\nParse successful:    12980 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "fd743d9a675f7d9898d25441ebb840b3d0c4273cb310c4178a6d193fdf21c9be"
+    },
+    {
+      "case": "oracle/generated/v1/MOV-0003.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      181 lines: local/phase6-syntax.j\nParse successful:    12975 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "c0898987e3f4e3dd35774fe0e34be9fa388727d062c92cef36b74420ddd08667"
+    },
+    {
+      "case": "oracle/generated/v1/MOV-0004.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      182 lines: local/phase6-syntax.j\nParse successful:    12976 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "4bb91d80c483c665bec236146c36534d8af15802b78eb939686873065a279bf5"
+    },
+    {
+      "case": "oracle/generated/v1/MOV-0005.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      182 lines: local/phase6-syntax.j\nParse successful:    12976 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "950ce3cc8422416da6e73add3de5b9c5be8477b3a462ac7b953d92b73918db13"
+    },
+    {
+      "case": "oracle/generated/v1/MOV-0006.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      185 lines: local/phase6-syntax.j\nParse successful:    12979 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "045c9ca206011788029dde23abc3a941a8d7fccf31d986df5f93d6df6376cfba"
+    },
+    {
+      "case": "oracle/generated/v1/MOV-0007.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      185 lines: local/phase6-syntax.j\nParse successful:    12979 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "8f051b874bb6f461afafa049c1c92f81717cfde4753c304bd69d9046c7dac92e"
+    },
+    {
+      "case": "oracle/generated/v1/MOV-0008.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      183 lines: local/phase6-syntax.j\nParse successful:    12977 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "d44858a2fa8515032ffaa03184a2eb804714af093618e692f10605052c45da5d"
+    },
+    {
+      "case": "oracle/generated/v1/MOV-0009.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      181 lines: local/phase6-syntax.j\nParse successful:    12975 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "0c71774092fe781de0faa2a17eadeea6f2cc3205f96992125433b25c219ea9cf"
+    },
+    {
+      "case": "oracle/generated/v1/MOV-0010.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      183 lines: local/phase6-syntax.j\nParse successful:    12977 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "ad158db06dd8dd6e345c65deb4eed800223184fcb449bd75e714d053c7d129aa"
+    },
+    {
+      "case": "oracle/generated/maps/MOV-0002-g1.j",
+      "case_sha256": "7f2b457cd08f3b39a22ce6152daa49c1d0d0f100733071194cbea9fb1561ed08",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      186 lines: local/phase6-syntax.j\nParse successful:    12980 lines: <total>\n",
+      "stderr": ""
+    },
+    {
+      "case": "oracle/generated/maps/MOV-0004-g1.j",
+      "case_sha256": "e511be63b55f62402498dc9e139173bea028ee8f8f65e0625ab706f06713c50f",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      182 lines: local/phase6-syntax.j\nParse successful:    12976 lines: <total>\n",
+      "stderr": ""
+    },
+    {
+      "case": "oracle/generated/maps/MOV-0006-g1.j",
+      "case_sha256": "49ef7e3d2173aa4fc3322fd2d3604a16b4e679ed1123077db7848987409b13b9",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      185 lines: local/phase6-syntax.j\nParse successful:    12979 lines: <total>\n",
+      "stderr": ""
+    },
+    {
+      "case": "oracle/generated/maps/MOV-0010-g1.j",
+      "case_sha256": "81d80b56b8eed1fb2b65d13f05d34cadf058f5e6c06ddb27cad18ed84454ed77",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      183 lines: local/phase6-syntax.j\nParse successful:    12977 lines: <total>\n",
+      "stderr": ""
+    }
+  ],
+  "checker": {
+    "source": "https://github.com/lep/pjass",
+    "revision": "378a1ca9af3848fbc3be3d17069bcdb6a940ee32",
+    "binary_sha256": "54849abe467d619f19b9115a9a697b1916798461612241c6f961a88543858742"
+  },
+  "scripts": {
+    "local/War3.mpq-common.j": "3c21e998bf80d1e04718bd3f2ee7ef2bf1b83359e5b303a56cf59cd61a2afdcd",
+    "local/War3.mpq-Blizzard.j": "7ca28f0ce47712a9ab6832c22bb0d0c9d2844b5831fb465b9d792731a3d5243e",
+    "oracle/jass/lib/oracle-v1.j": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca"
+  }
+}

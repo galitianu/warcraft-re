@@ -10,6 +10,9 @@ import sys
 import time
 
 from compare_traces import markdown as comparison_markdown
+from audit_oracle import audit
+from generate_oracle import generate, GOLDENS
+from run_generated import run as run_generated
 from normalize_traces import normalize_all
 from regression import assess, markdown as regression_markdown
 from trace_contract import BUILD, LABELS, ROOT, SCENARIOS, digest, load, payload, sha256, validate, write_json
@@ -105,6 +108,8 @@ def summarize(result, reports):
              'Primary: footman-v4, after-due-update, seed 1. Missing canonical JASS/CLOCKS: **UNOBSERVED**.',
              'The separate state-capture probe has named sampling-order exceptions; it is not a JASS producer.', '',
              'Every suite runs the committed scenarios/MOV-0001..0010.yaml; their hashes are in each build identity.', '',
+             f"Oracle generator: **{result.get('oracle_generation', {}).get('status', 'UNVERIFIED')}**. "
+             f"Generated-map WC3 capture loop: **{result.get('generated_capture_loop', {}).get('status', 'UNVERIFIED')}**.", '',
              '| Model / phase | Compatibility | Regression gate | Improvements |', '|---|---|---|---|']
     for name, info in result['models'].items():
         lines.append(f"| {name} | {info['compatibility_passes']}/10 PASS | {info['regression_verdict']} | {info['improvements']} |")
@@ -121,6 +126,20 @@ def summarize(result, reports):
     (reports / 'summary.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
 
 
+def check_generated_loop(runner, build, reports, result):
+    # These captures are now a committed compatibility gate. Missing evidence
+    # must fail the gate, never turn the requirement off.
+    result['generated_capture_loop_required'] = True
+    result['generated_capture_loop'] = dict(status='FAIL')
+    try:
+        code = run_generated(runner, build / 'ci/generated-loop', reports)
+        result['generated_capture_loop'] = dict(status='PASS' if code == 0 else 'FAIL')
+        if code:
+            result['errors']['generated-capture-loop'] = 'generated map reproduction or comparison failed'
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        result['errors']['generated-capture-loop'] = str(error)
+
+
 def run(args):
     build = args.build.resolve()
     reports, traces, logs = build / 'ci/reports', build / 'ci/traces', build / 'ci/logs'
@@ -130,7 +149,8 @@ def run(args):
     reports.mkdir(parents=True)
     result = dict(status='FAIL', host=dict(system=platform.system(), release=platform.release(),
                   architecture=architecture(platform.machine()), python=platform.python_version()),
-                  models={}, errors={}, original_wc3_required=False)
+                  models={}, errors={}, original_wc3_required=False, oracle_generation_required=True,
+                  generated_capture_loop_required=True)
     metadata = dict(host=result['host'], requested_compiler=args.compiler, build_type=args.config,
                     expected_architecture=args.expect_arch, seed=1,
                     github={key: os.environ.get(key) for key in ('GITHUB_RUN_ID', 'GITHUB_RUN_ATTEMPT',
@@ -152,7 +172,20 @@ def run(args):
         runner = build / f'wc3test{ext}'
         execute([build / f'math_scope{ext}'], logs, 'math-scope', timeout=10)
         write_json(reports / 'math-scope.json', load(logs / 'math-scope.log'))
-        test_env = dict(os.environ, WC3TEST_RUNNER=str(runner))
+        codegen = build / f'oracle_codegen{ext}'
+        test_env = dict(os.environ, WC3TEST_RUNNER=str(runner), ORACLE_CODEGEN=str(codegen))
+        generated, generation = generate(codegen, [Path('scenarios')])
+        for name, text in generated.items():
+            if (GOLDENS / name).read_bytes() != text:
+                raise ValueError(f'{name}: oracle generator differs from the committed golden')
+            target = build / 'ci/generated' / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(text)
+        if load(GOLDENS / 'manifest.json') != generation:
+            raise ValueError('oracle generation manifest differs from the committed golden')
+        write_json(build / 'ci/generated/manifest.json', generation)
+        write_json(reports / 'generator-audit.json', audit(build / 'ci/generated'))
+        result['oracle_generation'] = dict(status='PASS', manifest=generation)
         if (build / 'footman-v4-test').exists():
             shutil.rmtree(build / 'footman-v4-test')
         # Keep executing evidence stages after a test failure so diagnostics survive.
@@ -226,6 +259,7 @@ def run(args):
                         logs, 'archival-migration', timeout=300)
             except (OSError, ValueError) as error:
                 result['errors']['archival-migration'] = str(error)
+        check_generated_loop(runner, build, reports, result)
         result['status'] = 'PASS' if not result['errors'] and len(result['models']) == 5 else 'FAIL'
     except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:
         result['errors']['pipeline'] = str(error)

@@ -1,0 +1,61 @@
+{
+  "run": {
+    "conclusion": "success",
+    "createdAt": "2026-10-02T12:11:18Z",
+    "event": "pull_request",
+    "headSha": "37cb228a114f9622bb8abefea67e88a044c5822e",
+    "url": "https://github.com/galitianu/warcraft-re/actions/runs/37005207059"
+  },
+  "artifacts": [
+    {
+      "id": 11225661237,
+      "name": "compatibility-linux-gcc-release",
+      "digest": "sha256:516588a26147ed7ff88d1ab017eb4983990fc63c48c8e3e321d86d3bbe3f223a",
+      "size_in_bytes": 2026944,
+      "expired": false,
+      "created_at": "2026-10-02T12:12:05Z"
+    },
+    {
+      "id": 11225234083,
+      "name": "compatibility-mac-arm-debug",
+      "digest": "sha256:583c7851d7b44fef518c6347e513c29a96b5e874b602fac17bea91d5b7565182",
+      "size_in_bytes": 2028437,
+      "expired": false,
+      "created_at": "2026-10-02T12:11:48Z"
+    },
+    {
+      "id": 11225122843,
+      "name": "build-scope",
+      "digest": "sha256:39a27eddd8bbbb5924ab72b1894d50f4bb89c8a5968f5c3a1a68c541ec30196f",
+      "size_in_bytes": 19394,
+      "expired": false,
+      "created_at": "2026-10-02T12:12:59Z"
+    },
+    {
+      "id": 11225064620,
+      "name": "compatibility-windows-msvc-release",
+      "digest": "sha256:3a5491caa78e33aa9cefc63ec5439e290782ca4a33d560254864462633da9b0c",
+      "size_in_bytes": 2027843,
+      "expired": false,
+      "created_at": "2026-10-02T12:12:39Z"
+    },
+    {
+      "id": 11224673495,
+      "name": "compatibility-linux-clang-debug",
+      "digest": "sha256:49051749d0398098b2ea105456b7bb9d611a942d6c0452921b56a775158d43dd",
+      "size_in_bytes": 2026659,
+      "expired": false,
+      "created_at": "2026-10-02T12:12:11Z"
+    },
+    {
+      "id": 11224558792,
+      "name": "compatibility-mac-arm-release",
+      "digest": "sha256:db224513d06308195b2c52fa8c243df994347fc6d20e46d9673104b510acb081",
+      "size_in_bytes": 2872715,
+      "expired": false,
+      "created_at": "2026-10-02T12:11:51Z"
+    }
+  ],
+  "local_recheck": "python3 tools/summarize_ci.py --artifacts local/phase6-capture-pr-artifacts --out results/phase-6/capture-pr-verification",
+  "generated_capture_loop": "PASS; four real WC3 revisions / twelve fresh processes; retained fixture bytes and downloaded C++ comparisons independently regraded"
+}

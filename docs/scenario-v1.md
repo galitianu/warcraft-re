@@ -2,8 +2,9 @@
 
 Defined for Phase 5 / [issue #12](https://github.com/galitianu/warcraft-re/issues/12).
 A scenario describes **one movement experiment** independently of WC3, the C++
-model and any reference. `wc3test --scenario` consumes it first; Phase 6 may later
-generate JASS from it. Readiness audit and evidence:
+model and any reference. `wc3test --scenario` consumes it; the
+[Phase 6 generator](phase-6-generation.md) emits JASS from the same bytes, with
+explicit capability/bounds/placement rejection. Readiness audit and evidence:
 [phase-5-scenarios.md](phase-5-scenarios.md). Parser and validation:
 [Scenario.cpp](../tools/wc3test/Scenario.cpp). Migrated cases: [scenarios/](../scenarios/).
 
@@ -142,6 +143,12 @@ matrices. Each is added with the experiment that needs it.
 Every v1 scenario assumes the Phase 1 oracle environment: the 64×64 flat map,
 units owned by Player(0) with acquisition range 0, normal locked game speed and
 the oracle-v1 library ([phase-1-experiments.md](phase-1-experiments.md)).
+
+The terrain's ±4096 extents are not its playable bounds. Generation checks the
+decoded template's X [−3328,3328], Y [−3584,3072] bounds; near-boundary clamping is
+unobserved. A new packaging revision (for example MOV-0006-g1) records the same
+scenario hash without editing `map_revision` in the source file. Comparison with
+that fixture requires an independently registered shape and identical source bytes.
 
 **Model, seed, observation phase, compiler and build** are execution provenance,
 chosen on the `wc3test` command line and recorded in the run identity — never

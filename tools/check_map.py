@@ -15,10 +15,10 @@ import sys
 import mpyq
 
 
-def read_map(path):
+def read_map(path, names=("war3map.wct", "war3map.j", "war3map.w3i")):
     raw = Path(path).read_bytes()
     archive = mpyq.MPQArchive(BytesIO(raw[raw.index(b"MPQ\x1a"):]), listfile=False)
-    return raw, {name: archive.read_file(name) for name in ("war3map.wct", "war3map.j", "war3map.w3i")}
+    return raw, {name: archive.read_file(name) for name in names}
 
 
 def wct_texts(data):

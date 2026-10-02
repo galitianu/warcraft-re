@@ -1,0 +1,1887 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "experiment": "MOV-0001",
+      "control": {
+        "path": "oracle/jass/MOV-0001.j",
+        "sha256": "643e82837e0b366854cad77a890ac503587a7269e9240fdc9bcd6fb8be194d45"
+      },
+      "generated": {
+        "path": "oracle/generated/v1/MOV-0001.j",
+        "sha256": "84bd98cb90c06e2feb4dab034a7f8c865821906ccdb31308c4f2413359dc677d"
+      },
+      "status": "PASS",
+      "ordered_statements": [
+        {
+          "role": "hook",
+          "statements": []
+        },
+        {
+          "role": "start",
+          "statements": [
+            [
+              "call",
+              "OracleBegin",
+              "(",
+              "\"MOV-0001\"",
+              ",",
+              "\"MOV-0001\"",
+              ",",
+              "1000",
+              ")"
+            ],
+            [
+              "set",
+              "unit0",
+              "=",
+              "CreateUnit",
+              "(",
+              "Player",
+              "(",
+              "0",
+              ")",
+              ",",
+              "'hfoo'",
+              ",",
+              "0",
+              ",",
+              "0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitAcquireRange",
+              "(",
+              "unit0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetCameraPosition",
+              "(",
+              "384",
+              ",",
+              "192",
+              ")"
+            ],
+            [
+              "call",
+              "OracleWatchUnit",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ")"
+            ],
+            [
+              "call",
+              "OracleRun",
+              "(",
+              "0.02",
+              ",",
+              "250",
+              ",",
+              "function",
+              "Hook",
+              ")"
+            ]
+          ]
+        },
+        {
+          "role": "bootstrap",
+          "statements": [
+            [
+              "set",
+              "gg_trg_Melee_Initialization",
+              "=",
+              "CreateTrigger",
+              "(",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerRegisterTimerEventSingle",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "0.5",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerAddAction",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "function",
+              "Start",
+              ")"
+            ]
+          ]
+        }
+      ],
+      "metadata_differences": {
+        "control_setup": [
+          {
+            "statement": "call OracleSetup(\"u0=hfoo,0,0,0|orders=none\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "generated_setup": [
+          {
+            "statement": "call OracleSetup(\"scenario_sha256=f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361|scenario_version=1|u0=hfoo,0,0,0\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "explanation": "Generated SETUP records ordered declared inputs and their exact scenario hash. Comments, function/local names and null cleanup carry no experiment calls."
+      }
+    },
+    {
+      "experiment": "MOV-0002",
+      "control": {
+        "path": "oracle/jass/MOV-0002-r2.j",
+        "sha256": "f6a5b941765a42c207ea4aa43e89bf0cb30583590326cd3fa2400887885911d5"
+      },
+      "generated": {
+        "path": "oracle/generated/v1/MOV-0002-r2.j",
+        "sha256": "fd743d9a675f7d9898d25441ebb840b3d0c4273cb310c4178a6d193fdf21c9be"
+      },
+      "status": "PASS",
+      "ordered_statements": [
+        {
+          "role": "hook",
+          "statements": [
+            [
+              "if",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "0",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "OracleUnit",
+              "(",
+              "0",
+              ")",
+              ",",
+              "\"move\"",
+              ",",
+              "1000",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "endif"
+            ]
+          ]
+        },
+        {
+          "role": "start",
+          "statements": [
+            [
+              "call",
+              "OracleBegin",
+              "(",
+              "\"MOV-0002\"",
+              ",",
+              "\"MOV-0002-r2\"",
+              ",",
+              "1000",
+              ")"
+            ],
+            [
+              "set",
+              "unit0",
+              "=",
+              "CreateUnit",
+              "(",
+              "Player",
+              "(",
+              "0",
+              ")",
+              ",",
+              "'hfoo'",
+              ",",
+              "0",
+              ",",
+              "0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "set",
+              "unit1",
+              "=",
+              "CreateUnit",
+              "(",
+              "Player",
+              "(",
+              "0",
+              ")",
+              ",",
+              "'hfoo'",
+              ",",
+              "0",
+              ",",
+              "384",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitAcquireRange",
+              "(",
+              "unit0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitAcquireRange",
+              "(",
+              "unit1",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetCameraPosition",
+              "(",
+              "384",
+              ",",
+              "192",
+              ")"
+            ],
+            [
+              "call",
+              "OracleWatchUnit",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ")"
+            ],
+            [
+              "call",
+              "OracleWatchUnit",
+              "(",
+              "\"u1\"",
+              ",",
+              "unit1",
+              ")"
+            ],
+            [
+              "call",
+              "OracleRun",
+              "(",
+              "0.02",
+              ",",
+              "250",
+              ",",
+              "function",
+              "Hook",
+              ")"
+            ]
+          ]
+        },
+        {
+          "role": "bootstrap",
+          "statements": [
+            [
+              "set",
+              "gg_trg_Melee_Initialization",
+              "=",
+              "CreateTrigger",
+              "(",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerRegisterTimerEventSingle",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "0.5",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerAddAction",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "function",
+              "Start",
+              ")"
+            ]
+          ]
+        }
+      ],
+      "metadata_differences": {
+        "control_setup": [
+          {
+            "statement": "call OracleSetup(\"u0=hfoo,0,0,0|u1=hfoo,0,384,0|u0_order_at_callback_0=move,1000,0\")",
+            "role": "start",
+            "after_statement": 8
+          }
+        ],
+        "generated_setup": [
+          {
+            "statement": "call OracleSetup(\"scenario_sha256=0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58|scenario_version=1|u0=hfoo,0,0,0|u1=hfoo,0,384,0|action0=0,u0,move,target,1000,0\")",
+            "role": "start",
+            "after_statement": 8
+          }
+        ],
+        "explanation": "Generated SETUP records ordered declared inputs and their exact scenario hash. Comments, function/local names and null cleanup carry no experiment calls."
+      }
+    },
+    {
+      "experiment": "MOV-0003",
+      "control": {
+        "path": "oracle/jass/MOV-0003.j",
+        "sha256": "35ea606c0e041b3de0ff7bbb805440c52e9987695e11ca16af7ea08c6716b131"
+      },
+      "generated": {
+        "path": "oracle/generated/v1/MOV-0003.j",
+        "sha256": "c0898987e3f4e3dd35774fe0e34be9fa388727d062c92cef36b74420ddd08667"
+      },
+      "status": "PASS",
+      "ordered_statements": [
+        {
+          "role": "hook",
+          "statements": [
+            [
+              "if",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "0",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "OracleUnit",
+              "(",
+              "0",
+              ")",
+              ",",
+              "\"move\"",
+              ",",
+              "707.106781",
+              ",",
+              "707.106781",
+              ")"
+            ],
+            [
+              "endif"
+            ]
+          ]
+        },
+        {
+          "role": "start",
+          "statements": [
+            [
+              "call",
+              "OracleBegin",
+              "(",
+              "\"MOV-0003\"",
+              ",",
+              "\"MOV-0003\"",
+              ",",
+              "1000",
+              ")"
+            ],
+            [
+              "set",
+              "unit0",
+              "=",
+              "CreateUnit",
+              "(",
+              "Player",
+              "(",
+              "0",
+              ")",
+              ",",
+              "'hfoo'",
+              ",",
+              "0",
+              ",",
+              "0",
+              ",",
+              "45",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitAcquireRange",
+              "(",
+              "unit0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetCameraPosition",
+              "(",
+              "384",
+              ",",
+              "192",
+              ")"
+            ],
+            [
+              "call",
+              "OracleWatchUnit",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ")"
+            ],
+            [
+              "call",
+              "OracleRun",
+              "(",
+              "0.02",
+              ",",
+              "250",
+              ",",
+              "function",
+              "Hook",
+              ")"
+            ]
+          ]
+        },
+        {
+          "role": "bootstrap",
+          "statements": [
+            [
+              "set",
+              "gg_trg_Melee_Initialization",
+              "=",
+              "CreateTrigger",
+              "(",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerRegisterTimerEventSingle",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "0.5",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerAddAction",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "function",
+              "Start",
+              ")"
+            ]
+          ]
+        }
+      ],
+      "metadata_differences": {
+        "control_setup": [
+          {
+            "statement": "call OracleSetup(\"u0=hfoo,0,0,45|order_at_callback_0=move,707.106781,707.106781\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "generated_setup": [
+          {
+            "statement": "call OracleSetup(\"scenario_sha256=87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255|scenario_version=1|u0=hfoo,0,0,45|action0=0,u0,move,target,707.106781,707.106781\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "explanation": "Generated SETUP records ordered declared inputs and their exact scenario hash. Comments, function/local names and null cleanup carry no experiment calls."
+      }
+    },
+    {
+      "experiment": "MOV-0004",
+      "control": {
+        "path": "oracle/jass/MOV-0004.j",
+        "sha256": "0e63e0c2d943ec7c144be43b55217113ae142802b0c9862a1225df7f639a6f95"
+      },
+      "generated": {
+        "path": "oracle/generated/v1/MOV-0004.j",
+        "sha256": "4bb91d80c483c665bec236146c36534d8af15802b78eb939686873065a279bf5"
+      },
+      "status": "PASS",
+      "ordered_statements": [
+        {
+          "role": "hook",
+          "statements": [
+            [
+              "if",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "0",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "OracleUnit",
+              "(",
+              "0",
+              ")",
+              ",",
+              "\"move\"",
+              ",",
+              "1000",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "endif"
+            ]
+          ]
+        },
+        {
+          "role": "start",
+          "statements": [
+            [
+              "call",
+              "OracleBegin",
+              "(",
+              "\"MOV-0004\"",
+              ",",
+              "\"MOV-0004\"",
+              ",",
+              "1000",
+              ")"
+            ],
+            [
+              "set",
+              "unit0",
+              "=",
+              "CreateUnit",
+              "(",
+              "Player",
+              "(",
+              "0",
+              ")",
+              ",",
+              "'hfoo'",
+              ",",
+              "0",
+              ",",
+              "0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitAcquireRange",
+              "(",
+              "unit0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitMoveSpeed",
+              "(",
+              "unit0",
+              ",",
+              "100",
+              ")"
+            ],
+            [
+              "call",
+              "SetCameraPosition",
+              "(",
+              "384",
+              ",",
+              "192",
+              ")"
+            ],
+            [
+              "call",
+              "OracleWatchUnit",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ")"
+            ],
+            [
+              "call",
+              "OracleRun",
+              "(",
+              "0.02",
+              ",",
+              "600",
+              ",",
+              "function",
+              "Hook",
+              ")"
+            ]
+          ]
+        },
+        {
+          "role": "bootstrap",
+          "statements": [
+            [
+              "set",
+              "gg_trg_Melee_Initialization",
+              "=",
+              "CreateTrigger",
+              "(",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerRegisterTimerEventSingle",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "0.5",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerAddAction",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "function",
+              "Start",
+              ")"
+            ]
+          ]
+        }
+      ],
+      "metadata_differences": {
+        "control_setup": [
+          {
+            "statement": "call OracleSetup(\"u0=hfoo,0,0,0|set_move_speed=100|order_at_callback_0=move,1000,0\")",
+            "role": "start",
+            "after_statement": 6
+          }
+        ],
+        "generated_setup": [
+          {
+            "statement": "call OracleSetup(\"scenario_sha256=006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6|scenario_version=1|u0=hfoo,0,0,0|u0_requested_move_speed=100|action0=0,u0,move,target,1000,0\")",
+            "role": "start",
+            "after_statement": 6
+          }
+        ],
+        "explanation": "Generated SETUP records ordered declared inputs and their exact scenario hash. Comments, function/local names and null cleanup carry no experiment calls."
+      }
+    },
+    {
+      "experiment": "MOV-0005",
+      "control": {
+        "path": "oracle/jass/MOV-0005.j",
+        "sha256": "fcb5db0e3b3fffbe4349e64d7e317a95cc53725327a39e0bc1eb03e56133a1aa"
+      },
+      "generated": {
+        "path": "oracle/generated/v1/MOV-0005.j",
+        "sha256": "950ce3cc8422416da6e73add3de5b9c5be8477b3a462ac7b953d92b73918db13"
+      },
+      "status": "PASS",
+      "ordered_statements": [
+        {
+          "role": "hook",
+          "statements": [
+            [
+              "if",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "0",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "OracleUnit",
+              "(",
+              "0",
+              ")",
+              ",",
+              "\"move\"",
+              ",",
+              "1000",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "endif"
+            ]
+          ]
+        },
+        {
+          "role": "start",
+          "statements": [
+            [
+              "call",
+              "OracleBegin",
+              "(",
+              "\"MOV-0005\"",
+              ",",
+              "\"MOV-0005\"",
+              ",",
+              "1000",
+              ")"
+            ],
+            [
+              "set",
+              "unit0",
+              "=",
+              "CreateUnit",
+              "(",
+              "Player",
+              "(",
+              "0",
+              ")",
+              ",",
+              "'hfoo'",
+              ",",
+              "0",
+              ",",
+              "0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitAcquireRange",
+              "(",
+              "unit0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitMoveSpeed",
+              "(",
+              "unit0",
+              ",",
+              "522",
+              ")"
+            ],
+            [
+              "call",
+              "SetCameraPosition",
+              "(",
+              "384",
+              ",",
+              "192",
+              ")"
+            ],
+            [
+              "call",
+              "OracleWatchUnit",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ")"
+            ],
+            [
+              "call",
+              "OracleRun",
+              "(",
+              "0.02",
+              ",",
+              "250",
+              ",",
+              "function",
+              "Hook",
+              ")"
+            ]
+          ]
+        },
+        {
+          "role": "bootstrap",
+          "statements": [
+            [
+              "set",
+              "gg_trg_Melee_Initialization",
+              "=",
+              "CreateTrigger",
+              "(",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerRegisterTimerEventSingle",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "0.5",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerAddAction",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "function",
+              "Start",
+              ")"
+            ]
+          ]
+        }
+      ],
+      "metadata_differences": {
+        "control_setup": [
+          {
+            "statement": "call OracleSetup(\"u0=hfoo,0,0,0|set_move_speed=522|order_at_callback_0=move,1000,0\")",
+            "role": "start",
+            "after_statement": 6
+          }
+        ],
+        "generated_setup": [
+          {
+            "statement": "call OracleSetup(\"scenario_sha256=1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36|scenario_version=1|u0=hfoo,0,0,0|u0_requested_move_speed=522|action0=0,u0,move,target,1000,0\")",
+            "role": "start",
+            "after_statement": 6
+          }
+        ],
+        "explanation": "Generated SETUP records ordered declared inputs and their exact scenario hash. Comments, function/local names and null cleanup carry no experiment calls."
+      }
+    },
+    {
+      "experiment": "MOV-0006",
+      "control": {
+        "path": "oracle/jass/MOV-0006.j",
+        "sha256": "dd6d6fdba5c576587c5d5debde192a2b15bb5e7b68b3db67ae0bf80b2c13d2f9"
+      },
+      "generated": {
+        "path": "oracle/generated/v1/MOV-0006.j",
+        "sha256": "045c9ca206011788029dde23abc3a941a8d7fccf31d986df5f93d6df6376cfba"
+      },
+      "status": "PASS",
+      "ordered_statements": [
+        {
+          "role": "hook",
+          "statements": [
+            [
+              "bind",
+              "unit0",
+              "=",
+              "OracleUnit",
+              "(",
+              "0",
+              ")"
+            ],
+            [
+              "if",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "0",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ",",
+              "\"move\"",
+              ",",
+              "1000",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "elseif",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "50",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ",",
+              "\"move\"",
+              ",",
+              "GetUnitX",
+              "(",
+              "unit0",
+              ")",
+              ",",
+              "GetUnitY",
+              "(",
+              "unit0",
+              ")",
+              "+",
+              "1000",
+              ")"
+            ],
+            [
+              "endif"
+            ]
+          ]
+        },
+        {
+          "role": "start",
+          "statements": [
+            [
+              "call",
+              "OracleBegin",
+              "(",
+              "\"MOV-0006\"",
+              ",",
+              "\"MOV-0006\"",
+              ",",
+              "1000",
+              ")"
+            ],
+            [
+              "set",
+              "unit0",
+              "=",
+              "CreateUnit",
+              "(",
+              "Player",
+              "(",
+              "0",
+              ")",
+              ",",
+              "'hfoo'",
+              ",",
+              "0",
+              ",",
+              "0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitAcquireRange",
+              "(",
+              "unit0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetCameraPosition",
+              "(",
+              "384",
+              ",",
+              "192",
+              ")"
+            ],
+            [
+              "call",
+              "OracleWatchUnit",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ")"
+            ],
+            [
+              "call",
+              "OracleRun",
+              "(",
+              "0.02",
+              ",",
+              "250",
+              ",",
+              "function",
+              "Hook",
+              ")"
+            ]
+          ]
+        },
+        {
+          "role": "bootstrap",
+          "statements": [
+            [
+              "set",
+              "gg_trg_Melee_Initialization",
+              "=",
+              "CreateTrigger",
+              "(",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerRegisterTimerEventSingle",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "0.5",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerAddAction",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "function",
+              "Start",
+              ")"
+            ]
+          ]
+        }
+      ],
+      "metadata_differences": {
+        "control_setup": [
+          {
+            "statement": "call OracleSetup(\"u0=hfoo,0,0,0|order_at_callback_0=move,1000,0|order_at_callback_50=move,x,y+1000\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "generated_setup": [
+          {
+            "statement": "call OracleSetup(\"scenario_sha256=84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169|scenario_version=1|u0=hfoo,0,0,0|action0=0,u0,move,target,1000,0|action1=50,u0,move,offset,0,1000\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "explanation": "Generated SETUP records ordered declared inputs and their exact scenario hash. Comments, function/local names and null cleanup carry no experiment calls."
+      }
+    },
+    {
+      "experiment": "MOV-0007",
+      "control": {
+        "path": "oracle/jass/MOV-0007.j",
+        "sha256": "31334988ffa0b5cab1e8b23e0c15c17f605143fb912fb1e955278da4d4656eb1"
+      },
+      "generated": {
+        "path": "oracle/generated/v1/MOV-0007.j",
+        "sha256": "8f051b874bb6f461afafa049c1c92f81717cfde4753c304bd69d9046c7dac92e"
+      },
+      "status": "PASS",
+      "ordered_statements": [
+        {
+          "role": "hook",
+          "statements": [
+            [
+              "bind",
+              "unit0",
+              "=",
+              "OracleUnit",
+              "(",
+              "0",
+              ")"
+            ],
+            [
+              "if",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "0",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ",",
+              "\"move\"",
+              ",",
+              "1000",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "elseif",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "50",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ",",
+              "\"move\"",
+              ",",
+              "GetUnitX",
+              "(",
+              "unit0",
+              ")",
+              "-",
+              "1000",
+              ",",
+              "GetUnitY",
+              "(",
+              "unit0",
+              ")",
+              ")"
+            ],
+            [
+              "endif"
+            ]
+          ]
+        },
+        {
+          "role": "start",
+          "statements": [
+            [
+              "call",
+              "OracleBegin",
+              "(",
+              "\"MOV-0007\"",
+              ",",
+              "\"MOV-0007\"",
+              ",",
+              "1000",
+              ")"
+            ],
+            [
+              "set",
+              "unit0",
+              "=",
+              "CreateUnit",
+              "(",
+              "Player",
+              "(",
+              "0",
+              ")",
+              ",",
+              "'hfoo'",
+              ",",
+              "0",
+              ",",
+              "0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitAcquireRange",
+              "(",
+              "unit0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetCameraPosition",
+              "(",
+              "384",
+              ",",
+              "192",
+              ")"
+            ],
+            [
+              "call",
+              "OracleWatchUnit",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ")"
+            ],
+            [
+              "call",
+              "OracleRun",
+              "(",
+              "0.02",
+              ",",
+              "250",
+              ",",
+              "function",
+              "Hook",
+              ")"
+            ]
+          ]
+        },
+        {
+          "role": "bootstrap",
+          "statements": [
+            [
+              "set",
+              "gg_trg_Melee_Initialization",
+              "=",
+              "CreateTrigger",
+              "(",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerRegisterTimerEventSingle",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "0.5",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerAddAction",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "function",
+              "Start",
+              ")"
+            ]
+          ]
+        }
+      ],
+      "metadata_differences": {
+        "control_setup": [
+          {
+            "statement": "call OracleSetup(\"u0=hfoo,0,0,0|order_at_callback_0=move,1000,0|order_at_callback_50=move,x-1000,y\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "generated_setup": [
+          {
+            "statement": "call OracleSetup(\"scenario_sha256=ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0|scenario_version=1|u0=hfoo,0,0,0|action0=0,u0,move,target,1000,0|action1=50,u0,move,offset,-1000,0\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "explanation": "Generated SETUP records ordered declared inputs and their exact scenario hash. Comments, function/local names and null cleanup carry no experiment calls."
+      }
+    },
+    {
+      "experiment": "MOV-0008",
+      "control": {
+        "path": "oracle/jass/MOV-0008.j",
+        "sha256": "1a42c71cda9c8529968c9ac8f95b1c65dc17295063f45060b49ddb6c7b8b4e62"
+      },
+      "generated": {
+        "path": "oracle/generated/v1/MOV-0008.j",
+        "sha256": "d44858a2fa8515032ffaa03184a2eb804714af093618e692f10605052c45da5d"
+      },
+      "status": "PASS",
+      "ordered_statements": [
+        {
+          "role": "hook",
+          "statements": [
+            [
+              "if",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "0",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "OracleUnit",
+              "(",
+              "0",
+              ")",
+              ",",
+              "\"move\"",
+              ",",
+              "1000",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "elseif",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "50",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "OracleUnit",
+              "(",
+              "0",
+              ")",
+              ",",
+              "\"move\"",
+              ",",
+              "500",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "endif"
+            ]
+          ]
+        },
+        {
+          "role": "start",
+          "statements": [
+            [
+              "call",
+              "OracleBegin",
+              "(",
+              "\"MOV-0008\"",
+              ",",
+              "\"MOV-0008\"",
+              ",",
+              "1000",
+              ")"
+            ],
+            [
+              "set",
+              "unit0",
+              "=",
+              "CreateUnit",
+              "(",
+              "Player",
+              "(",
+              "0",
+              ")",
+              ",",
+              "'hfoo'",
+              ",",
+              "0",
+              ",",
+              "0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitAcquireRange",
+              "(",
+              "unit0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetCameraPosition",
+              "(",
+              "384",
+              ",",
+              "192",
+              ")"
+            ],
+            [
+              "call",
+              "OracleWatchUnit",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ")"
+            ],
+            [
+              "call",
+              "OracleRun",
+              "(",
+              "0.02",
+              ",",
+              "250",
+              ",",
+              "function",
+              "Hook",
+              ")"
+            ]
+          ]
+        },
+        {
+          "role": "bootstrap",
+          "statements": [
+            [
+              "set",
+              "gg_trg_Melee_Initialization",
+              "=",
+              "CreateTrigger",
+              "(",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerRegisterTimerEventSingle",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "0.5",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerAddAction",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "function",
+              "Start",
+              ")"
+            ]
+          ]
+        }
+      ],
+      "metadata_differences": {
+        "control_setup": [
+          {
+            "statement": "call OracleSetup(\"u0=hfoo,0,0,0|order_at_callback_0=move,1000,0|order_at_callback_50=move,500,0\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "generated_setup": [
+          {
+            "statement": "call OracleSetup(\"scenario_sha256=43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf|scenario_version=1|u0=hfoo,0,0,0|action0=0,u0,move,target,1000,0|action1=50,u0,move,target,500,0\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "explanation": "Generated SETUP records ordered declared inputs and their exact scenario hash. Comments, function/local names and null cleanup carry no experiment calls."
+      }
+    },
+    {
+      "experiment": "MOV-0009",
+      "control": {
+        "path": "oracle/jass/MOV-0009.j",
+        "sha256": "d6b7c45f5485b99fb4ccbe03e3affd5f2df7c6e8d8fa8f64535fce7a79f90b71"
+      },
+      "generated": {
+        "path": "oracle/generated/v1/MOV-0009.j",
+        "sha256": "0c71774092fe781de0faa2a17eadeea6f2cc3205f96992125433b25c219ea9cf"
+      },
+      "status": "PASS",
+      "ordered_statements": [
+        {
+          "role": "hook",
+          "statements": [
+            [
+              "if",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "0",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "OracleUnit",
+              "(",
+              "0",
+              ")",
+              ",",
+              "\"move\"",
+              ",",
+              "1000",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "endif"
+            ]
+          ]
+        },
+        {
+          "role": "start",
+          "statements": [
+            [
+              "call",
+              "OracleBegin",
+              "(",
+              "\"MOV-0009\"",
+              ",",
+              "\"MOV-0009\"",
+              ",",
+              "1000",
+              ")"
+            ],
+            [
+              "set",
+              "unit0",
+              "=",
+              "CreateUnit",
+              "(",
+              "Player",
+              "(",
+              "0",
+              ")",
+              ",",
+              "'hfoo'",
+              ",",
+              "0",
+              ",",
+              "0",
+              ",",
+              "180",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitAcquireRange",
+              "(",
+              "unit0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetCameraPosition",
+              "(",
+              "384",
+              ",",
+              "192",
+              ")"
+            ],
+            [
+              "call",
+              "OracleWatchUnit",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ")"
+            ],
+            [
+              "call",
+              "OracleRun",
+              "(",
+              "0.02",
+              ",",
+              "250",
+              ",",
+              "function",
+              "Hook",
+              ")"
+            ]
+          ]
+        },
+        {
+          "role": "bootstrap",
+          "statements": [
+            [
+              "set",
+              "gg_trg_Melee_Initialization",
+              "=",
+              "CreateTrigger",
+              "(",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerRegisterTimerEventSingle",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "0.5",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerAddAction",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "function",
+              "Start",
+              ")"
+            ]
+          ]
+        }
+      ],
+      "metadata_differences": {
+        "control_setup": [
+          {
+            "statement": "call OracleSetup(\"u0=hfoo,0,0,180|order_at_callback_0=move,1000,0\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "generated_setup": [
+          {
+            "statement": "call OracleSetup(\"scenario_sha256=9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e|scenario_version=1|u0=hfoo,0,0,180|action0=0,u0,move,target,1000,0\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "explanation": "Generated SETUP records ordered declared inputs and their exact scenario hash. Comments, function/local names and null cleanup carry no experiment calls."
+      }
+    },
+    {
+      "experiment": "MOV-0010",
+      "control": {
+        "path": "oracle/jass/MOV-0010.j",
+        "sha256": "b397651f9ee85787383820f25cdaf15d22c0d1444f2e09fa692df4c4439abeda"
+      },
+      "generated": {
+        "path": "oracle/generated/v1/MOV-0010.j",
+        "sha256": "ad158db06dd8dd6e345c65deb4eed800223184fcb449bd75e714d053c7d129aa"
+      },
+      "status": "PASS",
+      "ordered_statements": [
+        {
+          "role": "hook",
+          "statements": [
+            [
+              "if",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "0",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderPoint",
+              "(",
+              "\"u0\"",
+              ",",
+              "OracleUnit",
+              "(",
+              "0",
+              ")",
+              ",",
+              "\"move\"",
+              ",",
+              "1000",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "elseif",
+              "OracleCallback",
+              "(",
+              ")",
+              "==",
+              "50",
+              "then"
+            ],
+            [
+              "call",
+              "OracleOrderImmediate",
+              "(",
+              "\"u0\"",
+              ",",
+              "OracleUnit",
+              "(",
+              "0",
+              ")",
+              ",",
+              "\"stop\"",
+              ")"
+            ],
+            [
+              "endif"
+            ]
+          ]
+        },
+        {
+          "role": "start",
+          "statements": [
+            [
+              "call",
+              "OracleBegin",
+              "(",
+              "\"MOV-0010\"",
+              ",",
+              "\"MOV-0010\"",
+              ",",
+              "1000",
+              ")"
+            ],
+            [
+              "set",
+              "unit0",
+              "=",
+              "CreateUnit",
+              "(",
+              "Player",
+              "(",
+              "0",
+              ")",
+              ",",
+              "'hfoo'",
+              ",",
+              "0",
+              ",",
+              "0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetUnitAcquireRange",
+              "(",
+              "unit0",
+              ",",
+              "0",
+              ")"
+            ],
+            [
+              "call",
+              "SetCameraPosition",
+              "(",
+              "384",
+              ",",
+              "192",
+              ")"
+            ],
+            [
+              "call",
+              "OracleWatchUnit",
+              "(",
+              "\"u0\"",
+              ",",
+              "unit0",
+              ")"
+            ],
+            [
+              "call",
+              "OracleRun",
+              "(",
+              "0.02",
+              ",",
+              "250",
+              ",",
+              "function",
+              "Hook",
+              ")"
+            ]
+          ]
+        },
+        {
+          "role": "bootstrap",
+          "statements": [
+            [
+              "set",
+              "gg_trg_Melee_Initialization",
+              "=",
+              "CreateTrigger",
+              "(",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerRegisterTimerEventSingle",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "0.5",
+              ")"
+            ],
+            [
+              "call",
+              "TriggerAddAction",
+              "(",
+              "gg_trg_Melee_Initialization",
+              ",",
+              "function",
+              "Start",
+              ")"
+            ]
+          ]
+        }
+      ],
+      "metadata_differences": {
+        "control_setup": [
+          {
+            "statement": "call OracleSetup(\"u0=hfoo,0,0,0|order_at_callback_0=move,1000,0|order_at_callback_50=stop\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "generated_setup": [
+          {
+            "statement": "call OracleSetup(\"scenario_sha256=781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06|scenario_version=1|u0=hfoo,0,0,0|action0=0,u0,move,target,1000,0|action1=50,u0,stop\")",
+            "role": "start",
+            "after_statement": 5
+          }
+        ],
+        "explanation": "Generated SETUP records ordered declared inputs and their exact scenario hash. Comments, function/local names and null cleanup carry no experiment calls."
+      }
+    }
+  ],
+  "scope": "ordered case API calls, literal arguments, callback branches and bootstrap; shared library unchanged"
+}

@@ -1,0 +1,61 @@
+{
+  "run": {
+    "conclusion": "success",
+    "createdAt": "2026-10-02T10:53:52Z",
+    "event": "push",
+    "headSha": "e78aa050ada0c41177e3092b0d7c8af215241ab8",
+    "url": "https://github.com/galitianu/warcraft-re/actions/runs/36998011050"
+  },
+  "artifacts": [
+    {
+      "id": 11222950267,
+      "name": "build-scope",
+      "digest": "sha256:ccf97797975f994d34fc40ac9ff89c2e0ad629c43070a2286a3b491af1616bba",
+      "size_in_bytes": 17497,
+      "expired": false,
+      "created_at": "2026-10-02T10:55:20Z"
+    },
+    {
+      "id": 11222830876,
+      "name": "compatibility-linux-clang-debug",
+      "digest": "sha256:c8c3f208a986ec100b6ee465eb7e566fc6f223e98ecbc8b950ff3d2c176f0a6b",
+      "size_in_bytes": 1839115,
+      "expired": false,
+      "created_at": "2026-10-02T10:54:40Z"
+    },
+    {
+      "id": 11222786197,
+      "name": "compatibility-linux-gcc-release",
+      "digest": "sha256:ca15c88cca5568b24c05659f44ba58354e0ff276f1de83ee49dce29b6e84a183",
+      "size_in_bytes": 1839363,
+      "expired": false,
+      "created_at": "2026-10-02T10:54:35Z"
+    },
+    {
+      "id": 11222363744,
+      "name": "compatibility-mac-arm-debug",
+      "digest": "sha256:ffb2fee6cfa6a5d1f691cf98601d858cc10d1cc7eff3fd2fffd82fb8f675dbe8",
+      "size_in_bytes": 1840832,
+      "expired": false,
+      "created_at": "2026-10-02T10:54:20Z"
+    },
+    {
+      "id": 11221923388,
+      "name": "compatibility-mac-arm-release",
+      "digest": "sha256:c80fb7f198d8fae4edf082ab24a509a3cea9847593964e8f4cf5fa172261d475",
+      "size_in_bytes": 2685063,
+      "expired": false,
+      "created_at": "2026-10-02T10:54:21Z"
+    },
+    {
+      "id": 11221633898,
+      "name": "compatibility-windows-msvc-release",
+      "digest": "sha256:85fae01de3fdca1fa219099810660f8c88bbe07ee4675fc1508200088163a6a8",
+      "size_in_bytes": 1840243,
+      "expired": false,
+      "created_at": "2026-10-02T10:55:04Z"
+    }
+  ],
+  "local_recheck": "python3 tools/summarize_ci.py --artifacts local/phase5-main-artifacts --out results/phase-5/control-removed-main-verification",
+  "scope": "Downloaded full evidence retained locally under ignored local/; verified identities and hashes retained here."
+}

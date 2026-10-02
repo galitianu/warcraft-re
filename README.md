@@ -42,10 +42,14 @@ Start with:
 - [Scenario v1](docs/scenario-v1.md) and [Phase 5 results](docs/phase-5-scenarios.md):
   versioned YAML descriptions of MOV-0001–MOV-0010 ([scenarios/](scenarios/)) drive
   the C++ runner, its only input; they reproduced the retired hard-coded cases byte for byte.
+- [Phase 6 generation](docs/phase-6-generation.md): scenario-to-JASS generation,
+  independent control audit, template bounds and the manual WC3 capture loop.
+  Four generated maps reproduce their controls exactly over 12 fresh WC3 runs;
+  the same scenarios pass their C++ comparisons under unchanged tolerances.
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
-This repository holds the plan, 24 manually authored WC3 maps with their JASS,
+This repository holds the plan, 24 manually authored and four generated-case WC3 maps with their JASS,
 shared oracle instrumentation, raw captures with identities, parsers and derived
 CSVs, versioned v1 scenarios, and a dependency-free C++20 simulation. Phases 0–5 are
 complete; compatibility

@@ -387,10 +387,14 @@ Scenario parse(std::string_view text) {
         if (unit.type != "hfoo") fail(type.line, "unsupported unit type '" + unit.type + "'; v1 supports hfoo");
         // The 64x64 oracle map spans [-4096, 4096]; WC3's own clamping is unobserved.
         unit.position = pair(get(node, "position"), "position", 4096);
+        const auto& position = get(node, "position").items;
+        unit.position_text = {position[0].text, position[1].text};
         unit.facing = real(get(node, "facing"), "facing", 0, 360);
+        unit.facing_text = get(node, "facing").text;
         if (unit.facing == 360) fail(get(node, "facing").line, "facing must be in [0, 360) degrees");
         if (const Node* speed = find(node, "move_speed")) {
             unit.move_speed = real(*speed, "move_speed", 0, 10000);
+            unit.move_speed_text = speed->text;
             if (*unit.move_speed == 0) fail(speed->line, "move_speed must be positive");
         }
         s.units.push_back(std::move(unit));
@@ -400,6 +404,7 @@ Scenario parse(std::string_view text) {
     fields(observe, {"period", "callbacks", "properties"}, {}, "observe");
     const Node& period = get(observe, "period");
     s.period_us = microseconds(period, "period");
+    s.period_text = period.text;
     if (s.period_us == 0 || s.period_us > 10000000) fail(period.line, "period must be in (0, 10] seconds");
     s.callbacks = static_cast<int>(integer(get(observe, "callbacks"), "callbacks", 1, 10000));
     const Node& properties = get(observe, "properties");
@@ -438,6 +443,8 @@ Scenario parse(std::string_view text) {
             action.order = Order::move;
             action.relative = offset != nullptr;
             action.point = target ? pair(*target, "target", 4096) : pair(*offset, "offset", 8192);
+            const auto& point = (target ? target : offset)->items;
+            action.point_text = {point[0].text, point[1].text};
         } else if (command == "stop") {
             if (target || offset) fail(node.line, "stop takes no target or offset");
             action.order = Order::stop;

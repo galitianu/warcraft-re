@@ -1,0 +1,147 @@
+{
+  "generator": "oracle_codegen-v1",
+  "template": {
+    "path": "oracle-maps/MOV-0002.w3m",
+    "bytes": 19009,
+    "sha256": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd"
+  },
+  "template_bounds_sha256": "6c1a65e24867e04fb399ddc51abb068dffde3e6a721b0553b00bcf69cd79de96",
+  "sources": {
+    "tools/oracle_codegen/main.cpp": "1ef0ebc18e7cf796cab687356c21acd15980a10f9521ed582dead44776105643",
+    "tools/wc3test/Scenario.cpp": "4dba98e4e56d2cac63eab71ac4ec51fb57f904b28e0f82c52b858ce144a803c4",
+    "tools/wc3test/Scenario.h": "ce7b7ac4f156d254b2e9c5077cbad798106d35e2a837f60dc828b1afb9ee0174",
+    "tools/generate_oracle.py": "ec9e0dd6127f8345cc157934005024b58ec2c136e00fd69428cce26da1410b60"
+  },
+  "inputs": [
+    {
+      "experiment": "MOV-0001",
+      "map_revision": "MOV-0001",
+      "scenario": {
+        "path": "scenarios/MOV-0001.yaml",
+        "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+        "version": 1
+      },
+      "case": {
+        "file": "MOV-0001.j",
+        "sha256": "84bd98cb90c06e2feb4dab034a7f8c865821906ccdb31308c4f2413359dc677d"
+      }
+    },
+    {
+      "experiment": "MOV-0002",
+      "map_revision": "MOV-0002-r2",
+      "scenario": {
+        "path": "scenarios/MOV-0002.yaml",
+        "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+        "version": 1
+      },
+      "case": {
+        "file": "MOV-0002-r2.j",
+        "sha256": "fd743d9a675f7d9898d25441ebb840b3d0c4273cb310c4178a6d193fdf21c9be"
+      }
+    },
+    {
+      "experiment": "MOV-0003",
+      "map_revision": "MOV-0003",
+      "scenario": {
+        "path": "scenarios/MOV-0003.yaml",
+        "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+        "version": 1
+      },
+      "case": {
+        "file": "MOV-0003.j",
+        "sha256": "c0898987e3f4e3dd35774fe0e34be9fa388727d062c92cef36b74420ddd08667"
+      }
+    },
+    {
+      "experiment": "MOV-0004",
+      "map_revision": "MOV-0004",
+      "scenario": {
+        "path": "scenarios/MOV-0004.yaml",
+        "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+        "version": 1
+      },
+      "case": {
+        "file": "MOV-0004.j",
+        "sha256": "4bb91d80c483c665bec236146c36534d8af15802b78eb939686873065a279bf5"
+      }
+    },
+    {
+      "experiment": "MOV-0005",
+      "map_revision": "MOV-0005",
+      "scenario": {
+        "path": "scenarios/MOV-0005.yaml",
+        "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+        "version": 1
+      },
+      "case": {
+        "file": "MOV-0005.j",
+        "sha256": "950ce3cc8422416da6e73add3de5b9c5be8477b3a462ac7b953d92b73918db13"
+      }
+    },
+    {
+      "experiment": "MOV-0006",
+      "map_revision": "MOV-0006",
+      "scenario": {
+        "path": "scenarios/MOV-0006.yaml",
+        "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+        "version": 1
+      },
+      "case": {
+        "file": "MOV-0006.j",
+        "sha256": "045c9ca206011788029dde23abc3a941a8d7fccf31d986df5f93d6df6376cfba"
+      }
+    },
+    {
+      "experiment": "MOV-0007",
+      "map_revision": "MOV-0007",
+      "scenario": {
+        "path": "scenarios/MOV-0007.yaml",
+        "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+        "version": 1
+      },
+      "case": {
+        "file": "MOV-0007.j",
+        "sha256": "8f051b874bb6f461afafa049c1c92f81717cfde4753c304bd69d9046c7dac92e"
+      }
+    },
+    {
+      "experiment": "MOV-0008",
+      "map_revision": "MOV-0008",
+      "scenario": {
+        "path": "scenarios/MOV-0008.yaml",
+        "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+        "version": 1
+      },
+      "case": {
+        "file": "MOV-0008.j",
+        "sha256": "d44858a2fa8515032ffaa03184a2eb804714af093618e692f10605052c45da5d"
+      }
+    },
+    {
+      "experiment": "MOV-0009",
+      "map_revision": "MOV-0009",
+      "scenario": {
+        "path": "scenarios/MOV-0009.yaml",
+        "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+        "version": 1
+      },
+      "case": {
+        "file": "MOV-0009.j",
+        "sha256": "0c71774092fe781de0faa2a17eadeea6f2cc3205f96992125433b25c219ea9cf"
+      }
+    },
+    {
+      "experiment": "MOV-0010",
+      "map_revision": "MOV-0010",
+      "scenario": {
+        "path": "scenarios/MOV-0010.yaml",
+        "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06",
+        "version": 1
+      },
+      "case": {
+        "file": "MOV-0010.j",
+        "sha256": "ad158db06dd8dd6e345c65deb4eed800223184fcb449bd75e714d053c7d129aa"
+      }
+    }
+  ]
+}

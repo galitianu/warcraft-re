@@ -1,0 +1,463 @@
+{
+  "status": "PASS",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "machine": "WIN-5OII4GM1ENR",
+  "guest": "Windows 11 Pro ARM64",
+  "game": "1.29.2.9231 x86 PE 0x014c",
+  "utm_version": "4.7.5 (utmctl version)",
+  "fresh_runs": 12,
+  "cases": [
+    {
+      "map_revision": "MOV-0002-g3",
+      "status": "PASS",
+      "intervention_count": 0,
+      "elapsed_seconds": 151.54,
+      "scenario_sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+      "map_sha256": "ebaa9cce396c4e423abebb516b10b915edf84b67e6ac7d2fe072c7b8dee25928",
+      "raw_run_sha256": [
+        "eff278edb0e22f75629acce909135cb47966636fe73b9faa16a383362658f1dc",
+        "6f35644693a1150bb590df4471a21daf3c31c7f1a9d3c4a8f7c047a58d890aa4",
+        "eff278edb0e22f75629acce909135cb47966636fe73b9faa16a383362658f1dc"
+      ],
+      "payload_sha256": [
+        "dd6cae8c43d90fb84151f091f51339ea692a4e601e49f5c9cb666f585bdd9256",
+        "dd6cae8c43d90fb84151f091f51339ea692a4e601e49f5c9cb666f585bdd9256",
+        "dd6cae8c43d90fb84151f091f51339ea692a4e601e49f5c9cb666f585bdd9256"
+      ],
+      "control_revision": "MOV-0002-r2",
+      "observations": {
+        "records": 757,
+        "control_sha256": "e893aa63b2d961469761236b19d378f8da7c139515b9ebae7a5d3593167f8061",
+        "generated_sha256": "e893aa63b2d961469761236b19d378f8da7c139515b9ebae7a5d3593167f8061",
+        "first_divergence": null
+      },
+      "cpp_comparison": "PASS",
+      "owned_processes": [
+        {
+          "role": "editor",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-08e7acb81e264480b03623845fb5777c\\editor.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\World Editor.exe",
+          "pid": 3760,
+          "start": "639265614805710091"
+        },
+        {
+          "role": "game-1",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-08e7acb81e264480b03623845fb5777c\\game-1.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 5912,
+          "start": "639265615260141691"
+        },
+        {
+          "role": "game-2",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-08e7acb81e264480b03623845fb5777c\\game-2.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 9816,
+          "start": "639265615444938256"
+        },
+        {
+          "role": "game-3",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-08e7acb81e264480b03623845fb5777c\\game-3.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 7920,
+          "start": "639265615623829898"
+        }
+      ],
+      "stage_times": [
+        {
+          "stage": "generated-and-syntax-checked",
+          "elapsed_seconds": 0.024
+        },
+        {
+          "stage": "guest-preflight",
+          "elapsed_seconds": 0.024
+        },
+        {
+          "stage": "installation-verification",
+          "elapsed_seconds": 0.563
+        },
+        {
+          "stage": "editor-authoring",
+          "elapsed_seconds": 27.526
+        },
+        {
+          "stage": "saved-map-validation",
+          "elapsed_seconds": 72.706
+        },
+        {
+          "stage": "capture-01",
+          "elapsed_seconds": 72.709
+        },
+        {
+          "stage": "capture-02",
+          "elapsed_seconds": 91.359
+        },
+        {
+          "stage": "capture-03",
+          "elapsed_seconds": 109.224
+        },
+        {
+          "stage": "final-integrity",
+          "elapsed_seconds": 126.073
+        },
+        {
+          "stage": "normalization",
+          "elapsed_seconds": 151.457
+        },
+        {
+          "stage": "same-scenario-comparison",
+          "elapsed_seconds": 151.512
+        },
+        {
+          "stage": "complete",
+          "elapsed_seconds": 151.54
+        }
+      ],
+      "report": "captures/MOV-0002-g3/report.json"
+    },
+    {
+      "map_revision": "MOV-0004-g3",
+      "status": "PASS",
+      "intervention_count": 0,
+      "elapsed_seconds": 165.733,
+      "scenario_sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+      "map_sha256": "2f405b6905369cd81cd2dcb1350dd70f7611b94bac3109089f4b9862dd8c2f30",
+      "raw_run_sha256": [
+        "fec8acc025d05e9a403fb4e94d545be4d067b99077b43d3720322fac79b163cc",
+        "44cc8c9017f90a6a885b761a19b0b720d12ef9b425d3eb84aa0513b6bbdaf1cd",
+        "fec8acc025d05e9a403fb4e94d545be4d067b99077b43d3720322fac79b163cc"
+      ],
+      "payload_sha256": [
+        "240118cbc60a3eeeba967b5104e037f458f8f9453edd1ccef7a8a55689bb81ff",
+        "240118cbc60a3eeeba967b5104e037f458f8f9453edd1ccef7a8a55689bb81ff",
+        "240118cbc60a3eeeba967b5104e037f458f8f9453edd1ccef7a8a55689bb81ff"
+      ],
+      "control_revision": "MOV-0004",
+      "observations": {
+        "records": 1205,
+        "control_sha256": "5fd534c71327b3faa3cabf3c6fd6727ccfe97ad48b7988739bf9cf37b8d5a6f7",
+        "generated_sha256": "5fd534c71327b3faa3cabf3c6fd6727ccfe97ad48b7988739bf9cf37b8d5a6f7",
+        "first_divergence": null
+      },
+      "cpp_comparison": "PASS",
+      "owned_processes": [
+        {
+          "role": "editor",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-c4c302ffa83c45f1939c28c9fccd2366\\editor.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\World Editor.exe",
+          "pid": 6172,
+          "start": "639265616339048037"
+        },
+        {
+          "role": "game-1",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-c4c302ffa83c45f1939c28c9fccd2366\\game-1.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 9044,
+          "start": "639265616758350766"
+        },
+        {
+          "role": "game-2",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-c4c302ffa83c45f1939c28c9fccd2366\\game-2.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 9956,
+          "start": "639265616990286999"
+        },
+        {
+          "role": "game-3",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-c4c302ffa83c45f1939c28c9fccd2366\\game-3.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 3764,
+          "start": "639265617212011841"
+        }
+      ],
+      "stage_times": [
+        {
+          "stage": "generated-and-syntax-checked",
+          "elapsed_seconds": 0.029
+        },
+        {
+          "stage": "guest-preflight",
+          "elapsed_seconds": 0.029
+        },
+        {
+          "stage": "installation-verification",
+          "elapsed_seconds": 0.645
+        },
+        {
+          "stage": "editor-authoring",
+          "elapsed_seconds": 29.454
+        },
+        {
+          "stage": "saved-map-validation",
+          "elapsed_seconds": 71.116
+        },
+        {
+          "stage": "capture-01",
+          "elapsed_seconds": 71.119
+        },
+        {
+          "stage": "capture-02",
+          "elapsed_seconds": 94.207
+        },
+        {
+          "stage": "capture-03",
+          "elapsed_seconds": 116.415
+        },
+        {
+          "stage": "final-integrity",
+          "elapsed_seconds": 138.224
+        },
+        {
+          "stage": "normalization",
+          "elapsed_seconds": 165.615
+        },
+        {
+          "stage": "same-scenario-comparison",
+          "elapsed_seconds": 165.7
+        },
+        {
+          "stage": "complete",
+          "elapsed_seconds": 165.733
+        }
+      ],
+      "report": "captures/MOV-0004-g3/report.json"
+    },
+    {
+      "map_revision": "MOV-0006-g3",
+      "status": "PASS",
+      "intervention_count": 0,
+      "elapsed_seconds": 143.97,
+      "scenario_sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+      "map_sha256": "e9da3982bc2bc75b5584f7c678ba22ab9293d86b9c7f9d0f293cb46ea7d55597",
+      "raw_run_sha256": [
+        "880c75649f5744617077731ce13556fcd6036d919ddb61744f1d29cf295f62e9",
+        "880c75649f5744617077731ce13556fcd6036d919ddb61744f1d29cf295f62e9",
+        "3b00ac00b204d7c4dea950b132f9a4e7f436ccdcff0605ccf3d070b000625f24"
+      ],
+      "payload_sha256": [
+        "c7a6605f3e8e6e56819f417414ade0258421067370f0aaf2f898a3b2f99e65aa",
+        "c7a6605f3e8e6e56819f417414ade0258421067370f0aaf2f898a3b2f99e65aa",
+        "c7a6605f3e8e6e56819f417414ade0258421067370f0aaf2f898a3b2f99e65aa"
+      ],
+      "control_revision": "MOV-0006",
+      "observations": {
+        "records": 506,
+        "control_sha256": "8d13b4b5d0fe33e03a6419d2cbe06122fa2d0bb556921480ebaf08ba38c83353",
+        "generated_sha256": "8d13b4b5d0fe33e03a6419d2cbe06122fa2d0bb556921480ebaf08ba38c83353",
+        "first_divergence": null
+      },
+      "cpp_comparison": "PASS",
+      "owned_processes": [
+        {
+          "role": "editor",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-8853f607d1594a0ca7e25896fd37afc2\\editor.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\World Editor.exe",
+          "pid": 8872,
+          "start": "639265617976398580"
+        },
+        {
+          "role": "game-1",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-8853f607d1594a0ca7e25896fd37afc2\\game-1.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 1868,
+          "start": "639265618420551655"
+        },
+        {
+          "role": "game-2",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-8853f607d1594a0ca7e25896fd37afc2\\game-2.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 8876,
+          "start": "639265618578159416"
+        },
+        {
+          "role": "game-3",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-8853f607d1594a0ca7e25896fd37afc2\\game-3.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 5316,
+          "start": "639265618733758841"
+        }
+      ],
+      "stage_times": [
+        {
+          "stage": "generated-and-syntax-checked",
+          "elapsed_seconds": 0.026
+        },
+        {
+          "stage": "guest-preflight",
+          "elapsed_seconds": 0.026
+        },
+        {
+          "stage": "installation-verification",
+          "elapsed_seconds": 0.655
+        },
+        {
+          "stage": "editor-authoring",
+          "elapsed_seconds": 27.437
+        },
+        {
+          "stage": "saved-map-validation",
+          "elapsed_seconds": 71.586
+        },
+        {
+          "stage": "capture-01",
+          "elapsed_seconds": 71.589
+        },
+        {
+          "stage": "capture-02",
+          "elapsed_seconds": 87.252
+        },
+        {
+          "stage": "capture-03",
+          "elapsed_seconds": 102.887
+        },
+        {
+          "stage": "final-integrity",
+          "elapsed_seconds": 118.325
+        },
+        {
+          "stage": "normalization",
+          "elapsed_seconds": 143.903
+        },
+        {
+          "stage": "same-scenario-comparison",
+          "elapsed_seconds": 143.95
+        },
+        {
+          "stage": "complete",
+          "elapsed_seconds": 143.971
+        }
+      ],
+      "report": "captures/MOV-0006-g3/report.json"
+    },
+    {
+      "map_revision": "MOV-0010-g3",
+      "status": "PASS",
+      "intervention_count": 0,
+      "elapsed_seconds": 149.06,
+      "scenario_sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06",
+      "map_sha256": "67bdc6309c09b3ec4ec9a3a9d9482be7f21e88469296e372c5651ccd75bb74ac",
+      "raw_run_sha256": [
+        "4c41c605b82d27a6eaee789fbae0663c0e22de0e84ab7007fd861ff69a772296",
+        "4c41c605b82d27a6eaee789fbae0663c0e22de0e84ab7007fd861ff69a772296",
+        "ad18a6b6f931ba6ac38ef415a91b2e7b1004f2a40b09a57bb0ef40d1abfc6d5c"
+      ],
+      "payload_sha256": [
+        "d1e98aa81b040134dca2036411f4750617a16c224a2c35f6f09785121a1e63ec",
+        "d1e98aa81b040134dca2036411f4750617a16c224a2c35f6f09785121a1e63ec",
+        "d1e98aa81b040134dca2036411f4750617a16c224a2c35f6f09785121a1e63ec"
+      ],
+      "control_revision": "MOV-0010",
+      "observations": {
+        "records": 506,
+        "control_sha256": "cc2d1f008e877cdce0510a7451a7db6017e41d57bff14c9cb47e965a96b90ff5",
+        "generated_sha256": "cc2d1f008e877cdce0510a7451a7db6017e41d57bff14c9cb47e965a96b90ff5",
+        "first_divergence": null
+      },
+      "cpp_comparison": "PASS",
+      "owned_processes": [
+        {
+          "role": "editor",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-fa1ba5f78f3342a787549a10c73cdc25\\editor.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\World Editor.exe",
+          "pid": 10660,
+          "start": "639265619440112627"
+        },
+        {
+          "role": "game-1",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-fa1ba5f78f3342a787549a10c73cdc25\\game-1.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 8152,
+          "start": "639265619886395033"
+        },
+        {
+          "role": "game-2",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-fa1ba5f78f3342a787549a10c73cdc25\\game-2.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 3300,
+          "start": "639265620052199859"
+        },
+        {
+          "role": "game-3",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-fa1ba5f78f3342a787549a10c73cdc25\\game-3.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 492,
+          "start": "639265620213965788"
+        }
+      ],
+      "stage_times": [
+        {
+          "stage": "generated-and-syntax-checked",
+          "elapsed_seconds": 0.026
+        },
+        {
+          "stage": "guest-preflight",
+          "elapsed_seconds": 0.026
+        },
+        {
+          "stage": "installation-verification",
+          "elapsed_seconds": 0.672
+        },
+        {
+          "stage": "editor-authoring",
+          "elapsed_seconds": 29.743
+        },
+        {
+          "stage": "saved-map-validation",
+          "elapsed_seconds": 73.937
+        },
+        {
+          "stage": "capture-01",
+          "elapsed_seconds": 73.94
+        },
+        {
+          "stage": "capture-02",
+          "elapsed_seconds": 90.696
+        },
+        {
+          "stage": "capture-03",
+          "elapsed_seconds": 106.668
+        },
+        {
+          "stage": "final-integrity",
+          "elapsed_seconds": 123.026
+        },
+        {
+          "stage": "normalization",
+          "elapsed_seconds": 148.991
+        },
+        {
+          "stage": "same-scenario-comparison",
+          "elapsed_seconds": 149.04
+        },
+        {
+          "stage": "complete",
+          "elapsed_seconds": 149.06
+        }
+      ],
+      "report": "captures/MOV-0010-g3/report.json"
+    }
+  ],
+  "manual_baseline": "manual-overhead.json",
+  "failures": "failures.json",
+  "canonical_promotion": false,
+  "limits": [
+    "Only four reviewed v1 scenarios, selected VM/editor/display",
+    "Stopped-VM startup is tested locally, not by stopping the shared working guest",
+    "Other machines/seeds and retail RNG UNKNOWN"
+  ]
+}

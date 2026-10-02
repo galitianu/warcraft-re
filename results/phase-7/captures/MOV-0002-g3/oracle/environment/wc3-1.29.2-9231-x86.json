@@ -1,0 +1,102 @@
+{
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "verified_on": "2026-09-30",
+  "mac_game_directory": "/Users/andrei/Desktop/Warcraft III",
+  "windows_game_directory": "C:\\Program Files (x86)\\Warcraft III",
+  "files": [
+    {
+      "name": "Warcraft III.exe",
+      "bytes": 14854632,
+      "sha256": "a1950f17905b9cd7d5461d45e6723af36dda5304e12dba27a1fea85593b15f3f",
+      "mac_windows_hashes_match": true,
+      "version": "1.29.2.9231",
+      "pe_machine": "0x014c (IMAGE_FILE_MACHINE_I386)"
+    },
+    {
+      "name": "World Editor.exe",
+      "bytes": 6270440,
+      "sha256": "e4547515dfa570f2f3450fd83249db59896b0a7896110f2c8897fb3fc9eb9e6e",
+      "mac_windows_hashes_match": true,
+      "version": "1.29.2.9231",
+      "pe_machine": "0x014c (IMAGE_FILE_MACHINE_I386)"
+    },
+    {
+      "name": "War3.mpq",
+      "bytes": 405494888,
+      "sha256": "60a4e380b3ae753b304be837edac53bebed0ae69b611e7f2ebfc2b036bf00d47",
+      "mac_windows_hashes_match": true
+    },
+    {
+      "name": "War3Local.mpq",
+      "bytes": 112147011,
+      "sha256": "f986d2767f341e9a665ece3807e9242b254ba1efad6d2858304eb11166aef8fd",
+      "mac_windows_hashes_match": true
+    },
+    {
+      "name": "War3x.mpq",
+      "bytes": 414460820,
+      "sha256": "69fb8fd8aefe1657d75d53f970e20dbd9d9c23d42a3c2582cca4a97a16becfc7",
+      "mac_windows_hashes_match": true
+    },
+    {
+      "name": "War3xLocal.mpq",
+      "bytes": 149979546,
+      "sha256": "ba7b928c7bf34fb2a1675aeddfdadcfdc7146966ae7ebf36b0980486b7dd9c57",
+      "mac_windows_hashes_match": true
+    },
+    {
+      "name": "Deprecated.mpq",
+      "bytes": 36596789,
+      "sha256": "949304288eb3acf7b7214a1c1ef834772effa2d89dcebd9c995c321be017ccf7",
+      "mac_windows_hashes_match": true
+    }
+  ],
+  "host": {
+    "architecture": "arm64",
+    "macos": "27.0"
+  },
+  "vm": {
+    "product": "UTM",
+    "version": "4.7.5",
+    "architecture": "aarch64",
+    "configured_memory_mib": 4096,
+    "configured_cpu_count": 0,
+    "cpu_count_note": "UTM 0 means automatic; Windows reports 4 logical processors",
+    "windows_reported_ram_bytes": 4285267968,
+    "windows_reported_logical_processors": 4,
+    "qemu_target": "virt",
+    "display_hardware": "virtio-ramfb-gl",
+    "windows": "Windows 11 Pro 25H2",
+    "windows_build": "26200",
+    "windows_version": "10.0.26200",
+    "windows_architecture": "ARM64",
+    "display_drivers": [
+      {
+        "name": "Red Hat VirtIO GPU DOD controller",
+        "version": "22.7.38.43"
+      },
+      {
+        "name": "Microsoft Remote Display Adapter",
+        "version": "10.0.26100.9278"
+      }
+    ],
+    "hardware_acceleration": true,
+    "uefi_boot": true,
+    "dynamic_resolution": true
+  },
+  "capture_access": {
+    "target": "vm",
+    "transport": "rdpipe over RDP",
+    "relay_version": "0.9.0",
+    "cua_driver_version": "0.28.2",
+    "session_display": "1920x1080 at 96 dpi",
+    "elevated": false,
+    "transfer": "rdpipe push/pull verifies SHA-256",
+    "registry_allow_local_files": "absent; no value added",
+    "raw_output_directory": "C:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData"
+  },
+  "limits": [
+    "This records relevant settings and identities, not a portable VM image or local configuration export.",
+    "Original game files and extracted Blizzard scripts are not in the repository."
+  ]
+}

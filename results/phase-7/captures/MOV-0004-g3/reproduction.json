@@ -1,0 +1,274 @@
+{
+  "status": "PASS",
+  "map_revision": "MOV-0004-g3",
+  "control_revision": "MOV-0004",
+  "scenario": {
+    "schema": "wc3-scenario",
+    "version": 1,
+    "path": "scenarios/MOV-0004.yaml",
+    "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+  },
+  "completion": {
+    "complete": true,
+    "records": 1208,
+    "ticks": 601,
+    "samples": 601,
+    "actions": 1,
+    "events": 0
+  },
+  "repeatability": {
+    "classification": "DETERMINISTIC",
+    "runs": 3,
+    "canonical_payload_sha256": [
+      "9e25b5ca621094fb0cae14a4517493714166f1738aef825a3da5c8e211f0aef8",
+      "9e25b5ca621094fb0cae14a4517493714166f1738aef825a3da5c8e211f0aef8",
+      "9e25b5ca621094fb0cae14a4517493714166f1738aef825a3da5c8e211f0aef8"
+    ],
+    "observation_payload_sha256": [
+      "240118cbc60a3eeeba967b5104e037f458f8f9453edd1ccef7a8a55689bb81ff",
+      "240118cbc60a3eeeba967b5104e037f458f8f9453edd1ccef7a8a55689bb81ff",
+      "240118cbc60a3eeeba967b5104e037f458f8f9453edd1ccef7a8a55689bb81ff"
+    ],
+    "distinct_raw_files": 2,
+    "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+    "other_seeds_or_machines": "UNKNOWN"
+  },
+  "observations": {
+    "records": 1205,
+    "control_sha256": "5fd534c71327b3faa3cabf3c6fd6727ccfe97ad48b7988739bf9cf37b8d5a6f7",
+    "generated_sha256": "5fd534c71327b3faa3cabf3c6fd6727ccfe97ad48b7988739bf9cf37b8d5a6f7",
+    "first_divergence": null
+  },
+  "metadata_differences": {
+    "scope": "BEGIN/END map label, SETUP declaration/hash, Preload transport and raw sequence numbers",
+    "control_records": [
+      "@O|0|BEGIN|MOV-0004|wc3-1.29.2-9231-x86|map=MOV-0004|lib=oracle-v1|time_unit=seconds|numeric_format=R2SW_6|clock_duration=1000.000000",
+      "@O|2|SETUP|u0=hfoo,0,0,0|set_move_speed=100|order_at_callback_0=move,1000,0",
+      "@O|1207|END|MOV-0004|map=MOV-0004|callbacks=600"
+    ],
+    "generated_records": [
+      "@O|0|BEGIN|MOV-0004|wc3-1.29.2-9231-x86|map=MOV-0004-g3|lib=oracle-v1|time_unit=seconds|numeric_format=R2SW_6|clock_duration=1000.000000",
+      "@O|2|SETUP|scenario_sha256=006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6|scenario_version=1|u0=hfoo,0,0,0|u0_requested_move_speed=100|action0=0,u0,move,target,1000,0",
+      "@O|1207|END|MOV-0004|map=MOV-0004-g3|callbacks=600"
+    ],
+    "control_preload": [
+      {
+        "after_record": 0,
+        "entry": "war3map.w3i"
+      },
+      {
+        "after_record": 0,
+        "entry": "war3map.wts"
+      },
+      {
+        "after_record": 0,
+        "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0004.w3m"
+      },
+      {
+        "after_record": 0,
+        "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+      },
+      {
+        "after_record": 0,
+        "entry": "Textures\\\\Footman.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "Textures\\\\gutz.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+      }
+    ],
+    "generated_preload": [
+      {
+        "after_record": 0,
+        "entry": "war3map.w3i"
+      },
+      {
+        "after_record": 0,
+        "entry": "war3map.wts"
+      },
+      {
+        "after_record": 0,
+        "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0004-g3.w3m"
+      },
+      {
+        "after_record": 0,
+        "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+      },
+      {
+        "after_record": 0,
+        "entry": "Textures\\\\Footman.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "Textures\\\\gutz.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+      }
+    ],
+    "control_footer": "call PreloadEnd( 12.1 )",
+    "generated_footers": [
+      "call PreloadEnd( 12.1 )",
+      "call PreloadEnd( 12.0 )",
+      "call PreloadEnd( 12.1 )"
+    ]
+  },
+  "fixture_sha256": "3180534e1053e8dab487acca53238c7c67ef655ee7781390f6325a9d02ab3912"
+}

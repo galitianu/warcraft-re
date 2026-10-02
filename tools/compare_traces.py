@@ -5,7 +5,7 @@ from pathlib import Path
 import sys
 
 from compare_movement import delta, format_first
-from trace_contract import BUILD, ROOT, TOLERANCES, GENERATED_SHAPES, RETAINED_MOV, load, sha256, validate, write_json
+from trace_contract import BUILD, ROOT, TOLERANCES, GENERATED_SHAPES, generated_revision, RETAINED_MOV, load, sha256, validate, write_json
 
 
 def samples(trace):
@@ -43,9 +43,9 @@ def accumulate(stat, ref, act, prop, rv, av, difference, tolerance, sample_index
             stat['first_divergence'] = divergence(ref, act, prop, rv, av, difference, tolerance, sample_index)
 
 
-def compare(reference, actual):
+def compare(reference, actual, evidence_root=None):
     # Each producer is validated against the retained experiment shape independently.
-    validate(reference); validate(actual)
+    validate(reference, evidence_root); validate(actual)
     if reference['identity']['engine'] != 'wc3':
         raise ValueError('reference must be the verified WC3 build')
     if reference['scenario'] != actual['scenario']:
@@ -57,7 +57,7 @@ def compare(reference, actual):
         same_shape = {k: v for k, v in reference['scenario'].items() if k != 'map_revision'} == {
             k: v for k, v in actual['scenario'].items() if k != 'map_revision'}
         same_input = reference['provenance'].get('scenario') == actual['provenance'].get('scenario')
-        if not (label in GENERATED_SHAPES and actual['scenario']['map_revision'] == RETAINED_MOV[exp]
+        if not (generated_revision(label) and actual['scenario']['map_revision'] == RETAINED_MOV[exp]
                 and actual['identity']['engine'] == 'cpp' and same_shape and same_input):
             raise ValueError('incompatible experiment/map revision or scenario bytes')
     refs, acts = samples(reference), samples(actual)

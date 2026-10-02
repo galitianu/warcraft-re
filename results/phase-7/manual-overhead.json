@@ -1,0 +1,43 @@
+{
+  "start_unix_seconds": 1790964212.0267599,
+  "submissions": [
+    {
+      "stage": "generation-and-syntax",
+      "unix_seconds": 1790964212.046597
+    },
+    {
+      "stage": "lease-preflight-and-installation",
+      "unix_seconds": 1790964225.7652311
+    },
+    {
+      "stage": "author-and-check-saved-map",
+      "unix_seconds": 1790964267.988273
+    },
+    {
+      "stage": "three-fresh-process-captures",
+      "unix_seconds": 1790964321.332669
+    },
+    {
+      "stage": "final-installation-manifest-and-normalization",
+      "unix_seconds": 1790964422.316285
+    },
+    {
+      "stage": "same-scenario-cpp-comparison",
+      "unix_seconds": 1790964472.673988
+    },
+    {
+      "stage": "cpp-path-recovery",
+      "unix_seconds": 1790964483.713939
+    },
+    {
+      "stage": "lease-release-and-finish",
+      "unix_seconds": 1790964502.555949
+    }
+  ],
+  "scope": "agent acting as operator; eight separate terminal submissions, including one local C++ path recovery; no in-game interaction",
+  "elapsed_seconds": 290.55576825141907,
+  "additional_operator_submissions": 7,
+  "operator_submissions": 8,
+  "successful": true,
+  "note": "Includes coordination latency; not a controlled VM performance benchmark. Seven planned submissions, one recovery."
+}

@@ -1,0 +1,192 @@
+{
+  "case": "MOV-0002",
+  "map_revision": "MOV-0002-manual7",
+  "status": "PASS",
+  "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+  "observation_phase": "after-due-update",
+  "reference_records": 760,
+  "actual_records": 759,
+  "reference_samples": 502,
+  "actual_samples": 502,
+  "first_divergence": null,
+  "state_first_divergence": null,
+  "properties": {
+    "x": {
+      "samples": 502,
+      "failures": 0,
+      "max_abs_delta": 1.0000001111620804e-06,
+      "max_abs_delta_by_unit": {
+        "u0": 1.0000001111620804e-06,
+        "u1": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0.0,
+        "u1": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "y": {
+      "samples": 502,
+      "failures": 0,
+      "max_abs_delta": 5.000000000005e-07,
+      "max_abs_delta_by_unit": {
+        "u0": 5.000000000005e-07,
+        "u1": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 1.2499999999665556e-07,
+        "u1": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "facing": {
+      "samples": 502,
+      "failures": 0,
+      "max_abs_delta": 4.960000126175146e-07,
+      "max_abs_delta_by_unit": {
+        "u0": 4.960000126175146e-07,
+        "u1": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 1.7499999671599653e-07,
+        "u1": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "order": {
+      "samples": 502,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0,
+        "u1": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0,
+        "u1": 0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "t": {
+      "samples": 502,
+      "failures": 0,
+      "max_abs_delta": 5.000000005139782e-07,
+      "max_abs_delta_by_unit": {
+        "u0": 5.000000005139782e-07,
+        "u1": 5.000000005139782e-07
+      },
+      "final_delta_by_unit": {
+        "u0": 0.0,
+        "u1": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    }
+  },
+  "action_properties": {
+    "callback": {
+      "samples": 1,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "unit": {
+      "samples": 1,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "command": {
+      "samples": 1,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "accepted": {
+      "samples": 1,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "t": {
+      "samples": 1,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "target_x": {
+      "samples": 1,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "target_y": {
+      "samples": 1,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    }
+  },
+  "event_properties": {},
+  "structural_differences": [],
+  "first_structural_divergence": null,
+  "unobserved_properties": [],
+  "observation_timing": {
+    "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+    "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+    "clock_status": "PASS"
+  }
+}

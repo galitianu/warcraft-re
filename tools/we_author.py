@@ -39,77 +39,106 @@ def ps(script):
     return rdpipe("ps", '$ErrorActionPreference="Stop"; ' + script).strip()
 
 
-def ui(tool, **arguments):
-    return rdpipe("ui", tool, json.dumps(arguments))
+def author(driver, label, library, case, destination, remote_base, menu=MENU):
+    """Repeat the proven editor route using a leased, bounded transport.
 
+    driver supplies ps/ui/rdpipe, owns process cleanup, and retains snapshots.
+    """
+    text = clipboard_text(library.read_bytes(), case.read_bytes())
+    new = f"{MAPS}\\{label}.w3m"
+    driver.ps(f'if (Test-Path -LiteralPath "{new}") {{ throw "map exists; use a new revision" }}; '
+              f'Copy-Item -LiteralPath "{remote_base}" -Destination "{new}"')
+    pid = driver.launch(EDITOR, "World Editor.exe", new, "editor")
 
-def windows(pid):
-    found = re.findall(r'\(pid (\d+)\) "([^"]*)" \[window_id: (\d+)\]', ui("list_windows"))
-    return {title: int(wid) for p, title, wid in found if int(p) == pid}
+    def current():
+        result = driver.ui("list_windows")
+        return {w['title']: w['window_id'] for w in result['structuredContent']['windows'] if w['pid'] == pid}
 
+    def wait(predicate, what, timeout=60):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() < deadline:
+            found = current()
+            for title, wid in found.items():
+                if predicate(title):
+                    return title, wid
+            driver.pause(1)
+        raise RuntimeError(f"timed out waiting for {what}; windows: {found}")
 
-def wait_window(pid, predicate, what, timeout=60):
-    deadline = time.monotonic() + timeout
-    while time.monotonic() < deadline:
-        for title, wid in windows(pid).items():
-            if predicate(title):
-                return title, wid
-        time.sleep(1)
-    raise RuntimeError(f"timed out waiting for {what}; windows: {windows(pid)}")
+    def snapshot(wid):
+        driver.ui("get_window_state", pid=pid, window_id=wid, include_accessibility_tree=False)
+
+    is_map = lambda t: t.startswith("Warcraft III World Editor - [") and label in t
+    _, main_window = wait(is_map, "map window", 90)
+    snapshot(main_window)
+    driver.ui("hotkey", pid=pid, window_id=main_window, keys=["f4"], delivery_mode="foreground")
+    _, trig = wait(lambda t: t == "Trigger Editor", "Trigger Editor")
+    target = {"pid": pid, "window_id": trig}
+    driver.pause(2)
+    snapshot(trig)
+    driver.ui("bring_to_front", **target)
+    snapshot(trig)
+    driver.ui("click", **target, x=TRIGGER_ITEM[0], y=TRIGGER_ITEM[1], delivery_mode="foreground")
+    driver.pause(1)
+    snapshot(trig)
+    driver.ui("clipboard_write", text=text)
+    driver.ui("click", **target, x=TEXT_AREA[0], y=TEXT_AREA[1], delivery_mode="foreground")
+    snapshot(trig)
+    driver.ui("hotkey", **target, keys=["ctrl", "a"], delivery_mode="foreground")
+    snapshot(trig)
+    driver.ui("hotkey", **target, keys=["ctrl", "v"], delivery_mode="foreground")
+    driver.pause(1)
+    snapshot(trig)
+    driver.rdpipe("exec", "--", "powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass",
+                  "-File", menu, "-Window", str(trig), "-Command", "4")
+    title, dialog = wait(lambda t: t not in ("Tool Palette", "Trigger Editor") and "World Editor -" not in t,
+                         "save dialog")
+    snapshot(dialog)
+    if title != "Reminder":
+        raise RuntimeError(f"unexpected save dialog {title!r}; see retained UI state")
+    driver.ui("hotkey", pid=pid, window_id=dialog, keys=["enter"], delivery_mode="foreground")
+    _, saved = wait(lambda t: is_map(t) and not t.endswith("*]"), "saved title without *")
+    snapshot(saved)
+    driver.stop(pid)
+    driver.pause(2)
+    driver.pull(new, destination)
+    return new
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("label")
-    parser.add_argument("--base", default="MOV-0002", help="World Editor map copied as the start")
-    parser.add_argument("--case", type=Path, help="generated case JASS; defaults to oracle/jass/<label>.j")
+    parser.add_argument("--base", default="MOV-0002")
+    parser.add_argument("--case", type=Path)
     args = parser.parse_args()
+    # The unattended command owns leases and integrity. Keep this legacy/manual
+    # entry point for the existing documented workflow.
     if not all(re.fullmatch(r'[A-Z]{2,5}-\d{4}(?:-[a-z0-9]+)*', label) for label in (args.label, args.base)):
         parser.error('invalid map label')
-    if (Path('oracle-maps') / f'{args.label}.w3m').exists():
+    destination = Path('oracle-maps') / f'{args.label}.w3m'
+    if destination.exists():
         parser.error('local map exists; never overwrite a retained revision')
-    case = args.case or Path("oracle/jass") / f"{args.label}.j"
-    text = clipboard_text(Path("oracle/jass/lib/oracle-v1.j").read_bytes(), case.read_bytes())
-    new = f"{MAPS}\\{args.label}.w3m"
-    pid = int(ps(f'if (Test-Path -LiteralPath "{new}") {{ throw "map exists" }}; '
-                 f'Copy-Item -LiteralPath "{MAPS}\\{args.base}.w3m" -Destination "{new}"; '
-                 f'(Start-Process -FilePath "{EDITOR}\\World Editor.exe" -WorkingDirectory "{EDITOR}" '
-                 f'-ArgumentList @("-loadfile", "`"{new}`"") -PassThru).Id'))
+    class Manual:
+        owned = []
+        def rdpipe(self, *args): return rdpipe(*args)
+        def ps(self, script): return ps(script)
+        def ui(self, tool, **arguments): return json.loads(rdpipe('--json', 'ui', tool, '-', stdin=json.dumps(arguments)))
+        def pause(self, seconds): time.sleep(seconds)
+        def launch(self, directory, exe, path, role):
+            pid = int(ps(f'(Start-Process -FilePath "{directory}\\{exe}" -WorkingDirectory "{directory}" '
+                         f'-ArgumentList @("-loadfile", "`"{path}`"") -PassThru).Id'))
+            self.owned.append(pid)
+            return pid
+        def stop(self, pid):
+            ps(f"Stop-Process -Id {pid} -ErrorAction SilentlyContinue")
+            self.owned.remove(pid)
+        def pull(self, remote, local): rdpipe('pull', remote, str(local))
+    driver = Manual()
     try:
-        # Long titles are truncated (e.g. ".../JASS-0001-p020.w3]"); unsaved ones end in " *]".
-        is_map = lambda t: t.startswith("Warcraft III World Editor - [") and args.label in t
-        _, main_window = wait_window(pid, is_map, "map window", 90)
-        ui("hotkey", pid=pid, window_id=main_window, keys=["f4"])
-        _, trig = wait_window(pid, lambda t: t == "Trigger Editor", "Trigger Editor")
-        target = {"pid": pid, "window_id": trig}
-        time.sleep(2)
-        # Clicks are mapped through this window's latest screenshot scale; without a
-        # screenshot first they land ~12% up-left (on the category row).
-        ui("get_window_state", **target, include_accessibility_tree=False)
-        ui("bring_to_front", **target)
-        ui("click", **target, x=TRIGGER_ITEM[0], y=TRIGGER_ITEM[1], delivery_mode="foreground")
-        time.sleep(1)
-        rdpipe("ui", "clipboard_write", "-", stdin=json.dumps({"text": text}))
-        ui("click", **target, x=TEXT_AREA[0], y=TEXT_AREA[1], delivery_mode="foreground")
-        ui("hotkey", **target, keys=["ctrl", "a"], delivery_mode="foreground")
-        ui("hotkey", **target, keys=["ctrl", "v"], delivery_mode="foreground")
-        time.sleep(1)
-        shot = re.search(r"image: (\S+)", ui("get_window_state", **target, include_accessibility_tree=False))
-        print("trigger screenshot:", shot[1] if shot else "none")
-        rdpipe("exec", "--", "powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass",
-               "-File", MENU, "-Window", str(trig), "-Command", "4")  # Save Map
-        # Expected dialog: the default-map-name Reminder. Anything else stops the run.
-        title, dialog = wait_window(pid, lambda t: t not in ("Tool Palette", "Trigger Editor")
-                                    and "World Editor -" not in t, "save dialog")
-        if title != "Reminder":
-            raise RuntimeError(f"unexpected dialog {title!r}; inspect it before continuing")
-        ui("hotkey", pid=pid, window_id=dialog, keys=["enter"])
-        wait_window(pid, lambda t: is_map(t) and not t.endswith("*]"), "saved title without *")
-        print(ps(f'(Get-FileHash -LiteralPath "{new}").Hash'))
+        author(driver, args.label, Path('oracle/jass/lib/oracle-v1.j'),
+               args.case or Path('oracle/jass') / f'{args.label}.j', destination,
+               f'{MAPS}\\{args.base}.w3m')
     finally:
-        ps(f"Stop-Process -Id {pid} -ErrorAction SilentlyContinue")
-    time.sleep(2)
-    rdpipe("pull", new, f"oracle-maps/{args.label}.w3m")
+        for pid in driver.owned[:]: driver.stop(pid)
 
 
 if __name__ == "__main__":

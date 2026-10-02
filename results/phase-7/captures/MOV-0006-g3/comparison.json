@@ -1,0 +1,182 @@
+{
+  "case": "MOV-0006",
+  "map_revision": "MOV-0006-g3",
+  "status": "PASS",
+  "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+  "observation_phase": "after-due-update",
+  "reference_records": 509,
+  "actual_records": 508,
+  "reference_samples": 251,
+  "actual_samples": 251,
+  "first_divergence": null,
+  "state_first_divergence": null,
+  "properties": {
+    "x": {
+      "samples": 251,
+      "failures": 0,
+      "max_abs_delta": 9.999999974752427e-07,
+      "max_abs_delta_by_unit": {
+        "u0": 9.999999974752427e-07
+      },
+      "final_delta_by_unit": {
+        "u0": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "y": {
+      "samples": 251,
+      "failures": 0,
+      "max_abs_delta": 1.0000001111620804e-06,
+      "max_abs_delta_by_unit": {
+        "u0": 1.0000001111620804e-06
+      },
+      "final_delta_by_unit": {
+        "u0": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "facing": {
+      "samples": 251,
+      "failures": 0,
+      "max_abs_delta": 4.999999987376214e-07,
+      "max_abs_delta_by_unit": {
+        "u0": 4.999999987376214e-07
+      },
+      "final_delta_by_unit": {
+        "u0": -1.9999998812636477e-07
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "order": {
+      "samples": 251,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "t": {
+      "samples": 251,
+      "failures": 0,
+      "max_abs_delta": 5.000000005139782e-07,
+      "max_abs_delta_by_unit": {
+        "u0": 5.000000005139782e-07
+      },
+      "final_delta_by_unit": {
+        "u0": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    }
+  },
+  "action_properties": {
+    "callback": {
+      "samples": 2,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "unit": {
+      "samples": 2,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "command": {
+      "samples": 2,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "accepted": {
+      "samples": 2,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "t": {
+      "samples": 2,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "target_x": {
+      "samples": 2,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    },
+    "target_y": {
+      "samples": 2,
+      "failures": 0,
+      "max_abs_delta": 0,
+      "max_abs_delta_by_unit": {
+        "u0": 0
+      },
+      "final_delta_by_unit": {
+        "u0": 0.0
+      },
+      "first_divergence": null,
+      "status": "PASS"
+    }
+  },
+  "event_properties": {},
+  "structural_differences": [],
+  "first_structural_divergence": null,
+  "unobserved_properties": [],
+  "observation_timing": {
+    "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+    "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+    "clock_status": "PASS"
+  }
+}

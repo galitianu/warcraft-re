@@ -1,0 +1,14 @@
+{
+  "map": "/Users/andrei/Desktop/war3-workspace/local/phase7/timeout-failure/oracle-maps/MOV-0010-timeoutcheck.w3m",
+  "bytes": 22297,
+  "sha256": "c6ce081e8ab72a077e301b96f0f100c47e727b0749add38481a46f5d9f20dcba",
+  "w3i_format": 18,
+  "custom_text_triggers": 1,
+  "trigger_matches_source": true,
+  "war3map_j_contains_source": true,
+  "war3map_j_runs_init_triggers": false,
+  "generated_war3map_j_sha256": "568b107c1c25bcedaf5bfbb992761df42f09f1e1e1b69ad56d23080870aed2b8",
+  "library_sha256": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca",
+  "case_sha256": "08bc42f66e4f3194d542fd413147e9a3a193027623aea454a6fedf4bb711d057",
+  "ok": true
+}

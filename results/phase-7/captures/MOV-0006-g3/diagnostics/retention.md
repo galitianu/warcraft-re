@@ -1,0 +1,1 @@
+All command results (losslessly consolidated in commands.jsonl) and the stage/ownership/transfer journal are retained. Relevant UI images: pasted trigger, known Reminder, saved map. Intermediate screenshots remain in the original local bundle. Raw WC3 captures, manifests and candidate fixtures are copied unchanged.

@@ -1,0 +1,14 @@
+{
+  "map": "/Users/andrei/Desktop/war3-workspace/local/phase7/MOV-0004-g3/oracle-maps/MOV-0004-g3.w3m",
+  "bytes": 22236,
+  "sha256": "2f405b6905369cd81cd2dcb1350dd70f7611b94bac3109089f4b9862dd8c2f30",
+  "w3i_format": 18,
+  "custom_text_triggers": 1,
+  "trigger_matches_source": true,
+  "war3map_j_contains_source": true,
+  "war3map_j_runs_init_triggers": false,
+  "generated_war3map_j_sha256": "bd30fd3a9a72fb86fa64c7775848182a5a260563bbd3001d2a9687b08adf0660",
+  "library_sha256": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca",
+  "case_sha256": "dde60505be122a4262bf533954a11ec27b7d99597d5238c829efc911d85bfe3d",
+  "ok": true
+}

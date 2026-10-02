@@ -1,0 +1,1 @@
+All command results (losslessly consolidated in commands.jsonl) and the stage/ownership/transfer journal are retained. The last UI image is retained here; earlier intermediate screenshots remain in the original local bundle. No capture passed and no candidate/result report was produced.

@@ -2,16 +2,18 @@
 
 As of 2 October 2026.
 
-**Current stage:** Phase 6 complete: the scenario → generated WC3 map → fixture / same scenario → C++ loop passes on four real maps, with PR and main-push verification. The v0.1 oracle infrastructure gate is met; sampler/update-order work continues in issue #17.
+**Current stage:** Phase 6 complete. MOV-0013 ([issue #17](https://github.com/galitianu/warcraft-re/issues/17))
+is captured and gated on branch `issue-17-mov-0013`: the remaining 1 ms frame exceptions follow
+the sampler's own callbacks, and a delayed start exposes a new library-clock mismatch.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
-8 MOV-0012 maps × 3 fresh-process captures, plus four generated revisions × 3,
+8 MOV-0012 maps × 3 fresh-process captures, plus eight generated revisions × 3,
 all payload-identical within each map. Generated observations reproduce their
 hand-authored controls exactly.
 **C++ compatibility:** footman-v4 passes MOV-0001–MOV-0010 under the fixed tolerances.
 Every sample and clock prints the same R2SW_6 text as WC3. It also reproduces every
 recorded state of the 1–50 ms JASS-0001/MOV-0012 captures. A few callbacks read a
-neighbouring frame for reasons not yet explained. footman-v1/v2/v3 keep their
-documented failures.
+neighbouring frame for reasons not yet explained. MOV-0013 fails canonically in three
+of four maps (reviewed, gated as observed). footman-v1/v2/v3 keep their documented failures.
 **First release:** v0.0.1 — one Footman's movement compared numerically with WC3.
 
 The [plan](Warcraft-III-Reimplementation-Plan.md) is the detailed roadmap. GitHub
@@ -260,13 +262,42 @@ generation/scenario inputs are identical and historical baselines pass.
 All Phase 6 delivery gates are met, with the sampler experiment explicitly split
 into #17 as permitted by #14. No release tag is created.
 
+## MOV-0013 sampler start phase
+
+[Issue #17](https://github.com/galitianu/warcraft-re/issues/17):
+[question, pre-registered predictions and results](docs/mov-0013.md),
+[scenario v2](docs/scenario-v2.md). The predictions were committed (`9fcfe63`) before
+capture. Scenario v2 adds only `observe.start` and `observe.state_clock`; every v1
+file keeps its meaning. `oracle_codegen` v2 generated four cases without C++ v2 output
+(pjass PASS). On the [verified](oracle/environment/mov-0013-verification.json) selected
+ARM64 VM, four check_map-verified maps each gave three payload-identical fresh-process
+runs ([captures](oracle/captures/wc3-1.29.2-9231-x86/)). The first b/c outputs were
+rejected by the parser and are retained.
+
+MOV-0013-a reproduces MOV-0012-a exactly. Exceptions read frame H0 + 1 at a 15–35,
+c 25–35, b none and d none. Only H1, tied to the sampler's own callbacks, fits all
+four; the order-, grid- and absolute-time hypotheses are refuted. The update grid
+stays global. The delayed starts also show a new finding: TICK sits one ulp below the
+pre-registered library clock at 875 (b) and 624 (c) callbacks. Post-hoc candidates
+for both are recorded, not implemented.
+
+`wc3test` runs v2 under footman-v4 with rule H0. All 50 MOV-0001–0010 model/phase
+[payloads are unchanged](results/mov-0013/runner-before-after.json), and v1
+scenarios rewritten as v2 give identical v4 observations. Under unchanged tolerances
+d passes; a and c fail on x/y and b and c on t. [run_mov0013.py](tools/run_mov0013.py)
+requires exactly those differences ([report](results/mov-0013/mov-0013.md)). It is a
+required CI gate, and the downloaded artifacts are regraded. Native ARM64
+AppleClang Release CI with `--archive` passes: CTest 3/3, Python 69/69, generated
+loop 4/4, MOV-0013 gate, v4 10/10 and historical baselines. The JASS-0001/MOV-0012
+state gate is unchanged; its hand-written-map descriptions were not migrated
+([why](docs/mov-0013.md#results)).
+
 ## Exact next action
 
-Implement [issue #17](https://github.com/galitianu/warcraft-re/issues/17):
-**MOV-0013** measures sampler start phase/update ordering through generated scenarios.
-No MOV-0013 map or capture exists yet. It requires a narrow timing/state schema
-extension beyond v1 and before/after-proven runner timing; issue #14 explicitly
-permits this split after the generator reproduction gate passes.
+Verify the issue #17 PR on all five configurations, regrade the downloaded
+artifacts, merge, and verify the main push. Then propose the follow-up experiment
+in [mov-0013.md](docs/mov-0013.md#next-experiments): separate the sampler's callback
+index from float32 lag, and test the 2⁻¹⁷ timer-start reading.
 
 ## Roadmap status
 

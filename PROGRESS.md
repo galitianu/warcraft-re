@@ -377,6 +377,12 @@ four check_map-verified maps gave three payload-identical fresh-process runs eac
 Native ARM64 AppleClang Release CI with `--archive` passes: CTest 3/3, Python 70/70,
 generated loop 4/4, the MOV-0013, MOV-0014 and MOV-0015 gates, v4 10/10 and historical
 baselines.
+[PR #23](https://github.com/galitianu/warcraft-re/pull/23)'s
+[workflow 37040588867](https://github.com/galitianu/warcraft-re/actions/runs/37040588867)
+passes all five configurations and the aggregate job, on clean builds of merge ref `7c55290`.
+Each passes CTest 3/3, Python 70/70, generated loop 4/4, all three experiment gates and
+v4 10/10. The downloaded artifacts [regrade locally](results/mov-0015/pr-verification/summary.md)
+to a report identical to the hosted one.
 
 ## Exact next action
 

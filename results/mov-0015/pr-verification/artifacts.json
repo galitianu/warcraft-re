@@ -1,0 +1,61 @@
+{
+ "run": {
+  "conclusion": "success",
+  "createdAt": "2026-10-02T17:25:20Z",
+  "event": "pull_request",
+  "headSha": "2e270ba60bff268dfdd0d5dcc48e18aa9358822c",
+  "url": "https://github.com/galitianu/warcraft-re/actions/runs/37040588867"
+ },
+ "merge_ref_commit": "7c55290 (pull_request merge of 2e270ba into main)",
+ "regrade": "tools/summarize_ci.py on the downloaded artifacts; scope.json identical to the hosted build-scope report",
+ "artifacts": [
+  {
+   "id": 11242880996,
+   "name": "compatibility-mac-arm-release",
+   "digest": "sha256:22d24f076c61fab9610469e799993a2d8f3ba1348ffd920fef5ceb0d552f50ae",
+   "size_in_bytes": 4432945,
+   "expired": false,
+   "created_at": "2026-10-02T17:26:26Z"
+  },
+  {
+   "id": 11242676738,
+   "name": "compatibility-linux-gcc-release",
+   "digest": "sha256:f10de67d33770e74ed1b2f1094e3c8a01cf575eb0bbbc06ceecf1212ad4c464b",
+   "size_in_bytes": 3586919,
+   "expired": false,
+   "created_at": "2026-10-02T17:27:08Z"
+  },
+  {
+   "id": 11242626764,
+   "name": "compatibility-linux-clang-debug",
+   "digest": "sha256:8c182aac45d16d25a03a80085101e940f2fadca77b81f1ad0dbe492859f757c6",
+   "size_in_bytes": 3586660,
+   "expired": false,
+   "created_at": "2026-10-02T17:27:10Z"
+  },
+  {
+   "id": 11242222480,
+   "name": "build-scope",
+   "digest": "sha256:f8977dcb9f043d57d7028075903cce51a7cf9122cd9581da344eb5fb34b57d9e",
+   "size_in_bytes": 20161,
+   "expired": false,
+   "created_at": "2026-10-02T17:28:32Z"
+  },
+  {
+   "id": 11242197053,
+   "name": "compatibility-mac-arm-debug",
+   "digest": "sha256:b3241b7928e0911df0c27c3d0af0ac34edcbfe3a61be39841b65ae36d3cfe7fb",
+   "size_in_bytes": 3588612,
+   "expired": false,
+   "created_at": "2026-10-02T17:26:24Z"
+  },
+  {
+   "id": 11241767241,
+   "name": "compatibility-windows-msvc-release",
+   "digest": "sha256:e5653556a2274860d3fd6d531611d650d60ab8d329f8158dbde8476e770843c1",
+   "size_in_bytes": 3587986,
+   "expired": false,
+   "created_at": "2026-10-02T17:27:40Z"
+  }
+ ]
+}

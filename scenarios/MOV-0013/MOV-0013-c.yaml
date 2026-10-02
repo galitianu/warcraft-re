@@ -1,0 +1,26 @@
+# MOV-0013: does the sampler's start phase relative to the movement updates
+# explain which 5 ms frame a 1 ms callback reads (docs/mov-0013.md)?
+# Variant c. Sampler and order started four 5 ms frames (20 ms) after the setup, so the
+# sampler start moves relative to the 30 ms movement update grid.
+# Semantics: docs/scenario-v2.md.
+schema: wc3-scenario
+version: 2
+experiment: MOV-0013
+map_revision: MOV-0013-c
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+observe:
+  start: 0.02
+  period: 0.001
+  callbacks: 1000
+  properties: [x, "y", facing, order]
+  state_clock: 10
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 0]
+...

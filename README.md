@@ -46,12 +46,15 @@ Start with:
   independent control audit, template bounds and the manual WC3 capture loop.
   Four generated maps reproduce their controls exactly over 12 fresh WC3 runs;
   the same scenarios pass their C++ comparisons under unchanged tolerances.
+- [MOV-0013](docs/mov-0013.md) and [scenario v2](docs/scenario-v2.md): four generated
+  maps move the 1 ms sampler's start and the order. The remaining frame exceptions
+  follow the sampler's own callbacks; the delayed library clock is a new mismatch.
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
-This repository holds the plan, 24 manually authored and four generated-case WC3 maps with their JASS,
+This repository holds the plan, 24 manually authored and eight generated-case WC3 maps with their JASS,
 shared oracle instrumentation, raw captures with identities, parsers and derived
-CSVs, versioned v1 scenarios, and a dependency-free C++20 simulation. Phases 0–6 are
+CSVs, versioned v1/v2 scenarios, and a dependency-free C++20 simulation. Phases 0–6 are
 complete; compatibility
 CI passes on pull requests and main pushes across five measured macOS ARM64, Linux
 x64 and Windows x64 configurations. All 45 Phase 1

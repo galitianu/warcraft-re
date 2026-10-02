@@ -5,8 +5,8 @@ import csv
 from pathlib import Path
 
 from oracle_parse import parse
-from trace_contract import (BUILD, LABELS, ROOT, SCHEMA, counts, digest, load,
-                            payload, raw_record, sha256, shape, validate, write_json)
+from trace_contract import (BUILD, LABELS, ROOT, SCHEMA, counts, digest, load, payload, raw_record,
+                            retail_numeric_format, sha256, shape, validate, write_json)
 
 
 def normalize_capture(capture, manifest):
@@ -25,7 +25,7 @@ def normalize_capture(capture, manifest):
                               seed=dict(status='unset-unobserved', value=None, retail_equivalent=False), model=None),
                 units=capture['watched'],
                 time=dict(unit='seconds', position_unit='world-units', facing_unit='degrees',
-                          numeric_format='R2SW_6; CLOCKS R2SW_9', clock_duration=capture['clock_duration'],
+                          numeric_format=retail_numeric_format(capture['map']), clock_duration=capture['clock_duration'],
                           step_us=None, observation_phase='unknown-relative-to-due-update', state_lag_us=None),
                 records=records, completion=counts(records), provenance={})
 

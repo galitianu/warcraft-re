@@ -1,4 +1,4 @@
-// Scenario v1 parsing, exact numeric conversion, the committed scenarios and
+// Scenario v1/v2 parsing, exact numeric conversion, the committed scenarios and
 // equal-time ordering. Usage: scenario_tests SCENARIO_DIR (the committed scenarios/).
 #include "Cases.h"
 #include "Scenario.h"
@@ -29,6 +29,14 @@ std::string rejected(const std::string& text) {
         return error.what();
     }
     throw std::runtime_error("accepted invalid scenario:\n" + text);
+}
+bool rejected_run(const scenario::Scenario& description, wc3::ModelVersion version, bool before = false) {
+    try {
+        movement::run(description, version, 1, before);
+    } catch (const std::invalid_argument&) {
+        return true;
+    }
+    return false;
 }
 const std::string flow = R"(schema: wc3-scenario
 version: 1
@@ -125,7 +133,8 @@ int main(int argc, char** argv) {
             return text.replace(at, from.size(), to);
         };
         const std::pair<std::string, std::string> invalid[] = {
-            {replace(flow, "version: 1", "version: 2"), "unsupported scenario version 2"},
+            {replace(flow, "version: 1", "version: 3"), "unsupported scenario version 3"},
+            {replace(flow, "  callbacks: 10\n", "  callbacks: 10\n  start: 0.02\n"), "unsupported field 'start'"},
             {replace(flow, "schema: wc3-scenario", "schema: wc3-trace"), "not a wc3-scenario"},
             {replace(flow, "  callbacks: 10\n", "  callbacks: 10\n  seed: 1\n"), "unsupported field 'seed'"},
             {replace(flow, "    facing: 0\n", ""), "missing field 'facing'"},
@@ -205,6 +214,19 @@ int main(int argc, char** argv) {
             }
         }
         check(compared >= 80, "expected at least the ten committed MOV scenarios");
+
+        // Scenario v2 (docs/scenario-v2.md): MOV-0013's start and STATE event, v4/after only.
+        for (const auto& entry : std::filesystem::directory_iterator(directory / "MOV-0013")) {
+            const auto description = scenario::parse(read(entry.path()));
+            check(description.version == 2 && description.state_clock == 10 && description.period_us == 1000,
+                  entry.path().stem().string() + " v2 fields");
+            const auto trace = movement::run(description, wc3::ModelVersion::v4, 1, false);
+            check(trace.events.size() == description.callbacks + 1u &&
+                  trace.samples.size() == description.callbacks + 1u, description.map_revision + " incomplete v2 schedule");
+            for (auto version : {wc3::ModelVersion::v1, wc3::ModelVersion::v2, wc3::ModelVersion::v3})
+                check(rejected_run(description, version), description.map_revision + " ran v2 outside footman-v4");
+            check(rejected_run(description, wc3::ModelVersion::v4, true), description.map_revision + " ran v2 before-phase");
+        }
 
         // Equal-time actions execute in file order after the callback's samples;
         // relative targets read this world's position at execution.

@@ -1,0 +1,26 @@
+# MOV-0013: does the sampler's start phase relative to the movement updates
+# explain which 5 ms frame a 1 ms callback reads (docs/mov-0013.md)?
+# Variant b. Sampler started half a 5 ms frame after the setup, so no callback is
+# scheduled at a frame boundary.
+# Semantics: docs/scenario-v2.md.
+schema: wc3-scenario
+version: 2
+experiment: MOV-0013
+map_revision: MOV-0013-b
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+observe:
+  start: 0.0025
+  period: 0.001
+  callbacks: 1000
+  properties: [x, "y", facing, order]
+  state_clock: 10
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 0]
+...

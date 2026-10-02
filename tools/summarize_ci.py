@@ -12,7 +12,8 @@ from regression import CASES, validate_report
 from run_ci import BASELINES
 from generate_oracle import GOLDENS
 from audit_oracle import audit
-from trace_contract import GENERATED_SHAPES, digest, load, payload, sha256, validate, write_json
+from run_mov0013 import CASES as GENERATED_CASES, FIXTURES as MOV0013_FIXTURES, assess as assess_mov0013, exact
+from trace_contract import EXPERIMENT_SHAPES, GENERATED_SHAPES, digest, load, payload, sha256, validate, write_json
 
 CONFIGURATIONS = ('mac-arm-release', 'mac-arm-debug', 'linux-gcc-release',
                   'linux-clang-debug', 'windows-msvc-release')
@@ -77,6 +78,46 @@ def verify_generated_loop(root, result, legacy_before_generated_captures=False):
                 wc3_observation_sha256=observations, cpp_payload_sha256=cpp)
 
 
+def verify_mov0013(root, result, legacy=False):
+    """Regrade downloaded MOV-0013 traces against retained evidence and the reviewed list."""
+    if legacy and 'mov0013_required' not in result:
+        return None  # Workflows before MOV-0013.
+    if result.get('mov0013_required') is not True or result.get('mov0013', {}).get('status') != 'PASS':
+        raise ValueError('required MOV-0013 gate missing, disabled or failing')
+    report = load(root / 'reports/mov-0013.json')
+    if report['status'] != 'PASS' or [c['map_revision'] for c in report['cases']] != list(EXPERIMENT_SHAPES):
+        raise ValueError('MOV-0013 report did not pass or has missing/unexpected revisions')
+    cpp = {}
+    with tempfile.TemporaryDirectory() as tmp:
+        for row in report['cases']:
+            label = row['map_revision']
+            reference_path = root / 'mov-0013/references' / f'{label}.json'
+            actual_path = root / 'mov-0013/traces' / label / f"{EXPERIMENT_SHAPES[label]['experiment']}.json"
+            reproduction = normalize(label, Path(tmp))
+            if (reference_path.read_bytes() != (MOV0013_FIXTURES / f'{label}.json').read_bytes()
+                    or row['reproduction'] != reproduction or reproduction['status'] != 'PASS'):
+                raise ValueError(f'{label}: downloaded WC3 fixture/reproduction differs from retained evidence')
+            if row['case_sha256'] != load(GENERATED_CASES / f'{label}-generation.json')['inputs'][0]['case']['sha256']:
+                raise ValueError(f'{label}: MOV-0013 ran a different generated case')
+            reference, actual = load(reference_path), load(actual_path)
+            if actual['identity']['model']['name'] != 'footman-v4':
+                raise ValueError(f'{label}: MOV-0013 did not run the required v4 model')
+            verify_reference_provenance(reference)
+            if row['scenario'] != reference['provenance']['scenario'] or row['scenario'] != actual['provenance']['scenario']:
+                raise ValueError(f'{label}: MOV-0013 names different scenario bytes')
+            comparison = compare(reference, actual)
+            comparison.update(reference_sha256=sha256(reference_path), actual_sha256=sha256(actual_path))
+            compared, differences = exact(reference, actual)
+            # Frame attribution needs wc3states; the state differences themselves are recomputed.
+            assessment = assess_mov0013(label, comparison['status'], differences, row['frames_read'])
+            if (row['comparison'] != comparison or row['exact']['mismatches'] != differences
+                    or row['exact']['compared'] != compared or row['assessment'] != assessment
+                    or assessment['status'] != 'PASS' or row['status'] != 'PASS'):
+                raise ValueError(f'{label}: downloaded MOV-0013 grading does not reproduce')
+            cpp[label] = digest(payload(actual))
+    return dict(status='PASS', cases=len(report['cases']), cpp_payload_sha256=cpp)
+
+
 def summarize(artifacts, out, legacy_before_generated_captures=False):
     out.mkdir(parents=True, exist_ok=True)
     report = dict(status='FAIL', configurations={}, errors={}, models={},
@@ -90,6 +131,7 @@ def summarize(artifacts, out, legacy_before_generated_captures=False):
             identity = load(root / 'reports/v4/build-identity.json')
             generation = verify_generation(root, result)
             generated_loop = verify_generated_loop(root, result, legacy_before_generated_captures)
+            mov0013 = verify_mov0013(root, result, legacy_before_generated_captures)
             suites = {}
             for model in BASELINES:
                 suite = validate_report(load(root / 'reports' / model / 'comparison.json'))
@@ -121,7 +163,7 @@ def summarize(artifacts, out, legacy_before_generated_captures=False):
                     raise ValueError('oracle generator and C++ suite consumed different scenarios')
             report['configurations'][config] = dict(ci_status=result['status'], host=result['host'],
                      environment=environment, primary_identity=identity, models=suites,
-                     oracle_generation=generation, generated_capture_loop=generated_loop)
+                     oracle_generation=generation, generated_capture_loop=generated_loop, mov0013=mov0013)
             if result['status'] != 'PASS':
                 report['errors'][config] = result['errors'] or 'configuration did not pass'
         except (OSError, ValueError, KeyError, TypeError, IndexError) as error:
@@ -152,6 +194,11 @@ def summarize(artifacts, out, legacy_before_generated_captures=False):
                                                   else 'PASS' if loops else 'UNOBSERVED'),
                                           configurations_compared=list(loops),
                                           compatibility_passes={k: v['compatibility_passes'] for k, v in loops.items()})
+    studies = {k: v['mov0013'] for k, v in report['configurations'].items() if v['mov0013']}
+    if studies and (len(studies) != len(CONFIGURATIONS) or len({digest(v) for v in studies.values()}) != 1):
+        report['errors']['mov-0013'] = 'missing configuration evidence or different C++ MOV-0013 payloads'
+    report['mov0013'] = dict(status=('FAIL' if 'mov-0013' in report['errors'] else 'PASS' if studies else 'UNOBSERVED'),
+                             configurations_compared=list(studies))
     report['status'] = 'PASS' if not report['errors'] and len(report['configurations']) == len(CONFIGURATIONS) else 'FAIL'
     write_json(out / 'scope.json', report)
     lines = ['# Measured build scope', '', f"CI scope gate: **{report['status']}**.", '', report['scope'], '',
@@ -159,6 +206,7 @@ def summarize(artifacts, out, legacy_before_generated_captures=False):
              'Cross-configuration byte differences are reported, while each configuration is graded against the same WC3 fixtures.', '',
              f"Oracle generation: **{report['oracle_generation']['status']}** across {len(generators)} configurations.", '',
              f"Generated-map capture/comparison: **{report['generated_capture_loop']['status']}** across {len(loops)} configurations.", '',
+             f"MOV-0013 reviewed differences, regraded: **{report['mov0013']['status']}** across {len(studies)} configurations.", '',
              '| Configuration | Host / target | Compiler | Build | CI | v4 compatibility |', '|---|---|---|---|---|---|']
     for config, info in report['configurations'].items():
         identity = info['primary_identity']

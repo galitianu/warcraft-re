@@ -155,7 +155,7 @@ class ScenarioRunnerTests(unittest.TestCase):
     def test_invalid_descriptions_fail_before_any_output(self):
         base = (SCENARIOS / 'MOV-0006.yaml').read_text()
         cases = {
-            'version': (base.replace('version: 1', 'version: 2'), 'unsupported scenario version 2'),
+            'version': (base.replace('version: 1', 'version: 3'), 'unsupported scenario version 3'),
             'field': (base.replace('  callbacks: 250', '  callbacks: 250\n  seed: 7'), "unsupported field 'seed'"),
             'action': (base.replace('order: move\n    offset', 'order: patrol\n    offset'), "unsupported order 'patrol'"),
             'type': (base.replace('type: hfoo', 'type: hpea'), "unsupported unit type 'hpea'"),

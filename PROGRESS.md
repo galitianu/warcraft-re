@@ -2,8 +2,8 @@
 
 As of 2 October 2026.
 
-**Current stage:** Phase 6 complete. MOV-0014 ([issue #20](https://github.com/galitianu/warcraft-re/issues/20))
-confirmed the pre-registered 2⁻¹⁷ s timer start, which the v2 runner now uses. It refuted
+**Current stage:** Phase 6 complete. MOV-0014 ([issue #20](https://github.com/galitianu/warcraft-re/issues/20),
+merged and verified on main) confirmed the pre-registered 2⁻¹⁷ s timer start, which the v2 runner now uses. It refuted
 the callback-index reading of the 1 ms frame exceptions; no frame rule survives.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
 8 MOV-0012 maps × 3 fresh-process captures, plus eleven generated revisions × 3,
@@ -339,12 +339,19 @@ passes all five configurations and the aggregate job, on clean builds of merge r
 Each passes CTest 3/3, Python 70/70, generated loop 4/4, both experiment gates and v4 10/10.
 The downloaded artifacts [regrade locally](results/mov-0014/pr-verification/summary.md)
 to a report identical to the hosted one.
+PR #21 merged as `43c10b1`. Its
+[main-push workflow 37023859883](https://github.com/galitianu/warcraft-re/actions/runs/37023859883)
+passes the same gates on all five configurations, with clean builds of the merge commit.
+The downloaded artifacts [regrade](results/mov-0014/main-verification/summary.md) to a
+report identical to the hosted one, and the experiment payloads equal the PR run's.
 
 ## Exact next action
 
-Merge PR #21, then download and regrade the main-push workflow. After that, pre-register a follow-up for the lag candidate
-([next experiment](docs/mov-0014.md#next-experiment)): boundary lags straddling
-7–9 × 2⁻²⁴ s with a moving unit, and a 1–2 × 2⁻²⁴ s callback before an update frame.
+Pre-register a follow-up for the post-hoc frame candidate, with a new experiment ID and
+its predictions written first ([next experiment](docs/mov-0014.md#next-experiment)). It
+should place boundary lags straddling 7–9 × 2⁻²⁴ s with a moving unit, plus a
+1–2 × 2⁻²⁴ s callback before an update frame to separate X/Y from facing. The frame
+selection stays H0 until a pre-registered rule survives.
 
 ## Roadmap status
 

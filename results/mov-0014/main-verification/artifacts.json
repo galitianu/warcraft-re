@@ -1,0 +1,61 @@
+{
+ "run": {
+  "conclusion": "success",
+  "createdAt": "2026-10-02T15:00:17Z",
+  "event": "push",
+  "headSha": "43c10b1ad78c3c4c511745594bc3337b168efefa",
+  "url": "https://github.com/galitianu/warcraft-re/actions/runs/37023859883"
+ },
+ "merge_commit": "43c10b1ad78c3c4c511745594bc3337b168efefa (PR #21)",
+ "regrade": "tools/summarize_ci.py on the downloaded artifacts; scope.json identical to the hosted build-scope report; MOV-0013/0014 C++ payloads equal PR run 37022849703",
+ "artifacts": [
+  {
+   "id": 11235000274,
+   "name": "compatibility-linux-clang-debug",
+   "digest": "sha256:75f704342a767f4051d214ab474185d001531167a1c67e1b5cc6badb4e3a4c9f",
+   "size_in_bytes": 3017791,
+   "expired": false,
+   "created_at": "2026-10-02T15:01:28Z"
+  },
+  {
+   "id": 11234815136,
+   "name": "compatibility-linux-gcc-release",
+   "digest": "sha256:206f4639d8993a112e0616cb933e8ff75ee4aa6e2986e648b56baeb170381b5b",
+   "size_in_bytes": 3018032,
+   "expired": false,
+   "created_at": "2026-10-02T15:01:46Z"
+  },
+  {
+   "id": 11234530563,
+   "name": "compatibility-mac-arm-release",
+   "digest": "sha256:7fc8ab3ac1e612bd38e24c6e6787ba847bf6543e4edbcce033faf7ad0b0cf502",
+   "size_in_bytes": 3864023,
+   "expired": false,
+   "created_at": "2026-10-02T15:01:13Z"
+  },
+  {
+   "id": 11234360759,
+   "name": "compatibility-windows-msvc-release",
+   "digest": "sha256:e136d30a4f5c874237f97e9152ed0c8c26b7e04c290b1e8d78d7f219d286629b",
+   "size_in_bytes": 3019095,
+   "expired": false,
+   "created_at": "2026-10-02T15:01:37Z"
+  },
+  {
+   "id": 11234325960,
+   "name": "build-scope",
+   "digest": "sha256:6c21e99e8f7f42787638b32ec44fd74990aec99d4982082b12909f77fe1fd541",
+   "size_in_bytes": 19895,
+   "expired": false,
+   "created_at": "2026-10-02T15:02:17Z"
+  },
+  {
+   "id": 11234089308,
+   "name": "compatibility-mac-arm-debug",
+   "digest": "sha256:f0c0349cea210de538970f6aaeb1ab6920d2c6b787a0fac68d1704c429e43ccc",
+   "size_in_bytes": 3019716,
+   "expired": false,
+   "created_at": "2026-10-02T15:01:04Z"
+  }
+ ]
+}

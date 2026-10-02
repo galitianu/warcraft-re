@@ -94,7 +94,7 @@ class CaptureTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             driver = self.controller(tmp)
             driver.leased = True
-            driver.renewed = 0
+            driver.renewed = driver.started - 61
             with patch.object(driver, 'command', return_value='') as command:
                 driver.renew()
                 self.assertIn('acquire', command.call_args.args[0])

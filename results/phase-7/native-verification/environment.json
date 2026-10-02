@@ -1,0 +1,22 @@
+{
+  "host": {
+    "system": "Darwin",
+    "release": "27.0.0",
+    "architecture": "arm64",
+    "python": "3.14.7"
+  },
+  "requested_compiler": "/usr/bin/clang++",
+  "build_type": "Release",
+  "expected_architecture": "arm64",
+  "seed": 1,
+  "github": {
+    "GITHUB_RUN_ID": null,
+    "GITHUB_RUN_ATTEMPT": null,
+    "GITHUB_SHA": null,
+    "GITHUB_EVENT_NAME": null,
+    "RUNNER_OS": null,
+    "RUNNER_ARCH": null,
+    "ImageOS": null,
+    "ImageVersion": null
+  }
+}

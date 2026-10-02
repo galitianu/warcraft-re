@@ -7,7 +7,8 @@ One command completes generation, verified World Editor packaging, three fresh W
 runs, lossless candidate normalization and same-scenario C++ comparison, with zero
 intervention. Four new revisions / twelve runs reproduce the hand-authored controls
 exactly ([evidence](results/phase-7/summary.json), [procedure](docs/phase-7-capture.md)).
-PR/main delivery verification remains pending.
+[PR #25](https://github.com/galitianu/warcraft-re/pull/25) is open. Native archival CI
+passes; hosted PR/main delivery verification remains pending.
 
 MOV-0015 ([issue #22](https://github.com/galitianu/warcraft-re/issues/22), merged and verified on main)
 tested the 1 ms lag rule (T7) and a 30 ms update-event facing clock (FU). Both held in three of four new maps. The
@@ -418,11 +419,15 @@ includes operator coordination latency, not a controlled VM speed benchmark.
 lease contention and a 0.1 s game-output timeout; all stopped without a result or
 canonical promotion. Local tests cover further orchestration/integrity failures.
 Stopped-guest startup is tested locally; the working/shared VM was never reset.
+Native ARM64 Release archival CI passes ([result](results/phase-7/native-verification/result.json)):
+CTest 3/3, Python 83/83, v4 10/10, all five historical regression assessments, 45 Phase 1
+runs / 15 unchanged fixtures, the Phase 2 archive, generation/scenario identity and
+existing P1 experiment gates. Configure records clean commit `cac0a15`.
 
 ## Exact next action
 
-Finish Phase 7 delivery: run native archival CI, open the PR, retain and regrade
-its five-configuration workflow evidence, then verify the main push after merge.
+Finish Phase 7 delivery: retain and regrade PR #25's five-configuration workflow
+evidence, then verify the main push after merge.
 No main-push success is claimed before that workflow runs.
 
 After delivery, choose the next **P3** behavior from the Phase 8 movement backlog

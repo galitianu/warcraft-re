@@ -72,8 +72,8 @@ footman-v4 passes all ten movement cases, and every sample and clock prints
 the same six-decimal text as WC3. footman-v1–v3 and their documented failures are
 retained. The v0.0.1 comparison and v0.1 oracle infrastructure gates are met;
 no release tag has been created. Phase 7 now demonstrates unattended capture for
-four reviewed v1 scenarios ([procedure](docs/phase-7-capture.md)); its PR/main delivery
-verification is pending. P1 sampler-order work remains deferred; see PROGRESS for
+four reviewed v1 scenarios ([procedure](docs/phase-7-capture.md)); native archival CI
+passes, and [PR #25](https://github.com/galitianu/warcraft-re/pull/25) is awaiting hosted verification. P1 sampler-order work remains deferred; see PROGRESS for
 the next action.
 
 Build and run without a window (CMake, system clang and Python standard library):

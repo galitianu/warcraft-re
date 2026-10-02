@@ -165,3 +165,8 @@ Ordinary CI's required integrity test regenerates each case from frozen scenario
 bytes, renormalizes every raw run, checks exact candidate/control reproduction,
 checks fresh-process receipts and compares its own compiled C++ runner. It never
 runs original WC3. Deleting any retained bundle fails the test.
+
+Native ARM64 Release CI with `--archive` passes on clean commit `cac0a15`: CTest 3/3,
+Python 83/83, v4 10/10, all five historical baseline assessments, 45 Phase 1 runs and
+15 unchanged canonical fixtures, the Phase 2 archive and existing generation and
+P1 experiment gates. [Native evidence](../results/phase-7/native-verification/result.json).

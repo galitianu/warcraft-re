@@ -1,0 +1,11 @@
+Test project /Users/andrei/Desktop/war3-workspace/build-phase7
+    Start 1: world_invariants
+1/3 Test #1: world_invariants .................   Passed    0.22 sec
+    Start 2: scenario_v1
+2/3 Test #2: scenario_v1 ......................   Passed    0.20 sec
+    Start 3: footman_v4_wc3
+3/3 Test #3: footman_v4_wc3 ...................   Passed    1.60 sec
+
+100% tests passed out of 3
+
+Total Test time (real) =   2.03 sec

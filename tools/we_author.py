@@ -21,6 +21,13 @@ MENU = "C:\\Users\\rdpipe\\editor-menu.ps1"  # tools/editor-menu.ps1, pushed wit
 TRIGGER_ITEM, TEXT_AREA = (90, 106), (800, 500)
 
 
+def clipboard_text(library, case):
+    text = library + b"\n" + case
+    if b'\r' in text or not text.endswith(b'\n'):
+        raise ValueError('authored source must be LF-only with a final newline')
+    return text.decode('ascii').replace('\n', '\r\n')
+
+
 def rdpipe(*args, stdin=None):
     result = subprocess.run(["rdpipe", *args], input=stdin, capture_output=True, text=True, timeout=120)
     if result.returncode:
@@ -55,9 +62,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("label")
     parser.add_argument("--base", default="MOV-0002", help="World Editor map copied as the start")
+    parser.add_argument("--case", type=Path, help="generated case JASS; defaults to oracle/jass/<label>.j")
     args = parser.parse_args()
-    case = Path("oracle/jass") / f"{args.label}.j"
-    text = Path("oracle/jass/lib/oracle-v1.j").read_text() + "\n" + case.read_text()
+    if not all(re.fullmatch(r'[A-Z]{2,5}-\d{4}(?:-[a-z0-9]+)*', label) for label in (args.label, args.base)):
+        parser.error('invalid map label')
+    if (Path('oracle-maps') / f'{args.label}.w3m').exists():
+        parser.error('local map exists; never overwrite a retained revision')
+    case = args.case or Path("oracle/jass") / f"{args.label}.j"
+    text = clipboard_text(Path("oracle/jass/lib/oracle-v1.j").read_bytes(), case.read_bytes())
     new = f"{MAPS}\\{args.label}.w3m"
     pid = int(ps(f'if (Test-Path -LiteralPath "{new}") {{ throw "map exists" }}; '
                  f'Copy-Item -LiteralPath "{MAPS}\\{args.base}.w3m" -Destination "{new}"; '
@@ -77,7 +89,7 @@ def main():
         ui("bring_to_front", **target)
         ui("click", **target, x=TRIGGER_ITEM[0], y=TRIGGER_ITEM[1], delivery_mode="foreground")
         time.sleep(1)
-        rdpipe("ui", "clipboard_write", "-", stdin=json.dumps({"text": text.replace("\n", "\r\n")}))
+        rdpipe("ui", "clipboard_write", "-", stdin=json.dumps({"text": text}))
         ui("click", **target, x=TEXT_AREA[0], y=TEXT_AREA[1], delivery_mode="foreground")
         ui("hotkey", **target, keys=["ctrl", "a"], delivery_mode="foreground")
         ui("hotkey", **target, keys=["ctrl", "v"], delivery_mode="foreground")

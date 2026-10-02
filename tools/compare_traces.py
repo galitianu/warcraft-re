@@ -5,7 +5,7 @@ from pathlib import Path
 import sys
 
 from compare_movement import delta, format_first
-from trace_contract import BUILD, ROOT, TOLERANCES, load, sha256, validate, write_json
+from trace_contract import BUILD, ROOT, TOLERANCES, GENERATED_SHAPES, RETAINED_MOV, load, sha256, validate, write_json
 
 
 def samples(trace):
@@ -49,7 +49,17 @@ def compare(reference, actual):
     if reference['identity']['engine'] != 'wc3':
         raise ValueError('reference must be the verified WC3 build')
     if reference['scenario'] != actual['scenario']:
-        raise ValueError('incompatible experiment/map revision')
+        # A new packaging revision can reproduce the SAME scenario bytes. The
+        # relation is explicit and independently registered, never inferred from
+        # matching samples or relaxed identity/tolerance checks.
+        label = reference['scenario']['map_revision']
+        exp = reference['scenario']['experiment']
+        same_shape = {k: v for k, v in reference['scenario'].items() if k != 'map_revision'} == {
+            k: v for k, v in actual['scenario'].items() if k != 'map_revision'}
+        same_input = reference['provenance'].get('scenario') == actual['provenance'].get('scenario')
+        if not (label in GENERATED_SHAPES and actual['scenario']['map_revision'] == RETAINED_MOV[exp]
+                and actual['identity']['engine'] == 'cpp' and same_shape and same_input):
+            raise ValueError('incompatible experiment/map revision or scenario bytes')
     refs, acts = samples(reference), samples(actual)
     props = {prop: stats() for prop in TOLERANCES}
     for index, (ref, act) in enumerate(zip(refs, acts)):

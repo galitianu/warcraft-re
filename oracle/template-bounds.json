@@ -1,0 +1,49 @@
+{
+  "template": {
+    "path": "oracle-maps/MOV-0002.w3m",
+    "bytes": 19009,
+    "sha256": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd"
+  },
+  "files": {
+    "war3map.w3i": "5044cae3faf767553f501d626dd24039908f85802e56f34e60ed223a3069ddc4",
+    "war3map.w3e": "1dfd520368b1d79dc625f4e5b80127443d1b46254a7e3ca58854b641bca9c7f0"
+  },
+  "w3i_format": 18,
+  "camera_bounds": [
+    -2816.0,
+    -3328.0,
+    2816.0,
+    2816.0,
+    -2816.0,
+    2816.0,
+    2816.0,
+    -3328.0
+  ],
+  "complements": {
+    "left": 6,
+    "right": 6,
+    "bottom": 4,
+    "top": 8
+  },
+  "playable_tiles": [
+    52,
+    52
+  ],
+  "terrain_vertices": [
+    65,
+    65
+  ],
+  "terrain_origin": [
+    -4096.0,
+    -4096.0
+  ],
+  "tile_world_units": 128,
+  "playable_bounds": {
+    "min_x": -3328.0,
+    "max_x": 3328.0,
+    "min_y": -3584.0,
+    "max_y": 3072.0
+  },
+  "method": "terrain origin + w3i edge complements * 128; far edge from terrain vertices - 1",
+  "clamping": "UNOBSERVED"
+}

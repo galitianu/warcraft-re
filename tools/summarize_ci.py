@@ -6,10 +6,30 @@ from pathlib import Path
 
 from regression import CASES, validate_report
 from run_ci import BASELINES
+from generate_oracle import GOLDENS
+from audit_oracle import audit
 from trace_contract import digest, load, payload, sha256, validate, write_json
 
 CONFIGURATIONS = ('mac-arm-release', 'mac-arm-debug', 'linux-gcc-release',
                   'linux-clang-debug', 'windows-msvc-release')
+
+
+def verify_generation(root, result):
+    generation = result.get('oracle_generation')
+    if result.get('oracle_generation_required') and not generation:
+        raise ValueError('required oracle generation evidence missing')
+    if generation:
+        if generation['status'] != 'PASS' or generation['manifest'] != load(root / 'generated/manifest.json'):
+            raise ValueError('oracle generation result/manifest differs')
+        if generation['manifest'] != load(GOLDENS / 'manifest.json'):
+            raise ValueError('oracle generation differs from committed goldens/source identities')
+        for entry in generation['manifest']['inputs']:
+            if sha256(root / 'generated' / entry['case']['file']) != entry['case']['sha256']:
+                raise ValueError('generated JASS digest differs from the downloaded bytes')
+        if load(root / 'reports/generator-audit.json')['status'] != 'PASS':
+            raise ValueError('independent JASS call audit did not pass')
+        audit(root / 'generated')
+    return generation
 
 
 def summarize(artifacts, out):
@@ -23,6 +43,7 @@ def summarize(artifacts, out):
             result = load(root / 'reports/result.json')
             environment = load(root / 'reports/environment.json')
             identity = load(root / 'reports/v4/build-identity.json')
+            generation = verify_generation(root, result)
             suites = {}
             for model in BASELINES:
                 suite = validate_report(load(root / 'reports' / model / 'comparison.json'))
@@ -49,8 +70,11 @@ def summarize(artifacts, out):
                     payload_sha256={k: v[0] for k, v in repeated['observation_payload_sha256'].items()},
                     full_trace_sha256={k: v[0] for k, v in repeated['full_file_sha256'].items() if k.endswith('.json')},
                     scenario_sha256={row['experiment']: row['sha256'] for row in described})
+                if generation and suites[model]['scenario_sha256'] != {
+                        e['experiment']: e['scenario']['sha256'] for e in generation['manifest']['inputs']}:
+                    raise ValueError('oracle generator and C++ suite consumed different scenarios')
             report['configurations'][config] = dict(ci_status=result['status'], host=result['host'],
-                     environment=environment, primary_identity=identity, models=suites)
+                     environment=environment, primary_identity=identity, models=suites, oracle_generation=generation)
             if result['status'] != 'PASS':
                 report['errors'][config] = result['errors'] or 'configuration did not pass'
         except (OSError, ValueError, KeyError, TypeError, IndexError) as error:
@@ -68,11 +92,18 @@ def summarize(artifacts, out):
                     observation_byte_equality=('UNVERIFIED' if len(configs) < 2 else
                                               'IDENTICAL' if all(v == 1 for v in variants.values()) else 'DIFFERENT'),
                     compatibility_passes={k: v['compatibility_passes'] for k, v in configs.items()})
+    generators = {k: v['oracle_generation'] for k, v in report['configurations'].items() if v['oracle_generation']}
+    variants = {digest(g['manifest']) for g in generators.values()}
+    if generators and (len(generators) != len(CONFIGURATIONS) or len(variants) != 1):
+        report['errors']['oracle-generation'] = 'missing configuration evidence or different generated JASS/inputs'
+    report['oracle_generation'] = dict(status='IDENTICAL' if generators and len(variants) == 1 else 'UNOBSERVED',
+                                      configurations_compared=list(generators))
     report['status'] = 'PASS' if not report['errors'] and len(report['configurations']) == len(CONFIGURATIONS) else 'FAIL'
     write_json(out / 'scope.json', report)
     lines = ['# Measured build scope', '', f"CI scope gate: **{report['status']}**.", '', report['scope'], '',
              'Payload hashes exclude build/transport identity; full trace hashes include it.',
              'Cross-configuration byte differences are reported, while each configuration is graded against the same WC3 fixtures.', '',
+             f"Oracle generation: **{report['oracle_generation']['status']}** across {len(generators)} configurations.", '',
              '| Configuration | Host / target | Compiler | Build | CI | v4 compatibility |', '|---|---|---|---|---|---|']
     for config, info in report['configurations'].items():
         identity = info['primary_identity']

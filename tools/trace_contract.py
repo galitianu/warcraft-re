@@ -18,6 +18,14 @@ HASH = re.compile(r'[a-f0-9]{64}\Z')
 LABELS = [f'MOV-{n:04d}' if n != 2 else 'MOV-0002-r2' for n in range(1, 11)] + [
     f'JASS-0001-p{p:03d}' for p in (1, 10, 20, 25, 50)]
 RETAINED_MOV = {label[:8]: label for label in LABELS if label.startswith('MOV')}
+# Independently reviewed Phase 6 reproductions. This is not generated from YAML;
+# the original 15-label normalization suite and all tolerances stay unchanged.
+GENERATED_SHAPES = {
+    'MOV-0002-g1': ('MOV-0002', 250, '0.020000', 2),
+    'MOV-0004-g1': ('MOV-0004', 600, '0.020000', 1),
+    'MOV-0006-g1': ('MOV-0006', 250, '0.020000', 1),
+    'MOV-0010-g1': ('MOV-0010', 250, '0.020000', 1),
+}
 # wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it
 # with cwd=ROOT and an absolute --out so recorded scenario paths stay repo-relative.
 SCENARIOS = ['--scenario', 'scenarios']
@@ -97,6 +105,8 @@ def finite_json(value):
 
 
 def shape(label):
+    if label in GENERATED_SHAPES:
+        return GENERATED_SHAPES[label]
     require(label in LABELS, f'unsupported scenario revision {label}')
     if label.startswith('MOV'):
         return ('MOV-0002' if label == 'MOV-0002-r2' else label,
@@ -238,14 +248,24 @@ def validate(trace):
         for source in [*ident['source'].values(), ident['environment']]:
             require(isinstance(source, dict) and isinstance(source.get('path'), str) and HASH.fullmatch(source.get('sha256', '')), 'missing source identity')
         label = scenario['map_revision']
+        case_path = f'oracle/generated/maps/{label}.j' if label in GENERATED_SHAPES else f'oracle/jass/{label}.j'
         require(ident['source']['map']['path'] == f'oracle-maps/{label}.w3m'
                 and ident['source']['library']['path'] == 'oracle/jass/lib/oracle-v1.j'
-                and ident['source']['case']['path'] == f'oracle/jass/{label}.j'
+                and ident['source']['case']['path'] == case_path
                 and ident['environment']['path'] == f'oracle/environment/{BUILD}.json', 'source identity does not match scenario/build')
         manifest = load(ROOT / f'oracle/captures/{BUILD}/{label}/manifest.json')
         for key in ('map', 'library', 'case'):
             require(ident['source'][key] == manifest[key], 'source identity differs from retained manifest')
         require(ident['environment'] == manifest['environment'], 'environment identity differs from retained manifest')
+        if label in GENERATED_SHAPES:
+            used = manifest['scenario']
+            keys(used, ('schema', 'version', 'path', 'sha256'))
+            require(used['schema'] == 'wc3-scenario' and used['version'] == 1
+                    and used['path'] == f'scenarios/{exp}.yaml' and HASH.fullmatch(used['sha256']), 'invalid generated scenario identity')
+            require(trace['provenance'].get('scenario') == used, 'generated trace/manifest scenario identity differs')
+            setups = [r['fields'] for r in trace['records'] if r['kind'] == 'SETUP']
+            require(len(setups) == 1 and setups[0][:2] == [f"scenario_sha256={used['sha256']}", 'scenario_version=1'],
+                    'generated capture SETUP does not bind the exact scenario')
     else:
         require(exp.startswith('MOV-'), 'C++ timing variants are unobserved/unsupported')
         require(isinstance(ident['build'], dict), 'missing C++ build identity')

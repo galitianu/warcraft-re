@@ -218,7 +218,7 @@ def validate_v3_parameters(parameters):
 # footman-v4's reported callback time: TimerGetElapsed of the library's 1000 s timer.
 LIBRARY_CLOCK = 'sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback'
 # Scenario v2 runs (docs/scenario-v2.md) also declare their observation rule.
-LIBRARY_CLOCK_V2 = ('sub(1000, sub(add(start, 1000), scheduled)); start = scheduled(0) = add(0.5, observe.start); '
+LIBRARY_CLOCK_V2 = ('sub(1000, floor32(1000 + floor(start, 2^-17) - scheduled)); start = scheduled(0) = add(0.5, observe.start); '
                     'scheduled += period per callback; a callback observes every frame with clock <= scheduled')
 
 

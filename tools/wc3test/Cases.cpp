@@ -32,12 +32,32 @@ bool execute(wc3::World& world, const scenario::Scenario& s, const scenario::Act
     }
     return world.issue_point_order(action.unit, order, target);
 }
+// A positive float32 time as an exact count of 2^-24 s (times in [2^-24, 2^39) s).
+std::int64_t time_units(wc3::sf::F time) {
+    const int shift = static_cast<int>((time >> 23) & 255) - 126;
+    const std::int64_t mantissa = (time & 0x7fffff) | 0x800000;
+    if (shift < 0 && (mantissa & ((std::int64_t{1} << -shift) - 1)))
+        throw std::logic_error("time below 2^-24 s");
+    return shift >= 0 ? mantissa << shift : mantissa >> -shift;
+}
+// The largest float32 not above units * 2^-24 s (units > 0, at least 2^23).
+wc3::sf::F floor_time(std::int64_t units) {
+    int top = 63;
+    while (!(units >> top)) --top;
+    if (top < 23) throw std::logic_error("time below 0.5 s");
+    const auto mantissa = static_cast<wc3::sf::F>(units >> (top - 23));
+    return (static_cast<wc3::sf::F>(top + 103) << 23) | (mantissa & 0x7fffff);
+}
 // Scenario v2 (docs/scenario-v2.md, docs/mov-0013.md), footman-v4 only. Units are
 // created at the setup, frame 0 of the movement clock (0.5 s). The sampler is
 // scheduled at s(0) = add(0.5, start) and s(k) = add(s(k-1), period), and a callback
 // observes every frame whose clock c(n) <= s(k): the rule (H0) that every retained
-// 1/10/20/25/50 ms schedule follows apart from its listed exceptions. MOV-0013's
-// observed exceptions are reported by the comparison, not modelled here.
+// 1/10/20/25/50 ms schedule follows apart from its listed exceptions. MOV-0013's and
+// MOV-0014's observed frame exceptions are reported by the comparison, not modelled.
+// The library clock is MOV-0014's pre-registered Q17 (docs/mov-0014.md): the 1000 s
+// timer reads as if started at s(0) rounded down to 2^-17 s, and its exact remaining
+// time is rounded down to float32. At the 0.5 s bootstrap this equals every retained
+// clock reading; with a delayed start it predicted every MOV-0013/0014 TICK.
 Trace run_scheduled(const scenario::Scenario& s, wc3::ModelVersion version, std::uint32_t seed,
                     bool before_due_update) {
     using namespace wc3::sf;
@@ -69,7 +89,9 @@ Trace run_scheduled(const scenario::Scenario& s, wc3::ModelVersion version, std:
     // JASS reals are the scenario's decimal tokens converted to float32.
     const F start = s.start_us ? add(setup, bits(scenario::decimal_to_float(s.start_text))) : setup;
     const F period = bits(scenario::decimal_to_float(s.period_text));
-    const F timeout = bits(1000.0f), expiry = add(start, timeout);
+    const F timeout = bits(1000.0f);
+    const std::int64_t timer_start = time_units(start) & ~std::int64_t{127};  // 2^-17 s grid
+    const std::int64_t remaining_base = time_units(timeout) + timer_start;
     const F aux = s.state_clock ? bits(static_cast<float>(*s.state_clock)) : 0;
     F scheduled = start;
     std::size_t next = 0;
@@ -80,7 +102,7 @@ Trace run_scheduled(const scenario::Scenario& s, wc3::ModelVersion version, std:
             for (std::uint32_t i = 0; i < frame_steps; ++i) world.step();
         const std::uint64_t state_us = world.steps() * step_us;
         trace.tick_sequences.push_back(sequence++);
-        trace.reported_time.push_back(value(sub(timeout, sub(expiry, scheduled))));
+        trace.reported_time.push_back(value(sub(timeout, floor_time(remaining_base - time_units(scheduled)))));
         const auto requested = static_cast<std::uint64_t>(callback) * s.period_us;
         for (std::size_t id = 0; id < world.unit_count(); ++id) {
             const auto& unit = world.unit(id);

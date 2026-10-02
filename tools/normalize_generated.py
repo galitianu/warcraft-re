@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Validate three retained generated-map captures and normalize them losslessly.
 
-Also report exact observation reproduction against the independently authored map.
+Also report exact observation reproduction against the independently authored map
+(Phase 6 packaging revisions; MOV-0013-a against MOV-0012-a). Other registered
+experiments (EXPERIMENT_SHAPES) have no control and are new observations.
 BEGIN/END revision, declared SETUP and Preload transport are named metadata only.
 This does not rewrite controls, captures, fixtures, tolerances or scenario bytes.
 """
@@ -11,8 +13,8 @@ from pathlib import Path
 
 from normalize_traces import normalize_capture
 from oracle_parse import parse
-from trace_contract import (BUILD, GENERATED_SHAPES, RETAINED_MOV, ROOT, digest,
-                            load, payload, sha256, validate, write_json)
+from trace_contract import (BUILD, EXPERIMENT_SHAPES, GENERATED_SHAPES, RETAINED_MOV, ROOT, digest,
+                            load, payload, sha256, shape, validate, write_json)
 
 OBSERVED = {'WATCH', 'RUN', 'TICK', 'SAMPLE', 'ACTION', 'EVENT'}
 
@@ -24,12 +26,14 @@ def observations(capture):
 
 
 def normalize(label, out):
-    if label not in GENERATED_SHAPES:
+    if label not in GENERATED_SHAPES and label not in EXPERIMENT_SHAPES:
         raise ValueError('revision needs an independent, manually reviewed shape before normalization')
+    experiment = EXPERIMENT_SHAPES.get(label)
     base = ROOT / 'oracle/captures' / BUILD / label
     manifest_path = base / 'manifest.json'
     manifest = load(manifest_path)
-    exp, callbacks, period, units = GENERATED_SHAPES[label]
+    exp, callbacks, period, units = shape(label)
+    version, scenario_path = (2, experiment['scenario']) if experiment else (1, f'scenarios/{exp}.yaml')
     if (manifest['experiment'], manifest['map_label'], manifest['reference_build']) != (exp, label, BUILD):
         raise ValueError('wrong generated capture manifest identity')
     for key in ('map', 'library', 'case', 'environment', 'scenario', 'generation', 'verification'):
@@ -37,13 +41,13 @@ def normalize(label, out):
         if sha256(ROOT / source['path']) != source['sha256']:
             raise ValueError(f'{label}: {key} source hash differs')
     scenario = manifest['scenario']
-    if scenario['path'] != f'scenarios/{exp}.yaml' or scenario['schema'] != 'wc3-scenario' or scenario['version'] != 1:
+    if scenario['path'] != scenario_path or scenario['schema'] != 'wc3-scenario' or scenario['version'] != version:
         raise ValueError('wrong scenario identity')
     generation = load(ROOT / manifest['generation']['path'])
     generated_input = generation['inputs']
     if len(generated_input) != 1 or generated_input[0] != dict(
             experiment=exp, map_revision=label,
-            scenario=dict(path=scenario['path'], sha256=scenario['sha256'], version=1),
+            scenario=dict(path=scenario['path'], sha256=scenario['sha256'], version=version),
             case=dict(file=f'{label}.j', sha256=manifest['case']['sha256'])):
         raise ValueError('generation manifest differs from case/scenario identity')
     checked = manifest['check_map']
@@ -98,9 +102,18 @@ def normalize(label, out):
         trace['provenance'] = provenance
         validate(trace)
     write_json(out / f'{label}.json', traces[0], compact_records=True)
-    control_label = RETAINED_MOV[exp]
+    control_label = experiment['control'] if experiment else RETAINED_MOV[exp]
+    if control_label is None:
+        return dict(status='PASS', map_revision=label, control_revision=None, scenario=scenario,
+                    completion=traces[0]['completion'], repeatability=repeatability,
+                    observations=dict(records=len(observations(captures[0])), control_sha256=None,
+                                      generated_sha256=digest(observations(captures[0])), first_divergence=None,
+                                      scope='new observation; no independent control exists'),
+                    generated_preload=captures[0]['generated_preload_entries'],
+                    generated_footers=[c['footer'] for c in captures],
+                    fixture_sha256=sha256(out / f'{label}.json'))
     control_path = ROOT / 'oracle/captures' / BUILD / control_label / 'run-01.txt'
-    control = parse(control_path, experiment=exp, map_label=control_label)
+    control = parse(control_path, map_label=control_label)
     before, after = observations(control), observations(captures[0])
     first = next((dict(index=i, control=a, generated=b) for i, (a, b) in enumerate(zip(before, after)) if a != b), None)
     if len(before) != len(after) and first is None:
@@ -119,12 +132,12 @@ def normalize(label, out):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--map', choices=GENERATED_SHAPES, action='append')
+    parser.add_argument('--map', choices=[*GENERATED_SHAPES, *EXPERIMENT_SHAPES], action='append')
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--report', type=Path, required=True)
     args = parser.parse_args()
     try:
-        cases = [normalize(label, args.out) for label in args.map or GENERATED_SHAPES]
+        cases = [normalize(label, args.out) for label in args.map or [*GENERATED_SHAPES, *EXPERIMENT_SHAPES]]
         status = 'PASS' if all(c['status'] == 'PASS' for c in cases) else 'FAIL'
         write_json(args.report, dict(status=status, reference_build=BUILD, cases=cases))
         print(f'Generated capture reproduction {status}: {len(cases)} maps / {len(cases)*3} runs')

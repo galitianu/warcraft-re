@@ -184,7 +184,12 @@ def parse(path, build=BUILD, experiment=None, map_label=None):
     expected = int(run["callbacks"])
     if end.get("callbacks") != str(expected) or len(ticks) != expected + 1:
         raise Invalid(f"incomplete callbacks: END {end.get('callbacks')}, ticks {len(ticks) - 1}, requested {expected}")
-    if Decimal(ticks[0]["t"]) != 0:
+    # A v2 generated map may declare a delayed start (docs/scenario-v2.md). Its
+    # library clock then starts at a time float32 cannot hold exactly, and callback
+    # 0 reads a small nonzero elapsed time; it must still precede callback 1.
+    declared = pairs(setup[0].split("|"), "SETUP") if len(setup) == 1 and setup[0].startswith("scenario_sha256=") else {}
+    delayed = declared.get("scenario_version") == "2" and declared.get("start", "0") != "0"
+    if Decimal(ticks[0]["t"]) != 0 and not (delayed and Decimal(ticks[0]["t"]) < Decimal(run["requested_period"])):
         raise Invalid("callback 0 is not at clock zero")
 
     times = [Decimal(tick["t"]) for tick in ticks]

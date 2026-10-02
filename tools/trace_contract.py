@@ -26,6 +26,16 @@ GENERATED_SHAPES = {
     'MOV-0006-g1': ('MOV-0006', 250, '0.020000', 1),
     'MOV-0010-g1': ('MOV-0010', 250, '0.020000', 1),
 }
+# Generated experiments of their own (issue #17, docs/mov-0013.md), written here by
+# hand from the experiment definition, never from a scenario. Each binds one v2
+# scenario file; `start_us` is its declared sampler start, `control` the retained
+# capture whose observations the revision must reproduce exactly (or None).
+EXPERIMENT_SHAPES = {
+    f'MOV-0013-{v}': dict(experiment='MOV-0013', callbacks=1000, period='0.001000', units=1,
+                          scenario=f'scenarios/MOV-0013/MOV-0013-{v}.yaml', start_us=start,
+                          control='MOV-0012-a' if v == 'a' else None, state='STATE')
+    for v, start in (('a', 0), ('b', 2500), ('c', 20000), ('d', 0))}
+STATE_KEYS = {'c10_9', 'x_9', 'y_9', 'facing_9'}
 # wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it
 # with cwd=ROOT and an absolute --out so recorded scenario paths stay repo-relative.
 SCENARIOS = ['--scenario', 'scenarios']
@@ -107,6 +117,9 @@ def finite_json(value):
 def shape(label):
     if label in GENERATED_SHAPES:
         return GENERATED_SHAPES[label]
+    if label in EXPERIMENT_SHAPES:
+        e = EXPERIMENT_SHAPES[label]
+        return e['experiment'], e['callbacks'], e['period'], e['units']
     require(label in LABELS, f'unsupported scenario revision {label}')
     if label.startswith('MOV'):
         return ('MOV-0002' if label == 'MOV-0002-r2' else label,
@@ -201,9 +214,16 @@ def validate_v3_parameters(parameters):
 
 # footman-v4's reported callback time: TimerGetElapsed of the library's 1000 s timer.
 LIBRARY_CLOCK = 'sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback'
+# Scenario v2 runs (docs/scenario-v2.md) also declare their observation rule.
+LIBRARY_CLOCK_V2 = ('sub(1000, sub(add(start, 1000), scheduled)); start = scheduled(0) = add(0.5, observe.start); '
+                    'scheduled += period per callback; a callback observes every frame with clock <= scheduled')
 
 
-def validate_v4_parameters(parameters):
+def retail_numeric_format(label):
+    return 'R2SW_6; STATE R2SW_9' if label in EXPERIMENT_SHAPES else 'R2SW_6; CLOCKS R2SW_9'
+
+
+def validate_v4_parameters(parameters, library_clock=LIBRARY_CLOCK):
     """footman-v4: retail soft-float arithmetic on the footman-v3 cadence."""
     keys(parameters, ('update_period_steps', 'update_phase_steps', 'frame_steps', 'stop_radius',
                       'default_speed', 'speed_clamp', 'turn_rate_radians', 'propulsion_window_degrees',
@@ -221,7 +241,7 @@ def validate_v4_parameters(parameters):
             and all(type(v) in (int, float) and v >= 0 for v in parameters['speed_clamp']), 'invalid parameter array')
     require(parameters['turn_rate_radians'] == 'atof(0.6)'
             and parameters['facing'] == 'atof(0.07, 0.2, 0.2, 0.25, 0.001)'
-            and parameters['library_clock'] == LIBRARY_CLOCK
+            and parameters['library_clock'] == library_clock
             and parameters['arithmetic'] == 'wc3::sf retail soft-float', 'unsupported v4 rule')
 
 
@@ -234,6 +254,7 @@ def validate(trace):
     exp, callbacks, period, units = shape(scenario['map_revision'])
     integer(scenario['callbacks'], 0, 10000)
     require(scenario == dict(experiment=exp, map_revision=scenario['map_revision'], callbacks=callbacks, requested_period=period), 'scenario identity/shape mismatch')
+    experiment = EXPERIMENT_SHAPES.get(scenario['map_revision'])
     ident = trace['identity']
     keys(ident, ('engine', 'build', 'source', 'environment', 'seed', 'model'))
     require(ident['engine'] in ('wc3', 'cpp'), 'unsupported engine')
@@ -248,7 +269,8 @@ def validate(trace):
         for source in [*ident['source'].values(), ident['environment']]:
             require(isinstance(source, dict) and isinstance(source.get('path'), str) and HASH.fullmatch(source.get('sha256', '')), 'missing source identity')
         label = scenario['map_revision']
-        case_path = f'oracle/generated/maps/{label}.j' if label in GENERATED_SHAPES else f'oracle/jass/{label}.j'
+        case_path = (f'oracle/generated/maps/{label}.j' if label in GENERATED_SHAPES or experiment
+                     else f'oracle/jass/{label}.j')
         require(ident['source']['map']['path'] == f'oracle-maps/{label}.w3m'
                 and ident['source']['library']['path'] == 'oracle/jass/lib/oracle-v1.j'
                 and ident['source']['case']['path'] == case_path
@@ -257,14 +279,15 @@ def validate(trace):
         for key in ('map', 'library', 'case'):
             require(ident['source'][key] == manifest[key], 'source identity differs from retained manifest')
         require(ident['environment'] == manifest['environment'], 'environment identity differs from retained manifest')
-        if label in GENERATED_SHAPES:
+        if label in GENERATED_SHAPES or experiment:
             used = manifest['scenario']
+            version, path = (2, experiment['scenario']) if experiment else (1, f'scenarios/{exp}.yaml')
             keys(used, ('schema', 'version', 'path', 'sha256'))
-            require(used['schema'] == 'wc3-scenario' and used['version'] == 1
-                    and used['path'] == f'scenarios/{exp}.yaml' and HASH.fullmatch(used['sha256']), 'invalid generated scenario identity')
+            require(used['schema'] == 'wc3-scenario' and used['version'] == version
+                    and used['path'] == path and HASH.fullmatch(used['sha256']), 'invalid generated scenario identity')
             require(trace['provenance'].get('scenario') == used, 'generated trace/manifest scenario identity differs')
             setups = [r['fields'] for r in trace['records'] if r['kind'] == 'SETUP']
-            require(len(setups) == 1 and setups[0][:2] == [f"scenario_sha256={used['sha256']}", 'scenario_version=1'],
+            require(len(setups) == 1 and setups[0][:2] == [f"scenario_sha256={used['sha256']}", f'scenario_version={version}'],
                     'generated capture SETUP does not bind the exact scenario')
     else:
         require(exp.startswith('MOV-'), 'C++ timing variants are unobserved/unsupported')
@@ -281,10 +304,13 @@ def validate(trace):
         require(build['git_commit'] is None or (isinstance(build['git_commit'], str) and re.fullmatch(r'[a-f0-9]{40}', build['git_commit'])), 'invalid revision')
         require(build['git_dirty_at_configure'] is None or type(build['git_dirty_at_configure']) is bool, 'invalid git dirty state')
         parameters = build['parameters']
+        # Scenario v2 timing (docs/scenario-v2.md) exists only for registered experiments.
+        scheduled = build['observation_phase'] == 'scheduled-sampler-time'
+        require(scheduled == bool(experiment), 'v2 timing only for a registered v2 experiment')
         if build['model'] == 'footman-v3':
             validate_v3_parameters(parameters)
         elif build['model'] == 'footman-v4':
-            validate_v4_parameters(parameters)
+            validate_v4_parameters(parameters, LIBRARY_CLOCK_V2 if scheduled else LIBRARY_CLOCK)
         else:
             validate_cadence_parameters(parameters)
         # The run's case table: the ten hard-coded cases, or the scenarios named
@@ -313,8 +339,10 @@ def validate(trace):
             keys(trace['provenance'], ('scenario',))
             used = trace['provenance']['scenario']
             keys(used, ('schema', 'version', 'path', 'sha256'))
-            require(used['schema'] == 'wc3-scenario' and type(used['version']) is int and used['version'] == 1,
-                    'unsupported scenario schema/version')
+            require(used['schema'] == 'wc3-scenario' and type(used['version']) is int
+                    and used['version'] == (2 if scheduled else 1), 'unsupported scenario schema/version')
+            if scheduled:
+                require(used['path'] == experiment['scenario'], 'v2 trace from an unregistered scenario path')
             require(dict(experiment=exp, map_revision=scenario['map_revision'], path=used['path'], sha256=used['sha256'])
                     in build['scenarios'], 'scenario provenance differs from the run identity')
         else:
@@ -323,7 +351,13 @@ def validate(trace):
         integer(ident['seed']['value'])
         require(build['seed'] == ident['seed']['value'], 'build seed mismatch')
         integer(build['step_us'], 1, 20000)
-        require(build['step_us'] == 1000 and build['sample_period_us'] == 20000 and build['time_unit'] == 'seconds', 'unsupported C++ timing')
+        if scheduled:
+            require(build['model'] == 'footman-v4' and len(build['cases']) == 1, 'v2 timing needs footman-v4, one case per run')
+            require(build['step_us'] == 1000 and build['time_unit'] == 'seconds'
+                    and build['sample_period_us'] == round(Decimal(period) * 1000000)
+                    and build.get('sampler_start_us') == experiment['start_us'], 'unsupported C++ v2 timing')
+        else:
+            require(build['step_us'] == 1000 and build['sample_period_us'] == 20000 and build['time_unit'] == 'seconds', 'unsupported C++ timing')
     watched = trace['units']
     require(isinstance(watched, list) and len(watched) == units, 'wrong unit count')
     for n, unit in enumerate(watched):
@@ -334,11 +368,12 @@ def validate(trace):
     keys(time, ('unit', 'position_unit', 'facing_unit', 'numeric_format', 'clock_duration', 'step_us', 'observation_phase', 'state_lag_us'))
     require((time['unit'], time['position_unit'], time['facing_unit']) == ('seconds', 'world-units', 'degrees'), 'unsupported units')
     if retail:
-        require(time == dict(unit='seconds', position_unit='world-units', facing_unit='degrees', numeric_format='R2SW_6; CLOCKS R2SW_9', clock_duration='1000.000000', step_us=None, observation_phase='unknown-relative-to-due-update', state_lag_us=None), 'invalid WC3 time semantics')
+        require(time == dict(unit='seconds', position_unit='world-units', facing_unit='degrees', numeric_format=retail_numeric_format(scenario['map_revision']), clock_duration='1000.000000', step_us=None, observation_phase='unknown-relative-to-due-update', state_lag_us=None), 'invalid WC3 time semantics')
     else:
         require(time['numeric_format'] == 'float-max_digits10' and time['clock_duration'] is None, 'invalid C++ precision/clock')
-        require(time['observation_phase'] in ('after-due-update', 'before-due-update'), 'unsupported observation phase')
-        require(time['step_us'] == build['step_us'] and time['state_lag_us'] == (1000 if time['observation_phase'] == 'before-due-update' else 0), 'invalid state lag')
+        require(time['observation_phase'] in (('scheduled-sampler-time',) if scheduled else ('after-due-update', 'before-due-update')), 'unsupported observation phase')
+        lag = None if scheduled else 1000 if time['observation_phase'] == 'before-due-update' else 0
+        require(time['step_us'] == build['step_us'] and time['state_lag_us'] == lag, 'invalid state lag')
         require(build['observation_phase'] == time['observation_phase'] and build['state_lag_us'] == time['state_lag_us'], 'build phase mismatch')
     records = trace['records']
     require(isinstance(records, list) and 1 <= len(records) <= 50000, 'invalid record count')
@@ -366,12 +401,20 @@ def validate(trace):
                 else:
                     require(rec['time']['reported'] is None, 'C++ cannot claim observed WC3 time')
                     t = number(rec['time']['requested'])
-                lag = time['state_lag_us'] if cb > 0 and kind in ('TICK', 'SAMPLE') else 0
                 integer(rec['time']['state_us'], 0, 20000000)
-                require(rec['time']['state_us'] == cb * 20000 - lag, 'invalid C++ state timing')
+                if scheduled:
+                    # The latest 5 ms frame at or before the float32 scheduled time.
+                    behind = experiment['start_us'] + cb * build['sample_period_us'] - rec['time']['state_us']
+                    require(rec['time']['state_us'] % 5000 == 0 and 0 <= behind <= 5000, 'invalid C++ state timing')
+                else:
+                    lag = time['state_lag_us'] if cb > 0 and kind in ('TICK', 'SAMPLE') else 0
+                    require(rec['time']['state_us'] == cb * 20000 - lag, 'invalid C++ state timing')
             if kind == 'TICK':
                 require(running and cb == current + 1 and (current < 0 or sample_index == units), 'incomplete/reordered callback')
-                require(t >= previous_time and (cb > 0 or t == 0), 'decreasing/nonzero initial time')
+                # A delayed v2 start cannot hold its float32 start exactly, so callback 0's
+                # library clock may read just above zero (docs/mov-0013.md).
+                first_ok = t == 0 or (experiment and experiment['start_us'] and 0 <= t < number(period))
+                require(t >= previous_time and (cb > 0 or first_ok), 'decreasing/nonzero initial time')
                 current, sample_index, previous_time, tick_time = cb, 0, t, rec['time']
             else:
                 require(running and cb == current, 'record outside callback')
@@ -404,7 +447,12 @@ def validate(trace):
                     require(isinstance(rec['name'], str) and rec['name'] and isinstance(rec['values'], dict), 'invalid event')
                     for value in rec['values'].values():
                         number(value)
-                    if rec['name'] == 'CLOCKS':
+                    if experiment:
+                        require(rec['name'] == experiment['state'] and set(rec['values']) == STATE_KEYS, 'unregistered event')
+                        if retail:
+                            for value in rec['values'].values():
+                                require(re.fullmatch(r'-?\d+\.\d{9}', value), 'lost STATE decimal precision')
+                    elif rec['name'] == 'CLOCKS':
                         require(set(rec['values']) == {'c1000_9', 'c100', 'c100_9', 'c10', 'c10_9', 'c10_remaining_9', 'x_9', 'y_9', 'facing_9'}, 'incomplete CLOCKS event')
                         for key, value in rec['values'].items():
                             require(re.fullmatch(r'-?\d+\.\d{' + ('9' if key.endswith('_9') else '6') + '}', value), 'lost CLOCKS decimal precision')

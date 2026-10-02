@@ -1,0 +1,61 @@
+{
+  "real_vm_failures": [
+    {
+      "name": "guest-failure",
+      "status": "FAILED",
+      "failed_stage": "guest-preflight",
+      "elapsed_seconds": 3.173,
+      "error": "guest unusable within 3.0s: rdpipe reached a different guest machine; VM not reset",
+      "owned_processes": [],
+      "passing_report_emitted": false,
+      "evidence": "failures/guest-failure/diagnostics/journal.json"
+    },
+    {
+      "name": "lease-contention",
+      "status": "FAILED",
+      "failed_stage": "guest-preflight",
+      "elapsed_seconds": 0.994,
+      "error": "['rdpipe', '--target', 'vm']: exit 15: rdpipe: the desktop lease is held by oracle-ea7bbc8c570a495f87447f8de5a2696c for 282 s more",
+      "owned_processes": [],
+      "passing_report_emitted": false,
+      "evidence": "failures/lease-contention/diagnostics/journal.json"
+    },
+    {
+      "name": "timeout-failure",
+      "status": "FAILED",
+      "failed_stage": "capture-01",
+      "elapsed_seconds": 72.464,
+      "error": "capture-01: command timed out after 0.10s: ['rdpipe', '--target', 'vm']",
+      "owned_processes": [
+        {
+          "role": "editor",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-e032bffef6484b51bede2052c3e51ab8\\editor.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\World Editor.exe",
+          "pid": 7060,
+          "start": "639265613321253854"
+        },
+        {
+          "role": "game-1",
+          "receipt": "C:\\Users\\rdpipe\\oracle-oracle-e032bffef6484b51bede2052c3e51ab8\\game-1.json",
+          "status": "stopped",
+          "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+          "pid": 5084,
+          "start": "639265613731953205"
+        }
+      ],
+      "passing_report_emitted": false,
+      "evidence": "failures/timeout-failure/diagnostics/journal.json"
+    }
+  ],
+  "local_tests": [
+    "unresponsive already-started guest; stopped VM startup",
+    "installation machine/architecture/version/hash mismatch",
+    "lease renewal, contention, cleanup failure",
+    "saved-map verification mismatch",
+    "retrieved bytes replaced/tampered",
+    "stale/absent/incomplete output",
+    "launch-response loss and PID reuse",
+    "changed input/source and existing output refusal"
+  ]
+}

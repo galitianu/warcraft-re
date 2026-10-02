@@ -46,6 +46,9 @@ Start with:
   independent control audit, template bounds and the manual WC3 capture loop.
   Four generated maps reproduce their controls exactly over 12 fresh WC3 runs;
   the same scenarios pass their C++ comparisons under unchanged tolerances.
+- [Phase 7 capture](docs/phase-7-capture.md): one command packages and captures
+  supported v1 scenarios through UTM/rdpipe, retains validated raw evidence and a
+  candidate fixture, and compares C++ using identical scenario bytes.
 - [MOV-0013](docs/mov-0013.md) and [scenario v2](docs/scenario-v2.md): four generated
   maps move the 1 ms sampler's start and the order. The remaining frame exceptions
   follow the sampler's own callbacks; the delayed library clock is a new mismatch.
@@ -59,7 +62,7 @@ Start with:
   efficiently through rdpipe.
 
 This repository holds the plan, 24 manually authored and fifteen generated-case WC3 maps with their JASS,
-shared oracle instrumentation, raw captures with identities, parsers and derived
+plus five Phase 7 verification revisions, shared oracle instrumentation, raw captures with identities, parsers and derived
 CSVs, versioned v1/v2 scenarios, and a dependency-free C++20 simulation. Phases 0–6 are
 complete; compatibility
 CI passes on pull requests and main pushes across five measured macOS ARM64, Linux
@@ -68,8 +71,10 @@ raw runs normalize to 15 versioned canonical fixtures with complete provenance.
 footman-v4 passes all ten movement cases, and every sample and clock prints
 the same six-decimal text as WC3. footman-v1–v3 and their documented failures are
 retained. The v0.0.1 comparison and v0.1 oracle infrastructure gates are met;
-no release tag has been created. The next experiment is
-[MOV-0013's sampler start phase](https://github.com/galitianu/warcraft-re/issues/17).
+no release tag has been created. Phase 7 now demonstrates unattended capture for
+four reviewed v1 scenarios ([procedure](docs/phase-7-capture.md)); its PR/main delivery
+verification is pending. P1 sampler-order work remains deferred; see PROGRESS for
+the next action.
 
 Build and run without a window (CMake, system clang and Python standard library):
 

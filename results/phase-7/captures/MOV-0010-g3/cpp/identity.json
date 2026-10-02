@@ -1,0 +1,37 @@
+{
+  "git_commit": "6f7fb305dfdaa9d03b7f0ba534ca5d7dc00a60f7",
+  "git_dirty_at_configure": true,
+  "source_sha256": "de09ca8ef378af2bedbed82075916042cc04c5954180ea250fae4f611c0fae98",
+  "compiler": "AppleClang 21.0.0.21000334",
+  "build_type": "Release",
+  "architecture": "arm64",
+  "fp_contract": "off",
+  "model": "footman-v4",
+  "time_unit": "seconds",
+  "step_us": 1000,
+  "seed": 1,
+  "rng": "std::mt19937; unused by movement",
+  "observation_phase": "after-due-update",
+  "sample_period_us": 20000,
+  "state_lag_us": 0,
+  "parameters": {
+    "update_period_steps": 30,
+    "update_phase_steps": 10,
+    "frame_steps": 5,
+    "stop_radius": 16,
+    "default_speed": 270, "speed_clamp": [150, 400],
+    "turn_rate_radians": "atof(0.6)",
+    "propulsion_window_degrees": 60,
+    "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+    "frame_origin": -4096,
+    "clock_start_seconds": 0.5,
+    "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+    "arithmetic": "wc3::sf retail soft-float"
+  },
+  "cases": [
+    {"test": "MOV-0010", "callbacks": 250, "units": 1, "samples": 251}
+  ],
+  "scenarios": [
+    {"experiment": "MOV-0010", "map_revision": "MOV-0010", "path": "scenarios/MOV-0010.yaml", "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"}
+  ]
+}

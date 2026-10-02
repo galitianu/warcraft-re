@@ -87,5 +87,28 @@ def main():
     return 0
 
 
+def candidate_manifest(root, exp, label, generation, verification, checked, entries):
+    """Bind a new isolated evidence bundle; never promote a retained reference."""
+    def source(relative):
+        return dict(path=relative, sha256=sha256(root / relative))
+    map_path = f'oracle-maps/{label}.w3m'
+    manifest = dict(experiment=exp, map_label=label, reference_build=BUILD,
+                    definition='docs/phase-7-capture.md', procedure='tools/capture_oracle.py',
+                    map=dict(**source(map_path), bytes=(root / map_path).stat().st_size),
+                    library=source('oracle/jass/lib/oracle-v1.j'), case=source(f'oracle/generated/maps/{label}.j'),
+                    scenario=dict(schema='wc3-scenario', version=1, **source(f'scenarios/{exp}.yaml')),
+                    generation=source(generation.as_posix()), verification=source(verification.as_posix()),
+                    environment=source(f'oracle/environment/{BUILD}.json'), check_map=checked,
+                    rng_seed='not set; retail seed influence unobserved',
+                    sampling=dict(requested_period_seconds='0.020000', callbacks=shape(label)[1],
+                                  clock_duration_seconds='1000', units='seconds, world-units, degrees', numeric_format='R2SW(value,1,6)'),
+                    transport='rdpipe pull; hashes checked before/after transfer and locally', runs=entries)
+    destination = root / f'oracle/captures/{BUILD}/{label}/manifest.json'
+    if destination.exists():
+        raise ValueError('manifest exists; never overwrite evidence')
+    write_json(destination, manifest)
+    return manifest
+
+
 if __name__ == '__main__':
     raise SystemExit(main())

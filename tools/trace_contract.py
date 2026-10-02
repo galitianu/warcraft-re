@@ -120,9 +120,17 @@ def finite_json(value):
         require(abs(value) <= 10**12, 'overflow JSON integer')
 
 
+def generated_revision(label):
+    """Supported v1 packaging revisions; shapes come from reviewed controls, not YAML."""
+    return bool(isinstance(label, str) and label not in LABELS and re.fullmatch(
+        r'MOV-(?:0002|0004|0006|0010)-[a-z0-9]+(?:-[a-z0-9]+)*', label))
+
+
 def shape(label):
     if label in GENERATED_SHAPES:
         return GENERATED_SHAPES[label]
+    if generated_revision(label):
+        return shape(RETAINED_MOV[label[:8]])
     if label in EXPERIMENT_SHAPES:
         e = EXPERIMENT_SHAPES[label]
         return e['experiment'], e['callbacks'], e['period'], e['units']
@@ -266,7 +274,8 @@ def validate_v4_parameters(parameters, library_clock=LIBRARY_CLOCK):
             and parameters['arithmetic'] == 'wc3::sf retail soft-float', 'unsupported v4 rule')
 
 
-def validate(trace):
+def validate(trace, evidence_root=None):
+    evidence_root = ROOT if evidence_root is None else evidence_root
     finite_json(trace)
     keys(trace, ('schema', 'version', 'scenario', 'identity', 'units', 'time', 'records', 'completion', 'provenance'))
     require(trace['schema'] == SCHEMA and type(trace['version']) is int and trace['version'] == 1, 'unsupported schema/version')
@@ -290,17 +299,17 @@ def validate(trace):
         for source in [*ident['source'].values(), ident['environment']]:
             require(isinstance(source, dict) and isinstance(source.get('path'), str) and HASH.fullmatch(source.get('sha256', '')), 'missing source identity')
         label = scenario['map_revision']
-        case_path = (f'oracle/generated/maps/{label}.j' if label in GENERATED_SHAPES or experiment
+        case_path = (f'oracle/generated/maps/{label}.j' if generated_revision(label) or experiment
                      else f'oracle/jass/{label}.j')
         require(ident['source']['map']['path'] == f'oracle-maps/{label}.w3m'
                 and ident['source']['library']['path'] == 'oracle/jass/lib/oracle-v1.j'
                 and ident['source']['case']['path'] == case_path
                 and ident['environment']['path'] == f'oracle/environment/{BUILD}.json', 'source identity does not match scenario/build')
-        manifest = load(ROOT / f'oracle/captures/{BUILD}/{label}/manifest.json')
+        manifest = load(evidence_root / f'oracle/captures/{BUILD}/{label}/manifest.json')
         for key in ('map', 'library', 'case'):
             require(ident['source'][key] == manifest[key], 'source identity differs from retained manifest')
         require(ident['environment'] == manifest['environment'], 'environment identity differs from retained manifest')
-        if label in GENERATED_SHAPES or experiment:
+        if generated_revision(label) or experiment:
             used = manifest['scenario']
             version, path = (2, experiment['scenario']) if experiment else (1, f'scenarios/{exp}.yaml')
             keys(used, ('schema', 'version', 'path', 'sha256'))
@@ -517,9 +526,10 @@ def validate(trace):
         require(raw_watches == [[u['name'], f'type={u["type"]}', f'speed={u["speed"]}', f'default_speed={u["default_speed"]}'] for u in watched], 'raw WATCH mismatch')
         prov = trace['provenance']
         require('manifest' in prov and 'runs' in prov and 'repeatability' in prov, 'missing WC3 provenance')
-        require(isinstance(prov['runs'], list) and len(prov['runs']) == 3, 'missing retained run provenance')
+        run_count = len(manifest['runs']) if evidence_root != ROOT else 3
+        require(run_count >= 3 and isinstance(prov['runs'], list) and len(prov['runs']) == run_count, 'missing retained run provenance')
         raw_hash = hashlib.sha256('\n'.join(r['source']['payload'] for r in records).encode('ascii')).hexdigest()
-        require([r['run'] for r in prov['runs']] == [1, 2, 3], 'duplicate/missing run identity')
+        require([r['run'] for r in prov['runs']] == list(range(1, run_count + 1)), 'duplicate/missing run identity')
         require(prov['manifest']['path'] == f'oracle/captures/{BUILD}/{scenario["map_revision"]}/manifest.json'
                 and HASH.fullmatch(prov['manifest']['sha256']), 'invalid manifest provenance')
         require(prov['representative_run'] == 1, 'invalid representative run')
@@ -534,8 +544,8 @@ def validate(trace):
                 integer(entry['after_record'], -1, len(records)-1)
                 require(isinstance(entry['entry'], str), 'invalid transport entry')
         repeatability = prov['repeatability']
-        require(repeatability['classification'] == 'DETERMINISTIC' and repeatability['runs'] == 3
-                and repeatability['canonical_payload_sha256'] == [digest(payload(trace))]*3
-                and repeatability['observation_payload_sha256'] == [raw_hash]*3
+        require(repeatability['classification'] == 'DETERMINISTIC' and repeatability['runs'] == run_count
+                and repeatability['canonical_payload_sha256'] == [digest(payload(trace))]*run_count
+                and repeatability['observation_payload_sha256'] == [raw_hash]*run_count
                 and repeatability['other_seeds_or_machines'] == 'UNKNOWN', 'invalid scoped repeatability evidence')
     return trace

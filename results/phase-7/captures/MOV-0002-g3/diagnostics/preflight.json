@@ -1,0 +1,79 @@
+{
+  "utm_state": "started",
+  "guest_ips": [
+    "192.168.64.2",
+    "fdf9:6a51:4ced:8dd9:285d:7e34:7773:9163",
+    "fdf9:6a51:4ced:8dd9:493b:ad3e:d495:7f67",
+    "fe80::318f:63c:53b7:daa3%6"
+  ],
+  "target": {
+    "channel_open": true,
+    "channel_opens": 1,
+    "commands_running": 0,
+    "frames": 167641,
+    "host": "192.168.64.2",
+    "name": "vm",
+    "port": 3389,
+    "rdp": {
+      "desktop": [
+        1920,
+        1080
+      ],
+      "since": 1790942042,
+      "state": "connected"
+    },
+    "relay": {
+      "caps": [
+        "ui",
+        "files",
+        "update",
+        "mcp",
+        "driver",
+        "cua",
+        "update_trial",
+        "update_chunk",
+        "host",
+        "get_file",
+        "put_dir",
+        "session",
+        "exec",
+        "exec_stream"
+      ],
+      "info": {
+        "arch": "aarch64",
+        "cua": {
+          "pid": 7040,
+          "starts": 1,
+          "state": "running",
+          "version": "0.28.2"
+        },
+        "cua_driver": true,
+        "elevated": false,
+        "exec": true,
+        "os": "Windows 11 Pro 25H2 (build 26200)",
+        "relay_uptime_s": 22599,
+        "relay_version": "0.9.0",
+        "session": {
+          "dpi": 96,
+          "locked": false,
+          "screen": [
+            1920,
+            1080
+          ],
+          "secure_desktop": false,
+          "state": "active"
+        },
+        "session_id": 2,
+        "user": "rdpipe"
+      },
+      "last_pong": 1790964647,
+      "proto": [
+        1,
+        1
+      ],
+      "role": "relay",
+      "version": "0.9.0"
+    },
+    "user": "rdpipe"
+  }
+}

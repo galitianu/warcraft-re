@@ -13,7 +13,7 @@ from pathlib import Path
 
 from normalize_traces import normalize_capture
 from oracle_parse import parse
-from trace_contract import (BUILD, EXPERIMENT_SHAPES, GENERATED_SHAPES, RETAINED_MOV, ROOT, digest,
+from trace_contract import (BUILD, EXPERIMENT_SHAPES, GENERATED_SHAPES, RETAINED_MOV, ROOT, generated_revision, digest,
                             load, payload, sha256, shape, validate, write_json)
 
 OBSERVED = {'WATCH', 'RUN', 'TICK', 'SAMPLE', 'ACTION', 'EVENT'}
@@ -25,11 +25,12 @@ def observations(capture):
     return [r.split('|')[2:] for r in capture['_records'] if r.split('|')[2] in OBSERVED]
 
 
-def normalize(label, out):
-    if label not in GENERATED_SHAPES and label not in EXPERIMENT_SHAPES:
+def normalize(label, out, root=None):
+    root = ROOT if root is None else root
+    if not generated_revision(label) and label not in EXPERIMENT_SHAPES:
         raise ValueError('revision needs an independent, manually reviewed shape before normalization')
     experiment = EXPERIMENT_SHAPES.get(label)
-    base = ROOT / 'oracle/captures' / BUILD / label
+    base = root / 'oracle/captures' / BUILD / label
     manifest_path = base / 'manifest.json'
     manifest = load(manifest_path)
     exp, callbacks, period, units = shape(label)
@@ -38,12 +39,12 @@ def normalize(label, out):
         raise ValueError('wrong generated capture manifest identity')
     for key in ('map', 'library', 'case', 'environment', 'scenario', 'generation', 'verification'):
         source = manifest[key]
-        if sha256(ROOT / source['path']) != source['sha256']:
+        if sha256(root / source['path']) != source['sha256']:
             raise ValueError(f'{label}: {key} source hash differs')
     scenario = manifest['scenario']
     if scenario['path'] != scenario_path or scenario['schema'] != 'wc3-scenario' or scenario['version'] != version:
         raise ValueError('wrong scenario identity')
-    generation = load(ROOT / manifest['generation']['path'])
+    generation = load(root / manifest['generation']['path'])
     generated_input = generation['inputs']
     if len(generated_input) != 1 or generated_input[0] != dict(
             experiment=exp, map_revision=label,
@@ -58,8 +59,8 @@ def normalize(label, out):
             or checked['library_sha256'] != manifest['library']['sha256']):
         raise ValueError('saved-map verification differs from source identities')
     # Verification is a new read of the selected installation, not availability.
-    verification = load(ROOT / manifest['verification']['path'])
-    environment = load(ROOT / manifest['environment']['path'])
+    verification = load(root / manifest['verification']['path'])
+    environment = load(root / manifest['environment']['path'])
     if verification['reference_build'] != BUILD or verification['target'] != 'vm' or verification['os_architecture'] != 'ARM64':
         raise ValueError('wrong selected oracle machine/build architecture')
     for installed in environment['files']:
@@ -69,8 +70,8 @@ def normalize(label, out):
         if 'version' in installed and (observed['version'] != installed['version'] or observed['pe_machine'] != 332):
             raise ValueError('game/editor version or x86 PE identity differs')
     entries = manifest['runs']
-    if len(entries) != 3 or [r['run'] for r in entries] != [1, 2, 3]:
-        raise ValueError('need exactly three fresh-process retained runs')
+    if len(entries) < 3 or (root == ROOT and len(entries) != 3) or [r['run'] for r in entries] != list(range(1, len(entries) + 1)):
+        raise ValueError('need consecutive fresh-process runs (three for retained fixtures, at least three for candidates)')
     traces, runs, captures = [], [], []
     for entry in entries:
         path = base / entry['file']
@@ -84,23 +85,23 @@ def normalize(label, out):
             raise ValueError('capture procedure identity differs')
         traces.append(normalize_capture(capture, manifest))
         captures.append(capture)
-        runs.append(dict(run=entry['run'], path=path.relative_to(ROOT).as_posix(), sha256=capture['sha256'],
+        runs.append(dict(run=entry['run'], path=path.relative_to(root).as_posix(), sha256=capture['sha256'],
                          payload_sha256=capture['payload_sha256'], footer=capture['footer'],
                          generated_preload_entries=capture['generated_preload_entries'],
                          fresh_game_process=True, previous_output_removed=True))
     hashes = [digest(payload(t)) for t in traces]
     if len(set(hashes)) != 1:
         raise ValueError('generated WC3 runs disagree; cannot select a representative')
-    repeatability = dict(classification='DETERMINISTIC', runs=3, canonical_payload_sha256=hashes,
+    repeatability = dict(classification='DETERMINISTIC', runs=len(entries), canonical_payload_sha256=hashes,
                          observation_payload_sha256=[r['payload_sha256'] for r in runs],
                          distinct_raw_files=len({r['sha256'] for r in runs}),
-                         scope='generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes',
+                         scope=f'generated retained map/build/selected Windows 11 Pro ARM64 VM; {len(entries)} fresh processes',
                          other_seeds_or_machines='UNKNOWN')
-    provenance = dict(manifest=dict(path=manifest_path.relative_to(ROOT).as_posix(), sha256=sha256(manifest_path)),
+    provenance = dict(manifest=dict(path=manifest_path.relative_to(root).as_posix(), sha256=sha256(manifest_path)),
                       representative_run=1, runs=runs, repeatability=repeatability, scenario=scenario)
     for trace in traces:
         trace['provenance'] = provenance
-        validate(trace)
+        validate(trace, root)
     write_json(out / f'{label}.json', traces[0], compact_records=True)
     control_label = experiment['control'] if experiment else RETAINED_MOV[exp]
     if control_label is None:

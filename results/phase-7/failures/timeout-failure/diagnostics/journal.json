@@ -1,0 +1,88 @@
+{
+  "status": "FAILED",
+  "stage": "capture-01",
+  "completed_stages": [
+    "inputs",
+    "generated-and-syntax-checked",
+    "guest-preflight",
+    "installation-verification",
+    "editor-authoring",
+    "saved-map-validation"
+  ],
+  "owned_processes": [
+    {
+      "role": "editor",
+      "receipt": "C:\\Users\\rdpipe\\oracle-oracle-e032bffef6484b51bede2052c3e51ab8\\editor.json",
+      "status": "stopped",
+      "path": "C:\\Program Files (x86)\\Warcraft III\\World Editor.exe",
+      "pid": 7060,
+      "start": "639265613321253854"
+    },
+    {
+      "role": "game-1",
+      "receipt": "C:\\Users\\rdpipe\\oracle-oracle-e032bffef6484b51bede2052c3e51ab8\\game-1.json",
+      "status": "stopped",
+      "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+      "pid": 5084,
+      "start": "639265613731953205"
+    }
+  ],
+  "transfers": [
+    {
+      "direction": "push",
+      "remote": "C:\\Users\\rdpipe\\oracle-oracle-e032bffef6484b51bede2052c3e51ab8\\MOV-0002.w3m",
+      "sha256": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd"
+    },
+    {
+      "direction": "push",
+      "remote": "C:\\Users\\rdpipe\\oracle-oracle-e032bffef6484b51bede2052c3e51ab8\\editor-menu.ps1",
+      "sha256": "312ba6d8ea7f0becbe22e3393ffcddbe08053f4480e77bdfa215a99d9d44456c"
+    },
+    {
+      "direction": "pull",
+      "remote": "C:\\Users\\rdpipe\\Documents\\Warcraft III\\Maps\\Oracle\\MOV-0010-timeoutcheck.w3m",
+      "local": "oracle-maps/MOV-0010-timeoutcheck.w3m",
+      "before_sha256": "c6ce081e8ab72a077e301b96f0f100c47e727b0749add38481a46f5d9f20dcba",
+      "after_sha256": "c6ce081e8ab72a077e301b96f0f100c47e727b0749add38481a46f5d9f20dcba",
+      "local_sha256": "c6ce081e8ab72a077e301b96f0f100c47e727b0749add38481a46f5d9f20dcba"
+    }
+  ],
+  "events": [
+    {
+      "event": "utm-state",
+      "detail": "started"
+    }
+  ],
+  "stage_times": [
+    {
+      "stage": "generated-and-syntax-checked",
+      "elapsed_seconds": 0.024
+    },
+    {
+      "stage": "guest-preflight",
+      "elapsed_seconds": 0.024
+    },
+    {
+      "stage": "installation-verification",
+      "elapsed_seconds": 0.646
+    },
+    {
+      "stage": "editor-authoring",
+      "elapsed_seconds": 28.564
+    },
+    {
+      "stage": "saved-map-validation",
+      "elapsed_seconds": 69.388
+    },
+    {
+      "stage": "capture-01",
+      "elapsed_seconds": 69.39
+    }
+  ],
+  "intervention_count": 0,
+  "vm": "012B6237-1E3E-40AE-9D80-2782BA75E69E",
+  "target": "vm",
+  "map_revision": "MOV-0010-timeoutcheck",
+  "elapsed_seconds": 72.464,
+  "error": "capture-01: command timed out after 0.10s: ['rdpipe', '--target', 'vm']"
+}

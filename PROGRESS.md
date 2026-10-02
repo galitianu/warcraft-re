@@ -2,14 +2,22 @@
 
 As of 2 October 2026.
 
-**Current stage:** Phase 6 complete. MOV-0015 ([issue #22](https://github.com/galitianu/warcraft-re/issues/22), merged and verified on main)
+**Current stage:** Phase 7 capture capability implemented for four reviewed v1 scenarios.
+One command completes generation, verified World Editor packaging, three fresh WC3
+runs, lossless candidate normalization and same-scenario C++ comparison, with zero
+intervention. Four new revisions / twelve runs reproduce the hand-authored controls
+exactly ([evidence](results/phase-7/summary.json), [procedure](docs/phase-7-capture.md)).
+PR/main delivery verification remains pending.
+
+MOV-0015 ([issue #22](https://github.com/galitianu/warcraft-re/issues/22), merged and verified on main)
 tested the 1 ms lag rule (T7) and a 30 ms update-event facing clock (FU). Both held in three of four new maps. The
 fourth map's sampler started one ulp later than modelled. That rounding was fitted after capture, so no rule is
 adopted. These sampling-order differences are **P1, invisible in play** (see AGENTS.md); they stay documented and
 gated, and further work on them is deferred.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
 8 MOV-0012 maps × 3 fresh-process captures, plus fifteen generated revisions × 3,
-all payload-identical within each map. Generated observations reproduce their
+all payload-identical within each map, plus four Phase 7 revisions × 3 and a separate
+three-run manual baseline. Generated observations reproduce their
 hand-authored controls exactly.
 **C++ compatibility:** footman-v4 passes MOV-0001–MOV-0010 under the fixed tolerances.
 Every sample and clock prints the same R2SW_6 text as WC3. It also reproduces every
@@ -391,9 +399,33 @@ passes the same gates on all five configurations, with clean builds of the merge
 The downloaded artifacts [regrade](results/mov-0015/main-verification/summary.md) to a
 report identical to the hosted one, and the MOV-0015 C++ trace records equal the PR run's.
 
+**Phase 7** ([issue #18](https://github.com/galitianu/warcraft-re/issues/18)):
+[capture_oracle.py](tools/capture_oracle.py) supports exact reviewed MOV-0002/0004/0006/0010
+v1 bytes and new packaging revisions. It verifies UTM/rdpipe machine and ARM64 guest,
+all seven installation hashes, game/editor versions and x86 PE identities; owns and
+renews the desktop lease; validates the saved map and raw transfers; retains failed
+stages and stops only its owned processes. Output is a candidate bundle; promotion is
+an explicit action. No resume combines changed/stale inputs.
+
+[Four new bundles](results/phase-7/summary.json) retain twelve fresh-process runs,
+three identical payloads per map, exact ordered equality with independent controls,
+and unchanged-contract C++ PASS. Ordinary integrity tests regrade them offline.
+The manual baseline needed eight terminal submissions (one path recovery), seven
+additional interventions and 290.56 s. MOV-0002's unattended command needed zero
+additional interventions and 151.54 s; the four commands took 143.97–165.73 s. This
+includes operator coordination latency, not a controlled VM speed benchmark.
+[Real failures](results/phase-7/failures.json) cover wrong/unavailable machine identity,
+lease contention and a 0.1 s game-output timeout; all stopped without a result or
+canonical promotion. Local tests cover further orchestration/integrity failures.
+Stopped-guest startup is tested locally; the working/shared VM was never reset.
+
 ## Exact next action
 
-Choose the next **P3** behavior from the Phase 8 movement backlog
+Finish Phase 7 delivery: run native archival CI, open the PR, retain and regrade
+its five-configuration workflow evidence, then verify the main push after merge.
+No main-push success is claimed before that workflow runs.
+
+After delivery, choose the next **P3** behavior from the Phase 8 movement backlog
 ([plan §11](Warcraft-III-Reimplementation-Plan.md#11-phase-8--expand-compatibility-through-experiments)):
 something footman-v4 does not model yet and a player would see. The proposed first
 candidate is unit–unit collision: two Footmen ordered through each other, with both
@@ -415,7 +447,7 @@ comparable behavior is in place, or if these differences block something more no
 | 4 | C++ compatibility CI against committed WC3 references | Complete — five configurations pass on PR and main push; [evidence](results/phase-4/main-verification.json) |
 | 5 | Declarative scenarios extracted from repeated manual tests | Complete — [results](docs/phase-5-scenarios.md); PR and main push pass; [evidence](results/phase-5/main-verification.md) |
 | 6 | One scenario drives C++ and generates a runnable WC3 map | Complete — four maps/12 runs; five-configuration PR and main push PASS; [evidence](results/phase-6/main-verification/summary.md) |
-| 7 | Reliable unattended VM capture, when manual work becomes costly | Planned |
+| 7 | Reliable unattended capture for four v1 scenarios; 12 fresh runs, exact reproduction, zero intervention | Capability demonstrated — [evidence](results/phase-7/summary.json); PR/main delivery pending |
 | 8 | Microscopic tests, sweeps, and measured compatibility expansion | Planned |
 
 Advance with actual artifacts and verification. Infrastructure checks are not gameplay passes.

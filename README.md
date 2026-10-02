@@ -52,10 +52,13 @@ Start with:
 - [MOV-0014](docs/mov-0014.md): three more generated maps test MOV-0013's post-hoc
   readings against pre-registered predictions. The 2⁻¹⁷ s timer start is confirmed
   and adopted; no frame rule survives, and a lag-in-seconds candidate remains.
+- [MOV-0015](docs/mov-0015.md): four generated maps test that candidate (T7) and a 30 ms
+  update-event facing clock (FU). Both held in three maps. The fourth started one ulp
+  later than modelled; from that start, fitted after capture, both fit every map.
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
-This repository holds the plan, 24 manually authored and eleven generated-case WC3 maps with their JASS,
+This repository holds the plan, 24 manually authored and fifteen generated-case WC3 maps with their JASS,
 shared oracle instrumentation, raw captures with identities, parsers and derived
 CSVs, versioned v1/v2 scenarios, and a dependency-free C++20 simulation. Phases 0–6 are
 complete; compatibility

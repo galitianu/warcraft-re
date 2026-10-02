@@ -18,8 +18,8 @@ import sys
 import tempfile
 
 import compare_states
-from predict_mov0014 import (EXT, RETAINED_SCHEDULES, SETUP, clock, exact, frame_clocks, model, scenario_fields,
-                             schedule, states)
+from predict_mov0014 import (EXT, RETAINED_SCHEDULES, SETUP, clock, exact, floor_float, frame_clocks, model,
+                             scenario_fields, schedule, states)
 from trace_contract import BUILD, ROOT, SCENARIOS, load, write_json
 from wc3_float import add, bits, r2sw, sub
 
@@ -187,6 +187,67 @@ def v1_cases(runner):
     return out
 
 
+def nearest_schedule(start, period, callbacks):
+    """Post hoc: the sampler starts at round-to-nearest(0.5 + float32(start)), then adds as before."""
+    if Fraction(start) == 0:
+        return schedule(start, period, callbacks)
+    total = exact(SETUP) + exact(bits(float(start)))
+    low = floor_float(total)
+    up = exact(low + 1) - total < total - exact(low) or (exact(low + 1) - total == total - exact(low) and low & 1)
+    s = [low + 1 if up else low]
+    for _ in range(callbacks):
+        s.append(add(s[-1], bits(float(period))))
+    return s
+
+
+def replay(s, sequence, events):
+    """Every frame and facing rule on schedule s against WC3's STATE: mismatched callbacks."""
+    c = frame_clocks(len(sequence) // 5)
+    u = update_clock(len(c) // UPDATE_EVERY + 1)
+    xy = lambda n: tuple(r2sw(v, 9) for v in sequence[5 * n][:2])
+    out = {rule: [] for rule in FRAME_RULES + FACING_RULES}
+    n = 0
+    for k, (now, e) in enumerate(zip(s, events)):
+        while exact(c[n + 1]) <= exact(now):
+            n += 1
+        for rule in FRAME_RULES:
+            if (e['values']['x_9'], e['values']['y_9']) != xy(n + 1 if reads_next(rule, now, c[n + 1]) else n):
+                out[rule].append(k)
+        for rule in FACING_RULES:
+            if e['values']['facing_9'] != r2sw(sequence[5 * (n - 1 if pre_update(rule, now, n, u) else n)][2], 9):
+                out[rule].append(k)
+    return out
+
+
+def posthoc(args):
+    """After capture: which sampler start fits every WC3 clock, and the rules on it (not pre-registered)."""
+    out = {}
+    for label, path in {**CHECKED, **{Path(p).stem: p for p in PREDICTED}}.items():
+        start, period, callbacks = scenario_fields(path)
+        s, _, sequence, _ = analyse(args.runner, args.states, path)[1]
+        fixture = load(ROOT / 'oracle/canonical-generated' / BUILD / f'{label}.json')
+        events = [r for r in fixture['records'] if r['kind'] == 'EVENT']
+        ticks = [r['time']['reported'] for r in fixture['records'] if r['kind'] == 'TICK']
+        fits = []
+        for offset in range(-3, 4):
+            shifted = [s[0] + offset]
+            for _ in range(callbacks):
+                shifted.append(add(shifted[-1], bits(float(period))))
+            aux = [r2sw(sub(bits(10.0), sub(add(SETUP, bits(10.0)), now)), 9) for now in shifted]
+            if clock('Q17', shifted) == ticks and aux == [e['values']['c10_9'] for e in events]:
+                fits.append(offset)
+        near = nearest_schedule(start, period, callbacks)
+        out[label] = dict(start=start, clock_consistent_start_offsets=fits, nearest_start_offset=near[0] - s[0],
+                          mismatches_truncated_start=replay(s, sequence, events),
+                          mismatches_nearest_start=replay(near, sequence, events))
+    write_json(args.posthoc, dict(experiment='MOV-0015', reference_build=BUILD, post_hoc=True,
+                                  start_offsets_unit='float32 ulps of s(0) relative to add(0.5, float32(start))',
+                                  maps=out))
+    for label, m in out.items():
+        print(label, 'clock-consistent offsets', m['clock_consistent_start_offsets'], 'nearest',
+              m['nearest_start_offset'], {r: len(v) for r, v in m['mismatches_nearest_start'].items()})
+
+
 def grade(args):
     """Apply the pre-registered decision rules (docs/mov-0015.md) to the captures."""
     with tempfile.TemporaryDirectory() as temp:
@@ -234,9 +295,13 @@ def main():
     parser.add_argument('--out', type=Path, default=ROOT / 'results/mov-0015/predictions.json')
     parser.add_argument('--grade', type=Path, help='after capture: regenerate the predictions, require the '
                         'committed bytes, and grade the MOV-0015 fixtures into this file')
+    parser.add_argument('--posthoc', type=Path, help='after capture: fit the sampler start to the WC3 clocks and '
+                        'replay every rule on it (not pre-registered)')
     args = parser.parse_args()
     if args.grade:
         return grade(args)
+    if args.posthoc:
+        return posthoc(args)
     check = {}
     for label, path in CHECKED.items():
         prediction, (s, frames, sequence, facings) = analyse(args.runner, args.states, path)

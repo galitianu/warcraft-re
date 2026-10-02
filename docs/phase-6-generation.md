@@ -180,7 +180,15 @@ captures, native ARM64 AppleClang Release CI including `--archive` passes CTest
 CI downloads include the new fixtures, traces and full loop reports;
 `summarize_ci.py` independently renormalizes retained WC3 evidence, checks exact
 fixture bytes and regrades downloaded C++ traces. A forged PASS or updated hash
-cannot hide a changed sample. The Phase 6 main-push gate awaits merging
+cannot hide a changed sample.
+
+The real-capture [PR workflow 37005207059](https://github.com/galitianu/warcraft-re/actions/runs/37005207059)
+at `37cb228` passes all five configurations and the aggregate job: CTest 3/3,
+Python 65/65, four generated comparisons and v4 10/10 on every configuration.
+[Downloaded evidence](../results/phase-6/capture-pr-verification/summary.md)
+regrades locally and matches the hosted aggregate report exactly. Golden JASS
+and both generator/C++ scenario inputs are identical across configurations;
+every reviewed historical baseline passes. The Phase 6 main-push gate awaits merging
 [PR #16](https://github.com/galitianu/warcraft-re/pull/16).
 
 Sampling order, retail simulation quantum, RNG/seed effects, other machines,

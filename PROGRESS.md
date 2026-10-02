@@ -231,15 +231,19 @@ baselines and tolerances remain unchanged. CI retains/regrades downloaded genera
 fixtures and C++ traces alongside byte-identical golden JASS and scenario inputs.
 Phase 5's scenario-only main-push evidence was
 [downloaded and rechecked](results/phase-5/control-removed-main-verification/summary.md).
-The earlier generator-only PR run passes all five configurations
-([evidence](results/phase-6/pr-verification/summary.md)); hosted verification of the
-new real-capture evidence is pending. Phase 6's main-push gate awaits merge.
+The real-capture [PR workflow 37005207059](https://github.com/galitianu/warcraft-re/actions/runs/37005207059)
+at `37cb228` passes all five configurations and the aggregate job; each passes
+CTest 3/3, Python 65/65, generated loop 4/4 and v4 10/10. Downloaded artifacts
+[regrade independently](results/phase-6/capture-pr-verification/summary.md),
+matching the hosted aggregate report exactly. Generated JASS and scenario inputs
+are identical across configurations; historical baselines pass. Phase 6's
+main-push gate awaits merge.
 
 ## Exact next action
 
-Finish PR #16's five-configuration verification and retain/regrade its downloaded
-artifacts. After review/merge, retain the real main-push evidence before closing
-#14. Then implement [issue #17](https://github.com/galitianu/warcraft-re/issues/17):
+Review/merge PR #16, then download/regrade and retain the real five-configuration
+main-push evidence before closing #14.
+Then implement [issue #17](https://github.com/galitianu/warcraft-re/issues/17):
 **MOV-0013** measures sampler start phase/update ordering through generated scenarios.
 No MOV-0013 map or capture exists yet. It requires a narrow timing/state schema
 extension beyond v1 and before/after-proven runner timing; issue #14 explicitly
@@ -255,7 +259,7 @@ permits this split after the generator reproduction gate passes.
 | 3 | Canonical normalized traces and stable comparison contract | Complete — [results](docs/phase-3-results.md); all 45 retained runs validated |
 | 4 | C++ compatibility CI against committed WC3 references | Complete — five configurations pass on PR and main push; [evidence](results/phase-4/main-verification.json) |
 | 5 | Declarative scenarios extracted from repeated manual tests | Complete — [results](docs/phase-5-scenarios.md); PR and main push pass; [evidence](results/phase-5/main-verification.md) |
-| 6 | One scenario drives C++ and generates a runnable WC3 map | Retail loop PASS — four maps/12 runs; PR delivery in progress, main push awaits merge |
+| 6 | One scenario drives C++ and generates a runnable WC3 map | Retail loop and five-configuration PR PASS — four maps/12 runs; main push awaits merge |
 | 7 | Reliable unattended VM capture, when manual work becomes costly | Planned |
 | 8 | Microscopic tests, sweeps, and measured compatibility expansion | Planned |
 

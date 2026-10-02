@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "timeout_seconds": 300,
+  "exit_code": 0,
+  "elapsed_seconds": 46.1219097
+}

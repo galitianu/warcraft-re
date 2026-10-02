@@ -1,0 +1,922 @@
+[
+  {
+    "configuration": "compatibility-linux-clang-debug",
+    "build_identity": {
+      "git_commit": "c929bd666b84abc0f3de66d98f79b5cfd18cb50b",
+      "git_dirty_at_configure": false,
+      "source_sha256": "de09ca8ef378af2bedbed82075916042cc04c5954180ea250fae4f611c0fae98",
+      "compiler": "Clang 18.1.3",
+      "build_type": "Debug",
+      "architecture": "x86_64",
+      "fp_contract": "off",
+      "model": "footman-v4",
+      "time_unit": "seconds",
+      "step_us": 1000,
+      "seed": 1,
+      "rng": "std::mt19937; unused by movement",
+      "observation_phase": "after-due-update",
+      "sample_period_us": 20000,
+      "state_lag_us": 0,
+      "parameters": {
+        "update_period_steps": 30,
+        "update_phase_steps": 10,
+        "frame_steps": 5,
+        "stop_radius": 16,
+        "default_speed": 270,
+        "speed_clamp": [
+          150,
+          400
+        ],
+        "turn_rate_radians": "atof(0.6)",
+        "propulsion_window_degrees": 60,
+        "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+        "frame_origin": -4096,
+        "clock_start_seconds": 0.5,
+        "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+        "arithmetic": "wc3::sf retail soft-float"
+      },
+      "cases": [
+        {
+          "test": "MOV-0001",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0002",
+          "callbacks": 250,
+          "units": 2,
+          "samples": 502
+        },
+        {
+          "test": "MOV-0003",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0004",
+          "callbacks": 600,
+          "units": 1,
+          "samples": 601
+        },
+        {
+          "test": "MOV-0005",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0006",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0007",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0008",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0009",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0010",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        }
+      ],
+      "scenarios": [
+        {
+          "experiment": "MOV-0001",
+          "map_revision": "MOV-0001",
+          "path": "scenarios/MOV-0001.yaml",
+          "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361"
+        },
+        {
+          "experiment": "MOV-0002",
+          "map_revision": "MOV-0002-r2",
+          "path": "scenarios/MOV-0002.yaml",
+          "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+        },
+        {
+          "experiment": "MOV-0003",
+          "map_revision": "MOV-0003",
+          "path": "scenarios/MOV-0003.yaml",
+          "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255"
+        },
+        {
+          "experiment": "MOV-0004",
+          "map_revision": "MOV-0004",
+          "path": "scenarios/MOV-0004.yaml",
+          "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+        },
+        {
+          "experiment": "MOV-0005",
+          "map_revision": "MOV-0005",
+          "path": "scenarios/MOV-0005.yaml",
+          "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36"
+        },
+        {
+          "experiment": "MOV-0006",
+          "map_revision": "MOV-0006",
+          "path": "scenarios/MOV-0006.yaml",
+          "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+        },
+        {
+          "experiment": "MOV-0007",
+          "map_revision": "MOV-0007",
+          "path": "scenarios/MOV-0007.yaml",
+          "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0"
+        },
+        {
+          "experiment": "MOV-0008",
+          "map_revision": "MOV-0008",
+          "path": "scenarios/MOV-0008.yaml",
+          "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf"
+        },
+        {
+          "experiment": "MOV-0009",
+          "map_revision": "MOV-0009",
+          "path": "scenarios/MOV-0009.yaml",
+          "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e"
+        },
+        {
+          "experiment": "MOV-0010",
+          "map_revision": "MOV-0010",
+          "path": "scenarios/MOV-0010.yaml",
+          "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+        }
+      ]
+    },
+    "environment": {
+      "host": {
+        "system": "Linux",
+        "release": "6.17.0-1022-azure",
+        "architecture": "x86_64",
+        "python": "3.12.14"
+      },
+      "requested_compiler": "clang++",
+      "build_type": "Debug",
+      "expected_architecture": "x86_64",
+      "seed": 1,
+      "github": {
+        "GITHUB_RUN_ID": "37063014720",
+        "GITHUB_RUN_ATTEMPT": "1",
+        "GITHUB_SHA": "c929bd666b84abc0f3de66d98f79b5cfd18cb50b",
+        "GITHUB_EVENT_NAME": "push",
+        "RUNNER_OS": "Linux",
+        "RUNNER_ARCH": "X64",
+        "ImageOS": "ubuntu24",
+        "ImageVersion": "20260927.320.1"
+      }
+    }
+  },
+  {
+    "configuration": "compatibility-linux-gcc-release",
+    "build_identity": {
+      "git_commit": "c929bd666b84abc0f3de66d98f79b5cfd18cb50b",
+      "git_dirty_at_configure": false,
+      "source_sha256": "de09ca8ef378af2bedbed82075916042cc04c5954180ea250fae4f611c0fae98",
+      "compiler": "GNU 13.3.0",
+      "build_type": "Release",
+      "architecture": "x86_64",
+      "fp_contract": "off",
+      "model": "footman-v4",
+      "time_unit": "seconds",
+      "step_us": 1000,
+      "seed": 1,
+      "rng": "std::mt19937; unused by movement",
+      "observation_phase": "after-due-update",
+      "sample_period_us": 20000,
+      "state_lag_us": 0,
+      "parameters": {
+        "update_period_steps": 30,
+        "update_phase_steps": 10,
+        "frame_steps": 5,
+        "stop_radius": 16,
+        "default_speed": 270,
+        "speed_clamp": [
+          150,
+          400
+        ],
+        "turn_rate_radians": "atof(0.6)",
+        "propulsion_window_degrees": 60,
+        "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+        "frame_origin": -4096,
+        "clock_start_seconds": 0.5,
+        "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+        "arithmetic": "wc3::sf retail soft-float"
+      },
+      "cases": [
+        {
+          "test": "MOV-0001",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0002",
+          "callbacks": 250,
+          "units": 2,
+          "samples": 502
+        },
+        {
+          "test": "MOV-0003",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0004",
+          "callbacks": 600,
+          "units": 1,
+          "samples": 601
+        },
+        {
+          "test": "MOV-0005",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0006",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0007",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0008",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0009",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0010",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        }
+      ],
+      "scenarios": [
+        {
+          "experiment": "MOV-0001",
+          "map_revision": "MOV-0001",
+          "path": "scenarios/MOV-0001.yaml",
+          "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361"
+        },
+        {
+          "experiment": "MOV-0002",
+          "map_revision": "MOV-0002-r2",
+          "path": "scenarios/MOV-0002.yaml",
+          "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+        },
+        {
+          "experiment": "MOV-0003",
+          "map_revision": "MOV-0003",
+          "path": "scenarios/MOV-0003.yaml",
+          "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255"
+        },
+        {
+          "experiment": "MOV-0004",
+          "map_revision": "MOV-0004",
+          "path": "scenarios/MOV-0004.yaml",
+          "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+        },
+        {
+          "experiment": "MOV-0005",
+          "map_revision": "MOV-0005",
+          "path": "scenarios/MOV-0005.yaml",
+          "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36"
+        },
+        {
+          "experiment": "MOV-0006",
+          "map_revision": "MOV-0006",
+          "path": "scenarios/MOV-0006.yaml",
+          "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+        },
+        {
+          "experiment": "MOV-0007",
+          "map_revision": "MOV-0007",
+          "path": "scenarios/MOV-0007.yaml",
+          "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0"
+        },
+        {
+          "experiment": "MOV-0008",
+          "map_revision": "MOV-0008",
+          "path": "scenarios/MOV-0008.yaml",
+          "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf"
+        },
+        {
+          "experiment": "MOV-0009",
+          "map_revision": "MOV-0009",
+          "path": "scenarios/MOV-0009.yaml",
+          "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e"
+        },
+        {
+          "experiment": "MOV-0010",
+          "map_revision": "MOV-0010",
+          "path": "scenarios/MOV-0010.yaml",
+          "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+        }
+      ]
+    },
+    "environment": {
+      "host": {
+        "system": "Linux",
+        "release": "6.17.0-1022-azure",
+        "architecture": "x86_64",
+        "python": "3.12.14"
+      },
+      "requested_compiler": "g++",
+      "build_type": "Release",
+      "expected_architecture": "x86_64",
+      "seed": 1,
+      "github": {
+        "GITHUB_RUN_ID": "37063014720",
+        "GITHUB_RUN_ATTEMPT": "1",
+        "GITHUB_SHA": "c929bd666b84abc0f3de66d98f79b5cfd18cb50b",
+        "GITHUB_EVENT_NAME": "push",
+        "RUNNER_OS": "Linux",
+        "RUNNER_ARCH": "X64",
+        "ImageOS": "ubuntu24",
+        "ImageVersion": "20260927.320.1"
+      }
+    }
+  },
+  {
+    "configuration": "compatibility-mac-arm-debug",
+    "build_identity": {
+      "git_commit": "c929bd666b84abc0f3de66d98f79b5cfd18cb50b",
+      "git_dirty_at_configure": false,
+      "source_sha256": "de09ca8ef378af2bedbed82075916042cc04c5954180ea250fae4f611c0fae98",
+      "compiler": "AppleClang 17.0.0.17000013",
+      "build_type": "Debug",
+      "architecture": "arm64",
+      "fp_contract": "off",
+      "model": "footman-v4",
+      "time_unit": "seconds",
+      "step_us": 1000,
+      "seed": 1,
+      "rng": "std::mt19937; unused by movement",
+      "observation_phase": "after-due-update",
+      "sample_period_us": 20000,
+      "state_lag_us": 0,
+      "parameters": {
+        "update_period_steps": 30,
+        "update_phase_steps": 10,
+        "frame_steps": 5,
+        "stop_radius": 16,
+        "default_speed": 270,
+        "speed_clamp": [
+          150,
+          400
+        ],
+        "turn_rate_radians": "atof(0.6)",
+        "propulsion_window_degrees": 60,
+        "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+        "frame_origin": -4096,
+        "clock_start_seconds": 0.5,
+        "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+        "arithmetic": "wc3::sf retail soft-float"
+      },
+      "cases": [
+        {
+          "test": "MOV-0001",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0002",
+          "callbacks": 250,
+          "units": 2,
+          "samples": 502
+        },
+        {
+          "test": "MOV-0003",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0004",
+          "callbacks": 600,
+          "units": 1,
+          "samples": 601
+        },
+        {
+          "test": "MOV-0005",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0006",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0007",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0008",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0009",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0010",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        }
+      ],
+      "scenarios": [
+        {
+          "experiment": "MOV-0001",
+          "map_revision": "MOV-0001",
+          "path": "scenarios/MOV-0001.yaml",
+          "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361"
+        },
+        {
+          "experiment": "MOV-0002",
+          "map_revision": "MOV-0002-r2",
+          "path": "scenarios/MOV-0002.yaml",
+          "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+        },
+        {
+          "experiment": "MOV-0003",
+          "map_revision": "MOV-0003",
+          "path": "scenarios/MOV-0003.yaml",
+          "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255"
+        },
+        {
+          "experiment": "MOV-0004",
+          "map_revision": "MOV-0004",
+          "path": "scenarios/MOV-0004.yaml",
+          "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+        },
+        {
+          "experiment": "MOV-0005",
+          "map_revision": "MOV-0005",
+          "path": "scenarios/MOV-0005.yaml",
+          "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36"
+        },
+        {
+          "experiment": "MOV-0006",
+          "map_revision": "MOV-0006",
+          "path": "scenarios/MOV-0006.yaml",
+          "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+        },
+        {
+          "experiment": "MOV-0007",
+          "map_revision": "MOV-0007",
+          "path": "scenarios/MOV-0007.yaml",
+          "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0"
+        },
+        {
+          "experiment": "MOV-0008",
+          "map_revision": "MOV-0008",
+          "path": "scenarios/MOV-0008.yaml",
+          "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf"
+        },
+        {
+          "experiment": "MOV-0009",
+          "map_revision": "MOV-0009",
+          "path": "scenarios/MOV-0009.yaml",
+          "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e"
+        },
+        {
+          "experiment": "MOV-0010",
+          "map_revision": "MOV-0010",
+          "path": "scenarios/MOV-0010.yaml",
+          "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+        }
+      ]
+    },
+    "environment": {
+      "host": {
+        "system": "Darwin",
+        "release": "24.6.0",
+        "architecture": "arm64",
+        "python": "3.12.10"
+      },
+      "requested_compiler": "/usr/bin/clang++",
+      "build_type": "Debug",
+      "expected_architecture": "arm64",
+      "seed": 1,
+      "github": {
+        "GITHUB_RUN_ID": "37063014720",
+        "GITHUB_RUN_ATTEMPT": "1",
+        "GITHUB_SHA": "c929bd666b84abc0f3de66d98f79b5cfd18cb50b",
+        "GITHUB_EVENT_NAME": "push",
+        "RUNNER_OS": "macOS",
+        "RUNNER_ARCH": "ARM64",
+        "ImageOS": "macos15",
+        "ImageVersion": "20260907.0337.1"
+      }
+    }
+  },
+  {
+    "configuration": "compatibility-mac-arm-release",
+    "build_identity": {
+      "git_commit": "c929bd666b84abc0f3de66d98f79b5cfd18cb50b",
+      "git_dirty_at_configure": false,
+      "source_sha256": "de09ca8ef378af2bedbed82075916042cc04c5954180ea250fae4f611c0fae98",
+      "compiler": "AppleClang 17.0.0.17000013",
+      "build_type": "Release",
+      "architecture": "arm64",
+      "fp_contract": "off",
+      "model": "footman-v4",
+      "time_unit": "seconds",
+      "step_us": 1000,
+      "seed": 1,
+      "rng": "std::mt19937; unused by movement",
+      "observation_phase": "after-due-update",
+      "sample_period_us": 20000,
+      "state_lag_us": 0,
+      "parameters": {
+        "update_period_steps": 30,
+        "update_phase_steps": 10,
+        "frame_steps": 5,
+        "stop_radius": 16,
+        "default_speed": 270,
+        "speed_clamp": [
+          150,
+          400
+        ],
+        "turn_rate_radians": "atof(0.6)",
+        "propulsion_window_degrees": 60,
+        "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+        "frame_origin": -4096,
+        "clock_start_seconds": 0.5,
+        "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+        "arithmetic": "wc3::sf retail soft-float"
+      },
+      "cases": [
+        {
+          "test": "MOV-0001",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0002",
+          "callbacks": 250,
+          "units": 2,
+          "samples": 502
+        },
+        {
+          "test": "MOV-0003",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0004",
+          "callbacks": 600,
+          "units": 1,
+          "samples": 601
+        },
+        {
+          "test": "MOV-0005",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0006",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0007",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0008",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0009",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0010",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        }
+      ],
+      "scenarios": [
+        {
+          "experiment": "MOV-0001",
+          "map_revision": "MOV-0001",
+          "path": "scenarios/MOV-0001.yaml",
+          "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361"
+        },
+        {
+          "experiment": "MOV-0002",
+          "map_revision": "MOV-0002-r2",
+          "path": "scenarios/MOV-0002.yaml",
+          "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+        },
+        {
+          "experiment": "MOV-0003",
+          "map_revision": "MOV-0003",
+          "path": "scenarios/MOV-0003.yaml",
+          "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255"
+        },
+        {
+          "experiment": "MOV-0004",
+          "map_revision": "MOV-0004",
+          "path": "scenarios/MOV-0004.yaml",
+          "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+        },
+        {
+          "experiment": "MOV-0005",
+          "map_revision": "MOV-0005",
+          "path": "scenarios/MOV-0005.yaml",
+          "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36"
+        },
+        {
+          "experiment": "MOV-0006",
+          "map_revision": "MOV-0006",
+          "path": "scenarios/MOV-0006.yaml",
+          "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+        },
+        {
+          "experiment": "MOV-0007",
+          "map_revision": "MOV-0007",
+          "path": "scenarios/MOV-0007.yaml",
+          "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0"
+        },
+        {
+          "experiment": "MOV-0008",
+          "map_revision": "MOV-0008",
+          "path": "scenarios/MOV-0008.yaml",
+          "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf"
+        },
+        {
+          "experiment": "MOV-0009",
+          "map_revision": "MOV-0009",
+          "path": "scenarios/MOV-0009.yaml",
+          "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e"
+        },
+        {
+          "experiment": "MOV-0010",
+          "map_revision": "MOV-0010",
+          "path": "scenarios/MOV-0010.yaml",
+          "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+        }
+      ]
+    },
+    "environment": {
+      "host": {
+        "system": "Darwin",
+        "release": "24.6.0",
+        "architecture": "arm64",
+        "python": "3.12.10"
+      },
+      "requested_compiler": "/usr/bin/clang++",
+      "build_type": "Release",
+      "expected_architecture": "arm64",
+      "seed": 1,
+      "github": {
+        "GITHUB_RUN_ID": "37063014720",
+        "GITHUB_RUN_ATTEMPT": "1",
+        "GITHUB_SHA": "c929bd666b84abc0f3de66d98f79b5cfd18cb50b",
+        "GITHUB_EVENT_NAME": "push",
+        "RUNNER_OS": "macOS",
+        "RUNNER_ARCH": "ARM64",
+        "ImageOS": "macos15",
+        "ImageVersion": "20260907.0337.1"
+      }
+    }
+  },
+  {
+    "configuration": "compatibility-windows-msvc-release",
+    "build_identity": {
+      "git_commit": "c929bd666b84abc0f3de66d98f79b5cfd18cb50b",
+      "git_dirty_at_configure": false,
+      "source_sha256": "de09ca8ef378af2bedbed82075916042cc04c5954180ea250fae4f611c0fae98",
+      "compiler": "MSVC 19.44.35229.0",
+      "build_type": "Release",
+      "architecture": "x86_64",
+      "fp_contract": "off",
+      "model": "footman-v4",
+      "time_unit": "seconds",
+      "step_us": 1000,
+      "seed": 1,
+      "rng": "std::mt19937; unused by movement",
+      "observation_phase": "after-due-update",
+      "sample_period_us": 20000,
+      "state_lag_us": 0,
+      "parameters": {
+        "update_period_steps": 30,
+        "update_phase_steps": 10,
+        "frame_steps": 5,
+        "stop_radius": 16,
+        "default_speed": 270,
+        "speed_clamp": [
+          150,
+          400
+        ],
+        "turn_rate_radians": "atof(0.6)",
+        "propulsion_window_degrees": 60,
+        "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+        "frame_origin": -4096,
+        "clock_start_seconds": 0.5,
+        "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+        "arithmetic": "wc3::sf retail soft-float"
+      },
+      "cases": [
+        {
+          "test": "MOV-0001",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0002",
+          "callbacks": 250,
+          "units": 2,
+          "samples": 502
+        },
+        {
+          "test": "MOV-0003",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0004",
+          "callbacks": 600,
+          "units": 1,
+          "samples": 601
+        },
+        {
+          "test": "MOV-0005",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0006",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0007",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0008",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0009",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        },
+        {
+          "test": "MOV-0010",
+          "callbacks": 250,
+          "units": 1,
+          "samples": 251
+        }
+      ],
+      "scenarios": [
+        {
+          "experiment": "MOV-0001",
+          "map_revision": "MOV-0001",
+          "path": "scenarios/MOV-0001.yaml",
+          "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361"
+        },
+        {
+          "experiment": "MOV-0002",
+          "map_revision": "MOV-0002-r2",
+          "path": "scenarios/MOV-0002.yaml",
+          "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+        },
+        {
+          "experiment": "MOV-0003",
+          "map_revision": "MOV-0003",
+          "path": "scenarios/MOV-0003.yaml",
+          "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255"
+        },
+        {
+          "experiment": "MOV-0004",
+          "map_revision": "MOV-0004",
+          "path": "scenarios/MOV-0004.yaml",
+          "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+        },
+        {
+          "experiment": "MOV-0005",
+          "map_revision": "MOV-0005",
+          "path": "scenarios/MOV-0005.yaml",
+          "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36"
+        },
+        {
+          "experiment": "MOV-0006",
+          "map_revision": "MOV-0006",
+          "path": "scenarios/MOV-0006.yaml",
+          "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+        },
+        {
+          "experiment": "MOV-0007",
+          "map_revision": "MOV-0007",
+          "path": "scenarios/MOV-0007.yaml",
+          "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0"
+        },
+        {
+          "experiment": "MOV-0008",
+          "map_revision": "MOV-0008",
+          "path": "scenarios/MOV-0008.yaml",
+          "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf"
+        },
+        {
+          "experiment": "MOV-0009",
+          "map_revision": "MOV-0009",
+          "path": "scenarios/MOV-0009.yaml",
+          "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e"
+        },
+        {
+          "experiment": "MOV-0010",
+          "map_revision": "MOV-0010",
+          "path": "scenarios/MOV-0010.yaml",
+          "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+        }
+      ]
+    },
+    "environment": {
+      "host": {
+        "system": "Windows",
+        "release": "2022Server",
+        "architecture": "x86_64",
+        "python": "3.12.10"
+      },
+      "requested_compiler": "cl",
+      "build_type": "Release",
+      "expected_architecture": "x86_64",
+      "seed": 1,
+      "github": {
+        "GITHUB_RUN_ID": "37063014720",
+        "GITHUB_RUN_ATTEMPT": "1",
+        "GITHUB_SHA": "c929bd666b84abc0f3de66d98f79b5cfd18cb50b",
+        "GITHUB_EVENT_NAME": "push",
+        "RUNNER_OS": "Windows",
+        "RUNNER_ARCH": "X64",
+        "ImageOS": "win22",
+        "ImageVersion": "20260927.320.1"
+      }
+    }
+  }
+]

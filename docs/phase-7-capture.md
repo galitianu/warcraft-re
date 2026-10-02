@@ -179,5 +179,19 @@ report. All [twenty comparisons](../results/phase-7/pr-verification/unattended-c
 of the four new candidates against the five downloaded v4 suites pass. CTest 3/3,
 Python 83/83, v4 10/10 and all existing gates pass per configuration. The
 [initial renewal-test failure](../results/phase-7/initial-pr-failure/explanation.md)
-and its correction are retained separately. Main-push verification requires merge;
-no main-push result is claimed yet.
+and its correction are retained separately.
+
+Review follow-up `b788160` passes the pinned library into authoring, ensuring the
+paste uses the same bytes as syntax and saved-map checks even outside the repository.
+The [final PR workflow 37062537594](https://github.com/galitianu/warcraft-re/actions/runs/37062537594)
+passes all five configurations and the aggregate; its downloaded artifacts
+[regrade](../results/phase-7/review-fix-pr-verification/summary.md) exactly, including
+all twenty new-candidate comparisons.
+
+PR #25 merged as `c929bd6`. The actual
+[main-push workflow 37063014720](https://github.com/galitianu/warcraft-re/actions/runs/37063014720)
+passes all five configurations and the aggregate. [Retained evidence](../results/phase-7/main-verification/summary.md)
+regrades to the identical hosted scope report; all twenty comparisons against the
+four unattended candidates pass unchanged tolerances. Each configuration passes
+CTest 3/3, Python 84/84, footman-v4 10/10 and the existing gates. Phase 7 delivery
+is complete within the documented four-scenario, single-VM scope.

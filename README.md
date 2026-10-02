@@ -74,7 +74,8 @@ retained. The v0.0.1 comparison and v0.1 oracle infrastructure gates are met;
 no release tag has been created. Phase 7 now demonstrates unattended capture for
 four reviewed v1 scenarios ([procedure](docs/phase-7-capture.md)); native archival CI
 passes, and [PR #25](https://github.com/galitianu/warcraft-re/pull/25) passes all five hosted
-configurations. Main-push verification remains pending merge. P1 sampler-order work remains deferred; see PROGRESS for
+configurations. Its merged main-push artifacts also pass and [regrade](results/phase-7/main-verification/summary.md).
+Phase 7 is complete for these four scenarios. P1 sampler-order work remains deferred; see PROGRESS for
 the next action.
 
 Build and run without a window (CMake, system clang and Python standard library):

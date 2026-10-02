@@ -1,0 +1,13 @@
+{
+  "command": [
+    "ctest",
+    "--test-dir",
+    "/Users/runner/work/warcraft-re/warcraft-re/build-ci",
+    "--output-on-failure",
+    "--timeout",
+    "180"
+  ],
+  "timeout_seconds": 300,
+  "exit_code": 0,
+  "elapsed_seconds": 1.8054751670000542
+}

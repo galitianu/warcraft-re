@@ -7,9 +7,10 @@ One command completes generation, verified World Editor packaging, three fresh W
 runs, lossless candidate normalization and same-scenario C++ comparison, with zero
 intervention. Four new revisions / twelve runs reproduce the hand-authored controls
 exactly ([evidence](results/phase-7/summary.json), [procedure](docs/phase-7-capture.md)).
-[PR #25](https://github.com/galitianu/warcraft-re/pull/25) is open. Native archival CI
-passes; all five hosted PR configurations pass and downloaded evidence regrades.
-Main-push delivery verification remains pending merge.
+[PR #25](https://github.com/galitianu/warcraft-re/pull/25) merged as `c929bd6`. Native archival
+CI and all five hosted PR/main configurations pass; downloaded evidence regrades
+([main-push delivery](results/phase-7/main-verification/summary.md)). Phase 7 is complete
+within its four-scenario scope.
 
 MOV-0015 ([issue #22](https://github.com/galitianu/warcraft-re/issues/22), merged and verified on main)
 tested the 1 ms lag rule (T7) and a 30 ms update-event facing clock (FU). Both held in three of four new maps. The
@@ -433,14 +434,20 @@ assumption was corrected without changing production behavior or captures.
 Review follow-up: editor authoring now receives the pinned library used by syntax
 and saved-map checks. A regression test verifies that an unrelated working directory
 and a different local library cannot change the pasted source.
+[Final PR workflow 37062537594](https://github.com/galitianu/warcraft-re/actions/runs/37062537594)
+passes all five configurations and the aggregate after the fix (`b788160`);
+[downloaded artifacts](results/phase-7/review-fix-pr-verification/summary.md) reproduce
+the hosted assessment and all twenty new-candidate comparisons. PR #25 merged as
+`c929bd6`; its real [main-push workflow 37063014720](https://github.com/galitianu/warcraft-re/actions/runs/37063014720)
+passes the same gates. [Retained/regraded evidence](results/phase-7/main-verification/summary.md)
+matches the hosted aggregate exactly; all twenty candidate comparisons pass.
+Per configuration, CTest 3/3, Python 84/84 and footman-v4 10/10 pass; historical
+baselines, original 45 Phase 1 runs / 15 fixtures, Phase 2 archive and generation/
+scenario identity gates remain unchanged. Other machines/seeds and retail RNG are unknown.
 
 ## Exact next action
 
-Finish Phase 7 delivery: merge PR #25 after review/authorization, then retain and
-regrade its real main-push workflow on all five configurations.
-No main-push success is claimed before that workflow runs.
-
-After delivery, choose the next **P3** behavior from the Phase 8 movement backlog
+Choose the next **P3** behavior from the Phase 8 movement backlog
 ([plan §11](Warcraft-III-Reimplementation-Plan.md#11-phase-8--expand-compatibility-through-experiments)):
 something footman-v4 does not model yet and a player would see. The proposed first
 candidate is unit–unit collision: two Footmen ordered through each other, with both
@@ -462,7 +469,7 @@ comparable behavior is in place, or if these differences block something more no
 | 4 | C++ compatibility CI against committed WC3 references | Complete — five configurations pass on PR and main push; [evidence](results/phase-4/main-verification.json) |
 | 5 | Declarative scenarios extracted from repeated manual tests | Complete — [results](docs/phase-5-scenarios.md); PR and main push pass; [evidence](results/phase-5/main-verification.md) |
 | 6 | One scenario drives C++ and generates a runnable WC3 map | Complete — four maps/12 runs; five-configuration PR and main push PASS; [evidence](results/phase-6/main-verification/summary.md) |
-| 7 | Reliable unattended capture for four v1 scenarios; 12 fresh runs, exact reproduction, zero intervention | Capability demonstrated — [evidence](results/phase-7/summary.json); PR verified; main-push delivery pending merge |
+| 7 | Reliable unattended capture for four v1 scenarios; 12 fresh runs, exact reproduction, zero intervention | Complete — [captures](results/phase-7/summary.json); five-configuration PR and [main-push verification](results/phase-7/main-verification/summary.md) |
 | 8 | Microscopic tests, sweeps, and measured compatibility expansion | Planned |
 
 Advance with actual artifacts and verification. Infrastructure checks are not gameplay passes.

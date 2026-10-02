@@ -1,0 +1,107 @@
+test_author_uses_pinned_library_outside_repository (test_capture_oracle.CaptureTests.test_author_uses_pinned_library_outside_repository) ... ok
+test_candidate_normalization_rejects_saved_map_mismatch (test_capture_oracle.CaptureTests.test_candidate_normalization_rejects_saved_map_mismatch) ... ok
+test_cleanup_failure_cannot_leave_a_passing_report (test_capture_oracle.CaptureTests.test_cleanup_failure_cannot_leave_a_passing_report) ... MOV-0002-test: complete
+ok
+test_fresh_output_lease_contention_and_timeout_preserve_diagnostics (test_capture_oracle.CaptureTests.test_fresh_output_lease_contention_and_timeout_preserve_diagnostics) ... ok
+test_incomplete_or_stale_capture_cannot_count_as_fresh_run (test_capture_oracle.CaptureTests.test_incomplete_or_stale_capture_cannot_count_as_fresh_run) ... ok
+test_input_changes_are_rejected_before_a_result (test_capture_oracle.CaptureTests.test_input_changes_are_rejected_before_a_result) ... ok
+test_installation_machine_architecture_version_and_every_hash (test_capture_oracle.CaptureTests.test_installation_machine_architecture_version_and_every_hash) ... ok
+test_launch_receipt_recovers_ownership_for_cleanup (test_capture_oracle.CaptureTests.test_launch_receipt_recovers_ownership_for_cleanup) ... ok
+test_lease_renewal_and_failure_cleanup (test_capture_oracle.CaptureTests.test_lease_renewal_and_failure_cleanup) ... ok
+test_retained_unattended_bundles_regrade_without_a_guest (test_capture_oracle.CaptureTests.test_retained_unattended_bundles_regrade_without_a_guest) ... ok
+test_shapes_are_from_controls_and_paste_is_crlf (test_capture_oracle.CaptureTests.test_shapes_are_from_controls_and_paste_is_crlf) ... ok
+test_stop_only_owned_process_with_original_start_and_path (test_capture_oracle.CaptureTests.test_stop_only_owned_process_with_original_start_and_path) ... ok
+test_stopped_vm_start_and_unresponsive_running_guest_deadline (test_capture_oracle.CaptureTests.test_stopped_vm_start_and_unresponsive_running_guest_deadline) ... MOV-0002-test: guest-preflight
+MOV-0002-test: guest-preflight
+ok
+test_transfer_tampering_and_remote_replacement_are_rejected (test_capture_oracle.CaptureTests.test_transfer_tampering_and_remote_replacement_are_rejected) ... ok
+test_circular_facing_and_clock_quantization (test_compare_movement.ComparisonTests.test_circular_facing_and_clock_quantization) ... ok
+test_equal_time_callbacks_preserve_order (test_compare_movement.ComparisonTests.test_equal_time_callbacks_preserve_order) ... ok
+test_first_failure_and_accumulated_deltas (test_compare_movement.ComparisonTests.test_first_failure_and_accumulated_deltas) ... ok
+test_incomplete_reordered_and_nonfinite_rejected (test_compare_movement.ComparisonTests.test_incomplete_reordered_and_nonfinite_rejected) ... ok
+test_overflowing_identity_counts_exit_malformed_not_divergent (test_compare_movement.ComparisonTests.test_overflowing_identity_counts_exit_malformed_not_divergent) ... ok
+test_unparseable_csv_exits_malformed_not_divergent (test_compare_movement.ComparisonTests.test_unparseable_csv_exits_malformed_not_divergent) ... ok
+test_ci_generated_gate_fails_when_all_manifests_or_fixtures_disappear (test_generated_loop.GeneratedLoopTests.test_ci_generated_gate_fails_when_all_manifests_or_fixtures_disappear) ... ok
+test_downloaded_loop_regrades_bytes_and_rejects_forged_success (test_generated_loop.GeneratedLoopTests.test_downloaded_loop_regrades_bytes_and_rejects_forged_success) ... ok
+test_normalization_exact_reproduction_and_same_scenario_comparison (test_generated_loop.GeneratedLoopTests.test_normalization_exact_reproduction_and_same_scenario_comparison) ... ok
+test_source_freshness_and_repeatability_fail_closed (test_generated_loop.GeneratedLoopTests.test_source_freshness_and_repeatability_fail_closed) ... ok
+test_gates_pass_only_with_the_reviewed_differences_and_regrade_downloads (test_mov0013.ExperimentGateTests.test_gates_pass_only_with_the_reviewed_differences_and_regrade_downloads) ... ok
+test_committed_predictions_regenerate_byte_for_byte (test_mov0013.PredictionTests.test_committed_predictions_regenerate_byte_for_byte) ... ok
+test_invalid_v2_descriptions_and_runs_fail_before_any_output (test_mov0013.ScenarioV2Tests.test_invalid_v2_descriptions_and_runs_fail_before_any_output) ... ok
+test_v1_scenarios_as_version_2_keep_every_v4_observation (test_mov0013.ScenarioV2Tests.test_v1_scenarios_as_version_2_keep_every_v4_observation) ... ok
+test_all_committed_goldens_and_independent_control (test_oracle_generator.OracleGeneratorTests.test_all_committed_goldens_and_independent_control) ... ok
+test_audit_catches_changed_calls_literals_schedule_and_order (test_oracle_generator.OracleGeneratorTests.test_audit_catches_changed_calls_literals_schedule_and_order) ... ok
+test_downloaded_ci_generation_requires_complete_matching_bytes (test_oracle_generator.OracleGeneratorTests.test_downloaded_ci_generation_requires_complete_matching_bytes) ... ok
+test_revision_binds_same_bytes_and_equal_time_actions_keep_file_order (test_oracle_generator.OracleGeneratorTests.test_revision_binds_same_bytes_and_equal_time_actions_keep_file_order) ... ok
+test_unsupported_input_is_rejected_not_approximated (test_oracle_generator.OracleGeneratorTests.test_unsupported_input_is_rejected_not_approximated) ... ok
+test_world_editor_clipboard_has_one_explicit_crlf_conversion (test_oracle_generator.OracleGeneratorTests.test_world_editor_clipboard_has_one_explicit_crlf_conversion) ... ok
+test_decreasing_clock (test_oracle_parse.ParserChecks.test_decreasing_clock) ... ok
+test_equal_time_callbacks_are_kept_in_sequence_order (test_oracle_parse.ParserChecks.test_equal_time_callbacks_are_kept_in_sequence_order) ... ok
+test_generated_entries_excluded_from_payload (test_oracle_parse.ParserChecks.test_generated_entries_excluded_from_payload) ... ok
+test_malformed_sample (test_oracle_parse.ParserChecks.test_malformed_sample) ... ok
+test_missing_end (test_oracle_parse.ParserChecks.test_missing_end) ... ok
+test_missing_sample (test_oracle_parse.ParserChecks.test_missing_sample) ... ok
+test_real_capture (test_oracle_parse.ParserChecks.test_real_capture) ... ok
+test_rejected_order_is_reported_not_hidden (test_oracle_parse.ParserChecks.test_rejected_order_is_reported_not_hidden) ... ok
+test_sample_moved_before_its_tick (test_oracle_parse.ParserChecks.test_sample_moved_before_its_tick) ... ok
+test_sequence_gap (test_oracle_parse.ParserChecks.test_sequence_gap) ... ok
+test_truncated (test_oracle_parse.ParserChecks.test_truncated) ... ok
+test_wrong_build (test_oracle_parse.ParserChecks.test_wrong_build) ... ok
+test_wrong_map (test_oracle_parse.ParserChecks.test_wrong_map) ... ok
+test_command_and_equal_time_action_order_changes (test_regression.RegressionControls.test_command_and_equal_time_action_order_changes) ... ok
+test_comparator_exit_one_is_evaluated_and_exit_two_is_rejected (test_regression.RegressionControls.test_comparator_exit_one_is_evaluated_and_exit_two_is_rejected) ... Generated scenario loop PASS: 4 maps / 12 WC3 runs
+MOV-0013 PASS: MOV-0013-a canonical FAIL, frame+1 at [15, 20, 25, 30, 35]; MOV-0013-b canonical PASS, frame+1 at none; MOV-0013-c canonical FAIL, frame+1 at [25, 30, 35]; MOV-0013-d canonical PASS, frame+1 at none
+MOV-0014 PASS: MOV-0014-a canonical FAIL, frame+1 at [30, 35, 40, 45, 50, 55, 60]; MOV-0014-b canonical FAIL, frame+1 at [15]; MOV-0014-c canonical FAIL, frame+1 at [15]
+MOV-0015 PASS: MOV-0015-a canonical FAIL, frame+1 at [15, 20, 25, 30, 35, 40, 45]; MOV-0015-b canonical FAIL, frame+1 at [40, 45, 50]; MOV-0015-c canonical FAIL, frame+1 at [906]; MOV-0015-d canonical FAIL, frame+1 at [28]
+MOV-0013 FAIL: MOV-0013-a canonical FAIL, frame+1 at [15, 20, 25, 30, 35]; MOV-0013-b canonical PASS, frame+1 at none; MOV-0013-c canonical FAIL, frame+1 at [25, 30, 35]; MOV-0013-d canonical PASS, frame+1 at none
+MOV-0014 FAIL: MOV-0014-a canonical FAIL, frame+1 at [30, 35, 40, 45, 50, 55, 60]; MOV-0014-b canonical FAIL, frame+1 at [15]; MOV-0014-c canonical FAIL, frame+1 at [15]
+MOV-0014 FAIL: MOV-0014-a canonical FAIL, frame+1 at [30, 35, 40, 45, 50, 55, 60]; MOV-0014-b canonical FAIL, frame+1 at [15]; MOV-0014-c canonical FAIL, frame+1 at [15]
+MOV-0015 FAIL: MOV-0015-a canonical FAIL, frame+1 at [15, 20, 25, 30, 35, 40, 45]; MOV-0015-b canonical FAIL, frame+1 at [40, 45, 50]; MOV-0015-c canonical FAIL, frame+1 at [906]; MOV-0015-d canonical FAIL, frame+1 at [28]
+MOV-0015 FAIL: MOV-0015-a canonical FAIL, frame+1 at [15, 20, 25, 30, 35, 40, 45]; MOV-0015-b canonical FAIL, frame+1 at [40, 45, 50]; MOV-0015-c canonical FAIL, frame+1 at [906]; MOV-0015-d canonical FAIL, frame+1 at [28]
+MOV-0015 FAIL: MOV-0015-a canonical FAIL, frame+1 at [15, 20, 25, 30, 35, 40, 45]; MOV-0015-b canonical FAIL, frame+1 at [40, 45, 50]; MOV-0015-c canonical FAIL, frame+1 at [906]; MOV-0015-d canonical FAIL, frame+1 at [28]
+known-failure: running
+policy: running
+invalid: running
+ok
+test_complete_known_incompatibility_is_not_regression (test_regression.RegressionControls.test_complete_known_incompatibility_is_not_regression) ... ok
+test_earlier_failure_is_protected (test_regression.RegressionControls.test_earlier_failure_is_protected) ... ok
+test_improvement_is_a_completed_valid_result (test_regression.RegressionControls.test_improvement_is_a_completed_valid_result) ... ok
+test_invalid_overflow_missing_truncated_inputs_are_fatal (test_regression.RegressionControls.test_invalid_overflow_missing_truncated_inputs_are_fatal) ... ok
+test_legacy_clock_and_action_diagnostics_remain_visible (test_regression.RegressionControls.test_legacy_clock_and_action_diagnostics_remain_visible) ... ok
+test_nonzero_runner_timeout_and_missing_artifact_fail (test_regression.RegressionControls.test_nonzero_runner_timeout_and_missing_artifact_fail) ... runner-failure: running
+timeout: running
+ok
+test_stationary_regression (test_regression.RegressionControls.test_stationary_regression) ... ok
+test_worse_error_inside_already_failing_case (test_regression.RegressionControls.test_worse_error_inside_already_failing_case) ... ok
+test_a_description_cannot_redefine_a_retained_shape (test_scenarios.ScenarioRunnerTests.test_a_description_cannot_redefine_a_retained_shape) ... ok
+test_equal_time_actions_keep_file_order_and_relative_targets (test_scenarios.ScenarioRunnerTests.test_equal_time_actions_keep_file_order_and_relative_targets) ... ok
+test_invalid_descriptions_fail_before_any_output (test_scenarios.ScenarioRunnerTests.test_invalid_descriptions_fail_before_any_output) ... ok
+test_provenance_binds_the_exact_scenario_bytes (test_scenarios.ScenarioRunnerTests.test_provenance_binds_the_exact_scenario_bytes) ... ok
+test_runner_requires_scenarios_and_repeats_every_suite (test_scenarios.ScenarioRunnerTests.test_runner_requires_scenarios_and_repeats_every_suite) ... ok
+test_scenario_identity_is_separate_from_its_meaning (test_scenarios.ScenarioRunnerTests.test_scenario_identity_is_separate_from_its_meaning) ... ok
+test_actions_acceptance_target_and_structure (test_trace_contract.CanonicalComparisonTests.test_actions_acceptance_target_and_structure) ... ok
+test_circular_facing_and_clock_quantization (test_trace_contract.CanonicalComparisonTests.test_circular_facing_and_clock_quantization) ... ok
+test_cli_exit_0_1_2_and_overflow_without_traceback (test_trace_contract.CanonicalComparisonTests.test_cli_exit_0_1_2_and_overflow_without_traceback) ... ok
+test_command_timing_mismatch_is_a_completed_failure (test_trace_contract.CanonicalComparisonTests.test_command_timing_mismatch_is_a_completed_failure) ... ok
+test_equal_time_event_action_interleaving_is_compared (test_trace_contract.CanonicalComparisonTests.test_equal_time_event_action_interleaving_is_compared) ... ok
+test_event_payloads_are_compared_and_missing_properties_unobserved (test_trace_contract.CanonicalComparisonTests.test_event_payloads_are_compared_and_missing_properties_unobserved) ... ok
+test_first_divergence_and_continued_per_unit_error (test_trace_contract.CanonicalComparisonTests.test_first_divergence_and_continued_per_unit_error) ... ok
+test_missing_reordered_duplicate_and_nonfinite_records_rejected (test_trace_contract.CanonicalComparisonTests.test_missing_reordered_duplicate_and_nonfinite_records_rejected) ... ok
+test_phase_and_known_failures_survive (test_trace_contract.CanonicalComparisonTests.test_phase_and_known_failures_survive) ... ok
+test_sample_before_action_order_and_action_sequence (test_trace_contract.CanonicalComparisonTests.test_sample_before_action_order_and_action_sequence) ... ok
+test_unit_type_mismatch_is_structural_failure (test_trace_contract.CanonicalComparisonTests.test_unit_type_mismatch_is_structural_failure) ... ok
+test_v3_parameter_rules_cannot_be_redefined (test_trace_contract.FootmanV3ContractTests.test_v3_parameter_rules_cannot_be_redefined) ... ok
+test_v3_traces_validate_and_keep_honest_verdicts (test_trace_contract.FootmanV3ContractTests.test_v3_traces_validate_and_keep_honest_verdicts) ... ok
+test_all_45_runs_reproduce_lossless_fixtures (test_trace_contract.NormalizationTests.test_all_45_runs_reproduce_lossless_fixtures) ... ok
+test_equal_time_and_action_order_retained (test_trace_contract.NormalizationTests.test_equal_time_and_action_order_retained) ... ok
+test_nine_decimal_clock_payload_and_transport_preserved (test_trace_contract.NormalizationTests.test_nine_decimal_clock_payload_and_transport_preserved) ... ok
+test_reference_cannot_forge_its_own_raw_identity (test_trace_contract.NormalizationTests.test_reference_cannot_forge_its_own_raw_identity) ... ok
+test_reference_identity_and_source_mapping_rejected (test_trace_contract.NormalizationTests.test_reference_identity_and_source_mapping_rejected) ... ok
+test_library_clock_reads_like_wc3 (test_wc3_float.R2swTest.test_library_clock_reads_like_wc3) ... ok
+test_nine_decimals (test_wc3_float.R2swTest.test_nine_decimals) ... ok
+test_six_decimals_round_half_up_of_truncated_fraction (test_wc3_float.R2swTest.test_six_decimals_round_half_up_of_truncated_fraction) ... ok
+
+----------------------------------------------------------------------
+Ran 84 tests in 33.020s
+
+OK

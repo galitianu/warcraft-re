@@ -1,0 +1,353 @@
+{
+  "experiment": "MOV-0015",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "post_hoc": true,
+  "start_offsets_unit": "float32 ulps of s(0) relative to add(0.5, float32(start))",
+  "maps": {
+    "MOV-0013-a": {
+      "start": "0",
+      "clock_consistent_start_offsets": [
+        0
+      ],
+      "nearest_start_offset": 0,
+      "mismatches_truncated_start": {
+        "H0": [
+          15,
+          20,
+          25,
+          30,
+          35
+        ],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      },
+      "mismatches_nearest_start": {
+        "H0": [
+          15,
+          20,
+          25,
+          30,
+          35
+        ],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      }
+    },
+    "MOV-0013-b": {
+      "start": "0.0025",
+      "clock_consistent_start_offsets": [
+        0
+      ],
+      "nearest_start_offset": 0,
+      "mismatches_truncated_start": {
+        "H0": [],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      },
+      "mismatches_nearest_start": {
+        "H0": [],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      }
+    },
+    "MOV-0013-c": {
+      "start": "0.02",
+      "clock_consistent_start_offsets": [
+        0
+      ],
+      "nearest_start_offset": 0,
+      "mismatches_truncated_start": {
+        "H0": [
+          25,
+          30,
+          35
+        ],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      },
+      "mismatches_nearest_start": {
+        "H0": [
+          25,
+          30,
+          35
+        ],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      }
+    },
+    "MOV-0013-d": {
+      "start": "0",
+      "clock_consistent_start_offsets": [
+        0
+      ],
+      "nearest_start_offset": 0,
+      "mismatches_truncated_start": {
+        "H0": [],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      },
+      "mismatches_nearest_start": {
+        "H0": [],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      }
+    },
+    "MOV-0014-a": {
+      "start": "0.3",
+      "clock_consistent_start_offsets": [
+        0
+      ],
+      "nearest_start_offset": 0,
+      "mismatches_truncated_start": {
+        "H0": [
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60
+        ],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      },
+      "mismatches_nearest_start": {
+        "H0": [
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60
+        ],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      }
+    },
+    "MOV-0014-b": {
+      "start": "0.72",
+      "clock_consistent_start_offsets": [
+        0,
+        1,
+        2
+      ],
+      "nearest_start_offset": 0,
+      "mismatches_truncated_start": {
+        "H0": [
+          15
+        ],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      },
+      "mismatches_nearest_start": {
+        "H0": [
+          15
+        ],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      }
+    },
+    "MOV-0014-c": {
+      "start": "0.9",
+      "clock_consistent_start_offsets": [
+        -1,
+        0,
+        1
+      ],
+      "nearest_start_offset": 0,
+      "mismatches_truncated_start": {
+        "H0": [
+          15
+        ],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      },
+      "mismatches_nearest_start": {
+        "H0": [
+          15
+        ],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      }
+    },
+    "MOV-0015-a": {
+      "start": "0.12",
+      "clock_consistent_start_offsets": [
+        1
+      ],
+      "nearest_start_offset": 1,
+      "mismatches_truncated_start": {
+        "H0": [
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45
+        ],
+        "T7": [
+          45
+        ],
+        "Tsub": [
+          45
+        ],
+        "FH": [
+          10
+        ],
+        "FU": [
+          10
+        ]
+      },
+      "mismatches_nearest_start": {
+        "H0": [
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45
+        ],
+        "T7": [],
+        "Tsub": [],
+        "FH": [],
+        "FU": []
+      }
+    },
+    "MOV-0015-b": {
+      "start": "0.45",
+      "clock_consistent_start_offsets": [
+        0
+      ],
+      "nearest_start_offset": 0,
+      "mismatches_truncated_start": {
+        "H0": [
+          40,
+          45,
+          50
+        ],
+        "T7": [],
+        "Tsub": [
+          55
+        ],
+        "FH": [],
+        "FU": []
+      },
+      "mismatches_nearest_start": {
+        "H0": [
+          40,
+          45,
+          50
+        ],
+        "T7": [],
+        "Tsub": [
+          55
+        ],
+        "FH": [],
+        "FU": []
+      }
+    },
+    "MOV-0015-c": {
+      "start": "0.999054",
+      "clock_consistent_start_offsets": [
+        0
+      ],
+      "nearest_start_offset": 0,
+      "mismatches_truncated_start": {
+        "H0": [
+          906
+        ],
+        "T7": [],
+        "Tsub": [
+          906
+        ],
+        "FH": [
+          781,
+          811,
+          841,
+          871,
+          901
+        ],
+        "FU": []
+      },
+      "mismatches_nearest_start": {
+        "H0": [
+          906
+        ],
+        "T7": [],
+        "Tsub": [
+          906
+        ],
+        "FH": [
+          781,
+          811,
+          841,
+          871,
+          901
+        ],
+        "FU": []
+      }
+    },
+    "MOV-0015-d": {
+      "start": "0.997001",
+      "clock_consistent_start_offsets": [
+        0,
+        1,
+        2
+      ],
+      "nearest_start_offset": 0,
+      "mismatches_truncated_start": {
+        "H0": [
+          28
+        ],
+        "T7": [],
+        "Tsub": [
+          33
+        ],
+        "FH": [],
+        "FU": []
+      },
+      "mismatches_nearest_start": {
+        "H0": [
+          28
+        ],
+        "T7": [],
+        "Tsub": [
+          33
+        ],
+        "FH": [],
+        "FU": []
+      }
+    }
+  }
+}

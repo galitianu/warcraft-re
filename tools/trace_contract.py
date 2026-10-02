@@ -6,6 +6,8 @@ import math
 from pathlib import Path
 import re
 
+from wc3_float import add, bits
+
 ROOT = Path(__file__).resolve().parents[1]
 BUILD = 'wc3-1.29.2-9231-x86'
 SCHEMA = 'wc3-trace'
@@ -26,7 +28,7 @@ GENERATED_SHAPES = {
     'MOV-0006-g1': ('MOV-0006', 250, '0.020000', 1),
     'MOV-0010-g1': ('MOV-0010', 250, '0.020000', 1),
 }
-# Generated experiments of their own (docs/mov-0013.md, docs/mov-0014.md), written
+# Generated experiments of their own (docs/mov-0013.md to docs/mov-0015.md), written
 # here by hand from the experiment definition, never from a scenario. Each binds one
 # v2 scenario file; `start_us` is its declared sampler start, `control` the retained
 # capture whose observations the revision must reproduce exactly (or None).
@@ -36,7 +38,8 @@ EXPERIMENT_SHAPES = {
                        control='MOV-0012-a' if (exp, v) == ('MOV-0013', 'a') else None, state='STATE',
                        definition=f'docs/{exp.lower()}.md')
     for exp, variants in (('MOV-0013', (('a', 0), ('b', 2500), ('c', 20000), ('d', 0))),
-                          ('MOV-0014', (('a', 300000), ('b', 720000), ('c', 900000))))
+                          ('MOV-0014', (('a', 300000), ('b', 720000), ('c', 900000))),
+                          ('MOV-0015', (('a', 120000), ('b', 450000), ('c', 999054), ('d', 997001))))
     for v, start in variants}
 STATE_KEYS = {'c10_9', 'x_9', 'y_9', 'facing_9'}
 # wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it
@@ -220,6 +223,21 @@ LIBRARY_CLOCK = 'sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 
 # Scenario v2 runs (docs/scenario-v2.md) also declare their observation rule.
 LIBRARY_CLOCK_V2 = ('sub(1000, floor32(1000 + floor(start, 2^-17) - scheduled)); start = scheduled(0) = add(0.5, observe.start); '
                     'scheduled += period per callback; a callback observes every frame with clock <= scheduled')
+
+
+def scheduled_frame_us(start_us, period, callback, _cache={}):
+    """Scenario v2 H0: the latest 5 ms frame whose float32 clock is at or before the
+    sampler's float32 scheduled time (docs/scenario-v2.md), as us after the 0.5 s setup.
+    Both clocks are positive, so their bit patterns order like their values."""
+    setup = bits(0.5)
+    times, clocks, frames = _cache.setdefault((start_us, period), (
+        [add(setup, bits(start_us / 1000000)) if start_us else setup], [setup], []))
+    while len(frames) <= callback:
+        while clocks[-1] <= times[len(frames)]:
+            clocks.append(add(clocks[-1], bits(0.005)))
+        frames.append(5000 * (len(clocks) - 2))
+        times.append(add(times[-1], bits(float(period))))
+    return frames[callback]
 
 
 def retail_numeric_format(label):
@@ -407,8 +425,8 @@ def validate(trace):
                 integer(rec['time']['state_us'], 0, 20000000)
                 if scheduled:
                     # The latest 5 ms frame at or before the float32 scheduled time.
-                    behind = experiment['start_us'] + cb * build['sample_period_us'] - rec['time']['state_us']
-                    require(rec['time']['state_us'] % 5000 == 0 and 0 <= behind <= 5000, 'invalid C++ state timing')
+                    require(rec['time']['state_us'] == scheduled_frame_us(experiment['start_us'], period, cb),
+                            'invalid C++ state timing')
                 else:
                     lag = time['state_lag_us'] if cb > 0 and kind in ('TICK', 'SAMPLE') else 0
                     require(rec['time']['state_us'] == cb * 20000 - lag, 'invalid C++ state timing')

@@ -148,7 +148,7 @@ def gate_key(experiment):
 
 
 def check_experiment(build, reports, result, experiment):
-    # docs/mov-0013.md, docs/mov-0014.md: each gate requires exactly the reviewed differences.
+    # docs/mov-0013.md to docs/mov-0015.md: each gate requires exactly the reviewed differences.
     key, name = gate_key(experiment), experiment.lower()
     result[f'{key}_required'] = True
     result[key] = dict(status='FAIL')

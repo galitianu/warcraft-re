@@ -1,0 +1,142 @@
+{
+  "experiment": "MOV-0015",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "predictions_sha256": "54ac7f6c149e8eeeadb17ce8a9fe6adfbe75adf9f98181672cbadb28ce0c354a",
+  "maps": {
+    "MOV-0015-a": {
+      "observed_next_xy": [
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45
+      ],
+      "observed_neither": [],
+      "facing_mismatches": {
+        "FH": {
+          "10": "0.174245168"
+        },
+        "FU": {
+          "10": "0.174245168"
+        }
+      },
+      "observed_onset_callback": 15,
+      "aux_clock_mismatches": [
+        7,
+        23,
+        39,
+        55,
+        71,
+        87,
+        103,
+        119,
+        135,
+        151,
+        167,
+        183,
+        199,
+        215,
+        231,
+        247,
+        263,
+        279,
+        295,
+        311,
+        327,
+        343,
+        359,
+        375
+      ],
+      "q17_clock_mismatches": [
+        375
+      ],
+      "frame": {
+        "H0": false,
+        "T7": false,
+        "Tsub": false
+      },
+      "facing": {
+        "FH": false,
+        "FU": false
+      }
+    },
+    "MOV-0015-b": {
+      "observed_next_xy": [
+        40,
+        45,
+        50
+      ],
+      "observed_neither": [],
+      "facing_mismatches": {
+        "FH": {},
+        "FU": {}
+      },
+      "observed_onset_callback": 15,
+      "aux_clock_mismatches": [],
+      "q17_clock_mismatches": [],
+      "frame": {
+        "H0": false,
+        "T7": true,
+        "Tsub": false
+      },
+      "facing": {
+        "FH": true,
+        "FU": true
+      }
+    },
+    "MOV-0015-c": {
+      "observed_next_xy": [
+        906
+      ],
+      "observed_neither": [],
+      "facing_mismatches": {
+        "FH": {
+          "781": "0.070166576",
+          "811": "0.191854528",
+          "841": "359.893218944",
+          "871": "0.076432216",
+          "901": "359.868774400"
+        },
+        "FU": {}
+      },
+      "observed_onset_callback": 6,
+      "aux_clock_mismatches": [],
+      "q17_clock_mismatches": [],
+      "frame": {
+        "H0": false,
+        "T7": true,
+        "Tsub": false
+      },
+      "facing": {
+        "FH": false,
+        "FU": true
+      }
+    },
+    "MOV-0015-d": {
+      "observed_next_xy": [
+        28
+      ],
+      "observed_neither": [],
+      "facing_mismatches": {
+        "FH": {},
+        "FU": {}
+      },
+      "observed_onset_callback": 8,
+      "aux_clock_mismatches": [],
+      "q17_clock_mismatches": [],
+      "frame": {
+        "H0": false,
+        "T7": true,
+        "Tsub": false
+      },
+      "facing": {
+        "FH": true,
+        "FU": true
+      }
+    }
+  },
+  "frame_rules_surviving": [],
+  "facing_rules_surviving": []
+}

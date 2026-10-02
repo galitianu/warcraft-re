@@ -1,4 +1,4 @@
-"""Scenario v2 and the MOV-0013/0014 gates: rejections, v1 equivalence, downloaded regrade.
+"""Scenario v2 and the MOV-0013 to 0015 gates: rejections, v1 equivalence, downloaded regrade.
 
 Uses the built runner (WC3TEST_RUNNER), generator (ORACLE_CODEGEN) and the
 wc3states tool beside the runner. Tampering happens only in temporary copies.
@@ -98,18 +98,22 @@ class ExperimentGateTests(unittest.TestCase):
                     self.assertIsNone(verify_experiment(root, {}, experiment, legacy=True))
             # A changed reviewed list is a failing gate, not a new expectation.
             for label, changed in (('MOV-0013-a', dict(state=[15])), ('MOV-0014-b', dict(state=[15, 20])),
-                                   ('MOV-0014-c', dict(clock=(1, None)))):
+                                   ('MOV-0014-c', dict(clock=(1, None))), ('MOV-0015-c', dict(facing=[781])),
+                                   ('MOV-0015-a', dict(state_clock=[7])), ('MOV-0015-a', dict(clock_ulps=-1))):
                 with self.subTest(label), mock.patch.dict(KNOWN, {label: dict(KNOWN[label], **changed)}):
                     experiment = label[:8]
                     self.assertEqual(run(RUNNER, STATES, CODEGEN, root / 'again', root / 'again-reports',
                                          experiment=experiment), 1)
             # A forged trace cannot keep a PASS report: changed state fails the regrade,
-            # and a clock that disagrees with its samples fails the trace contract.
+            # a clock that disagrees with its samples fails the trace contract, and so
+            # does a frame other than the latest at or before the float32 scheduled time.
             result = dict(mov0014_required=True, mov0014=dict(status='PASS'))
             path = root / 'mov-0014/traces/MOV-0014-c/MOV-0014.json'
             original = load(path)
+            frame = lambda r: r['time'].update(state_us=r['time']['state_us'] - 5000)
             for kind, forge, message in (('SAMPLE', lambda r: r['values'].update(x='1.000000'), 'does not reproduce'),
-                                         ('TICK', lambda r: r['time'].update(reported='0.000000'), 'time differs')):
+                                         ('TICK', lambda r: r['time'].update(reported='0.000000'), 'time differs'),
+                                         ('EVENT', frame, 'state timing')):
                 trace = load(path)
                 forge(next(r for r in trace['records'] if r['kind'] == kind))
                 write_json(path, trace, compact_records=True)
@@ -121,16 +125,18 @@ class ExperimentGateTests(unittest.TestCase):
                 verify_experiment(root, result, 'MOV-0014')
 
 
-class Mov0014PredictionTests(unittest.TestCase):
+class PredictionTests(unittest.TestCase):
     def test_committed_predictions_regenerate_byte_for_byte(self):
-        # The pre-registration (docs/mov-0014.md) must stay reproducible from the tools.
-        with tempfile.TemporaryDirectory() as tmp:
-            out = Path(tmp) / 'predictions.json'
-            result = subprocess.run([sys.executable, str(ROOT / 'tools/predict_mov0014.py'), '--runner', str(RUNNER),
-                                     '--states', str(STATES), '--out', str(out)],
-                                    capture_output=True, text=True, timeout=600)
-            self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertEqual(out.read_bytes(), (ROOT / 'results/mov-0014/predictions.json').read_bytes())
+        # The pre-registrations (docs/mov-0014.md, docs/mov-0015.md) must stay reproducible from the tools.
+        for experiment in ('mov0014', 'mov0015'):
+            with self.subTest(experiment), tempfile.TemporaryDirectory() as tmp:
+                out = Path(tmp) / 'predictions.json'
+                result = subprocess.run([sys.executable, str(ROOT / f'tools/predict_{experiment}.py'), '--runner',
+                                         str(RUNNER), '--states', str(STATES), '--out', str(out)],
+                                        capture_output=True, text=True, timeout=600)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                name = f'{experiment[:3]}-{experiment[3:]}'
+                self.assertEqual(out.read_bytes(), (ROOT / f'results/{name}/predictions.json').read_bytes())
 
 
 if __name__ == '__main__':

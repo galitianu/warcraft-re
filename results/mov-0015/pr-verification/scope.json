@@ -1,0 +1,3278 @@
+{
+  "status": "PASS",
+  "configurations": {
+    "mac-arm-release": {
+      "ci_status": "PASS",
+      "host": {
+        "system": "Darwin",
+        "release": "24.6.0",
+        "architecture": "arm64",
+        "python": "3.12.10"
+      },
+      "environment": {
+        "host": {
+          "system": "Darwin",
+          "release": "24.6.0",
+          "architecture": "arm64",
+          "python": "3.12.10"
+        },
+        "requested_compiler": "/usr/bin/clang++",
+        "build_type": "Release",
+        "expected_architecture": "arm64",
+        "seed": 1,
+        "github": {
+          "GITHUB_RUN_ID": "37040588867",
+          "GITHUB_RUN_ATTEMPT": "1",
+          "GITHUB_SHA": "7c552902b59b9e5a86d9a7419dd8e2db3c9356b7",
+          "GITHUB_EVENT_NAME": "pull_request",
+          "RUNNER_OS": "macOS",
+          "RUNNER_ARCH": "ARM64",
+          "ImageOS": "macos15",
+          "ImageVersion": "20260907.0337.1"
+        }
+      },
+      "primary_identity": {
+        "git_commit": "7c552902b59b9e5a86d9a7419dd8e2db3c9356b7",
+        "git_dirty_at_configure": false,
+        "source_sha256": "de09ca8ef378af2bedbed82075916042cc04c5954180ea250fae4f611c0fae98",
+        "compiler": "AppleClang 17.0.0.17000013",
+        "build_type": "Release",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float"
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0001",
+            "map_revision": "MOV-0001",
+            "path": "scenarios/MOV-0001.yaml",
+            "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361"
+          },
+          {
+            "experiment": "MOV-0002",
+            "map_revision": "MOV-0002-r2",
+            "path": "scenarios/MOV-0002.yaml",
+            "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+          },
+          {
+            "experiment": "MOV-0003",
+            "map_revision": "MOV-0003",
+            "path": "scenarios/MOV-0003.yaml",
+            "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255"
+          },
+          {
+            "experiment": "MOV-0004",
+            "map_revision": "MOV-0004",
+            "path": "scenarios/MOV-0004.yaml",
+            "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+          },
+          {
+            "experiment": "MOV-0005",
+            "map_revision": "MOV-0005",
+            "path": "scenarios/MOV-0005.yaml",
+            "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36"
+          },
+          {
+            "experiment": "MOV-0006",
+            "map_revision": "MOV-0006",
+            "path": "scenarios/MOV-0006.yaml",
+            "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+          },
+          {
+            "experiment": "MOV-0007",
+            "map_revision": "MOV-0007",
+            "path": "scenarios/MOV-0007.yaml",
+            "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0"
+          },
+          {
+            "experiment": "MOV-0008",
+            "map_revision": "MOV-0008",
+            "path": "scenarios/MOV-0008.yaml",
+            "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf"
+          },
+          {
+            "experiment": "MOV-0009",
+            "map_revision": "MOV-0009",
+            "path": "scenarios/MOV-0009.yaml",
+            "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e"
+          },
+          {
+            "experiment": "MOV-0010",
+            "map_revision": "MOV-0010",
+            "path": "scenarios/MOV-0010.yaml",
+            "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        ]
+      },
+      "models": {
+        "v1": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877",
+            "MOV-0003.json": "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3",
+            "MOV-0004.json": "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41",
+            "MOV-0005.json": "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20",
+            "MOV-0006.json": "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849",
+            "MOV-0007.json": "286117047d150e559b4f7eff378515d8d8e7d85d0ecc437b1f4829cab6c81d40",
+            "MOV-0008.json": "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab",
+            "MOV-0009.json": "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7",
+            "MOV-0010.json": "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "384735cc649330293bd28343c9fa514fe121f8ce55d16821a159802a3935932c",
+            "MOV-0002.json": "489d9bcf0a3155663421d426ce010d0c6838d28401f5c89f9a56dde895970407",
+            "MOV-0003.json": "8b1c80356b7ae53471f63fd021fbdcaa66f5e72eefd50b474fcc84098b0f9a76",
+            "MOV-0004.json": "2135d723f9fea9e7e6374612006006cdbbc6880c310f4bd0890c8d99619a6797",
+            "MOV-0005.json": "47dd63e5d097964e5df5c59026027c349eb5078d55057b1df1f1ac6f99fb8403",
+            "MOV-0006.json": "9dc0dd1e3e8450b78293fbae0f74be52e85391dc864190aa81ab6eee44ede868",
+            "MOV-0007.json": "4aa9bd3d894f2f2f2858c40502d2206eb3f9a4228e0b5750eb1dd485b7b2242d",
+            "MOV-0008.json": "340a9329375fae32e82223bfeed3fc568e566cabee96010b7658f644732247a5",
+            "MOV-0009.json": "f7a838c81261c818d79baac16a88de84fdc41fced7c67c80aecb00d124773175",
+            "MOV-0010.json": "deff7afa6f702494887d70ad92ab998fb433d17b47a744714bbd2a23a87a38b4",
+            "identity.json": "56dac50e78ce7f2557d60742e856efd468118511d3f53d60813b7a5af2876db6"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v2": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d",
+            "MOV-0003.json": "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63",
+            "MOV-0004.json": "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671",
+            "MOV-0005.json": "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0",
+            "MOV-0006.json": "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543",
+            "MOV-0007.json": "b4e047f36499c06edb3243f13f36c91fa6e594158e0bb0e8752973c7ac662fc6",
+            "MOV-0008.json": "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f",
+            "MOV-0009.json": "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c",
+            "MOV-0010.json": "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "29a5892cceeac1aa025e26369a0bde2cad4d95404a1642452af417089da0dc32",
+            "MOV-0002.json": "2aa0a5baf179ffe0fe200643a4c04390ea5bf55a141a3ae3ae325c446687d292",
+            "MOV-0003.json": "d1182d786d36aad7e8babad7a91c2a5e28fc4710b3fa2f3cb88afd5a45f76c0e",
+            "MOV-0004.json": "841189533ecb1d70ff5d3b56811b367132f9e491caf9a71d0dc14eb9cfcc8a5b",
+            "MOV-0005.json": "6b307bb8074079712d76e356ae1723e1467b6670e6b6ca1a6fe141b4f09763c6",
+            "MOV-0006.json": "72f4d811d9046a82d4e9345c62a288ba029c66a8e16ce541d66df79b8c9607bb",
+            "MOV-0007.json": "759a8f8c75719d144a42692d3a631d59531b2509c70acfd702b1c7b145e00dab",
+            "MOV-0008.json": "61013ef8fa7d239cfc8b47a069fd3c76c54125ed9ce7e8064aebc1cb7377e78a",
+            "MOV-0009.json": "9c3bcdbaafd46d2dbb7ea690e3e462b03aff54aa5f3ed888d17cfe5570b8ba03",
+            "MOV-0010.json": "154635c14567b2c74b3b39b8efe4f22d40a84b9172272c6fd91ec8af9324baff",
+            "identity.json": "8f22b1223cba7e9ca4a9166e533dbd07c3adb6a54ba3b3733b27c6b5c676fd68"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v2-before": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+            "MOV-0002.json": "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+            "MOV-0003.json": "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+            "MOV-0004.json": "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+            "MOV-0005.json": "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+            "MOV-0006.json": "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+            "MOV-0007.json": "2133393fbb0a8e6f92025749a6494a36d292d4c52b652caddb308a2243d9d715",
+            "MOV-0008.json": "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+            "MOV-0009.json": "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+            "MOV-0010.json": "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "b1f8ef15761f8a9f3250c07289f5fa860d38afa45b37274c5d379649672f2fec",
+            "MOV-0002.json": "e2dc350f4e536b7c3914767b7e91dcd5540bae4e2e76965729f85b65faa305c2",
+            "MOV-0003.json": "ecc19801bba5066fabba18afb133f9689f865eb3f6116f3ab8eb4083615a95b3",
+            "MOV-0004.json": "2e09f474d519936cb1bb1e6d752c58ac136bfcccb2be2be426bc6779ccd2ff6f",
+            "MOV-0005.json": "5ef5ba4018b9ffebdba6508fd6a6b963f81e691c47ba428f72f33157aa3b4420",
+            "MOV-0006.json": "de4de5e55da049c282373e14de2c9eecc28eb14133729bf5678cc5bfb3da0e05",
+            "MOV-0007.json": "fce9cf009547fe87df432995719991994221d2b73fc78543920617553832b11a",
+            "MOV-0008.json": "022d2830f981e70a656ba02f9ef3c101489dcde40f2e5b5f15803c4a357d7248",
+            "MOV-0009.json": "2b1093dde461a3ea80edade2e56b26cdfebf071cd7da33d6039d8edad75af76c",
+            "MOV-0010.json": "9275558d0dca0996357a73cd1f53963b2866db857c83ab70f386f015d0df8cb7",
+            "identity.json": "2dbb825c64ccd1809993fd66872fd436344c0f89beeed96831cccb8cc329391e"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v3": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd",
+            "MOV-0003.json": "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad",
+            "MOV-0004.json": "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed",
+            "MOV-0005.json": "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5",
+            "MOV-0006.json": "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b",
+            "MOV-0007.json": "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f",
+            "MOV-0008.json": "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646",
+            "MOV-0009.json": "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944",
+            "MOV-0010.json": "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "1f53f3fb0b9a71791c25178affffff10a3e1f82e7b9e5d82bb2cf2626008a483",
+            "MOV-0002.json": "261f95e4aab8dc07e231df4e5a94c7026ccf1f3764c155f58b20224ebfafee19",
+            "MOV-0003.json": "3f863e696c4fe17f07572b5473b77fff939a816a775572c9cd523366745e0b1a",
+            "MOV-0004.json": "6899754c906c6a4963c87f636b73a7be7c630fcf79cd80c038e55963494cb51c",
+            "MOV-0005.json": "f3791f6ea5e915459e51a3f105d8517f73064a73cb4252ca74652de97ef11318",
+            "MOV-0006.json": "76fbf3ccf5dff7148404c6de18de25a2feb03fd6fa232d6a9bb86b14e77359c5",
+            "MOV-0007.json": "984bf3167af65f600cd705e875819cd60d7ce9aec3f91cbba4fd51b5f85ef02f",
+            "MOV-0008.json": "8e884576f02826f2f6943699d68e1ab18c14d7182666a5967cf2a38a9a721a9e",
+            "MOV-0009.json": "bc41251747f803fe6b18f0b4216ef713211a10e1256413af93b98984e5ab665d",
+            "MOV-0010.json": "f48894501e50bbb4b631ab0360defec6d840254de098061b415601ba8895f640",
+            "identity.json": "ec9af700f3e177716ea63af4bf066dc0fb74a740fc9be84bff491f6919fbf532"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v4": {
+          "compatibility_passes": 10,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc",
+            "MOV-0002.json": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+            "MOV-0003.json": "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7",
+            "MOV-0004.json": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+            "MOV-0005.json": "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d",
+            "MOV-0006.json": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+            "MOV-0007.json": "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e",
+            "MOV-0008.json": "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5",
+            "MOV-0009.json": "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612",
+            "MOV-0010.json": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "0b8b40b78361c5a267dfb1f62e1ee4408e16f3e75c28bcf383fc1024d06a4489",
+            "MOV-0002.json": "5b018617452a992c14d8c224dfe3c1830537bf071b3f342d642a4d5e259cd3ec",
+            "MOV-0003.json": "cc14ebfa62ef0d89e8281652264febbf60f621b030b1af023b85f1b371fbb6e9",
+            "MOV-0004.json": "e5bc10d1869e49118868efcd4abd34567fa5dc4c8746b141fd7280243e7da356",
+            "MOV-0005.json": "66e8802eb9168dacd6d0ad76a91b953ec216b712d9d8d807df5f3bb6fa9fae05",
+            "MOV-0006.json": "95f105a2526f74d91651a670d9362c829516e09f1cb6ffad444a7bcd57539847",
+            "MOV-0007.json": "28c8af6e15ab56b27ce77aaddd8b943c824a16abfb2a39a0f4acf9af9c29e7f4",
+            "MOV-0008.json": "b87d786612d5db7fcfc8cb559300ee4f8aab8ede46d52481a47ba9bfd855d0ac",
+            "MOV-0009.json": "084bf367e3ec1bc50bed922b6ca05bc3cfba3e0136b7b65df3b55e1a21c15260",
+            "MOV-0010.json": "3950b25e143376bb532acc02781513b01631de084ea25a785e9e41bfa924da71",
+            "identity.json": "4dbdb99847e099022d526bb7033dcaaead4c2ae3174470eb7a052cbc942e275c"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        }
+      },
+      "oracle_generation": {
+        "status": "PASS",
+        "manifest": {
+          "generator": "oracle_codegen-v1",
+          "template": {
+            "path": "oracle-maps/MOV-0002.w3m",
+            "bytes": 19009,
+            "sha256": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd"
+          },
+          "template_bounds_sha256": "6c1a65e24867e04fb399ddc51abb068dffde3e6a721b0553b00bcf69cd79de96",
+          "sources": {
+            "tools/oracle_codegen/main.cpp": "efabc77ef402b167bac59c58946cc03c04d98220f9dd04fe0866a1f999dc1e69",
+            "tools/wc3test/Scenario.cpp": "8cd855659edb355d6b4e4ace2d6bf52ac06484e1d4e52024e7370f521c25514d",
+            "tools/wc3test/Scenario.h": "c586d54076e285d5ed0ea55bb977aa8682d00d80f5bd93aaa441df831d169ddb",
+            "tools/generate_oracle.py": "e5071a472b39fd81638d694da3c4e2acd3b2dbc69fdc0435421f1263da3f7363"
+          },
+          "inputs": [
+            {
+              "experiment": "MOV-0001",
+              "map_revision": "MOV-0001",
+              "scenario": {
+                "path": "scenarios/MOV-0001.yaml",
+                "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0001.j",
+                "sha256": "84bd98cb90c06e2feb4dab034a7f8c865821906ccdb31308c4f2413359dc677d"
+              }
+            },
+            {
+              "experiment": "MOV-0002",
+              "map_revision": "MOV-0002-r2",
+              "scenario": {
+                "path": "scenarios/MOV-0002.yaml",
+                "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0002-r2.j",
+                "sha256": "fd743d9a675f7d9898d25441ebb840b3d0c4273cb310c4178a6d193fdf21c9be"
+              }
+            },
+            {
+              "experiment": "MOV-0003",
+              "map_revision": "MOV-0003",
+              "scenario": {
+                "path": "scenarios/MOV-0003.yaml",
+                "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0003.j",
+                "sha256": "c0898987e3f4e3dd35774fe0e34be9fa388727d062c92cef36b74420ddd08667"
+              }
+            },
+            {
+              "experiment": "MOV-0004",
+              "map_revision": "MOV-0004",
+              "scenario": {
+                "path": "scenarios/MOV-0004.yaml",
+                "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0004.j",
+                "sha256": "4bb91d80c483c665bec236146c36534d8af15802b78eb939686873065a279bf5"
+              }
+            },
+            {
+              "experiment": "MOV-0005",
+              "map_revision": "MOV-0005",
+              "scenario": {
+                "path": "scenarios/MOV-0005.yaml",
+                "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0005.j",
+                "sha256": "950ce3cc8422416da6e73add3de5b9c5be8477b3a462ac7b953d92b73918db13"
+              }
+            },
+            {
+              "experiment": "MOV-0006",
+              "map_revision": "MOV-0006",
+              "scenario": {
+                "path": "scenarios/MOV-0006.yaml",
+                "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0006.j",
+                "sha256": "045c9ca206011788029dde23abc3a941a8d7fccf31d986df5f93d6df6376cfba"
+              }
+            },
+            {
+              "experiment": "MOV-0007",
+              "map_revision": "MOV-0007",
+              "scenario": {
+                "path": "scenarios/MOV-0007.yaml",
+                "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0007.j",
+                "sha256": "8f051b874bb6f461afafa049c1c92f81717cfde4753c304bd69d9046c7dac92e"
+              }
+            },
+            {
+              "experiment": "MOV-0008",
+              "map_revision": "MOV-0008",
+              "scenario": {
+                "path": "scenarios/MOV-0008.yaml",
+                "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0008.j",
+                "sha256": "d44858a2fa8515032ffaa03184a2eb804714af093618e692f10605052c45da5d"
+              }
+            },
+            {
+              "experiment": "MOV-0009",
+              "map_revision": "MOV-0009",
+              "scenario": {
+                "path": "scenarios/MOV-0009.yaml",
+                "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0009.j",
+                "sha256": "0c71774092fe781de0faa2a17eadeea6f2cc3205f96992125433b25c219ea9cf"
+              }
+            },
+            {
+              "experiment": "MOV-0010",
+              "map_revision": "MOV-0010",
+              "scenario": {
+                "path": "scenarios/MOV-0010.yaml",
+                "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0010.j",
+                "sha256": "ad158db06dd8dd6e345c65deb4eed800223184fcb449bd75e714d053c7d129aa"
+              }
+            }
+          ]
+        }
+      },
+      "generated_capture_loop": {
+        "status": "PASS",
+        "compatibility_passes": 4,
+        "scenario_sha256": {
+          "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+          "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+          "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+          "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+        },
+        "wc3_observation_sha256": {
+          "MOV-0002-g1": "e893aa63b2d961469761236b19d378f8da7c139515b9ebae7a5d3593167f8061",
+          "MOV-0004-g1": "5fd534c71327b3faa3cabf3c6fd6727ccfe97ad48b7988739bf9cf37b8d5a6f7",
+          "MOV-0006-g1": "8d13b4b5d0fe33e03a6419d2cbe06122fa2d0bb556921480ebaf08ba38c83353",
+          "MOV-0010-g1": "cc2d1f008e877cdce0510a7451a7db6017e41d57bff14c9cb47e965a96b90ff5"
+        },
+        "cpp_payload_sha256": {
+          "MOV-0002-g1": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+          "MOV-0004-g1": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+          "MOV-0006-g1": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+          "MOV-0010-g1": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+        }
+      },
+      "experiments": {
+        "MOV-0013": {
+          "status": "PASS",
+          "cases": 4,
+          "cpp_payload_sha256": {
+            "MOV-0013-a": "e3f42b91c2f1f50cd4d1c2551b7a181bdf7cbc39d73954d70ad99ec3c1061b8f",
+            "MOV-0013-b": "0c62ecafe007cf9b8ffb96b605621f0403f9e6527e8c717ae97a058576cb1b2a",
+            "MOV-0013-c": "f7312ea6cd93fc18f812939494fefa9755b4eba0d04bdee11188971ca5ba5fac",
+            "MOV-0013-d": "df9b1b7e0ddad0c5953486be75b96403b3c1dba69167a15cf3356d865f1dd4e1"
+          }
+        },
+        "MOV-0014": {
+          "status": "PASS",
+          "cases": 3,
+          "cpp_payload_sha256": {
+            "MOV-0014-a": "2c479aca152f44ae6038b2247890d758049ae53005ce8ff5cdd49fb31d446a55",
+            "MOV-0014-b": "e14f1b0975cf85e14eca543477bd61c93ecd778b07747e9ed364bf8e6e6e8978",
+            "MOV-0014-c": "ba7132f239e6bfbfa2462e12dd64a0c6dda2888aca916668f32dcdb384394b10"
+          }
+        },
+        "MOV-0015": {
+          "status": "PASS",
+          "cases": 4,
+          "cpp_payload_sha256": {
+            "MOV-0015-a": "02efd83768a358abc0c7c8fcdf0a3425cdf9d8eb1a3e12aaca12f26876c49746",
+            "MOV-0015-b": "a35e9330b8ef4e815b13f2ceebaf6198e43a60f0c90981e75b646fc4d8f4604a",
+            "MOV-0015-c": "238a43417d14492867bf70cc516dddaa78fba48e6f80deb1b84c92bbff80a4c8",
+            "MOV-0015-d": "52f9dc4ad62586d6a8ca22835db7ce1d3c3fff280a8ea43f0ceba9bdc15157d3"
+          }
+        }
+      }
+    },
+    "mac-arm-debug": {
+      "ci_status": "PASS",
+      "host": {
+        "system": "Darwin",
+        "release": "24.6.0",
+        "architecture": "arm64",
+        "python": "3.12.10"
+      },
+      "environment": {
+        "host": {
+          "system": "Darwin",
+          "release": "24.6.0",
+          "architecture": "arm64",
+          "python": "3.12.10"
+        },
+        "requested_compiler": "/usr/bin/clang++",
+        "build_type": "Debug",
+        "expected_architecture": "arm64",
+        "seed": 1,
+        "github": {
+          "GITHUB_RUN_ID": "37040588867",
+          "GITHUB_RUN_ATTEMPT": "1",
+          "GITHUB_SHA": "7c552902b59b9e5a86d9a7419dd8e2db3c9356b7",
+          "GITHUB_EVENT_NAME": "pull_request",
+          "RUNNER_OS": "macOS",
+          "RUNNER_ARCH": "ARM64",
+          "ImageOS": "macos15",
+          "ImageVersion": "20260907.0337.1"
+        }
+      },
+      "primary_identity": {
+        "git_commit": "7c552902b59b9e5a86d9a7419dd8e2db3c9356b7",
+        "git_dirty_at_configure": false,
+        "source_sha256": "de09ca8ef378af2bedbed82075916042cc04c5954180ea250fae4f611c0fae98",
+        "compiler": "AppleClang 17.0.0.17000013",
+        "build_type": "Debug",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float"
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0001",
+            "map_revision": "MOV-0001",
+            "path": "scenarios/MOV-0001.yaml",
+            "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361"
+          },
+          {
+            "experiment": "MOV-0002",
+            "map_revision": "MOV-0002-r2",
+            "path": "scenarios/MOV-0002.yaml",
+            "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+          },
+          {
+            "experiment": "MOV-0003",
+            "map_revision": "MOV-0003",
+            "path": "scenarios/MOV-0003.yaml",
+            "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255"
+          },
+          {
+            "experiment": "MOV-0004",
+            "map_revision": "MOV-0004",
+            "path": "scenarios/MOV-0004.yaml",
+            "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+          },
+          {
+            "experiment": "MOV-0005",
+            "map_revision": "MOV-0005",
+            "path": "scenarios/MOV-0005.yaml",
+            "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36"
+          },
+          {
+            "experiment": "MOV-0006",
+            "map_revision": "MOV-0006",
+            "path": "scenarios/MOV-0006.yaml",
+            "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+          },
+          {
+            "experiment": "MOV-0007",
+            "map_revision": "MOV-0007",
+            "path": "scenarios/MOV-0007.yaml",
+            "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0"
+          },
+          {
+            "experiment": "MOV-0008",
+            "map_revision": "MOV-0008",
+            "path": "scenarios/MOV-0008.yaml",
+            "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf"
+          },
+          {
+            "experiment": "MOV-0009",
+            "map_revision": "MOV-0009",
+            "path": "scenarios/MOV-0009.yaml",
+            "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e"
+          },
+          {
+            "experiment": "MOV-0010",
+            "map_revision": "MOV-0010",
+            "path": "scenarios/MOV-0010.yaml",
+            "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        ]
+      },
+      "models": {
+        "v1": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877",
+            "MOV-0003.json": "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3",
+            "MOV-0004.json": "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41",
+            "MOV-0005.json": "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20",
+            "MOV-0006.json": "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849",
+            "MOV-0007.json": "286117047d150e559b4f7eff378515d8d8e7d85d0ecc437b1f4829cab6c81d40",
+            "MOV-0008.json": "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab",
+            "MOV-0009.json": "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7",
+            "MOV-0010.json": "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "0c59b6a66ef14b5ab74da65e7d4d629c0a3bc62f7b7aae65cb26079daf113263",
+            "MOV-0002.json": "f0014b9ac21aa8b0bf01126584b73d715bc120cc22cc1cc900e3f6f78003d83d",
+            "MOV-0003.json": "1f69fc07a7371685bcd6c94234d0677a37e9f2ac7cb59aea36c3647855756dc0",
+            "MOV-0004.json": "5600746af84b03a967abc678d0a918f0deddaa3bb286ac71ea38e122b2bb557e",
+            "MOV-0005.json": "c65b73d025d5306f7ca2c6ced14032474c7226df79aa5b899b34dbc18309cec7",
+            "MOV-0006.json": "eda8b5d7b0629f82d88eb4b6fd707a19c1295043ec68bea7e8c60c51592e4c16",
+            "MOV-0007.json": "60ee738f79a3bc6200482fa1d1e839f89b1b3fba618166cfcf2f6d242f8ba6cc",
+            "MOV-0008.json": "3d5eab370777fc3238910117c3420193d2525a412a92926adaa45c77fd3375b4",
+            "MOV-0009.json": "9e7c796bab39710a9bf16934890c15d5bb212bb280ac5f4c1c8a4d1fdee29425",
+            "MOV-0010.json": "338721f1d9de4fa77034dce80c6197fe0182724254d273d421f04f9460b31af5",
+            "identity.json": "21a656dbd6fc214a5348d3b5c0e9542f61efcb19952603cbaccf5dc4b7307ed2"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v2": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d",
+            "MOV-0003.json": "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63",
+            "MOV-0004.json": "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671",
+            "MOV-0005.json": "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0",
+            "MOV-0006.json": "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543",
+            "MOV-0007.json": "b4e047f36499c06edb3243f13f36c91fa6e594158e0bb0e8752973c7ac662fc6",
+            "MOV-0008.json": "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f",
+            "MOV-0009.json": "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c",
+            "MOV-0010.json": "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "d8d396ca73eeccc815d2481bf7a90116dc427cad4ae3479c6c115ba81402350f",
+            "MOV-0002.json": "0d00ccb1a5d6ee8c4fcb28f1fcd8edc8fb69d9ad56dd3a600c58138fa1b5bcdb",
+            "MOV-0003.json": "2e1ba252f129b150923f1c5e5282eb02f8d587ee3c5bdbda91ca2c243edff8a1",
+            "MOV-0004.json": "9bb5ad6d2d8092653960ef64ab7298ddd4701d8dd112ce5e3e1dfb6de4ce2918",
+            "MOV-0005.json": "9ef36b980b716ad3c733195616d167c7c112c4d91333c1b722529bf3e891b256",
+            "MOV-0006.json": "374675d7a454b18ff43273b2dfa866121e15db7bfc335f202c15c5798ce082c4",
+            "MOV-0007.json": "53674706da270fdc9d84365820c04f9039e4931c314c1963974bba6f9b20eeb7",
+            "MOV-0008.json": "e99b4a99ac28d2df8730489b2da953b4cc3dc1ed4787a39a91c30010b2bdb1d1",
+            "MOV-0009.json": "8c9159e8bae9d7d274e00fb494bc455266f18caf5be97e02a57af876d856fc4d",
+            "MOV-0010.json": "428abe887b050a80b3a4bae7c0e5c172883699f7aa080323cdfbea2d41aa77c5",
+            "identity.json": "aaf9ed766ae8aa96777e9613a6d932afddbf192440b0fd1a5a3a4e96bb2f3124"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v2-before": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+            "MOV-0002.json": "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+            "MOV-0003.json": "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+            "MOV-0004.json": "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+            "MOV-0005.json": "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+            "MOV-0006.json": "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+            "MOV-0007.json": "2133393fbb0a8e6f92025749a6494a36d292d4c52b652caddb308a2243d9d715",
+            "MOV-0008.json": "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+            "MOV-0009.json": "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+            "MOV-0010.json": "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "0e61fe7a4886e973d333dabc0a94a961a66e209b86458db55737de2b5861b05a",
+            "MOV-0002.json": "ae329a6555f4e7b6ebb3b991352561726b5a734a841f0a92eef8702e4ffede08",
+            "MOV-0003.json": "86b717030d38740350d43b5081c97e1dcc0d3fe1e2d1aff3e6d6eb4f567d7511",
+            "MOV-0004.json": "8da0a7bcd1c91b69b57f67080a2538f474f6993153e0341e318371fc182c8d86",
+            "MOV-0005.json": "567603610b28e9720c3eca71978711b0a3e26e02b896b3faf126c4386a099cef",
+            "MOV-0006.json": "da54c3d969819a91a941d5f20058c125fa664f91795a5e2d55a6fd2509ad1664",
+            "MOV-0007.json": "c73f8d895492fa5815328aedf10af51735643d0e8fbfd251585d3a456af131cf",
+            "MOV-0008.json": "8b66db63a8c267c5f81f6296d104adcabd586a25afe3a94f0100d55036da8704",
+            "MOV-0009.json": "5f979f3a39952eaff0e7b3942d143a11e4006080d0bf44c8a8ce1a7d56957744",
+            "MOV-0010.json": "7d039d7ed53f8badb7b6a8e8b53fc69b0f3fea7b750e35065c425791e81ed091",
+            "identity.json": "aac54c137f118b38d1ef12aabc5173c7ab51295e12fcd95ea1b3442c5ddd14e0"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v3": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd",
+            "MOV-0003.json": "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad",
+            "MOV-0004.json": "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed",
+            "MOV-0005.json": "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5",
+            "MOV-0006.json": "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b",
+            "MOV-0007.json": "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f",
+            "MOV-0008.json": "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646",
+            "MOV-0009.json": "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944",
+            "MOV-0010.json": "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "e80972ddcbf2df88419467c77463702cdb84f2f319a3982b2f55b4c86e64358b",
+            "MOV-0002.json": "ebf4dae155aaf3b6c967efc24ebb314ca378cb5d44dc771118c9f9d58efd87d4",
+            "MOV-0003.json": "190dc56a9dac5e6aceab0e2a26888288d538c0dbdee9e99fcffd3fce12c29ae4",
+            "MOV-0004.json": "25d8614b48935b599fec72d546c5b538a0095dfd7318e45d2199888f4ffe1cd4",
+            "MOV-0005.json": "030ec2a10de2c70aae8b881edc7cdf08eaa9bc07cbea0f739f3dcedea376c25f",
+            "MOV-0006.json": "222589b5bcd83fe8f9541300c5da1cc14dce96eb6050f7eaf97c3c860b7dd491",
+            "MOV-0007.json": "3ba9f70395f25d80cbeb9230fbea79074ce19e658eba936d926130304227a17b",
+            "MOV-0008.json": "475e3b15602e746181154d8333b4841f7e7bb8e574ca825e9054a3dde0434025",
+            "MOV-0009.json": "cf473c1633dd29378e4aa91ece1db1be8b3ebe8bb681d3f50f920663c62be5f3",
+            "MOV-0010.json": "e21ffa18466f8d0e5ba1494527e23747a6680f64e07ef9771c4e3802cf67cc91",
+            "identity.json": "511a58f5dbaa5cc30fa3db81aa62ff3422ca3104757e94cc280acd5324c437df"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v4": {
+          "compatibility_passes": 10,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc",
+            "MOV-0002.json": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+            "MOV-0003.json": "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7",
+            "MOV-0004.json": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+            "MOV-0005.json": "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d",
+            "MOV-0006.json": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+            "MOV-0007.json": "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e",
+            "MOV-0008.json": "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5",
+            "MOV-0009.json": "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612",
+            "MOV-0010.json": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "40610daacb6214ea29d626278fcb8778337fe83e6c3153ac8b977029ffc57694",
+            "MOV-0002.json": "89d2177d438385d62494257a8f5a9c4225fb58ae4996241195b60a8d80796dda",
+            "MOV-0003.json": "1cf146a633345cef0c852f5f9b05ba12aa7997469cb3060f5160d9a32519adae",
+            "MOV-0004.json": "d4b29c31bc9b495eb5c984ed437e37907c62b6a906e209c3f538acf9e2dbcc1a",
+            "MOV-0005.json": "81ed934a33f5ecd208134855210399328b4c8203a014af9bb6adee4face0721f",
+            "MOV-0006.json": "7c0a5c9794e13f91efda61fccae61f754051a06cd9273d02d8526a78d3cacc46",
+            "MOV-0007.json": "dad0c0069868cb63b894d7e2da04883c0df7b4751b8e03de27922b23f0fd95a9",
+            "MOV-0008.json": "0cec04e1242443580617ef40386b11c0c6745fdc6f550090ce79748d82f68113",
+            "MOV-0009.json": "069b96bb74b32775eea8d0cdddf3c0f8aa9fb36b3e3b6927aa1b9486085a2c29",
+            "MOV-0010.json": "2c99ac4399c6d1eb93bac0d179e83d18c43e360a169b82746631823850af6f90",
+            "identity.json": "c54fdae64d670ec0e956eb6848d4749efa28cd7719206fb3e03fbbb6e8bcb48a"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        }
+      },
+      "oracle_generation": {
+        "status": "PASS",
+        "manifest": {
+          "generator": "oracle_codegen-v1",
+          "template": {
+            "path": "oracle-maps/MOV-0002.w3m",
+            "bytes": 19009,
+            "sha256": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd"
+          },
+          "template_bounds_sha256": "6c1a65e24867e04fb399ddc51abb068dffde3e6a721b0553b00bcf69cd79de96",
+          "sources": {
+            "tools/oracle_codegen/main.cpp": "efabc77ef402b167bac59c58946cc03c04d98220f9dd04fe0866a1f999dc1e69",
+            "tools/wc3test/Scenario.cpp": "8cd855659edb355d6b4e4ace2d6bf52ac06484e1d4e52024e7370f521c25514d",
+            "tools/wc3test/Scenario.h": "c586d54076e285d5ed0ea55bb977aa8682d00d80f5bd93aaa441df831d169ddb",
+            "tools/generate_oracle.py": "e5071a472b39fd81638d694da3c4e2acd3b2dbc69fdc0435421f1263da3f7363"
+          },
+          "inputs": [
+            {
+              "experiment": "MOV-0001",
+              "map_revision": "MOV-0001",
+              "scenario": {
+                "path": "scenarios/MOV-0001.yaml",
+                "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0001.j",
+                "sha256": "84bd98cb90c06e2feb4dab034a7f8c865821906ccdb31308c4f2413359dc677d"
+              }
+            },
+            {
+              "experiment": "MOV-0002",
+              "map_revision": "MOV-0002-r2",
+              "scenario": {
+                "path": "scenarios/MOV-0002.yaml",
+                "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0002-r2.j",
+                "sha256": "fd743d9a675f7d9898d25441ebb840b3d0c4273cb310c4178a6d193fdf21c9be"
+              }
+            },
+            {
+              "experiment": "MOV-0003",
+              "map_revision": "MOV-0003",
+              "scenario": {
+                "path": "scenarios/MOV-0003.yaml",
+                "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0003.j",
+                "sha256": "c0898987e3f4e3dd35774fe0e34be9fa388727d062c92cef36b74420ddd08667"
+              }
+            },
+            {
+              "experiment": "MOV-0004",
+              "map_revision": "MOV-0004",
+              "scenario": {
+                "path": "scenarios/MOV-0004.yaml",
+                "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0004.j",
+                "sha256": "4bb91d80c483c665bec236146c36534d8af15802b78eb939686873065a279bf5"
+              }
+            },
+            {
+              "experiment": "MOV-0005",
+              "map_revision": "MOV-0005",
+              "scenario": {
+                "path": "scenarios/MOV-0005.yaml",
+                "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0005.j",
+                "sha256": "950ce3cc8422416da6e73add3de5b9c5be8477b3a462ac7b953d92b73918db13"
+              }
+            },
+            {
+              "experiment": "MOV-0006",
+              "map_revision": "MOV-0006",
+              "scenario": {
+                "path": "scenarios/MOV-0006.yaml",
+                "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0006.j",
+                "sha256": "045c9ca206011788029dde23abc3a941a8d7fccf31d986df5f93d6df6376cfba"
+              }
+            },
+            {
+              "experiment": "MOV-0007",
+              "map_revision": "MOV-0007",
+              "scenario": {
+                "path": "scenarios/MOV-0007.yaml",
+                "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0007.j",
+                "sha256": "8f051b874bb6f461afafa049c1c92f81717cfde4753c304bd69d9046c7dac92e"
+              }
+            },
+            {
+              "experiment": "MOV-0008",
+              "map_revision": "MOV-0008",
+              "scenario": {
+                "path": "scenarios/MOV-0008.yaml",
+                "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0008.j",
+                "sha256": "d44858a2fa8515032ffaa03184a2eb804714af093618e692f10605052c45da5d"
+              }
+            },
+            {
+              "experiment": "MOV-0009",
+              "map_revision": "MOV-0009",
+              "scenario": {
+                "path": "scenarios/MOV-0009.yaml",
+                "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0009.j",
+                "sha256": "0c71774092fe781de0faa2a17eadeea6f2cc3205f96992125433b25c219ea9cf"
+              }
+            },
+            {
+              "experiment": "MOV-0010",
+              "map_revision": "MOV-0010",
+              "scenario": {
+                "path": "scenarios/MOV-0010.yaml",
+                "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0010.j",
+                "sha256": "ad158db06dd8dd6e345c65deb4eed800223184fcb449bd75e714d053c7d129aa"
+              }
+            }
+          ]
+        }
+      },
+      "generated_capture_loop": {
+        "status": "PASS",
+        "compatibility_passes": 4,
+        "scenario_sha256": {
+          "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+          "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+          "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+          "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+        },
+        "wc3_observation_sha256": {
+          "MOV-0002-g1": "e893aa63b2d961469761236b19d378f8da7c139515b9ebae7a5d3593167f8061",
+          "MOV-0004-g1": "5fd534c71327b3faa3cabf3c6fd6727ccfe97ad48b7988739bf9cf37b8d5a6f7",
+          "MOV-0006-g1": "8d13b4b5d0fe33e03a6419d2cbe06122fa2d0bb556921480ebaf08ba38c83353",
+          "MOV-0010-g1": "cc2d1f008e877cdce0510a7451a7db6017e41d57bff14c9cb47e965a96b90ff5"
+        },
+        "cpp_payload_sha256": {
+          "MOV-0002-g1": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+          "MOV-0004-g1": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+          "MOV-0006-g1": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+          "MOV-0010-g1": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+        }
+      },
+      "experiments": {
+        "MOV-0013": {
+          "status": "PASS",
+          "cases": 4,
+          "cpp_payload_sha256": {
+            "MOV-0013-a": "e3f42b91c2f1f50cd4d1c2551b7a181bdf7cbc39d73954d70ad99ec3c1061b8f",
+            "MOV-0013-b": "0c62ecafe007cf9b8ffb96b605621f0403f9e6527e8c717ae97a058576cb1b2a",
+            "MOV-0013-c": "f7312ea6cd93fc18f812939494fefa9755b4eba0d04bdee11188971ca5ba5fac",
+            "MOV-0013-d": "df9b1b7e0ddad0c5953486be75b96403b3c1dba69167a15cf3356d865f1dd4e1"
+          }
+        },
+        "MOV-0014": {
+          "status": "PASS",
+          "cases": 3,
+          "cpp_payload_sha256": {
+            "MOV-0014-a": "2c479aca152f44ae6038b2247890d758049ae53005ce8ff5cdd49fb31d446a55",
+            "MOV-0014-b": "e14f1b0975cf85e14eca543477bd61c93ecd778b07747e9ed364bf8e6e6e8978",
+            "MOV-0014-c": "ba7132f239e6bfbfa2462e12dd64a0c6dda2888aca916668f32dcdb384394b10"
+          }
+        },
+        "MOV-0015": {
+          "status": "PASS",
+          "cases": 4,
+          "cpp_payload_sha256": {
+            "MOV-0015-a": "02efd83768a358abc0c7c8fcdf0a3425cdf9d8eb1a3e12aaca12f26876c49746",
+            "MOV-0015-b": "a35e9330b8ef4e815b13f2ceebaf6198e43a60f0c90981e75b646fc4d8f4604a",
+            "MOV-0015-c": "238a43417d14492867bf70cc516dddaa78fba48e6f80deb1b84c92bbff80a4c8",
+            "MOV-0015-d": "52f9dc4ad62586d6a8ca22835db7ce1d3c3fff280a8ea43f0ceba9bdc15157d3"
+          }
+        }
+      }
+    },
+    "linux-gcc-release": {
+      "ci_status": "PASS",
+      "host": {
+        "system": "Linux",
+        "release": "6.17.0-1022-azure",
+        "architecture": "x86_64",
+        "python": "3.12.14"
+      },
+      "environment": {
+        "host": {
+          "system": "Linux",
+          "release": "6.17.0-1022-azure",
+          "architecture": "x86_64",
+          "python": "3.12.14"
+        },
+        "requested_compiler": "g++",
+        "build_type": "Release",
+        "expected_architecture": "x86_64",
+        "seed": 1,
+        "github": {
+          "GITHUB_RUN_ID": "37040588867",
+          "GITHUB_RUN_ATTEMPT": "1",
+          "GITHUB_SHA": "7c552902b59b9e5a86d9a7419dd8e2db3c9356b7",
+          "GITHUB_EVENT_NAME": "pull_request",
+          "RUNNER_OS": "Linux",
+          "RUNNER_ARCH": "X64",
+          "ImageOS": "ubuntu24",
+          "ImageVersion": "20260927.320.1"
+        }
+      },
+      "primary_identity": {
+        "git_commit": "7c552902b59b9e5a86d9a7419dd8e2db3c9356b7",
+        "git_dirty_at_configure": false,
+        "source_sha256": "de09ca8ef378af2bedbed82075916042cc04c5954180ea250fae4f611c0fae98",
+        "compiler": "GNU 13.3.0",
+        "build_type": "Release",
+        "architecture": "x86_64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float"
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0001",
+            "map_revision": "MOV-0001",
+            "path": "scenarios/MOV-0001.yaml",
+            "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361"
+          },
+          {
+            "experiment": "MOV-0002",
+            "map_revision": "MOV-0002-r2",
+            "path": "scenarios/MOV-0002.yaml",
+            "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+          },
+          {
+            "experiment": "MOV-0003",
+            "map_revision": "MOV-0003",
+            "path": "scenarios/MOV-0003.yaml",
+            "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255"
+          },
+          {
+            "experiment": "MOV-0004",
+            "map_revision": "MOV-0004",
+            "path": "scenarios/MOV-0004.yaml",
+            "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+          },
+          {
+            "experiment": "MOV-0005",
+            "map_revision": "MOV-0005",
+            "path": "scenarios/MOV-0005.yaml",
+            "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36"
+          },
+          {
+            "experiment": "MOV-0006",
+            "map_revision": "MOV-0006",
+            "path": "scenarios/MOV-0006.yaml",
+            "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+          },
+          {
+            "experiment": "MOV-0007",
+            "map_revision": "MOV-0007",
+            "path": "scenarios/MOV-0007.yaml",
+            "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0"
+          },
+          {
+            "experiment": "MOV-0008",
+            "map_revision": "MOV-0008",
+            "path": "scenarios/MOV-0008.yaml",
+            "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf"
+          },
+          {
+            "experiment": "MOV-0009",
+            "map_revision": "MOV-0009",
+            "path": "scenarios/MOV-0009.yaml",
+            "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e"
+          },
+          {
+            "experiment": "MOV-0010",
+            "map_revision": "MOV-0010",
+            "path": "scenarios/MOV-0010.yaml",
+            "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        ]
+      },
+      "models": {
+        "v1": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877",
+            "MOV-0003.json": "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3",
+            "MOV-0004.json": "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41",
+            "MOV-0005.json": "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20",
+            "MOV-0006.json": "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849",
+            "MOV-0007.json": "df19f069ab5ebf09e3a56a687dbfc837d526bf824941dd4b954e447977480e53",
+            "MOV-0008.json": "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab",
+            "MOV-0009.json": "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7",
+            "MOV-0010.json": "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "5cf35b0e7874392901309d49bf7feb064da2b18ed6c8cae22e2979d272b3db30",
+            "MOV-0002.json": "650b7bccc7fc8896679b15728a96a137cb78e6f25ae036167dbe81519c3e3b96",
+            "MOV-0003.json": "75b6ae36a2e53fad14ab1f38a3257d63b5dae3ea489e20fa99dafdcb2c71b1c0",
+            "MOV-0004.json": "7473cd714486097066ff8d6f7357983f4abfda57fdbf7bb4613daeab66eed7dd",
+            "MOV-0005.json": "0a5ef51e725926d87f3681164604fdc495dfd54027c976530c721cac57cfd554",
+            "MOV-0006.json": "d8443fdafbd63434080474b800a9a58287ae7d845c30b3544b47e4385bdfd2f9",
+            "MOV-0007.json": "dd0c136fba901c1fffae1caa833032c68958d5a6d1a7ff05c7595e3b21a66b92",
+            "MOV-0008.json": "37005e23417d94a49bc2caecf875917a00d742f1640aa9ad80e92e77364c4afa",
+            "MOV-0009.json": "5c5a7b8e1899c71cf218e1cc3c844e86143b7b7ee30639b98efdba2356e375e0",
+            "MOV-0010.json": "8ae4d4dd9ce0b197843b363337787b67d0c62b208521368612495d6d99b38836",
+            "identity.json": "f07d11f712c5d2dcb4074aad966c1eb3225d93bbca76790f2d4a50052de4e864"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v2": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d",
+            "MOV-0003.json": "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63",
+            "MOV-0004.json": "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671",
+            "MOV-0005.json": "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0",
+            "MOV-0006.json": "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543",
+            "MOV-0007.json": "3eeb2289e5eec5b6d4408caac91cc106ab7ffc475d4589229f64ca85184bd70d",
+            "MOV-0008.json": "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f",
+            "MOV-0009.json": "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c",
+            "MOV-0010.json": "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "0d60002d424198d745cd2a0331e7e7252d27824ef1238822f796cb6a47a5261c",
+            "MOV-0002.json": "ae6ff083fa7fbc4e2ac93e97e6f8e0085d2cedb87bf6f544dc839e64534bd376",
+            "MOV-0003.json": "4779628588803a42495542da128fd583a60ee9713e4e973f14d33fbfa3629a05",
+            "MOV-0004.json": "28ef6f852e96eeebf3c375025505b82eb1a36709db23f36182e2a5a1b5adedb2",
+            "MOV-0005.json": "ab694e38eb3bc6ec018c1d72603e3221f1c52d7afb1857bc913897fb7d9683ce",
+            "MOV-0006.json": "2501c83c10334c4b6f481cfc2043d7458d3693b36afec4a9841c9a6b995b940a",
+            "MOV-0007.json": "7789d840c9a684a520cc908269cfd26fd579017aab4007704e00789f67bb0d62",
+            "MOV-0008.json": "f46fd6ee9b8a1f9a9d57bff996cee68220732f8afd24ad6f10efaf5a32025531",
+            "MOV-0009.json": "c8a1a0b2b8671cba3a7e0efe99d2b2ca00c53e4acec34a2f5d6880a76fcc0fda",
+            "MOV-0010.json": "190503b0fd4528c2f655128f357635b9d115c6c07221f75f103d8093c7892bcd",
+            "identity.json": "14d76728434955997d85ced6ae73a312da92575d336d0459cc31706f8d826455"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v2-before": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+            "MOV-0002.json": "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+            "MOV-0003.json": "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+            "MOV-0004.json": "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+            "MOV-0005.json": "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+            "MOV-0006.json": "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+            "MOV-0007.json": "5776dbf0abea3d5185ec0d5a1dc8f198eaf1291d9b76048a2341d735ddefafab",
+            "MOV-0008.json": "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+            "MOV-0009.json": "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+            "MOV-0010.json": "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "7ef3df8f36e2640d700d399a6ffa26c5b61091d192aac7f6ddafab844e73cb44",
+            "MOV-0002.json": "683f55ec4ed9c78ef2f5f5a1b7194640c575d2e8e71f2b3df024eed02b6764e9",
+            "MOV-0003.json": "c0be3bca0c9cca9e351bf68605dc2b0345db5ab760e0043552b8ae0b50fad6e6",
+            "MOV-0004.json": "5c17e93a28ec145df19b45e1121572e90e74bbb925e6142df08c0fc77f124947",
+            "MOV-0005.json": "2b7c577a4e2f2dfb3691e56a59843557d92dea6e727ec6992513121f9723f250",
+            "MOV-0006.json": "9e1c229c07393e31b917cf7a836dc49b8792b4b9a98cf3e888f9ca62ddceed5c",
+            "MOV-0007.json": "f14e00d64743c879de44da2d5315920c869a4c809b8064adb03e160967410c18",
+            "MOV-0008.json": "5b24f235fec13b55fbcb7588b99eced9a386c36bc0c9cb3a6ae2721bcc811bc4",
+            "MOV-0009.json": "a57b1ad5dc9913ef6ab25b402035018b94251eb311355b55d009ba4bd67ec717",
+            "MOV-0010.json": "d7ee9ab5cde9eeefcde2024ca3a19866a3fcbf347b7a5b9c4025a20b70cb2792",
+            "identity.json": "7ad786729244b8b13e8f3b82b4a0e3c8a13df61afdc709899e9630ff06c63492"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v3": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd",
+            "MOV-0003.json": "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad",
+            "MOV-0004.json": "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed",
+            "MOV-0005.json": "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5",
+            "MOV-0006.json": "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b",
+            "MOV-0007.json": "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f",
+            "MOV-0008.json": "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646",
+            "MOV-0009.json": "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944",
+            "MOV-0010.json": "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "2cafb4be16389029a9a75a9159943c76d0a7bd104c1a394c8f7529b853c86893",
+            "MOV-0002.json": "b0cec7cc6cb75aa3f07322eb27855f86d8952cd44395d0b69e1ca318f24eec6d",
+            "MOV-0003.json": "73d29846a672f79ddc3511486b2da3c60051a0ad406196a8143ac2c4c415b234",
+            "MOV-0004.json": "24d6b4c2a4d508817740cea399c337689c977c8d4400fce46fad369966018ddc",
+            "MOV-0005.json": "9826e0925846c74678aa5f97099f69da9d8f838cfeaf05eb208e3e1f461618d6",
+            "MOV-0006.json": "0a1f26ed0b9d8a02f76f85fda946bf74643448f1fee499c413807b93f84a410e",
+            "MOV-0007.json": "06330607be5330487ab9215494277701449c39bed874c0a43613884877bd31f3",
+            "MOV-0008.json": "c7c6426930757fad1f6431efd3f499a9d3c0f849095b5cb8a13d65b85049631a",
+            "MOV-0009.json": "1c8ca2fe41c0d3bfd84deec8ec7399e6ab3733d3e82401a8da2b1d45565e9f33",
+            "MOV-0010.json": "b2e55998dd5f5e65d8767229ac751c7e2ffb5453147d3da435a31e90d1f40662",
+            "identity.json": "5b10ae731ef8f9dace9f2a8715f78544cb0296efe4f030bde9d5200f43f570ae"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v4": {
+          "compatibility_passes": 10,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc",
+            "MOV-0002.json": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+            "MOV-0003.json": "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7",
+            "MOV-0004.json": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+            "MOV-0005.json": "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d",
+            "MOV-0006.json": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+            "MOV-0007.json": "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e",
+            "MOV-0008.json": "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5",
+            "MOV-0009.json": "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612",
+            "MOV-0010.json": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "2f2cf55deaaf15f641641bf29b41f74c19a9042dd1a8ba28f8d2c321916235a1",
+            "MOV-0002.json": "e3ddf8e570bedf7098042de4bec6eb932176f058d241b7a9f7510ddc1f44ce99",
+            "MOV-0003.json": "cb19596d1a679b48c58d73f2c9325b1d23ca5d3e8407daac51ae5cc51fda2c7a",
+            "MOV-0004.json": "cd78e1ec52229abe36b597b89811e15f6908a6f09f32b0947e87546538229098",
+            "MOV-0005.json": "6a5dfac0aff9869b053fd73d1c572600be4c2b34c83be81757acf65d50795c7b",
+            "MOV-0006.json": "44eb430311c0bfe33aa9a9e781e1b0de4cbd9f0431b408031c17465a21c75a00",
+            "MOV-0007.json": "1fde40d9f206304415272c02eaa8ab2d29c1114dbd780d32d2b93adc65634ae1",
+            "MOV-0008.json": "bf6a81f43518ec7bace2309f3a21f07a595fc86bebd7fb6ed863b233d1df8fb7",
+            "MOV-0009.json": "c90ba8ac794c541d13ae8464955d8daf338c1898c4a760a660ab52bbe33a1342",
+            "MOV-0010.json": "304451732003ca09e4fb6c251d6d459c603c9a3ae56a94406794d1e25c899baf",
+            "identity.json": "64cb1703c1d962d30b0c0403ae0b3454a8e12d4044efa37bf9dd03ea89c6ddb5"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        }
+      },
+      "oracle_generation": {
+        "status": "PASS",
+        "manifest": {
+          "generator": "oracle_codegen-v1",
+          "template": {
+            "path": "oracle-maps/MOV-0002.w3m",
+            "bytes": 19009,
+            "sha256": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd"
+          },
+          "template_bounds_sha256": "6c1a65e24867e04fb399ddc51abb068dffde3e6a721b0553b00bcf69cd79de96",
+          "sources": {
+            "tools/oracle_codegen/main.cpp": "efabc77ef402b167bac59c58946cc03c04d98220f9dd04fe0866a1f999dc1e69",
+            "tools/wc3test/Scenario.cpp": "8cd855659edb355d6b4e4ace2d6bf52ac06484e1d4e52024e7370f521c25514d",
+            "tools/wc3test/Scenario.h": "c586d54076e285d5ed0ea55bb977aa8682d00d80f5bd93aaa441df831d169ddb",
+            "tools/generate_oracle.py": "e5071a472b39fd81638d694da3c4e2acd3b2dbc69fdc0435421f1263da3f7363"
+          },
+          "inputs": [
+            {
+              "experiment": "MOV-0001",
+              "map_revision": "MOV-0001",
+              "scenario": {
+                "path": "scenarios/MOV-0001.yaml",
+                "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0001.j",
+                "sha256": "84bd98cb90c06e2feb4dab034a7f8c865821906ccdb31308c4f2413359dc677d"
+              }
+            },
+            {
+              "experiment": "MOV-0002",
+              "map_revision": "MOV-0002-r2",
+              "scenario": {
+                "path": "scenarios/MOV-0002.yaml",
+                "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0002-r2.j",
+                "sha256": "fd743d9a675f7d9898d25441ebb840b3d0c4273cb310c4178a6d193fdf21c9be"
+              }
+            },
+            {
+              "experiment": "MOV-0003",
+              "map_revision": "MOV-0003",
+              "scenario": {
+                "path": "scenarios/MOV-0003.yaml",
+                "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0003.j",
+                "sha256": "c0898987e3f4e3dd35774fe0e34be9fa388727d062c92cef36b74420ddd08667"
+              }
+            },
+            {
+              "experiment": "MOV-0004",
+              "map_revision": "MOV-0004",
+              "scenario": {
+                "path": "scenarios/MOV-0004.yaml",
+                "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0004.j",
+                "sha256": "4bb91d80c483c665bec236146c36534d8af15802b78eb939686873065a279bf5"
+              }
+            },
+            {
+              "experiment": "MOV-0005",
+              "map_revision": "MOV-0005",
+              "scenario": {
+                "path": "scenarios/MOV-0005.yaml",
+                "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0005.j",
+                "sha256": "950ce3cc8422416da6e73add3de5b9c5be8477b3a462ac7b953d92b73918db13"
+              }
+            },
+            {
+              "experiment": "MOV-0006",
+              "map_revision": "MOV-0006",
+              "scenario": {
+                "path": "scenarios/MOV-0006.yaml",
+                "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0006.j",
+                "sha256": "045c9ca206011788029dde23abc3a941a8d7fccf31d986df5f93d6df6376cfba"
+              }
+            },
+            {
+              "experiment": "MOV-0007",
+              "map_revision": "MOV-0007",
+              "scenario": {
+                "path": "scenarios/MOV-0007.yaml",
+                "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0007.j",
+                "sha256": "8f051b874bb6f461afafa049c1c92f81717cfde4753c304bd69d9046c7dac92e"
+              }
+            },
+            {
+              "experiment": "MOV-0008",
+              "map_revision": "MOV-0008",
+              "scenario": {
+                "path": "scenarios/MOV-0008.yaml",
+                "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0008.j",
+                "sha256": "d44858a2fa8515032ffaa03184a2eb804714af093618e692f10605052c45da5d"
+              }
+            },
+            {
+              "experiment": "MOV-0009",
+              "map_revision": "MOV-0009",
+              "scenario": {
+                "path": "scenarios/MOV-0009.yaml",
+                "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0009.j",
+                "sha256": "0c71774092fe781de0faa2a17eadeea6f2cc3205f96992125433b25c219ea9cf"
+              }
+            },
+            {
+              "experiment": "MOV-0010",
+              "map_revision": "MOV-0010",
+              "scenario": {
+                "path": "scenarios/MOV-0010.yaml",
+                "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0010.j",
+                "sha256": "ad158db06dd8dd6e345c65deb4eed800223184fcb449bd75e714d053c7d129aa"
+              }
+            }
+          ]
+        }
+      },
+      "generated_capture_loop": {
+        "status": "PASS",
+        "compatibility_passes": 4,
+        "scenario_sha256": {
+          "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+          "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+          "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+          "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+        },
+        "wc3_observation_sha256": {
+          "MOV-0002-g1": "e893aa63b2d961469761236b19d378f8da7c139515b9ebae7a5d3593167f8061",
+          "MOV-0004-g1": "5fd534c71327b3faa3cabf3c6fd6727ccfe97ad48b7988739bf9cf37b8d5a6f7",
+          "MOV-0006-g1": "8d13b4b5d0fe33e03a6419d2cbe06122fa2d0bb556921480ebaf08ba38c83353",
+          "MOV-0010-g1": "cc2d1f008e877cdce0510a7451a7db6017e41d57bff14c9cb47e965a96b90ff5"
+        },
+        "cpp_payload_sha256": {
+          "MOV-0002-g1": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+          "MOV-0004-g1": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+          "MOV-0006-g1": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+          "MOV-0010-g1": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+        }
+      },
+      "experiments": {
+        "MOV-0013": {
+          "status": "PASS",
+          "cases": 4,
+          "cpp_payload_sha256": {
+            "MOV-0013-a": "e3f42b91c2f1f50cd4d1c2551b7a181bdf7cbc39d73954d70ad99ec3c1061b8f",
+            "MOV-0013-b": "0c62ecafe007cf9b8ffb96b605621f0403f9e6527e8c717ae97a058576cb1b2a",
+            "MOV-0013-c": "f7312ea6cd93fc18f812939494fefa9755b4eba0d04bdee11188971ca5ba5fac",
+            "MOV-0013-d": "df9b1b7e0ddad0c5953486be75b96403b3c1dba69167a15cf3356d865f1dd4e1"
+          }
+        },
+        "MOV-0014": {
+          "status": "PASS",
+          "cases": 3,
+          "cpp_payload_sha256": {
+            "MOV-0014-a": "2c479aca152f44ae6038b2247890d758049ae53005ce8ff5cdd49fb31d446a55",
+            "MOV-0014-b": "e14f1b0975cf85e14eca543477bd61c93ecd778b07747e9ed364bf8e6e6e8978",
+            "MOV-0014-c": "ba7132f239e6bfbfa2462e12dd64a0c6dda2888aca916668f32dcdb384394b10"
+          }
+        },
+        "MOV-0015": {
+          "status": "PASS",
+          "cases": 4,
+          "cpp_payload_sha256": {
+            "MOV-0015-a": "02efd83768a358abc0c7c8fcdf0a3425cdf9d8eb1a3e12aaca12f26876c49746",
+            "MOV-0015-b": "a35e9330b8ef4e815b13f2ceebaf6198e43a60f0c90981e75b646fc4d8f4604a",
+            "MOV-0015-c": "238a43417d14492867bf70cc516dddaa78fba48e6f80deb1b84c92bbff80a4c8",
+            "MOV-0015-d": "52f9dc4ad62586d6a8ca22835db7ce1d3c3fff280a8ea43f0ceba9bdc15157d3"
+          }
+        }
+      }
+    },
+    "linux-clang-debug": {
+      "ci_status": "PASS",
+      "host": {
+        "system": "Linux",
+        "release": "6.17.0-1022-azure",
+        "architecture": "x86_64",
+        "python": "3.12.14"
+      },
+      "environment": {
+        "host": {
+          "system": "Linux",
+          "release": "6.17.0-1022-azure",
+          "architecture": "x86_64",
+          "python": "3.12.14"
+        },
+        "requested_compiler": "clang++",
+        "build_type": "Debug",
+        "expected_architecture": "x86_64",
+        "seed": 1,
+        "github": {
+          "GITHUB_RUN_ID": "37040588867",
+          "GITHUB_RUN_ATTEMPT": "1",
+          "GITHUB_SHA": "7c552902b59b9e5a86d9a7419dd8e2db3c9356b7",
+          "GITHUB_EVENT_NAME": "pull_request",
+          "RUNNER_OS": "Linux",
+          "RUNNER_ARCH": "X64",
+          "ImageOS": "ubuntu24",
+          "ImageVersion": "20260927.320.1"
+        }
+      },
+      "primary_identity": {
+        "git_commit": "7c552902b59b9e5a86d9a7419dd8e2db3c9356b7",
+        "git_dirty_at_configure": false,
+        "source_sha256": "de09ca8ef378af2bedbed82075916042cc04c5954180ea250fae4f611c0fae98",
+        "compiler": "Clang 18.1.3",
+        "build_type": "Debug",
+        "architecture": "x86_64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float"
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0001",
+            "map_revision": "MOV-0001",
+            "path": "scenarios/MOV-0001.yaml",
+            "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361"
+          },
+          {
+            "experiment": "MOV-0002",
+            "map_revision": "MOV-0002-r2",
+            "path": "scenarios/MOV-0002.yaml",
+            "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+          },
+          {
+            "experiment": "MOV-0003",
+            "map_revision": "MOV-0003",
+            "path": "scenarios/MOV-0003.yaml",
+            "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255"
+          },
+          {
+            "experiment": "MOV-0004",
+            "map_revision": "MOV-0004",
+            "path": "scenarios/MOV-0004.yaml",
+            "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+          },
+          {
+            "experiment": "MOV-0005",
+            "map_revision": "MOV-0005",
+            "path": "scenarios/MOV-0005.yaml",
+            "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36"
+          },
+          {
+            "experiment": "MOV-0006",
+            "map_revision": "MOV-0006",
+            "path": "scenarios/MOV-0006.yaml",
+            "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+          },
+          {
+            "experiment": "MOV-0007",
+            "map_revision": "MOV-0007",
+            "path": "scenarios/MOV-0007.yaml",
+            "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0"
+          },
+          {
+            "experiment": "MOV-0008",
+            "map_revision": "MOV-0008",
+            "path": "scenarios/MOV-0008.yaml",
+            "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf"
+          },
+          {
+            "experiment": "MOV-0009",
+            "map_revision": "MOV-0009",
+            "path": "scenarios/MOV-0009.yaml",
+            "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e"
+          },
+          {
+            "experiment": "MOV-0010",
+            "map_revision": "MOV-0010",
+            "path": "scenarios/MOV-0010.yaml",
+            "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        ]
+      },
+      "models": {
+        "v1": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877",
+            "MOV-0003.json": "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3",
+            "MOV-0004.json": "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41",
+            "MOV-0005.json": "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20",
+            "MOV-0006.json": "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849",
+            "MOV-0007.json": "df19f069ab5ebf09e3a56a687dbfc837d526bf824941dd4b954e447977480e53",
+            "MOV-0008.json": "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab",
+            "MOV-0009.json": "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7",
+            "MOV-0010.json": "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "ab79e1936f4cb9f84c8ef2d6fdbb107df7fdf2dafe740b7384a2de5124e235d9",
+            "MOV-0002.json": "91a3c93b61df9320306782efe7b15372df56f39f99995d54f2dde9aa970d9e66",
+            "MOV-0003.json": "c2da02416dedcb30c22a60f43d4fb3508750265c015c60209602a520339b3e8a",
+            "MOV-0004.json": "7874e6ca454ecd7876dc14cde40535a1b7b92279d960906f09dbd643fe515bba",
+            "MOV-0005.json": "859a103c3a3398b40a64343d223707184e7d6a53c0da343028264df7b297c944",
+            "MOV-0006.json": "8793310655e67e0cb5e95529776d4ac14dae688841808e98e5ac573fbf0b09db",
+            "MOV-0007.json": "422d1e7e56621a83ed1965e1d698359d37a7218c524873f1ea5ba60bb1f4b98e",
+            "MOV-0008.json": "9176a227b3ebedb6664a6724bc34d87e2e45432421f2b23cee4120d869951224",
+            "MOV-0009.json": "2e59ab1cd546e04d5059843036faf975ef8fca5efb202b063ccc45d97ba8736b",
+            "MOV-0010.json": "ad0c010fa0eb2db09ad993a973a9b4f4745c5ff397154cba30956afd8f3e0dbe",
+            "identity.json": "2916782ef4964f94bfa2d68eb89e683b53083feb6859909853d9995ca7a68426"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v2": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d",
+            "MOV-0003.json": "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63",
+            "MOV-0004.json": "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671",
+            "MOV-0005.json": "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0",
+            "MOV-0006.json": "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543",
+            "MOV-0007.json": "3eeb2289e5eec5b6d4408caac91cc106ab7ffc475d4589229f64ca85184bd70d",
+            "MOV-0008.json": "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f",
+            "MOV-0009.json": "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c",
+            "MOV-0010.json": "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "454ce66250eef3e512692603008ea15b20234eb4c9e9a7e1de96e06f7c96d8e4",
+            "MOV-0002.json": "b133041c0b7e7079569827150798bd57047493cf97264400d73fedb97cdbcbf7",
+            "MOV-0003.json": "63a85510aa8ed7edbc47a8bdfb2aa83b1e85bf0001651e63bba50b168d516a53",
+            "MOV-0004.json": "3d486f60bc39e0f08facef22ed12da67198c68b9437e2f53b3bb64071e2fd86a",
+            "MOV-0005.json": "5c510243777355c380edf79913f38766730ab02c9afb996769a9a56c05551ae0",
+            "MOV-0006.json": "7101bd1178e8cf59411971577cda47f67be384784debc25bf0a1fb279e775bd1",
+            "MOV-0007.json": "2f6df838542b5e8f22c89749969d9b88f89138f8d1a73fe363c79d157c40b158",
+            "MOV-0008.json": "6ec3dd29c1dc80a410615dd17eccca93a93223203705a5f3b12cc69a5f9dc779",
+            "MOV-0009.json": "852b4589b16eb0eee10d6be950d8092df8292b6656f2ba2ede64f8f67123a17b",
+            "MOV-0010.json": "70ca3f029e0cec721509ad2d1e50ed95c9e1b13eb9a199774b2c0fdb37477f3c",
+            "identity.json": "08412438a396d28379252a397e9bf25065248491e6755fa88fecdd07ca421548"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v2-before": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+            "MOV-0002.json": "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+            "MOV-0003.json": "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+            "MOV-0004.json": "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+            "MOV-0005.json": "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+            "MOV-0006.json": "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+            "MOV-0007.json": "5776dbf0abea3d5185ec0d5a1dc8f198eaf1291d9b76048a2341d735ddefafab",
+            "MOV-0008.json": "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+            "MOV-0009.json": "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+            "MOV-0010.json": "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "be6767d744299960292f5f16643f01ef802ee077da805e99d9a5c6e3f1eb2072",
+            "MOV-0002.json": "715b6af50a7821b2a1549bd3138f1ebfd91d49596d3c9b75f060705b534506d8",
+            "MOV-0003.json": "e14b077b5a1c0da3a6a159b82e94bc943ba684ce7a910196a251db6e25da4769",
+            "MOV-0004.json": "445b1008ee57742cc21db1602d3b38b7e4dd201f4d12654e20bb2ba9272c9719",
+            "MOV-0005.json": "f190c605f5173dfc68cfc424413471f2eaa301f3a84ad9d19d33e99f4b04550e",
+            "MOV-0006.json": "88a472cf95f9f66a4538feda837dcafcc0f4da03b9947acc8a8ea2bdcbb9c5ad",
+            "MOV-0007.json": "e9db3318854933b11f096a0189ef6c32410c93180bb34e2eb02bb6233c17404b",
+            "MOV-0008.json": "b598d710052562e35940211f821aadf9a31967886242ad0dd83b5e4ef720430c",
+            "MOV-0009.json": "27396aa0f6192e6eebfb3d5273b7f97daef26782daf5d0bc2cb19c00e15d8932",
+            "MOV-0010.json": "1761b7b17bfc4a506400222932a6109676006f22d235ae312891279a29e6f862",
+            "identity.json": "c1c21345997cd7aed16cd610e27a2b4731c4d1f7184a363d6dafceac22aab330"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v3": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd",
+            "MOV-0003.json": "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad",
+            "MOV-0004.json": "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed",
+            "MOV-0005.json": "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5",
+            "MOV-0006.json": "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b",
+            "MOV-0007.json": "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f",
+            "MOV-0008.json": "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646",
+            "MOV-0009.json": "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944",
+            "MOV-0010.json": "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "3187637be220b1091f5161797913d22e38022b21b3da63a88cef15a42f5634eb",
+            "MOV-0002.json": "8e967bf24d4ef0c4cfae316cf14aa4750c83a02675c2e0b814dcc18c0210beea",
+            "MOV-0003.json": "a74a8e91320adc7ec36eeec835ae55fd9e8e9b7f126d31c4679f8279a31dfbc6",
+            "MOV-0004.json": "220580c83b60212fa877babcc7c757001e0e6200c2678d47d06eb7b1cdee4272",
+            "MOV-0005.json": "b110587aa2acfd3d8c3e4a1cca7d1bb76abedc321003f5b66e67a92283bd10d3",
+            "MOV-0006.json": "298f3cb2a51949dfe03d572930e14607b36b9876badba9e9a5460b080d62d0c4",
+            "MOV-0007.json": "c58b54e0e5c7cf0c98aad5c8d3dbd85765fc255c82829ca8370305b5b36725a1",
+            "MOV-0008.json": "dfae5acc25bb73d999f6ce31d8b2d5b27f2ea9e5f8021e895aa543337acffa32",
+            "MOV-0009.json": "9a91464d04e6b5c179d20dd880c42bd94ede45797cc5dea782650b69245999d6",
+            "MOV-0010.json": "77c28da4bb5e60db8fc7fbc3b8bb7aac220b7ee30128283fa205d4afe39bf1cd",
+            "identity.json": "a8b9de0221470c4fa275fc06881c0692f1837fce08e4730aa9bec7d5b5d8e96f"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v4": {
+          "compatibility_passes": 10,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc",
+            "MOV-0002.json": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+            "MOV-0003.json": "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7",
+            "MOV-0004.json": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+            "MOV-0005.json": "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d",
+            "MOV-0006.json": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+            "MOV-0007.json": "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e",
+            "MOV-0008.json": "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5",
+            "MOV-0009.json": "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612",
+            "MOV-0010.json": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "c6386b6aa8c6b4471e25a5a7136b223ddc2799127f9ad6776b95dd9d876987e9",
+            "MOV-0002.json": "f59bdbd34bfbba7feed4481c9c96d98dffa5a44fdb375329994899375968a0c6",
+            "MOV-0003.json": "b731e32aef1c09a65a5cfa3f07223134df9538541ff93b6a9d2d4d915d16daaa",
+            "MOV-0004.json": "dea3ccc8a7764191209488b4ef082d193e1ed2b53cd570f2bab95620c92f78f5",
+            "MOV-0005.json": "75b27b16cf6a707aa6b5934a0b0a6b553a5b65e73d7883b46c62ee8a8f1e52d2",
+            "MOV-0006.json": "61488928d61c5d9d8a6f55932d450b90d86be9a46a1179e660ab6cfd64d5f0ad",
+            "MOV-0007.json": "a0d55a848bebf0891239569346411ea13e5f72557aae5f119585ecd7579a9819",
+            "MOV-0008.json": "5f2074b7d8b99c3302020b21c3ff3d85740d3f392b147ce85e9b832d4a2a20dd",
+            "MOV-0009.json": "1a15755f3907a4c474110999e5aa85367b4c60c485d15c71a967a7a6aae5e663",
+            "MOV-0010.json": "c56a130ea2b3d9ccefe01e2e8d33b549f2b2c509fd73b83b2a06aa538089185e",
+            "identity.json": "0efc94396055923f13bf8c14f11970dacd9a02bcf5d6205599fb6d7ea5573999"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        }
+      },
+      "oracle_generation": {
+        "status": "PASS",
+        "manifest": {
+          "generator": "oracle_codegen-v1",
+          "template": {
+            "path": "oracle-maps/MOV-0002.w3m",
+            "bytes": 19009,
+            "sha256": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd"
+          },
+          "template_bounds_sha256": "6c1a65e24867e04fb399ddc51abb068dffde3e6a721b0553b00bcf69cd79de96",
+          "sources": {
+            "tools/oracle_codegen/main.cpp": "efabc77ef402b167bac59c58946cc03c04d98220f9dd04fe0866a1f999dc1e69",
+            "tools/wc3test/Scenario.cpp": "8cd855659edb355d6b4e4ace2d6bf52ac06484e1d4e52024e7370f521c25514d",
+            "tools/wc3test/Scenario.h": "c586d54076e285d5ed0ea55bb977aa8682d00d80f5bd93aaa441df831d169ddb",
+            "tools/generate_oracle.py": "e5071a472b39fd81638d694da3c4e2acd3b2dbc69fdc0435421f1263da3f7363"
+          },
+          "inputs": [
+            {
+              "experiment": "MOV-0001",
+              "map_revision": "MOV-0001",
+              "scenario": {
+                "path": "scenarios/MOV-0001.yaml",
+                "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0001.j",
+                "sha256": "84bd98cb90c06e2feb4dab034a7f8c865821906ccdb31308c4f2413359dc677d"
+              }
+            },
+            {
+              "experiment": "MOV-0002",
+              "map_revision": "MOV-0002-r2",
+              "scenario": {
+                "path": "scenarios/MOV-0002.yaml",
+                "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0002-r2.j",
+                "sha256": "fd743d9a675f7d9898d25441ebb840b3d0c4273cb310c4178a6d193fdf21c9be"
+              }
+            },
+            {
+              "experiment": "MOV-0003",
+              "map_revision": "MOV-0003",
+              "scenario": {
+                "path": "scenarios/MOV-0003.yaml",
+                "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0003.j",
+                "sha256": "c0898987e3f4e3dd35774fe0e34be9fa388727d062c92cef36b74420ddd08667"
+              }
+            },
+            {
+              "experiment": "MOV-0004",
+              "map_revision": "MOV-0004",
+              "scenario": {
+                "path": "scenarios/MOV-0004.yaml",
+                "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0004.j",
+                "sha256": "4bb91d80c483c665bec236146c36534d8af15802b78eb939686873065a279bf5"
+              }
+            },
+            {
+              "experiment": "MOV-0005",
+              "map_revision": "MOV-0005",
+              "scenario": {
+                "path": "scenarios/MOV-0005.yaml",
+                "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0005.j",
+                "sha256": "950ce3cc8422416da6e73add3de5b9c5be8477b3a462ac7b953d92b73918db13"
+              }
+            },
+            {
+              "experiment": "MOV-0006",
+              "map_revision": "MOV-0006",
+              "scenario": {
+                "path": "scenarios/MOV-0006.yaml",
+                "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0006.j",
+                "sha256": "045c9ca206011788029dde23abc3a941a8d7fccf31d986df5f93d6df6376cfba"
+              }
+            },
+            {
+              "experiment": "MOV-0007",
+              "map_revision": "MOV-0007",
+              "scenario": {
+                "path": "scenarios/MOV-0007.yaml",
+                "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0007.j",
+                "sha256": "8f051b874bb6f461afafa049c1c92f81717cfde4753c304bd69d9046c7dac92e"
+              }
+            },
+            {
+              "experiment": "MOV-0008",
+              "map_revision": "MOV-0008",
+              "scenario": {
+                "path": "scenarios/MOV-0008.yaml",
+                "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0008.j",
+                "sha256": "d44858a2fa8515032ffaa03184a2eb804714af093618e692f10605052c45da5d"
+              }
+            },
+            {
+              "experiment": "MOV-0009",
+              "map_revision": "MOV-0009",
+              "scenario": {
+                "path": "scenarios/MOV-0009.yaml",
+                "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0009.j",
+                "sha256": "0c71774092fe781de0faa2a17eadeea6f2cc3205f96992125433b25c219ea9cf"
+              }
+            },
+            {
+              "experiment": "MOV-0010",
+              "map_revision": "MOV-0010",
+              "scenario": {
+                "path": "scenarios/MOV-0010.yaml",
+                "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0010.j",
+                "sha256": "ad158db06dd8dd6e345c65deb4eed800223184fcb449bd75e714d053c7d129aa"
+              }
+            }
+          ]
+        }
+      },
+      "generated_capture_loop": {
+        "status": "PASS",
+        "compatibility_passes": 4,
+        "scenario_sha256": {
+          "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+          "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+          "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+          "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+        },
+        "wc3_observation_sha256": {
+          "MOV-0002-g1": "e893aa63b2d961469761236b19d378f8da7c139515b9ebae7a5d3593167f8061",
+          "MOV-0004-g1": "5fd534c71327b3faa3cabf3c6fd6727ccfe97ad48b7988739bf9cf37b8d5a6f7",
+          "MOV-0006-g1": "8d13b4b5d0fe33e03a6419d2cbe06122fa2d0bb556921480ebaf08ba38c83353",
+          "MOV-0010-g1": "cc2d1f008e877cdce0510a7451a7db6017e41d57bff14c9cb47e965a96b90ff5"
+        },
+        "cpp_payload_sha256": {
+          "MOV-0002-g1": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+          "MOV-0004-g1": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+          "MOV-0006-g1": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+          "MOV-0010-g1": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+        }
+      },
+      "experiments": {
+        "MOV-0013": {
+          "status": "PASS",
+          "cases": 4,
+          "cpp_payload_sha256": {
+            "MOV-0013-a": "e3f42b91c2f1f50cd4d1c2551b7a181bdf7cbc39d73954d70ad99ec3c1061b8f",
+            "MOV-0013-b": "0c62ecafe007cf9b8ffb96b605621f0403f9e6527e8c717ae97a058576cb1b2a",
+            "MOV-0013-c": "f7312ea6cd93fc18f812939494fefa9755b4eba0d04bdee11188971ca5ba5fac",
+            "MOV-0013-d": "df9b1b7e0ddad0c5953486be75b96403b3c1dba69167a15cf3356d865f1dd4e1"
+          }
+        },
+        "MOV-0014": {
+          "status": "PASS",
+          "cases": 3,
+          "cpp_payload_sha256": {
+            "MOV-0014-a": "2c479aca152f44ae6038b2247890d758049ae53005ce8ff5cdd49fb31d446a55",
+            "MOV-0014-b": "e14f1b0975cf85e14eca543477bd61c93ecd778b07747e9ed364bf8e6e6e8978",
+            "MOV-0014-c": "ba7132f239e6bfbfa2462e12dd64a0c6dda2888aca916668f32dcdb384394b10"
+          }
+        },
+        "MOV-0015": {
+          "status": "PASS",
+          "cases": 4,
+          "cpp_payload_sha256": {
+            "MOV-0015-a": "02efd83768a358abc0c7c8fcdf0a3425cdf9d8eb1a3e12aaca12f26876c49746",
+            "MOV-0015-b": "a35e9330b8ef4e815b13f2ceebaf6198e43a60f0c90981e75b646fc4d8f4604a",
+            "MOV-0015-c": "238a43417d14492867bf70cc516dddaa78fba48e6f80deb1b84c92bbff80a4c8",
+            "MOV-0015-d": "52f9dc4ad62586d6a8ca22835db7ce1d3c3fff280a8ea43f0ceba9bdc15157d3"
+          }
+        }
+      }
+    },
+    "windows-msvc-release": {
+      "ci_status": "PASS",
+      "host": {
+        "system": "Windows",
+        "release": "2022Server",
+        "architecture": "x86_64",
+        "python": "3.12.10"
+      },
+      "environment": {
+        "host": {
+          "system": "Windows",
+          "release": "2022Server",
+          "architecture": "x86_64",
+          "python": "3.12.10"
+        },
+        "requested_compiler": "cl",
+        "build_type": "Release",
+        "expected_architecture": "x86_64",
+        "seed": 1,
+        "github": {
+          "GITHUB_RUN_ID": "37040588867",
+          "GITHUB_RUN_ATTEMPT": "1",
+          "GITHUB_SHA": "7c552902b59b9e5a86d9a7419dd8e2db3c9356b7",
+          "GITHUB_EVENT_NAME": "pull_request",
+          "RUNNER_OS": "Windows",
+          "RUNNER_ARCH": "X64",
+          "ImageOS": "win22",
+          "ImageVersion": "20260927.320.1"
+        }
+      },
+      "primary_identity": {
+        "git_commit": "7c552902b59b9e5a86d9a7419dd8e2db3c9356b7",
+        "git_dirty_at_configure": false,
+        "source_sha256": "de09ca8ef378af2bedbed82075916042cc04c5954180ea250fae4f611c0fae98",
+        "compiler": "MSVC 19.44.35229.0",
+        "build_type": "Release",
+        "architecture": "x86_64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 16,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float"
+        },
+        "cases": [
+          {
+            "test": "MOV-0001",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0002",
+            "callbacks": 250,
+            "units": 2,
+            "samples": 502
+          },
+          {
+            "test": "MOV-0003",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0004",
+            "callbacks": 600,
+            "units": 1,
+            "samples": 601
+          },
+          {
+            "test": "MOV-0005",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0006",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0007",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0008",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0009",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          },
+          {
+            "test": "MOV-0010",
+            "callbacks": 250,
+            "units": 1,
+            "samples": 251
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0001",
+            "map_revision": "MOV-0001",
+            "path": "scenarios/MOV-0001.yaml",
+            "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361"
+          },
+          {
+            "experiment": "MOV-0002",
+            "map_revision": "MOV-0002-r2",
+            "path": "scenarios/MOV-0002.yaml",
+            "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+          },
+          {
+            "experiment": "MOV-0003",
+            "map_revision": "MOV-0003",
+            "path": "scenarios/MOV-0003.yaml",
+            "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255"
+          },
+          {
+            "experiment": "MOV-0004",
+            "map_revision": "MOV-0004",
+            "path": "scenarios/MOV-0004.yaml",
+            "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+          },
+          {
+            "experiment": "MOV-0005",
+            "map_revision": "MOV-0005",
+            "path": "scenarios/MOV-0005.yaml",
+            "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36"
+          },
+          {
+            "experiment": "MOV-0006",
+            "map_revision": "MOV-0006",
+            "path": "scenarios/MOV-0006.yaml",
+            "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+          },
+          {
+            "experiment": "MOV-0007",
+            "map_revision": "MOV-0007",
+            "path": "scenarios/MOV-0007.yaml",
+            "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0"
+          },
+          {
+            "experiment": "MOV-0008",
+            "map_revision": "MOV-0008",
+            "path": "scenarios/MOV-0008.yaml",
+            "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf"
+          },
+          {
+            "experiment": "MOV-0009",
+            "map_revision": "MOV-0009",
+            "path": "scenarios/MOV-0009.yaml",
+            "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e"
+          },
+          {
+            "experiment": "MOV-0010",
+            "map_revision": "MOV-0010",
+            "path": "scenarios/MOV-0010.yaml",
+            "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        ]
+      },
+      "models": {
+        "v1": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "61c89255039393ef9f39f1844fc042df90581f5de477084f76b9b6cbd0330877",
+            "MOV-0003.json": "6c0c77a72a64eae6435740c3b0e12479ecacbc4a4b8c44cda1b6e93c801a47f3",
+            "MOV-0004.json": "46fbc4aeda20affae76e93853b91212942f921124ab11fb523df9c21a9297c41",
+            "MOV-0005.json": "bfdd9199594e3ddd6b74f432b05257a9670a7cecedb44971e5384e4e6cb9fc20",
+            "MOV-0006.json": "388d3728e347989905051548989113e15e3233e172d4560e36ed42e847a0c849",
+            "MOV-0007.json": "df19f069ab5ebf09e3a56a687dbfc837d526bf824941dd4b954e447977480e53",
+            "MOV-0008.json": "8a37494672c5e1b3cd0c7b4569168ad66a1c908eba39ff16b1e6de7b546902ab",
+            "MOV-0009.json": "f319d9342a2ce2f51a46fd72b95ce532ec1786d3d24e46351fa0e74e6735d6a7",
+            "MOV-0010.json": "f9aa7504543ed6af962a9ecb7f159c2df90bb12f366baa6238df075de49d8ac6"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "994e80d31888a143d96d2431e92d896dd841ca21f921beb4addc1b42f7b528b9",
+            "MOV-0002.json": "c4c07ec5dfb2265b00aa554db6595f52df608a3d6592fa91f125621b2eda7ef7",
+            "MOV-0003.json": "b9ae685df59eed2822445e337b7fb82cb7c55644e0b4aff7d76bdae9b9458100",
+            "MOV-0004.json": "6d42a597e8f496f110c8a0f244e9e3b4d79db3db0a1a58c6a8246b8ec7af555e",
+            "MOV-0005.json": "26969b8480dddf0a4248346ec03914ec32f6b19f23b948dc09ca667f45bf145f",
+            "MOV-0006.json": "622821dd2cf564f077c0d91e483df42c198c4a785df52cea8503ba70bd5fa943",
+            "MOV-0007.json": "8b15f74f67f394b0f831c2ffce90b76dae2785d5697cb6e8a9df9d803ebb1177",
+            "MOV-0008.json": "a4002627b1ed6048cae8892631fdbad5946ec94e8f39ecefc1ac7cbe83739839",
+            "MOV-0009.json": "9d21555a5cd673a445b5e468ef56964fea0d1b85f0d8b03e4276442498a73f60",
+            "MOV-0010.json": "e1ac52a57b95a386de14a59f635d9b2d8ab16e5301b3186565606458355faed5",
+            "identity.json": "4ca6130f6a80713ec818c06915417246552841cad45f54ed807e295efd8ec5be"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v2": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "37a1623cd65dfa867dac77418ddff621151b11a3d0287625fa062b9815370a3d",
+            "MOV-0003.json": "6b11d1096646e06f675cb61e2e9b5f010ce1fc2f9337337a4fc3f29bc223dc63",
+            "MOV-0004.json": "9325ac0f1f3bb40fb04f040059316286b462d4816dc0e0862eed3bc4168c7671",
+            "MOV-0005.json": "754573d50803bacaf527740520fe1a31178b2fbda02b4a8bf7761ae6bc90fda0",
+            "MOV-0006.json": "1d157346902e2ab36090cc50823a682af3639108edb65cc13943e6a9cc410543",
+            "MOV-0007.json": "3eeb2289e5eec5b6d4408caac91cc106ab7ffc475d4589229f64ca85184bd70d",
+            "MOV-0008.json": "bacdbd7b290e09ee046b2b2b37a3a3d38dbf47de97a530f4440631ee8ba7fa8f",
+            "MOV-0009.json": "2bc40b730f9d05dc09e7f18cf9780298ea65e17bb3ed6f50423942d8e1f2df3c",
+            "MOV-0010.json": "43a4b1f424386e9582dc260e08751df623d9e64d41dddb99f163e7d8a8e0940f"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "d63723f744f562aa58658db2bcf2150e4d6e5d42e3ed0bb458971cc3654eca9d",
+            "MOV-0002.json": "b7a94b54ac3ed6ae845c12015cf3c9ff8d6cdb3c6578918af02e0611158d5af4",
+            "MOV-0003.json": "6eb2d09aedb0a46d8a83d25b0076fa8d8faa6e6e512f7b9c385875ede963b64f",
+            "MOV-0004.json": "5b42a0500098d3707a2c327813864cee5ae46dca81874f676998e3e4287bb7dd",
+            "MOV-0005.json": "1e8d0504890e613647db871df900657194359a5f4e4f521ce1fb0df1b78f2d3e",
+            "MOV-0006.json": "cb2bf35a678be1dc3c4efa354b3175c4e364bd54f000f04a5e834445b5fdc458",
+            "MOV-0007.json": "e5ac512fdc7df6f3b2f5efab42b357c1a5aefdb21a03fb991cf9b1f206c3838c",
+            "MOV-0008.json": "be6ca27cd7f203dcab60c8fd3cd7b7efdeddd020d0e162ec6068405de1d30da5",
+            "MOV-0009.json": "839f31938e27a93549997dbc85c065b886827701e984a56450f432d667878624",
+            "MOV-0010.json": "4c20a3218cb3ae05675608ccdb7ba52c0050316844dbf1e25a92f939724d1b40",
+            "identity.json": "513de2a36af43b918481f8a8b56756514d243ad457276cbe490a6c4db60681da"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v2-before": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "19055c6c08736a86998f1d95a27fd02dc74597bf323699f7f1f8e82d3b365819",
+            "MOV-0002.json": "dd1b29ff533699bfdabfdf550f7e62f10bd9ed4da7c6895d156fcda7ef517b42",
+            "MOV-0003.json": "6bc0bb3f56b1cf7146d5cc30a6931ced57933cfb0f66e0be95fd461b911bc96c",
+            "MOV-0004.json": "b121a6f247f6c4da0faf5c8b78b2e9c7d1ce57b171a36f541539d6c36ae58763",
+            "MOV-0005.json": "48e3344e61658dc01426efcc138a35c9c8ff2fb83ffd6d76d76a3d03a297d101",
+            "MOV-0006.json": "6c6e21423c085696f7d6741470eda8c4aa0b1f653942d8b202970e30ddca19d1",
+            "MOV-0007.json": "5776dbf0abea3d5185ec0d5a1dc8f198eaf1291d9b76048a2341d735ddefafab",
+            "MOV-0008.json": "be3f289a6216e2edd085cf22e221508085be547c526a542fbae0303a1ff5743e",
+            "MOV-0009.json": "04169e9bd7c0127e8d73394e2892a8ea693074bb25b7c1cb0d666b8f442f98c1",
+            "MOV-0010.json": "daac59751795e3efea0de0a8ccddba91345657256ccb495f7b9baa5d3a50023e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "5345290cc0d821057f5936b5dc0cc8752e90216023f81f847c3f2257ac073603",
+            "MOV-0002.json": "7cb3f56eef721e7405cf0154c79fe864e1626d91489d7fe2805e077da7a89258",
+            "MOV-0003.json": "ab96b68387e49d5c6f2ea514e27ae4db43fe9484717bb45df2f7c15d9dfcbb30",
+            "MOV-0004.json": "472fb3fa36ba50d899557eccee71dd6c3978d827e4cbf979ee25f12f1118d059",
+            "MOV-0005.json": "89dfee348710af4ef978c8c5d0eee320059e723954569ee1cf76019d298d2312",
+            "MOV-0006.json": "8c7c23ec20ff4335fb82c070a6fdeeae34aeb0bf8a201320b94f0b5fa2474017",
+            "MOV-0007.json": "b46efc950366e55ea058f55200ec8df77c6356e92058670c5973a18e48c27a87",
+            "MOV-0008.json": "b639a9862ac8e1b40eb695eb30b3ed985583cd59bc31d83d27b161e7cf23c62b",
+            "MOV-0009.json": "6af8106a76a4d16b2bd39c636cab8013926c79f2524d2214234001a147587407",
+            "MOV-0010.json": "31a8d13e85273f5b0f6bfc3f77d69cbefb5dfde14b060da8dab0d75a41774b06",
+            "identity.json": "ab03e30e92791e5e929df3faed01d261f0ba1639d79a7a65985b678b40d4bb0d"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v3": {
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "03f703605b1062689500e7b883a1e72b880f1dfcc55e5813b6029e29cf918a64",
+            "MOV-0002.json": "843476a101354d563b9721fa267c639a7c235a65264315718bb49639cd5bf7bd",
+            "MOV-0003.json": "c8f70c8421e6f80ef1eb5b019c3fc8eb1c5cfa1709ea1028068d7b8b231002ad",
+            "MOV-0004.json": "1778887f89e441eb337ad21ba652b57f71f5f913e023e61f026f25ae3305d3ed",
+            "MOV-0005.json": "18b87826752faba1d6650dbba7d0f7b9c38034a18ffb334ea9ed04d26bc7dbc5",
+            "MOV-0006.json": "befd606a55e7d9f11d780853bf3bc0e79eb9bf0d396c8ddc9e50ea16da36ef3b",
+            "MOV-0007.json": "eeabd207ca51b36b3c4f7969560e2f7944dd7ce53b163bb300118bbfaaf91c4f",
+            "MOV-0008.json": "b45bbc0cc373c9b60c777224c952249080c31fbf9ce16d4283dbc287e6b4d646",
+            "MOV-0009.json": "f0b22d43bb7c6d06ba5f34ca998bc824e55a260482b32179a88fbe5dd8f7b944",
+            "MOV-0010.json": "58a266d046338062cfc4768ff30ad18b7a9123fa3ed7aef635761ef09bcc6783"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "d1c5bfdc953f1c88c160f2de9c32a5d3be350ca10f6669e8935340d7a89e4159",
+            "MOV-0002.json": "6eabf5a4580c2371b192ed86ed9fb8148123f87104d4800634225bb10ccd400b",
+            "MOV-0003.json": "04e4ce94fc08181dc373129a1c5063c0bd1a9e19146085609dc55e5ee29ec966",
+            "MOV-0004.json": "8e5be654f529287cc67edd9836fc7147ba00e61fc01c2338b36e083499ce1d0a",
+            "MOV-0005.json": "6d70abdd4a3d8ae99639b0a3f0c7473987219b28243f4dd3f6d2d35ffe22f93e",
+            "MOV-0006.json": "4e00190c8512e493e35e5bc243f9df205e96bc989b04ae9404e08402a6574c51",
+            "MOV-0007.json": "64a7bccef564ccd4b3b66401b5cfb27e3e97e12a2ab35504cad4b5437ff4c027",
+            "MOV-0008.json": "69c6b77a506ff09f3ec8987851e4e672409439f33bf36e9bfce88f7322f3c00c",
+            "MOV-0009.json": "218e3a51d04339e1476ac4c177fc1b56548f5c802b07e4ba9f2bec0f572afa18",
+            "MOV-0010.json": "47c86523c453870753cb368f25335a960e4954277de5e11802e3d33e488ee073",
+            "identity.json": "e70e4b8a4c3ba1c5557a95abb20e87d2588d7eb5692b4bf5cc0735f694ad30d2"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        },
+        "v4": {
+          "compatibility_passes": 10,
+          "regression_verdict": "PASS",
+          "payload_sha256": {
+            "MOV-0001.json": "ff4c15fb11004e2a8afe7a8194a761ad0804907cf3d1e11fdbc2825ad0a34bbc",
+            "MOV-0002.json": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+            "MOV-0003.json": "0a428334ad5d66dd6e480865551be6ee74dfa90067be8d42d4469c6b0345c6d7",
+            "MOV-0004.json": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+            "MOV-0005.json": "9db457a3eb70f005898cdb8fe1ad8ed7462dd7b9260dc82d48bbb80f2374146d",
+            "MOV-0006.json": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+            "MOV-0007.json": "1a49a17b34f4c9dadaaf8910a65321f94a1cb1db5bc1b0d9a515ed2206370c1e",
+            "MOV-0008.json": "95ac0cdd97aae3b7af11111b979dedab8d23cd8c94f4e6eedb9353facbceb4b5",
+            "MOV-0009.json": "04837d560a91f89e02cf1ec258c8c9e3ac238f045178cd91286e18d69ac43612",
+            "MOV-0010.json": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+          },
+          "full_trace_sha256": {
+            "MOV-0001.json": "d2eba406bc509460666a5d065c54c0535806ab8681c03c1d93139f346a55ddf8",
+            "MOV-0002.json": "ddf7eb14f1d672fdf38672509781c8640c1731b2c9454b6c97f79111f96cba88",
+            "MOV-0003.json": "a0adec2c049ff8bbdb7cc78b3045871b18a1e4d471f1990beeb234c99fa20441",
+            "MOV-0004.json": "9e8c7cfd88a0bb1e5dc7f4c6999800d79335d695ee9b4b68432ae3adceec9e58",
+            "MOV-0005.json": "28e279445d7a98c2e6e29b6c227df8bc4e1b88972418a9e9075ee7cf92d595a7",
+            "MOV-0006.json": "211013cb0541c7b044825bdac68e6b0add1a750086f19ffdd13ed8592bdaea4f",
+            "MOV-0007.json": "fc0dc98e51035a6ab565f3887ed08728464432ab8669d584be545a5713cedace",
+            "MOV-0008.json": "6839360b0313f93cccadd8c997a516478442b9a8c76ae785cf50b15966b74014",
+            "MOV-0009.json": "f4d99102e448650c03a95488a5005132db2799316f0f27a37c8001469702db4d",
+            "MOV-0010.json": "a85ff942108dc63b22a7fc45bb0ca0c07820f08e52849953787d4c35ce9c1529",
+            "identity.json": "bcab0ba49d6ba139019f9fdfec42fa2a9c4ea26049b41b25001cbab65aa7574d"
+          },
+          "scenario_sha256": {
+            "MOV-0001": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+            "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+            "MOV-0003": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+            "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+            "MOV-0005": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+            "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+            "MOV-0007": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+            "MOV-0008": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+            "MOV-0009": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+            "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+          }
+        }
+      },
+      "oracle_generation": {
+        "status": "PASS",
+        "manifest": {
+          "generator": "oracle_codegen-v1",
+          "template": {
+            "path": "oracle-maps/MOV-0002.w3m",
+            "bytes": 19009,
+            "sha256": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd"
+          },
+          "template_bounds_sha256": "6c1a65e24867e04fb399ddc51abb068dffde3e6a721b0553b00bcf69cd79de96",
+          "sources": {
+            "tools/oracle_codegen/main.cpp": "efabc77ef402b167bac59c58946cc03c04d98220f9dd04fe0866a1f999dc1e69",
+            "tools/wc3test/Scenario.cpp": "8cd855659edb355d6b4e4ace2d6bf52ac06484e1d4e52024e7370f521c25514d",
+            "tools/wc3test/Scenario.h": "c586d54076e285d5ed0ea55bb977aa8682d00d80f5bd93aaa441df831d169ddb",
+            "tools/generate_oracle.py": "e5071a472b39fd81638d694da3c4e2acd3b2dbc69fdc0435421f1263da3f7363"
+          },
+          "inputs": [
+            {
+              "experiment": "MOV-0001",
+              "map_revision": "MOV-0001",
+              "scenario": {
+                "path": "scenarios/MOV-0001.yaml",
+                "sha256": "f83b7fab1457226913bb33732a711c743666e2f12c74fb8660187da442528361",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0001.j",
+                "sha256": "84bd98cb90c06e2feb4dab034a7f8c865821906ccdb31308c4f2413359dc677d"
+              }
+            },
+            {
+              "experiment": "MOV-0002",
+              "map_revision": "MOV-0002-r2",
+              "scenario": {
+                "path": "scenarios/MOV-0002.yaml",
+                "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0002-r2.j",
+                "sha256": "fd743d9a675f7d9898d25441ebb840b3d0c4273cb310c4178a6d193fdf21c9be"
+              }
+            },
+            {
+              "experiment": "MOV-0003",
+              "map_revision": "MOV-0003",
+              "scenario": {
+                "path": "scenarios/MOV-0003.yaml",
+                "sha256": "87459b03cbc951c63539ff66512321ddfaf85172b55e9d4432043f1f26bc3255",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0003.j",
+                "sha256": "c0898987e3f4e3dd35774fe0e34be9fa388727d062c92cef36b74420ddd08667"
+              }
+            },
+            {
+              "experiment": "MOV-0004",
+              "map_revision": "MOV-0004",
+              "scenario": {
+                "path": "scenarios/MOV-0004.yaml",
+                "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0004.j",
+                "sha256": "4bb91d80c483c665bec236146c36534d8af15802b78eb939686873065a279bf5"
+              }
+            },
+            {
+              "experiment": "MOV-0005",
+              "map_revision": "MOV-0005",
+              "scenario": {
+                "path": "scenarios/MOV-0005.yaml",
+                "sha256": "1715145978443c8dfae78b28645897c1ab6a059e48bbc53027919d19170d9c36",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0005.j",
+                "sha256": "950ce3cc8422416da6e73add3de5b9c5be8477b3a462ac7b953d92b73918db13"
+              }
+            },
+            {
+              "experiment": "MOV-0006",
+              "map_revision": "MOV-0006",
+              "scenario": {
+                "path": "scenarios/MOV-0006.yaml",
+                "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0006.j",
+                "sha256": "045c9ca206011788029dde23abc3a941a8d7fccf31d986df5f93d6df6376cfba"
+              }
+            },
+            {
+              "experiment": "MOV-0007",
+              "map_revision": "MOV-0007",
+              "scenario": {
+                "path": "scenarios/MOV-0007.yaml",
+                "sha256": "ea125d59c782e2494723fc44a9f64ce2fc4b5068fab0b45199a29181127556b0",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0007.j",
+                "sha256": "8f051b874bb6f461afafa049c1c92f81717cfde4753c304bd69d9046c7dac92e"
+              }
+            },
+            {
+              "experiment": "MOV-0008",
+              "map_revision": "MOV-0008",
+              "scenario": {
+                "path": "scenarios/MOV-0008.yaml",
+                "sha256": "43b6168dabbd2db6c48f4a746d89ee8ae9c0b8abac77f89db192c19b140d23bf",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0008.j",
+                "sha256": "d44858a2fa8515032ffaa03184a2eb804714af093618e692f10605052c45da5d"
+              }
+            },
+            {
+              "experiment": "MOV-0009",
+              "map_revision": "MOV-0009",
+              "scenario": {
+                "path": "scenarios/MOV-0009.yaml",
+                "sha256": "9efda041bfd79834bc11b441ec07d127f9f15fa39605e647a3df44ba6fd12a2e",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0009.j",
+                "sha256": "0c71774092fe781de0faa2a17eadeea6f2cc3205f96992125433b25c219ea9cf"
+              }
+            },
+            {
+              "experiment": "MOV-0010",
+              "map_revision": "MOV-0010",
+              "scenario": {
+                "path": "scenarios/MOV-0010.yaml",
+                "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06",
+                "version": 1
+              },
+              "case": {
+                "file": "MOV-0010.j",
+                "sha256": "ad158db06dd8dd6e345c65deb4eed800223184fcb449bd75e714d053c7d129aa"
+              }
+            }
+          ]
+        }
+      },
+      "generated_capture_loop": {
+        "status": "PASS",
+        "compatibility_passes": 4,
+        "scenario_sha256": {
+          "MOV-0002": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58",
+          "MOV-0004": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6",
+          "MOV-0006": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169",
+          "MOV-0010": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+        },
+        "wc3_observation_sha256": {
+          "MOV-0002-g1": "e893aa63b2d961469761236b19d378f8da7c139515b9ebae7a5d3593167f8061",
+          "MOV-0004-g1": "5fd534c71327b3faa3cabf3c6fd6727ccfe97ad48b7988739bf9cf37b8d5a6f7",
+          "MOV-0006-g1": "8d13b4b5d0fe33e03a6419d2cbe06122fa2d0bb556921480ebaf08ba38c83353",
+          "MOV-0010-g1": "cc2d1f008e877cdce0510a7451a7db6017e41d57bff14c9cb47e965a96b90ff5"
+        },
+        "cpp_payload_sha256": {
+          "MOV-0002-g1": "48e10ba8beb35e0115da64bbd30f745997a186a6d230066a41f00954987a5d51",
+          "MOV-0004-g1": "a8e98a0f56a2c1ff8879dbe0d75e1e1b1a97b16f0c43c65670f52a8ff87f2621",
+          "MOV-0006-g1": "e30af65fed22c026ca71bfb6b8c207ad081d7cd4302da1e327b7d00552f9080a",
+          "MOV-0010-g1": "fb05e13cee3af595ae447fe46260a69a10cb27795970bfc15aa64481ffedf96e"
+        }
+      },
+      "experiments": {
+        "MOV-0013": {
+          "status": "PASS",
+          "cases": 4,
+          "cpp_payload_sha256": {
+            "MOV-0013-a": "e3f42b91c2f1f50cd4d1c2551b7a181bdf7cbc39d73954d70ad99ec3c1061b8f",
+            "MOV-0013-b": "0c62ecafe007cf9b8ffb96b605621f0403f9e6527e8c717ae97a058576cb1b2a",
+            "MOV-0013-c": "f7312ea6cd93fc18f812939494fefa9755b4eba0d04bdee11188971ca5ba5fac",
+            "MOV-0013-d": "df9b1b7e0ddad0c5953486be75b96403b3c1dba69167a15cf3356d865f1dd4e1"
+          }
+        },
+        "MOV-0014": {
+          "status": "PASS",
+          "cases": 3,
+          "cpp_payload_sha256": {
+            "MOV-0014-a": "2c479aca152f44ae6038b2247890d758049ae53005ce8ff5cdd49fb31d446a55",
+            "MOV-0014-b": "e14f1b0975cf85e14eca543477bd61c93ecd778b07747e9ed364bf8e6e6e8978",
+            "MOV-0014-c": "ba7132f239e6bfbfa2462e12dd64a0c6dda2888aca916668f32dcdb384394b10"
+          }
+        },
+        "MOV-0015": {
+          "status": "PASS",
+          "cases": 4,
+          "cpp_payload_sha256": {
+            "MOV-0015-a": "02efd83768a358abc0c7c8fcdf0a3425cdf9d8eb1a3e12aaca12f26876c49746",
+            "MOV-0015-b": "a35e9330b8ef4e815b13f2ceebaf6198e43a60f0c90981e75b646fc4d8f4604a",
+            "MOV-0015-c": "238a43417d14492867bf70cc516dddaa78fba48e6f80deb1b84c92bbff80a4c8",
+            "MOV-0015-d": "52f9dc4ad62586d6a8ca22835db7ce1d3c3fff280a8ea43f0ceba9bdc15157d3"
+          }
+        }
+      }
+    }
+  },
+  "errors": {},
+  "models": {
+    "v1": {
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ],
+      "scenario_inputs": "IDENTICAL",
+      "observation_payload_variants": {
+        "MOV-0001": 1,
+        "MOV-0002": 1,
+        "MOV-0003": 1,
+        "MOV-0004": 1,
+        "MOV-0005": 1,
+        "MOV-0006": 1,
+        "MOV-0007": 2,
+        "MOV-0008": 1,
+        "MOV-0009": 1,
+        "MOV-0010": 1
+      },
+      "full_trace_variants": {
+        "MOV-0001": 5,
+        "MOV-0002": 5,
+        "MOV-0003": 5,
+        "MOV-0004": 5,
+        "MOV-0005": 5,
+        "MOV-0006": 5,
+        "MOV-0007": 5,
+        "MOV-0008": 5,
+        "MOV-0009": 5,
+        "MOV-0010": 5
+      },
+      "observation_byte_equality": "DIFFERENT",
+      "compatibility_passes": {
+        "mac-arm-release": 1,
+        "mac-arm-debug": 1,
+        "linux-gcc-release": 1,
+        "linux-clang-debug": 1,
+        "windows-msvc-release": 1
+      }
+    },
+    "v2": {
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ],
+      "scenario_inputs": "IDENTICAL",
+      "observation_payload_variants": {
+        "MOV-0001": 1,
+        "MOV-0002": 1,
+        "MOV-0003": 1,
+        "MOV-0004": 1,
+        "MOV-0005": 1,
+        "MOV-0006": 1,
+        "MOV-0007": 2,
+        "MOV-0008": 1,
+        "MOV-0009": 1,
+        "MOV-0010": 1
+      },
+      "full_trace_variants": {
+        "MOV-0001": 5,
+        "MOV-0002": 5,
+        "MOV-0003": 5,
+        "MOV-0004": 5,
+        "MOV-0005": 5,
+        "MOV-0006": 5,
+        "MOV-0007": 5,
+        "MOV-0008": 5,
+        "MOV-0009": 5,
+        "MOV-0010": 5
+      },
+      "observation_byte_equality": "DIFFERENT",
+      "compatibility_passes": {
+        "mac-arm-release": 1,
+        "mac-arm-debug": 1,
+        "linux-gcc-release": 1,
+        "linux-clang-debug": 1,
+        "windows-msvc-release": 1
+      }
+    },
+    "v2-before": {
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ],
+      "scenario_inputs": "IDENTICAL",
+      "observation_payload_variants": {
+        "MOV-0001": 1,
+        "MOV-0002": 1,
+        "MOV-0003": 1,
+        "MOV-0004": 1,
+        "MOV-0005": 1,
+        "MOV-0006": 1,
+        "MOV-0007": 2,
+        "MOV-0008": 1,
+        "MOV-0009": 1,
+        "MOV-0010": 1
+      },
+      "full_trace_variants": {
+        "MOV-0001": 5,
+        "MOV-0002": 5,
+        "MOV-0003": 5,
+        "MOV-0004": 5,
+        "MOV-0005": 5,
+        "MOV-0006": 5,
+        "MOV-0007": 5,
+        "MOV-0008": 5,
+        "MOV-0009": 5,
+        "MOV-0010": 5
+      },
+      "observation_byte_equality": "DIFFERENT",
+      "compatibility_passes": {
+        "mac-arm-release": 1,
+        "mac-arm-debug": 1,
+        "linux-gcc-release": 1,
+        "linux-clang-debug": 1,
+        "windows-msvc-release": 1
+      }
+    },
+    "v3": {
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ],
+      "scenario_inputs": "IDENTICAL",
+      "observation_payload_variants": {
+        "MOV-0001": 1,
+        "MOV-0002": 1,
+        "MOV-0003": 1,
+        "MOV-0004": 1,
+        "MOV-0005": 1,
+        "MOV-0006": 1,
+        "MOV-0007": 1,
+        "MOV-0008": 1,
+        "MOV-0009": 1,
+        "MOV-0010": 1
+      },
+      "full_trace_variants": {
+        "MOV-0001": 5,
+        "MOV-0002": 5,
+        "MOV-0003": 5,
+        "MOV-0004": 5,
+        "MOV-0005": 5,
+        "MOV-0006": 5,
+        "MOV-0007": 5,
+        "MOV-0008": 5,
+        "MOV-0009": 5,
+        "MOV-0010": 5
+      },
+      "observation_byte_equality": "IDENTICAL",
+      "compatibility_passes": {
+        "mac-arm-release": 1,
+        "mac-arm-debug": 1,
+        "linux-gcc-release": 1,
+        "linux-clang-debug": 1,
+        "windows-msvc-release": 1
+      }
+    },
+    "v4": {
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ],
+      "scenario_inputs": "IDENTICAL",
+      "observation_payload_variants": {
+        "MOV-0001": 1,
+        "MOV-0002": 1,
+        "MOV-0003": 1,
+        "MOV-0004": 1,
+        "MOV-0005": 1,
+        "MOV-0006": 1,
+        "MOV-0007": 1,
+        "MOV-0008": 1,
+        "MOV-0009": 1,
+        "MOV-0010": 1
+      },
+      "full_trace_variants": {
+        "MOV-0001": 5,
+        "MOV-0002": 5,
+        "MOV-0003": 5,
+        "MOV-0004": 5,
+        "MOV-0005": 5,
+        "MOV-0006": 5,
+        "MOV-0007": 5,
+        "MOV-0008": 5,
+        "MOV-0009": 5,
+        "MOV-0010": 5
+      },
+      "observation_byte_equality": "IDENTICAL",
+      "compatibility_passes": {
+        "mac-arm-release": 10,
+        "mac-arm-debug": 10,
+        "linux-gcc-release": 10,
+        "linux-clang-debug": 10,
+        "windows-msvc-release": 10
+      }
+    }
+  },
+  "scope": "measured artifact-producing configurations of this workflow run only; movement RNG unused; retail RNG/other hosts remain UNKNOWN",
+  "oracle_generation": {
+    "status": "IDENTICAL",
+    "configurations_compared": [
+      "mac-arm-release",
+      "mac-arm-debug",
+      "linux-gcc-release",
+      "linux-clang-debug",
+      "windows-msvc-release"
+    ]
+  },
+  "generated_capture_loop": {
+    "status": "PASS",
+    "configurations_compared": [
+      "mac-arm-release",
+      "mac-arm-debug",
+      "linux-gcc-release",
+      "linux-clang-debug",
+      "windows-msvc-release"
+    ],
+    "compatibility_passes": {
+      "mac-arm-release": 4,
+      "mac-arm-debug": 4,
+      "linux-gcc-release": 4,
+      "linux-clang-debug": 4,
+      "windows-msvc-release": 4
+    }
+  },
+  "experiments": {
+    "MOV-0013": {
+      "status": "PASS",
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ]
+    },
+    "MOV-0014": {
+      "status": "PASS",
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ]
+    },
+    "MOV-0015": {
+      "status": "PASS",
+      "configurations_compared": [
+        "mac-arm-release",
+        "mac-arm-debug",
+        "linux-gcc-release",
+        "linux-clang-debug",
+        "windows-msvc-release"
+      ]
+    }
+  }
+}

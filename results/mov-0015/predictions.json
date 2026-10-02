@@ -1,0 +1,694 @@
+{
+  "experiment": "MOV-0015",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "tools": {
+    "runner": "wc3test --model v4 (rules H0, FH; clock Q17)",
+    "states": "wc3states",
+    "arithmetic": "tools/wc3_float.py"
+  },
+  "retained_check": {
+    "maps": {
+      "MOV-0013-a": {
+        "observed_next_xy": [
+          15,
+          20,
+          25,
+          30,
+          35
+        ],
+        "observed_neither": [],
+        "frame": {
+          "H0": false,
+          "T7": true,
+          "Tsub": true
+        },
+        "facing_mismatches": {
+          "FH": {},
+          "FU": {}
+        }
+      },
+      "MOV-0013-b": {
+        "observed_next_xy": [],
+        "observed_neither": [],
+        "frame": {
+          "H0": true,
+          "T7": true,
+          "Tsub": true
+        },
+        "facing_mismatches": {
+          "FH": {},
+          "FU": {}
+        }
+      },
+      "MOV-0013-c": {
+        "observed_next_xy": [
+          25,
+          30,
+          35
+        ],
+        "observed_neither": [],
+        "frame": {
+          "H0": false,
+          "T7": true,
+          "Tsub": true
+        },
+        "facing_mismatches": {
+          "FH": {},
+          "FU": {}
+        }
+      },
+      "MOV-0013-d": {
+        "observed_next_xy": [],
+        "observed_neither": [],
+        "frame": {
+          "H0": true,
+          "T7": true,
+          "Tsub": true
+        },
+        "facing_mismatches": {
+          "FH": {},
+          "FU": {}
+        }
+      },
+      "MOV-0014-a": {
+        "observed_next_xy": [
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60
+        ],
+        "observed_neither": [],
+        "frame": {
+          "H0": false,
+          "T7": true,
+          "Tsub": true
+        },
+        "facing_mismatches": {
+          "FH": {},
+          "FU": {}
+        }
+      },
+      "MOV-0014-b": {
+        "observed_next_xy": [
+          15
+        ],
+        "observed_neither": [],
+        "frame": {
+          "H0": false,
+          "T7": true,
+          "Tsub": true
+        },
+        "facing_mismatches": {
+          "FH": {},
+          "FU": {}
+        }
+      },
+      "MOV-0014-c": {
+        "observed_next_xy": [
+          15
+        ],
+        "observed_neither": [],
+        "frame": {
+          "H0": false,
+          "T7": true,
+          "Tsub": true
+        },
+        "facing_mismatches": {
+          "FH": {},
+          "FU": {}
+        }
+      }
+    },
+    "facing_samples": {
+      "JASS-0001-p010": {
+        "FH": [
+          352,
+          355,
+          358,
+          361,
+          364,
+          367,
+          370,
+          373,
+          376,
+          379
+        ],
+        "FU": []
+      },
+      "JASS-0001-p020": {
+        "FH": [],
+        "FU": []
+      },
+      "JASS-0001-p025": {
+        "FH": [
+          64,
+          70,
+          76,
+          82,
+          88,
+          94,
+          100,
+          106,
+          112,
+          118,
+          124,
+          130,
+          136,
+          142,
+          148
+        ],
+        "FU": []
+      },
+      "JASS-0001-p050": {
+        "FH": [],
+        "FU": []
+      }
+    },
+    "v1_fu_visible": {
+      "MOV-0001": [],
+      "MOV-0002": [],
+      "MOV-0003": [],
+      "MOV-0004": [],
+      "MOV-0005": [],
+      "MOV-0006": [],
+      "MOV-0007": [],
+      "MOV-0008": [],
+      "MOV-0009": [],
+      "MOV-0010": []
+    },
+    "frame_rules_consistent": [
+      "T7",
+      "Tsub"
+    ],
+    "facing_rules_consistent": [
+      "FU"
+    ],
+    "schedules_changed": {
+      "0.001": {
+        "H0": [],
+        "T7": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35
+        ],
+        "Tsub": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35
+        ],
+        "FU": []
+      },
+      "0.01": {
+        "H0": [],
+        "T7": [],
+        "Tsub": [],
+        "FU": [
+          352,
+          355,
+          358,
+          361,
+          364,
+          367,
+          370,
+          373,
+          376,
+          379,
+          382,
+          385,
+          388,
+          391,
+          394,
+          397,
+          400,
+          403,
+          406,
+          409,
+          412,
+          415,
+          418,
+          421,
+          424,
+          427,
+          430,
+          433,
+          436,
+          439,
+          442,
+          445,
+          448,
+          451,
+          454,
+          457,
+          460,
+          463,
+          466,
+          469,
+          472,
+          475,
+          478,
+          481,
+          484,
+          487,
+          490,
+          493,
+          496,
+          499
+        ]
+      },
+      "0.02": {
+        "H0": [],
+        "T7": [],
+        "Tsub": [],
+        "FU": [
+          479,
+          482,
+          485,
+          488,
+          491,
+          494,
+          497,
+          500,
+          503,
+          506,
+          509,
+          512,
+          515,
+          518,
+          521,
+          524,
+          527,
+          530,
+          533,
+          536,
+          539,
+          542,
+          545,
+          548,
+          551,
+          554,
+          557,
+          560,
+          563,
+          566,
+          569,
+          572,
+          575,
+          578,
+          581,
+          584,
+          587,
+          590,
+          593,
+          596,
+          599
+        ]
+      },
+      "0.025": {
+        "H0": [],
+        "T7": [],
+        "Tsub": [],
+        "FU": [
+          64,
+          70,
+          76,
+          82,
+          88,
+          94,
+          100,
+          106,
+          112,
+          118,
+          124,
+          130,
+          136,
+          142,
+          148,
+          154,
+          160,
+          166,
+          172,
+          178,
+          184,
+          190,
+          196
+        ]
+      },
+      "0.05": {
+        "H0": [],
+        "T7": [],
+        "Tsub": [],
+        "FU": []
+      }
+    },
+    "schedules_note": "1 ms: every retained 1 ms run reads the next frame at 15-35 (docs/footman-v4-results.md); 10-50 ms runs follow H0 X/Y"
+  },
+  "predictions": {
+    "MOV-0015-a": {
+      "scenario": "scenarios/MOV-0015/MOV-0015-a.yaml",
+      "start": "0.12",
+      "callback0_frame": 24,
+      "onset_callback": 16,
+      "boundary_callbacks": {
+        "15": {
+          "lag_2_24": 2,
+          "update_frame": false,
+          "next_frame": 27
+        },
+        "20": {
+          "lag_2_24": 3,
+          "update_frame": false,
+          "next_frame": 28
+        },
+        "25": {
+          "lag_2_24": 4,
+          "update_frame": false,
+          "next_frame": 29
+        },
+        "30": {
+          "lag_2_24": 5,
+          "update_frame": false,
+          "next_frame": 30
+        },
+        "35": {
+          "lag_2_24": 6,
+          "update_frame": false,
+          "next_frame": 31
+        },
+        "40": {
+          "lag_2_24": 7,
+          "update_frame": true,
+          "next_frame": 32
+        },
+        "45": {
+          "lag_2_24": 8,
+          "update_frame": false,
+          "next_frame": 33
+        },
+        "50": {
+          "lag_2_24": 9,
+          "update_frame": false,
+          "next_frame": 34
+        },
+        "55": {
+          "lag_2_24": 10,
+          "update_frame": false,
+          "next_frame": 35
+        },
+        "60": {
+          "lag_2_24": 11,
+          "update_frame": false,
+          "next_frame": 36
+        },
+        "65": {
+          "lag_2_24": 12,
+          "update_frame": false,
+          "next_frame": 37
+        },
+        "70": {
+          "lag_2_24": 13,
+          "update_frame": true,
+          "next_frame": 38
+        },
+        "75": {
+          "lag_2_24": 14,
+          "update_frame": false,
+          "next_frame": 39
+        },
+        "80": {
+          "lag_2_24": 15,
+          "update_frame": false,
+          "next_frame": 40
+        }
+      },
+      "frame": {
+        "H0": {
+          "reads_next": [],
+          "visible_xy": []
+        },
+        "T7": {
+          "reads_next": [
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40
+          ],
+          "visible_xy": [
+            15,
+            20,
+            25,
+            30,
+            35,
+            40
+          ]
+        },
+        "Tsub": {
+          "reads_next": [
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40
+          ],
+          "visible_xy": [
+            15,
+            20,
+            25,
+            30,
+            35,
+            40
+          ]
+        }
+      },
+      "facing": {
+        "FH": {
+          "sha256": "b20d8b1487874d643569d32b89ce842fab4cfef590f656a873f688b8279d1116",
+          "differs_from_fh": {}
+        },
+        "FU": {
+          "sha256": "b20d8b1487874d643569d32b89ce842fab4cfef590f656a873f688b8279d1116",
+          "differs_from_fh": {}
+        }
+      }
+    },
+    "MOV-0015-b": {
+      "scenario": "scenarios/MOV-0015/MOV-0015-b.yaml",
+      "start": "0.45",
+      "callback0_frame": 90,
+      "onset_callback": 15,
+      "boundary_callbacks": {
+        "40": {
+          "lag_2_24": 1,
+          "update_frame": true,
+          "next_frame": 98
+        },
+        "45": {
+          "lag_2_24": 2,
+          "update_frame": false,
+          "next_frame": 99
+        },
+        "50": {
+          "lag_2_24": 3,
+          "update_frame": false,
+          "next_frame": 100
+        },
+        "55": {
+          "lag_2_24": 8,
+          "update_frame": false,
+          "next_frame": 101
+        },
+        "60": {
+          "lag_2_24": 14,
+          "update_frame": false,
+          "next_frame": 102
+        }
+      },
+      "frame": {
+        "H0": {
+          "reads_next": [],
+          "visible_xy": []
+        },
+        "T7": {
+          "reads_next": [
+            40,
+            45,
+            50
+          ],
+          "visible_xy": [
+            40,
+            45,
+            50
+          ]
+        },
+        "Tsub": {
+          "reads_next": [
+            40,
+            45,
+            50,
+            55
+          ],
+          "visible_xy": [
+            40,
+            45,
+            50,
+            55
+          ]
+        }
+      },
+      "facing": {
+        "FH": {
+          "sha256": "d85705e501b0d217d638b1f949e00095ebca39bc0c34d7d205a631ff0aa265d7",
+          "differs_from_fh": {}
+        },
+        "FU": {
+          "sha256": "d85705e501b0d217d638b1f949e00095ebca39bc0c34d7d205a631ff0aa265d7",
+          "differs_from_fh": {}
+        }
+      }
+    },
+    "MOV-0015-c": {
+      "scenario": "scenarios/MOV-0015/MOV-0015-c.yaml",
+      "start": "0.999054",
+      "callback0_frame": 199,
+      "onset_callback": 6,
+      "boundary_callbacks": {
+        "906": {
+          "lag_2_24": 4,
+          "update_frame": false,
+          "next_frame": 381
+        },
+        "911": {
+          "lag_2_24": 8,
+          "update_frame": false,
+          "next_frame": 382
+        },
+        "916": {
+          "lag_2_24": 12,
+          "update_frame": false,
+          "next_frame": 383
+        }
+      },
+      "frame": {
+        "H0": {
+          "reads_next": [],
+          "visible_xy": []
+        },
+        "T7": {
+          "reads_next": [
+            906
+          ],
+          "visible_xy": [
+            906
+          ]
+        },
+        "Tsub": {
+          "reads_next": [],
+          "visible_xy": []
+        }
+      },
+      "facing": {
+        "FH": {
+          "sha256": "06656f0ccb6ac20b49291616232407fabd832262f1219b936ba63f374492e2fc",
+          "differs_from_fh": {}
+        },
+        "FU": {
+          "sha256": "a0e786731a340dfa97da7e0eaacfedb7475a12be4b1d0cb43902da5d2f67c3e3",
+          "differs_from_fh": {
+            "781": [
+              "0.191854528",
+              "0.070166576"
+            ],
+            "811": [
+              "359.893218944",
+              "0.191854528"
+            ],
+            "841": [
+              "0.076432216",
+              "359.893218944"
+            ],
+            "871": [
+              "359.868774400",
+              "0.076432216"
+            ],
+            "901": [
+              "0.031714438",
+              "359.868774400"
+            ]
+          }
+        }
+      }
+    },
+    "MOV-0015-d": {
+      "scenario": "scenarios/MOV-0015/MOV-0015-d.yaml",
+      "start": "0.997001",
+      "callback0_frame": 199,
+      "onset_callback": 8,
+      "boundary_callbacks": {
+        "28": {
+          "lag_2_24": 2,
+          "update_frame": false,
+          "next_frame": 205
+        },
+        "33": {
+          "lag_2_24": 8,
+          "update_frame": true,
+          "next_frame": 206
+        },
+        "38": {
+          "lag_2_24": 14,
+          "update_frame": false,
+          "next_frame": 207
+        }
+      },
+      "frame": {
+        "H0": {
+          "reads_next": [],
+          "visible_xy": []
+        },
+        "T7": {
+          "reads_next": [
+            28
+          ],
+          "visible_xy": [
+            28
+          ]
+        },
+        "Tsub": {
+          "reads_next": [
+            28,
+            33
+          ],
+          "visible_xy": [
+            28,
+            33
+          ]
+        }
+      },
+      "facing": {
+        "FH": {
+          "sha256": "cdd752e557027e13e12fb45437626b02148ea6061bd71f64b53f03633687d495",
+          "differs_from_fh": {}
+        },
+        "FU": {
+          "sha256": "cdd752e557027e13e12fb45437626b02148ea6061bd71f64b53f03633687d495",
+          "differs_from_fh": {}
+        }
+      }
+    }
+  }
+}

@@ -78,14 +78,18 @@ exceptions follow the sampler, not the order, the update grid or absolute time.
 [MOV-0014](mov-0014.md) then refuted the callback-index reading. Every exception so
 far is a callback less than 8 × 2⁻²⁴ s before a frame, and it shows that frame's X/Y.
 At an update frame, though, it shows the facing from before the update, as in the
-10/25 ms cases. This is a post-hoc candidate; the mechanism is still **not explained**. Comparing each sampler's float32 scheduled time
+10/25 ms cases. [MOV-0015](mov-0015.md) pre-registered this as T7. It held in three of
+four new maps. In the fourth, the sampler started one ulp later than modelled, and T7
+fits once that is allowed for. The rounded start is post hoc, so this is still a
+candidate, and the mechanism is still **not explained**. Comparing each sampler's float32 scheduled time
 with the modelled frame clock reproduces the 1 ms rule except at exactly those five
 callbacks. One candidate, not implemented, covers the 10/25 ms
 cases. It treats the unit update as a 30 ms event, `u += 0.03f` from 0.51 s,
-scheduled with the sampler, so that a sampler due earlier runs first. It predicts all 25
-pre-update facings and 218 of the other 222 update-frame callbacks before 3.9 s. It
-mispredicts four callbacks after arrival (p010 382/385/388, p025 154), and it does not
-explain the 1 ms exceptions.
+scheduled with the sampler, so that a sampler due earlier runs first. Written exactly
+as MOV-0015's FU (facing from before the update while the callback is earlier than the
+event), it predicts every retained facing, including the 10–50 ms JASS-0001 traces and
+MOV-0013/0014. It predicted MOV-0015-c's five facings past 2 s, all of which the frame
+clock missed. MOV-0015-a's callback 10 fits only from that map's later start. It does not explain the 1 ms X/Y exceptions.
 
 ## Limits
 

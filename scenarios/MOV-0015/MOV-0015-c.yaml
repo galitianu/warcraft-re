@@ -1,0 +1,28 @@
+# MOV-0015: does a 1 ms callback less than 8 x 2^-24 s before a frame read that frame's
+# X/Y (T7) or does the threshold scale with the float32 grid (Tsub), and does facing
+# follow the frame clock (FH) or a 30 ms update-event clock (FU) (docs/mov-0015.md)?
+# Variant c: sampler and order start 0.999054 s after the setup, so the run passes 2 s.
+# Callbacks 906/911 are 4 and 8 x 2^-24 s before frames in [2, 4); callbacks
+# 781-901 fall after an update frame but before the 30 ms update-event clock.
+# Semantics: docs/scenario-v2.md.
+schema: wc3-scenario
+version: 2
+experiment: MOV-0015
+map_revision: MOV-0015-c
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+observe:
+  start: 0.999054
+  period: 0.001
+  callbacks: 1000
+  properties: [x, "y", facing, order]
+  state_clock: 10
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 0]
+...

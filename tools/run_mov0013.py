@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MOV-0013/MOV-0014 (docs/mov-0013.md, docs/mov-0014.md): v2 scenarios through WC3 and C++.
+"""MOV-0013 to MOV-0015 (docs/mov-0013.md to docs/mov-0015.md): v2 scenarios through WC3 and C++.
 
 For each registered revision of an experiment this regenerates the case JASS from the
 scenario (byte-identical to the retained case and generation record), validates
@@ -34,11 +34,12 @@ FIXTURES = ROOT / 'oracle/canonical-generated' / BUILD
 CASES = ROOT / 'oracle/generated/maps'
 FRAME_US = 5000
 ULP_1000 = 6.103515625e-05  # one float32 ulp of the 1000 s library clock
-# Reviewed observations (docs/mov-0013.md#results, docs/mov-0014.md#results). State:
+# Reviewed observations (docs/mov-0013.md#results to docs/mov-0015.md#results). State:
 # callbacks whose X/Y read frame H0 + 1, so text and canonical X/Y differ there.
-# Clock: TICKs one ulp below the runner's library clock, pinned by count and the
-# SHA-256 of the JSON callback list. Q17 removed MOV-0013-b/c's 875/624 (MOV-0014).
-# Canonical: the unchanged comparator's status.
+# Facing/state_clock: callbacks whose facing or STATE c10_9 alone differ.
+# Clock: TICKs clock_ulps (default -1) from the runner's library clock, pinned by
+# count and the SHA-256 of the JSON callback list. Q17 removed MOV-0013-b/c's
+# 875/624 (MOV-0014). Canonical: the unchanged comparator's status.
 KNOWN = {
     'MOV-0013-a': dict(canonical='FAIL', state=[15, 20, 25, 30, 35], clock=(0, None)),
     'MOV-0013-b': dict(canonical='PASS', state=[], clock=(0, None)),
@@ -47,8 +48,16 @@ KNOWN = {
     'MOV-0014-a': dict(canonical='FAIL', state=[30, 35, 40, 45, 50, 55, 60], clock=(0, None)),
     'MOV-0014-b': dict(canonical='FAIL', state=[15], clock=(0, None)),
     'MOV-0014-c': dict(canonical='FAIL', state=[15], clock=(0, None)),
+    # MOV-0015-a's sampler starts one ulp above the runner's add(0.5, start); see docs/mov-0015.md.
+    'MOV-0015-a': dict(canonical='FAIL', state=[15, 20, 25, 30, 35, 40, 45], facing=[10],
+                       state_clock=list(range(7, 376, 16)), clock_ulps=1,
+                       clock=(1, 'ba9aee356b0ee01031b3af718012a11dd402ce710be4619f0b0236908c118d77')),
+    'MOV-0015-b': dict(canonical='FAIL', state=[40, 45, 50], clock=(0, None)),
+    'MOV-0015-c': dict(canonical='FAIL', state=[906], facing=[781, 811, 841, 871, 901], clock=(0, None)),
+    'MOV-0015-d': dict(canonical='FAIL', state=[28], clock=(0, None)),
 }
-EXPERIMENTS = {'MOV-0013': 'sampler start phase', 'MOV-0014': 'sampler callback index or float32 lag'}
+EXPERIMENTS = {'MOV-0013': 'sampler start phase', 'MOV-0014': 'sampler callback index or float32 lag',
+               'MOV-0015': 'early-frame threshold and update-event facing clock'}
 
 def text(value, decimals):
     return r2sw(bits(float(value)), decimals)
@@ -130,18 +139,24 @@ def assess(label, canonical, exact_diffs, frames):
     """Observed differences against the reviewed list; any other difference fails."""
     known = KNOWN[label]
     state = sorted({d['callback'] for key, rows in exact_diffs.items() if key != 't' for d in rows})
+    where = lambda *keys: sorted({d['callback'] for key in keys for d in exact_diffs.get(key, [])})
+    xy = where('x', 'y', 'STATE.x_9', 'STATE.y_9')
+    facing, state_clock = where('facing', 'STATE.facing_9'), where('STATE.c10_9')
     shifted = [f['callback'] for f in frames if f['xy_frames'] == [f['cpp_frame'] + 1]]
     clock = exact_diffs.get('t', [])
     callbacks = [d['callback'] for d in clock]
     count, digest = known['clock']
+    ulps = known.get('clock_ulps', -1)
     clock_ok = len(clock) == count and (not clock or (
         hashlib.sha256(json.dumps(callbacks).encode()).hexdigest() == digest and all(
-            round((float(d['reference']) - float(d['actual'])) / ULP_1000) == -1 for d in clock)))
-    ok = canonical == known['canonical'] and state == known['state'] and shifted == known['state'] and clock_ok
+            round((float(d['reference']) - float(d['actual'])) / ULP_1000) == ulps for d in clock)))
+    reviewed = dict(canonical=known['canonical'], state=known['state'], facing=known.get('facing', []),
+                    state_clock=known.get('state_clock', []), clock_count=count, clock_sha256=digest)
+    ok = (canonical == known['canonical'] and xy == shifted == known['state'] and facing == reviewed['facing']
+          and state_clock == reviewed['state_clock'] and state == sorted(set(xy + facing + state_clock)) and clock_ok)
     return dict(status='PASS' if ok else 'FAIL', canonical=canonical, state_callbacks=state,
-                frame_plus_one=shifted, clock_callbacks=callbacks, clock_ulps=-1 if clock else 0,
-                reviewed=dict(canonical=known['canonical'], state=known['state'],
-                              clock_count=count, clock_sha256=digest))
+                frame_plus_one=shifted, facing_callbacks=facing, state_clock_callbacks=state_clock,
+                clock_callbacks=callbacks, clock_ulps=ulps if clock else 0, reviewed=reviewed)
 
 def regenerate(codegen, label, scenario):
     """The same scenario through the generator: the retained case and record, byte for byte."""

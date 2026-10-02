@@ -15,7 +15,7 @@ from unittest.mock import patch
 from compare_traces import compare
 from normalize_generated import normalize
 from oracle_parse import parse
-from trace_contract import BUILD, GENERATED_SHAPES, ROOT, load, sha256, validate, write_json
+from trace_contract import BUILD, ROOT, load, sha256, validate, write_json
 
 RUNNER = Path(os.environ.get('WC3TEST_RUNNER', ROOT / 'build' /
               ('wc3test.exe' if os.name == 'nt' else 'wc3test')))
@@ -23,8 +23,6 @@ LABEL = 'MOV-0006-g1'
 
 
 class GeneratedLoopTests(unittest.TestCase):
-    @unittest.skipUnless(all((ROOT / f'oracle/captures/{BUILD}/{label}/manifest.json').exists()
-                            for label in GENERATED_SHAPES), 'real generated captures not yet retained')
     def test_downloaded_loop_regrades_bytes_and_rejects_forged_success(self):
         from run_generated import run
         from summarize_ci import verify_generated_loop
@@ -35,6 +33,14 @@ class GeneratedLoopTests(unittest.TestCase):
             self.assertEqual(verify_generated_loop(root, result)['compatibility_passes'], 4)
             with self.assertRaisesRegex(ValueError, 'required generated capture loop'):
                 verify_generated_loop(root, dict(generated_capture_loop_required=True))
+            for missing in ({}, dict(generated_capture_loop_required=False,
+                                      generated_capture_loop=dict(status='UNOBSERVED'))):
+                with self.assertRaisesRegex(ValueError, 'required generated capture loop'):
+                    verify_generated_loop(root, missing)
+                self.assertIsNone(verify_generated_loop(root, missing, legacy_before_generated_captures=True))
+            with self.assertRaisesRegex(ValueError, 'required generated capture loop'):
+                verify_generated_loop(root, dict(generated_capture_loop_required=True),
+                                      legacy_before_generated_captures=True)
             report_path = root / 'reports/generated-loop.json'
             report = load(report_path)
             actual_path = root / 'generated-loop/traces/MOV-0002-g1/MOV-0002.json'
@@ -51,6 +57,21 @@ class GeneratedLoopTests(unittest.TestCase):
             write_json(report_path, report)
             with self.assertRaisesRegex(ValueError, 'missing or unexpected revisions'):
                 verify_generated_loop(root, result)
+
+    def test_ci_generated_gate_fails_when_all_manifests_or_fixtures_disappear(self):
+        from run_ci import check_generated_loop
+        for missing in ('manifests', 'fixtures'):
+            with self.subTest(missing=missing), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                result = dict(errors={})
+                target = 'normalize_generated.ROOT' if missing == 'manifests' else 'run_generated.FIXTURES'
+                # Empty temporary paths simulate deletion without changing evidence.
+                with patch(target, root / 'missing'):
+                    check_generated_loop(RUNNER, root, root / 'reports', result)
+                self.assertTrue(result['generated_capture_loop_required'])
+                self.assertEqual(result['generated_capture_loop']['status'], 'FAIL')
+                self.assertIn('generated-capture-loop', result['errors'])
+                self.assertIn('MOV-0002-g1', result['errors']['generated-capture-loop'])
 
     def setup_synthetic(self, root):
         self.base = root / 'oracle/captures' / BUILD / LABEL

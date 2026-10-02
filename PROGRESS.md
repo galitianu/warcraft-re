@@ -239,6 +239,11 @@ matching the hosted aggregate report exactly. Generated JASS and scenario inputs
 are identical across configurations; historical baselines pass. Phase 6's
 main-push gate awaits merge.
 
+PR review follow-up makes generated capture comparison unconditional: missing
+manifests/fixtures and disabled/missing downloaded gate reports fail. The
+real-capture integrity test no longer skips; historical CI artifacts require an
+explicit legacy recheck option. No retail evidence or numeric comparison changes.
+
 ## Exact next action
 
 Review/merge PR #16, then download/regrade and retain the real five-configuration

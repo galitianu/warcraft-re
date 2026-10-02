@@ -36,9 +36,11 @@ def verify_generation(root, result):
     return generation
 
 
-def verify_generated_loop(root, result):
+def verify_generated_loop(root, result, legacy_before_generated_captures=False):
     loop = result.get('generated_capture_loop')
-    if result.get('generated_capture_loop_required') and (not loop or loop['status'] != 'PASS'):
+    if not legacy_before_generated_captures and result.get('generated_capture_loop_required') is not True:
+        raise ValueError('required generated capture loop disabled or requirement missing')
+    if (not legacy_before_generated_captures or result.get('generated_capture_loop_required')) and (not loop or loop['status'] != 'PASS'):
         raise ValueError('required generated capture loop missing or failing')
     if not loop or loop['status'] == 'UNOBSERVED':
         return None  # Historical workflows before the real reproduction captures.
@@ -75,7 +77,7 @@ def verify_generated_loop(root, result):
                 wc3_observation_sha256=observations, cpp_payload_sha256=cpp)
 
 
-def summarize(artifacts, out):
+def summarize(artifacts, out, legacy_before_generated_captures=False):
     out.mkdir(parents=True, exist_ok=True)
     report = dict(status='FAIL', configurations={}, errors={}, models={},
                   scope='measured artifact-producing configurations of this workflow run only; '
@@ -87,7 +89,7 @@ def summarize(artifacts, out):
             environment = load(root / 'reports/environment.json')
             identity = load(root / 'reports/v4/build-identity.json')
             generation = verify_generation(root, result)
-            generated_loop = verify_generated_loop(root, result)
+            generated_loop = verify_generated_loop(root, result, legacy_before_generated_captures)
             suites = {}
             for model in BASELINES:
                 suite = validate_report(load(root / 'reports' / model / 'comparison.json'))
@@ -178,8 +180,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--artifacts', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--legacy-before-generated-captures', action='store_true',
+                        help='explicit historical recheck only: workflow predates the committed generated captures')
     args = parser.parse_args()
-    return summarize(args.artifacts, args.out)
+    return summarize(args.artifacts, args.out, args.legacy_before_generated_captures)
 
 
 if __name__ == '__main__':

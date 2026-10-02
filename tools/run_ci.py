@@ -15,7 +15,7 @@ from generate_oracle import generate, GOLDENS
 from run_generated import run as run_generated
 from normalize_traces import normalize_all
 from regression import assess, markdown as regression_markdown
-from trace_contract import BUILD, LABELS, GENERATED_SHAPES, ROOT, SCENARIOS, digest, load, payload, sha256, validate, write_json
+from trace_contract import BUILD, LABELS, ROOT, SCENARIOS, digest, load, payload, sha256, validate, write_json
 
 # Archival migration remains a separate command, with permanent Phase 2 byte gates.
 BASELINES = {'v1': 'results/phase-3/v1/comparison.json',
@@ -126,6 +126,20 @@ def summarize(result, reports):
     (reports / 'summary.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
 
 
+def check_generated_loop(runner, build, reports, result):
+    # These captures are now a committed compatibility gate. Missing evidence
+    # must fail the gate, never turn the requirement off.
+    result['generated_capture_loop_required'] = True
+    result['generated_capture_loop'] = dict(status='FAIL')
+    try:
+        code = run_generated(runner, build / 'ci/generated-loop', reports)
+        result['generated_capture_loop'] = dict(status='PASS' if code == 0 else 'FAIL')
+        if code:
+            result['errors']['generated-capture-loop'] = 'generated map reproduction or comparison failed'
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        result['errors']['generated-capture-loop'] = str(error)
+
+
 def run(args):
     build = args.build.resolve()
     reports, traces, logs = build / 'ci/reports', build / 'ci/traces', build / 'ci/logs'
@@ -135,7 +149,8 @@ def run(args):
     reports.mkdir(parents=True)
     result = dict(status='FAIL', host=dict(system=platform.system(), release=platform.release(),
                   architecture=architecture(platform.machine()), python=platform.python_version()),
-                  models={}, errors={}, original_wc3_required=False, oracle_generation_required=True)
+                  models={}, errors={}, original_wc3_required=False, oracle_generation_required=True,
+                  generated_capture_loop_required=True)
     metadata = dict(host=result['host'], requested_compiler=args.compiler, build_type=args.config,
                     expected_architecture=args.expect_arch, seed=1,
                     github={key: os.environ.get(key) for key in ('GITHUB_RUN_ID', 'GITHUB_RUN_ATTEMPT',
@@ -244,19 +259,7 @@ def run(args):
                         logs, 'archival-migration', timeout=300)
             except (OSError, ValueError) as error:
                 result['errors']['archival-migration'] = str(error)
-        generated_captures = [ROOT / 'oracle/captures' / BUILD / label / 'manifest.json' for label in GENERATED_SHAPES]
-        result['generated_capture_loop_required'] = any(path.exists() for path in generated_captures)
-        if any(path.exists() for path in generated_captures):
-            result['generated_capture_loop'] = dict(status='FAIL')
-            try:
-                code = run_generated(runner, build / 'ci/generated-loop', reports)
-                result['generated_capture_loop'] = dict(status='PASS' if code == 0 else 'FAIL')
-                if code:
-                    result['errors']['generated-capture-loop'] = 'generated map reproduction or comparison failed'
-            except (OSError, ValueError, KeyError, TypeError) as error:
-                result['errors']['generated-capture-loop'] = str(error)
-        else:
-            result['generated_capture_loop'] = dict(status='UNOBSERVED', reason='no retained generated-map WC3 capture manifests yet')
+        check_generated_loop(runner, build, reports, result)
         result['status'] = 'PASS' if not result['errors'] and len(result['models']) == 5 else 'FAIL'
     except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:
         result['errors']['pipeline'] = str(error)

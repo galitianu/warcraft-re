@@ -191,6 +191,15 @@ and both generator/C++ scenario inputs are identical across configurations;
 every reviewed historical baseline passes. The Phase 6 main-push gate awaits merging
 [PR #16](https://github.com/galitianu/warcraft-re/pull/16).
 
+Review follow-up: generated capture comparison is now mandatory in ordinary CI
+and downloaded-artifact verification. Removing every capture manifest or fixture
+fails the gate; the real-capture integrity test never skips. The aggregate rejects
+a missing/disabled requirement or UNOBSERVED result. To recheck workflows from
+before these captures existed, explicitly pass `--legacy-before-generated-captures`
+to `summarize_ci.py`; the hosted workflow never enables that historical option.
+Even that option cannot bypass an artifact's declared required gate. Negative
+tests cover missing manifests, missing fixtures and disabled/missing reports.
+
 Sampling order, retail simulation quantum, RNG/seed effects, other machines,
 JASS literal conversion at untested values, and near-boundary clamping remain
 unobserved or unresolved. The sampler/update-order work is split into

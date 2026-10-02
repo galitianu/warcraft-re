@@ -1,0 +1,27 @@
+# MOV-0014: is the 1 ms frame exception tied to the sampler's callback index or to the
+# float32 lag before a frame, and does a delayed library clock start on a 2^-17 s grid
+# (docs/mov-0014.md)? Variant b: sampler and order start 0.72 s after the setup.
+# Callback 0 falls just after frame 144 (1.22 s), past 1 s where the float32 ulp doubles.
+# H1, Lu and Ls predict different callbacks, and every clock reading differs.
+# Semantics: docs/scenario-v2.md.
+schema: wc3-scenario
+version: 2
+experiment: MOV-0014
+map_revision: MOV-0014-b
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+observe:
+  start: 0.72
+  period: 0.001
+  callbacks: 1000
+  properties: [x, "y", facing, order]
+  state_clock: 10
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 0]
+...

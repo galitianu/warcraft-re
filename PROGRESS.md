@@ -243,6 +243,13 @@ PR review follow-up makes generated capture comparison unconditional: missing
 manifests/fixtures and disabled/missing downloaded gate reports fail. The
 real-capture integrity test no longer skips; historical CI artifacts require an
 explicit legacy recheck option. No retail evidence or numeric comparison changes.
+Fix `36ad6f0`: native Release with `--archive` and
+[PR workflow 37008399150](https://github.com/galitianu/warcraft-re/actions/runs/37008399150)
+PASS; all five configurations pass CTest 3/3, Python 66/66, generated loop 4/4
+and v4 10/10. Downloaded artifacts [regrade locally](results/phase-6/review-pr-verification/summary.md)
+and match the hosted aggregate exactly; every configuration declares the
+generated capture gate mandatory. Historical Phase 5 main artifacts also recheck
+PASS using the explicit legacy option.
 
 ## Exact next action
 

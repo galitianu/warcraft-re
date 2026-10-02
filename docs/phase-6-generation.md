@@ -199,6 +199,12 @@ before these captures existed, explicitly pass `--legacy-before-generated-captur
 to `summarize_ci.py`; the hosted workflow never enables that historical option.
 Even that option cannot bypass an artifact's declared required gate. Negative
 tests cover missing manifests, missing fixtures and disabled/missing reports.
+Fix `36ad6f0` passes native Release CI with `--archive` and
+[PR run 37008399150](https://github.com/galitianu/warcraft-re/actions/runs/37008399150):
+all five configurations pass CTest 3/3, Python 66/66, generated loop 4/4 and v4
+10/10. [Downloaded artifacts](../results/phase-6/review-pr-verification/summary.md)
+regrade exactly as the hosted aggregate does, and all declare the generated loop
+mandatory. Phase 5's retained main artifacts still recheck with the legacy option.
 
 Sampling order, retail simulation quantum, RNG/seed effects, other machines,
 JASS literal conversion at untested values, and near-boundary clamping remain

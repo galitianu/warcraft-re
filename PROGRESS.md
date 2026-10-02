@@ -3,8 +3,8 @@
 As of 2 October 2026.
 
 **Current stage:** Phase 6 complete. MOV-0013 ([issue #17](https://github.com/galitianu/warcraft-re/issues/17))
-is captured and gated on branch `issue-17-mov-0013`: the remaining 1 ms frame exceptions follow
-the sampler's own callbacks, and a delayed start exposes a new library-clock mismatch.
+is merged and verified on main. The remaining 1 ms frame exceptions follow the sampler's
+own callbacks, and a delayed start exposes a new library-clock mismatch.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
 8 MOV-0012 maps × 3 fresh-process captures, plus eight generated revisions × 3,
 all payload-identical within each map. Generated observations reproduce their
@@ -297,13 +297,19 @@ passes all five configurations and the aggregate job, on clean builds of merge r
 Each configuration passes CTest 3/3, Python 69/69, generated loop 4/4, the MOV-0013 gate
 and v4 10/10. The downloaded artifacts [regrade locally](results/mov-0013/pr-verification/summary.md)
 to a report identical to the hosted one. MOV-0013's C++ payloads and the generated JASS
-are identical across configurations.
+are identical across configurations. PR #19 merged as `f07405e`. Its
+[main-push workflow 37017767562](https://github.com/galitianu/warcraft-re/actions/runs/37017767562)
+passes the same gates on all five configurations, with clean builds of the merge commit.
+The downloaded artifacts [regrade](results/mov-0013/main-verification/summary.md) to a
+report identical to the hosted one, and the MOV-0013 payloads equal the PR run's.
 
 ## Exact next action
 
-Merge PR #19, then download and regrade the main-push workflow. Then propose the follow-up experiment
-in [mov-0013.md](docs/mov-0013.md#next-experiments): separate the sampler's callback
-index from float32 lag, and test the 2⁻¹⁷ timer-start reading.
+Propose the MOV-0013 follow-up as a new issue with a new experiment ID
+([next experiments](docs/mov-0013.md#next-experiments)). It should separate the
+sampler's callback index from float32 lag with a boundary start whose lag sequence
+differs, and test the 2⁻¹⁷ timer-start reading with widely different delays. Write
+its predictions before capture. No model change is justified until then.
 
 ## Roadmap status
 

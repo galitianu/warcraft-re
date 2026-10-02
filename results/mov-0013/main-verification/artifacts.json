@@ -1,0 +1,61 @@
+{
+ "run": {
+  "conclusion": "success",
+  "createdAt": "2026-10-02T14:08:21Z",
+  "event": "push",
+  "headSha": "f07405e941f738ae80dbca9f819f5778dbfc96bf",
+  "url": "https://github.com/galitianu/warcraft-re/actions/runs/37017767562"
+ },
+ "merge_commit": "f07405e941f738ae80dbca9f819f5778dbfc96bf (PR #19)",
+ "regrade": "tools/summarize_ci.py on the downloaded artifacts; scope.json identical to the hosted build-scope report; MOV-0013 C++ payloads equal PR run 37015023406",
+ "artifacts": [
+  {
+   "id": 11231641166,
+   "name": "compatibility-mac-arm-release",
+   "digest": "sha256:4c97f33872fc45597ae61f3c818d23ed548adf9172b17937f55a66005da4b080",
+   "size_in_bytes": 3463745,
+   "expired": false,
+   "created_at": "2026-10-02T14:09:01Z"
+  },
+  {
+   "id": 11231546247,
+   "name": "compatibility-linux-gcc-release",
+   "digest": "sha256:c76c3e7e98d693a2c64fa9573bd1006a62b42720a63c6330a3d02b660da29110",
+   "size_in_bytes": 2617828,
+   "expired": false,
+   "created_at": "2026-10-02T14:09:26Z"
+  },
+  {
+   "id": 11231366561,
+   "name": "build-scope",
+   "digest": "sha256:86445ce8816f2852f50ca7227dd5a0abe870c440cdae1ef9953474d3a36b9ae1",
+   "size_in_bytes": 19661,
+   "expired": false,
+   "created_at": "2026-10-02T14:10:42Z"
+  },
+  {
+   "id": 11231261340,
+   "name": "compatibility-mac-arm-debug",
+   "digest": "sha256:807ba10a7c3546f68294ca5743cb595981d63c0e011e33df9b8c830d80e63ad9",
+   "size_in_bytes": 2619395,
+   "expired": false,
+   "created_at": "2026-10-02T14:09:03Z"
+  },
+  {
+   "id": 11230756566,
+   "name": "compatibility-linux-clang-debug",
+   "digest": "sha256:eab4184f3abb6bf4f39e6a15dd730166c3fbe9cee83d865184819a512347ee6a",
+   "size_in_bytes": 2617562,
+   "expired": false,
+   "created_at": "2026-10-02T14:09:25Z"
+  },
+  {
+   "id": 11230487378,
+   "name": "compatibility-windows-msvc-release",
+   "digest": "sha256:87a4f660e0513063ccbf8d2ffaebe0a07e79e0f74a93e0b928dcf38951460915",
+   "size_in_bytes": 2618800,
+   "expired": false,
+   "created_at": "2026-10-02T14:10:04Z"
+  }
+ ]
+}

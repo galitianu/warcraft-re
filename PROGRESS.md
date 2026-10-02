@@ -291,11 +291,17 @@ AppleClang Release CI with `--archive` passes: CTest 3/3, Python 69/69, generate
 loop 4/4, MOV-0013 gate, v4 10/10 and historical baselines. The JASS-0001/MOV-0012
 state gate is unchanged; its hand-written-map descriptions were not migrated
 ([why](docs/mov-0013.md#results)).
+[PR #19](https://github.com/galitianu/warcraft-re/pull/19)'s
+[workflow 37015023406](https://github.com/galitianu/warcraft-re/actions/runs/37015023406)
+passes all five configurations and the aggregate job, on clean builds of merge ref `34a58e1`.
+Each configuration passes CTest 3/3, Python 69/69, generated loop 4/4, the MOV-0013 gate
+and v4 10/10. The downloaded artifacts [regrade locally](results/mov-0013/pr-verification/summary.md)
+to a report identical to the hosted one. MOV-0013's C++ payloads and the generated JASS
+are identical across configurations.
 
 ## Exact next action
 
-Verify the issue #17 PR on all five configurations, regrade the downloaded
-artifacts, merge, and verify the main push. Then propose the follow-up experiment
+Merge PR #19, then download and regrade the main-push workflow. Then propose the follow-up experiment
 in [mov-0013.md](docs/mov-0013.md#next-experiments): separate the sampler's callback
 index from float32 lag, and test the 2⁻¹⁷ timer-start reading.
 

@@ -2,6 +2,7 @@
 #include "Scenario.h"
 #include "core/World.h"
 #include <cstdint>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -25,6 +26,16 @@ struct Action {
     std::uint64_t state_us;
     std::size_t unit = 0;
 };
+// v2 STATE event (docs/scenario-v2.md): the aux clock and the unit's state after
+// the callback's actions.
+struct StateEvent {
+    int callback;
+    float clock;
+    wc3::Vec2 position;
+    float facing;
+    std::size_t seq;
+    std::uint64_t state_us;
+};
 struct Trace {
     std::vector<Sample> samples;
     std::vector<Action> actions;
@@ -34,6 +45,11 @@ struct Trace {
     std::vector<float> reported_time;
     std::vector<std::string> names;  // watch order
     std::uint64_t period_us = 0;
+    // v2 only.
+    int version = 1;
+    std::uint64_t start_us = 0;
+    std::optional<int> state_clock;
+    std::vector<StateEvent> events;
 };
 // Callbacks are requested at multiples of this, matching the JASS timer period.
 inline constexpr std::uint64_t sample_period_us = 20000;

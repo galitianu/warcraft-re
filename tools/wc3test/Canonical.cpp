@@ -25,7 +25,10 @@ std::string canonical_json(const Trace& trace, const CaseIdentity& scenario, con
                            const std::string& source_sha256, const std::string& parameters,
                            const std::string& provenance) {
     const auto p = wc3::model(version);
-    const auto phase = before ? "before-due-update" : "after-due-update";
+    // v2: a callback observes the frames whose clock is at most its float32
+    // scheduled time; the requested time no longer fixes a state lag.
+    const bool scheduled = trace.version == 2;
+    const auto phase = scheduled ? "scheduled-sampler-time" : before ? "before-due-update" : "after-due-update";
     std::ostringstream out;
     out.imbue(std::locale::classic());
     out << "{\"schema\":\"wc3-trace\",\"version\":1,\"scenario\":{\"experiment\":\"" << scenario.experiment
@@ -43,8 +46,10 @@ std::string canonical_json(const Trace& trace, const CaseIdentity& scenario, con
     }
     out << "],\"time\":{\"unit\":\"seconds\",\"position_unit\":\"world-units\",\"facing_unit\":\"degrees\","
         << "\"numeric_format\":\"float-max_digits10\",\"clock_duration\":null,\"step_us\":" << p.step_us
-        << ",\"observation_phase\":\"" << phase << "\",\"state_lag_us\":" << (before ? p.step_us : 0)
-        << "},\"records\":[\n";
+        << ",\"observation_phase\":\"" << phase << "\",\"state_lag_us\":";
+    if (scheduled) out << "null";
+    else out << (before ? p.step_us : 0);
+    out << "},\"records\":[\n";
     std::size_t seq = 0;
     auto header = [&](const char* kind, std::size_t recorded_seq) {
         if (recorded_seq != seq) throw std::runtime_error("trace sequence discontinuity");
@@ -65,7 +70,8 @@ std::string canonical_json(const Trace& trace, const CaseIdentity& scenario, con
     control("BEGIN");
     for (std::size_t id = 0; id < trace.speeds.size(); ++id) control("WATCH");
     control("RUN");
-    std::size_t sample_index = 0, action_index = 0;
+    std::size_t sample_index = 0, action_index = 0, event_index = 0;
+    const std::string clock_key = trace.state_clock ? "c" + std::to_string(*trace.state_clock) + "_9" : "";
     for (int cb = 0; cb <= scenario.callbacks; ++cb) {
         header("TICK", trace.tick_sequences.at(cb));
         timing(cb, trace.samples.at(sample_index).state_us);
@@ -89,11 +95,20 @@ std::string canonical_json(const Trace& trace, const CaseIdentity& scenario, con
             else out << "null";
             out << '}';
         }
+        while (event_index < trace.events.size() && trace.events[event_index].callback == cb) {
+            const auto& e = trace.events[event_index++];
+            header("EVENT", e.seq);
+            timing(cb, e.state_us);
+            out << ",\"name\":\"STATE\",\"values\":{\"" << clock_key << "\":\"" << value(e.clock)
+                << "\",\"x_9\":\"" << value(e.position.x) << "\",\"y_9\":\"" << value(e.position.y)
+                << "\",\"facing_9\":\"" << value(e.facing) << "\"}}";
+        }
     }
     control("END");
     out << "],\"completion\":{\"complete\":true,\"records\":" << seq
         << ",\"ticks\":" << trace.tick_sequences.size() << ",\"samples\":" << trace.samples.size()
-        << ",\"actions\":" << trace.actions.size() << ",\"events\":0},\"provenance\":" << provenance << "}\n";
+        << ",\"actions\":" << trace.actions.size() << ",\"events\":" << trace.events.size()
+        << "},\"provenance\":" << provenance << "}\n";
     return out.str();
 }
 }

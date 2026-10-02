@@ -87,7 +87,7 @@ class OracleGeneratorTests(unittest.TestCase):
     def test_unsupported_input_is_rejected_not_approximated(self):
         base = (ROOT / 'scenarios/MOV-0006.yaml').read_text()
         cases = (
-            (base.replace('version: 1', 'version: 2'), 'unsupported scenario version'),
+            (base.replace('version: 1', 'version: 3'), 'unsupported scenario version'),
             (base.replace('period: 0.02', 'period: 0.001').replace('at: 1.0', 'at: 0.05'), '0.02 s sampler'),
             (base.replace('position: [0, 0]', 'position: [0.001953125, 0]'), 'fractional CreateUnit'),
             (base.replace('position: [0, 0]', 'position: [3329, 0]'), 'outside template'),
@@ -101,6 +101,12 @@ class OracleGeneratorTests(unittest.TestCase):
             path = Path(tmp) / 'bad.yaml'
             for text, error in cases:
                 path.write_bytes(text.encode())
+                with self.assertRaisesRegex(ValueError, error):
+                    generate(CODEGEN, [path])
+            v2 = (ROOT / 'scenarios/MOV-0013/MOV-0013-c.yaml').read_text()
+            for text, error in ((v2.replace('period: 0.001', 'period: 0.005'), 'captured 0.001/0.01/0.02/0.025/0.05'),
+                                (v2.replace('version: 2', 'version: 1'), "unsupported field 'start'")):
+                path.write_text(text, newline='\n')
                 with self.assertRaisesRegex(ValueError, error):
                     generate(CODEGEN, [path])
             path.write_text(base, newline='\n')

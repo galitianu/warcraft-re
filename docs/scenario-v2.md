@@ -49,7 +49,23 @@ as v1 does. v2 accepts the periods already captured with oracle-v1 (0.001, 0.01,
 
 ## Runner capability
 
-`wc3test` runs a v2 scenario only with `--model v4 --phase after` and only one
-scenario per invocation; v1–v3 and the before-phase diagnostic stay 0.02 s/v1 only.
-Its timing rule and limits are in [mov-0013.md](mov-0013.md) and
-[Cases.cpp](../tools/wc3test/Cases.cpp).
+`wc3test` runs a v2 scenario only with `--model v4 --phase after`, and only one
+scenario per invocation. v1–v3 and the before-phase diagnostic stay v1 at 0.02 s.
+The timing is the pre-registered rule H0 ([mov-0013.md](mov-0013.md)), implemented
+in `run_scheduled` in [Cases.cpp](../tools/wc3test/Cases.cpp):
+
+- Units are created and the movement clock starts at 0.5 s (frame 0). The sampler
+  is scheduled at `s(0) = add(0.5, start)`, then `s(k) = add(s(k-1), period)`.
+- A callback runs after every 5 ms frame with `c(n) <= s(k)` (a tie runs the frame
+  first). It records samples, then its actions in file order, then STATE.
+- TICK is `sub(1000, sub(add(s(0), 1000), s(k)))`; `c10_9` is
+  `sub(10, sub(add(0.5, 10), s(k)))`.
+- Identity: `observation_phase` is `scheduled-sampler-time`, with `sample_period_us`,
+  `sampler_start_us` and `state_lag_us: null`.
+
+The ten v1 scenarios, rewritten as version 2, give the same v4 samples, actions and
+reported times as the v1 path ([test_mov0013.py](../tools/test_mov0013.py)). Every
+v1 suite's payloads are unchanged
+([runner-before-after.json](../results/mov-0013/runner-before-after.json)). The rule
+is not WC3's in every case: MOV-0013 records where it differs. Those differences are
+gated as observed, not modelled.

@@ -101,7 +101,7 @@ int main(int argc, char** argv) {
             if (option == "--help") {
                 std::cout << "wc3test --scenario FILE_OR_DIR... --out DIR [--model v1|v2|v3|v4] "
                              "[--seed UINT32] [--phase after|before]\n"
-                             "Each --scenario names a v1 scenario file or a directory of *.yaml files\n"
+                             "Each --scenario names a v1/v2 scenario file or a directory of *.yaml files\n"
                              "(sorted); the committed MOV-0001..0010 are in scenarios/.\n";
                 return 0;
             }
@@ -125,6 +125,12 @@ int main(int argc, char** argv) {
         if (scenarios.empty()) throw std::invalid_argument("--scenario FILE_OR_DIR is required (e.g. scenarios)");
         // Invalid descriptions or unsupported schedules fail before any output exists.
         const auto inputs = load_scenarios(scenarios);
+        // A v2 run's timing (start, period, state clock) is part of its run identity,
+        // so each v2 scenario runs in its own invocation.
+        const bool v2 = std::any_of(inputs.begin(), inputs.end(),
+                                    [](const Input& i) { return i.description.version == 2; });
+        if (v2 && inputs.size() != 1)
+            throw std::invalid_argument("a version 2 scenario must be the only scenario of its run");
         std::vector<movement::Trace> traces;
         for (const auto& input : inputs)
             traces.push_back(movement::run(input.description, version, seed, before));
@@ -142,11 +148,15 @@ int main(int argc, char** argv) {
             << "  \"model\": \"" << p.name << "\",\n"
             << "  \"time_unit\": \"seconds\",\n  \"step_us\": " << p.step_us << ",\n"
             << "  \"seed\": " << seed << ",\n  \"rng\": \"std::mt19937; unused by movement\",\n"
-            << "  \"observation_phase\": \"" << (before ? "before" : "after") << "-due-update\",\n"
-            << "  \"sample_period_us\": " << movement::sample_period_us << ",\n"
+            << "  \"observation_phase\": \"" << (v2 ? "scheduled-sampler-time" : before ? "before-due-update" : "after-due-update") << "\",\n"
+            << "  \"sample_period_us\": " << (v2 ? inputs[0].description.period_us : movement::sample_period_us) << ",\n";
+        if (v2)
+            identity << "  \"sampler_start_us\": " << inputs[0].description.start_us << ",\n"
+                << "  \"state_lag_us\": null,\n";
+        else
             // t is the requested callback time; before-phase state omits the step due then.
-            << "  \"state_lag_us\": " << (before ? p.step_us : 0) << ",\n"
-            << "  \"parameters\": ";
+            identity << "  \"state_lag_us\": " << (before ? p.step_us : 0) << ",\n";
+        identity << "  \"parameters\": ";
         std::ostringstream parameters;
         parameters.imbue(std::locale::classic());
         parameters << std::setprecision(std::numeric_limits<float>::max_digits10);
@@ -165,7 +175,9 @@ int main(int argc, char** argv) {
                 << "    \"frame_origin\": " << json_number(h.frame_origin) << ",\n"
                 << "    \"clock_start_seconds\": " << json_number(wc3::sf::value(h.clock_start)) << ",\n"
                 << "    \"library_clock\": \"sub(1000, sub(add(start, 1000), scheduled)); "
-                   "scheduled += 0.02 per callback\",\n"
+                << (v2 ? "start = scheduled(0) = add(0.5, observe.start); scheduled += period per callback; "
+                         "a callback observes every frame with clock <= scheduled\",\n"
+                       : "scheduled += 0.02 per callback\",\n")
                 << "    \"arithmetic\": \"wc3::sf retail soft-float\"\n  }";
         } else if (p.heading.enabled) {
             const auto& h = p.heading;
@@ -220,7 +232,8 @@ int main(int argc, char** argv) {
             const auto& trace = traces[i];
             write(output / (d.experiment + ".csv"), movement::samples_csv(trace));
             write(output / (d.experiment + "-actions.csv"), movement::actions_csv(trace));
-            const auto provenance = "{\"scenario\":{\"schema\":\"wc3-scenario\",\"version\":1,\"path\":"
+            const auto provenance = "{\"scenario\":{\"schema\":\"wc3-scenario\",\"version\":"
+                + std::to_string(d.version) + ",\"path\":"
                 + json_string(inputs[i].path) + ",\"sha256\":\"" + inputs[i].sha256 + "\"}}";
             write(output / (d.experiment + ".json"),
                   movement::canonical_json(trace, {d.experiment, d.map_revision, d.callbacks}, identity.str(),

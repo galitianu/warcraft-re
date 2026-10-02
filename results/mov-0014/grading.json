@@ -1,0 +1,110 @@
+{
+  "experiment": "MOV-0014",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "predictions_sha256": "6bae397beef3cda1f6973666bdb84e885f776f282986bb7c976aaad0c0cb182e",
+  "maps": {
+    "MOV-0014-a": {
+      "observed_next_xy": [
+        30,
+        35,
+        40,
+        45,
+        50,
+        55,
+        60
+      ],
+      "observed_neither": [],
+      "observed_onset_callback": 15,
+      "tick_sha256": "ac5641179d4213e216a6300e2540624c1ff49a7af40a13196fa546f1ac458703",
+      "aux_clock_mismatches": [],
+      "frame": {
+        "H0": false,
+        "H1": false,
+        "Lu": false,
+        "Ls": false
+      },
+      "clock": {
+        "M0": false,
+        "M1": false,
+        "Q16": false,
+        "Q17": true,
+        "Q18": false,
+        "Qrel": true
+      },
+      "clock_mismatches": {
+        "M0": 126,
+        "M1": 71,
+        "Q16": 126,
+        "Q17": 0,
+        "Q18": 61,
+        "Qrel": 0
+      }
+    },
+    "MOV-0014-b": {
+      "observed_next_xy": [
+        15
+      ],
+      "observed_neither": [],
+      "observed_onset_callback": 15,
+      "tick_sha256": "d436b5a7399e609cc9b3f679639a18d8ccf551d84e3e118494d12321b8b52e86",
+      "aux_clock_mismatches": [],
+      "frame": {
+        "H0": false,
+        "H1": false,
+        "Lu": false,
+        "Ls": true
+      },
+      "clock": {
+        "M0": false,
+        "M1": false,
+        "Q16": false,
+        "Q17": true,
+        "Q18": false,
+        "Qrel": false
+      },
+      "clock_mismatches": {
+        "M0": 375,
+        "M1": 110,
+        "Q16": 125,
+        "Q17": 0,
+        "Q18": 63,
+        "Qrel": 125
+      }
+    },
+    "MOV-0014-c": {
+      "observed_next_xy": [
+        15
+      ],
+      "observed_neither": [],
+      "observed_onset_callback": 15,
+      "tick_sha256": "f0990a91d8ecb99e39edfddbd58d14e3664d69d9db09f52f4009a37199c348ce",
+      "aux_clock_mismatches": [],
+      "frame": {
+        "H0": false,
+        "H1": false,
+        "Lu": false,
+        "Ls": true
+      },
+      "clock": {
+        "M0": false,
+        "M1": false,
+        "Q16": true,
+        "Q17": true,
+        "Q18": false,
+        "Qrel": true
+      },
+      "clock_mismatches": {
+        "M0": 500,
+        "M1": 102,
+        "Q16": 0,
+        "Q17": 0,
+        "Q18": 62,
+        "Qrel": 0
+      }
+    }
+  },
+  "frame_rules_surviving": [],
+  "clock_rules_surviving": [
+    "Q17"
+  ]
+}

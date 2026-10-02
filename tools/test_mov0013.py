@@ -1,4 +1,4 @@
-"""Scenario v2 and the MOV-0013 gate: rejections, v1 equivalence, downloaded regrade.
+"""Scenario v2 and the MOV-0013/0014 gates: rejections, v1 equivalence, downloaded regrade.
 
 Uses the built runner (WC3TEST_RUNNER), generator (ORACLE_CODEGEN) and the
 wc3states tool beside the runner. Tampering happens only in temporary copies.
@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 from unittest import mock
@@ -77,33 +78,59 @@ class ScenarioV2Tests(unittest.TestCase):
                     self.assertEqual(v2['identity']['build']['observation_phase'], 'scheduled-sampler-time')
 
 
-class Mov0013GateTests(unittest.TestCase):
-    def test_gate_passes_only_with_the_reviewed_differences_and_regrades_downloads(self):
-        from run_mov0013 import run, KNOWN
-        from summarize_ci import verify_mov0013
+class ExperimentGateTests(unittest.TestCase):
+    def test_gates_pass_only_with_the_reviewed_differences_and_regrade_downloads(self):
+        from run_mov0013 import EXPERIMENTS, KNOWN, labels, run
+        from summarize_ci import verify_experiment
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            self.assertEqual(run(RUNNER, STATES, CODEGEN, root / 'mov-0013', root / 'reports'), 0)
-            result = dict(mov0013_required=True, mov0013=dict(status='PASS'))
-            self.assertEqual(verify_mov0013(root, result)['cases'], 4)
-            for missing in ({}, dict(mov0013_required=False, mov0013=dict(status='PASS')),
-                            dict(mov0013_required=True, mov0013=dict(status='FAIL'))):
-                with self.assertRaisesRegex(ValueError, 'required MOV-0013 gate'):
-                    verify_mov0013(root, missing)
-            self.assertIsNone(verify_mov0013(root, {}, legacy=True))
+            for experiment in EXPERIMENTS:
+                with self.subTest(experiment):
+                    name, key = experiment.lower(), experiment.lower().replace('-', '')
+                    self.assertEqual(run(RUNNER, STATES, CODEGEN, root / name, root / 'reports',
+                                         experiment=experiment), 0)
+                    result = {f'{key}_required': True, key: dict(status='PASS')}
+                    self.assertEqual(verify_experiment(root, result, experiment)['cases'], len(labels(experiment)))
+                    for missing in ({}, {f'{key}_required': False, key: dict(status='PASS')},
+                                    {f'{key}_required': True, key: dict(status='FAIL')}):
+                        with self.assertRaisesRegex(ValueError, f'required {experiment} gate'):
+                            verify_experiment(root, missing, experiment)
+                    self.assertIsNone(verify_experiment(root, {}, experiment, legacy=True))
             # A changed reviewed list is a failing gate, not a new expectation.
-            with mock.patch.dict(KNOWN, {'MOV-0013-a': dict(KNOWN['MOV-0013-a'], state=[15])}):
-                self.assertEqual(run(RUNNER, STATES, CODEGEN, root / 'again', root / 'again-reports'), 1)
-            # A forged trace cannot keep a PASS report.
-            path = root / 'mov-0013/traces/MOV-0013-d/MOV-0013.json'
-            trace = load(path)
-            next(r for r in trace['records'] if r['kind'] == 'SAMPLE')['values']['x'] = '1.000000'
-            write_json(path, trace, compact_records=True)
-            with self.assertRaisesRegex(ValueError, 'does not reproduce'):
-                verify_mov0013(root, result)
-            shutil.rmtree(root / 'mov-0013/traces')
+            for label, changed in (('MOV-0013-a', dict(state=[15])), ('MOV-0014-b', dict(state=[15, 20])),
+                                   ('MOV-0014-c', dict(clock=(1, None)))):
+                with self.subTest(label), mock.patch.dict(KNOWN, {label: dict(KNOWN[label], **changed)}):
+                    experiment = label[:8]
+                    self.assertEqual(run(RUNNER, STATES, CODEGEN, root / 'again', root / 'again-reports',
+                                         experiment=experiment), 1)
+            # A forged trace cannot keep a PASS report: changed state fails the regrade,
+            # and a clock that disagrees with its samples fails the trace contract.
+            result = dict(mov0014_required=True, mov0014=dict(status='PASS'))
+            path = root / 'mov-0014/traces/MOV-0014-c/MOV-0014.json'
+            original = load(path)
+            for kind, forge, message in (('SAMPLE', lambda r: r['values'].update(x='1.000000'), 'does not reproduce'),
+                                         ('TICK', lambda r: r['time'].update(reported='0.000000'), 'time differs')):
+                trace = load(path)
+                forge(next(r for r in trace['records'] if r['kind'] == kind))
+                write_json(path, trace, compact_records=True)
+                with self.subTest(kind), self.assertRaisesRegex(ValueError, message):
+                    verify_experiment(root, result, 'MOV-0014')
+                write_json(path, original, compact_records=True)
+            shutil.rmtree(root / 'mov-0014/traces')
             with self.assertRaises(OSError):
-                verify_mov0013(root, result)
+                verify_experiment(root, result, 'MOV-0014')
+
+
+class Mov0014PredictionTests(unittest.TestCase):
+    def test_committed_predictions_regenerate_byte_for_byte(self):
+        # The pre-registration (docs/mov-0014.md) must stay reproducible from the tools.
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / 'predictions.json'
+            result = subprocess.run([sys.executable, str(ROOT / 'tools/predict_mov0014.py'), '--runner', str(RUNNER),
+                                     '--states', str(STATES), '--out', str(out)],
+                                    capture_output=True, text=True, timeout=600)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(out.read_bytes(), (ROOT / 'results/mov-0014/predictions.json').read_bytes())
 
 
 if __name__ == '__main__':

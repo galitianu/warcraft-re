@@ -1,0 +1,2178 @@
+{
+  "status": "PASS",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "cases": [
+    {
+      "map_revision": "MOV-0014-a",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 2,
+        "path": "scenarios/MOV-0014/MOV-0014-a.yaml",
+        "sha256": "a1a407f395ef5bc268fd14b6a227b0d3f443844ac29224169133f7827d716f87"
+      },
+      "case_sha256": "4c70bb4ceaceb93911faaf70b83409b005292bb6b2736e1d07ab21503e7f894e",
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0014-a",
+        "control_revision": null,
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 2,
+          "path": "scenarios/MOV-0014/MOV-0014-a.yaml",
+          "sha256": "a1a407f395ef5bc268fd14b6a227b0d3f443844ac29224169133f7827d716f87"
+        },
+        "completion": {
+          "complete": true,
+          "records": 3009,
+          "ticks": 1001,
+          "samples": 1001,
+          "actions": 1,
+          "events": 1001
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "0e21342ca02059e72a4fe861d5b4f1d211872ec5a665ecd75d6bcf395519dba3",
+            "0e21342ca02059e72a4fe861d5b4f1d211872ec5a665ecd75d6bcf395519dba3",
+            "0e21342ca02059e72a4fe861d5b4f1d211872ec5a665ecd75d6bcf395519dba3"
+          ],
+          "observation_payload_sha256": [
+            "34294c89745bbc1794f73d032b78c66808db92329d7ac762a963b05e05d0b3cd",
+            "34294c89745bbc1794f73d032b78c66808db92329d7ac762a963b05e05d0b3cd",
+            "34294c89745bbc1794f73d032b78c66808db92329d7ac762a963b05e05d0b3cd"
+          ],
+          "distinct_raw_files": 1,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 3006,
+          "control_sha256": null,
+          "generated_sha256": "f737fa41a88f2ebdda8c215a95e71dacb8bb4e6be12683991ff4253813aa7fd7",
+          "first_divergence": null,
+          "scope": "new observation; no independent control exists"
+        },
+        "generated_preload": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0014-a.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "generated_footers": [
+          "call PreloadEnd( 1.5 )",
+          "call PreloadEnd( 1.5 )",
+          "call PreloadEnd( 1.5 )"
+        ],
+        "fixture_sha256": "efca714a975737f5b327f318ea078b6cf2c4fa0257d623fb7db205be8168e355"
+      },
+      "comparison": {
+        "case": "MOV-0014",
+        "map_revision": "MOV-0014-a",
+        "status": "FAIL",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "scheduled-sampler-time",
+        "reference_records": 3009,
+        "actual_records": 3008,
+        "reference_samples": 1001,
+        "actual_samples": 1001,
+        "first_divergence": {
+          "reference_seq": 96,
+          "actual_seq": 95,
+          "kind": "SAMPLE",
+          "sample_index": 30,
+          "callback": 30,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "0.030029",
+          "actual_t": "0.0300292969",
+          "reference_time": {
+            "requested": "0.030000",
+            "reported": "0.030029",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "0.030000",
+            "reported": "0.0300292969",
+            "state_us": 325000
+          },
+          "reference": "5.399414",
+          "actual": "4.04980469",
+          "delta": -1.34960931,
+          "tolerance": 0.001
+        },
+        "state_first_divergence": {
+          "reference_seq": 96,
+          "actual_seq": 95,
+          "kind": "SAMPLE",
+          "sample_index": 30,
+          "callback": 30,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "0.030029",
+          "actual_t": "0.0300292969",
+          "reference_time": {
+            "requested": "0.030000",
+            "reported": "0.030029",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "0.030000",
+            "reported": "0.0300292969",
+            "state_us": 325000
+          },
+          "reference": "5.399414",
+          "actual": "4.04980469",
+          "delta": -1.34960931,
+          "tolerance": 0.001
+        },
+        "properties": {
+          "x": {
+            "samples": 1001,
+            "failures": 7,
+            "max_abs_delta": 1.3500979400000004,
+            "max_abs_delta_by_unit": {
+              "u0": 1.3500979400000004
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": {
+              "reference_seq": 96,
+              "actual_seq": 95,
+              "kind": "SAMPLE",
+              "sample_index": 30,
+              "callback": 30,
+              "unit": "u0",
+              "property": "x",
+              "reference_t": "0.030029",
+              "actual_t": "0.0300292969",
+              "reference_time": {
+                "requested": "0.030000",
+                "reported": "0.030029",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.030000",
+                "reported": "0.0300292969",
+                "state_us": 325000
+              },
+              "reference": "5.399414",
+              "actual": "4.04980469",
+              "delta": -1.34960931,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "y": {
+            "samples": 1001,
+            "failures": 7,
+            "max_abs_delta": 0.007324343800000001,
+            "max_abs_delta_by_unit": {
+              "u0": 0.007324343800000001
+            },
+            "final_delta_by_unit": {
+              "u0": -3.594000000002595e-07
+            },
+            "first_divergence": {
+              "reference_seq": 96,
+              "actual_seq": 95,
+              "kind": "SAMPLE",
+              "sample_index": 30,
+              "callback": 30,
+              "unit": "u0",
+              "property": "y",
+              "reference_t": "0.030029",
+              "actual_t": "0.0300292969",
+              "reference_time": {
+                "requested": "0.030000",
+                "reported": "0.030029",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.030000",
+                "reported": "0.0300292969",
+                "state_us": 325000
+              },
+              "reference": "0.029297",
+              "actual": "0.0219726562",
+              "delta": -0.007324343800000001,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "facing": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -2.8040000188411796e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 3.515619999999877e-08,
+            "max_abs_delta_by_unit": {
+              "u0": 3.515619999999877e-08
+            },
+            "final_delta_by_unit": {
+              "u0": 3.515619999999877e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {
+          "STATE.t": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "event": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "event": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "STATE.c10_9": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 6.400000007733553e-08,
+            "max_abs_delta_by_unit": {
+              "event": 6.400000007733553e-08
+            },
+            "final_delta_by_unit": {
+              "event": 1.400000004814217e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "STATE.x_9": {
+            "samples": 1001,
+            "failures": 7,
+            "max_abs_delta": 1.3500976480000002,
+            "max_abs_delta_by_unit": {
+              "event": 1.3500976480000002
+            },
+            "final_delta_by_unit": {
+              "event": 2.87999966985808e-07
+            },
+            "first_divergence": {
+              "reference_seq": 97,
+              "actual_seq": 96,
+              "kind": "EVENT",
+              "sample_index": null,
+              "callback": 30,
+              "unit": null,
+              "property": "STATE.x_9",
+              "reference_t": "0.030029",
+              "actual_t": "0.0300292969",
+              "reference_time": {
+                "requested": "0.030000",
+                "reported": "0.030029",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.030000",
+                "reported": "0.0300292969",
+                "state_us": 325000
+              },
+              "reference": "5.399414048",
+              "actual": "4.04980469",
+              "delta": -1.3496093579999995,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "STATE.y_9": {
+            "samples": 1001,
+            "failures": 7,
+            "max_abs_delta": 0.007324218200000003,
+            "max_abs_delta_by_unit": {
+              "event": 0.007324218200000003
+            },
+            "final_delta_by_unit": {
+              "event": -1.399999997875323e-09
+            },
+            "first_divergence": {
+              "reference_seq": 97,
+              "actual_seq": 96,
+              "kind": "EVENT",
+              "sample_index": null,
+              "callback": 30,
+              "unit": null,
+              "property": "STATE.y_9",
+              "reference_t": "0.030029",
+              "actual_t": "0.0300292969",
+              "reference_time": {
+                "requested": "0.030000",
+                "reported": "0.030029",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.030000",
+                "reported": "0.0300292969",
+                "state_us": 325000
+              },
+              "reference": "0.029296874",
+              "actual": "0.0219726562",
+              "delta": -0.007324217800000001,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "STATE.facing_9": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 4.639999815481133e-07,
+            "max_abs_delta_by_unit": {
+              "event": 4.639999815481133e-07
+            },
+            "final_delta_by_unit": {
+              "event": -4.00007138523506e-10
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "efca714a975737f5b327f318ea078b6cf2c4fa0257d623fb7db205be8168e355",
+        "actual_sha256": "0f9fa5dcfde86c1b13d6c91e1c0383e9a83396e5dd44aa3fd1c2cc20907605c2"
+      },
+      "exact": {
+        "compared": {
+          "t": 1001,
+          "x": 1001,
+          "y": 1001,
+          "facing": 1001,
+          "order": 1001,
+          "STATE.c10_9": 1001,
+          "STATE.x_9": 1001,
+          "STATE.y_9": 1001,
+          "STATE.facing_9": 1001
+        },
+        "different": {
+          "x": 7,
+          "y": 7,
+          "STATE.x_9": 7,
+          "STATE.y_9": 7
+        },
+        "mismatches": {
+          "x": [
+            {
+              "callback": 30,
+              "reference": "5.399414",
+              "actual": "4.049805"
+            },
+            {
+              "callback": 35,
+              "reference": "6.749512",
+              "actual": "5.399414"
+            },
+            {
+              "callback": 40,
+              "reference": "8.099609",
+              "actual": "6.749512"
+            },
+            {
+              "callback": 45,
+              "reference": "9.449219",
+              "actual": "8.099609"
+            },
+            {
+              "callback": 50,
+              "reference": "10.799316",
+              "actual": "9.449219"
+            },
+            {
+              "callback": 55,
+              "reference": "12.149414",
+              "actual": "10.799316"
+            },
+            {
+              "callback": 60,
+              "reference": "13.499023",
+              "actual": "12.149414"
+            }
+          ],
+          "y": [
+            {
+              "callback": 30,
+              "reference": "0.029297",
+              "actual": "0.021973"
+            },
+            {
+              "callback": 35,
+              "reference": "0.036621",
+              "actual": "0.029297"
+            },
+            {
+              "callback": 40,
+              "reference": "0.043945",
+              "actual": "0.036621"
+            },
+            {
+              "callback": 45,
+              "reference": "0.039063",
+              "actual": "0.043945"
+            },
+            {
+              "callback": 50,
+              "reference": "0.034668",
+              "actual": "0.039063"
+            },
+            {
+              "callback": 55,
+              "reference": "0.030273",
+              "actual": "0.034668"
+            },
+            {
+              "callback": 60,
+              "reference": "0.025879",
+              "actual": "0.030273"
+            }
+          ],
+          "STATE.x_9": [
+            {
+              "callback": 30,
+              "reference": "5.399414048",
+              "actual": "4.049804684"
+            },
+            {
+              "callback": 35,
+              "reference": "6.749511680",
+              "actual": "5.399414048"
+            },
+            {
+              "callback": 40,
+              "reference": "8.099609368",
+              "actual": "6.749511680"
+            },
+            {
+              "callback": 45,
+              "reference": "9.449218720",
+              "actual": "8.099609368"
+            },
+            {
+              "callback": 50,
+              "reference": "10.799316352",
+              "actual": "9.449218720"
+            },
+            {
+              "callback": 55,
+              "reference": "12.149414048",
+              "actual": "10.799316352"
+            },
+            {
+              "callback": 60,
+              "reference": "13.499023424",
+              "actual": "12.149414048"
+            }
+          ],
+          "STATE.y_9": [
+            {
+              "callback": 30,
+              "reference": "0.029296874",
+              "actual": "0.021972656"
+            },
+            {
+              "callback": 35,
+              "reference": "0.036621092",
+              "actual": "0.029296874"
+            },
+            {
+              "callback": 40,
+              "reference": "0.043945312",
+              "actual": "0.036621092"
+            },
+            {
+              "callback": 45,
+              "reference": "0.039062500",
+              "actual": "0.043945312"
+            },
+            {
+              "callback": 50,
+              "reference": "0.034667968",
+              "actual": "0.039062500"
+            },
+            {
+              "callback": 55,
+              "reference": "0.030273436",
+              "actual": "0.034667968"
+            },
+            {
+              "callback": 60,
+              "reference": "0.025878906",
+              "actual": "0.030273436"
+            }
+          ]
+        }
+      },
+      "frames_read": [
+        {
+          "callback": 30,
+          "cpp_frame": 65,
+          "wc3_frames": [
+            66
+          ],
+          "xy_frames": [
+            66
+          ],
+          "facing_frames": [
+            63,
+            64,
+            65,
+            66,
+            67
+          ]
+        },
+        {
+          "callback": 35,
+          "cpp_frame": 66,
+          "wc3_frames": [
+            67
+          ],
+          "xy_frames": [
+            67
+          ],
+          "facing_frames": [
+            64,
+            65,
+            66,
+            67
+          ]
+        },
+        {
+          "callback": 40,
+          "cpp_frame": 67,
+          "wc3_frames": [],
+          "xy_frames": [
+            68
+          ],
+          "facing_frames": [
+            65,
+            66,
+            67
+          ]
+        },
+        {
+          "callback": 45,
+          "cpp_frame": 68,
+          "wc3_frames": [
+            69
+          ],
+          "xy_frames": [
+            69
+          ],
+          "facing_frames": [
+            68,
+            69,
+            70
+          ]
+        },
+        {
+          "callback": 50,
+          "cpp_frame": 69,
+          "wc3_frames": [
+            70
+          ],
+          "xy_frames": [
+            70
+          ],
+          "facing_frames": [
+            68,
+            69,
+            70,
+            71
+          ]
+        },
+        {
+          "callback": 55,
+          "cpp_frame": 70,
+          "wc3_frames": [
+            71
+          ],
+          "xy_frames": [
+            71
+          ],
+          "facing_frames": [
+            68,
+            69,
+            70,
+            71,
+            72
+          ]
+        },
+        {
+          "callback": 60,
+          "cpp_frame": 71,
+          "wc3_frames": [
+            72
+          ],
+          "xy_frames": [
+            72
+          ],
+          "facing_frames": [
+            69,
+            70,
+            71,
+            72,
+            73
+          ]
+        }
+      ],
+      "assessment": {
+        "status": "PASS",
+        "canonical": "FAIL",
+        "state_callbacks": [
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60
+        ],
+        "frame_plus_one": [
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60
+        ],
+        "clock_callbacks": [],
+        "clock_ulps": 0,
+        "reviewed": {
+          "canonical": "FAIL",
+          "state": [
+            30,
+            35,
+            40,
+            45,
+            50,
+            55,
+            60
+          ],
+          "clock_count": 0,
+          "clock_sha256": null
+        }
+      }
+    },
+    {
+      "map_revision": "MOV-0014-b",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 2,
+        "path": "scenarios/MOV-0014/MOV-0014-b.yaml",
+        "sha256": "ad5e1e188097ee1c06a59f8771326f2916f3f4c3bc8958bf700240539f50aaee"
+      },
+      "case_sha256": "f47c0b2a136f941058ee57e9f2ca524f68faabcc6277214f6e4aef96f80ad1a8",
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0014-b",
+        "control_revision": null,
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 2,
+          "path": "scenarios/MOV-0014/MOV-0014-b.yaml",
+          "sha256": "ad5e1e188097ee1c06a59f8771326f2916f3f4c3bc8958bf700240539f50aaee"
+        },
+        "completion": {
+          "complete": true,
+          "records": 3009,
+          "ticks": 1001,
+          "samples": 1001,
+          "actions": 1,
+          "events": 1001
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "80f471e396add84631be0b760ece195953143b4a20738ed88291a1f9d8b4205c",
+            "80f471e396add84631be0b760ece195953143b4a20738ed88291a1f9d8b4205c",
+            "80f471e396add84631be0b760ece195953143b4a20738ed88291a1f9d8b4205c"
+          ],
+          "observation_payload_sha256": [
+            "15fb1e1aac214f80cd0b15fb487dcf32d07ed82e2e0e08dece50c50ff72bbd53",
+            "15fb1e1aac214f80cd0b15fb487dcf32d07ed82e2e0e08dece50c50ff72bbd53",
+            "15fb1e1aac214f80cd0b15fb487dcf32d07ed82e2e0e08dece50c50ff72bbd53"
+          ],
+          "distinct_raw_files": 1,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 3006,
+          "control_sha256": null,
+          "generated_sha256": "a564dc9a461dfb770f02501c0caa1a899e1821f886c053b3463d293342018c55",
+          "first_divergence": null,
+          "scope": "new observation; no independent control exists"
+        },
+        "generated_preload": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0014-b.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "generated_footers": [
+          "call PreloadEnd( 1.9 )",
+          "call PreloadEnd( 1.9 )",
+          "call PreloadEnd( 1.9 )"
+        ],
+        "fixture_sha256": "9be83aba234b8064f813f8da0d22e4b0df9462ffad1733f3d9c10ce5f6a6f17c"
+      },
+      "comparison": {
+        "case": "MOV-0014",
+        "map_revision": "MOV-0014-b",
+        "status": "FAIL",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "scheduled-sampler-time",
+        "reference_records": 3009,
+        "actual_records": 3008,
+        "reference_samples": 1001,
+        "actual_samples": 1001,
+        "first_divergence": {
+          "reference_seq": 51,
+          "actual_seq": 50,
+          "kind": "SAMPLE",
+          "sample_index": 15,
+          "callback": 15,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "0.015015",
+          "actual_t": "0.0150146484",
+          "reference_time": {
+            "requested": "0.015000",
+            "reported": "0.015015",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "0.015000",
+            "reported": "0.0150146484",
+            "state_us": 730000
+          },
+          "reference": "1.349609",
+          "actual": "0",
+          "delta": -1.349609,
+          "tolerance": 0.001
+        },
+        "state_first_divergence": {
+          "reference_seq": 51,
+          "actual_seq": 50,
+          "kind": "SAMPLE",
+          "sample_index": 15,
+          "callback": 15,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "0.015015",
+          "actual_t": "0.0150146484",
+          "reference_time": {
+            "requested": "0.015000",
+            "reported": "0.015015",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "0.015000",
+            "reported": "0.0150146484",
+            "state_us": 730000
+          },
+          "reference": "1.349609",
+          "actual": "0",
+          "delta": -1.349609,
+          "tolerance": 0.001
+        },
+        "properties": {
+          "x": {
+            "samples": 1001,
+            "failures": 1,
+            "max_abs_delta": 1.349609,
+            "max_abs_delta_by_unit": {
+              "u0": 1.349609
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": {
+              "reference_seq": 51,
+              "actual_seq": 50,
+              "kind": "SAMPLE",
+              "sample_index": 15,
+              "callback": 15,
+              "unit": "u0",
+              "property": "x",
+              "reference_t": "0.015015",
+              "actual_t": "0.0150146484",
+              "reference_time": {
+                "requested": "0.015000",
+                "reported": "0.015015",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.015000",
+                "reported": "0.0150146484",
+                "state_us": 730000
+              },
+              "reference": "1.349609",
+              "actual": "0",
+              "delta": -1.349609,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "y": {
+            "samples": 1001,
+            "failures": 1,
+            "max_abs_delta": 0.007324,
+            "max_abs_delta_by_unit": {
+              "u0": 0.007324
+            },
+            "final_delta_by_unit": {
+              "u0": -4.062000000006061e-07
+            },
+            "first_divergence": {
+              "reference_seq": 51,
+              "actual_seq": 50,
+              "kind": "SAMPLE",
+              "sample_index": 15,
+              "callback": 15,
+              "unit": "u0",
+              "property": "y",
+              "reference_t": "0.015015",
+              "actual_t": "0.0150146484",
+              "reference_time": {
+                "requested": "0.015000",
+                "reported": "0.015015",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.015000",
+                "reported": "0.0150146484",
+                "state_us": 730000
+              },
+              "reference": "0.007324",
+              "actual": "0",
+              "delta": -0.007324,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "facing": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -2.2399999011213367e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.500000000933312e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 3.515619999999877e-08,
+            "max_abs_delta_by_unit": {
+              "u0": 3.515619999999877e-08
+            },
+            "final_delta_by_unit": {
+              "u0": 3.515619999999877e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {
+          "STATE.t": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "event": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "event": -3.500000000933312e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "STATE.c10_9": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 6.80000000752301e-08,
+            "max_abs_delta_by_unit": {
+              "event": 6.80000000752301e-08
+            },
+            "final_delta_by_unit": {
+              "event": 4.600000003129878e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "STATE.x_9": {
+            "samples": 1001,
+            "failures": 1,
+            "max_abs_delta": 1.349609344,
+            "max_abs_delta_by_unit": {
+              "event": 1.349609344
+            },
+            "final_delta_by_unit": {
+              "event": 4.400000079840538e-07
+            },
+            "first_divergence": {
+              "reference_seq": 52,
+              "actual_seq": 51,
+              "kind": "EVENT",
+              "sample_index": null,
+              "callback": 15,
+              "unit": null,
+              "property": "STATE.x_9",
+              "reference_t": "0.015015",
+              "actual_t": "0.0150146484",
+              "reference_time": {
+                "requested": "0.015000",
+                "reported": "0.015015",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.015000",
+                "reported": "0.0150146484",
+                "state_us": 730000
+              },
+              "reference": "1.349609344",
+              "actual": "0",
+              "delta": -1.349609344,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "STATE.y_9": {
+            "samples": 1001,
+            "failures": 1,
+            "max_abs_delta": 0.007324218,
+            "max_abs_delta_by_unit": {
+              "event": 0.007324218
+            },
+            "final_delta_by_unit": {
+              "event": 1.7999999997464489e-09
+            },
+            "first_divergence": {
+              "reference_seq": 52,
+              "actual_seq": 51,
+              "kind": "EVENT",
+              "sample_index": null,
+              "callback": 15,
+              "unit": null,
+              "property": "STATE.y_9",
+              "reference_t": "0.015015",
+              "actual_t": "0.0150146484",
+              "reference_time": {
+                "requested": "0.015000",
+                "reported": "0.015015",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.015000",
+                "reported": "0.0150146484",
+                "state_us": 730000
+              },
+              "reference": "0.007324218",
+              "actual": "0",
+              "delta": -0.007324218,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "STATE.facing_9": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 4.639999815481133e-07,
+            "max_abs_delta_by_unit": {
+              "event": 4.639999815481133e-07
+            },
+            "final_delta_by_unit": {
+              "event": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "9be83aba234b8064f813f8da0d22e4b0df9462ffad1733f3d9c10ce5f6a6f17c",
+        "actual_sha256": "7a9412320da78730856be9a2adce994c55b83661a18aec3ce4771fccea573163"
+      },
+      "exact": {
+        "compared": {
+          "t": 1001,
+          "x": 1001,
+          "y": 1001,
+          "facing": 1001,
+          "order": 1001,
+          "STATE.c10_9": 1001,
+          "STATE.x_9": 1001,
+          "STATE.y_9": 1001,
+          "STATE.facing_9": 1001
+        },
+        "different": {
+          "x": 1,
+          "y": 1,
+          "STATE.x_9": 1,
+          "STATE.y_9": 1
+        },
+        "mismatches": {
+          "x": [
+            {
+              "callback": 15,
+              "reference": "1.349609",
+              "actual": "0.000000"
+            }
+          ],
+          "y": [
+            {
+              "callback": 15,
+              "reference": "0.007324",
+              "actual": "0.000000"
+            }
+          ],
+          "STATE.x_9": [
+            {
+              "callback": 15,
+              "reference": "1.349609344",
+              "actual": "0.000000000"
+            }
+          ],
+          "STATE.y_9": [
+            {
+              "callback": 15,
+              "reference": "0.007324218",
+              "actual": "0.000000000"
+            }
+          ]
+        }
+      },
+      "frames_read": [
+        {
+          "callback": 15,
+          "cpp_frame": 146,
+          "wc3_frames": [
+            147
+          ],
+          "xy_frames": [
+            147
+          ],
+          "facing_frames": [
+            146,
+            147,
+            148
+          ]
+        }
+      ],
+      "assessment": {
+        "status": "PASS",
+        "canonical": "FAIL",
+        "state_callbacks": [
+          15
+        ],
+        "frame_plus_one": [
+          15
+        ],
+        "clock_callbacks": [],
+        "clock_ulps": 0,
+        "reviewed": {
+          "canonical": "FAIL",
+          "state": [
+            15
+          ],
+          "clock_count": 0,
+          "clock_sha256": null
+        }
+      }
+    },
+    {
+      "map_revision": "MOV-0014-c",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 2,
+        "path": "scenarios/MOV-0014/MOV-0014-c.yaml",
+        "sha256": "7b88c13afca6a6b7b16cee4663d368fe0917b546f36ad2f8dab1d866f25cbbc3"
+      },
+      "case_sha256": "b9606edcbd0f9507b3bdc40feb214c52d1675846946f1af560c8848452ff7d95",
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0014-c",
+        "control_revision": null,
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 2,
+          "path": "scenarios/MOV-0014/MOV-0014-c.yaml",
+          "sha256": "7b88c13afca6a6b7b16cee4663d368fe0917b546f36ad2f8dab1d866f25cbbc3"
+        },
+        "completion": {
+          "complete": true,
+          "records": 3009,
+          "ticks": 1001,
+          "samples": 1001,
+          "actions": 1,
+          "events": 1001
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "52b8d9f8a862158d3d723d3f242026dac1685b075952ac3fef0101a2a94e89b1",
+            "52b8d9f8a862158d3d723d3f242026dac1685b075952ac3fef0101a2a94e89b1",
+            "52b8d9f8a862158d3d723d3f242026dac1685b075952ac3fef0101a2a94e89b1"
+          ],
+          "observation_payload_sha256": [
+            "9dffdb6cec87eef23ea6a6cd0dbbf2f7d747a21205531037b3c65ba6ebd9c463",
+            "9dffdb6cec87eef23ea6a6cd0dbbf2f7d747a21205531037b3c65ba6ebd9c463",
+            "9dffdb6cec87eef23ea6a6cd0dbbf2f7d747a21205531037b3c65ba6ebd9c463"
+          ],
+          "distinct_raw_files": 2,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 3006,
+          "control_sha256": null,
+          "generated_sha256": "1f7ca3ec5b46e2c8bcaad65d82ee1e9fed95e5983eaa284749ebc046e2a1f205",
+          "first_divergence": null,
+          "scope": "new observation; no independent control exists"
+        },
+        "generated_preload": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0014-c.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "generated_footers": [
+          "call PreloadEnd( 2.2 )",
+          "call PreloadEnd( 2.2 )",
+          "call PreloadEnd( 2.1 )"
+        ],
+        "fixture_sha256": "eb16b4b38e770eaa784afd95bb2277a0e79d08811ad01a3daaa00743c6754714"
+      },
+      "comparison": {
+        "case": "MOV-0014",
+        "map_revision": "MOV-0014-c",
+        "status": "FAIL",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "scheduled-sampler-time",
+        "reference_records": 3009,
+        "actual_records": 3008,
+        "reference_samples": 1001,
+        "actual_samples": 1001,
+        "first_divergence": {
+          "reference_seq": 51,
+          "actual_seq": 50,
+          "kind": "SAMPLE",
+          "sample_index": 15,
+          "callback": 15,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "0.015015",
+          "actual_t": "0.0150146484",
+          "reference_time": {
+            "requested": "0.015000",
+            "reported": "0.015015",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "0.015000",
+            "reported": "0.0150146484",
+            "state_us": 910000
+          },
+          "reference": "1.349609",
+          "actual": "0",
+          "delta": -1.349609,
+          "tolerance": 0.001
+        },
+        "state_first_divergence": {
+          "reference_seq": 51,
+          "actual_seq": 50,
+          "kind": "SAMPLE",
+          "sample_index": 15,
+          "callback": 15,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "0.015015",
+          "actual_t": "0.0150146484",
+          "reference_time": {
+            "requested": "0.015000",
+            "reported": "0.015015",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "0.015000",
+            "reported": "0.0150146484",
+            "state_us": 910000
+          },
+          "reference": "1.349609",
+          "actual": "0",
+          "delta": -1.349609,
+          "tolerance": 0.001
+        },
+        "properties": {
+          "x": {
+            "samples": 1001,
+            "failures": 1,
+            "max_abs_delta": 1.349609,
+            "max_abs_delta_by_unit": {
+              "u0": 1.349609
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": {
+              "reference_seq": 51,
+              "actual_seq": 50,
+              "kind": "SAMPLE",
+              "sample_index": 15,
+              "callback": 15,
+              "unit": "u0",
+              "property": "x",
+              "reference_t": "0.015015",
+              "actual_t": "0.0150146484",
+              "reference_time": {
+                "requested": "0.015000",
+                "reported": "0.015015",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.015000",
+                "reported": "0.0150146484",
+                "state_us": 910000
+              },
+              "reference": "1.349609",
+              "actual": "0",
+              "delta": -1.349609,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "y": {
+            "samples": 1001,
+            "failures": 1,
+            "max_abs_delta": 0.007324,
+            "max_abs_delta_by_unit": {
+              "u0": 0.007324
+            },
+            "final_delta_by_unit": {
+              "u0": -4.219000000055262e-07
+            },
+            "first_divergence": {
+              "reference_seq": 51,
+              "actual_seq": 50,
+              "kind": "SAMPLE",
+              "sample_index": 15,
+              "callback": 15,
+              "unit": "u0",
+              "property": "y",
+              "reference_t": "0.015015",
+              "actual_t": "0.0150146484",
+              "reference_time": {
+                "requested": "0.015000",
+                "reported": "0.015015",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.015000",
+                "reported": "0.0150146484",
+                "state_us": 910000
+              },
+              "reference": "0.007324",
+              "actual": "0",
+              "delta": -0.007324,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "facing": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 4.979999914667133e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.979999914667133e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.500000000933312e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 3.515619999999877e-08,
+            "max_abs_delta_by_unit": {
+              "u0": 3.515619999999877e-08
+            },
+            "final_delta_by_unit": {
+              "u0": 3.515619999999877e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {
+          "STATE.t": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "event": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "event": -3.500000000933312e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "STATE.c10_9": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 6.600000013179397e-08,
+            "max_abs_delta_by_unit": {
+              "event": 6.600000013179397e-08
+            },
+            "final_delta_by_unit": {
+              "event": 2.5999999930803597e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "STATE.x_9": {
+            "samples": 1001,
+            "failures": 1,
+            "max_abs_delta": 1.349609344,
+            "max_abs_delta_by_unit": {
+              "event": 1.349609344
+            },
+            "final_delta_by_unit": {
+              "event": 2.720000225053809e-07
+            },
+            "first_divergence": {
+              "reference_seq": 52,
+              "actual_seq": 51,
+              "kind": "EVENT",
+              "sample_index": null,
+              "callback": 15,
+              "unit": null,
+              "property": "STATE.x_9",
+              "reference_t": "0.015015",
+              "actual_t": "0.0150146484",
+              "reference_time": {
+                "requested": "0.015000",
+                "reported": "0.015015",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.015000",
+                "reported": "0.0150146484",
+                "state_us": 910000
+              },
+              "reference": "1.349609344",
+              "actual": "0",
+              "delta": -1.349609344,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "STATE.y_9": {
+            "samples": 1001,
+            "failures": 1,
+            "max_abs_delta": 0.007324218,
+            "max_abs_delta_by_unit": {
+              "event": 0.007324218
+            },
+            "final_delta_by_unit": {
+              "event": -1.900000004551039e-09
+            },
+            "first_divergence": {
+              "reference_seq": 52,
+              "actual_seq": 51,
+              "kind": "EVENT",
+              "sample_index": null,
+              "callback": 15,
+              "unit": null,
+              "property": "STATE.y_9",
+              "reference_t": "0.015015",
+              "actual_t": "0.0150146484",
+              "reference_time": {
+                "requested": "0.015000",
+                "reported": "0.015015",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.015000",
+                "reported": "0.0150146484",
+                "state_us": 910000
+              },
+              "reference": "0.007324218",
+              "actual": "0",
+              "delta": -0.007324218,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "STATE.facing_9": {
+            "samples": 1001,
+            "failures": 0,
+            "max_abs_delta": 5.280000436869159e-07,
+            "max_abs_delta_by_unit": {
+              "event": 5.280000436869159e-07
+            },
+            "final_delta_by_unit": {
+              "event": 1.5199998415482696e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "eb16b4b38e770eaa784afd95bb2277a0e79d08811ad01a3daaa00743c6754714",
+        "actual_sha256": "4c23ec6b62f947c94fe28e10122ee5434d816b40f57b4dbda834208b614c1991"
+      },
+      "exact": {
+        "compared": {
+          "t": 1001,
+          "x": 1001,
+          "y": 1001,
+          "facing": 1001,
+          "order": 1001,
+          "STATE.c10_9": 1001,
+          "STATE.x_9": 1001,
+          "STATE.y_9": 1001,
+          "STATE.facing_9": 1001
+        },
+        "different": {
+          "x": 1,
+          "y": 1,
+          "STATE.x_9": 1,
+          "STATE.y_9": 1
+        },
+        "mismatches": {
+          "x": [
+            {
+              "callback": 15,
+              "reference": "1.349609",
+              "actual": "0.000000"
+            }
+          ],
+          "y": [
+            {
+              "callback": 15,
+              "reference": "0.007324",
+              "actual": "0.000000"
+            }
+          ],
+          "STATE.x_9": [
+            {
+              "callback": 15,
+              "reference": "1.349609344",
+              "actual": "0.000000000"
+            }
+          ],
+          "STATE.y_9": [
+            {
+              "callback": 15,
+              "reference": "0.007324218",
+              "actual": "0.000000000"
+            }
+          ]
+        }
+      },
+      "frames_read": [
+        {
+          "callback": 15,
+          "cpp_frame": 182,
+          "wc3_frames": [
+            183
+          ],
+          "xy_frames": [
+            183
+          ],
+          "facing_frames": [
+            182,
+            183,
+            184
+          ]
+        }
+      ],
+      "assessment": {
+        "status": "PASS",
+        "canonical": "FAIL",
+        "state_callbacks": [
+          15
+        ],
+        "frame_plus_one": [
+          15
+        ],
+        "clock_callbacks": [],
+        "clock_ulps": 0,
+        "reviewed": {
+          "canonical": "FAIL",
+          "state": [
+            15
+          ],
+          "clock_count": 0,
+          "clock_sha256": null
+        }
+      }
+    }
+  ]
+}

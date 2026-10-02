@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""MOV-0013 (docs/mov-0013.md): the same v2 scenario through WC3 and footman-v4.
+"""MOV-0013/MOV-0014 (docs/mov-0013.md, docs/mov-0014.md): v2 scenarios through WC3 and C++.
 
-For each registered MOV-0013 revision this regenerates the case JASS from the
+For each registered revision of an experiment this regenerates the case JASS from the
 scenario (byte-identical to the retained case and generation record), validates
 and normalizes the three retained WC3 runs, checks the committed fixture bytes
 and runs tools/wc3test on
@@ -11,8 +11,9 @@ every C++ float printed as WC3's R2SW_6 (TICK, SAMPLE) or R2SW_9 (STATE). Where
 the text differs, it reports which 5 ms frame of the footman-v4 state sequence
 WC3 actually read (tools/wc3states).
 
-The C++ runner implements only the pre-registered rule H0. The differences below
-were reviewed after capture, and the gate requires exactly them. Any other
+The C++ runner implements the pre-registered frame rule H0 and, since MOV-0014,
+the pre-registered Q17 library clock. The differences below were reviewed after
+capture, and the gate requires exactly them. Any other
 difference, or a missing one, fails. Exit 0 PASS, 1 FAIL, 2 invalid input.
 """
 import argparse
@@ -33,19 +34,21 @@ FIXTURES = ROOT / 'oracle/canonical-generated' / BUILD
 CASES = ROOT / 'oracle/generated/maps'
 FRAME_US = 5000
 ULP_1000 = 6.103515625e-05  # one float32 ulp of the 1000 s library clock
-# Reviewed observations (docs/mov-0013.md#results). State: callbacks whose X/Y read
-# frame H0 + 1, so text and canonical X/Y differ there. Clock: TICKs one ulp below
-# the pre-registered library clock sub(1000, sub(add(s(0), 1000), s(k))); the gate
-# pins their count and the SHA-256 of the JSON callback list. Canonical: the
-# unchanged comparator's status (b's t differences reach 6.1516e-5 > 6.15e-5).
+# Reviewed observations (docs/mov-0013.md#results, docs/mov-0014.md#results). State:
+# callbacks whose X/Y read frame H0 + 1, so text and canonical X/Y differ there.
+# Clock: TICKs one ulp below the runner's library clock, pinned by count and the
+# SHA-256 of the JSON callback list. Q17 removed MOV-0013-b/c's 875/624 (MOV-0014).
+# Canonical: the unchanged comparator's status.
 KNOWN = {
     'MOV-0013-a': dict(canonical='FAIL', state=[15, 20, 25, 30, 35], clock=(0, None)),
-    'MOV-0013-b': dict(canonical='FAIL', state=[], clock=(
-        875, 'dc60c63d679e78911981ab5bf1a8360d239ea62e2682249e183ab44af56b206b')),
-    'MOV-0013-c': dict(canonical='FAIL', state=[25, 30, 35], clock=(
-        624, '9e5a7d0013a8e05245c96a25d33377f39bea6e7f7b33d79e73e7e9c9cd998cf1')),
+    'MOV-0013-b': dict(canonical='PASS', state=[], clock=(0, None)),
+    'MOV-0013-c': dict(canonical='FAIL', state=[25, 30, 35], clock=(0, None)),
     'MOV-0013-d': dict(canonical='PASS', state=[], clock=(0, None)),
+    'MOV-0014-a': dict(canonical='FAIL', state=[30, 35, 40, 45, 50, 55, 60], clock=(0, None)),
+    'MOV-0014-b': dict(canonical='FAIL', state=[15], clock=(0, None)),
+    'MOV-0014-c': dict(canonical='FAIL', state=[15], clock=(0, None)),
 }
+EXPERIMENTS = {'MOV-0013': 'sampler start phase', 'MOV-0014': 'sampler callback index or float32 lag'}
 
 def text(value, decimals):
     return r2sw(bits(float(value)), decimals)
@@ -151,10 +154,15 @@ def regenerate(codegen, label, scenario):
     return generation['inputs'][0]['case']['sha256']
 
 
-def run(runner, states_runner, codegen, out, reports, check=True):
+def labels(experiment):
+    return [label for label, shape in EXPERIMENT_SHAPES.items() if shape['experiment'] == experiment]
+
+
+def run(runner, states_runner, codegen, out, reports, check=True, experiment='MOV-0013'):
     reports.mkdir(parents=True, exist_ok=True)
     cases = []
-    for label, shape in EXPERIMENT_SHAPES.items():
+    for label in labels(experiment):
+        shape = EXPERIMENT_SHAPES[label]
         case_sha256 = regenerate(codegen, label, shape['scenario'])
         normalized = normalize(label, out / 'references')
         fixture = out / 'references' / f'{label}.json'
@@ -184,9 +192,10 @@ def run(runner, states_runner, codegen, out, reports, check=True):
                                      mismatches=differences),
                           frames_read=frames, assessment=assessment))
     status = 'PASS' if all(c['status'] == 'PASS' for c in cases) else 'FAIL'
-    write_json(reports / 'mov-0013.json', dict(status=status, reference_build=BUILD, cases=cases))
-    lines = ['# MOV-0013 sampler start phase', '', f'Gate: **{status}** (observed differences equal the reviewed list).', '',
-             'C++ footman-v4 runs the same v2 scenario bytes with the pre-registered rule H0. Canonical comparison',
+    name = experiment.lower()
+    write_json(reports / f'{name}.json', dict(status=status, reference_build=BUILD, cases=cases))
+    lines = [f'# {experiment} {EXPERIMENTS[experiment]}', '', f'Gate: **{status}** (observed differences equal the reviewed list).', '',
+             'C++ footman-v4 runs the same v2 scenario bytes with frame rule H0 and the Q17 clock. Canonical comparison',
              'uses the unchanged tolerances; exact text prints every C++ float as WC3 R2SW_6/R2SW_9.', '',
              '| Revision | Fresh WC3 runs | Control | Canonical | Exact text differences | WC3 read frame H0 + 1 at |',
              '|---|---|---|---|---|---|']
@@ -195,8 +204,8 @@ def run(runner, states_runner, codegen, out, reports, check=True):
         control = c['reproduction']['control_revision'] or '—'
         lines.append(f"| {c['map_revision']} | 3 payload-identical | {control} | {c['comparison']['status']} | "
                      f"{diffs} | {c['assessment']['frame_plus_one'] or 'none'} |")
-    (reports / 'mov-0013.md').write_text('\n'.join(lines) + '\n', encoding='utf-8', newline='\n')
-    print(f'MOV-0013 {status}: ' + '; '.join(
+    (reports / f'{name}.md').write_text('\n'.join(lines) + '\n', encoding='utf-8', newline='\n')
+    print(f'{experiment} {status}: ' + '; '.join(
         f"{c['map_revision']} canonical {c['comparison']['status']}, frame+1 at {c['assessment']['frame_plus_one'] or 'none'}"
         for c in cases))
     return int(status != 'PASS')
@@ -210,17 +219,22 @@ def main():
     parser.add_argument('--codegen', type=Path, default=ROOT / 'build' / f'oracle_codegen{ext}')
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--reports', type=Path, required=True)
+    parser.add_argument('--experiment', choices=EXPERIMENTS, action='append', help='default: every experiment')
     parser.add_argument('--write-fixtures', action='store_true', help='first normalization only; never overwrites')
     args = parser.parse_args()
     try:
-        if args.write_fixtures:
-            for label in EXPERIMENT_SHAPES:
-                if (FIXTURES / f'{label}.json').exists():
-                    raise ValueError(f'{label}: retained fixture exists; refusing to overwrite')
-        code = run(args.runner, args.states, args.codegen, args.out, args.reports, check=not args.write_fixtures)
-        if args.write_fixtures:
-            for label in EXPERIMENT_SHAPES:
-                (FIXTURES / f'{label}.json').write_bytes((args.out / 'references' / f'{label}.json').read_bytes())
+        code = 0
+        for experiment in args.experiment or EXPERIMENTS:
+            out = args.out / experiment.lower()
+            if args.write_fixtures:
+                for label in labels(experiment):
+                    if (FIXTURES / f'{label}.json').exists():
+                        raise ValueError(f'{label}: retained fixture exists; refusing to overwrite')
+            code |= run(args.runner, args.states, args.codegen, out, args.reports,
+                        check=not args.write_fixtures, experiment=experiment)
+            if args.write_fixtures:
+                for label in labels(experiment):
+                    (FIXTURES / f'{label}.json').write_bytes((out / 'references' / f'{label}.json').read_bytes())
         return code
     except (OSError, ValueError, KeyError, TypeError, IndexError, subprocess.SubprocessError) as error:
         parser.exit(2, f'run_mov0013: {error}\n')

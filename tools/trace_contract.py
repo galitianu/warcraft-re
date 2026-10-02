@@ -26,15 +26,18 @@ GENERATED_SHAPES = {
     'MOV-0006-g1': ('MOV-0006', 250, '0.020000', 1),
     'MOV-0010-g1': ('MOV-0010', 250, '0.020000', 1),
 }
-# Generated experiments of their own (issue #17, docs/mov-0013.md), written here by
-# hand from the experiment definition, never from a scenario. Each binds one v2
-# scenario file; `start_us` is its declared sampler start, `control` the retained
+# Generated experiments of their own (docs/mov-0013.md, docs/mov-0014.md), written
+# here by hand from the experiment definition, never from a scenario. Each binds one
+# v2 scenario file; `start_us` is its declared sampler start, `control` the retained
 # capture whose observations the revision must reproduce exactly (or None).
 EXPERIMENT_SHAPES = {
-    f'MOV-0013-{v}': dict(experiment='MOV-0013', callbacks=1000, period='0.001000', units=1,
-                          scenario=f'scenarios/MOV-0013/MOV-0013-{v}.yaml', start_us=start,
-                          control='MOV-0012-a' if v == 'a' else None, state='STATE')
-    for v, start in (('a', 0), ('b', 2500), ('c', 20000), ('d', 0))}
+    f'{exp}-{v}': dict(experiment=exp, callbacks=1000, period='0.001000', units=1,
+                       scenario=f'scenarios/{exp}/{exp}-{v}.yaml', start_us=start,
+                       control='MOV-0012-a' if (exp, v) == ('MOV-0013', 'a') else None, state='STATE',
+                       definition=f'docs/{exp.lower()}.md')
+    for exp, variants in (('MOV-0013', (('a', 0), ('b', 2500), ('c', 20000), ('d', 0))),
+                          ('MOV-0014', (('a', 300000), ('b', 720000), ('c', 900000))))
+    for v, start in variants}
 STATE_KEYS = {'c10_9', 'x_9', 'y_9', 'facing_9'}
 # wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it
 # with cwd=ROOT and an absolute --out so recorded scenario paths stay repo-relative.
@@ -215,7 +218,7 @@ def validate_v3_parameters(parameters):
 # footman-v4's reported callback time: TimerGetElapsed of the library's 1000 s timer.
 LIBRARY_CLOCK = 'sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback'
 # Scenario v2 runs (docs/scenario-v2.md) also declare their observation rule.
-LIBRARY_CLOCK_V2 = ('sub(1000, sub(add(start, 1000), scheduled)); start = scheduled(0) = add(0.5, observe.start); '
+LIBRARY_CLOCK_V2 = ('sub(1000, floor32(1000 + floor(start, 2^-17) - scheduled)); start = scheduled(0) = add(0.5, observe.start); '
                     'scheduled += period per callback; a callback observes every frame with clock <= scheduled')
 
 

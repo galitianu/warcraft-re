@@ -13,7 +13,7 @@ from compare_traces import markdown as comparison_markdown
 from audit_oracle import audit
 from generate_oracle import generate, GOLDENS
 from run_generated import run as run_generated
-from run_mov0013 import run as run_mov0013
+from run_mov0013 import EXPERIMENTS, run as run_experiment
 from normalize_traces import normalize_all
 from regression import assess, markdown as regression_markdown
 from trace_contract import BUILD, LABELS, ROOT, SCENARIOS, digest, load, payload, sha256, validate, write_json
@@ -111,7 +111,8 @@ def summarize(result, reports):
              'Every suite runs the committed scenarios/MOV-0001..0010.yaml; their hashes are in each build identity.', '',
              f"Oracle generator: **{result.get('oracle_generation', {}).get('status', 'UNVERIFIED')}**. "
              f"Generated-map WC3 capture loop: **{result.get('generated_capture_loop', {}).get('status', 'UNVERIFIED')}**. "
-             f"MOV-0013 reviewed-difference gate: **{result.get('mov0013', {}).get('status', 'UNVERIFIED')}**.", '',
+             'Reviewed-difference gates: ' + ', '.join(
+                 f"{e} **{result.get(gate_key(e), {}).get('status', 'UNVERIFIED')}**" for e in EXPERIMENTS) + '.', '',
              '| Model / phase | Compatibility | Regression gate | Improvements |', '|---|---|---|---|']
     for name, info in result['models'].items():
         lines.append(f"| {name} | {info['compatibility_passes']}/10 PASS | {info['regression_verdict']} | {info['improvements']} |")
@@ -142,19 +143,24 @@ def check_generated_loop(runner, build, reports, result):
         result['errors']['generated-capture-loop'] = str(error)
 
 
-def check_mov0013(build, reports, result):
-    # MOV-0013 (docs/mov-0013.md): the gate requires exactly the reviewed differences.
-    result['mov0013_required'] = True
-    result['mov0013'] = dict(status='FAIL')
+def gate_key(experiment):
+    return experiment.lower().replace('-', '')  # MOV-0013 -> mov0013
+
+
+def check_experiment(build, reports, result, experiment):
+    # docs/mov-0013.md, docs/mov-0014.md: each gate requires exactly the reviewed differences.
+    key, name = gate_key(experiment), experiment.lower()
+    result[f'{key}_required'] = True
+    result[key] = dict(status='FAIL')
     ext = '.exe' if os.name == 'nt' else ''
     try:
-        code = run_mov0013(build / f'wc3test{ext}', build / f'wc3states{ext}', build / f'oracle_codegen{ext}',
-                           build / 'ci/mov-0013', reports)
-        result['mov0013'] = dict(status='PASS' if code == 0 else 'FAIL')
+        code = run_experiment(build / f'wc3test{ext}', build / f'wc3states{ext}', build / f'oracle_codegen{ext}',
+                              build / 'ci' / name, reports, experiment=experiment)
+        result[key] = dict(status='PASS' if code == 0 else 'FAIL')
         if code:
-            result['errors']['mov-0013'] = 'MOV-0013 differences differ from the reviewed list'
+            result['errors'][name] = f'{experiment} differences differ from the reviewed list'
     except (OSError, ValueError, KeyError, TypeError, IndexError, subprocess.SubprocessError) as error:
-        result['errors']['mov-0013'] = str(error)
+        result['errors'][name] = str(error)
 
 
 def run(args):
@@ -167,7 +173,7 @@ def run(args):
     result = dict(status='FAIL', host=dict(system=platform.system(), release=platform.release(),
                   architecture=architecture(platform.machine()), python=platform.python_version()),
                   models={}, errors={}, original_wc3_required=False, oracle_generation_required=True,
-                  generated_capture_loop_required=True, mov0013_required=True)
+                  generated_capture_loop_required=True, **{f'{gate_key(e)}_required': True for e in EXPERIMENTS})
     metadata = dict(host=result['host'], requested_compiler=args.compiler, build_type=args.config,
                     expected_architecture=args.expect_arch, seed=1,
                     github={key: os.environ.get(key) for key in ('GITHUB_RUN_ID', 'GITHUB_RUN_ATTEMPT',
@@ -277,7 +283,8 @@ def run(args):
             except (OSError, ValueError) as error:
                 result['errors']['archival-migration'] = str(error)
         check_generated_loop(runner, build, reports, result)
-        check_mov0013(build, reports, result)
+        for experiment in EXPERIMENTS:
+            check_experiment(build, reports, result, experiment)
         result['status'] = 'PASS' if not result['errors'] and len(result['models']) == 5 else 'FAIL'
     except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:
         result['errors']['pipeline'] = str(error)

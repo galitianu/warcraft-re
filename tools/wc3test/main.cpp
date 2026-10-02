@@ -174,10 +174,11 @@ int main(int argc, char** argv) {
                 << "    \"facing\": \"atof(0.07, 0.2, 0.2, 0.25, 0.001)\",\n"
                 << "    \"frame_origin\": " << json_number(h.frame_origin) << ",\n"
                 << "    \"clock_start_seconds\": " << json_number(wc3::sf::value(h.clock_start)) << ",\n"
-                << "    \"library_clock\": \"sub(1000, sub(add(start, 1000), scheduled)); "
-                << (v2 ? "start = scheduled(0) = add(0.5, observe.start); scheduled += period per callback; "
+                << (v2 ? "    \"library_clock\": \"sub(1000, floor32(1000 + floor(start, 2^-17) - scheduled)); "
+                         "start = scheduled(0) = add(0.5, observe.start); scheduled += period per callback; "
                          "a callback observes every frame with clock <= scheduled\",\n"
-                       : "scheduled += 0.02 per callback\",\n")
+                       : "    \"library_clock\": \"sub(1000, sub(add(start, 1000), scheduled)); "
+                         "scheduled += 0.02 per callback\",\n")
                 << "    \"arithmetic\": \"wc3::sf retail soft-float\"\n  }";
         } else if (p.heading.enabled) {
             const auto& h = p.heading;

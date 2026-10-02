@@ -58,8 +58,10 @@ in `run_scheduled` in [Cases.cpp](../tools/wc3test/Cases.cpp):
   is scheduled at `s(0) = add(0.5, start)`, then `s(k) = add(s(k-1), period)`.
 - A callback runs after every 5 ms frame with `c(n) <= s(k)` (a tie runs the frame
   first). It records samples, then its actions in file order, then STATE.
-- TICK is `sub(1000, sub(add(s(0), 1000), s(k)))`; `c10_9` is
-  `sub(10, sub(add(0.5, 10), s(k)))`.
+- TICK uses MOV-0014's confirmed Q17 clock: `sub(1000, ⌊1000 + ⌊s(0)⌋₂₋₁₇ − s(k)⌋)`.
+  The timer start is rounded down to 2⁻¹⁷ s, and the exact remaining time down to
+  float32. At the 0.5 s bootstrap this equals `sub(1000, sub(add(s(0), 1000), s(k)))`.
+  `c10_9` is `sub(10, sub(add(0.5, 10), s(k)))`.
 - Identity: `observation_phase` is `scheduled-sampler-time`, with `sample_period_us`,
   `sampler_start_us` and `state_lag_us: null`.
 
@@ -67,5 +69,5 @@ The ten v1 scenarios, rewritten as version 2, give the same v4 samples, actions 
 reported times as the v1 path ([test_mov0013.py](../tools/test_mov0013.py)). Every
 v1 suite's payloads are unchanged
 ([runner-before-after.json](../results/mov-0013/runner-before-after.json)). The rule
-is not WC3's in every case: MOV-0013 records where it differs. Those differences are
-gated as observed, not modelled.
+is not WC3's in every case: MOV-0013 and [MOV-0014](mov-0014.md) record where frames
+differ. Those differences are gated as observed, not modelled.

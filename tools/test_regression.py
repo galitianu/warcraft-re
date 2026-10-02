@@ -10,7 +10,7 @@ import unittest
 from compare_traces import actions, compare_suite, samples
 from regression import assess
 from run_ci import execute, repeatability
-from trace_contract import BUILD, ROOT, counts, load, write_json
+from trace_contract import BUILD, ROOT, SCENARIOS, counts, load, write_json
 
 RUNNER = Path(os.environ.get('WC3TEST_RUNNER', ROOT / 'build' /
               ('wc3test.exe' if os.name == 'nt' else 'wc3test')))
@@ -24,8 +24,8 @@ class RegressionControls(unittest.TestCase):
         cls.addClassCleanup(cls.temp.cleanup)
         cls.root = Path(cls.temp.name)
         cls.base = cls.root / 'baseline'
-        subprocess.run([str(RUNNER), '--out', str(cls.base), '--model', 'v2'],
-                       check=True, capture_output=True, timeout=60)
+        subprocess.run([str(RUNNER), *SCENARIOS, '--out', str(cls.base), '--model', 'v2'],
+                       cwd=ROOT, check=True, capture_output=True, timeout=60)
         cls.baseline = compare_suite(FIXTURES, cls.base)
 
     def changed(self, case, mutation):
@@ -46,7 +46,8 @@ class RegressionControls(unittest.TestCase):
         self.assertEqual(report['changes'], [])
         # Current primary independently requires ten passes, under the same policy.
         with tempfile.TemporaryDirectory() as temp:
-            subprocess.run([str(RUNNER), '--out', temp, '--model', 'v4'], check=True, capture_output=True, timeout=60)
+            subprocess.run([str(RUNNER), *SCENARIOS, '--out', temp, '--model', 'v4'], cwd=ROOT, check=True,
+                           capture_output=True, timeout=60)
             suite = compare_suite(FIXTURES, Path(temp))
             report = assess(load(ROOT / 'results/footman-v4/comparison.json'), suite)
             self.assertEqual((report['regression_verdict'], report['compatibility_passes']), ('PASS', 10))

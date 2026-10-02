@@ -12,7 +12,7 @@ import tempfile
 
 from compare_movement import format_first
 from compare_traces import actions, compare_suite, markdown, samples
-from trace_contract import BUILD, ROOT, load, sha256, write_json
+from trace_contract import BUILD, ROOT, SCENARIOS, load, sha256, write_json
 
 PROPERTIES = ('x', 'y', 'facing', 'order', 't')
 
@@ -56,8 +56,8 @@ def behaviour(trace):
 
 
 def run_model(runner, dest, model, phase):
-    subprocess.run([str(runner), '--out', str(dest), '--model', model, '--phase', phase, '--seed', '1'],
-                   check=True, stdout=subprocess.DEVNULL)
+    subprocess.run([str(runner), *SCENARIOS, '--out', str(Path(dest).resolve()), '--model', model,
+                    '--phase', phase, '--seed', '1'], cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
 
 
 def property_summary(case):

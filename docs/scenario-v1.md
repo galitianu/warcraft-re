@@ -150,8 +150,10 @@ scenario semantics. A C++ seed does not establish retail RNG equivalence.
 ## Identity in run artifacts
 
 `wc3test --scenario FILE_OR_DIR` (repeatable; a directory means its `*.yaml`
-files sorted by name) writes the same files as the hard-coded runner. Additive
-metadata, outside the observation payload:
+files sorted by name) is required; scenarios are the runner's only input. The
+hard-coded MOV-0001..0010 control was removed after the committed scenarios
+reproduced it on the PR and main push ([phase-5-scenarios.md](phase-5-scenarios.md)).
+Additive metadata, outside the observation payload:
 
 - `identity.json` and each trace's `identity.build` list the run's cases from
   the scenarios, plus `scenarios: [{experiment, map_revision, path, sha256}]`;
@@ -160,4 +162,4 @@ metadata, outside the observation payload:
 
 The SHA-256 identifies a scenario; editing even a comment changes it. Observation
 payload hashes (scenario/units/time/records/completion) are unaffected by this
-metadata, which is how migrated and hard-coded runs are compared.
+metadata, which is how the migration was compared with the hard-coded control.

@@ -41,7 +41,7 @@ Start with:
   workflow matrix and artifact interpretation.
 - [Scenario v1](docs/scenario-v1.md) and [Phase 5 results](docs/phase-5-scenarios.md):
   versioned YAML descriptions of MOV-0001–MOV-0010 ([scenarios/](scenarios/)) drive
-  the C++ runner with payloads identical to the hard-coded cases.
+  the C++ runner, its only input; they reproduced the retired hard-coded cases byte for byte.
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
@@ -66,7 +66,7 @@ python3 -m unittest discover -s tools -p 'test_*.py' -v
 python3 tools/run_phase3.py --runner build/wc3test --out build/phase3 --reports build/phase3-reports
 python3 tools/run_footman_v3.py --runner build/wc3test --out build/issue6 --reports build/footman-v3
 python3 tools/run_footman_v4.py --runner build/wc3test --states build/wc3states --out build/v4 --reports build/footman-v4
-build/wc3test --model v4 --scenario scenarios --out build/scenario-v4   # Phase 5 scenarios
+build/wc3test --model v4 --scenario scenarios --out build/scenario-v4   # direct run
 ```
 
 Use GitHub issues for concrete work and `PROGRESS.md` for the concise status. Keep

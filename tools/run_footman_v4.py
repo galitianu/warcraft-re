@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """footman-v4 evidence: canonical, exact-text and state-capture comparisons with WC3.
 
-Runs tools/wc3test --model v4 twice in separate processes (bytes must match),
+Runs tools/wc3test --model v4 on the committed scenarios twice in separate processes (bytes must match),
 grades it with the unchanged Phase 3 comparator, compares the R2SW_6 text of
 every fixture value (compare_exact.py) and the state of every retained
 JASS-0001/MOV-0012 run (compare_states.py). Returns 0 when everything is identical
@@ -16,7 +16,7 @@ import tempfile
 import compare_exact
 import compare_states
 from compare_traces import compare_suite, markdown
-from trace_contract import BUILD, ROOT, sha256, write_json
+from trace_contract import BUILD, ROOT, SCENARIOS, sha256, write_json
 
 # Known, unexplained sampling-order differences (docs/footman-v4-results.md): every
 # 1 ms run reads frame k / 5 at these callbacks, and these 10/25 ms callbacks read the
@@ -35,8 +35,8 @@ def known(run):
 
 
 def run_model(runner, dest):
-    subprocess.run([str(runner), '--out', str(dest), '--model', 'v4', '--seed', '1'],
-                   check=True, stdout=subprocess.DEVNULL, timeout=60)
+    subprocess.run([str(runner), *SCENARIOS, '--out', str(Path(dest).resolve()), '--model', 'v4', '--seed', '1'],
+                   cwd=ROOT, check=True, stdout=subprocess.DEVNULL, timeout=60)
 
 
 def exact_markdown(report):

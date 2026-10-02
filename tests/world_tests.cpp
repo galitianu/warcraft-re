@@ -1,16 +1,33 @@
+// World invariants. Usage: world_tests SCENARIO_DIR (the committed scenarios/).
 #include "Cases.h"
 #include <cmath>
+#include <filesystem>
+#include <fstream>
+#include <iomanip>
 #include <iostream>
+#include <sstream>
 #include <stdexcept>
+#include <string>
 #include <utility>
 
 namespace {
 void check(bool condition, const char* message) {
     if (!condition) throw std::runtime_error(message);
 }
+scenario::Scenario load(const std::filesystem::path& directory, int number) {
+    std::ostringstream name;
+    name << "MOV-" << std::setw(4) << std::setfill('0') << number << ".yaml";
+    std::ifstream file(directory / name.str(), std::ios::binary);
+    std::ostringstream bytes;
+    bytes << file.rdbuf();
+    if (!file) throw std::runtime_error("cannot read " + name.str());
+    return scenario::parse(bytes.str());
 }
-int main() {
+}
+int main(int argc, char** argv) {
     try {
+        check(argc == 2, "usage: world_tests SCENARIO_DIR");
+        const std::filesystem::path scenarios(argv[1]);
         wc3::Random a(12345), b(12345), c(54321);
         bool distinct = false;
         for (int i = 0; i < 10000; ++i) {
@@ -39,8 +56,9 @@ int main() {
             }
             check(world.random().next() == unused.next(), "stationary simulation consumed RNG");
             for (int number = 1; number <= 10; ++number) {
-                const auto first = movement::run(number, version, 13);
-                const auto second = movement::run(number, version, 13);
+                const auto description = load(scenarios, number);
+                const auto first = movement::run(description, version, 13);
+                const auto second = movement::run(description, version, 13);
                 check(movement::samples_csv(first) == movement::samples_csv(second),
                       "repeated sample bytes differ");
                 check(movement::actions_csv(first) == movement::actions_csv(second),
@@ -138,9 +156,9 @@ int main() {
             while (world.steps() < 1060) world.step();
             check(world.unit(id).position().y == -155.0f / 4096, "footman-v4 MOV-0002 callback 53");
             // The library clock: MOV-0004 callback 503 reads 10.059937, not 10.06.
-            const auto trace = movement::run(4, wc3::ModelVersion::v4);
+            const auto trace = movement::run(load(scenarios, 4), wc3::ModelVersion::v4);
             check(trace.reported_time.at(503) == sf::value(0x4120f580), "footman-v4 library clock");
-            check(movement::run(1, wc3::ModelVersion::v3).reported_time.empty(),
+            check(movement::run(load(scenarios, 1), wc3::ModelVersion::v3).reported_time.empty(),
                   "only footman-v4 models the library clock");
         }
         std::cout << "RNG, stationary state, repeated ten-case bytes (four models), "

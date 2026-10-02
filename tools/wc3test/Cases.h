@@ -44,16 +44,10 @@ struct CaseIdentity {
     std::string map_revision;
     int callbacks;
 };
-CaseIdentity case_identity(int number);
-int case_callbacks(int number);
-std::size_t case_units(int number);
-Trace run(int case_number, wc3::ModelVersion version, std::uint32_t seed = 1,
-          bool before_due_update = false);
-// The same schedule driven by a validated scenario description (docs/scenario-v1.md).
+// Runs a validated scenario description (docs/scenario-v1.md) on the World API.
 // Throws std::invalid_argument for schedules this runner cannot represent.
 Trace run(const scenario::Scenario& description, wc3::ModelVersion version, std::uint32_t seed = 1,
           bool before_due_update = false);
 std::string samples_csv(const Trace& trace);
 std::string actions_csv(const Trace& trace);
-std::string case_name(int number);
 }

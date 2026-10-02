@@ -71,7 +71,8 @@ must contain the trace's own experiment, be unique and self-consistent, and ever
 retained MOV entry keeps its independent shape. A scenario-driven run adds
 `build.scenarios` (`experiment`, `map_revision`, `path`, `sha256`, aligned with
 `cases`) and per-trace `provenance.scenario` (`schema`, `version`, `path`,
-`sha256`), which must appear in that list. Hard-coded C++ provenance stays `{}`.
+`sha256`), which must appear in that list. Retained traces from the retired
+hard-coded runner have provenance `{}`; current C++ runs always carry a scenario.
 These fields are metadata outside the observation payload. Scenario input
 validation is separate: [scenario-v1.md](scenario-v1.md).
 

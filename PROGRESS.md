@@ -178,7 +178,7 @@ That justifies extraction for the MOV-0001–0010 scope only.
 `wc3test --scenario` parses a strict, dependency-free YAML subset in C++. It
 validates everything before writing anything, maps the declarations onto the
 unchanged World API, and records each scenario's SHA-256 as provenance outside
-the observation payload. The hard-coded cases stay as the migration control.
+the observation payload. The hard-coded cases were the migration control.
 
 All ten scenarios reproduce the hard-coded payloads and CSV bytes for every
 model and phase: 80 runs in CTest, and five suites in CI. v4 is 10/10 PASS from
@@ -193,6 +193,9 @@ EQUIVALENT ([evidence](results/phase-5/pr-verification.md)). The first PR run's
 Windows-only test newline failure is retained. PR #13 merged as `b40fe1b`; its
 [main-push run 36982554457](https://github.com/galitianu/warcraft-re/actions/runs/36982554457)
 passes the same gates ([evidence](results/phase-5/main-verification.md)).
+With equivalence shown on both triggers, the hard-coded control was then removed:
+`wc3test` requires `--scenario`, and every CI suite runs the committed scenarios
+([control removed](docs/phase-5-scenarios.md#control-removed)).
 
 ## Next task: Phase 6 — generate oracle maps from scenarios
 

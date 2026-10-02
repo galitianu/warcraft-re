@@ -8,6 +8,7 @@ import subprocess
 
 from compare_movement import REFERENCE_BUILD, ROOT, compare_suite, format_first, markdown, sha256
 from oracle_parse import parse
+from trace_contract import SCENARIOS
 
 
 def write_json(path, value):
@@ -65,8 +66,8 @@ def main():
         out = args.out / name
         report_dir = args.reports / name
         report_dir.mkdir(parents=True, exist_ok=True)
-        subprocess.run([str(runner), "--out", str(out), "--model", model,
-                        "--phase", phase, "--seed", "1"], check=True)
+        subprocess.run([str(runner), *SCENARIOS, "--out", str(out.resolve()), "--model", model,
+                        "--phase", phase, "--seed", "1"], cwd=ROOT, check=True)
         report = compare_suite(reference, out)
         reports[name] = report
         write_json(report_dir / "comparison.json", report)

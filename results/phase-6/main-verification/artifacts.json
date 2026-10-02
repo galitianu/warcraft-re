@@ -1,0 +1,60 @@
+{
+  "run": {
+    "conclusion": "success",
+    "createdAt": "2026-10-02T12:51:28Z",
+    "event": "push",
+    "headSha": "4af616eae354b15fbdc0ab94be5f24ec5fe40120",
+    "url": "https://github.com/galitianu/warcraft-re/actions/runs/37009239543"
+  },
+  "artifacts": [
+    {
+      "id": 11227480670,
+      "name": "compatibility-linux-clang-debug",
+      "digest": "sha256:fde0c8e15111edbfa540d4aa009071e3cfa0a7c01351b75626e18f5aeb3ac276",
+      "size_in_bytes": 2026747,
+      "expired": false,
+      "created_at": "2026-10-02T12:52:16Z"
+    },
+    {
+      "id": 11227450846,
+      "name": "compatibility-linux-gcc-release",
+      "digest": "sha256:e1f51553145abbb7f31915dc7a8929bfe4ee40bc981e6dad56b5af2e56a7af56",
+      "size_in_bytes": 2026928,
+      "expired": false,
+      "created_at": "2026-10-02T12:52:06Z"
+    },
+    {
+      "id": 11227171986,
+      "name": "compatibility-mac-arm-release",
+      "digest": "sha256:143d17a248c7736056cfe17e347be8bd25718e3af46622b09872bac4e33e3206",
+      "size_in_bytes": 2872808,
+      "expired": false,
+      "created_at": "2026-10-02T12:52:05Z"
+    },
+    {
+      "id": 11226833139,
+      "name": "compatibility-windows-msvc-release",
+      "digest": "sha256:f628dccce117799a1613c88b68e3f010a5a394ce4745f332b37d53e698ed980a",
+      "size_in_bytes": 2027817,
+      "expired": false,
+      "created_at": "2026-10-02T12:52:46Z"
+    },
+    {
+      "id": 11226633547,
+      "name": "build-scope",
+      "digest": "sha256:61c0d0ab2cd7fffd7ed28c2628ec3ecc34b86af7b8ac7e436b085c3b6d578c3e",
+      "size_in_bytes": 19426,
+      "expired": false,
+      "created_at": "2026-10-02T12:53:08Z"
+    },
+    {
+      "id": 11226064646,
+      "name": "compatibility-mac-arm-debug",
+      "digest": "sha256:99775c8d2e045cabf4300ea657916e2a3eeafbcdf60aeeeb28b4329024020281",
+      "size_in_bytes": 2028539,
+      "expired": false,
+      "created_at": "2026-10-02T12:51:58Z"
+    }
+  ],
+  "local_recheck": "python3 tools/summarize_ci.py --artifacts local/phase6-main-artifacts --out results/phase-6/main-verification"
+}

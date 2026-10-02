@@ -51,14 +51,16 @@ Start with:
 
 This repository holds the plan, 24 manually authored and four generated-case WC3 maps with their JASS,
 shared oracle instrumentation, raw captures with identities, parsers and derived
-CSVs, versioned v1 scenarios, and a dependency-free C++20 simulation. Phases 0–5 are
+CSVs, versioned v1 scenarios, and a dependency-free C++20 simulation. Phases 0–6 are
 complete; compatibility
 CI passes on pull requests and main pushes across five measured macOS ARM64, Linux
 x64 and Windows x64 configurations. All 45 Phase 1
 raw runs normalize to 15 versioned canonical fixtures with complete provenance.
 footman-v4 passes all ten movement cases, and every sample and clock prints
 the same six-decimal text as WC3. footman-v1–v3 and their documented failures are
-retained. The v0.0.1 comparison gate is met; no release tag has been created.
+retained. The v0.0.1 comparison and v0.1 oracle infrastructure gates are met;
+no release tag has been created. The next experiment is
+[MOV-0013's sampler start phase](https://github.com/galitianu/warcraft-re/issues/17).
 
 Build and run without a window (CMake, system clang and Python standard library):
 

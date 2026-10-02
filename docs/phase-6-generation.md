@@ -188,8 +188,7 @@ Python 65/65, four generated comparisons and v4 10/10 on every configuration.
 [Downloaded evidence](../results/phase-6/capture-pr-verification/summary.md)
 regrades locally and matches the hosted aggregate report exactly. Golden JASS
 and both generator/C++ scenario inputs are identical across configurations;
-every reviewed historical baseline passes. The Phase 6 main-push gate awaits merging
-[PR #16](https://github.com/galitianu/warcraft-re/pull/16).
+every reviewed historical baseline passes.
 
 Review follow-up: generated capture comparison is now mandatory in ordinary CI
 and downloaded-artifact verification. Removing every capture manifest or fixture
@@ -205,6 +204,16 @@ all five configurations pass CTest 3/3, Python 66/66, generated loop 4/4 and v4
 10/10. [Downloaded artifacts](../results/phase-6/review-pr-verification/summary.md)
 regrade exactly as the hosted aggregate does, and all declare the generated loop
 mandatory. Phase 5's retained main artifacts still recheck with the legacy option.
+
+[PR #16](https://github.com/galitianu/warcraft-re/pull/16) merged as `4af616e`.
+The real [main-push workflow 37009239543](https://github.com/galitianu/warcraft-re/actions/runs/37009239543)
+passes all five configurations and the aggregate job: CTest 3/3, Python 66/66,
+generated loop 4/4 and v4 10/10 on each configuration, with no protected historical
+regression. [Downloaded evidence](../results/phase-6/main-verification/summary.md)
+regrades locally and matches the hosted aggregate exactly. Its recorded push
+identity binds to the merge commit, generated JASS/scenario inputs remain
+identical, and the required capture gates all pass. Phase 6 and the v0.1 oracle
+infrastructure gate are complete; no release tag is created.
 
 Sampling order, retail simulation quantum, RNG/seed effects, other machines,
 JASS literal conversion at untested values, and near-boundary clamping remain

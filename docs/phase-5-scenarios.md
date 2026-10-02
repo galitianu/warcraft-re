@@ -184,8 +184,12 @@ v1 rejects carriage returns by design. Every other Windows stage passed,
 including all five migrations. The test was fixed to write LF; the parser was not
 relaxed.
 
-The **main-push** workflow can only run after merge, so it is not yet verified.
-Record it then, as Phase 4 did.
+PR #13 merged as `b40fe1b`.
+[Main-push run 36982554457](https://github.com/galitianu/warcraft-re/actions/runs/36982554457)
+passes all five configurations and the aggregate job on that clean merge commit
+([evidence](../results/phase-5/main-verification.md)). Its numbers match the PR run:
+CTest 3/3, Python 56/56, v4 10/10 both hard-coded and from scenarios, and every
+migration EQUIVALENT. The downloaded artifacts recheck identically.
 
 ## Scope and what remains unobserved
 

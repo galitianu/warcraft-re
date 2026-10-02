@@ -47,8 +47,8 @@ Start with:
 
 This repository holds the plan, 24 manually authored WC3 maps with their JASS,
 shared oracle instrumentation, raw captures with identities, parsers and derived
-CSVs, versioned v1 scenarios, and a dependency-free C++20 simulation. Phases 0–4 are
-complete and Phase 5's scenario extraction is in review; compatibility
+CSVs, versioned v1 scenarios, and a dependency-free C++20 simulation. Phases 0–5 are
+complete; compatibility
 CI passes on pull requests and main pushes across five measured macOS ARM64, Linux
 x64 and Windows x64 configurations. All 45 Phase 1
 raw runs normalize to 15 versioned canonical fixtures with complete provenance.

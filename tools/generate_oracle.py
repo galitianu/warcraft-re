@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate deterministic case JASS with the same v1 parser as wc3test.
+"""Generate deterministic case JASS with the same v1/v2 parser as wc3test.
 
 No captures, fixtures or C++ trace output are read. World Editor packages the map
 separately; check_map.py verifies the saved map before capture.
@@ -40,14 +40,19 @@ def generate(codegen, paths, revision=None):
         if not begin:
             raise ValueError('generator output missing BEGIN')
         experiment, label = (p.decode('ascii') for p in begin.groups())
+        declared = re.search(rb'\|scenario_version=([12])[|"]', text)
+        if not declared:
+            raise ValueError('generator output missing SETUP scenario version')
+        version = int(declared[1])
         if label in result or experiment in [i['experiment'] for i in inputs]:
             raise ValueError('duplicate scenario experiment/revision')
         result[label + '.j'] = text
         import hashlib
         inputs.append(dict(experiment=experiment, map_revision=label,
-                           scenario=dict(path=path.as_posix(), sha256=sha256(path), version=1),
+                           scenario=dict(path=path.as_posix(), sha256=sha256(path), version=version),
                            case=dict(file=label + '.j', sha256=hashlib.sha256(text).hexdigest())))
-    return result, dict(generator='oracle_codegen-v1', template=template['template'],
+    generator = 'oracle_codegen-v2' if any(i['scenario']['version'] == 2 for i in inputs) else 'oracle_codegen-v1'
+    return result, dict(generator=generator, template=template['template'],
                         template_bounds_sha256=sha256(BOUNDS),
                         sources={name: sha256(ROOT / name) for name in (
                             'tools/oracle_codegen/main.cpp', 'tools/wc3test/Scenario.cpp',

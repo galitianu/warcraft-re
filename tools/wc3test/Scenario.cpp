@@ -350,11 +350,13 @@ Scenario parse(std::string_view text) {
     if (!schema || word(*schema, "schema") != "wc3-scenario")
         fail(schema ? schema->line : root.line, "not a wc3-scenario document");
     if (!version) fail(root.line, "missing field 'version'");
-    if (integer(*version, "version", 0, 999999) != 1)
-        fail(version->line, "unsupported scenario version " + version->text + "; this runner reads version 1");
+    const long declared = integer(*version, "version", 0, 999999);
+    if (declared != 1 && declared != 2)
+        fail(version->line, "unsupported scenario version " + version->text + "; this runner reads versions 1 and 2");
     fields(root, {"schema", "version", "experiment", "map_revision", "units", "observe", "actions"}, {}, "scenario");
 
     Scenario s;
+    s.version = static_cast<int>(declared);
     const Node& experiment = get(root, "experiment");
     s.experiment = word(experiment, "experiment");
     const auto dash = s.experiment.find('-');
@@ -401,7 +403,8 @@ Scenario parse(std::string_view text) {
     }
 
     const Node& observe = get(root, "observe");
-    fields(observe, {"period", "callbacks", "properties"}, {}, "observe");
+    if (s.version == 1) fields(observe, {"period", "callbacks", "properties"}, {}, "observe");
+    else fields(observe, {"period", "callbacks", "properties"}, {"start", "state_clock"}, "observe");
     const Node& period = get(observe, "period");
     s.period_us = microseconds(period, "period");
     s.period_text = period.text;
@@ -413,6 +416,18 @@ Scenario parse(std::string_view text) {
     for (const auto& property : properties.items) names.push_back(word(property, "property"));
     if (names != std::vector<std::string>{"x", "y", "facing", "order"})
         fail(properties.line, "v1 observes exactly [x, \"y\", facing, order] for every unit, in that order");
+    if (const Node* start = find(observe, "start")) {
+        s.start_us = microseconds(*start, "start");
+        s.start_text = start->text;
+        if (s.start_us > 1000000) fail(start->line, "start must be in [0, 1] seconds");
+    }
+    if (const Node* clock = find(observe, "state_clock")) {
+        // Only the demonstrated MOV-0012 clock: its 1e-6 s resolution and event key c10_9.
+        s.state_clock = static_cast<int>(integer(*clock, "state_clock", 10, 10));
+        if (s.units.size() != 1) fail(clock->line, "state_clock records one unit; declare exactly one");
+        if (s.start_us + s.period_us * static_cast<std::uint64_t>(s.callbacks) >= 10000000)
+            fail(clock->line, "the 10 s state clock must outlast the start delay and every callback");
+    }
 
     const Node& actions = get(root, "actions");
     expect(actions, Node::Kind::sequence, "actions");

@@ -49,10 +49,13 @@ Start with:
 - [MOV-0013](docs/mov-0013.md) and [scenario v2](docs/scenario-v2.md): four generated
   maps move the 1 ms sampler's start and the order. The remaining frame exceptions
   follow the sampler's own callbacks; the delayed library clock is a new mismatch.
+- [MOV-0014](docs/mov-0014.md): three more generated maps test MOV-0013's post-hoc
+  readings against pre-registered predictions. The 2⁻¹⁷ s timer start is confirmed
+  and adopted; no frame rule survives, and a lag-in-seconds candidate remains.
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
-This repository holds the plan, 24 manually authored and eight generated-case WC3 maps with their JASS,
+This repository holds the plan, 24 manually authored and eleven generated-case WC3 maps with their JASS,
 shared oracle instrumentation, raw captures with identities, parsers and derived
 CSVs, versioned v1/v2 scenarios, and a dependency-free C++20 simulation. Phases 0–6 are
 complete; compatibility

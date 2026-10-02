@@ -74,9 +74,11 @@ field. The other four are the canonical JASS-0001 p010/p020/p025/p050 traces (R2
 | 10 ms, 25 ms | Callback k reads frame t/5 after its update | p010 callbacks 352–379 (every third) and p025 64–148 (every sixth) read X/Y of that frame but the facing from before its update |
 
 [MOV-0013](mov-0013.md) moved the sampler start and the order separately. The 1 ms
-exceptions follow the sampler's own callbacks 15–35 (lag 3–7 float32 ulps before a
-frame), not the order, the update grid or absolute time. Their mechanism, and the
-10/25 ms facing cases, are still **not explained**. Comparing each sampler's float32 scheduled time
+exceptions follow the sampler, not the order, the update grid or absolute time.
+[MOV-0014](mov-0014.md) then refuted the callback-index reading. Every exception so
+far is a callback less than 8 × 2⁻²⁴ s before a frame, and it shows that frame's X/Y.
+At an update frame, though, it shows the facing from before the update, as in the
+10/25 ms cases. This is a post-hoc candidate; the mechanism is still **not explained**. Comparing each sampler's float32 scheduled time
 with the modelled frame clock reproduces the 1 ms rule except at exactly those five
 callbacks. One candidate, not implemented, covers the 10/25 ms
 cases. It treats the unit update as a 30 ms event, `u += 0.03f` from 0.51 s,

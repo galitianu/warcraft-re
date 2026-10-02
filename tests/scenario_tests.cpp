@@ -215,8 +215,9 @@ int main(int argc, char** argv) {
         }
         check(compared >= 80, "expected at least the ten committed MOV scenarios");
 
-        // Scenario v2 (docs/scenario-v2.md): MOV-0013's start and STATE event, v4/after only.
-        for (const auto& entry : std::filesystem::directory_iterator(directory / "MOV-0013")) {
+        // Scenario v2 (docs/scenario-v2.md): MOV-0013/0014's start and STATE event, v4/after only.
+        for (const auto* experiment : {"MOV-0013", "MOV-0014"})
+        for (const auto& entry : std::filesystem::directory_iterator(directory / experiment)) {
             const auto description = scenario::parse(read(entry.path()));
             check(description.version == 2 && description.state_clock == 10 && description.period_us == 1000,
                   entry.path().stem().string() + " v2 fields");

@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "checker": {
+    "source": "https://github.com/lep/pjass",
+    "revision": "378a1ca9af3848fbc3be3d17069bcdb6a940ee32",
+    "binary_sha256": "54849abe467d619f19b9115a9a697b1916798461612241c6f961a88543858742"
+  },
+  "scripts": {
+    "local/War3.mpq-common.j": "3c21e998bf80d1e04718bd3f2ee7ef2bf1b83359e5b303a56cf59cd61a2afdcd",
+    "local/War3.mpq-Blizzard.j": "7ca28f0ce47712a9ab6832c22bb0d0c9d2844b5831fb465b9d792731a3d5243e",
+    "oracle/jass/lib/oracle-v1.j": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca"
+  },
+  "checks": [
+    {
+      "case": "oracle/generated/maps/MOV-0015-a.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      197 lines: local/mov0015-syntax.j\nParse successful:    12991 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "8bd64c61f4c4573ab870752a020b0a78c9f9f9089014265556ecff3f867023ce"
+    },
+    {
+      "case": "oracle/generated/maps/MOV-0015-b.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      197 lines: local/mov0015-syntax.j\nParse successful:    12991 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "c2a7a1af6a5fd7bcf5984e3991555bfdae920a025c524e17848f3ca3b27bd1a5"
+    },
+    {
+      "case": "oracle/generated/maps/MOV-0015-c.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      197 lines: local/mov0015-syntax.j\nParse successful:    12991 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "168ea8a91ee46679001839b952fcdecae0e8264cb87e19ed8564ea5cb1908abc"
+    },
+    {
+      "case": "oracle/generated/maps/MOV-0015-d.j",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      197 lines: local/mov0015-syntax.j\nParse successful:    12991 lines: <total>\n",
+      "stderr": "",
+      "case_sha256": "3b5258d2e87a3e0daa91b9a52c21fa366268e03dea80b5c98b21df9cd23dc467"
+    }
+  ],
+  "input": "4 stub-global lines of local/phase6-syntax.j + oracle-v1 + \"\\n\" + case"
+}

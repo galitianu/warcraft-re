@@ -1,0 +1,3817 @@
+{
+  "status": "PASS",
+  "comparisons": 20,
+  "cases": [
+    {
+      "configuration": "mac-arm-release",
+      "map_revision": "MOV-0002-g3",
+      "candidate_sha256": "634b3a161438b98c1edc0d286a4be4bc56e4ee53c32770f0ff8f3d07ae6865ee",
+      "downloaded_cpp_sha256": "0524e414b239eb30b95a954b9061b6ba1c31a25b440fe8b4da21acadb4ebe0a4",
+      "comparison": {
+        "case": "MOV-0002",
+        "map_revision": "MOV-0002-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 760,
+        "actual_records": 759,
+        "reference_samples": 502,
+        "actual_samples": 502,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.2499999999665556e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.7499999671599653e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "mac-arm-debug",
+      "map_revision": "MOV-0002-g3",
+      "candidate_sha256": "634b3a161438b98c1edc0d286a4be4bc56e4ee53c32770f0ff8f3d07ae6865ee",
+      "downloaded_cpp_sha256": "3ea946d2628fca05e718b3c32176a08bed56c39b11ca54677ecf40d775ab0642",
+      "comparison": {
+        "case": "MOV-0002",
+        "map_revision": "MOV-0002-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 760,
+        "actual_records": 759,
+        "reference_samples": 502,
+        "actual_samples": 502,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.2499999999665556e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.7499999671599653e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "linux-gcc-release",
+      "map_revision": "MOV-0002-g3",
+      "candidate_sha256": "634b3a161438b98c1edc0d286a4be4bc56e4ee53c32770f0ff8f3d07ae6865ee",
+      "downloaded_cpp_sha256": "38d54f540b9bb331cf0bc0823d52edf8a36d4cfeb68d2d00a526d0c2d3d3b604",
+      "comparison": {
+        "case": "MOV-0002",
+        "map_revision": "MOV-0002-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 760,
+        "actual_records": 759,
+        "reference_samples": 502,
+        "actual_samples": 502,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.2499999999665556e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.7499999671599653e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "linux-clang-debug",
+      "map_revision": "MOV-0002-g3",
+      "candidate_sha256": "634b3a161438b98c1edc0d286a4be4bc56e4ee53c32770f0ff8f3d07ae6865ee",
+      "downloaded_cpp_sha256": "8bb568271ffeedecb42ee8fba5f21453bc98d5252e440d2f53765e8b70bff5c0",
+      "comparison": {
+        "case": "MOV-0002",
+        "map_revision": "MOV-0002-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 760,
+        "actual_records": 759,
+        "reference_samples": 502,
+        "actual_samples": 502,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.2499999999665556e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.7499999671599653e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "windows-msvc-release",
+      "map_revision": "MOV-0002-g3",
+      "candidate_sha256": "634b3a161438b98c1edc0d286a4be4bc56e4ee53c32770f0ff8f3d07ae6865ee",
+      "downloaded_cpp_sha256": "193ecf8b7e83fa857e23febf69cf459fce9f7142a4747adf9fbf3ffc7a4ab0e7",
+      "comparison": {
+        "case": "MOV-0002",
+        "map_revision": "MOV-0002-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 760,
+        "actual_records": 759,
+        "reference_samples": 502,
+        "actual_samples": 502,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.2499999999665556e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.7499999671599653e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "mac-arm-release",
+      "map_revision": "MOV-0004-g3",
+      "candidate_sha256": "3180534e1053e8dab487acca53238c7c67ef655ee7781390f6325a9d02ab3912",
+      "downloaded_cpp_sha256": "bc4a3d62caa9fb9a8be394b760159d143e17e432a2dbd55e0723046522a40071",
+      "comparison": {
+        "case": "MOV-0004",
+        "map_revision": "MOV-0004-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1208,
+        "actual_records": 1207,
+        "reference_samples": 601,
+        "actual_samples": 601,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 3.124999999985778e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 4.885000066678913e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.885000066678913e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "mac-arm-debug",
+      "map_revision": "MOV-0004-g3",
+      "candidate_sha256": "3180534e1053e8dab487acca53238c7c67ef655ee7781390f6325a9d02ab3912",
+      "downloaded_cpp_sha256": "e3a7114748309a0a1a8139bf264ee729277fb26e460dda2006a5fae698ffb6e5",
+      "comparison": {
+        "case": "MOV-0004",
+        "map_revision": "MOV-0004-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1208,
+        "actual_records": 1207,
+        "reference_samples": 601,
+        "actual_samples": 601,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 3.124999999985778e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 4.885000066678913e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.885000066678913e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "linux-gcc-release",
+      "map_revision": "MOV-0004-g3",
+      "candidate_sha256": "3180534e1053e8dab487acca53238c7c67ef655ee7781390f6325a9d02ab3912",
+      "downloaded_cpp_sha256": "d631f9166f523d5266fd3dc5d3d5ad7cf2e3d46212cd37ff45547a27d935548a",
+      "comparison": {
+        "case": "MOV-0004",
+        "map_revision": "MOV-0004-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1208,
+        "actual_records": 1207,
+        "reference_samples": 601,
+        "actual_samples": 601,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 3.124999999985778e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 4.885000066678913e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.885000066678913e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "linux-clang-debug",
+      "map_revision": "MOV-0004-g3",
+      "candidate_sha256": "3180534e1053e8dab487acca53238c7c67ef655ee7781390f6325a9d02ab3912",
+      "downloaded_cpp_sha256": "990eb545e0a9d9045ed4ceac9092ff62006d08217c707b5e8738b50360406c52",
+      "comparison": {
+        "case": "MOV-0004",
+        "map_revision": "MOV-0004-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1208,
+        "actual_records": 1207,
+        "reference_samples": 601,
+        "actual_samples": 601,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 3.124999999985778e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 4.885000066678913e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.885000066678913e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "windows-msvc-release",
+      "map_revision": "MOV-0004-g3",
+      "candidate_sha256": "3180534e1053e8dab487acca53238c7c67ef655ee7781390f6325a9d02ab3912",
+      "downloaded_cpp_sha256": "53b0bcdfaae5a852ec580ed7dbc2d2d6399860acda3bef296fc86ddc8b78d18f",
+      "comparison": {
+        "case": "MOV-0004",
+        "map_revision": "MOV-0004-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1208,
+        "actual_records": 1207,
+        "reference_samples": 601,
+        "actual_samples": 601,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 3.124999999985778e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 4.885000066678913e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.885000066678913e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "mac-arm-release",
+      "map_revision": "MOV-0006-g3",
+      "candidate_sha256": "95a0be8b9598309aedced47e13a720136fc20657b39fc57864a084835bb70206",
+      "downloaded_cpp_sha256": "5bd89a2e8afb2b45cd10263d62335e953cbc24943b89a2c41d2e2b2c1b8969eb",
+      "comparison": {
+        "case": "MOV-0006",
+        "map_revision": "MOV-0006-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 9.999999974752427e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.999999987376214e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.999999987376214e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -1.9999998812636477e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "mac-arm-debug",
+      "map_revision": "MOV-0006-g3",
+      "candidate_sha256": "95a0be8b9598309aedced47e13a720136fc20657b39fc57864a084835bb70206",
+      "downloaded_cpp_sha256": "26cf72d2538a4bc6ded43ac31cce4e15d1c772865a709f3beef589cb0758545f",
+      "comparison": {
+        "case": "MOV-0006",
+        "map_revision": "MOV-0006-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 9.999999974752427e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.999999987376214e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.999999987376214e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -1.9999998812636477e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "linux-gcc-release",
+      "map_revision": "MOV-0006-g3",
+      "candidate_sha256": "95a0be8b9598309aedced47e13a720136fc20657b39fc57864a084835bb70206",
+      "downloaded_cpp_sha256": "9b00e45d11f345e0a78be9f3c46b105db465cd283795e2ed35dea4a7723210f4",
+      "comparison": {
+        "case": "MOV-0006",
+        "map_revision": "MOV-0006-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 9.999999974752427e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.999999987376214e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.999999987376214e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -1.9999998812636477e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "linux-clang-debug",
+      "map_revision": "MOV-0006-g3",
+      "candidate_sha256": "95a0be8b9598309aedced47e13a720136fc20657b39fc57864a084835bb70206",
+      "downloaded_cpp_sha256": "19b2ac8bb7f92d0833c50576e4961502d74a1ec49511d4d06d1328a8752513ce",
+      "comparison": {
+        "case": "MOV-0006",
+        "map_revision": "MOV-0006-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 9.999999974752427e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.999999987376214e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.999999987376214e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -1.9999998812636477e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "windows-msvc-release",
+      "map_revision": "MOV-0006-g3",
+      "candidate_sha256": "95a0be8b9598309aedced47e13a720136fc20657b39fc57864a084835bb70206",
+      "downloaded_cpp_sha256": "cf31a43680d6b2b302d8e5c53544f6a744084703e4f4dd172aa2ff9f6680faec",
+      "comparison": {
+        "case": "MOV-0006",
+        "map_revision": "MOV-0006-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 9.999999974752427e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.999999987376214e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.999999987376214e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -1.9999998812636477e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "mac-arm-release",
+      "map_revision": "MOV-0010-g3",
+      "candidate_sha256": "9890e1aae61c413d38a88f5f4d1ee7e2fc7a76cf859f2187f8d4d50be9fee09e",
+      "downloaded_cpp_sha256": "069efbdb757f3aefbfdfccd357df16754122bacc483dbbfa41ee69d14369d29f",
+      "comparison": {
+        "case": "MOV-0010",
+        "map_revision": "MOV-0010-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000058430487e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.594000000002595e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -9.600000794307562e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "mac-arm-debug",
+      "map_revision": "MOV-0010-g3",
+      "candidate_sha256": "9890e1aae61c413d38a88f5f4d1ee7e2fc7a76cf859f2187f8d4d50be9fee09e",
+      "downloaded_cpp_sha256": "035ebf655ad951172964d10f98c63538bb356cdb00747d56937d1b64c353c95c",
+      "comparison": {
+        "case": "MOV-0010",
+        "map_revision": "MOV-0010-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000058430487e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.594000000002595e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -9.600000794307562e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "linux-gcc-release",
+      "map_revision": "MOV-0010-g3",
+      "candidate_sha256": "9890e1aae61c413d38a88f5f4d1ee7e2fc7a76cf859f2187f8d4d50be9fee09e",
+      "downloaded_cpp_sha256": "c66fa0d5e2b46eea4d7835ab73c1dd50754e2990afc84a19e1d281d1e35c0c23",
+      "comparison": {
+        "case": "MOV-0010",
+        "map_revision": "MOV-0010-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000058430487e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.594000000002595e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -9.600000794307562e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "linux-clang-debug",
+      "map_revision": "MOV-0010-g3",
+      "candidate_sha256": "9890e1aae61c413d38a88f5f4d1ee7e2fc7a76cf859f2187f8d4d50be9fee09e",
+      "downloaded_cpp_sha256": "7c1134a148ac2158d69b46037697a0e10080b8dab20f96cb9be723e52e1ccfba",
+      "comparison": {
+        "case": "MOV-0010",
+        "map_revision": "MOV-0010-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000058430487e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.594000000002595e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -9.600000794307562e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    },
+    {
+      "configuration": "windows-msvc-release",
+      "map_revision": "MOV-0010-g3",
+      "candidate_sha256": "9890e1aae61c413d38a88f5f4d1ee7e2fc7a76cf859f2187f8d4d50be9fee09e",
+      "downloaded_cpp_sha256": "c6eabcfd62fccbcc6dd224564dd10522d2b3842d28dbb16bc2240f6a16c53e7e",
+      "comparison": {
+        "case": "MOV-0010",
+        "map_revision": "MOV-0010-g3",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000058430487e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.594000000002595e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -9.600000794307562e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        }
+      }
+    }
+  ],
+  "scope": "all four new WC3 candidates against same-scenario downloaded v4 traces on five PR configurations; unchanged tolerances"
+}

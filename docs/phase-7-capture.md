@@ -170,3 +170,14 @@ Native ARM64 Release CI with `--archive` passes on clean commit `cac0a15`: CTest
 Python 83/83, v4 10/10, all five historical baseline assessments, 45 Phase 1 runs and
 15 unchanged canonical fixtures, the Phase 2 archive and existing generation and
 P1 experiment gates. [Native evidence](../results/phase-7/native-verification/result.json).
+
+[PR #25](https://github.com/galitianu/warcraft-re/pull/25)'s
+[workflow 37047975137](https://github.com/galitianu/warcraft-re/actions/runs/37047975137)
+passes all five configurations and the aggregate job. Its downloaded artifacts
+[regrade](../results/phase-7/pr-verification/summary.md) to the identical hosted scope
+report. All [twenty comparisons](../results/phase-7/pr-verification/unattended-comparisons.json)
+of the four new candidates against the five downloaded v4 suites pass. CTest 3/3,
+Python 83/83, v4 10/10 and all existing gates pass per configuration. The
+[initial renewal-test failure](../results/phase-7/initial-pr-failure/explanation.md)
+and its correction are retained separately. Main-push verification requires merge;
+no main-push result is claimed yet.

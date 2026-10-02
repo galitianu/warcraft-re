@@ -292,7 +292,7 @@ class Controller:
         remote_menu = self.push(menu, self.remote_work)
         self.stage('editor-authoring')
         saved_map = self.root / f'oracle-maps/{label}.w3m'
-        we_author.author(self, label, case, saved_map, remote_template, remote_menu)
+        we_author.author(self, label, library, case, saved_map, remote_template, remote_menu)
         self.stage('saved-map-validation')
         checked = check(saved_map, library, case)
         write_json(self.root / 'diagnostics/check-map.json', checked)

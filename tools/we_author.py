@@ -39,12 +39,12 @@ def ps(script):
     return rdpipe("ps", '$ErrorActionPreference="Stop"; ' + script).strip()
 
 
-def author(driver, label, case, destination, remote_base, menu=MENU):
+def author(driver, label, library, case, destination, remote_base, menu=MENU):
     """Repeat the proven editor route using a leased, bounded transport.
 
     driver supplies ps/ui/rdpipe, owns process cleanup, and retains snapshots.
     """
-    text = clipboard_text(Path("oracle/jass/lib/oracle-v1.j").read_bytes(), case.read_bytes())
+    text = clipboard_text(library.read_bytes(), case.read_bytes())
     new = f"{MAPS}\\{label}.w3m"
     driver.ps(f'if (Test-Path -LiteralPath "{new}") {{ throw "map exists; use a new revision" }}; '
               f'Copy-Item -LiteralPath "{remote_base}" -Destination "{new}"')
@@ -134,7 +134,8 @@ def main():
         def pull(self, remote, local): rdpipe('pull', remote, str(local))
     driver = Manual()
     try:
-        author(driver, args.label, args.case or Path('oracle/jass') / f'{args.label}.j', destination,
+        author(driver, args.label, Path('oracle/jass/lib/oracle-v1.j'),
+               args.case or Path('oracle/jass') / f'{args.label}.j', destination,
                f'{MAPS}\\{args.base}.w3m')
     finally:
         for pid in driver.owned[:]: driver.stop(pid)

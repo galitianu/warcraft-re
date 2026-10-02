@@ -2,17 +2,18 @@
 import argparse
 import copy
 import json
+import os
 from pathlib import Path
 import subprocess
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from capture_oracle import Controller, verify_installation
 from capture_runs import capture
 from normalize_generated import normalize
 from trace_contract import BUILD, ROOT, generated_revision, load, sha256, shape
-from we_author import clipboard_text
+from we_author import author, clipboard_text
 
 
 class CaptureTests(unittest.TestCase):
@@ -46,6 +47,28 @@ class CaptureTests(unittest.TestCase):
         with self.assertRaises(ValueError): shape('MOV-0013-new')
         self.assertEqual(clipboard_text(b'library\n', b'case\n'), 'library\r\n\r\ncase\r\n')
         with self.assertRaises(ValueError): clipboard_text(b'bad\r\n', b'case\n')
+
+    def test_author_uses_pinned_library_outside_repository(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            library, case = root / 'pinned-library.j', root / 'case.j'
+            library.write_bytes(b'pinned library\n')
+            case.write_bytes(b'case\n')
+            decoy = root / 'oracle/jass/lib/oracle-v1.j'
+            decoy.parent.mkdir(parents=True)
+            decoy.write_bytes(b'wrong library\n')
+            driver = Mock()
+            driver.ps.side_effect = RuntimeError('stop before Windows access')
+            previous = Path.cwd()
+            try:
+                os.chdir(root)
+                with patch('we_author.clipboard_text', wraps=clipboard_text) as paste:
+                    with self.assertRaisesRegex(RuntimeError, 'stop before Windows access'):
+                        author(driver, 'MOV-0002-test', library, case, root / 'map.w3m', 'template')
+                    paste.assert_called_once_with(b'pinned library\n', b'case\n')
+                    driver.launch.assert_not_called()
+            finally:
+                os.chdir(previous)
 
     def test_fresh_output_lease_contention_and_timeout_preserve_diagnostics(self):
         with tempfile.TemporaryDirectory() as tmp:

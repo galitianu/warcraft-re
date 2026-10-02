@@ -430,6 +430,9 @@ regrades exactly as the hosted aggregate; all twenty new-candidate comparisons a
 the five downloaded v4 suites pass. The initial Linux Clang renewal-test failure
 ([record](results/phase-7/initial-pr-failure/explanation.md)) is retained; its host-uptime
 assumption was corrected without changing production behavior or captures.
+Review follow-up: editor authoring now receives the pinned library used by syntax
+and saved-map checks. A regression test verifies that an unrelated working directory
+and a different local library cannot change the pasted source.
 
 ## Exact next action
 

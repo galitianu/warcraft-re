@@ -17,7 +17,8 @@ target_compile_options(wc3world PUBLIC
 target_compile_definitions(wc3world PUBLIC
   $<$<CXX_COMPILER_ID:AppleClang,Clang,GNU,MSVC>:WC3_FP_CONTRACT_OFF>)
 
-add_library(movement_cases STATIC tools/wc3test/Cases.cpp tools/wc3test/Canonical.cpp)
+add_library(movement_cases STATIC tools/wc3test/Cases.cpp tools/wc3test/Canonical.cpp
+  tools/wc3test/Scenario.cpp)
 target_include_directories(movement_cases PUBLIC tools/wc3test)
 target_link_libraries(movement_cases PUBLIC wc3world)
 
@@ -48,6 +49,7 @@ foreach(path CMakeLists.txt src/core/World.h src/core/World.cpp src/core/Random.
     src/core/SoftFloat.h src/core/SoftFloat.cpp
     tools/wc3test/Cases.h tools/wc3test/Cases.cpp tools/wc3test/main.cpp
     tools/wc3test/Canonical.h tools/wc3test/Canonical.cpp
+    tools/wc3test/Scenario.h tools/wc3test/Scenario.cpp
     tools/wc3test/BuildIdentity.h.in tools/wc3states/main.cpp tools/math_scope.cpp)
   set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${path}")
   file(SHA256 "${CMAKE_SOURCE_DIR}/${path}" digest)
@@ -67,11 +69,14 @@ if(BUILD_TESTING)
   add_executable(world_tests tests/world_tests.cpp)
   target_link_libraries(world_tests PRIVATE movement_cases)
   add_test(NAME world_invariants COMMAND world_tests)
+  add_executable(scenario_tests tests/scenario_tests.cpp)
+  target_link_libraries(scenario_tests PRIVATE movement_cases)
+  add_test(NAME scenario_v1 COMMAND scenario_tests "${CMAKE_SOURCE_DIR}/scenarios")
   # Bit-exact footman-v4 gate against the committed WC3 fixtures and captures.
   find_package(Python3 REQUIRED COMPONENTS Interpreter)
   add_test(NAME footman_v4_wc3 COMMAND Python3::Interpreter
     "${CMAKE_SOURCE_DIR}/tools/run_footman_v4.py" --runner $<TARGET_FILE:wc3test>
     --states $<TARGET_FILE:wc3states> --out "${CMAKE_BINARY_DIR}/footman-v4-test"
     --reports "${CMAKE_BINARY_DIR}/footman-v4-test/reports")
-  set_tests_properties(world_invariants footman_v4_wc3 PROPERTIES TIMEOUT 180)
+  set_tests_properties(world_invariants scenario_v1 footman_v4_wc3 PROPERTIES TIMEOUT 180)
 endif()

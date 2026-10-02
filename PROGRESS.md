@@ -2,7 +2,7 @@
 
 As of 1 October 2026.
 
-**Current stage:** Phase 4 complete — PR and main-push compatibility CI verified.
+**Current stage:** Phase 5 extraction implemented on PR #13: v1 scenarios drive the C++ runner; main-push verification follows merge.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
 8 MOV-0012 maps × 3 fresh-process captures, all payload-identical within each map.
 **C++ compatibility:** footman-v4 passes MOV-0001–MOV-0010 under the fixed tolerances.
@@ -167,12 +167,38 @@ unchanged; canonical JASS/CLOCKS properties remain UNOBSERVED. Issue #6's moveme
 result is promoted to the primary required pass, while that GitHub issue remains
 open. No release tag or fresh retail capture is included.
 
+**Phase 5 scenarios** ([issue #12](https://github.com/galitianu/warcraft-re/issues/12),
+[PR #13](https://github.com/galitianu/warcraft-re/pull/13)):
+[readiness audit, verification and scope](docs/phase-5-scenarios.md),
+[scenario v1 contract](docs/scenario-v1.md), [scenarios](scenarios/).
+The audit found 24 maps, 12 experiment IDs and 18 distinct setups, all
+following one pattern (create → set → order at a callback → observe). The setups
+are copied by hand across JASS, `Cases.cpp`, `wc3states` and `compare_states`.
+That justifies extraction for the MOV-0001–0010 scope only.
+`wc3test --scenario` parses a strict, dependency-free YAML subset in C++. It
+validates everything before writing anything, maps the declarations onto the
+unchanged World API, and records each scenario's SHA-256 as provenance outside
+the observation payload. The hard-coded cases stay as the migration control.
+
+All ten scenarios reproduce the hard-coded payloads and CSV bytes for every
+model and phase: 80 runs in CTest, and five suites in CI. v4 is 10/10 PASS from
+scenarios; historical suites are 1/10 with no protected regression. Local ARM
+Release (with archive) and Debug CI pass, with CTest 3/3 and Python 56/56.
+Invalid input exits 2 with no output. A description cannot redefine a retained
+trace shape; scenarios without a fixture get no retail verdict. JASS-0001/MOV-0012
+events, other periods and `SetUnitX/Y` stay out of v1. No captures, fixtures or
+tolerances changed. [PR run 36887017447](https://github.com/galitianu/warcraft-re/actions/runs/36887017447)
+passes all five configurations and the aggregate job, with every migration
+EQUIVALENT ([evidence](results/phase-5/pr-verification.md)). The first PR run's
+Windows-only test newline failure is retained. The main-push run follows merge.
+
 ## Next task: design the sampler/update-order capture
 
 Design the capture that separates sampler/update ordering
 ([v4 limitation](docs/footman-v4-results.md#sampling-order)) using the
-[documented workflow](docs/agent-wc3-workflow.md). Do not confuse the CI handoff
-with a new gameplay observation or begin a scenario framework prematurely.
+[documented workflow](docs/agent-wc3-workflow.md), under a new permanent experiment
+ID. Describe it as a scenario where v1 suffices. Add an event field only when a
+C++ consumer needs it. After PR #13 merges, record its main-push workflow.
 
 ## Roadmap status
 
@@ -183,7 +209,7 @@ with a new gameplay observation or begin a scenario framework prematurely.
 | 2 | Native C++ headless equivalent and ten numerically comparable traces | Complete — [results](docs/phase-2-results.md); nine movement failures retained |
 | 3 | Canonical normalized traces and stable comparison contract | Complete — [results](docs/phase-3-results.md); all 45 retained runs validated |
 | 4 | C++ compatibility CI against committed WC3 references | Complete — five configurations pass on PR and main push; [evidence](results/phase-4/main-verification.json) |
-| 5 | Declarative scenarios extracted from repeated manual tests | Planned |
+| 5 | Declarative scenarios extracted from repeated manual tests | Implemented in PR #13 — [results](docs/phase-5-scenarios.md); main-push verification pending merge |
 | 6 | One scenario drives C++ and generates a runnable WC3 map | Planned |
 | 7 | Reliable unattended VM capture, when manual work becomes costly | Planned |
 | 8 | Microscopic tests, sweeps, and measured compatibility expansion | Planned |

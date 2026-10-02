@@ -62,6 +62,19 @@ reading. Numeric overflow, nonfinite values, duplicate JSON keys, unsupported
 versions, missing fields, bad source mapping, sequence gaps, wrong identities,
 units, truncated callbacks and false completion are input errors (CLI exit 2).
 
+## Additive change: scenario-driven runs (Phase 5)
+
+Added for [issue #12](https://github.com/galitianu/warcraft-re/issues/12); the
+version stays 1 and every earlier trace and fixture remains valid. The C++ build
+identity's `cases` table may list the subset of experiments a run produced. It
+must contain the trace's own experiment, be unique and self-consistent, and every
+retained MOV entry keeps its independent shape. A scenario-driven run adds
+`build.scenarios` (`experiment`, `map_revision`, `path`, `sha256`, aligned with
+`cases`) and per-trace `provenance.scenario` (`schema`, `version`, `path`,
+`sha256`), which must appear in that list. Hard-coded C++ provenance stays `{}`.
+These fields are metadata outside the observation payload. Scenario input
+validation is separate: [scenario-v1.md](scenario-v1.md).
+
 ## Comparison and verdict
 
 Primary alignment is callback/unit and ordered actions/events, independent of raw

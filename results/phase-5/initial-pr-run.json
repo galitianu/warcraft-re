@@ -1,0 +1,86 @@
+{
+  "run": "https://github.com/galitianu/warcraft-re/actions/runs/36869900659",
+  "head_commit": "039be62",
+  "event": "pull_request",
+  "status": "FAIL",
+  "jobs": {
+    "mac-arm-release": "success",
+    "mac-arm-debug": "success",
+    "linux-gcc-release": "success",
+    "linux-clang-debug": "success",
+    "windows-msvc-release": "failure",
+    "build-scope": "failure (Windows artifact FAIL)"
+  },
+  "windows": {
+    "errors": {
+      "python-integrity": "python-integrity: exit 1; see D:\\a\\warcraft-re\\warcraft-re\\build-ci\\ci\\logs\\python-integrity.log"
+    },
+    "models": {
+      "v1": {
+        "compatibility_passes": 1,
+        "regression_verdict": "PASS",
+        "improvements": 0,
+        "scenario": {
+          "migration": "EQUIVALENT",
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS"
+        }
+      },
+      "v2": {
+        "compatibility_passes": 1,
+        "regression_verdict": "PASS",
+        "improvements": 0,
+        "scenario": {
+          "migration": "EQUIVALENT",
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS"
+        }
+      },
+      "v2-before": {
+        "compatibility_passes": 1,
+        "regression_verdict": "PASS",
+        "improvements": 0,
+        "scenario": {
+          "migration": "EQUIVALENT",
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS"
+        }
+      },
+      "v3": {
+        "compatibility_passes": 1,
+        "regression_verdict": "PASS",
+        "improvements": 0,
+        "scenario": {
+          "migration": "EQUIVALENT",
+          "compatibility_passes": 1,
+          "regression_verdict": "PASS"
+        }
+      },
+      "v4": {
+        "compatibility_passes": 10,
+        "regression_verdict": "PASS",
+        "improvements": 0,
+        "scenario": {
+          "migration": "EQUIVALENT",
+          "compatibility_passes": 10,
+          "regression_verdict": "PASS"
+        }
+      }
+    },
+    "github": {
+      "GITHUB_RUN_ID": "36869900659",
+      "GITHUB_RUN_ATTEMPT": "1",
+      "GITHUB_SHA": "1260c4a5f8e890a6e00c6dd18fa735b3b01a4e48",
+      "GITHUB_EVENT_NAME": "pull_request",
+      "RUNNER_OS": "Windows",
+      "RUNNER_ARCH": "X64",
+      "ImageOS": "win22",
+      "ImageVersion": "20260927.320.1"
+    },
+    "compiler": "MSVC 19.44.35229.0",
+    "architecture": "x86_64",
+    "build_type": "Release",
+    "python_integrity_failure": "FAIL: test_a_description_cannot_redefine_a_retained_shape (test_scenarios.ScenarioRunnerTests.test_a_description_cannot_redefine_a_retained_shape)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\a\\warcraft-re\\warcraft-re\\tools\\test_scenarios.py\", line 128, in test_a_description_cannot_redefine_a_retained_shape\n    self.assertEqual(runner('--model', 'v4', '--scenario', path, '--out', out).returncode, 0)\nAssertionError: 2 != 0\n\n----------------------------------------------------------------------"
+  },
+  "diagnosis": "The test wrote its temporary scenario with Path.write_text default newline, which is CRLF on Windows; the v1 parser rejects carriage returns by design, so the runner exited 2. Every CI stage including all five scenario migrations passed on Windows. Fixed in ceaf1c7 by writing LF; the parser was not relaxed."
+}

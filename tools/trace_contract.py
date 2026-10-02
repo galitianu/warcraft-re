@@ -17,6 +17,7 @@ REAL = re.compile(r'-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?\Z')
 HASH = re.compile(r'[a-f0-9]{64}\Z')
 LABELS = [f'MOV-{n:04d}' if n != 2 else 'MOV-0002-r2' for n in range(1, 11)] + [
     f'JASS-0001-p{p:03d}' for p in (1, 10, 20, 25, 50)]
+RETAINED_MOV = {label[:8]: label for label in LABELS if label.startswith('MOV')}
 
 
 def require(condition, message):
@@ -263,12 +264,38 @@ def validate(trace):
             validate_v4_parameters(parameters)
         else:
             validate_cadence_parameters(parameters)
-        require(isinstance(build['cases'], list) and len(build['cases']) == 10, 'invalid build case table')
-        for n, case in enumerate(build['cases'], 1):
-            _, cb_count, _, unit_count = shape('MOV-0002-r2' if n == 2 else f'MOV-{n:04d}')
+        # The run's case table: the ten hard-coded cases, or the scenarios named
+        # on the command line. Retained experiments keep their independent shape.
+        require(isinstance(build['cases'], list) and 1 <= len(build['cases']) <= 1000, 'invalid build case table')
+        tests = [case.get('test') if isinstance(case, dict) else None for case in build['cases']]
+        require(len(set(tests)) == len(tests) and exp in tests, 'build case table lacks this experiment or repeats one')
+        for case in build['cases']:
             keys(case, ('test', 'callbacks', 'units', 'samples'))
-            for key in ('callbacks', 'units', 'samples'): integer(case[key], 0, 10000)
-            require(case == dict(test=f'MOV-{n:04d}', callbacks=cb_count, units=unit_count, samples=(cb_count+1)*unit_count), 'build case table cannot redefine experiment')
+            require(isinstance(case['test'], str) and re.fullmatch(r'[A-Z]{2,5}-\d{4}', case['test']), 'invalid case test ID')
+            for key in ('callbacks', 'units', 'samples'): integer(case[key], 0, 50000)
+            require(case['samples'] == (case['callbacks'] + 1) * case['units'], 'inconsistent case sample count')
+            if case['test'] in RETAINED_MOV:
+                _, cb_count, _, unit_count = shape(RETAINED_MOV[case['test']])
+                require((case['callbacks'], case['units']) == (cb_count, unit_count), 'build case table cannot redefine experiment')
+        if 'scenarios' in build:
+            # Scenario-driven run: every listed description is identified by hash, and
+            # this trace's provenance names the one that produced it.
+            require(isinstance(build['scenarios'], list) and [d.get('experiment') if isinstance(d, dict) else None
+                    for d in build['scenarios']] == tests, 'scenario list differs from case table')
+            for description in build['scenarios']:
+                keys(description, ('experiment', 'map_revision', 'path', 'sha256'))
+                require(isinstance(description['path'], str) and description['path']
+                        and isinstance(description['map_revision'], str)
+                        and HASH.fullmatch(description['sha256']), 'invalid scenario identity')
+            keys(trace['provenance'], ('scenario',))
+            used = trace['provenance']['scenario']
+            keys(used, ('schema', 'version', 'path', 'sha256'))
+            require(used['schema'] == 'wc3-scenario' and type(used['version']) is int and used['version'] == 1,
+                    'unsupported scenario schema/version')
+            require(dict(experiment=exp, map_revision=scenario['map_revision'], path=used['path'], sha256=used['sha256'])
+                    in build['scenarios'], 'scenario provenance differs from the run identity')
+        else:
+            require(trace['provenance'] == {}, 'hard-coded C++ trace with scenario provenance')
         require(ident['seed']['status'] == 'explicit-cpp-only', 'invalid C++ seed status')
         integer(ident['seed']['value'])
         require(build['seed'] == ident['seed']['value'], 'build seed mismatch')

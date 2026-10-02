@@ -333,11 +333,16 @@ The gates now cover both experiments. In MOV-0014, a, b and c fail only on x/y, 
 the reviewed callbacks ([report](results/mov-0014/mov-0014.md)). Native ARM64
 AppleClang Release CI with `--archive` passes: CTest 3/3, Python 70/70, generated
 loop 4/4, MOV-0013 and MOV-0014 gates, v4 10/10 and historical baselines.
+[PR #21](https://github.com/galitianu/warcraft-re/pull/21)'s
+[workflow 37022849703](https://github.com/galitianu/warcraft-re/actions/runs/37022849703)
+passes all five configurations and the aggregate job, on clean builds of merge ref `b4d1969`.
+Each passes CTest 3/3, Python 70/70, generated loop 4/4, both experiment gates and v4 10/10.
+The downloaded artifacts [regrade locally](results/mov-0014/pr-verification/summary.md)
+to a report identical to the hosted one.
 
 ## Exact next action
 
-Open the MOV-0014 PR, verify and regrade the five-configuration PR CI, and merge.
-Then verify the main push. After that, pre-register a follow-up for the lag candidate
+Merge PR #21, then download and regrade the main-push workflow. After that, pre-register a follow-up for the lag candidate
 ([next experiment](docs/mov-0014.md#next-experiment)): boundary lags straddling
 7–9 × 2⁻²⁴ s with a moving unit, and a 1–2 × 2⁻²⁴ s callback before an update frame.
 

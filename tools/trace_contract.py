@@ -26,7 +26,7 @@ GENERATED_SHAPES = {
     'MOV-0006-g1': ('MOV-0006', 250, '0.020000', 1),
     'MOV-0010-g1': ('MOV-0010', 250, '0.020000', 1),
 }
-# Generated experiments of their own (docs/mov-0013.md, docs/mov-0014.md), written
+# Generated experiments of their own (docs/mov-0013.md to docs/mov-0015.md), written
 # here by hand from the experiment definition, never from a scenario. Each binds one
 # v2 scenario file; `start_us` is its declared sampler start, `control` the retained
 # capture whose observations the revision must reproduce exactly (or None).
@@ -36,7 +36,8 @@ EXPERIMENT_SHAPES = {
                        control='MOV-0012-a' if (exp, v) == ('MOV-0013', 'a') else None, state='STATE',
                        definition=f'docs/{exp.lower()}.md')
     for exp, variants in (('MOV-0013', (('a', 0), ('b', 2500), ('c', 20000), ('d', 0))),
-                          ('MOV-0014', (('a', 300000), ('b', 720000), ('c', 900000))))
+                          ('MOV-0014', (('a', 300000), ('b', 720000), ('c', 900000))),
+                          ('MOV-0015', (('a', 120000), ('b', 450000), ('c', 999054), ('d', 997001))))
     for v, start in variants}
 STATE_KEYS = {'c10_9', 'x_9', 'y_9', 'facing_9'}
 # wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it

@@ -1,0 +1,61 @@
+{
+ "run": {
+  "conclusion": "success",
+  "createdAt": "2026-10-02T17:33:12Z",
+  "event": "push",
+  "headSha": "53806f3c72e918feab898178dcced9b381ec3a97",
+  "url": "https://github.com/galitianu/warcraft-re/actions/runs/37041477211"
+ },
+ "merge_commit": "53806f3 (merge of PR #23)",
+ "regrade": "tools/summarize_ci.py on the downloaded artifacts; scope.json identical to the hosted build-scope report; MOV-0015 C++ trace records equal PR run 37040588867",
+ "artifacts": [
+  {
+   "id": 11242678348,
+   "name": "compatibility-windows-msvc-release",
+   "digest": "sha256:97b7980f4fb79a3e9a5b7271a0944d109cf8e2eadfd136df7b5c6d178ed557a7",
+   "size_in_bytes": 3588048,
+   "expired": false,
+   "created_at": "2026-10-02T17:35:43Z"
+  },
+  {
+   "id": 11242607703,
+   "name": "compatibility-mac-arm-release",
+   "digest": "sha256:f8d120d3316e6a6715dfb05f520af27ac64efa765b2acad7ca69c647f47d1bfb",
+   "size_in_bytes": 4433033,
+   "expired": false,
+   "created_at": "2026-10-02T17:34:15Z"
+  },
+  {
+   "id": 11242213915,
+   "name": "build-scope",
+   "digest": "sha256:5c6c86e632c7633e82e609f2fd0158e83432a5ce05461459268875c521806421",
+   "size_in_bytes": 20144,
+   "expired": false,
+   "created_at": "2026-10-02T17:36:47Z"
+  },
+  {
+   "id": 11241858307,
+   "name": "compatibility-linux-clang-debug",
+   "digest": "sha256:41e594ec5c917e810e297e644ae3c9aaaa94a8bc0313ba3ef1fce87e00edf034",
+   "size_in_bytes": 3586711,
+   "expired": false,
+   "created_at": "2026-10-02T17:35:04Z"
+  },
+  {
+   "id": 11241723220,
+   "name": "compatibility-mac-arm-debug",
+   "digest": "sha256:44a2bb0fd91d8caea5d6342e98542e5dc1c0daef9a9c01fd4f8a3ddfe80007ad",
+   "size_in_bytes": 3588681,
+   "expired": false,
+   "created_at": "2026-10-02T17:34:14Z"
+  },
+  {
+   "id": 11241663434,
+   "name": "compatibility-linux-gcc-release",
+   "digest": "sha256:b53efc430b5335ae7795325fe0443c7e26a831a36cfb021bf24cc30c5e2323ce",
+   "size_in_bytes": 3586961,
+   "expired": false,
+   "created_at": "2026-10-02T17:34:56Z"
+  }
+ ]
+}

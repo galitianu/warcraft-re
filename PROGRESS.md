@@ -2,7 +2,7 @@
 
 As of 2 October 2026.
 
-**Current stage:** Phase 6 complete. MOV-0015 ([issue #22](https://github.com/galitianu/warcraft-re/issues/22))
+**Current stage:** Phase 6 complete. MOV-0015 ([issue #22](https://github.com/galitianu/warcraft-re/issues/22), merged and verified on main)
 tested the 1 ms lag rule (T7) and a 30 ms update-event facing clock (FU). Both held in three of four new maps. The
 fourth map's sampler started one ulp later than modelled. That rounding was fitted after capture, so no rule is
 adopted; the next experiment pre-registers all three together.
@@ -383,6 +383,11 @@ passes all five configurations and the aggregate job, on clean builds of merge r
 Each passes CTest 3/3, Python 70/70, generated loop 4/4, all three experiment gates and
 v4 10/10. The downloaded artifacts [regrade locally](results/mov-0015/pr-verification/summary.md)
 to a report identical to the hosted one.
+PR #23 merged as `53806f3`. Its
+[main-push workflow 37041477211](https://github.com/galitianu/warcraft-re/actions/runs/37041477211)
+passes the same gates on all five configurations, with clean builds of the merge commit.
+The downloaded artifacts [regrade](results/mov-0015/main-verification/summary.md) to a
+report identical to the hosted one, and the MOV-0015 C++ trace records equal the PR run's.
 
 ## Exact next action
 

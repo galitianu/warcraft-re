@@ -18,6 +18,9 @@ HASH = re.compile(r'[a-f0-9]{64}\Z')
 LABELS = [f'MOV-{n:04d}' if n != 2 else 'MOV-0002-r2' for n in range(1, 11)] + [
     f'JASS-0001-p{p:03d}' for p in (1, 10, 20, 25, 50)]
 RETAINED_MOV = {label[:8]: label for label in LABELS if label.startswith('MOV')}
+# wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it
+# with cwd=ROOT and an absolute --out so recorded scenario paths stay repo-relative.
+SCENARIOS = ['--scenario', 'scenarios']
 
 
 def require(condition, message):

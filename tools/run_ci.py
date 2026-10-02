@@ -12,7 +12,7 @@ import time
 from compare_traces import markdown as comparison_markdown
 from normalize_traces import normalize_all
 from regression import assess, markdown as regression_markdown
-from trace_contract import BUILD, LABELS, ROOT, digest, load, payload, sha256, validate, write_json
+from trace_contract import BUILD, LABELS, ROOT, SCENARIOS, digest, load, payload, sha256, validate, write_json
 
 # Archival migration remains a separate command, with permanent Phase 2 byte gates.
 BASELINES = {'v1': 'results/phase-3/v1/comparison.json',
@@ -85,51 +85,16 @@ def repeatability(first, second):
                 full_file_sha256=full)
 
 
-def differences(a, b, path=''):
-    """Dotted paths whose values differ, including keys present on one side only."""
-    if isinstance(a, dict) and isinstance(b, dict):
-        found = []
-        for key in sorted(set(a) | set(b)):
-            child = f'{path}.{key}' if path else key
-            found += [child] if key not in a or key not in b else differences(a[key], b[key], child)
-        return found
-    return [] if a == b else [path]
-
-
-def migration(control, declared, control_suite, declared_suite):
-    """Phase 5 gate: scenario traces equal the hard-coded control in every
-    observation/action payload and CSV byte; metadata differences are named."""
-    cases = []
-    for n in range(1, 11):
-        case = f'MOV-{n:04d}'
-        coded, scenario = (validate(load(root / f'{case}.json')) for root in (control, declared))
-        payloads = [digest(payload(t)) for t in (coded, scenario)]
-        if payloads[0] != payloads[1]:
-            raise ValueError(f'{case}: scenario observation payload differs from the hard-coded control')
-        for suffix in ('.csv', '-actions.csv'):
-            if (control / f'{case}{suffix}').read_bytes() != (declared / f'{case}{suffix}').read_bytes():
-                raise ValueError(f'{case}{suffix}: scenario CSV differs from the hard-coded control')
-        metadata = differences(coded, scenario)
-        if metadata != ['identity.build.scenarios', 'provenance.scenario']:
-            raise ValueError(f'{case}: unexpected metadata differences {metadata}')
-        used = scenario['provenance']['scenario']
-        if sha256(ROOT / used['path']) != used['sha256']:
-            raise ValueError(f'{case}: scenario hash differs from the committed {used["path"]}')
-        cases.append(dict(case=case, scenario=used, observation_payload_sha256=payloads[0],
-                          csv_bytes_identical=True, metadata_differences=metadata,
-                          full_trace_sha256=dict(hard_coded=sha256(control / f'{case}.json'),
-                                                 scenario=sha256(declared / f'{case}.json'))))
-    identities = [load(root / 'identity.json') for root in (control, declared)]
-    if differences(*identities) != ['scenarios']:
-        raise ValueError('run identity differs beyond the scenario list')
-    def graded(suite):
-        return dict(suite, identity=None, cases=[{k: v for k, v in c.items() if k != 'actual_sha256'}
-                                                 for c in suite['cases']])
-    if graded(control_suite) != graded(declared_suite):
-        raise ValueError('scenario comparison report differs from the hard-coded control')
-    return dict(status='EQUIVALENT', cases=cases, identity_differences=['scenarios'],
-                comparison_differences=['identity.build.scenarios', 'cases[].actual_sha256'],
-                scope='same binary/model/phase/seed; scenarios/*.yaml against the hard-coded MOV-0001..0010 control')
+def scenario_inputs(identity):
+    """Every suite runs the ten committed scenarios; their recorded hashes must be
+    those of the files in this checkout."""
+    described = identity.get('scenarios')
+    if [d['experiment'] for d in described or []] != [f'MOV-{n:04d}' for n in range(1, 11)]:
+        raise ValueError('run identity does not list the ten committed MOV scenarios')
+    for d in described:
+        if d['path'] != f"scenarios/{d['experiment']}.yaml" or sha256(ROOT / d['path']) != d['sha256']:
+            raise ValueError(f"{d['experiment']}: scenario identity differs from the committed file")
+    return {d['experiment']: d['sha256'] for d in described}
 
 
 def summarize(result, reports):
@@ -139,14 +104,10 @@ def summarize(result, reports):
              f"{result['host']['architecture']}; Python {result['host']['python']}.", '',
              'Primary: footman-v4, after-due-update, seed 1. Missing canonical JASS/CLOCKS: **UNOBSERVED**.',
              'The separate state-capture probe has named sampling-order exceptions; it is not a JASS producer.', '',
-             'Scenario runs use the committed scenarios/*.yaml; migration compares them with the hard-coded control.', '',
-             '| Model / phase | Compatibility | Regression gate | Improvements | Scenario compatibility | Scenario migration |',
-             '|---|---|---|---|---|---|']
+             'Every suite runs the committed scenarios/MOV-0001..0010.yaml; their hashes are in each build identity.', '',
+             '| Model / phase | Compatibility | Regression gate | Improvements |', '|---|---|---|---|']
     for name, info in result['models'].items():
-        scenario = info.get('scenario') or {}
-        lines.append(f"| {name} | {info['compatibility_passes']}/10 PASS | {info['regression_verdict']} | {info['improvements']} | "
-                     f"{scenario.get('compatibility_passes', '—')}/10 PASS, regression {scenario.get('regression_verdict', 'MISSING')} | "
-                     f"{scenario.get('migration', 'MISSING')} |")
+        lines.append(f"| {name} | {info['compatibility_passes']}/10 PASS | {info['regression_verdict']} | {info['improvements']} |")
     for name, error in result['errors'].items():
         lines += ['', f'**{name}:** {error}']
     for name in result['models']:
@@ -217,7 +178,7 @@ def run(args):
             report_dir.mkdir(parents=True)
             dest, again = traces / name, traces / f'{name}-repeat'
             model, phase = ('v2', 'before') if name == 'v2-before' else (name, 'after')
-            command = [runner, '--model', model, '--phase', phase, '--seed', '1']
+            command = [runner, *SCENARIOS, '--model', model, '--phase', phase, '--seed', '1']
             try:
                 execute([*command, '--out', dest], logs, f'{name}-runner', timeout=60)
                 execute([*command, '--out', again], logs, f'{name}-repeat', timeout=60)
@@ -231,6 +192,7 @@ def run(args):
                     raise ValueError('comparator exit/report disagreement')
                 identity = load(dest / 'identity.json')
                 write_json(report_dir / 'build-identity.json', identity)
+                inputs = scenario_inputs(identity)
                 if identity != suite['identity']['build']:
                     raise ValueError('trace/binary identity disagreement')
                 if identity['model'] != f'footman-{model}' or identity['observation_phase'] != f'{phase}-due-update' or identity['seed'] != 1:
@@ -246,44 +208,14 @@ def run(args):
                 write_json(report_dir / 'regression.json', assessment)
                 (report_dir / 'regression.md').write_text(regression_markdown(assessment), encoding='utf-8')
                 result['models'][name] = dict(compatibility_passes=assessment['compatibility_passes'],
-                       regression_verdict=assessment['regression_verdict'], improvements=len(assessment['improvements']))
+                       regression_verdict=assessment['regression_verdict'], improvements=len(assessment['improvements']),
+                       scenario_sha256=inputs)
                 if assessment['regression_verdict'] != 'PASS':
                     result['errors'][name] = f"{len(assessment['regressions'])} protected metrics regressed; see {report_dir / 'regression.md'}"
                 if name == 'v4' and (code != 0 or assessment['compatibility_passes'] != 10):
                     result['errors'][name] = 'primary compatibility requires all ten MOV passes'
             except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:
                 result['errors'][name] = str(error)
-                continue
-            # Phase 5: the same suite from the committed scenarios, graded identically
-            # and checked against the hard-coded control above.
-            try:
-                scenario_dir = report_dir / 'scenario'
-                declared, declared_again = traces / f'{name}-scenario', traces / f'{name}-scenario-repeat'
-                from_scenarios = [*command, '--scenario', 'scenarios']
-                execute([*from_scenarios, '--out', declared], logs, f'{name}-scenario-runner', timeout=60)
-                execute([*from_scenarios, '--out', declared_again], logs, f'{name}-scenario-repeat', timeout=60)
-                write_json(scenario_dir / 'repeatability.json', repeatability(declared, declared_again))
-                comparison = scenario_dir / 'comparison.json'
-                code = execute([sys.executable, ROOT / 'tools/compare_traces.py', '--actual', declared,
-                                '--reference', references, '--json', comparison, '--markdown', scenario_dir / 'comparison.md'],
-                               logs, f'{name}-scenario-compare', accepted=(0, 1))
-                declared_suite = load(comparison)
-                if code != int(declared_suite['status'] == 'FAIL'):
-                    raise ValueError('scenario comparator exit/report disagreement')
-                write_json(scenario_dir / 'migration.json', migration(dest, declared, suite, declared_suite))
-                assessment = assess(load(baseline), declared_suite)
-                assessment.update(baseline_path=selected_baseline, baseline_sha256=sha256(baseline), comparator_exit=code)
-                write_json(scenario_dir / 'regression.json', assessment)
-                (scenario_dir / 'regression.md').write_text(regression_markdown(assessment), encoding='utf-8')
-                result['models'][name]['scenario'] = dict(
-                    migration='EQUIVALENT', compatibility_passes=assessment['compatibility_passes'],
-                    regression_verdict=assessment['regression_verdict'])
-                if assessment['regression_verdict'] != 'PASS':
-                    result['errors'][f'{name}-scenario'] = f"{len(assessment['regressions'])} protected metrics regressed"
-                if name == 'v4' and (code != 0 or assessment['compatibility_passes'] != 10):
-                    result['errors'][f'{name}-scenario'] = 'primary compatibility requires all ten MOV passes'
-            except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:
-                result['errors'][f'{name}-scenario'] = str(error)
         # CTest's strict exact-text/state-capture check writes its full reports here.
         if (build / 'footman-v4-test/reports').exists():
             shutil.copytree(build / 'footman-v4-test/reports', reports / 'v4-state-probe', dirs_exist_ok=True)
@@ -294,8 +226,7 @@ def run(args):
                         logs, 'archival-migration', timeout=300)
             except (OSError, ValueError) as error:
                 result['errors']['archival-migration'] = str(error)
-        result['status'] = 'PASS' if not result['errors'] and len(result['models']) == 5 and all(
-            'scenario' in info for info in result['models'].values()) else 'FAIL'
+        result['status'] = 'PASS' if not result['errors'] and len(result['models']) == 5 else 'FAIL'
     except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:
         result['errors']['pipeline'] = str(error)
     finally:

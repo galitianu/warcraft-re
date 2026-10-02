@@ -1,4 +1,4 @@
-"""Scenario v1 through wc3test: migration, provenance, invalid input and ordering.
+"""Scenario v1 through wc3test: repeatability, provenance, invalid input and ordering.
 
 Uses the built runner (WC3TEST_RUNNER, default build/wc3test). Retail fixtures are
 read only for comparison; no scenario can redefine the canonical trace contract.
@@ -29,14 +29,6 @@ def runner(*args):
 
 def f32(text):
     return struct.unpack('<f', struct.pack('<f', float(text)))[0]
-
-
-def without_scenario_identity(trace):
-    """The only metadata a scenario run adds: build.scenarios and provenance.scenario."""
-    trace = dict(trace, provenance={})
-    build = {k: v for k, v in trace['identity']['build'].items() if k != 'scenarios'}
-    trace['identity'] = dict(trace['identity'], build=build)
-    return trace
 
 
 ORDERED = '''schema: wc3-scenario
@@ -78,23 +70,24 @@ actions:
 
 
 class ScenarioRunnerTests(unittest.TestCase):
-    def test_migrated_scenarios_reproduce_hard_coded_payloads(self):
+    def test_runner_requires_scenarios_and_repeats_every_suite(self):
         with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp) / 'none'
+            result = runner('--model', 'v4', '--out', out)
+            self.assertEqual(result.returncode, 2)
+            self.assertIn('--scenario FILE_OR_DIR is required', result.stderr)
+            self.assertFalse(out.exists())
             for model, phase in SUITES:
-                coded, declared = Path(temp) / f'{model}-{phase}', Path(temp) / f'{model}-{phase}-scenario'
-                common = ('--model', model, '--phase', phase, '--seed', '1')
-                self.assertEqual(runner(*common, '--out', coded).returncode, 0)
-                result = runner(*common, '--scenario', 'scenarios', '--out', declared)
-                self.assertEqual(result.returncode, 0, result.stderr)
-                self.assertEqual(sorted(p.name for p in coded.iterdir()), sorted(p.name for p in declared.iterdir()))
+                runs = [Path(temp) / f'{model}-{phase}-{n}' for n in (1, 2)]
+                for out in runs:
+                    result = runner('--model', model, '--phase', phase, '--seed', '1', '--scenario', 'scenarios', '--out', out)
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(sorted(p.name for p in runs[0].iterdir()),
+                                 sorted(['identity.json'] + [f'{c}{s}' for c in CASES for s in ('.json', '.csv', '-actions.csv')]))
+                for path in runs[0].iterdir():
+                    self.assertEqual(path.read_bytes(), (runs[1] / path.name).read_bytes(), f'{model}-{phase} {path.name}')
                 for case in CASES:
-                    for suffix in ('.csv', '-actions.csv'):
-                        self.assertEqual((coded / f'{case}{suffix}').read_bytes(), (declared / f'{case}{suffix}').read_bytes())
-                    a, b = validate(load(coded / f'{case}.json')), validate(load(declared / f'{case}.json'))
-                    self.assertEqual(digest(payload(a)), digest(payload(b)), f'{model}-{phase} {case}')
-                    self.assertNotEqual((coded / f'{case}.json').read_bytes(), (declared / f'{case}.json').read_bytes())
-                    self.assertEqual(without_scenario_identity(b), a)
-                    self.assertEqual(a['provenance'], {})
+                    validate(load(runs[0] / f'{case}.json'))
 
     def test_provenance_binds_the_exact_scenario_bytes(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -132,32 +125,32 @@ class ScenarioRunnerTests(unittest.TestCase):
                                        '--case', 'MOV-0006'], cwd=ROOT, capture_output=True, text=True, timeout=120)
             self.assertEqual(compared.returncode, 2)
 
-    def test_migration_gate_detects_changed_meaning_and_identity(self):
-        from run_ci import migration
-        suite = {'cases': []}  # Report equality is exercised by run_ci itself.
+    def test_scenario_identity_is_separate_from_its_meaning(self):
+        from run_ci import scenario_inputs
         with tempfile.TemporaryDirectory() as temp:
             temp = Path(temp)
             copy = temp / 'scenarios'
             shutil.copytree(SCENARIOS, copy)
-            dirs = {name: temp / name for name in ('coded', 'declared', 'edited')}
-            self.assertEqual(runner('--model', 'v4', '--out', dirs['coded']).returncode, 0)
-            self.assertEqual(runner('--model', 'v4', '--scenario', 'scenarios', '--out', dirs['declared']).returncode, 0)
-            self.assertEqual(migration(dirs['coded'], dirs['declared'], suite, suite)['status'], 'EQUIVALENT')
-            # A changed relative offset changes the payload and fails migration.
+            dirs = {name: temp / name for name in ('committed', 'commented', 'edited')}
+            self.assertEqual(runner('--model', 'v4', '--scenario', 'scenarios', '--out', dirs['committed']).returncode, 0)
+            identity = load(dirs['committed'] / 'identity.json')
+            self.assertEqual(scenario_inputs(identity)['MOV-0006'],
+                             hashlib.sha256((SCENARIOS / 'MOV-0006.yaml').read_bytes()).hexdigest())
+            identity['scenarios'][5]['sha256'] = '0' * 64
+            with self.assertRaisesRegex(ValueError, 'MOV-0006: scenario identity differs'):
+                scenario_inputs(identity)
+            # A comment edit changes the identity but not the observations.
             edited = copy / 'MOV-0006.yaml'
-            edited.write_text(edited.read_text().replace('offset: [0, 1000]', 'offset: [0, 999.5]'), newline='\n')
-            self.assertEqual(runner('--model', 'v4', '--scenario', copy, '--out', dirs['edited']).returncode, 0)
-            with self.assertRaisesRegex(ValueError, 'MOV-0006: scenario observation payload differs'):
-                migration(dirs['coded'], dirs['edited'], suite, suite)
-            # A comment edit keeps the meaning but not the identity; a file changed after
-            # the run no longer matches the recorded hash.
             edited.write_text((SCENARIOS / 'MOV-0006.yaml').read_text() + '# reviewed\n', newline='\n')
-            shutil.rmtree(dirs['edited'])
+            self.assertEqual(runner('--model', 'v4', '--scenario', copy, '--out', dirs['commented']).returncode, 0)
+            # A changed relative offset changes the observations.
+            edited.write_text((SCENARIOS / 'MOV-0006.yaml').read_text().replace('offset: [0, 1000]', 'offset: [0, 999.5]'), newline='\n')
             self.assertEqual(runner('--model', 'v4', '--scenario', copy, '--out', dirs['edited']).returncode, 0)
-            self.assertEqual(migration(dirs['coded'], dirs['edited'], suite, suite)['status'], 'EQUIVALENT')
-            edited.write_text(edited.read_text() + '# changed later\n', newline='\n')
-            with self.assertRaisesRegex(ValueError, 'scenario hash differs'):
-                migration(dirs['coded'], dirs['edited'], suite, suite)
+            traces = {name: load(path / 'MOV-0006.json') for name, path in dirs.items()}
+            hashes = {name: t['provenance']['scenario']['sha256'] for name, t in traces.items()}
+            self.assertEqual(len(set(hashes.values())), 3)
+            self.assertEqual(digest(payload(traces['commented'])), digest(payload(traces['committed'])))
+            self.assertNotEqual(digest(payload(traces['edited'])), digest(payload(traces['committed'])))
 
     def test_invalid_descriptions_fail_before_any_output(self):
         base = (SCENARIOS / 'MOV-0006.yaml').read_text()

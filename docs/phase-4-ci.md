@@ -155,27 +155,24 @@ movement draws no RNG and retail RNG equivalence remains UNKNOWN.
 ## Phase 5 scenario suites
 
 Added for [issue #12](https://github.com/galitianu/warcraft-re/issues/12)
-([scenario v1](scenario-v1.md), [results](phase-5-scenarios.md)). After each hard-coded
-suite, the entry point runs `wc3test … --scenario scenarios` twice in fresh
-processes. It compares that output with the unchanged `compare_traces.py` and
-checks it against the same regression baseline. The hard-coded run stays the
-migration control. Additional artifacts per suite:
-
-- `traces/<suite>-scenario/` and `<suite>-scenario-repeat/`: the same 31 files, with
-  scenario path/hash identity.
-- `reports/<suite>/scenario/{comparison,regression,repeatability}.{json,md}` and
-  `migration.json`. Migration is EQUIVALENT only when, against the control:
-  - every observation payload and CSV byte matches;
-  - the metadata differs only in `identity.build.scenarios` and `provenance.scenario`;
-  - each recorded scenario hash matches the committed file;
-  - the comparison reports are equal apart from identity and trace hashes.
-
-The gate needs all five suites EQUIVALENT with no protected regression, and v4
-10/10 from scenarios too. The aggregate job rechecks scenario payloads, repeat
-hashes and migration in every downloaded configuration. It also reports whether
-the scenario inputs are identical across hosts. CTest adds `scenario_v1`
-(parser, exact decimals, 80 byte-identical migrated model/phase runs), and
+([scenario v1](scenario-v1.md), [results](phase-5-scenarios.md)). Every suite now
+runs `wc3test --scenario scenarios …`: the committed `scenarios/MOV-0001..0010.yaml`
+are the runner's only input. Each suite's build identity must list those ten
+experiments with paths `scenarios/<experiment>.yaml` and the SHA-256 of the files
+in the checkout; `result.json` records them per model as `scenario_sha256`, and
+each trace carries `provenance.scenario`. The aggregate job checks that every
+trace's provenance matches its build identity and fails if configurations ran
+different scenario bytes. CTest adds `scenario_v1` (parser, exact decimals, a
+complete schedule for every committed scenario under 4 models × 2 phases), and
 Python adds `test_scenarios.py`.
+
+Until [PR #13](https://github.com/galitianu/warcraft-re/pull/13) and its main
+push, each suite also ran the hard-coded MOV-0001..0010 control and a per-suite
+`migration.json` gate required byte-identical payloads and CSVs. That gate passed
+on all five configurations on both triggers
+([main verification](../results/phase-5/main-verification.md)); the control and the
+gate were then removed. Retained Phase 3/4 traces have no scenario provenance;
+they came from the hard-coded runner.
 
 ## Baseline maintenance and delivery evidence
 

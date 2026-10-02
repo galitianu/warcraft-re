@@ -12,7 +12,7 @@ import unittest
 from compare_traces import actions, compare, samples
 from normalize_traces import normalize_all, normalize_capture
 from oracle_parse import parse
-from trace_contract import BUILD, LABELS, ROOT, counts, digest, load, payload, validate
+from trace_contract import BUILD, LABELS, ROOT, SCENARIOS, counts, digest, load, payload, validate
 
 FIXTURES = ROOT / 'oracle/canonical' / BUILD
 RUNNER = Path(os.environ.get('WC3TEST_RUNNER', ROOT / 'build' /
@@ -85,7 +85,7 @@ class CanonicalComparisonTests(unittest.TestCase):
         cls.temp = tempfile.TemporaryDirectory()
         cls.out = Path(cls.temp.name)
         cls.addClassCleanup(cls.temp.cleanup)
-        subprocess.run([str(RUNNER), '--out', str(cls.out), '--model', 'v2'], check=True, stdout=subprocess.DEVNULL, timeout=60)
+        subprocess.run([str(RUNNER), *SCENARIOS, '--out', str(cls.out), '--model', 'v2'], cwd=ROOT, check=True, stdout=subprocess.DEVNULL, timeout=60)
 
     def setUp(self):
         self.ref = load(FIXTURES / 'MOV-0001.json')
@@ -185,7 +185,7 @@ class CanonicalComparisonTests(unittest.TestCase):
         self.assertEqual(clock['failures'], 53)
         self.assertEqual(clock['first_divergence']['callback'], 503)
         with tempfile.TemporaryDirectory() as temp:
-            subprocess.run([str(RUNNER), '--out', temp, '--phase', 'before'], check=True, stdout=subprocess.DEVNULL, timeout=60)
+            subprocess.run([str(RUNNER), *SCENARIOS, '--out', temp, '--phase', 'before'], cwd=ROOT, check=True, stdout=subprocess.DEVNULL, timeout=60)
             before = load(Path(temp) / 'MOV-0006.json'); validate(before)
             self.assertEqual(samples(before)[0]['time']['state_us'], 0)
             self.assertEqual(next(r for r in samples(before) if r['callback'] == 50)['time']['state_us'], 999000)
@@ -275,7 +275,7 @@ class FootmanV3ContractTests(unittest.TestCase):
         cls.temp = tempfile.TemporaryDirectory()
         cls.out = Path(cls.temp.name)
         cls.addClassCleanup(cls.temp.cleanup)
-        subprocess.run([str(RUNNER), '--out', str(cls.out), '--model', 'v3'], check=True, stdout=subprocess.DEVNULL, timeout=60)
+        subprocess.run([str(RUNNER), *SCENARIOS, '--out', str(cls.out), '--model', 'v3'], cwd=ROOT, check=True, stdout=subprocess.DEVNULL, timeout=60)
 
     def test_v3_traces_validate_and_keep_honest_verdicts(self):
         for n in range(1, 11):

@@ -2,7 +2,7 @@
 
 As of 1 October 2026.
 
-**Current stage:** Phase 5 extraction implemented on PR #13: v1 scenarios drive the C++ runner; main-push verification follows merge.
+**Current stage:** Phase 5 complete: v1 scenarios drive the C++ runner, verified on PR and main push. Phase 6 is tracked in issue #14.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
 8 MOV-0012 maps × 3 fresh-process captures, all payload-identical within each map.
 **C++ compatibility:** footman-v4 passes MOV-0001–MOV-0010 under the fixed tolerances.
@@ -178,7 +178,7 @@ That justifies extraction for the MOV-0001–0010 scope only.
 `wc3test --scenario` parses a strict, dependency-free YAML subset in C++. It
 validates everything before writing anything, maps the declarations onto the
 unchanged World API, and records each scenario's SHA-256 as provenance outside
-the observation payload. The hard-coded cases stay as the migration control.
+the observation payload. The hard-coded cases were the migration control.
 
 All ten scenarios reproduce the hard-coded payloads and CSV bytes for every
 model and phase: 80 runs in CTest, and five suites in CI. v4 is 10/10 PASS from
@@ -190,15 +190,21 @@ events, other periods and `SetUnitX/Y` stay out of v1. No captures, fixtures or
 tolerances changed. [PR run 36887017447](https://github.com/galitianu/warcraft-re/actions/runs/36887017447)
 passes all five configurations and the aggregate job, with every migration
 EQUIVALENT ([evidence](results/phase-5/pr-verification.md)). The first PR run's
-Windows-only test newline failure is retained. The main-push run follows merge.
+Windows-only test newline failure is retained. PR #13 merged as `b40fe1b`; its
+[main-push run 36982554457](https://github.com/galitianu/warcraft-re/actions/runs/36982554457)
+passes the same gates ([evidence](results/phase-5/main-verification.md)).
+With equivalence shown on both triggers, the hard-coded control was then removed:
+`wc3test` requires `--scenario`, and every CI suite runs the committed scenarios
+([control removed](docs/phase-5-scenarios.md#control-removed)).
 
-## Next task: design the sampler/update-order capture
+## Next task: Phase 6 — generate oracle maps from scenarios
 
-Design the capture that separates sampler/update ordering
-([v4 limitation](docs/footman-v4-results.md#sampling-order)) using the
-[documented workflow](docs/agent-wc3-workflow.md), under a new permanent experiment
-ID. Describe it as a scenario where v1 suffices. Add an event field only when a
-C++ consumer needs it. After PR #13 merges, record its main-push workflow.
+[Issue #14](https://github.com/galitianu/warcraft-re/issues/14): generate case JASS
+and maps from the committed scenarios. Reproduce the retained captures through
+generated map revisions. Then take the sampler/update-order capture
+([v4 limitation](docs/footman-v4-results.md#sampling-order)) through the same
+pipeline under a new permanent experiment ID, following the
+[documented workflow](docs/agent-wc3-workflow.md).
 
 ## Roadmap status
 
@@ -209,8 +215,8 @@ C++ consumer needs it. After PR #13 merges, record its main-push workflow.
 | 2 | Native C++ headless equivalent and ten numerically comparable traces | Complete — [results](docs/phase-2-results.md); nine movement failures retained |
 | 3 | Canonical normalized traces and stable comparison contract | Complete — [results](docs/phase-3-results.md); all 45 retained runs validated |
 | 4 | C++ compatibility CI against committed WC3 references | Complete — five configurations pass on PR and main push; [evidence](results/phase-4/main-verification.json) |
-| 5 | Declarative scenarios extracted from repeated manual tests | Implemented in PR #13 — [results](docs/phase-5-scenarios.md); main-push verification pending merge |
-| 6 | One scenario drives C++ and generates a runnable WC3 map | Planned |
+| 5 | Declarative scenarios extracted from repeated manual tests | Complete — [results](docs/phase-5-scenarios.md); PR and main push pass; [evidence](results/phase-5/main-verification.md) |
+| 6 | One scenario drives C++ and generates a runnable WC3 map | Planned — [issue #14](https://github.com/galitianu/warcraft-re/issues/14) |
 | 7 | Reliable unattended VM capture, when manual work becomes costly | Planned |
 | 8 | Microscopic tests, sweeps, and measured compatibility expansion | Planned |
 

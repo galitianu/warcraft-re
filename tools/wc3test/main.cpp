@@ -99,10 +99,10 @@ int main(int argc, char** argv) {
         for (int i = 1; i < argc; ++i) {
             const std::string option = argv[i];
             if (option == "--help") {
-                std::cout << "wc3test --out DIR [--model v1|v2|v3|v4] [--seed UINT32] "
-                             "[--phase after|before] [--scenario FILE_OR_DIR]...\n"
-                             "Without --scenario, runs the ten hard-coded MOV cases. Each --scenario\n"
-                             "names a v1 scenario file or a directory of *.yaml files (sorted).\n";
+                std::cout << "wc3test --scenario FILE_OR_DIR... --out DIR [--model v1|v2|v3|v4] "
+                             "[--seed UINT32] [--phase after|before]\n"
+                             "Each --scenario names a v1 scenario file or a directory of *.yaml files\n"
+                             "(sorted); the committed MOV-0001..0010 are in scenarios/.\n";
                 return 0;
             }
             if (i + 1 == argc) throw std::invalid_argument("missing option value");
@@ -122,11 +122,12 @@ int main(int argc, char** argv) {
             } else throw std::invalid_argument("unknown option or invalid value: " + option);
         }
         if (output.empty()) throw std::invalid_argument("--out DIR is required");
+        if (scenarios.empty()) throw std::invalid_argument("--scenario FILE_OR_DIR is required (e.g. scenarios)");
         // Invalid descriptions or unsupported schedules fail before any output exists.
         const auto inputs = load_scenarios(scenarios);
-        std::vector<movement::Trace> scenario_traces;
+        std::vector<movement::Trace> traces;
         for (const auto& input : inputs)
-            scenario_traces.push_back(movement::run(input.description, version, seed, before));
+            traces.push_back(movement::run(input.description, version, seed, before));
         std::filesystem::create_directories(output);
         const auto p = wc3::model(version);
         std::ostringstream identity;
@@ -200,54 +201,32 @@ int main(int argc, char** argv) {
                 << json_number(p.opposite_tie_degrees) << "}\n  }";
         }
         identity << parameters.str() << ",\n  \"cases\": [\n";
-        if (!inputs.empty()) {
-            for (std::size_t i = 0; i < inputs.size(); ++i) {
-                const auto& d = inputs[i].description;
-                identity << "    {\"test\": \"" << d.experiment << "\", \"callbacks\": " << d.callbacks
-                    << ", \"units\": " << d.units.size() << ", \"samples\": " << scenario_traces[i].samples.size()
-                    << "}" << (i + 1 == inputs.size() ? "\n" : ",\n");
-            }
-            identity << "  ],\n  \"scenarios\": [\n";
-            for (std::size_t i = 0; i < inputs.size(); ++i)
-                identity << "    {\"experiment\": \"" << inputs[i].description.experiment
-                    << "\", \"map_revision\": \"" << inputs[i].description.map_revision
-                    << "\", \"path\": " << json_string(inputs[i].path)
-                    << ", \"sha256\": \"" << inputs[i].sha256 << "\"}" << (i + 1 == inputs.size() ? "\n" : ",\n");
-            identity << "  ]\n}\n";
-            write(output / "identity.json", identity.str());
-            for (std::size_t i = 0; i < inputs.size(); ++i) {
-                const auto& d = inputs[i].description;
-                const auto& trace = scenario_traces[i];
-                write(output / (d.experiment + ".csv"), movement::samples_csv(trace));
-                write(output / (d.experiment + "-actions.csv"), movement::actions_csv(trace));
-                const auto provenance = "{\"scenario\":{\"schema\":\"wc3-scenario\",\"version\":1,\"path\":"
-                    + json_string(inputs[i].path) + ",\"sha256\":\"" + inputs[i].sha256 + "\"}}";
-                write(output / (d.experiment + ".json"),
-                      movement::canonical_json(trace, {d.experiment, d.map_revision, d.callbacks}, identity.str(),
-                                               version, seed, before, build_source_sha256, parameters.str(), provenance));
-            }
-            std::cout << p.name << ": wrote " << inputs.size() << " finite scenario traces to " << output << '\n';
-            return 0;
+        for (std::size_t i = 0; i < inputs.size(); ++i) {
+            const auto& d = inputs[i].description;
+            identity << "    {\"test\": \"" << d.experiment << "\", \"callbacks\": " << d.callbacks
+                << ", \"units\": " << d.units.size() << ", \"samples\": " << traces[i].samples.size()
+                << "}" << (i + 1 == inputs.size() ? "\n" : ",\n");
         }
-        std::vector<movement::Trace> traces;
-        for (int number = 1; number <= 10; ++number) {
-            const auto name = movement::case_name(number);
-            const auto trace = movement::run(number, version, seed, before);
-            traces.push_back(trace);
-            write(output / (name + ".csv"), movement::samples_csv(trace));
-            write(output / (name + "-actions.csv"), movement::actions_csv(trace));
-            identity << "    {\"test\": \"" << name << "\", \"callbacks\": "
-                << movement::case_callbacks(number) << ", \"units\": " << movement::case_units(number)
-                << ", \"samples\": " << trace.samples.size() << "}"
-                << (number == 10 ? "\n" : ",\n");
-        }
+        identity << "  ],\n  \"scenarios\": [\n";
+        for (std::size_t i = 0; i < inputs.size(); ++i)
+            identity << "    {\"experiment\": \"" << inputs[i].description.experiment
+                << "\", \"map_revision\": \"" << inputs[i].description.map_revision
+                << "\", \"path\": " << json_string(inputs[i].path)
+                << ", \"sha256\": \"" << inputs[i].sha256 << "\"}" << (i + 1 == inputs.size() ? "\n" : ",\n");
         identity << "  ]\n}\n";
         write(output / "identity.json", identity.str());
-        for (int number = 1; number <= 10; ++number)
-            write(output / (movement::case_name(number) + ".json"),
-                  movement::canonical_json(traces[number - 1], movement::case_identity(number), identity.str(),
-                                           version, seed, before, build_source_sha256, parameters.str()));
-        std::cout << p.name << ": wrote ten finite traces to " << output << '\n';
+        for (std::size_t i = 0; i < inputs.size(); ++i) {
+            const auto& d = inputs[i].description;
+            const auto& trace = traces[i];
+            write(output / (d.experiment + ".csv"), movement::samples_csv(trace));
+            write(output / (d.experiment + "-actions.csv"), movement::actions_csv(trace));
+            const auto provenance = "{\"scenario\":{\"schema\":\"wc3-scenario\",\"version\":1,\"path\":"
+                + json_string(inputs[i].path) + ",\"sha256\":\"" + inputs[i].sha256 + "\"}}";
+            write(output / (d.experiment + ".json"),
+                  movement::canonical_json(trace, {d.experiment, d.map_revision, d.callbacks}, identity.str(),
+                                           version, seed, before, build_source_sha256, parameters.str(), provenance));
+        }
+        std::cout << p.name << ": wrote " << inputs.size() << " finite scenario traces to " << output << '\n';
         return 0;
     } catch (const std::exception& error) {
         std::cerr << "wc3test: " << error.what() << '\n';

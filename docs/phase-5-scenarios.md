@@ -82,7 +82,8 @@ for Phase 6. No test was created to reach a count.
   has no dependency on serialization, files, references, a renderer or wall-clock time.
 - **Control.** The hard-coded `run(int case_number, …)` is unchanged apart from
   carrying unit names, the period and each action's unit into the trace. It
-  remains the default `wc3test` behavior and the migration control.
+  remained the default `wc3test` behavior and the migration control until it was
+  removed after PR #13 (see [Control removed](#control-removed)).
 - **CLI.** `wc3test --scenario FILE_OR_DIR` (repeatable) validates every
   description and runner capability, then simulates, and only then creates
   output. Invalid input exits 2 with a line-numbered message and writes nothing.
@@ -184,8 +185,12 @@ v1 rejects carriage returns by design. Every other Windows stage passed,
 including all five migrations. The test was fixed to write LF; the parser was not
 relaxed.
 
-The **main-push** workflow can only run after merge, so it is not yet verified.
-Record it then, as Phase 4 did.
+PR #13 merged as `b40fe1b`.
+[Main-push run 36982554457](https://github.com/galitianu/warcraft-re/actions/runs/36982554457)
+passes all five configurations and the aggregate job on that clean merge commit
+([evidence](../results/phase-5/main-verification.md)). Its numbers match the PR run:
+CTest 3/3, Python 56/56, v4 10/10 both hard-coded and from scenarios, and every
+migration EQUIVALENT. The downloaded artifacts recheck identically.
 
 ## Scope and what remains unobserved
 
@@ -201,6 +206,32 @@ Record it then, as Phase 4 did.
   so they remain **UNOBSERVED** in canonical comparison.
 - Unresolved: sampler/update ordering, the retail simulation quantum, WC3's
   clamping at map bounds, seed effects and retail RNG.
+
+## Control removed
+
+After the main-push run above, the hard-coded `run(int case_number, …)` table,
+`case_name`/`case_units`/`case_identity` and the per-suite migration gate were
+deleted. `wc3test` now requires `--scenario` and exits 2 without it; every CI
+suite, `run_phase2.py`, `run_phase3.py`, `run_footman_v3.py` and
+`run_footman_v4.py` pass `--scenario scenarios`. `world_tests` loads its cases
+from the same files. CI instead requires each suite's identity to list the ten
+committed scenarios with the checkout's hashes, and the aggregate fails if
+configurations ran different scenario bytes.
+
+Before deletion, the scenario-only runner was compared locally with the
+pre-removal binary: identical observation payloads and CSV bytes for v1–v4 in
+both phases (0 differences). After it: CTest 3/3, Python 56/56, local ARM
+Release (with archive) and Debug `run_ci.py` PASS, and `run_phase2.py` and
+`run_footman_v3.py` reproduce their retained results. No captures, fixtures,
+baselines or tolerances changed.
+
+Hosted: [PR #15 run 36983469889](https://github.com/galitianu/warcraft-re/actions/runs/36983469889)
+(merge commit `8aa3590`) passes all five configurations and the aggregate job, v4
+10/10 everywhere, scenario inputs identical across hosts
+([evidence](../results/phase-5/control-removed-pr-verification.md)). Its downloaded
+artifacts recheck PASS with `summarize_ci.py`. For every configuration, suite and
+case, they match main-push run 36982554457: 500/500 observation payloads and
+1000/1000 CSVs equal both its hard-coded control and its scenario traces.
 
 ## Reproduction
 

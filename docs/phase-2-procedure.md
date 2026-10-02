@@ -12,8 +12,10 @@ python3 -m unittest discover -s tools -p 'test_*.py' -v
 python3 tools/run_phase2.py --runner build/wc3test --out build/phase2 --reports build/phase2-reports
 ```
 
-`wc3world` is the standalone simulation library; `movement_cases` owns the ten
+`wc3world` is the standalone simulation library; `movement_cases` owned the ten
 hard-coded experiment setups and CSV formatting; `wc3test` owns file output.
+Since Phase 5 the setups come from [scenarios/](../scenarios/) and the runner
+script passes them to `wc3test --scenario`.
 No simulation code reads reference files. Models are documented in
 [phase-2-model.md](phase-2-model.md).
 

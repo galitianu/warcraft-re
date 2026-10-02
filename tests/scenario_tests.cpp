@@ -1,6 +1,6 @@
-// Scenario v1 parsing, exact numeric conversion and migration equivalence with the
-// hard-coded runner. Usage: scenario_tests SCENARIO_DIR (the committed scenarios/).
-#include "Canonical.h"
+// Scenario v1 parsing, exact numeric conversion, the committed scenarios and
+// equal-time ordering. Usage: scenario_tests SCENARIO_DIR (the committed scenarios/).
+#include "Cases.h"
 #include "Scenario.h"
 #include <cmath>
 #include <filesystem>
@@ -182,29 +182,29 @@ int main(int argc, char** argv) {
         check(rejected(replace(flow, "callbacks: 10", "callbacks: 0")).rfind("line 12:", 0) == 0,
               "errors carry their line");
 
-        // Migration: each committed scenario reproduces its hard-coded case for every
-        // model and phase, byte for byte in samples, actions and canonical records.
+        // Every committed scenario parses, is named after its experiment, and runs to a
+        // complete schedule under every model and phase. Behavior against WC3 is graded
+        // by the comparator and footman_v4_wc3; Phase 5 retained byte equivalence with
+        // the former hard-coded cases (docs/phase-5-scenarios.md).
         const std::filesystem::path directory(argv[1]);
         int compared = 0;
-        for (int number = 1; number <= 10; ++number) {
-            const auto identity = movement::case_identity(number);
-            const auto description = scenario::parse(read(directory / (identity.experiment + ".yaml")));
-            check(description.experiment == identity.experiment && description.map_revision == identity.map_revision &&
-                  description.callbacks == identity.callbacks, identity.experiment + " identity");
+        for (const auto& entry : std::filesystem::directory_iterator(directory)) {
+            if (entry.path().extension() != ".yaml") continue;
+            const auto description = scenario::parse(read(entry.path()));
+            check(entry.path().stem().string() == description.experiment, description.experiment + " file name");
             for (auto version : {wc3::ModelVersion::v1, wc3::ModelVersion::v2, wc3::ModelVersion::v3,
                                  wc3::ModelVersion::v4}) {
                 for (const bool before : {false, true}) {
-                    const auto coded = movement::run(number, version, 1, before);
-                    const auto declared = movement::run(description, version, 1, before);
-                    check(movement::samples_csv(coded) == movement::samples_csv(declared) &&
-                          movement::actions_csv(coded) == movement::actions_csv(declared) &&
-                          movement::canonical_json(coded, identity, "{}", version, 1, before, "0", "{}") ==
-                          movement::canonical_json(declared, identity, "{}", version, 1, before, "0", "{}"),
-                          identity.experiment + " differs from the hard-coded case");
+                    const auto trace = movement::run(description, version, 1, before);
+                    check(trace.samples.size() == (description.callbacks + 1u) * description.units.size() &&
+                          trace.actions.size() == description.actions.size() &&
+                          trace.tick_sequences.size() == description.callbacks + 1u,
+                          description.experiment + " incomplete schedule");
                     ++compared;
                 }
             }
         }
+        check(compared >= 80, "expected at least the ten committed MOV scenarios");
 
         // Equal-time actions execute in file order after the callback's samples;
         // relative targets read this world's position at execution.
@@ -266,7 +266,7 @@ actions:
 
         std::cout << "scenario v1: SHA-256 vectors, exact decimals, " << std::size(invalid)
                   << " syntax/validation cases, " << compared
-                  << " migrated model/phase runs and equal-time ordering passed.\n";
+                  << " complete committed-scenario model/phase runs and equal-time ordering passed.\n";
         return 0;
     } catch (const std::exception& error) {
         std::cerr << error.what() << '\n';

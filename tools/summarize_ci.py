@@ -39,38 +39,16 @@ def summarize(artifacts, out):
                         hashes = [sha256(root / 'traces' / folder / file) for folder in (model, model + '-repeat')]
                         if repeated['full_file_sha256'][file] != hashes or hashes[0] != hashes[1]:
                             raise ValueError(f'{model}/{file}: artifact full hash mismatch')
-                # Phase 5: scenario traces must repeat, equal the control's payloads and grade alike.
-                scenario = root / 'reports' / model / 'scenario'
-                validate_report(load(scenario / 'comparison.json'))
-                scenario_assessment = load(scenario / 'regression.json')
-                scenario_repeated = load(scenario / 'repeatability.json')
-                migrated = load(scenario / 'migration.json')
-                if migrated['status'] != 'EQUIVALENT' or [c['case'] for c in migrated['cases']] != CASES:
-                    raise ValueError(f'{model}: scenario migration not equivalent')
-                for case, trace, row in zip(CASES, traces, migrated['cases']):
-                    name = f'{case}.json'
-                    declared = validate(load(root / 'traces' / f'{model}-scenario' / name))
-                    expected = digest(payload(trace))
-                    if digest(payload(declared)) != expected or row['observation_payload_sha256'] != expected \
-                            or scenario_repeated['observation_payload_sha256'][name] != [expected] * 2:
-                        raise ValueError(f'{model}/{case}: scenario payload differs from the hard-coded control')
-                    for suffix in ('.json', '.csv', '-actions.csv'):
-                        file = f'{case}{suffix}'
-                        hashes = [sha256(root / 'traces' / folder / file)
-                                  for folder in (f'{model}-scenario', f'{model}-scenario-repeat')]
-                        if scenario_repeated['full_file_sha256'][file] != hashes or hashes[0] != hashes[1]:
-                            raise ValueError(f'{model}-scenario/{file}: artifact full hash mismatch')
-                if scenario_assessment['regression_verdict'] != 'PASS':
-                    raise ValueError(f'{model}: scenario regression gate did not pass')
+                # Each configuration graded the same committed scenario files.
+                described = load(root / 'reports' / model / 'build-identity.json')['scenarios']
+                for case, trace, row in zip(CASES, traces, described):
+                    if row['experiment'] != case or trace['provenance']['scenario']['sha256'] != row['sha256']:
+                        raise ValueError(f'{model}/{case}: trace and run identity name different scenarios')
                 suites[model] = dict(compatibility_passes=sum(c['status'] == 'PASS' for c in suite['cases']),
                     regression_verdict=assessment['regression_verdict'],
                     payload_sha256={k: v[0] for k, v in repeated['observation_payload_sha256'].items()},
                     full_trace_sha256={k: v[0] for k, v in repeated['full_file_sha256'].items() if k.endswith('.json')},
-                    scenario=dict(migration=migrated['status'],
-                                  compatibility_passes=scenario_assessment['compatibility_passes'],
-                                  scenario_sha256={row['case']: row['scenario']['sha256'] for row in migrated['cases']},
-                                  full_trace_sha256={k: v[0] for k, v in scenario_repeated['full_file_sha256'].items()
-                                                     if k.endswith('.json')}))
+                    scenario_sha256={row['experiment']: row['sha256'] for row in described})
             report['configurations'][config] = dict(ci_status=result['status'], host=result['host'],
                      environment=environment, primary_identity=identity, models=suites)
             if result['status'] != 'PASS':
@@ -81,9 +59,10 @@ def summarize(artifacts, out):
         configs = {k: v['models'][model] for k, v in report['configurations'].items()}
         variants = {case: len({c['payload_sha256'][f'{case}.json'] for c in configs.values()}) for case in CASES}
         full_variants = {case: len({c['full_trace_sha256'][f'{case}.json'] for c in configs.values()}) for case in CASES}
-        scenario_hashes = {json.dumps(c['scenario']['scenario_sha256'], sort_keys=True) for c in configs.values()}
+        scenario_hashes = {json.dumps(c['scenario_sha256'], sort_keys=True) for c in configs.values()}
+        if len(scenario_hashes) > 1:
+            report['errors'][f'{model}-scenarios'] = 'configurations ran different scenario files'
         report['models'][model] = dict(configurations_compared=list(configs),
-                    scenario_migration={k: v['scenario']['migration'] for k, v in configs.items()},
                     scenario_inputs='IDENTICAL' if len(scenario_hashes) == 1 else 'DIFFERENT',
                     observation_payload_variants=variants, full_trace_variants=full_variants,
                     observation_byte_equality=('UNVERIFIED' if len(configs) < 2 else
@@ -99,12 +78,11 @@ def summarize(artifacts, out):
         identity = info['primary_identity']
         lines.append(f"| {config} | {info['host']['system']} {info['host']['architecture']} / {identity['architecture']} | "
                      f"{identity['compiler']} | {identity['build_type']} | {info['ci_status']} | {info['models']['v4']['compatibility_passes']}/10 PASS |")
-    lines += ['', '| Model | Observation payload equality | Distinct payloads per case | Full trace variants per case | Scenario migration | Scenario inputs |',
-              '|---|---|---|---|---|---|']
+    lines += ['', '| Model | Observation payload equality | Distinct payloads per case | Full trace variants per case | Scenario inputs |',
+              '|---|---|---|---|---|']
     for model, info in report['models'].items():
-        migrated = 'EQUIVALENT' if set(info['scenario_migration'].values()) == {'EQUIVALENT'} else 'INCOMPLETE'
         lines.append(f"| {model} | {info['observation_byte_equality']} | {list(info['observation_payload_variants'].values())} | "
-                     f"{list(info['full_trace_variants'].values())} | {migrated} | {info['scenario_inputs']} |")
+                     f"{list(info['full_trace_variants'].values())} | {info['scenario_inputs']} |")
     for config, error in report['errors'].items():
         lines += ['', f'**{config}:** {error}']
     (out / 'summary.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')

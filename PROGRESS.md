@@ -2,9 +2,11 @@
 
 As of 2 October 2026.
 
-**Current stage:** Phase 5 complete. Phase 6's scenario-to-JASS generator and capture/comparison tooling are implemented; the real generated-map reproduction gate is blocked on oracle VM access (issue #14).
+**Current stage:** Phase 6's scenario → generated WC3 map → fixture / same scenario → C++ loop passes on four real maps. PR/main-push CI delivery remains tracked in issue #14; sampler/update-order work is split into issue #17.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
-8 MOV-0012 maps × 3 fresh-process captures, all payload-identical within each map.
+8 MOV-0012 maps × 3 fresh-process captures, plus four generated revisions × 3,
+all payload-identical within each map. Generated observations reproduce their
+hand-authored controls exactly.
 **C++ compatibility:** footman-v4 passes MOV-0001–MOV-0010 under the fixed tolerances.
 Every sample and clock prints the same R2SW_6 text as WC3. It also reproduces every
 recorded state of the 1–50 ms JASS-0001/MOV-0012 captures. A few callbacks read a
@@ -197,14 +199,51 @@ With equivalence shown on both triggers, the hard-coded control was then removed
 `wc3test` requires `--scenario`, and every CI suite runs the committed scenarios
 ([control removed](docs/phase-5-scenarios.md#control-removed)).
 
-## Next task: Phase 6 — generate oracle maps from scenarios
+## Phase 6 scenario loop
 
-[Issue #14](https://github.com/galitianu/warcraft-re/issues/14): generate case JASS
-and maps from the committed scenarios. Reproduce the retained captures through
-generated map revisions. Then take the sampler/update-order capture
-([v4 limitation](docs/footman-v4-results.md#sampling-order)) through the same
-pipeline under a new permanent experiment ID, following the
-[documented workflow](docs/agent-wc3-workflow.md).
+[Issue #14](https://github.com/galitianu/warcraft-re/issues/14),
+[PR #16](https://github.com/galitianu/warcraft-re/pull/16):
+[route, supported input and reproduction](docs/phase-6-generation.md).
+`oracle_codegen` shares the strict v1 parser with wc3test, preserves real tokens,
+and binds generated JASS to the original scenario SHA-256. Ten
+[goldens](oracle/generated/v1/) pass [pjass](results/phase-6/pjass.json) and the
+[independent ordered-call audit](results/phase-6/generator-audit.json).
+The World Editor packaging route and oracle-v1 remain unchanged.
+
+The restored selected Windows 11 ARM64 VM's
+[installation verification](oracle/environment/phase-6-verification.json) confirms
+WC3 1.29.2.9231 x86 and all seven reference-file hashes. MOV-0002-g1, MOV-0004-g1,
+MOV-0006-g1 and MOV-0010-g1 are new verified editor-saved maps. Each has three
+fresh-process WC3 runs, byte-identical within its revision. Their ordered WATCH,
+RUN, TICK, SAMPLE, ACTION and EVENT observations equal the independent controls
+exactly; map labels, SETUP and preload/footer metadata are reported separately.
+Four new [canonical fixtures](oracle/canonical-generated/wc3-1.29.2-9231-x86/)
+and the same unchanged scenarios pass C++ comparisons under the original contract
+and tolerances: [full evidence](results/phase-6/generated-loop.json),
+[summary](results/phase-6/generated-loop.md). The v0.1 infrastructure comparison
+capability is demonstrated; no release tag is created.
+
+Native ARM64 AppleClang Release CI with `--archive`: CTest 3/3, Python 65/65,
+4/4 generated comparisons and all historical compatibility/regression gates PASS.
+footman-v4 remains 10/10; all [50 before/after payload hashes](results/phase-6/runner-before-after.json)
+match. The original 45 Phase 1 runs, 15 fixtures, scenarios, model behavior,
+baselines and tolerances remain unchanged. CI retains/regrades downloaded generated
+fixtures and C++ traces alongside byte-identical golden JASS and scenario inputs.
+Phase 5's scenario-only main-push evidence was
+[downloaded and rechecked](results/phase-5/control-removed-main-verification/summary.md).
+The earlier generator-only PR run passes all five configurations
+([evidence](results/phase-6/pr-verification/summary.md)); hosted verification of the
+new real-capture evidence is pending. Phase 6's main-push gate awaits merge.
+
+## Exact next action
+
+Finish PR #16's five-configuration verification and retain/regrade its downloaded
+artifacts. After review/merge, retain the real main-push evidence before closing
+#14. Then implement [issue #17](https://github.com/galitianu/warcraft-re/issues/17):
+**MOV-0013** measures sampler start phase/update ordering through generated scenarios.
+No MOV-0013 map or capture exists yet. It requires a narrow timing/state schema
+extension beyond v1 and before/after-proven runner timing; issue #14 explicitly
+permits this split after the generator reproduction gate passes.
 
 ## Roadmap status
 
@@ -216,43 +255,8 @@ pipeline under a new permanent experiment ID, following the
 | 3 | Canonical normalized traces and stable comparison contract | Complete — [results](docs/phase-3-results.md); all 45 retained runs validated |
 | 4 | C++ compatibility CI against committed WC3 references | Complete — five configurations pass on PR and main push; [evidence](results/phase-4/main-verification.json) |
 | 5 | Declarative scenarios extracted from repeated manual tests | Complete — [results](docs/phase-5-scenarios.md); PR and main push pass; [evidence](results/phase-5/main-verification.md) |
-| 6 | One scenario drives C++ and generates a runnable WC3 map | In progress — generator/control gate passes; WC3 capture blocked on VM access |
+| 6 | One scenario drives C++ and generates a runnable WC3 map | Retail loop PASS — four maps/12 runs; PR delivery in progress, main push awaits merge |
 | 7 | Reliable unattended VM capture, when manual work becomes costly | Planned |
 | 8 | Microscopic tests, sweeps, and measured compatibility expansion | Planned |
 
 Advance with actual artifacts and verification. Infrastructure checks are not gameplay passes.
-
-**Phase 6 work in progress** ([issue #14](https://github.com/galitianu/warcraft-re/issues/14)):
-[route, scope and reproduction](docs/phase-6-generation.md). `oracle_codegen` shares
-wc3test's v1 parser, preserves declared real tokens, emits exact-input SHA-256 in
-SETUP and rejects unsupported placement/order/period/bounds. World Editor remains
-the packaging route; oracle-v1 and the hand-written controls are unchanged. Ten
-[goldens](oracle/generated/v1/) pass [pjass](results/phase-6/pjass.json) and the
-[independent ordered-call audit](results/phase-6/generator-audit.json). CI checks
-those bytes, their scenario identity and cross-configuration generation evidence.
-
-Native ARM64 AppleClang Release: CTest 3/3, Python 64/64, and existing
-compatibility/regression/archival gates pass; all [50 before/after payload hashes](results/phase-6/runner-before-after.json)
-are identical. footman-v4 remains 10/10 PASS, with the original 45 Phase 1 runs and
-15 canonical fixtures unchanged. Phase 5's scenario-only main-push evidence was
-[downloaded and rechecked](results/phase-5/control-removed-main-verification/summary.md).
-[Draft PR #16](https://github.com/galitianu/warcraft-re/pull/16), implementation
-`191f9ff`: [hosted PR workflow](https://github.com/galitianu/warcraft-re/actions/runs/37001747756)
-passes all five configurations and the aggregate job. Downloaded artifacts
-[recheck locally](results/phase-6/pr-verification/summary.md): all generator
-JASS/manifest bytes and scenario inputs are identical across configurations;
-every historical regression gate passes and v4 remains 10/10 on each. Generated
-retail capture remains UNOBSERVED, so the PR stays draft.
-
-**Blocker:** rdpipe target `vm` stopped answering relay pings; reconnect cannot
-finish RDP login within 90 s. UTM reports Windows started at 192.168.64.2, but guest
-execution also times out. No generated `.w3m`, WC3 run or retail result has been
-invented. The four g1 case sources are prepared; capture normalization and the
-scenario-hash-bound comparison path have synthetic integrity tests only.
-
-**Exact next action:** restore the existing oracle VM's rdpipe access, reverify all
-seven installed reference files and x86 executable identity, then author/check and
-capture MOV-0002-g1, MOV-0004-g1, MOV-0006-g1 and MOV-0010-g1 three times each.
-Run `record_generated.py` and `run_generated.py` as documented. Only after this
-retail reproduction gate passes should sampler/update-order work be split or a v2
-schema/runner extension implemented. Phase 6 and the v0.1 gate remain open.

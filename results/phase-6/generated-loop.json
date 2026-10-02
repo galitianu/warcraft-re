@@ -1,0 +1,1888 @@
+{
+  "status": "PASS",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "cases": [
+    {
+      "map_revision": "MOV-0002-g1",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 1,
+        "path": "scenarios/MOV-0002.yaml",
+        "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+      },
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0002-g1",
+        "control_revision": "MOV-0002-r2",
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 1,
+          "path": "scenarios/MOV-0002.yaml",
+          "sha256": "0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58"
+        },
+        "completion": {
+          "complete": true,
+          "records": 760,
+          "ticks": 251,
+          "samples": 502,
+          "actions": 1,
+          "events": 0
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "51d4592e6c081cca91694dd70b16d2a67d2f8e0b8ae41c6a743ade445144101d",
+            "51d4592e6c081cca91694dd70b16d2a67d2f8e0b8ae41c6a743ade445144101d",
+            "51d4592e6c081cca91694dd70b16d2a67d2f8e0b8ae41c6a743ade445144101d"
+          ],
+          "observation_payload_sha256": [
+            "1f6a25bcce02403fa3250e2b7fb42b2d9ef86873199aeef068119654f51e8261",
+            "1f6a25bcce02403fa3250e2b7fb42b2d9ef86873199aeef068119654f51e8261",
+            "1f6a25bcce02403fa3250e2b7fb42b2d9ef86873199aeef068119654f51e8261"
+          ],
+          "distinct_raw_files": 1,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 757,
+          "control_sha256": "e893aa63b2d961469761236b19d378f8da7c139515b9ebae7a5d3593167f8061",
+          "generated_sha256": "e893aa63b2d961469761236b19d378f8da7c139515b9ebae7a5d3593167f8061",
+          "first_divergence": null
+        },
+        "metadata_differences": {
+          "scope": "BEGIN/END map label, SETUP declaration/hash, Preload transport and raw sequence numbers",
+          "control_records": [
+            "@O|0|BEGIN|MOV-0002|wc3-1.29.2-9231-x86|map=MOV-0002-r2|lib=oracle-v1|time_unit=seconds|numeric_format=R2SW_6|clock_duration=1000.000000",
+            "@O|3|SETUP|u0=hfoo,0,0,0|u1=hfoo,0,384,0|u0_order_at_callback_0=move,1000,0",
+            "@O|759|END|MOV-0002|map=MOV-0002-r2|callbacks=250"
+          ],
+          "generated_records": [
+            "@O|0|BEGIN|MOV-0002|wc3-1.29.2-9231-x86|map=MOV-0002-g1|lib=oracle-v1|time_unit=seconds|numeric_format=R2SW_6|clock_duration=1000.000000",
+            "@O|3|SETUP|scenario_sha256=0baab8e9693bb1c6d2940eab33a9f0cf5dc9e037cca8d5ed372e8f532f517e58|scenario_version=1|u0=hfoo,0,0,0|u1=hfoo,0,384,0|action0=0,u0,move,target,1000,0",
+            "@O|759|END|MOV-0002|map=MOV-0002-g1|callbacks=250"
+          ],
+          "control_preload": [
+            {
+              "after_record": 0,
+              "entry": "war3map.w3i"
+            },
+            {
+              "after_record": 0,
+              "entry": "war3map.wts"
+            },
+            {
+              "after_record": 0,
+              "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0002-r2.w3m"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\Footman.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\gutz.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+            }
+          ],
+          "generated_preload": [
+            {
+              "after_record": 0,
+              "entry": "war3map.w3i"
+            },
+            {
+              "after_record": 0,
+              "entry": "war3map.wts"
+            },
+            {
+              "after_record": 0,
+              "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0002-g1.w3m"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\Footman.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\gutz.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+            }
+          ],
+          "control_footer": "call PreloadEnd( 5.1 )",
+          "generated_footers": [
+            "call PreloadEnd( 5.1 )",
+            "call PreloadEnd( 5.1 )",
+            "call PreloadEnd( 5.1 )"
+          ]
+        },
+        "fixture_sha256": "fedbf084c3fea4b0c95d233f3436dcd351daf4521bffa4580423009d50321ed4"
+      },
+      "comparison": {
+        "case": "MOV-0002",
+        "map_revision": "MOV-0002-g1",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 760,
+        "actual_records": 759,
+        "reference_samples": 502,
+        "actual_samples": 502,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.2499999999665556e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.7499999671599653e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 502,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "fedbf084c3fea4b0c95d233f3436dcd351daf4521bffa4580423009d50321ed4",
+        "actual_sha256": "76d9cb996064974f0ba121e436aad80438da3ba87bef77a08fdefbaa3df50848"
+      }
+    },
+    {
+      "map_revision": "MOV-0004-g1",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 1,
+        "path": "scenarios/MOV-0004.yaml",
+        "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+      },
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0004-g1",
+        "control_revision": "MOV-0004",
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 1,
+          "path": "scenarios/MOV-0004.yaml",
+          "sha256": "006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6"
+        },
+        "completion": {
+          "complete": true,
+          "records": 1208,
+          "ticks": 601,
+          "samples": 601,
+          "actions": 1,
+          "events": 0
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "36ad44f505932fa015bde05bd5d08bdb461448eea491aa752d94cbd57ab06da3",
+            "36ad44f505932fa015bde05bd5d08bdb461448eea491aa752d94cbd57ab06da3",
+            "36ad44f505932fa015bde05bd5d08bdb461448eea491aa752d94cbd57ab06da3"
+          ],
+          "observation_payload_sha256": [
+            "009b90656430efa9182191ad911981fc82276a89d459257020000f2e72d0b541",
+            "009b90656430efa9182191ad911981fc82276a89d459257020000f2e72d0b541",
+            "009b90656430efa9182191ad911981fc82276a89d459257020000f2e72d0b541"
+          ],
+          "distinct_raw_files": 1,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 1205,
+          "control_sha256": "5fd534c71327b3faa3cabf3c6fd6727ccfe97ad48b7988739bf9cf37b8d5a6f7",
+          "generated_sha256": "5fd534c71327b3faa3cabf3c6fd6727ccfe97ad48b7988739bf9cf37b8d5a6f7",
+          "first_divergence": null
+        },
+        "metadata_differences": {
+          "scope": "BEGIN/END map label, SETUP declaration/hash, Preload transport and raw sequence numbers",
+          "control_records": [
+            "@O|0|BEGIN|MOV-0004|wc3-1.29.2-9231-x86|map=MOV-0004|lib=oracle-v1|time_unit=seconds|numeric_format=R2SW_6|clock_duration=1000.000000",
+            "@O|2|SETUP|u0=hfoo,0,0,0|set_move_speed=100|order_at_callback_0=move,1000,0",
+            "@O|1207|END|MOV-0004|map=MOV-0004|callbacks=600"
+          ],
+          "generated_records": [
+            "@O|0|BEGIN|MOV-0004|wc3-1.29.2-9231-x86|map=MOV-0004-g1|lib=oracle-v1|time_unit=seconds|numeric_format=R2SW_6|clock_duration=1000.000000",
+            "@O|2|SETUP|scenario_sha256=006952b32fa53abd022bdc60b4c5e5edecbd19a81493166905e84e03ce5f83e6|scenario_version=1|u0=hfoo,0,0,0|u0_requested_move_speed=100|action0=0,u0,move,target,1000,0",
+            "@O|1207|END|MOV-0004|map=MOV-0004-g1|callbacks=600"
+          ],
+          "control_preload": [
+            {
+              "after_record": 0,
+              "entry": "war3map.w3i"
+            },
+            {
+              "after_record": 0,
+              "entry": "war3map.wts"
+            },
+            {
+              "after_record": 0,
+              "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0004.w3m"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\Footman.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\gutz.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+            }
+          ],
+          "generated_preload": [
+            {
+              "after_record": 0,
+              "entry": "war3map.w3i"
+            },
+            {
+              "after_record": 0,
+              "entry": "war3map.wts"
+            },
+            {
+              "after_record": 0,
+              "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0004-g1.w3m"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\Footman.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\gutz.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+            }
+          ],
+          "control_footer": "call PreloadEnd( 12.1 )",
+          "generated_footers": [
+            "call PreloadEnd( 12.1 )",
+            "call PreloadEnd( 12.1 )",
+            "call PreloadEnd( 12.1 )"
+          ]
+        },
+        "fixture_sha256": "b88dc84c5c0e4dfc34987262fba101e1d8541aeed338b21f3b5b1c6a26a1b851"
+      },
+      "comparison": {
+        "case": "MOV-0004",
+        "map_revision": "MOV-0004-g1",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1208,
+        "actual_records": 1207,
+        "reference_samples": 601,
+        "actual_samples": 601,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 3.124999999985778e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 4.885000066678913e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.885000066678913e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 601,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "b88dc84c5c0e4dfc34987262fba101e1d8541aeed338b21f3b5b1c6a26a1b851",
+        "actual_sha256": "2e09205b5d5a4fa3da71274f9ead057817b0546d555fd41584ccdc78d93c0333"
+      }
+    },
+    {
+      "map_revision": "MOV-0006-g1",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 1,
+        "path": "scenarios/MOV-0006.yaml",
+        "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+      },
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0006-g1",
+        "control_revision": "MOV-0006",
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 1,
+          "path": "scenarios/MOV-0006.yaml",
+          "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+        },
+        "completion": {
+          "complete": true,
+          "records": 509,
+          "ticks": 251,
+          "samples": 251,
+          "actions": 2,
+          "events": 0
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "7d427d274e7bd01e55e8d2a626dcec1ade78485816dccde77d599985e54afd0b",
+            "7d427d274e7bd01e55e8d2a626dcec1ade78485816dccde77d599985e54afd0b",
+            "7d427d274e7bd01e55e8d2a626dcec1ade78485816dccde77d599985e54afd0b"
+          ],
+          "observation_payload_sha256": [
+            "9adbaefa1ffbdc8a05eb7759b4f47466e35a36efafdec442dcaf1e2c34811178",
+            "9adbaefa1ffbdc8a05eb7759b4f47466e35a36efafdec442dcaf1e2c34811178",
+            "9adbaefa1ffbdc8a05eb7759b4f47466e35a36efafdec442dcaf1e2c34811178"
+          ],
+          "distinct_raw_files": 1,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 506,
+          "control_sha256": "8d13b4b5d0fe33e03a6419d2cbe06122fa2d0bb556921480ebaf08ba38c83353",
+          "generated_sha256": "8d13b4b5d0fe33e03a6419d2cbe06122fa2d0bb556921480ebaf08ba38c83353",
+          "first_divergence": null
+        },
+        "metadata_differences": {
+          "scope": "BEGIN/END map label, SETUP declaration/hash, Preload transport and raw sequence numbers",
+          "control_records": [
+            "@O|0|BEGIN|MOV-0006|wc3-1.29.2-9231-x86|map=MOV-0006|lib=oracle-v1|time_unit=seconds|numeric_format=R2SW_6|clock_duration=1000.000000",
+            "@O|2|SETUP|u0=hfoo,0,0,0|order_at_callback_0=move,1000,0|order_at_callback_50=move,x,y+1000",
+            "@O|508|END|MOV-0006|map=MOV-0006|callbacks=250"
+          ],
+          "generated_records": [
+            "@O|0|BEGIN|MOV-0006|wc3-1.29.2-9231-x86|map=MOV-0006-g1|lib=oracle-v1|time_unit=seconds|numeric_format=R2SW_6|clock_duration=1000.000000",
+            "@O|2|SETUP|scenario_sha256=84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169|scenario_version=1|u0=hfoo,0,0,0|action0=0,u0,move,target,1000,0|action1=50,u0,move,offset,0,1000",
+            "@O|508|END|MOV-0006|map=MOV-0006-g1|callbacks=250"
+          ],
+          "control_preload": [
+            {
+              "after_record": 0,
+              "entry": "war3map.w3i"
+            },
+            {
+              "after_record": 0,
+              "entry": "war3map.wts"
+            },
+            {
+              "after_record": 0,
+              "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0006.w3m"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\Footman.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\gutz.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+            }
+          ],
+          "generated_preload": [
+            {
+              "after_record": 0,
+              "entry": "war3map.w3i"
+            },
+            {
+              "after_record": 0,
+              "entry": "war3map.wts"
+            },
+            {
+              "after_record": 0,
+              "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0006-g1.w3m"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\Footman.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\gutz.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+            }
+          ],
+          "control_footer": "call PreloadEnd( 5.1 )",
+          "generated_footers": [
+            "call PreloadEnd( 5.1 )",
+            "call PreloadEnd( 5.1 )",
+            "call PreloadEnd( 5.1 )"
+          ]
+        },
+        "fixture_sha256": "1df1c8f6ef7a00e0e8951e1fe38009ab0cd86d961ca245c795704ea12f8488e2"
+      },
+      "comparison": {
+        "case": "MOV-0006",
+        "map_revision": "MOV-0006-g1",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 9.999999974752427e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.999999987376214e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.999999987376214e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -1.9999998812636477e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "1df1c8f6ef7a00e0e8951e1fe38009ab0cd86d961ca245c795704ea12f8488e2",
+        "actual_sha256": "6be57386ec319bfdca20dfd590c9b3e020a6087a277fe20fa6f1722077249834"
+      }
+    },
+    {
+      "map_revision": "MOV-0010-g1",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 1,
+        "path": "scenarios/MOV-0010.yaml",
+        "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+      },
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0010-g1",
+        "control_revision": "MOV-0010",
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 1,
+          "path": "scenarios/MOV-0010.yaml",
+          "sha256": "781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06"
+        },
+        "completion": {
+          "complete": true,
+          "records": 509,
+          "ticks": 251,
+          "samples": 251,
+          "actions": 2,
+          "events": 0
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "a191046725214f5a856067aa0852110ac434876bfa0fd71edc830009e2dd9e10",
+            "a191046725214f5a856067aa0852110ac434876bfa0fd71edc830009e2dd9e10",
+            "a191046725214f5a856067aa0852110ac434876bfa0fd71edc830009e2dd9e10"
+          ],
+          "observation_payload_sha256": [
+            "d3fb794ae2d0ac2d45e012df470cea6a0a38555e2b80af1629c49544c877098b",
+            "d3fb794ae2d0ac2d45e012df470cea6a0a38555e2b80af1629c49544c877098b",
+            "d3fb794ae2d0ac2d45e012df470cea6a0a38555e2b80af1629c49544c877098b"
+          ],
+          "distinct_raw_files": 1,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 506,
+          "control_sha256": "cc2d1f008e877cdce0510a7451a7db6017e41d57bff14c9cb47e965a96b90ff5",
+          "generated_sha256": "cc2d1f008e877cdce0510a7451a7db6017e41d57bff14c9cb47e965a96b90ff5",
+          "first_divergence": null
+        },
+        "metadata_differences": {
+          "scope": "BEGIN/END map label, SETUP declaration/hash, Preload transport and raw sequence numbers",
+          "control_records": [
+            "@O|0|BEGIN|MOV-0010|wc3-1.29.2-9231-x86|map=MOV-0010|lib=oracle-v1|time_unit=seconds|numeric_format=R2SW_6|clock_duration=1000.000000",
+            "@O|2|SETUP|u0=hfoo,0,0,0|order_at_callback_0=move,1000,0|order_at_callback_50=stop",
+            "@O|508|END|MOV-0010|map=MOV-0010|callbacks=250"
+          ],
+          "generated_records": [
+            "@O|0|BEGIN|MOV-0010|wc3-1.29.2-9231-x86|map=MOV-0010-g1|lib=oracle-v1|time_unit=seconds|numeric_format=R2SW_6|clock_duration=1000.000000",
+            "@O|2|SETUP|scenario_sha256=781ac23f9fca0d11d6fb0ded82b4973265de4ed4d33354762c9cf8e516208b06|scenario_version=1|u0=hfoo,0,0,0|action0=0,u0,move,target,1000,0|action1=50,u0,stop",
+            "@O|508|END|MOV-0010|map=MOV-0010-g1|callbacks=250"
+          ],
+          "control_preload": [
+            {
+              "after_record": 0,
+              "entry": "war3map.w3i"
+            },
+            {
+              "after_record": 0,
+              "entry": "war3map.wts"
+            },
+            {
+              "after_record": 0,
+              "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0010.w3m"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\Footman.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\gutz.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+            }
+          ],
+          "generated_preload": [
+            {
+              "after_record": 0,
+              "entry": "war3map.w3i"
+            },
+            {
+              "after_record": 0,
+              "entry": "war3map.wts"
+            },
+            {
+              "after_record": 0,
+              "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0010-g1.w3m"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\Footman.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "Textures\\\\gutz.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+            },
+            {
+              "after_record": 0,
+              "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+            }
+          ],
+          "control_footer": "call PreloadEnd( 5.0 )",
+          "generated_footers": [
+            "call PreloadEnd( 5.1 )",
+            "call PreloadEnd( 5.1 )",
+            "call PreloadEnd( 5.1 )"
+          ]
+        },
+        "fixture_sha256": "7818a161656774861fab74347a1ecc1aaae427742fd72f1fef6105512826b903"
+      },
+      "comparison": {
+        "case": "MOV-0010",
+        "map_revision": "MOV-0010-g1",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 509,
+        "actual_records": 508,
+        "reference_samples": 251,
+        "actual_samples": 251,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000058430487e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.594000000002595e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 4.960000126175146e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.960000126175146e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -9.600000794307562e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 251,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "7818a161656774861fab74347a1ecc1aaae427742fd72f1fef6105512826b903",
+        "actual_sha256": "8179cf17bdb90bdf9fc2fb1923b01ed7ffa9191099411d52c2d7cef478caea6d"
+      }
+    }
+  ]
+}

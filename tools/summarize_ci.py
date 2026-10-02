@@ -3,12 +3,16 @@
 import argparse
 import json
 from pathlib import Path
+import tempfile
 
+from compare_traces import compare, verify_reference_provenance
+from normalize_generated import normalize
+from run_generated import FIXTURES
 from regression import CASES, validate_report
 from run_ci import BASELINES
 from generate_oracle import GOLDENS
 from audit_oracle import audit
-from trace_contract import digest, load, payload, sha256, validate, write_json
+from trace_contract import GENERATED_SHAPES, digest, load, payload, sha256, validate, write_json
 
 CONFIGURATIONS = ('mac-arm-release', 'mac-arm-debug', 'linux-gcc-release',
                   'linux-clang-debug', 'windows-msvc-release')
@@ -32,6 +36,45 @@ def verify_generation(root, result):
     return generation
 
 
+def verify_generated_loop(root, result):
+    loop = result.get('generated_capture_loop')
+    if result.get('generated_capture_loop_required') and (not loop or loop['status'] != 'PASS'):
+        raise ValueError('required generated capture loop missing or failing')
+    if not loop or loop['status'] == 'UNOBSERVED':
+        return None  # Historical workflows before the real reproduction captures.
+    report = load(root / 'reports/generated-loop.json')
+    if loop['status'] != 'PASS' or report['status'] != 'PASS':
+        raise ValueError('generated capture loop did not pass')
+    if [c['map_revision'] for c in report['cases']] != list(GENERATED_SHAPES):
+        raise ValueError('generated capture loop has missing or unexpected revisions')
+    scenarios, observations, cpp = {}, {}, {}
+    with tempfile.TemporaryDirectory() as tmp:
+        for row in report['cases']:
+            label = row['map_revision']
+            exp = GENERATED_SHAPES[label][0]
+            reference_path = root / 'generated-loop/references' / f'{label}.json'
+            actual_path = root / 'generated-loop/traces' / label / f'{exp}.json'
+            reproduction = normalize(label, Path(tmp))
+            if (reference_path.read_bytes() != (FIXTURES / f'{label}.json').read_bytes()
+                    or row['reproduction'] != reproduction or reproduction['status'] != 'PASS'):
+                raise ValueError(f'{label}: downloaded WC3 fixture/reproduction differs from retained evidence')
+            reference, actual = load(reference_path), load(actual_path)
+            if actual['identity']['model']['name'] != 'footman-v4':
+                raise ValueError(f'{label}: generated loop did not run the required v4 model')
+            verify_reference_provenance(reference)
+            comparison = compare(reference, actual)
+            comparison.update(reference_sha256=sha256(reference_path), actual_sha256=sha256(actual_path))
+            if row['status'] != 'PASS' or comparison['status'] != 'PASS' or row['comparison'] != comparison:
+                raise ValueError(f'{label}: downloaded generated comparison does not reproduce')
+            if row['scenario'] != reference['provenance']['scenario']:
+                raise ValueError(f'{label}: generated comparison names different scenario bytes')
+            scenarios[exp] = row['scenario']['sha256']
+            observations[label] = reproduction['observations']['generated_sha256']
+            cpp[label] = digest(payload(actual))
+    return dict(status='PASS', compatibility_passes=len(report['cases']), scenario_sha256=scenarios,
+                wc3_observation_sha256=observations, cpp_payload_sha256=cpp)
+
+
 def summarize(artifacts, out):
     out.mkdir(parents=True, exist_ok=True)
     report = dict(status='FAIL', configurations={}, errors={}, models={},
@@ -44,6 +87,7 @@ def summarize(artifacts, out):
             environment = load(root / 'reports/environment.json')
             identity = load(root / 'reports/v4/build-identity.json')
             generation = verify_generation(root, result)
+            generated_loop = verify_generated_loop(root, result)
             suites = {}
             for model in BASELINES:
                 suite = validate_report(load(root / 'reports' / model / 'comparison.json'))
@@ -74,7 +118,8 @@ def summarize(artifacts, out):
                         e['experiment']: e['scenario']['sha256'] for e in generation['manifest']['inputs']}:
                     raise ValueError('oracle generator and C++ suite consumed different scenarios')
             report['configurations'][config] = dict(ci_status=result['status'], host=result['host'],
-                     environment=environment, primary_identity=identity, models=suites, oracle_generation=generation)
+                     environment=environment, primary_identity=identity, models=suites,
+                     oracle_generation=generation, generated_capture_loop=generated_loop)
             if result['status'] != 'PASS':
                 report['errors'][config] = result['errors'] or 'configuration did not pass'
         except (OSError, ValueError, KeyError, TypeError, IndexError) as error:
@@ -98,12 +143,20 @@ def summarize(artifacts, out):
         report['errors']['oracle-generation'] = 'missing configuration evidence or different generated JASS/inputs'
     report['oracle_generation'] = dict(status='IDENTICAL' if generators and len(variants) == 1 else 'UNOBSERVED',
                                       configurations_compared=list(generators))
+    loops = {k: v['generated_capture_loop'] for k, v in report['configurations'].items() if v['generated_capture_loop']}
+    if loops and (len(loops) != len(CONFIGURATIONS) or len({digest(v) for v in loops.values()}) != 1):
+        report['errors']['generated-capture-loop'] = 'missing configuration evidence or different scenario/observation inputs'
+    report['generated_capture_loop'] = dict(status=('FAIL' if 'generated-capture-loop' in report['errors']
+                                                  else 'PASS' if loops else 'UNOBSERVED'),
+                                          configurations_compared=list(loops),
+                                          compatibility_passes={k: v['compatibility_passes'] for k, v in loops.items()})
     report['status'] = 'PASS' if not report['errors'] and len(report['configurations']) == len(CONFIGURATIONS) else 'FAIL'
     write_json(out / 'scope.json', report)
     lines = ['# Measured build scope', '', f"CI scope gate: **{report['status']}**.", '', report['scope'], '',
              'Payload hashes exclude build/transport identity; full trace hashes include it.',
              'Cross-configuration byte differences are reported, while each configuration is graded against the same WC3 fixtures.', '',
              f"Oracle generation: **{report['oracle_generation']['status']}** across {len(generators)} configurations.", '',
+             f"Generated-map capture/comparison: **{report['generated_capture_loop']['status']}** across {len(loops)} configurations.", '',
              '| Configuration | Host / target | Compiler | Build | CI | v4 compatibility |', '|---|---|---|---|---|---|']
     for config, info in report['configurations'].items():
         identity = info['primary_identity']

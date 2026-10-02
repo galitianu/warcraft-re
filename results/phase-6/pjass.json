@@ -70,6 +70,34 @@
       "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      183 lines: local/phase6-syntax.j\nParse successful:    12977 lines: <total>\n",
       "stderr": "",
       "case_sha256": "ad158db06dd8dd6e345c65deb4eed800223184fcb449bd75e714d053c7d129aa"
+    },
+    {
+      "case": "oracle/generated/maps/MOV-0002-g1.j",
+      "case_sha256": "7f2b457cd08f3b39a22ce6152daa49c1d0d0f100733071194cbea9fb1561ed08",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      186 lines: local/phase6-syntax.j\nParse successful:    12980 lines: <total>\n",
+      "stderr": ""
+    },
+    {
+      "case": "oracle/generated/maps/MOV-0004-g1.j",
+      "case_sha256": "e511be63b55f62402498dc9e139173bea028ee8f8f65e0625ab706f06713c50f",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      182 lines: local/phase6-syntax.j\nParse successful:    12976 lines: <total>\n",
+      "stderr": ""
+    },
+    {
+      "case": "oracle/generated/maps/MOV-0006-g1.j",
+      "case_sha256": "49ef7e3d2173aa4fc3322fd2d3604a16b4e679ed1123077db7848987409b13b9",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      185 lines: local/phase6-syntax.j\nParse successful:    12979 lines: <total>\n",
+      "stderr": ""
+    },
+    {
+      "case": "oracle/generated/maps/MOV-0010-g1.j",
+      "case_sha256": "81d80b56b8eed1fb2b65d13f05d34cadf058f5e6c06ddb27cad18ed84454ed77",
+      "exit": 0,
+      "stdout": "Parse successful:     2542 lines: local/War3.mpq-common.j\nParse successful:    10252 lines: local/War3.mpq-Blizzard.j\nParse successful:      183 lines: local/phase6-syntax.j\nParse successful:    12977 lines: <total>\n",
+      "stderr": ""
     }
   ],
   "checker": {

@@ -1,0 +1,114 @@
+{
+  "experiment": "MOV-0006",
+  "map_label": "MOV-0006-g1",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "definition": "docs/phase-6-generation.md",
+  "procedure": "docs/phase-1-procedure.md",
+  "map": {
+    "path": "oracle-maps/MOV-0006-g1.w3m",
+    "sha256": "47e92387c00aa045bda6223ef405dc3bfc453c328b7eac99d7a342723a8a5f2e",
+    "bytes": 22398
+  },
+  "library": {
+    "path": "oracle/jass/lib/oracle-v1.j",
+    "sha256": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca"
+  },
+  "case": {
+    "path": "oracle/generated/maps/MOV-0006-g1.j",
+    "sha256": "49ef7e3d2173aa4fc3322fd2d3604a16b4e679ed1123077db7848987409b13b9"
+  },
+  "scenario": {
+    "schema": "wc3-scenario",
+    "version": 1,
+    "path": "scenarios/MOV-0006.yaml",
+    "sha256": "84a0e3a1f266941f0b04a62757666a0cdb5a07611c197059c3297ba296ef8169"
+  },
+  "generation": {
+    "path": "oracle/generated/maps/MOV-0006-g1-generation.json",
+    "sha256": "6c80b974c531e83b8fb0ac3b852942630b89ad86d19af6a585e15dd45ec16272"
+  },
+  "verification": {
+    "path": "oracle/environment/phase-6-verification.json",
+    "sha256": "17f045fbaa94c457973df1b0daecd794ee3a292d41a0b14c9d1048631f57f3a9"
+  },
+  "environment": {
+    "path": "oracle/environment/wc3-1.29.2-9231-x86.json",
+    "sha256": "dad738060886d7c75feb0ff14ddc3c276d3e861842bbb8bfead09dd89f23a5a1"
+  },
+  "check_map": {
+    "map": "oracle-maps/MOV-0006-g1.w3m",
+    "bytes": 22398,
+    "sha256": "47e92387c00aa045bda6223ef405dc3bfc453c328b7eac99d7a342723a8a5f2e",
+    "w3i_format": 18,
+    "custom_text_triggers": 1,
+    "trigger_matches_source": true,
+    "war3map_j_contains_source": true,
+    "war3map_j_runs_init_triggers": false,
+    "generated_war3map_j_sha256": "8f5497d7d15316c372844de335cb0aaf2d15593571c66f900e84cf8dfcee340a",
+    "library_sha256": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca",
+    "case_sha256": "49ef7e3d2173aa4fc3322fd2d3604a16b4e679ed1123077db7848987409b13b9",
+    "ok": true
+  },
+  "rng_seed": "not set; retail seed influence unobserved",
+  "sampling": {
+    "requested_period_seconds": "0.020000",
+    "callbacks": 250,
+    "clock_duration_seconds": "1000",
+    "units": "seconds, world-units, degrees",
+    "numeric_format": "R2SW(value,1,6)"
+  },
+  "transport": "rdpipe pull; SHA-256 checked by transport",
+  "runs": [
+    {
+      "run": 1,
+      "file": "run-01.txt",
+      "game_pid": 9956,
+      "start_unix_seconds": 1790942648.4563131,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0006-g1.w3m",
+      "map_sha256": "47e92387c00aa045bda6223ef405dc3bfc453c328b7eac99d7a342723a8a5f2e",
+      "output": {
+        "Length": 34882,
+        "LastWriteTimeUtc": "/Date(1790942660221)/"
+      },
+      "sha256": "4aea92d79410a0daa0faf80da0e3c7808c2f4d1b5154ee67589841bf0cf695f4",
+      "payload_sha256": "9adbaefa1ffbdc8a05eb7759b4f47466e35a36efafdec442dcaf1e2c34811178",
+      "footer": "call PreloadEnd( 5.1 )"
+    },
+    {
+      "run": 2,
+      "file": "run-02.txt",
+      "game_pid": 1916,
+      "start_unix_seconds": 1790942664.270706,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0006-g1.w3m",
+      "map_sha256": "47e92387c00aa045bda6223ef405dc3bfc453c328b7eac99d7a342723a8a5f2e",
+      "output": {
+        "Length": 34882,
+        "LastWriteTimeUtc": "/Date(1790942674378)/"
+      },
+      "sha256": "4aea92d79410a0daa0faf80da0e3c7808c2f4d1b5154ee67589841bf0cf695f4",
+      "payload_sha256": "9adbaefa1ffbdc8a05eb7759b4f47466e35a36efafdec442dcaf1e2c34811178",
+      "footer": "call PreloadEnd( 5.1 )"
+    },
+    {
+      "run": 3,
+      "file": "run-03.txt",
+      "game_pid": 2956,
+      "start_unix_seconds": 1790942678.698058,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0006-g1.w3m",
+      "map_sha256": "47e92387c00aa045bda6223ef405dc3bfc453c328b7eac99d7a342723a8a5f2e",
+      "output": {
+        "Length": 34882,
+        "LastWriteTimeUtc": "/Date(1790942688971)/"
+      },
+      "sha256": "4aea92d79410a0daa0faf80da0e3c7808c2f4d1b5154ee67589841bf0cf695f4",
+      "payload_sha256": "9adbaefa1ffbdc8a05eb7759b4f47466e35a36efafdec442dcaf1e2c34811178",
+      "footer": "call PreloadEnd( 5.1 )"
+    }
+  ]
+}

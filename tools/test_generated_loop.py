@@ -1,11 +1,12 @@
-"""Synthetic transport/provenance tests; never create or retain retail evidence.
+"""Generated capture provenance and downloaded comparison integrity tests.
 
-Temporary derivatives of a retained raw control exercise the normalization gate,
-identity relation and tamper rejection. They are NOT WC3 generated-map captures.
+Temporary synthetic derivatives exercise tamper rejection, alongside a downloaded
+artifact check of the real retained captures. Tests never retain retail evidence.
 """
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import tempfile
 import unittest
@@ -14,7 +15,7 @@ from unittest.mock import patch
 from compare_traces import compare
 from normalize_generated import normalize
 from oracle_parse import parse
-from trace_contract import BUILD, ROOT, load, sha256, validate, write_json
+from trace_contract import BUILD, GENERATED_SHAPES, ROOT, load, sha256, validate, write_json
 
 RUNNER = Path(os.environ.get('WC3TEST_RUNNER', ROOT / 'build' /
               ('wc3test.exe' if os.name == 'nt' else 'wc3test')))
@@ -22,6 +23,35 @@ LABEL = 'MOV-0006-g1'
 
 
 class GeneratedLoopTests(unittest.TestCase):
+    @unittest.skipUnless(all((ROOT / f'oracle/captures/{BUILD}/{label}/manifest.json').exists()
+                            for label in GENERATED_SHAPES), 'real generated captures not yet retained')
+    def test_downloaded_loop_regrades_bytes_and_rejects_forged_success(self):
+        from run_generated import run
+        from summarize_ci import verify_generated_loop
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.assertEqual(run(RUNNER, root / 'generated-loop', root / 'reports'), 0)
+            result = dict(generated_capture_loop_required=True, generated_capture_loop=dict(status='PASS'))
+            self.assertEqual(verify_generated_loop(root, result)['compatibility_passes'], 4)
+            with self.assertRaisesRegex(ValueError, 'required generated capture loop'):
+                verify_generated_loop(root, dict(generated_capture_loop_required=True))
+            report_path = root / 'reports/generated-loop.json'
+            report = load(report_path)
+            actual_path = root / 'generated-loop/traces/MOV-0002-g1/MOV-0002.json'
+            actual = load(actual_path)
+            # A forged digest and PASS declaration must not hide changed state.
+            next(r for r in actual['records'] if r['kind'] == 'SAMPLE')['values']['x'] = '1.000000'
+            write_json(actual_path, actual, compact_records=True)
+            report['cases'][0]['comparison']['actual_sha256'] = sha256(actual_path)
+            write_json(report_path, report)
+            with self.assertRaisesRegex(ValueError, 'comparison does not reproduce'):
+                verify_generated_loop(root, result)
+            shutil.rmtree(root / 'generated-loop/traces')
+            report['cases'].pop()
+            write_json(report_path, report)
+            with self.assertRaisesRegex(ValueError, 'missing or unexpected revisions'):
+                verify_generated_loop(root, result)
+
     def setup_synthetic(self, root):
         self.base = root / 'oracle/captures' / BUILD / LABEL
         self.base.mkdir(parents=True)

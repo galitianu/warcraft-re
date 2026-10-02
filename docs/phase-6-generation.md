@@ -131,6 +131,35 @@ reference tuning or scenario-derived expected output.
 
 ## Validation and handoff
 
+On 2 October 2026 the selected VM was restored. A fresh
+[installation verification](../oracle/environment/phase-6-verification.json)
+records `WIN-5OII4GM1ENR`, Windows 11 Pro build 26200 ARM64, all seven matching
+reference-file hashes, game/editor version 1.29.2.9231 and x86 PE machine 0x014c.
+The editor's raw version resource is comma-separated; the verification preserves
+that text and separately reads its numeric version fields.
+
+Four new [editor-saved maps](../oracle-maps/) passed `check_map.py` and ran in
+three fresh WC3 processes each. Their [raw captures/manifests](../oracle/captures/wc3-1.29.2-9231-x86/)
+and four new [canonical fixtures](../oracle/canonical-generated/wc3-1.29.2-9231-x86/)
+bind the unchanged original scenario bytes to generated case, saved map and verified
+installation. All three raw files per revision are byte-identical. The
+[full loop report](../results/phase-6/generated-loop.json) and
+[summary](../results/phase-6/generated-loop.md) pass:
+
+| Generated revision | Independent control | Ordered observation records | Fresh runs | C++ v4 |
+|---|---|---:|---:|---|
+| MOV-0002-g1 | MOV-0002-r2 | 757, exact equality | 3 identical | PASS |
+| MOV-0004-g1 | MOV-0004 | 1205, exact equality | 3 identical | PASS |
+| MOV-0006-g1 | MOV-0006 | 506, exact equality | 3 identical | PASS |
+| MOV-0010-g1 | MOV-0010 | 506, exact equality | 3 identical | PASS |
+
+No first observation divergence exists. Metadata changes are BEGIN/END map
+revision, SETUP declaration/scenario hash and the preload map path. Raw record
+sequence numbers remain equal. MOV-0010's transport footer changes from 5.0 to
+5.1; its TICK clock strings remain exact. The other three footer values match
+their controls. These metadata and transport details are retained in the report;
+no observed record or numeric string is discarded or rounded.
+
 [runner-before-after.json](../results/phase-6/runner-before-after.json) retains all
 50 before/after observation hashes: every v1/v2/v2-before/v3/v4 payload stays
 identical on native ARM64 AppleClang Release. The existing regression baselines,
@@ -140,18 +169,24 @@ checks generator goldens, control audit and downloaded cross-configuration hashe
 The [Phase 5 scenario-only main-push evidence](../results/phase-5/control-removed-main-verification/summary.md)
 was downloaded and independently rechecked (five configurations PASS).
 
-[PR #16](https://github.com/galitianu/warcraft-re/pull/16) is draft.
 [Workflow 37001747756](https://github.com/galitianu/warcraft-re/actions/runs/37001747756)
 passes all five configurations and the aggregate job at implementation `191f9ff`.
 Downloaded evidence [rechecks locally](../results/phase-6/pr-verification/summary.md):
 all generated JASS/manifest bytes and scenario inputs agree, every reviewed
 regression baseline passes, and v4 is 10/10 on every configuration. CTest is 3/3
-and Python 64/64. The Phase 6 main-push gate awaits a future merge, and generated
-retail reproduction is **UNOBSERVED**, blocked on the existing VM/rdpipe recovery.
+and Python 64/64 for that generator-only implementation. After retaining real
+captures, native ARM64 AppleClang Release CI including `--archive` passes CTest
+3/3, Python 65/65, the four generated comparisons and all existing gates.
+CI downloads include the new fixtures, traces and full loop reports;
+`summarize_ci.py` independently renormalizes retained WC3 evidence, checks exact
+fixture bytes and regrades downloaded C++ traces. A forged PASS or updated hash
+cannot hide a changed sample. The Phase 6 main-push gate awaits merging
+[PR #16](https://github.com/galitianu/warcraft-re/pull/16).
 
-Retail reproduction and new sampler evidence must be recorded here when captured.
 Sampling order, retail simulation quantum, RNG/seed effects, other machines,
 JASS literal conversion at untested values, and near-boundary clamping remain
-unobserved or unresolved. The sampler/update-order work can be split after the
-generator reproduction gate passes, as issue #14 allows; runner timing must not
-be generalized without before/after evidence.
+unobserved or unresolved. The sampler/update-order work is split into
+[issue #17](https://github.com/galitianu/warcraft-re/issues/17), as issue #14 permits
+after reproduction passes. **MOV-0013** is reserved for that question; it has no
+map or retail capture yet. It needs timing/state features outside v1 and a
+before/after-proven runner extension. The existing v1/model timing stays unchanged.

@@ -245,6 +245,7 @@ def run(args):
             except (OSError, ValueError) as error:
                 result['errors']['archival-migration'] = str(error)
         generated_captures = [ROOT / 'oracle/captures' / BUILD / label / 'manifest.json' for label in GENERATED_SHAPES]
+        result['generated_capture_loop_required'] = any(path.exists() for path in generated_captures)
         if any(path.exists() for path in generated_captures):
             result['generated_capture_loop'] = dict(status='FAIL')
             try:

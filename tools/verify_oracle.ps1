@@ -8,7 +8,8 @@ foreach ($name in $names) {
     $file = Get-Item -LiteralPath $path
     $row = [ordered]@{ name=$name; bytes=$file.Length; sha256=(Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() }
     if ($name.EndsWith('.exe')) {
-        $row.version = $file.VersionInfo.FileVersion
+        $row.file_version_text = $file.VersionInfo.FileVersion
+        $row.version = '{0}.{1}.{2}.{3}' -f $file.VersionInfo.FileMajorPart, $file.VersionInfo.FileMinorPart, $file.VersionInfo.FileBuildPart, $file.VersionInfo.FilePrivatePart
         $data = [IO.File]::ReadAllBytes($path)
         $offset = [BitConverter]::ToInt32($data, 60)
         if ([Text.Encoding]::ASCII.GetString($data, $offset, 4) -ne "PE`0`0") { throw 'invalid PE signature' }

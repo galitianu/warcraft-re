@@ -102,7 +102,8 @@ clock missed. MOV-0015-a's callback 10 fits only from that map's later start. It
 - **Determinism:** Release and Debug AppleClang builds are byte-identical. Other
   compilers and platforms are untested. Table generation uses host `libm` in double
   precision, with the margins recorded in [SoftFloat.cpp](../src/core/SoftFloat.cpp).
-- The sampling-order exceptions above are listed in the gate, not modelled.
+- The sampling-order exceptions above are listed in the gate, not modelled. They are
+  P1, invisible in play (AGENTS.md), and further work on them is deferred.
 
 ## Next
 

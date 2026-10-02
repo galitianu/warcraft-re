@@ -5,7 +5,8 @@ As of 2 October 2026.
 **Current stage:** Phase 6 complete. MOV-0015 ([issue #22](https://github.com/galitianu/warcraft-re/issues/22), merged and verified on main)
 tested the 1 ms lag rule (T7) and a 30 ms update-event facing clock (FU). Both held in three of four new maps. The
 fourth map's sampler started one ulp later than modelled. That rounding was fitted after capture, so no rule is
-adopted; the next experiment pre-registers all three together.
+adopted. These sampling-order differences are **P1, invisible in play** (see AGENTS.md); they stay documented and
+gated, and further work on them is deferred.
 **Retail observations:** Phase 0's 20 MOV-0002 captures, plus 15 Phase 1 maps and
 8 MOV-0012 maps × 3 fresh-process captures, plus fifteen generated revisions × 3,
 all payload-identical within each map. Generated observations reproduce their
@@ -13,7 +14,8 @@ hand-authored controls exactly.
 **C++ compatibility:** footman-v4 passes MOV-0001–MOV-0010 under the fixed tolerances.
 Every sample and clock prints the same R2SW_6 text as WC3. It also reproduces every
 recorded state of the 1–50 ms JASS-0001/MOV-0012 captures. A few callbacks read a
-neighbouring frame for reasons not yet explained. Every MOV-0013/0014 clock reading
+neighbouring frame for reasons not yet explained (P1: under half a microsecond of
+callback timing, at most one frame's 1.35 units or a fraction of a degree). Every MOV-0013/0014 clock reading
 matches WC3. Their frame exceptions, and MOV-0015's frame, facing and start
 differences, fail canonically in nine of eleven maps (reviewed, gated as observed). footman-v1/v2/v3 keep their documented failures.
 **First release:** v0.0.1 — one Footman's movement compared numerically with WC3.
@@ -391,12 +393,16 @@ report identical to the hosted one, and the MOV-0015 C++ trace records equal the
 
 ## Exact next action
 
-Pre-register MOV-0016 ([next experiment](docs/mov-0015.md#next-experiment)): starts
-where the rounded and truncated sampler starts predict different X/Y, facings and
-clocks, and more callbacks just after an update frame past 2.01 s. Its predictions use
-the rounded start with T7 and FU against the runner's truncated start, H0 and FH. If
-they hold, the v2 runner and the state comparison adopt all three, and the 1 ms and
-10/25 ms exceptions in run_footman_v4.py become predictions.
+Choose the next **P3** behavior from the Phase 8 movement backlog
+([plan §11](Warcraft-III-Reimplementation-Plan.md#11-phase-8--expand-compatibility-through-experiments)):
+something footman-v4 does not model yet and a player would see. The proposed first
+candidate is unit–unit collision: two Footmen ordered through each other, with both
+positions compared to WC3. Open an issue with its behavioral question and acceptance gate
+before capturing.
+
+Deferred (P1): MOV-0016, which would pre-register the rounded sampler start with T7 and
+FU ([next experiment](docs/mov-0015.md#next-experiment)). Revisit it only when most
+comparable behavior is in place, or if these differences block something more noticeable.
 
 ## Roadmap status
 

@@ -33,6 +33,23 @@ with real WC3. An honest numerical mismatch is useful progress.
 - Add tooling or process only when it removes a demonstrated obstacle. Do not
   restore the old workspace's hooks, rituals, task system, or citation gates.
 
+## Prioritize by what a player would notice
+
+Rate every difference from WC3 by how noticeable it would be to a human player:
+
+- **P3, obvious:** visible in normal play, such as wrong speed, path, timing a player can
+  feel, collision, damage or order outcome.
+- **P2, noticeable on inspection:** visible when watching closely or side by side, or
+  changes the outcome of a plausible map script, such as a delay of a few frames or an
+  offset of several game units.
+- **P1, invisible in play:** measurable only with instrumentation. Examples: sub-frame
+  ordering, ulp-level clock values, and sub-unit or sub-degree single-frame offsets.
+
+Give the rating whenever you report an issue. Work on P3 before P2. Do not investigate
+P1 differences further: document them with their evidence, gate them as known observed
+differences, and return to them only when most comparable behavior is in place or they
+block something more noticeable. Never hide a P1 difference by loosening a tolerance.
+
 ## Evidence and experiments
 
 - Authority: WC3 observations → inferred model → optional Warsmash research →

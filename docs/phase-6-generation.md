@@ -140,6 +140,15 @@ checks generator goldens, control audit and downloaded cross-configuration hashe
 The [Phase 5 scenario-only main-push evidence](../results/phase-5/control-removed-main-verification/summary.md)
 was downloaded and independently rechecked (five configurations PASS).
 
+[PR #16](https://github.com/galitianu/warcraft-re/pull/16) is draft.
+[Workflow 37001747756](https://github.com/galitianu/warcraft-re/actions/runs/37001747756)
+passes all five configurations and the aggregate job at implementation `191f9ff`.
+Downloaded evidence [rechecks locally](../results/phase-6/pr-verification/summary.md):
+all generated JASS/manifest bytes and scenario inputs agree, every reviewed
+regression baseline passes, and v4 is 10/10 on every configuration. CTest is 3/3
+and Python 64/64. The Phase 6 main-push gate awaits a future merge, and generated
+retail reproduction is **UNOBSERVED**, blocked on the existing VM/rdpipe recovery.
+
 Retail reproduction and new sampler evidence must be recorded here when captured.
 Sampling order, retail simulation quantum, RNG/seed effects, other machines,
 JASS literal conversion at untested values, and near-boundary clamping remain

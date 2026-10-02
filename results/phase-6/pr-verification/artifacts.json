@@ -1,0 +1,61 @@
+{
+  "run": {
+    "conclusion": "success",
+    "createdAt": "2026-10-02T11:34:28Z",
+    "event": "pull_request",
+    "headSha": "191f9ff3da18351f5cc45cb2a75d3a9a210b55ce",
+    "url": "https://github.com/galitianu/warcraft-re/actions/runs/37001747756"
+  },
+  "artifacts": [
+    {
+      "id": 11224341052,
+      "name": "compatibility-windows-msvc-release",
+      "digest": "sha256:72f906af49a8ca8fc4b216f91e78e7e827bbd5f868634c67a21f5503e1b1b65f",
+      "size_in_bytes": 1853912,
+      "expired": false,
+      "created_at": "2026-10-02T11:35:57Z"
+    },
+    {
+      "id": 11223963670,
+      "name": "build-scope",
+      "digest": "sha256:f37a965644cb77f3132f5423664a9d7f75e6f736411306b3586d962b19f83a6b",
+      "size_in_bytes": 19071,
+      "expired": false,
+      "created_at": "2026-10-02T11:36:16Z"
+    },
+    {
+      "id": 11223853901,
+      "name": "compatibility-linux-gcc-release",
+      "digest": "sha256:00503eaf733886522d49cd0b0c226a7111f8aeb9ae7cecb5eee8e5a9aebb5630",
+      "size_in_bytes": 1853041,
+      "expired": false,
+      "created_at": "2026-10-02T11:35:13Z"
+    },
+    {
+      "id": 11223727791,
+      "name": "compatibility-mac-arm-release",
+      "digest": "sha256:934d4071023ce2080f2c39f9a2cd57a3d08b8b13237f4b7e92d2fadfb524d173",
+      "size_in_bytes": 2698789,
+      "expired": false,
+      "created_at": "2026-10-02T11:34:58Z"
+    },
+    {
+      "id": 11223433407,
+      "name": "compatibility-linux-clang-debug",
+      "digest": "sha256:92531d887922e9b5837d94751d780106915ea30729408c310860a6a0d6ab31b8",
+      "size_in_bytes": 1852820,
+      "expired": false,
+      "created_at": "2026-10-02T11:35:15Z"
+    },
+    {
+      "id": 11223218690,
+      "name": "compatibility-mac-arm-debug",
+      "digest": "sha256:3457d244f786e2c9f1585b0997a2d04fc389ded9cb67ec75c8c628e0d62cb3ce",
+      "size_in_bytes": 1854519,
+      "expired": false,
+      "created_at": "2026-10-02T11:34:56Z"
+    }
+  ],
+  "local_recheck": "python3 tools/summarize_ci.py --artifacts local/phase6-pr-artifacts --out results/phase-6/pr-verification",
+  "generated_capture_loop": "UNOBSERVED; oracle VM inaccessible; no retail generated-map runs"
+}

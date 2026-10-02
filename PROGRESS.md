@@ -231,11 +231,18 @@ the packaging route; oracle-v1 and the hand-written controls are unchanged. Ten
 [independent ordered-call audit](results/phase-6/generator-audit.json). CI checks
 those bytes, their scenario identity and cross-configuration generation evidence.
 
-Native ARM64 AppleClang Release: existing compatibility/regression/archival gates
-pass; all [50 before/after payload hashes](results/phase-6/runner-before-after.json)
+Native ARM64 AppleClang Release: CTest 3/3, Python 64/64, and existing
+compatibility/regression/archival gates pass; all [50 before/after payload hashes](results/phase-6/runner-before-after.json)
 are identical. footman-v4 remains 10/10 PASS, with the original 45 Phase 1 runs and
 15 canonical fixtures unchanged. Phase 5's scenario-only main-push evidence was
 [downloaded and rechecked](results/phase-5/control-removed-main-verification/summary.md).
+[Draft PR #16](https://github.com/galitianu/warcraft-re/pull/16), implementation
+`191f9ff`: [hosted PR workflow](https://github.com/galitianu/warcraft-re/actions/runs/37001747756)
+passes all five configurations and the aggregate job. Downloaded artifacts
+[recheck locally](results/phase-6/pr-verification/summary.md): all generator
+JASS/manifest bytes and scenario inputs are identical across configurations;
+every historical regression gate passes and v4 remains 10/10 on each. Generated
+retail capture remains UNOBSERVED, so the PR stays draft.
 
 **Blocker:** rdpipe target `vm` stopped answering relay pings; reconnect cannot
 finish RDP login within 90 s. UTM reports Windows started at 192.168.64.2, but guest

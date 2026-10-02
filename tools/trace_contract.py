@@ -6,6 +6,8 @@ import math
 from pathlib import Path
 import re
 
+from wc3_float import add, bits
+
 ROOT = Path(__file__).resolve().parents[1]
 BUILD = 'wc3-1.29.2-9231-x86'
 SCHEMA = 'wc3-trace'
@@ -223,6 +225,21 @@ LIBRARY_CLOCK_V2 = ('sub(1000, floor32(1000 + floor(start, 2^-17) - scheduled));
                     'scheduled += period per callback; a callback observes every frame with clock <= scheduled')
 
 
+def scheduled_frame_us(start_us, period, callback, _cache={}):
+    """Scenario v2 H0: the latest 5 ms frame whose float32 clock is at or before the
+    sampler's float32 scheduled time (docs/scenario-v2.md), as us after the 0.5 s setup.
+    Both clocks are positive, so their bit patterns order like their values."""
+    setup = bits(0.5)
+    times, clocks, frames = _cache.setdefault((start_us, period), (
+        [add(setup, bits(start_us / 1000000)) if start_us else setup], [setup], []))
+    while len(frames) <= callback:
+        while clocks[-1] <= times[len(frames)]:
+            clocks.append(add(clocks[-1], bits(0.005)))
+        frames.append(5000 * (len(clocks) - 2))
+        times.append(add(times[-1], bits(float(period))))
+    return frames[callback]
+
+
 def retail_numeric_format(label):
     return 'R2SW_6; STATE R2SW_9' if label in EXPERIMENT_SHAPES else 'R2SW_6; CLOCKS R2SW_9'
 
@@ -408,8 +425,8 @@ def validate(trace):
                 integer(rec['time']['state_us'], 0, 20000000)
                 if scheduled:
                     # The latest 5 ms frame at or before the float32 scheduled time.
-                    behind = experiment['start_us'] + cb * build['sample_period_us'] - rec['time']['state_us']
-                    require(rec['time']['state_us'] % 5000 == 0 and 0 <= behind <= 5000, 'invalid C++ state timing')
+                    require(rec['time']['state_us'] == scheduled_frame_us(experiment['start_us'], period, cb),
+                            'invalid C++ state timing')
                 else:
                     lag = time['state_lag_us'] if cb > 0 and kind in ('TICK', 'SAMPLE') else 0
                     require(rec['time']['state_us'] == cb * 20000 - lag, 'invalid C++ state timing')

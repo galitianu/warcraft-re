@@ -225,6 +225,14 @@ Release (with archive) and Debug `run_ci.py` PASS, and `run_phase2.py` and
 `run_footman_v3.py` reproduce their retained results. No captures, fixtures,
 baselines or tolerances changed.
 
+Hosted: [PR #15 run 36983469889](https://github.com/galitianu/warcraft-re/actions/runs/36983469889)
+(merge commit `8aa3590`) passes all five configurations and the aggregate job, v4
+10/10 everywhere, scenario inputs identical across hosts
+([evidence](../results/phase-5/control-removed-pr-verification.md)). Its downloaded
+artifacts recheck PASS with `summarize_ci.py`. For every configuration, suite and
+case, they match main-push run 36982554457: 500/500 observation payloads and
+1000/1000 CSVs equal both its hard-coded control and its scenario traces.
+
 ## Reproduction
 
 ```sh

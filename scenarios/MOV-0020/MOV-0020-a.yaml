@@ -1,0 +1,29 @@
+# MOV-0020: MOV-0019-i with the units swapped: u0 crosses north, u1 travels east
+# Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0020
+map_revision: MOV-0020-a
+units:
+  - name: u0
+    type: hfoo
+    position: [500, -540]
+    facing: 90
+  - name: u1
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+observe:
+  period: 0.02
+  callbacks: 600
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [500, 460]
+  - at: 0
+    unit: u1
+    order: move
+    target: [1000, 0]
+...

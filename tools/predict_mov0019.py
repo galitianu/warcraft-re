@@ -31,10 +31,10 @@ ADOPTED = dict(block_radius=62, block_lookahead=32, block_lateral=40, recheck_up
 KEYS = ('line_clearance', 'waypoint_radius', 'block_radius', 'block_lookahead', 'block_lateral', 'recheck_updates')
 
 
-def scenario_text(label, purpose, units, orders):
+def scenario_text(label, purpose, units, orders, experiment='MOV-0019'):
     """A v1 scenario in the committed MOV-0018 form; units are (x, y, facing)."""
-    lines = [f'# MOV-0019: {purpose}', '# Semantics: docs/scenario-v1.md.', 'schema: wc3-scenario', 'version: 1',
-             'experiment: MOV-0019', f'map_revision: {label}', 'units:']
+    lines = [f'# {experiment}: {purpose}', '# Semantics: docs/scenario-v1.md.', 'schema: wc3-scenario', 'version: 1',
+             f'experiment: {experiment}', f'map_revision: {label}', 'units:']
     for i, (x, y, facing) in enumerate(units):
         lines += [f'  - name: u{i}', '    type: hfoo', f'    position: [{x}, {y}]', f'    facing: {facing}']
     lines += ['observe:', '  period: 0.02', '  callbacks: 600', '  properties: [x, "y", facing, order]', 'actions:']

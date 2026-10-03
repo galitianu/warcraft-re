@@ -3,7 +3,7 @@
 As of 3 October 2026.
 
 **Current stage:** Phase 8, first P3 behavior. [MOV-0018](docs/mov-0018.md)
-([issue #24](https://github.com/galitianu/warcraft-re/issues/24), in review) adds unit–unit collision:
+([issue #24](https://github.com/galitianu/warcraft-re/issues/24), merged and verified on main) adds unit–unit collision:
 footman-v4 plans grid routes around other Footmen and waits for moving ones. All four
 captured variants match WC3's side, waits, arrival and final position; two are bit-identical
 and the rest differ only at P1.
@@ -483,11 +483,14 @@ report is byte-identical to the retained one.
 configurations and the aggregate job (head `17950b2`). The downloaded artifacts
 [regrade](results/mov-0018/pr-verification/summary.md) to a scope report identical to the hosted one,
 and MOV-0018 regrades as PASS in all five configurations.
+PR #26 merged as `89042fc`. Its
+[main-push workflow 37141634392](https://github.com/galitianu/warcraft-re/actions/runs/37141634392) passes all five
+configurations and the aggregate. The downloaded artifacts [regrade](results/mov-0018/main-verification/summary.md)
+to a report identical to the hosted one, and every MOV-0018 C++ trace record equals the PR run's.
 
 ## Exact next action
 
-Merge MOV-0018's PR once all five configurations pass, then retain the main-push verification.
-Then run [issue #27](https://github.com/galitianu/warcraft-re/issues/27) (MOV-0019), the
+Run [issue #27](https://github.com/galitianu/warcraft-re/issues/27) (MOV-0019), the
 [next collision experiment](docs/mov-0018.md#next-experiment): a sweep that pins the wait corridor,
 the south-first tie order and the 3×3 footprint. Those constants rest on one or two
 observations, and their errors would be P3 (wrong side, missing wait) in other layouts. Commit

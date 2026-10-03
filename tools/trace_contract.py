@@ -262,9 +262,19 @@ def retail_numeric_format(label):
 
 def validate_v4_parameters(parameters, library_clock=LIBRARY_CLOCK):
     """footman-v4: retail soft-float arithmetic on the footman-v3 cadence."""
-    keys(parameters, ('update_period_steps', 'update_phase_steps', 'frame_steps', 'stop_radius',
-                      'default_speed', 'speed_clamp', 'turn_rate_radians', 'propulsion_window_degrees',
-                      'facing', 'frame_origin', 'clock_start_seconds', 'library_clock', 'arithmetic'))
+    v4_keys = ('update_period_steps', 'update_phase_steps', 'frame_steps', 'stop_radius',
+               'default_speed', 'speed_clamp', 'turn_rate_radians', 'propulsion_window_degrees',
+               'facing', 'frame_origin', 'clock_start_seconds', 'library_clock', 'arithmetic')
+    # MOV-0018 added unit pathing (docs/mov-0018.md); earlier retained traces lack it.
+    keys(parameters, v4_keys + (('unit_pathing',) if 'unit_pathing' in parameters else ()))
+    if 'unit_pathing' in parameters:
+        pathing = parameters['unit_pathing']
+        keys(pathing, ('cell', 'blocked_cells', 'line_clearance', 'waypoint_radius', 'block_radius',
+                       'block_lookahead', 'block_lateral', 'recheck_updates'))
+        require(pathing['blocked_cells'] == "3x3 around each other unit's cell", 'unsupported unit pathing rule')
+        integer(pathing['recheck_updates'], 1, 1000)
+        for key in ('cell', 'line_clearance', 'waypoint_radius', 'block_radius', 'block_lookahead', 'block_lateral'):
+            require(type(pathing[key]) in (int, float) and pathing[key] >= 0, 'invalid unit pathing parameter')
     for key in ('update_period_steps', 'frame_steps'):
         integer(parameters[key], 1, 10000)
     integer(parameters['update_phase_steps'], 0, 10000)

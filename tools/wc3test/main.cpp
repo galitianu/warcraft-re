@@ -179,7 +179,13 @@ int main(int argc, char** argv) {
                          "a callback observes every frame with clock <= scheduled\",\n"
                        : "    \"library_clock\": \"sub(1000, sub(add(start, 1000), scheduled)); "
                          "scheduled += 0.02 per callback\",\n")
-                << "    \"arithmetic\": \"wc3::sf retail soft-float\"\n  }";
+                << "    \"arithmetic\": \"wc3::sf retail soft-float\",\n"
+                << "    \"unit_pathing\": {\"cell\": " << json_number(p.pathing.cell)
+                << ", \"blocked_cells\": \"3x3 around each other unit's cell\", \"line_clearance\": "
+                << json_number(p.pathing.line_clearance) << ", \"waypoint_radius\": " << json_number(p.pathing.waypoint_radius)
+                << ", \"block_radius\": " << json_number(p.pathing.block_radius) << ", \"block_lookahead\": "
+                << json_number(p.pathing.block_lookahead) << ", \"block_lateral\": " << json_number(p.pathing.block_lateral)
+                << ", \"recheck_updates\": " << p.pathing.recheck_updates << "}\n  }";
         } else if (p.heading.enabled) {
             const auto& h = p.heading;
             parameters << "{\n"

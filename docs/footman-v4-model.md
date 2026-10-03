@@ -57,7 +57,7 @@ At each update (`0x8aa740` → `0x8b00c0` → `0x8aeb50` → `0x8b01c0`):
 2. **Heading.** While moving, the current heading is re-derived from the velocity:
    `h = Angle(vel, |vel|)` if `|vel| ≥ 4e-7`, otherwise the stored heading. *(New in
    v4. v3 carried the previous update's heading.)*
-3. **Arrival** if `distance ≤ 16`: order ends, velocity 0, stored heading and facing
+3. **Arrival** if `distance ≤ 15.5` (16 before MOV-0018): order ends, velocity 0, stored heading and facing
    target `= wrap(h)`.
 4. **Steering:** `err = angle_to(Angle(target − pos), h)`, zeroed if `|err| < 2e-7`;
    `hu = add(h, ±min(0.6, |err|))`. Speed is used only if `|err| ≤ mul(60, π/180)`.
@@ -94,7 +94,8 @@ storing it. The facing reading is `mul(f, 180/π)`.
 | Rule | Status |
 |---|---|
 | Arithmetic, tables, update order and constants above | **Inferred** from retail code, then confirmed bit for bit by every retained capture |
-| Stop radius 16, inclusive | **Guessed value** that all captures agree with exactly. Not read from game data. |
+| Stop radius 15.5, inclusive | **Fitted**: [MOV-0018](mov-0018.md#fitted-intervals) bounds it to [14.607, 15.90); MOV-0001–0010 agree with any value there. Not read from game data. |
+| Unit pathing (grid routes, waits) | **Fitted** to four two-Footman captures; see [MOV-0018](mov-0018.md#model). Inactive with one unit. |
 | Movement clock start 0.5 s | **Inferred**: the only start (of those tested) that reproduces every library-clock reading |
 | Which frame, and which side of an update, a callback observes | **Partly unexplained.** See the [results](footman-v4-results.md#sampling-order). The 20 ms runner rule (after the update at step 20k) is exact for all fixtures |
 | Speed clamp 150–400 | **Observed** endpoints, unchanged |

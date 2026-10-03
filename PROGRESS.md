@@ -6,7 +6,9 @@ As of 3 October 2026.
 ([issue #24](https://github.com/galitianu/warcraft-re/issues/24), merged and verified on main) adds unit–unit collision:
 footman-v4 plans grid routes around other Footmen and waits for moving ones. All four
 captured variants match WC3's side, waits, arrival and final position; two are bit-identical
-and the rest differ only at P1.
+and the rest differ only at P1. [MOV-0019/0020](#mov-0019-and-mov-0020-who-gives-way)
+(issue #27) find that the eastward unit gives way when two cross; a post-hoc give-way rule
+fits 12 of 20 captures at P3, and head-on offsets remain a P3 difference.
 
 **Phase 7:** capture capability implemented for four reviewed v1 scenarios.
 One command completes generation, verified World Editor packaging, three fresh WC3
@@ -488,13 +490,40 @@ PR #26 merged as `89042fc`. Its
 configurations and the aggregate. The downloaded artifacts [regrade](results/mov-0018/main-verification/summary.md)
 to a report identical to the hosted one, and every MOV-0018 C++ trace record equals the PR run's.
 
+## MOV-0019 and MOV-0020 who gives way
+
+[Issue #27](https://github.com/galitianu/warcraft-re/issues/27), **P3**. Both designs and
+predictions were committed before capture (`d6da91c`, `bff0067`). Ten MOV-0019 and six MOV-0020
+maps were each captured in three payload-identical fresh WC3 runs.
+
+- **MOV-0019** ([results](docs/mov-0019.md#results)) confirms the 3×3 footprint and the
+  tie order, and **refutes** the wait corridor: in i and j the wrong unit waits (P3).
+  Post hoc, partial routes now go to the free node nearest the target, and an idle
+  unit covering the target is ignored.
+- **MOV-0020** ([results](docs/mov-0020.md#results)) swaps the units' roles. Only
+  **role** survives: the eastward unit waits in all six variants, whatever its
+  index or order of issue. The partial-route rule passes its pre-registered test (1e-6).
+- **Model (post hoc):** a unit blocked by a moving unit on its left that does not see
+  it holds one update, routes around it, and that unit holds 20 updates
+  ([rule](docs/mov-0020.md#post-hoc-refit-giving-way)).
+- **Status** over all 20 captures: P3 acceptance passes in 12. P2 differences remain in
+  MOV-0019-d, h, i and MOV-0020-a, c (routes up to 10 units off, a 2-update wait onset,
+  the side of a unit that does not move off its line). The **head-on offset family
+  (MOV-0019-j, MOV-0020-b, d) stays P3**: WC3's eastward unit waits 15 updates; the
+  model's waits 0–4 and the westward unit swings 39–47 units wide.
+- **Gate:** [run_mov0018.py](tools/run_mov0018.py) `--experiment MOV-0018|MOV-0019|MOV-0020`
+  runs in CI for all three, recording every comparator failure and each open
+  difference with its rating.
+
+Local CI passes: CTest 3/3, Python 87/87, the generated loop, and the
+MOV-0013/0014/0015/0018/0019/0020 gates.
+
 ## Exact next action
 
-Run [issue #27](https://github.com/galitianu/warcraft-re/issues/27) (MOV-0019), the
-[next collision experiment](docs/mov-0018.md#next-experiment): a sweep that pins the wait corridor,
-the south-first tie order and the 3×3 footprint. Those constants rest on one or two
-observations, and their errors would be P3 (wrong side, missing wait) in other layouts. Commit
-its design and predictions before capturing.
+MOV-0021 ([next experiment](docs/mov-0020.md#post-hoc-refit-giving-way)): pre-register the
+MOV-0019-j head-on offset rotated to north–south and mirrored (offset −32), with the
+give-way rule's predictions, to find whether travel direction or the side of the offset
+decides who waits head-on. Commit the design and predictions before capturing.
 
 Deferred (P1): MOV-0016, which would pre-register the rounded sampler start with T7 and
 FU ([next experiment](docs/mov-0015.md#next-experiment)). Revisit it only when most

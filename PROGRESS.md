@@ -478,6 +478,11 @@ on the [verified installation](oracle/environment/).
 Local native ARM64 AppleClang Release CI with `--archive` passes: CTest 3/3, Python 85/85,
 generated loop, the MOV-0013/0014/0015/0018 gates, v4 10/10 and the historical baselines. Its MOV-0018
 report is byte-identical to the retained one.
+[PR #26](https://github.com/galitianu/warcraft-re/pull/26)'s
+[workflow 37109955805](https://github.com/galitianu/warcraft-re/actions/runs/37109955805) passes all five
+configurations and the aggregate job (head `17950b2`). The downloaded artifacts
+[regrade](results/mov-0018/pr-verification/summary.md) to a scope report identical to the hosted one,
+and MOV-0018 regrades as PASS in all five configurations.
 
 ## Exact next action
 

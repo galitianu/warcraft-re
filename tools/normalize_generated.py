@@ -34,7 +34,7 @@ def normalize(label, out, root=None):
     manifest_path = base / 'manifest.json'
     manifest = load(manifest_path)
     exp, callbacks, period, units = shape(label)
-    version, scenario_path = (2, experiment['scenario']) if experiment else (1, f'scenarios/{exp}.yaml')
+    version, scenario_path = (experiment['version'], experiment['scenario']) if experiment else (1, f'scenarios/{exp}.yaml')
     if (manifest['experiment'], manifest['map_label'], manifest['reference_build']) != (exp, label, BUILD):
         raise ValueError('wrong generated capture manifest identity')
     for key in ('map', 'library', 'case', 'environment', 'scenario', 'generation', 'verification'):

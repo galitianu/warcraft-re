@@ -36,11 +36,18 @@ EXPERIMENT_SHAPES = {
     f'{exp}-{v}': dict(experiment=exp, callbacks=1000, period='0.001000', units=1,
                        scenario=f'scenarios/{exp}/{exp}-{v}.yaml', start_us=start,
                        control='MOV-0012-a' if (exp, v) == ('MOV-0013', 'a') else None, state='STATE',
-                       definition=f'docs/{exp.lower()}.md')
+                       definition=f'docs/{exp.lower()}.md', version=2)
     for exp, variants in (('MOV-0013', (('a', 0), ('b', 2500), ('c', 20000), ('d', 0))),
                           ('MOV-0014', (('a', 300000), ('b', 720000), ('c', 900000))),
                           ('MOV-0015', (('a', 120000), ('b', 450000), ('c', 999054), ('d', 997001))))
     for v, start in variants}
+# MOV-0018 (docs/mov-0018.md): two Footmen, v1 timing (callback 0 at the setup, 20 ms
+# sampling, no STATE event), 600 callbacks so both units are idle well before the end.
+EXPERIMENT_SHAPES.update({
+    f'MOV-0018-{v}': dict(experiment='MOV-0018', callbacks=600, period='0.020000', units=2,
+                          scenario=f'scenarios/MOV-0018/MOV-0018-{v}.yaml', start_us=0, control=None,
+                          state=None, definition='docs/mov-0018.md', version=1)
+    for v in 'abcd'})
 STATE_KEYS = {'c10_9', 'x_9', 'y_9', 'facing_9'}
 # wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it
 # with cwd=ROOT and an absolute --out so recorded scenario paths stay repo-relative.
@@ -249,7 +256,8 @@ def scheduled_frame_us(start_us, period, callback, _cache={}):
 
 
 def retail_numeric_format(label):
-    return 'R2SW_6; STATE R2SW_9' if label in EXPERIMENT_SHAPES else 'R2SW_6; CLOCKS R2SW_9'
+    v2 = label in EXPERIMENT_SHAPES and EXPERIMENT_SHAPES[label]['version'] == 2
+    return 'R2SW_6; STATE R2SW_9' if v2 else 'R2SW_6; CLOCKS R2SW_9'
 
 
 def validate_v4_parameters(parameters, library_clock=LIBRARY_CLOCK):
@@ -311,7 +319,7 @@ def validate(trace, evidence_root=None):
         require(ident['environment'] == manifest['environment'], 'environment identity differs from retained manifest')
         if generated_revision(label) or experiment:
             used = manifest['scenario']
-            version, path = (2, experiment['scenario']) if experiment else (1, f'scenarios/{exp}.yaml')
+            version, path = (experiment['version'], experiment['scenario']) if experiment else (1, f'scenarios/{exp}.yaml')
             keys(used, ('schema', 'version', 'path', 'sha256'))
             require(used['schema'] == 'wc3-scenario' and used['version'] == version
                     and used['path'] == path and HASH.fullmatch(used['sha256']), 'invalid generated scenario identity')
@@ -336,7 +344,7 @@ def validate(trace, evidence_root=None):
         parameters = build['parameters']
         # Scenario v2 timing (docs/scenario-v2.md) exists only for registered experiments.
         scheduled = build['observation_phase'] == 'scheduled-sampler-time'
-        require(scheduled == bool(experiment), 'v2 timing only for a registered v2 experiment')
+        require(scheduled == bool(experiment and experiment['version'] == 2), 'v2 timing only for a registered v2 experiment')
         if build['model'] == 'footman-v3':
             validate_v3_parameters(parameters)
         elif build['model'] == 'footman-v4':
@@ -371,8 +379,8 @@ def validate(trace, evidence_root=None):
             keys(used, ('schema', 'version', 'path', 'sha256'))
             require(used['schema'] == 'wc3-scenario' and type(used['version']) is int
                     and used['version'] == (2 if scheduled else 1), 'unsupported scenario schema/version')
-            if scheduled:
-                require(used['path'] == experiment['scenario'], 'v2 trace from an unregistered scenario path')
+            if experiment:
+                require(used['path'] == experiment['scenario'], 'trace from an unregistered scenario path')
             require(dict(experiment=exp, map_revision=scenario['map_revision'], path=used['path'], sha256=used['sha256'])
                     in build['scenarios'], 'scenario provenance differs from the run identity')
         else:
@@ -477,7 +485,7 @@ def validate(trace, evidence_root=None):
                     require(isinstance(rec['name'], str) and rec['name'] and isinstance(rec['values'], dict), 'invalid event')
                     for value in rec['values'].values():
                         number(value)
-                    if experiment:
+                    if experiment and experiment['state']:
                         require(rec['name'] == experiment['state'] and set(rec['values']) == STATE_KEYS, 'unregistered event')
                         if retail:
                             for value in rec['values'].values():

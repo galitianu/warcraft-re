@@ -470,9 +470,8 @@ bool World::moving(const Unit& unit) const {
 // Plan a route from the unit's position to its order target around the other units.
 // A clear straight line is taken as it is. Otherwise A* runs over 32-unit cell centres
 // (8-connected, no corner cutting); the start cell is dropped, the first step kept, and
-// the rest string-pulled. A target covered by a unit ends the route at the last free
-// node before it (partial; replanned on arrival). An idle unit standing on the target
-// is ignored (MOV-0018-b).
+// the rest string-pulled. An idle unit covering the target node is ignored (MOV-0018-b,
+// MOV-0019-j's u0); a moving one makes the route partial (see below).
 void World::plan(std::size_t id) {
     auto& unit = units_[id];
     const auto& P = model_.pathing;
@@ -485,14 +484,15 @@ void World::plan(std::size_t id) {
     auto centre = [&](long i) { return (static_cast<double>(i) + 0.5) * cell; };
     // Each other unit blocks the 3x3 cells around the cell holding its centre.
     struct Block { long x, y; };
+    auto inside = [](const Block& b, long x, long y) { return std::abs(x - b.x) <= 1 && std::abs(y - b.y) <= 1; };
     std::vector<Block> blocks;
     for (std::size_t j = 0; j < units_.size(); ++j) {
         if (j == id) continue;
         const P2 q = p2(soft_position(units_[j]));
-        if (units_[j].order_ != order_move && distance(q, goal) <= model_.stop_radius) continue;
-        blocks.push_back({index(q.x), index(q.y)});
+        const Block k{index(q.x), index(q.y)};
+        if (units_[j].order_ != order_move && inside(k, index(goal.x), index(goal.y))) continue;
+        blocks.push_back(k);
     }
-    auto inside = [](const Block& b, long x, long y) { return std::abs(x - b.x) <= 1 && std::abs(y - b.y) <= 1; };
     auto visible = [&](P2 a, P2 b, const std::vector<Block>& set) {
         for (const auto& k : set) {
             const double lx = (k.x - 1) * cell, hx = (k.x + 2) * cell, ly = (k.y - 1) * cell, hy = (k.y + 2) * cell;
@@ -500,23 +500,18 @@ void World::plan(std::size_t id) {
         }
         return true;
     };
-    const long sx = index(start.x), sy = index(start.y), gx = index(goal.x), gy = index(goal.y);
+    const long sx = index(start.x), sy = index(start.y);
+    long gx = index(goal.x), gy = index(goal.y);
     if (visible(start, goal, blocks) || (sx == gx && sy == gy)) {
         unit.route_.push_back(unit.target_);
         return;
     }
-    // Units covering the target node are searched through, then cut off (partial route).
-    std::vector<Block> covering, others;
-    for (const auto& k : blocks) (inside(k, gx, gy) ? covering : others).push_back(k);
-    auto free_of = [&](long x, long y, const std::vector<Block>& set) {
-        for (const auto& k : set)
+    auto free = [&](long x, long y) {
+        for (const auto& k : blocks)
             if (inside(k, x, y)) return false;
         return true;
     };
-    auto passable = [&](long x, long y) { return (x == sx && y == sy) || free_of(x, y, others); };
-    const long margin = 16;
-    const long x0 = std::min(sx, gx) - margin, x1 = std::max(sx, gx) + margin;
-    const long y0 = std::min(sy, gy) - margin, y1 = std::max(sy, gy) + margin;
+    auto passable = [&](long x, long y) { return (x == sx && y == sy) || free(x, y); };
     // Octile costs as exact (straight, diagonal) step counts: equal paths tie exactly.
     struct Cost {
         long s = 0, d = 0;
@@ -528,12 +523,57 @@ void World::plan(std::size_t id) {
         }
         bool operator==(Cost o) const { return s == o.s && d == o.d; }
     };
+    using Node = std::pair<long, long>;
     auto heuristic = [&](long x, long y) {
         const long dx = std::abs(x - gx), dy = std::abs(y - gy);
         return Cost{std::max(dx, dy) - std::min(dx, dy), std::min(dx, dy)};
     };
-    using Node = std::pair<long, long>;
     std::map<Node, Cost> cost{{{sx, sy}, Cost{}}};
+    // Octile steps from the start to every reachable node of the box around start and target.
+    const long margin = 16;
+    auto search = [&](long x0, long x1, long y0, long y1) {
+        static constexpr int steps[8][2] = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}, {1, -1}, {-1, -1}, {-1, 1}, {1, 1}};
+        std::vector<Node> frontier{{sx, sy}};
+        while (!frontier.empty()) {
+            std::vector<Node> next;
+            for (const auto& [x, y] : frontier)
+                for (const auto& step : steps) {
+                    const long nx = x + step[0], ny = y + step[1];
+                    if (nx < x0 || nx > x1 || ny < y0 || ny > y1 || !passable(nx, ny)) continue;
+                    if (step[0] && step[1] && (!passable(x + step[0], y) || !passable(x, y + step[1]))) continue;
+                    const Cost c = cost[{x, y}] + (step[0] && step[1] ? Cost{0, 1} : Cost{1, 0});
+                    const auto known = cost.find({nx, ny});
+                    if (known != cost.end() && !(c < known->second)) continue;
+                    cost[{nx, ny}] = c;
+                    next.push_back({nx, ny});
+                }
+            frontier.swap(next);
+        }
+    };
+    // A moving unit covering the target node: route to the reachable free node nearest
+    // the target, then the one nearest the start (partial; replanned on arrival).
+    // MOV-0019-j's u1 heads for (16, 80) beside its covered target; MOV-0018-b's u1
+    // for (80, 16), the nearest of four equally near nodes.
+    const bool partial = !free(gx, gy);
+    if (partial) {
+        search(std::min(sx, gx) - margin, std::max(sx, gx) + margin, std::min(sy, gy) - margin, std::max(sy, gy) + margin);
+        const Node* best = nullptr;
+        for (const auto& [node, c] : cost) {
+            if (node == Node{sx, sy}) continue;
+            if (!best) { best = &node; continue; }
+            const Cost h = heuristic(node.first, node.second), b = heuristic(best->first, best->second);
+            if (h < b || (h == b && c < cost.at(*best))) best = &node;
+        }
+        if (!best) {  // Nothing reachable: keep walking straight at the target.
+            unit.route_.push_back(unit.target_);
+            return;
+        }
+        gx = best->first;
+        gy = best->second;
+        cost = {{{sx, sy}, Cost{}}};
+    }
+    const long x0 = std::min(sx, gx) - margin, x1 = std::max(sx, gx) + margin;
+    const long y0 = std::min(sy, gy) - margin, y1 = std::max(sy, gy) + margin;
     struct Entry { Cost f, h; std::uint64_t serial; long x, y; };
     // Ties: lower f, then lower h, then first queued.
     auto later = [](const Entry& a, const Entry& b) {
@@ -593,11 +633,7 @@ void World::plan(std::size_t id) {
     }
     std::reverse(nodes.begin(), nodes.end());
     std::vector<P2> raw;
-    bool partial = false;
-    for (std::size_t i = 1; i < nodes.size(); ++i) {
-        if (!free_of(nodes[i].first, nodes[i].second, covering)) { partial = true; break; }
-        raw.push_back({centre(nodes[i].first), centre(nodes[i].second)});
-    }
+    for (std::size_t i = 1; i < nodes.size(); ++i) raw.push_back({centre(nodes[i].first), centre(nodes[i].second)});
     if (raw.empty()) {
         unit.route_.push_back(unit.target_);
         return;

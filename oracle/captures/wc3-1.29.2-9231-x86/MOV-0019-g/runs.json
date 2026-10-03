@@ -1,0 +1,53 @@
+[
+  {
+    "run": 1,
+    "file": "run-01.txt",
+    "game_pid": 11236,
+    "start_unix_seconds": 1791051745.470551,
+    "fresh_game_process": true,
+    "previous_output_removed": true,
+    "launch": "WC3 -loadfile MOV-0019-g.w3m",
+    "map_sha256": "bc8e8123dce687d9c2c21fecb9a50f5989eb12e4232a2df015059ed63f25c079",
+    "output": {
+      "Length": 128079,
+      "LastWriteTimeUtc": "/Date(1791051762505)/"
+    },
+    "sha256": "f441c32dac4d7d6ce9ada325bf10eb6ea60f73a7ea940ae9f446699a585f2079",
+    "payload_sha256": "c4b50adfd9b332c1f3fdb39344f9c5d248efd516e04b953084b1e7d6b98d9f3a",
+    "footer": "call PreloadEnd( 12.1 )"
+  },
+  {
+    "run": 2,
+    "file": "run-02.txt",
+    "game_pid": 10508,
+    "start_unix_seconds": 1791051768.039286,
+    "fresh_game_process": true,
+    "previous_output_removed": true,
+    "launch": "WC3 -loadfile MOV-0019-g.w3m",
+    "map_sha256": "bc8e8123dce687d9c2c21fecb9a50f5989eb12e4232a2df015059ed63f25c079",
+    "output": {
+      "Length": 128079,
+      "LastWriteTimeUtc": "/Date(1791051784660)/"
+    },
+    "sha256": "f441c32dac4d7d6ce9ada325bf10eb6ea60f73a7ea940ae9f446699a585f2079",
+    "payload_sha256": "c4b50adfd9b332c1f3fdb39344f9c5d248efd516e04b953084b1e7d6b98d9f3a",
+    "footer": "call PreloadEnd( 12.1 )"
+  },
+  {
+    "run": 3,
+    "file": "run-03.txt",
+    "game_pid": 2672,
+    "start_unix_seconds": 1791051790.4785411,
+    "fresh_game_process": true,
+    "previous_output_removed": true,
+    "launch": "WC3 -loadfile MOV-0019-g.w3m",
+    "map_sha256": "bc8e8123dce687d9c2c21fecb9a50f5989eb12e4232a2df015059ed63f25c079",
+    "output": {
+      "Length": 128079,
+      "LastWriteTimeUtc": "/Date(1791051807158)/"
+    },
+    "sha256": "f441c32dac4d7d6ce9ada325bf10eb6ea60f73a7ea940ae9f446699a585f2079",
+    "payload_sha256": "c4b50adfd9b332c1f3fdb39344f9c5d248efd516e04b953084b1e7d6b98d9f3a",
+    "footer": "call PreloadEnd( 12.1 )"
+  }
+]

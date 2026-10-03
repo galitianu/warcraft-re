@@ -14,7 +14,7 @@ from audit_oracle import audit
 from generate_oracle import generate, GOLDENS
 from run_generated import run as run_generated
 from run_mov0013 import EXPERIMENTS, run as run_experiment
-from run_mov0018 import run as run_collision
+from run_mov0018 import EXPERIMENTS as COLLISIONS, run as run_collision
 from normalize_traces import normalize_all
 from regression import assess, markdown as regression_markdown
 from trace_contract import BUILD, LABELS, ROOT, SCENARIOS, digest, load, payload, sha256, validate, write_json
@@ -113,7 +113,7 @@ def summarize(result, reports):
              f"Oracle generator: **{result.get('oracle_generation', {}).get('status', 'UNVERIFIED')}**. "
              f"Generated-map WC3 capture loop: **{result.get('generated_capture_loop', {}).get('status', 'UNVERIFIED')}**. "
              'Reviewed-difference gates: ' + ', '.join(
-                 f"{e} **{result.get(gate_key(e), {}).get('status', 'UNVERIFIED')}**" for e in [*EXPERIMENTS, 'MOV-0018']) + '.', '',
+                 f"{e} **{result.get(gate_key(e), {}).get('status', 'UNVERIFIED')}**" for e in [*EXPERIMENTS, *COLLISIONS]) + '.', '',
              '| Model / phase | Compatibility | Regression gate | Improvements |', '|---|---|---|---|']
     for name, info in result['models'].items():
         lines.append(f"| {name} | {info['compatibility_passes']}/10 PASS | {info['regression_verdict']} | {info['improvements']} |")
@@ -164,18 +164,20 @@ def check_experiment(build, reports, result, experiment):
         result['errors'][name] = str(error)
 
 
-def check_collision(build, reports, result):
-    # docs/mov-0018.md: P3 acceptance and exactly the reviewed P1 differences.
-    result['mov0018_required'] = True
-    result['mov0018'] = dict(status='FAIL')
+def check_collision(build, reports, result, experiment):
+    # docs/mov-0018.md to mov-0020.md: P3 acceptance and exactly the reviewed differences.
+    key, name = gate_key(experiment), experiment.lower()
+    result[f'{key}_required'] = True
+    result[key] = dict(status='FAIL')
     ext = '.exe' if os.name == 'nt' else ''
     try:
-        code = run_collision(build / f'wc3test{ext}', build / f'oracle_codegen{ext}', build / 'ci/mov-0018', reports)
-        result['mov0018'] = dict(status='PASS' if code == 0 else 'FAIL')
+        code = run_collision(build / f'wc3test{ext}', build / f'oracle_codegen{ext}', build / 'ci' / name, reports,
+                             experiment=experiment)
+        result[key] = dict(status='PASS' if code == 0 else 'FAIL')
         if code:
-            result['errors']['mov-0018'] = 'MOV-0018 acceptance failed or differences differ from the reviewed list'
+            result['errors'][name] = f'{experiment} acceptance or differences differ from the reviewed lists'
     except (OSError, ValueError, KeyError, TypeError, IndexError, subprocess.SubprocessError) as error:
-        result['errors']['mov-0018'] = str(error)
+        result['errors'][name] = str(error)
 
 
 def run(args):
@@ -188,7 +190,7 @@ def run(args):
     result = dict(status='FAIL', host=dict(system=platform.system(), release=platform.release(),
                   architecture=architecture(platform.machine()), python=platform.python_version()),
                   models={}, errors={}, original_wc3_required=False, oracle_generation_required=True,
-                  generated_capture_loop_required=True, **{f'{gate_key(e)}_required': True for e in EXPERIMENTS}, mov0018_required=True)
+                  generated_capture_loop_required=True, **{f'{gate_key(e)}_required': True for e in [*EXPERIMENTS, *COLLISIONS]})
     metadata = dict(host=result['host'], requested_compiler=args.compiler, build_type=args.config,
                     expected_architecture=args.expect_arch, seed=1,
                     github={key: os.environ.get(key) for key in ('GITHUB_RUN_ID', 'GITHUB_RUN_ATTEMPT',
@@ -300,7 +302,8 @@ def run(args):
         check_generated_loop(runner, build, reports, result)
         for experiment in EXPERIMENTS:
             check_experiment(build, reports, result, experiment)
-        check_collision(build, reports, result)
+        for experiment in COLLISIONS:
+            check_collision(build, reports, result, experiment)
         result['status'] = 'PASS' if not result['errors'] and len(result['models']) == 5 else 'FAIL'
     except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:
         result['errors']['pipeline'] = str(error)

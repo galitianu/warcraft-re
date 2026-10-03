@@ -43,6 +43,7 @@ struct UnitPathing {
     float block_lookahead = 32.0f;    // length of that path segment
     float block_lateral = 40.0f;      // ...if it is, or soon will be, this close to the path line
     std::uint32_t recheck_updates = 5;  // a unit waiting for a moving unit retests this often
+    std::uint32_t give_way_updates = 20;  // a unit another routes around holds this long
 };
 // Every behavioral difference between versions is one of these parameters.
 struct Model {
@@ -112,6 +113,9 @@ private:
     std::size_t route_index_ = 0;
     bool route_partial_ = false;     // ends short of a blocked target; replan on arrival
     bool waiting_ = false;           // halted by another unit on the path ahead
+    bool yielding_ = false;          // held for a moving unit on its left; route around it next
+    std::uint32_t given_way_ = 0;    // updates still to hold for a unit routing around it
+    std::uint64_t given_way_step_ = 0;  // the step at which that hold was imposed
     std::uint32_t wait_updates_ = 0;
     std::size_t blocker_ = 0;
 };

@@ -13,7 +13,7 @@ from run_ci import BASELINES, gate_key
 from generate_oracle import GOLDENS
 from audit_oracle import audit
 from run_mov0013 import CASES as GENERATED_CASES, EXPERIMENTS, FIXTURES as EXPERIMENT_FIXTURES, assess as assess_experiment, exact, labels
-from run_mov0018 import EXPERIMENT as COLLISION, grade as grade_collision
+from run_mov0018 import EXPERIMENTS as COLLISIONS, gate_key, grade as grade_collision
 from trace_contract import EXPERIMENT_SHAPES, GENERATED_SHAPES, digest, load, payload, sha256, validate, write_json
 
 CONFIGURATIONS = ('mac-arm-release', 'mac-arm-debug', 'linux-gcc-release',
@@ -120,38 +120,39 @@ def verify_experiment(root, result, experiment, legacy=False):
     return dict(status='PASS', cases=len(report['cases']), cpp_payload_sha256=cpp)
 
 
-def verify_collision(root, result, legacy=False):
-    """Regrade downloaded MOV-0018 traces: P3 acceptance and the reviewed differences."""
-    if legacy and 'mov0018_required' not in result:
-        return None  # Workflows before MOV-0018.
-    if result.get('mov0018_required') is not True or result.get('mov0018', {}).get('status') != 'PASS':
-        raise ValueError('required MOV-0018 gate missing, disabled or failing')
-    report = load(root / 'reports/mov0018.json')
-    if report['status'] != 'PASS' or [c['map_revision'] for c in report['cases']] != labels(COLLISION):
-        raise ValueError('MOV-0018 report did not pass or has missing/unexpected revisions')
+def verify_collision(root, result, experiment, legacy=False):
+    """Regrade downloaded MOV-0018..0020 traces: P3 acceptance and the reviewed differences."""
+    key, name = gate_key(experiment), experiment.lower()
+    if legacy and f'{key}_required' not in result:
+        return None  # Workflows before this experiment's gate.
+    if result.get(f'{key}_required') is not True or result.get(key, {}).get('status') != 'PASS':
+        raise ValueError(f'required {experiment} gate missing, disabled or failing')
+    report = load(root / f'reports/{key}.json')
+    if report['status'] != 'PASS' or [c['map_revision'] for c in report['cases']] != labels(experiment):
+        raise ValueError(f'{experiment} report did not pass or has missing/unexpected revisions')
     cpp = {}
     with tempfile.TemporaryDirectory() as tmp:
         for row in report['cases']:
             label = row['map_revision']
-            reference_path = root / 'mov-0018/references' / f'{label}.json'
-            actual_path = root / 'mov-0018/traces' / label / f'{COLLISION}.json'
+            reference_path = root / name / 'references' / f'{label}.json'
+            actual_path = root / name / 'traces' / label / f'{experiment}.json'
             reproduction = normalize(label, Path(tmp))
             if (reference_path.read_bytes() != (EXPERIMENT_FIXTURES / f'{label}.json').read_bytes()
                     or row['reproduction'] != reproduction or reproduction['status'] != 'PASS'):
                 raise ValueError(f'{label}: downloaded WC3 fixture/reproduction differs from retained evidence')
             if row['case_sha256'] != load(GENERATED_CASES / f'{label}-generation.json')['inputs'][0]['case']['sha256']:
-                raise ValueError(f'{label}: MOV-0018 ran a different generated case')
+                raise ValueError(f'{label}: {experiment} ran a different generated case')
             reference, actual = load(reference_path), load(actual_path)
             if actual['identity']['model']['name'] != 'footman-v4':
-                raise ValueError(f'{label}: MOV-0018 did not run the required v4 model')
+                raise ValueError(f'{label}: {experiment} did not run the required v4 model')
             verify_reference_provenance(reference)
             if row['scenario'] != reference['provenance']['scenario'] or row['scenario'] != actual['provenance']['scenario']:
-                raise ValueError(f'{label}: MOV-0018 names different scenario bytes')
+                raise ValueError(f'{label}: {experiment} names different scenario bytes')
             comparison, assessment, accepted = grade_collision(label, reference, actual)
             comparison.update(reference_sha256=sha256(reference_path), actual_sha256=sha256(actual_path))
             if (row['comparison'] != comparison or row['assessment'] != assessment or row['acceptance'] != accepted
-                    or assessment['status'] != 'PASS' or accepted['status'] != 'PASS' or row['status'] != 'PASS'):
-                raise ValueError(f'{label}: downloaded MOV-0018 grading does not reproduce')
+                    or assessment['status'] != 'PASS' or accepted['reviewed'] != 'PASS' or row['status'] != 'PASS'):
+                raise ValueError(f'{label}: downloaded {experiment} grading does not reproduce')
             cpp[label] = digest(payload(actual))
     return dict(status='PASS', cases=len(report['cases']), cpp_payload_sha256=cpp)
 
@@ -170,7 +171,8 @@ def summarize(artifacts, out, legacy_before_generated_captures=False):
             generation = verify_generation(root, result)
             generated_loop = verify_generated_loop(root, result, legacy_before_generated_captures)
             experiments = {e: verify_experiment(root, result, e, legacy_before_generated_captures) for e in EXPERIMENTS}
-            experiments[COLLISION] = verify_collision(root, result, legacy_before_generated_captures)
+            for experiment in COLLISIONS:
+                experiments[experiment] = verify_collision(root, result, experiment, legacy_before_generated_captures)
             suites = {}
             for model in BASELINES:
                 suite = validate_report(load(root / 'reports' / model / 'comparison.json'))
@@ -234,7 +236,7 @@ def summarize(artifacts, out, legacy_before_generated_captures=False):
                                           configurations_compared=list(loops),
                                           compatibility_passes={k: v['compatibility_passes'] for k, v in loops.items()})
     report['experiments'] = {}
-    for experiment in [*EXPERIMENTS, COLLISION]:
+    for experiment in [*EXPERIMENTS, *COLLISIONS]:
         studies = {k: v['experiments'][experiment] for k, v in report['configurations'].items()
                    if v['experiments'][experiment]}
         if studies and (len(studies) != len(CONFIGURATIONS) or len({digest(v) for v in studies.values()}) != 1):

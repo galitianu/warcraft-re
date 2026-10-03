@@ -1,4 +1,5 @@
-"""MOV-0018 gate: P3 acceptance, the reviewed differences, downloaded regrade.
+"""MOV-0018 gate (shared by MOV-0019/0020): P3 acceptance, the reviewed differences,
+downloaded regrade.
 
 Uses the built runner (WC3TEST_RUNNER) and generator (ORACLE_CODEGEN). Tampering
 happens only in temporary copies.
@@ -24,12 +25,12 @@ class CollisionGateTests(unittest.TestCase):
             root = Path(tmp)
             self.assertEqual(run(RUNNER, CODEGEN, root / 'mov-0018', root / 'reports'), 0)
             result = dict(mov0018_required=True, mov0018=dict(status='PASS'))
-            self.assertEqual(verify_collision(root, result)['cases'], 4)
+            self.assertEqual(verify_collision(root, result, 'MOV-0018')['cases'], 4)
             for missing in ({}, dict(mov0018_required=False, mov0018=dict(status='PASS')),
                             dict(mov0018_required=True, mov0018=dict(status='FAIL'))):
                 with self.assertRaisesRegex(ValueError, 'required MOV-0018 gate'):
-                    verify_collision(root, missing)
-            self.assertIsNone(verify_collision(root, {}, legacy=True))
+                    verify_collision(root, missing, 'MOV-0018')
+            self.assertIsNone(verify_collision(root, {}, 'MOV-0018', legacy=True))
             # A changed reviewed list is a failing gate, not a new expectation:
             # a new pass, one failure more or less, and a tighter bound all fail.
             for label, failing in (('MOV-0018-a', {'facing': (1, 1.0)}), ('MOV-0018-c', {}),
@@ -38,6 +39,11 @@ class CollisionGateTests(unittest.TestCase):
                 known = dict(KNOWN[label], failing=failing)
                 with self.subTest(label, failing=failing), mock.patch.dict(KNOWN, {label: known}):
                     self.assertEqual(run(RUNNER, CODEGEN, root / 'again', root / 'again-reports'), 1)
+            # Reviewed open P3 differences must be exactly the failing checks: one
+            # claimed where every check passes fails the gate.
+            known = dict(KNOWN['MOV-0018-a'], open={'u0': {'side': 'P3'}})
+            with mock.patch.dict(KNOWN, {'MOV-0018-a': known}):
+                self.assertEqual(run(RUNNER, CODEGEN, root / 'open', root / 'open-reports'), 1)
             # P3 acceptance: the wrong side, a late arrival and a different final position each fail.
             reference = load(root / 'mov-0018/references/MOV-0018-a.json')
             self.assertEqual(acceptance(reference, reference)['status'], 'PASS')
@@ -58,7 +64,7 @@ class CollisionGateTests(unittest.TestCase):
             next(r for r in trace['records'] if r['kind'] == 'SAMPLE' and r['callback'] == 300)['values'].update(x='1.000000')
             write_json(path, trace, compact_records=True)
             with self.assertRaisesRegex(ValueError, 'does not reproduce'):
-                verify_collision(root, result)
+                verify_collision(root, result, 'MOV-0018')
 
 
 if __name__ == '__main__':

@@ -133,6 +133,8 @@ bool World::issue_point_order(std::size_t id, std::uint32_t order, Vec2 target) 
     unit.target_ = target;
     unit.command_step_ = steps_;
     unit.turn_updates_ = 0;
+    unit.yielding_ = false;
+    unit.given_way_ = 0;
     // A replaced order abandons the rest of the current batch where it is shown.
     unit.batch_active_ = false;
     if (model_.soft_float) {
@@ -150,7 +152,8 @@ bool World::issue_immediate_order(std::size_t id, std::uint32_t order) {
     unit.order_ = order_none;
     unit.batch_active_ = false;
     unit.route_.clear();
-    unit.waiting_ = false;
+    unit.waiting_ = unit.yielding_ = false;
+    unit.given_way_ = 0;
     if (model_.soft_float) {
         soft_halt(unit);
         unit.soft_.settle = true;
@@ -465,7 +468,7 @@ Vec2 World::soft_position(const Unit& unit) const {
 }
 // A unit following its route counts as moving even while it turns on the spot.
 bool World::moving(const Unit& unit) const {
-    return unit.order_ == order_move && !unit.waiting_;
+    return unit.order_ == order_move && !unit.waiting_ && !unit.given_way_;
 }
 // Plan a route from the unit's position to its order target around the other units.
 // A clear straight line is taken as it is. Otherwise A* runs over 32-unit cell centres
@@ -686,6 +689,17 @@ bool World::route(std::size_t id) {
     auto& unit = units_[id];
     auto& s = unit.soft_;
     const auto& P = model_.pathing;
+    // Another unit is routing around this one: hold (steering as usual).
+    if (unit.given_way_ && unit.given_way_step_ != steps_) {
+        --unit.given_way_;
+        return true;
+    }
+    // Held last update for a moving unit on the left: route around it now and go.
+    const bool yielded = unit.yielding_;
+    if (yielded) {
+        unit.yielding_ = false;
+        plan(id);
+    }
     if (unit.route_.empty()) plan(id);
     auto point = [&] { return p2(soft_position(unit)); };
     // At the end of a partial route the unit replans at once and holds for this update,
@@ -706,6 +720,7 @@ bool World::route(std::size_t id) {
     s.target_x = sf::sub(sf::bits(waypoint.x), origin);
     s.target_y = sf::sub(sf::bits(waypoint.y), origin);
     if (hold) return true;
+    if (yielded) return false;
     const double to_x = waypoint.x - point().x, to_y = waypoint.y - point().y;
     const double length = std::sqrt(to_x * to_x + to_y * to_y);
     if (length <= model_.stop_radius) return false;  // arrival is the movement code's
@@ -726,6 +741,33 @@ bool World::route(std::size_t id) {
         return false;
     }
     if (blocked_by(unit, direction, blocker)) {
+        // A moving unit on the left: hold one update, then route around it. One on the
+        // right: wait for it (MOV-0020: the role, not the index or order, decides).
+        // When that unit has this one in its own path too, the one with the other on its
+        // right waits and the other goes on (MOV-0018-c, MOV-0020-e); head-on, with each on
+        // the other's left, both wait as before (MOV-0018-b).
+        const P2 q = p2(soft_position(units_[blocker])), p = point();
+        const bool on_left = (q.y - p.y) * direction.x - (q.x - p.x) * direction.y > 0;
+        int seen_on = 0;  // 0: the blocker does not have this unit in its path; 1 left; -1 right
+        if (const auto& other = units_[blocker]; on_left && moving(other) && !other.route_.empty()) {
+            const Vec2 w = other.route_[other.route_index_];
+            const double ox = w.x - q.x, oy = w.y - q.y, ol = std::sqrt(ox * ox + oy * oy);
+            std::size_t seen = 0;
+            if (ol > model_.stop_radius) {
+                const Vec2 od{static_cast<float>(ox / ol), static_cast<float>(oy / ol)};
+                if (blocked_by(other, od, seen) && seen == id)
+                    seen_on = (p.y - q.y) * od.x - (p.x - q.x) * od.y > 0 ? 1 : -1;
+            }
+        }
+        if (on_left && moving(units_[blocker]) && seen_on == -1) return false;
+        if (on_left && moving(units_[blocker]) && seen_on == 0) {
+            unit.yielding_ = true;
+            // ...and the unit it gives way to holds from its next update on.
+            auto& other = units_[blocker];
+            other.given_way_ = P.give_way_updates;
+            other.given_way_step_ = steps_;
+            return true;
+        }
         unit.waiting_ = true;
         unit.wait_updates_ = 0;
         unit.blocker_ = blocker;

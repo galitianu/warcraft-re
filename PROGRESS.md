@@ -516,7 +516,11 @@ maps were each captured in three payload-identical fresh WC3 runs.
   difference with its rating.
 
 Local CI passes: CTest 3/3, Python 87/87, the generated loop, and the
-MOV-0013/0014/0015/0018/0019/0020 gates.
+MOV-0013/0014/0015/0018/0019/0020 gates. [PR #28](https://github.com/galitianu/warcraft-re/pull/28)'s
+[workflow 37148140178](https://github.com/galitianu/warcraft-re/actions/runs/37148140178) passes all five
+configurations and the aggregate (head `79abf58`). The downloaded artifacts
+[regrade](results/mov-0020/pr-verification/summary.md) to a scope report identical to the hosted one,
+with MOV-0018, 0019 and 0020 PASS in all five configurations.
 
 ## Exact next action
 

@@ -487,10 +487,11 @@ and MOV-0018 regrades as PASS in all five configurations.
 ## Exact next action
 
 Merge MOV-0018's PR once all five configurations pass, then retain the main-push verification.
-Then run the [next collision experiment](docs/mov-0018.md#next-experiment), a sweep that
-pins the wait corridor and the south-first tie order. Those constants rest on one or two
-observations, and their errors would be P3 (wrong side, missing wait) in other layouts. Open
-its issue with the question and acceptance gate before capturing.
+Then run [issue #27](https://github.com/galitianu/warcraft-re/issues/27) (MOV-0019), the
+[next collision experiment](docs/mov-0018.md#next-experiment): a sweep that pins the wait corridor,
+the south-first tie order and the 3×3 footprint. Those constants rest on one or two
+observations, and their errors would be P3 (wrong side, missing wait) in other layouts. Commit
+its design and predictions before capturing.
 
 Deferred (P1): MOV-0016, which would pre-register the rounded sampler start with T7 and
 FU ([next experiment](docs/mov-0015.md#next-experiment)). Revisit it only when most

@@ -1,8 +1,14 @@
 # Progress
 
-As of 2 October 2026.
+As of 3 October 2026.
 
-**Current stage:** Phase 7 capture capability implemented for four reviewed v1 scenarios.
+**Current stage:** Phase 8, first P3 behavior. [MOV-0018](docs/mov-0018.md)
+([issue #24](https://github.com/galitianu/warcraft-re/issues/24), in review) adds unit–unit collision:
+footman-v4 plans grid routes around other Footmen and waits for moving ones. All four
+captured variants match WC3's side, waits, arrival and final position; two are bit-identical
+and the rest differ only at P1.
+
+**Phase 7:** capture capability implemented for four reviewed v1 scenarios.
 One command completes generation, verified World Editor packaging, three fresh WC3
 runs, lossless candidate normalization and same-scenario C++ comparison, with zero
 intervention. Four new revisions / twelve runs reproduce the hand-authored controls
@@ -445,14 +451,41 @@ Per configuration, CTest 3/3, Python 84/84 and footman-v4 10/10 pass; historical
 baselines, original 45 Phase 1 runs / 15 fixtures, Phase 2 archive and generation/
 scenario identity gates remain unchanged. Other machines/seeds and retail RNG are unknown.
 
+## MOV-0018 two colliding Footmen
+
+[Issue #24](https://github.com/galitianu/warcraft-re/issues/24), **P3**:
+[design, observations, model and results](docs/mov-0018.md). The four v1 variants
+were committed before capture (`b667345`): an idle blocker on the path (a), head-on (b),
+crossing (c) and an idle blocker 24 units off the path (d). Each was
+captured unattended with the Phase 7 command, giving three payload-identical fresh-process runs
+on the [verified installation](oracle/environment/).
+
+- **Before** ([comparison](results/mov-0018/before/comparison.json)): all four fail at P3.
+  footman-v4 walked through the other unit. WC3 detours 45.8 units south around an idle
+  Footman, stops both head-on units and then steps them aside, and makes the crossing unit wait 0.44 s.
+- **WC3's behavior.** Routes are 8-connected paths over 32-unit cells, and another
+  unit blocks the 3×3 cells around it, so a and d are bit-identical. Units wait
+  for a moving unit on the path just ahead. The stop radius is in [14.607, 15.90), not 16.
+- **Model:** unit pathing in footman-v4 (grid A*, string pulling, partial routes,
+  waits, stop radius 15.5). Every constant is fitted, with its interval in the document.
+- **After** ([gate report](results/mov-0018/after/mov0018.md)): a and d PASS bit-identically.
+  b and c have the same sides, waits, arrival callbacks (±0) and final positions (≤0.004). Their
+  remaining differences are P1: b x/y ≤0.031 units and facing ≤1.81° while u1 waits;
+  c facing ≤0.118°. MOV-0001–0010 still pass 10/10 with identical exact text.
+- **Gate:** [run_mov0018.py](tools/run_mov0018.py) in CI requires P3 acceptance and exactly
+  the reviewed P1 differences. summarize_ci regrades downloaded traces.
+
+Local native ARM64 AppleClang Release CI with `--archive` passes: CTest 3/3, Python 85/85,
+generated loop, the MOV-0013/0014/0015/0018 gates, v4 10/10 and the historical baselines. Its MOV-0018
+report is byte-identical to the retained one.
+
 ## Exact next action
 
-Choose the next **P3** behavior from the Phase 8 movement backlog
-([plan §11](Warcraft-III-Reimplementation-Plan.md#11-phase-8--expand-compatibility-through-experiments)):
-something footman-v4 does not model yet and a player would see. The proposed first
-candidate is unit–unit collision: two Footmen ordered through each other, with both
-positions compared to WC3. Open an issue with its behavioral question and acceptance gate
-before capturing.
+Merge MOV-0018's PR once all five configurations pass, then retain the main-push verification.
+Then run the [next collision experiment](docs/mov-0018.md#next-experiment), a sweep that
+pins the wait corridor and the south-first tie order. Those constants rest on one or two
+observations, and their errors would be P3 (wrong side, missing wait) in other layouts. Open
+its issue with the question and acceptance gate before capturing.
 
 Deferred (P1): MOV-0016, which would pre-register the rounded sampler start with T7 and
 FU ([next experiment](docs/mov-0015.md#next-experiment)). Revisit it only when most

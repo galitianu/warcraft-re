@@ -1,0 +1,28 @@
+# MOV-0018: when a moving Footman's straight path runs into another Footman, what do
+# both units do: stop, slide past, step around, re-path or push (docs/mov-0018.md)?
+# Variant d: glancing. As a, with idle u1 at (500, 24), so only part of the bodies'
+# width overlaps u0's straight path.
+# Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0018
+map_revision: MOV-0018-d
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+  - name: u1
+    type: hfoo
+    position: [500, 24]
+    facing: 180
+observe:
+  period: 0.02
+  callbacks: 600
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 0]
+...

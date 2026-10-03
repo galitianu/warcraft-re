@@ -1,0 +1,32 @@
+# MOV-0018: when a moving Footman's straight path runs into another Footman, what do
+# both units do: stop, slide past, step around, re-path or push (docs/mov-0018.md)?
+# Variant c: crossing. u0 (0, 0) -> (1000, 0) and u1 (500, -500) -> (500, 500), both
+# ordered at callback 0 and facing their targets, so both reach (500, 0) together.
+# Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0018
+map_revision: MOV-0018-c
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+  - name: u1
+    type: hfoo
+    position: [500, -500]
+    facing: 90
+observe:
+  period: 0.02
+  callbacks: 600
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 0]
+  - at: 0
+    unit: u1
+    order: move
+    target: [500, 500]
+...

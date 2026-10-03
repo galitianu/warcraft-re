@@ -18,7 +18,7 @@ import capture_runs
 from compare_traces import compare
 from generate_oracle import generate
 from normalize_generated import normalize
-from trace_contract import BUILD, ROOT, load, sha256, write_json
+from trace_contract import BUILD, EXPERIMENT_SHAPES, ROOT, load, sha256, write_json
 import we_author
 
 SUPPORTED = ('MOV-0002', 'MOV-0004', 'MOV-0006', 'MOV-0010')
@@ -240,19 +240,27 @@ class Controller:
         scenario = args.scenario.resolve()
         # Exact supported descriptions only; a changed/new scenario first needs an
         # independently reviewed control and shape, never one derived from C++.
-        exp = scenario.stem
-        reviewed = load(ROOT / 'oracle/generated/v1/manifest.json')['inputs']
-        accepted = {i['experiment']: i['scenario']['sha256'] for i in reviewed}
-        require(exp in SUPPORTED and sha256(scenario) == accepted[exp] and scenario.read_bytes() == (ROOT / f'scenarios/{exp}.yaml').read_bytes(),
-                'unsupported scenario: require exact bytes of a supported v1 control')
-        require(re.fullmatch(re.escape(exp) + r'-[a-z0-9]+(?:-[a-z0-9]+)*', args.map_revision), 'invalid new map revision')
+        # Or a registered v1 experiment of its own (EXPERIMENT_SHAPES, written by hand
+        # from its definition): its committed file, captured as its own map revision.
+        experiment = EXPERIMENT_SHAPES.get(args.map_revision)
+        if experiment:
+            exp, relative = experiment['experiment'], Path(experiment['scenario'])
+            require(experiment['version'] == 1 and scenario == (ROOT / relative).resolve(),
+                    'unsupported scenario: a registered experiment needs its committed v1 file and revision')
+        else:
+            exp, relative = scenario.stem, Path(f'scenarios/{scenario.stem}.yaml')
+            reviewed = load(ROOT / 'oracle/generated/v1/manifest.json')['inputs']
+            accepted = {i['experiment']: i['scenario']['sha256'] for i in reviewed}
+            require(exp in SUPPORTED and sha256(scenario) == accepted[exp] and scenario.read_bytes() == (ROOT / relative).read_bytes(),
+                    'unsupported scenario: require exact bytes of a supported v1 control')
+            require(re.fullmatch(re.escape(exp) + r'-[a-z0-9]+(?:-[a-z0-9]+)*', args.map_revision), 'invalid new map revision')
         label = args.map_revision
         for path in (ROOT / f'oracle-maps/{label}.w3m', ROOT / f'oracle/generated/maps/{label}.j',
                      ROOT / f'oracle/captures/{BUILD}/{label}', ROOT / f'oracle/canonical-generated/{BUILD}/{label}.json'):
             require(not path.exists(), f'retained revision exists: {path}')
         require(args.runs >= 3 and args.runs <= 20, '--runs must be 3..20 for validated repeatability')
         from check_map import check  # optional local packaging dependency, fail before Windows mutation
-        scenario = self.pin(scenario, Path(f'scenarios/{exp}.yaml'))
+        scenario = self.pin(scenario, relative)
         library = self.pin(ROOT / 'oracle/jass/lib/oracle-v1.j')
         self.pin(ROOT / ENVIRONMENT)
         template = self.pin(ROOT / 'oracle-maps/MOV-0002.w3m')
@@ -263,7 +271,7 @@ class Controller:
             require(path.is_file(), f'missing prerequisite: {path}')
             self.pinned[str(path)] = sha256(path)
         cases, generation = generate(args.codegen, [scenario], label)
-        generation['inputs'][0]['scenario']['path'] = f'scenarios/{exp}.yaml'
+        generation['inputs'][0]['scenario']['path'] = relative.as_posix()
         require(generation['inputs'][0]['scenario']['version'] == 1, 'v2 unsupported by unattended capture')
         case = self.root / f'oracle/generated/maps/{label}.j'
         case.parent.mkdir(parents=True)
@@ -305,7 +313,7 @@ class Controller:
         self.assert_hash(f'{we_author.MAPS}\\{label}.w3m', sha256(saved_map))
         self.installation('capture-verification-final.json')
         from record_generated import candidate_manifest
-        candidate_manifest(self.root, exp, label, generation_path, verification, checked, entries)
+        candidate_manifest(self.root, exp, label, generation_path, verification, checked, entries, relative.as_posix())
         self.stage('normalization')
         candidate = self.root / 'candidate'
         reproduction = normalize(label, candidate, self.root)
@@ -313,7 +321,7 @@ class Controller:
         self.stage('same-scenario-comparison')
         actual = self.root / 'cpp'
         # Relative path in both producer identities; bytes frozen in this bundle.
-        stdout = self.command([str(args.runner.resolve()), '--scenario', f'scenarios/{exp}.yaml', '--model', 'v4',
+        stdout = self.command([str(args.runner.resolve()), '--scenario', relative.as_posix(), '--model', 'v4',
                                '--seed', '1', '--out', str(actual)], cwd=self.root, timeout=60)
         write_json(self.root / 'diagnostics/cpp.json', dict(exit=0, stdout=stdout, runner_sha256=sha256(args.runner)))
         self.assert_inputs()

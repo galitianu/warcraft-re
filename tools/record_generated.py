@@ -56,7 +56,7 @@ def main():
                     definition=experiment['definition'] if experiment else 'docs/phase-6-generation.md',
                     procedure='docs/phase-1-procedure.md',
                     map=dict(**source(map_path), bytes=map_path.stat().st_size), library=source(library), case=source(case),
-                    scenario=dict(schema='wc3-scenario', version=2 if experiment else 1, **source(scenario)),
+                    scenario=dict(schema='wc3-scenario', version=experiment['version'] if experiment else 1, **source(scenario)),
                     generation=source(args.generation), verification=source(args.verification),
                     environment=source(Path(f'oracle/environment/{BUILD}.json')), check_map=checked,
                     rng_seed='not set; retail seed influence unobserved',
@@ -64,7 +64,7 @@ def main():
                                   clock_duration_seconds='1000', units='seconds, world-units, degrees',
                                   numeric_format='R2SW(value,1,6)'),
                     transport='rdpipe pull; SHA-256 checked by transport', runs=load(base / 'runs.json'))
-    if experiment:
+    if experiment and experiment['version'] == 2:
         manifest['sampling']['start_seconds'] = f"{experiment['start_us'] / 1e6:g}"
         manifest['sampling']['state_event'] = 'STATE c10_9/x_9/y_9/facing_9, R2SW(value,1,9); 10 s clock from setup'
     if attempts:
@@ -87,7 +87,7 @@ def main():
     return 0
 
 
-def candidate_manifest(root, exp, label, generation, verification, checked, entries):
+def candidate_manifest(root, exp, label, generation, verification, checked, entries, scenario=None):
     """Bind a new isolated evidence bundle; never promote a retained reference."""
     def source(relative):
         return dict(path=relative, sha256=sha256(root / relative))
@@ -96,7 +96,7 @@ def candidate_manifest(root, exp, label, generation, verification, checked, entr
                     definition='docs/phase-7-capture.md', procedure='tools/capture_oracle.py',
                     map=dict(**source(map_path), bytes=(root / map_path).stat().st_size),
                     library=source('oracle/jass/lib/oracle-v1.j'), case=source(f'oracle/generated/maps/{label}.j'),
-                    scenario=dict(schema='wc3-scenario', version=1, **source(f'scenarios/{exp}.yaml')),
+                    scenario=dict(schema='wc3-scenario', version=1, **source(scenario or f'scenarios/{exp}.yaml')),
                     generation=source(generation.as_posix()), verification=source(verification.as_posix()),
                     environment=source(f'oracle/environment/{BUILD}.json'), check_map=checked,
                     rng_seed='not set; retail seed influence unobserved',

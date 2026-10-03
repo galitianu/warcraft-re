@@ -31,6 +31,19 @@ struct HeadingModel {
     // admit roughly 0.496-0.505 s; the clock's binade sets each frame's truncation.
     std::uint32_t clock_start = 0x3f000000;
 };
+// footman-v4 unit pathing (MOV-0018, docs/mov-0018.md). Distances are world units,
+// fitted to four two-Footman captures; see the document for each constant's interval.
+struct UnitPathing {
+    bool enabled = false;
+    float cell = 32.0f;               // planning lattice: cell centres at 16 + 32k; another
+                                      // unit blocks the 3x3 cells around the cell it is in
+    float line_clearance = 4.0f;      // a direct line or smoothed segment keeps this from blocked cells
+    float waypoint_radius = 16.0f;    // advance to the next waypoint within this distance
+    float block_radius = 62.0f;       // another unit this close to the path just ahead blocks
+    float block_lookahead = 32.0f;    // length of that path segment
+    float block_lateral = 40.0f;      // ...if it is, or soon will be, this close to the path line
+    std::uint32_t recheck_updates = 5;  // a unit waiting for a moving unit retests this often
+};
 // Every behavioral difference between versions is one of these parameters.
 struct Model {
     const char* name;
@@ -53,6 +66,7 @@ struct Model {
     // footman-v4: retail soft-float movement (docs/footman-v4-model.md). Uses the
     // heading block's cadence and frame origin; arithmetic is wc3::sf throughout.
     bool soft_float = false;
+    UnitPathing pathing;
 };
 Model model(ModelVersion version);
 
@@ -93,6 +107,13 @@ private:
         std::uint64_t integrated_step = 0;  // velocity applies from here
         bool settle = false;            // stop processing due at the next update
     } soft_;
+    // Unit pathing: the planned route to the order target, followed waypoint by waypoint.
+    std::vector<Vec2> route_;
+    std::size_t route_index_ = 0;
+    bool route_partial_ = false;     // ends short of a blocked target; replan on arrival
+    bool waiting_ = false;           // halted by another unit on the path ahead
+    std::uint32_t wait_updates_ = 0;
+    std::size_t blocker_ = 0;
 };
 
 // Simulation owns state and seeded randomness. No clock, file or renderer APIs.
@@ -117,6 +138,11 @@ private:
     void soft_integrate(Unit& unit) const;
     void soft_expose(Unit& unit) const;
     void soft_halt(Unit& unit) const;
+    Vec2 soft_position(const Unit& unit) const;
+    bool moving(const Unit& unit) const;
+    void plan(std::size_t id);
+    bool route(std::size_t id);
+    bool blocked_by(const Unit& unit, Vec2 direction, std::size_t& blocker) const;
     sf::F clock_at(std::uint64_t frame) const;
     sf::F frames_to_seconds(std::uint64_t from_step, std::uint64_t to_step) const;
     mutable std::vector<sf::F> clock_;

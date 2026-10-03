@@ -48,6 +48,12 @@ EXPERIMENT_SHAPES.update({
                           scenario=f'scenarios/MOV-0018/MOV-0018-{v}.yaml', start_us=0, control=None,
                           state=None, definition='docs/mov-0018.md', version=1)
     for v in 'abcd'})
+# MOV-0019 (docs/mov-0019.md): the same shape, ten variants pinning MOV-0018's pathing fits.
+EXPERIMENT_SHAPES.update({
+    f'MOV-0019-{v}': dict(experiment='MOV-0019', callbacks=600, period='0.020000', units=2,
+                          scenario=f'scenarios/MOV-0019/MOV-0019-{v}.yaml', start_us=0, control=None,
+                          state=None, definition='docs/mov-0019.md', version=1)
+    for v in 'abcdefghij'})
 STATE_KEYS = {'c10_9', 'x_9', 'y_9', 'facing_9'}
 # wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it
 # with cwd=ROOT and an absolute --out so recorded scenario paths stay repo-relative.

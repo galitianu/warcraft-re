@@ -92,8 +92,9 @@ Model model(ModelVersion version) {
     return {.name = "footman-v2", .position_period_steps = 5, .facing_period_steps = 30,
             .facing_phase_steps = 10, .move_delay_steps = 10};
 }
-World::World(ModelVersion version, std::uint32_t seed)
-    : model_(model(version)), random_(seed) {
+World::World(ModelVersion version, std::uint32_t seed) : World(model(version), seed) {}
+
+World::World(const Model& parameters, std::uint32_t seed) : model_(parameters), random_(seed) {
     clock_.push_back(model_.heading.clock_start);
 }
 

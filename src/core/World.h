@@ -120,6 +120,8 @@ private:
 class World {
 public:
     explicit World(ModelVersion version, std::uint32_t seed = 1);
+    // Explicit parameters, for predictions under candidate values (tools/wc3pathing).
+    explicit World(const Model& parameters, std::uint32_t seed = 1);
     std::size_t create_footman(Vec2 position, float facing);
     const Unit& unit(std::size_t id) const { return units_.at(id); }
     std::size_t unit_count() const { return units_.size(); }

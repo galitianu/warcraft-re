@@ -77,6 +77,55 @@ processes its facing at the next update.
 **Exposure.** `GetUnitX/Y` returns `pos + vel·(clock_now − clock_last)` without
 storing it. The facing reading is `mul(f, 180/π)`.
 
+## Unit pathing
+
+Retail's movement library (NIpse in `Warcraft III.exe`) keeps every unit's footprint
+in a grid of 32-unit cells from the map corner. The rules below were read from the
+retail code; the points marked *interpreted* were chosen among readings the code
+allows, by the captures (see [rule status](#rule-status)). With one unit the
+pathing only plans a straight route, so MOV-0001–0010 are unaffected.
+
+- **Footprint** (`0x8bc900`, `0x801930`): a Footman (collision class 1, `0x8a8220`)
+  covers the 2×2 cells `{fx−1, fx} × {fy−1, fy}`, `f = floor(position / 32)`. It is
+  re-registered when the unit integrates, so a unit not yet processed this update
+  still covers last update's cells.
+- **Order of processing** (*interpreted*): the most recently ordered unit updates first.
+- **Planning** (`0x8a6cc0` → `0x8bd560`) happens at the unit's first update after an
+  order. Later replans need 10 updates since the last plan (`+0x7c`); a unit waiting for
+  one holds. Planning uses A* over cells (`0x8bfce0`, `0x8bf8b0`, `0x8c0890`, `0x8c0ae0`):
+  - A node is a cell. A move to one of its 8 neighbours is open when the cells it newly
+    covers are free (`0x8be080`: a ring of 12 cells and one mask per move).
+  - Straight moves cost 15 and diagonal ones 21. The heuristic is `0x8bda00`'s integer
+    distance estimate. The open list is a 1-based binary heap with stale entries
+    skipped by version (`0x8a3090`, `0x8a2d20`); it decides between equal paths.
+  - Units with a nonzero velocity are not obstacles (*interpreted*: cell tests skip
+    agents flagged `0x60000000` unless `+0xce` is set, and only a few callers set it).
+  - If the search never meets an occupied cell (`+0xcd`), the unit walks straight at
+    the target. Otherwise it follows the path's cell centres.
+  - An unreachable target ends the route at the first-found node nearest it. That
+    partial route is replanned on arrival, holding that update.
+- **Waypoints** (`0x8a6ed0`, `0x8a7ac0`, `0x8a8b40`): a waypoint is reached within
+  0.49 cells (15.68). The unit then skips to the last following waypoint it can reach
+  in a straight line. The straight-line test steps one cell at a time and checks the
+  cells each step newly covers. Its first step compares against cell (0, 0) rather than
+  the start cell, so it always checks the north-east L of the swept box.
+- **Probe** (`0x8a5f30`, walker `0x8bea00`): each update the unit checks the cells it
+  would newly cover one cell ahead (less if the waypoint is nearer). The probe sees
+  all units, moving or not (`0x8a8090`):
+  - **No unit in the way:** the unit moves.
+  - **A moving unit that is not itself held for another:** if its squared speed is at
+    least this unit's, this unit holds 4 more updates (5 in all). Otherwise that unit
+    holds 20 and this one carries on down the list. Equal nominal speeds are decided
+    by ulps of the soft-float velocities.
+  - **Only stationary or held units:** the unit drops its route and holds. It replans
+    when the 10-update limit allows.
+- **Steering while held** (`0x8b0b90`, `0x8a5760`): speed is 0 and the heading still
+  turns. It turns toward the waypoint on the update a moving unit is found, and
+  toward the order target otherwise.
+
+Positions enter these tests as float32 values evaluated in double; retail evaluates
+them in float32. Only a value within an ulp or so of a cell boundary could differ (P1).
+
 ## Clocks
 
 - **Movement clock:** one value per 5 ms frame, `c₀ = 0.5 s`,
@@ -95,7 +144,7 @@ storing it. The facing reading is `mul(f, 180/π)`.
 |---|---|
 | Arithmetic, tables, update order and constants above | **Inferred** from retail code, then confirmed bit for bit by every retained capture |
 | Stop radius 15.5, inclusive | **Fitted**: [MOV-0018](mov-0018.md#fitted-intervals) bounds it to [14.607, 15.90); MOV-0001–0010 agree with any value there. Not read from game data. |
-| Unit pathing (grid routes, waits) | **Fitted** to four two-Footman captures; see [MOV-0018](mov-0018.md#model). [MOV-0019](mov-0019.md#results) confirmed the footprint and tie order and refuted the wait corridor. Partial routes and idle units at the target were refitted post hoc. [MOV-0020](mov-0020.md#post-hoc-refit-giving-way) refitted who gives way post hoc; head-on offsets remain P3; [MOV-0021](mov-0021.md#results) shows the outcome is not rotation-invariant. Inactive with one unit. |
+| Unit pathing (above) | **Inferred** from retail code. Reproduces all 26 two-Footman captures (MOV-0018–0021) exactly. Those captures predate the analysis and guided it, and the processing order and the meaning of the `0x60000000` flag were chosen to fit them. Supersedes the fitted heuristics of [MOV-0018](mov-0018.md#model)–[MOV-0021](mov-0021.md#results). Not yet tested on a pre-registered capture. |
 | Movement clock start 0.5 s | **Inferred**: the only start (of those tested) that reproduces every library-clock reading |
 | Which frame, and which side of an update, a callback observes | **Partly unexplained.** See the [results](footman-v4-results.md#sampling-order). The 20 ms runner rule (after the update at step 20k) is exact for all fixtures |
 | Speed clamp 150–400 | **Observed** endpoints, unchanged |

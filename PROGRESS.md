@@ -1,15 +1,13 @@
 # Progress
 
-As of 3 October 2026.
+As of 5 October 2026.
 
-**Current stage:** Phase 8, first P3 behavior. [MOV-0018](docs/mov-0018.md)
-([issue #24](https://github.com/galitianu/warcraft-re/issues/24), merged and verified on main) adds unit–unit collision:
-footman-v4 plans grid routes around other Footmen and waits for moving ones. All four
-captured variants match WC3's side, waits, arrival and final position; two are bit-identical
-and the rest differ only at P1. [MOV-0019/0020](#mov-0019-and-mov-0020-who-gives-way)
-(issue #27) find that the eastward unit gives way when two cross; a post-hoc give-way rule
-fits 12 of 20 captures at P3, and head-on offsets remain a P3 difference.
-[MOV-0021](#mov-0021-head-on-with-a-lateral-offset) shows that turning that head-on by 90° changes who waits.
+**Current stage:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
+[issue #27](https://github.com/galitianu/warcraft-re/issues/27)). footman-v4 now follows WC3's own pathing
+mechanism, read from the retail executable ([model](docs/footman-v4-model.md#unit-pathing)): grid footprints, a
+one-cell probe, waits decided by squared speed, and the retail A*. It reproduces **all 26** two-Footman captures
+(MOV-0018 to MOV-0021) exactly, so no P3, P2 or P1 difference remains in them. Those captures guided the analysis;
+[MOV-0022](#exact-next-action) is to test the mechanism on layouts it has not seen.
 
 **Phase 7:** capture capability implemented for four reviewed v1 scenarios.
 One command completes generation, verified World Editor packaging, three fresh WC3
@@ -545,13 +543,36 @@ passes all five configurations and the aggregate (head `35ba687`). The downloade
 [regrade](results/mov-0021/pr-verification/summary.md) to a report identical to the hosted one,
 with MOV-0018 to 0021 PASS in all five configurations.
 
+## Retail pathing mechanism
+
+[Issue #27](https://github.com/galitianu/warcraft-re/issues/27). The fitted collision heuristics
+(blocking corridor, give-way side rule, plan-time smoothing) are replaced by the mechanism in WC3's own
+movement library. Ghidra decompilation of the retail `Warcraft III.exe` gave the rules, and C++
+implements them without game code ([model](docs/footman-v4-model.md#unit-pathing),
+[World.cpp](src/core/World.cpp)).
+
+- **Result:** all 26 MOV-0018–0021 captures are canonical PASS: every sample, facing included,
+  within the comparator's exact tolerances. Before, 14 failed P3-level acceptance (5 rated P3, 9 P2) and 4 were exact.
+- **Interpreted, not read:** two choices were made because they fit the captures. The most
+  recently ordered unit updates first, and units with a nonzero velocity are not obstacles to
+  planning or to the straight-line test. The A* expansion budget is unknown (32768 is used).
+- **Gate:** [run_mov0018.py](tools/run_mov0018.py) now expects no differences for any of the
+  26 captures, so any new one fails CI.
+
+Local native ARM64 AppleClang Release CI passes: CTest 3/3, Python 88/88, the generated loop and
+every gate (MOV-0013/0014/0015 and MOV-0018 to 0021).
+
 ## Exact next action
 
-MOV-0022 ([next experiment](docs/mov-0021.md#next-experiment)): shift the straight
-offset head-on by sub-cell steps along both axes, with lateral offsets just below and
-above a cell. Pre-register a cell-footprint stop rule and a continuous-distance rule,
-with their predictions, before capturing. If neither fits, record the stop updates and
-stop pursuing the head-on offset mechanism with variant sweeps.
+MOV-0022: test the retail mechanism on layouts it has not seen. Pre-register its
+predictions before capturing:
+
+- unequal speeds head-on (the faster unit goes, the slower one is held 20 updates);
+- the same layout with the order of issue reversed (processing order);
+- a unit ordered across another unit's moving path, and a target behind a stationary unit
+  on a diagonal (planning ignores moving units; A* tie order).
+
+Pass means exact or P1-only agreement.
 
 Deferred (P1): MOV-0016, which would pre-register the rounded sampler start with T7 and
 FU ([next experiment](docs/mov-0015.md#next-experiment)). Revisit it only when most

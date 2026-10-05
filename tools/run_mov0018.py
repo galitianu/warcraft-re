@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MOV-0018 to MOV-0020 (docs/mov-0018.md, mov-0019.md, mov-0020.md): two Footmen
+"""MOV-0018 to MOV-0021 (docs/mov-0018.md, mov-0019.md, mov-0020.md, mov-0021.md): two Footmen
 through WC3 and C++ footman-v4.
 
 For each variant this regenerates the case JASS from the committed scenario
@@ -31,7 +31,7 @@ from normalize_generated import normalize
 from trace_contract import BUILD, EXPERIMENT_SHAPES, load, sha256, write_json
 
 EXPERIMENT = 'MOV-0018'
-EXPERIMENTS = ('MOV-0018', 'MOV-0019', 'MOV-0020')
+EXPERIMENTS = ('MOV-0018', 'MOV-0019', 'MOV-0020', 'MOV-0021')
 ARRIVAL_CALLBACKS = 2   # Issue #24: arrival within 1-2 frames.
 FINAL_UNITS = 1.0       # Well below P2 (several game units); the reviewed finals agree within 0.004.
 WAIT_CALLBACKS = 2      # A wait may start or end this many callbacks away from WC3's.
@@ -43,7 +43,8 @@ KNOWN = {
     'MOV-0018-b': dict(canonical='FAIL', failing={'x': (511, .032), 'y': (101, .014), 'facing': (127, 1.81)}),
     'MOV-0018-c': dict(canonical='FAIL', failing={'facing': (32, .119)}),
     'MOV-0018-d': dict(canonical='PASS', failing={}),
-    # MOV-0019/0020 after the post-hoc give-way refit; ratings in docs/mov-0020.md#results.
+    # MOV-0019 to MOV-0021 after the post-hoc give-way refit; ratings in docs/mov-0020.md#results
+    # and docs/mov-0021.md#results.
     'MOV-0019-a': dict(canonical='PASS', failing={}),
     'MOV-0019-b': dict(canonical='FAIL', failing={'x': (592, 0.652), 'y': (592, 8.61), 'facing': (590, 10.6)}),
     'MOV-0019-c': dict(canonical='FAIL', failing={'x': (592, 0.652), 'y': (592, 8.61), 'facing': (590, 10.6)}),
@@ -60,6 +61,12 @@ KNOWN = {
     'MOV-0020-d': dict(canonical='FAIL', failing={'x': (1027, 101), 'y': (1027, 42.2), 'facing': (1028, 66.7), 'order': (28, 852000)}, open={'u0': {'final': 'P3', 'arrival': 'P3', 'waits': 'P3'}, 'u1': {'final': 'P3', 'arrival': 'P3', 'waits': 'P3'}}),
     'MOV-0020-e': dict(canonical='FAIL', failing={'facing': (32, 0.119)}),
     'MOV-0020-f': dict(canonical='FAIL', failing={'x': (16, 8.1), 'facing': (25, 0.156)}),
+    'MOV-0021-a': dict(canonical='FAIL', failing={'x': (1025, 51.6), 'y': (1025, 34.1), 'facing': (1028, 54.2), 'order': (11, 852000)}, open={'u0': {'arrival': 'P3', 'final': 'P2', 'waits': 'P3'}, 'u1': {'final': 'P2', 'waits': 'P2'}}),
+    'MOV-0021-b': dict(canonical='FAIL', failing={'x': (620, 11.0), 'y': (1028, 40.5), 'facing': (935, 34.4), 'order': (8, 852000)}, open={'u0': {'final': 'P2'}, 'u1': {'arrival': 'P2', 'waits': 'P2'}}),
+    'MOV-0021-c': dict(canonical='FAIL', failing={'x': (627, 37.2), 'y': (630, 40.5), 'facing': (953, 57.3), 'order': (13, 852000)}, open={'u0': {'arrival': 'P2', 'final': 'P2', 'waits': 'P2'}, 'u1': {'arrival': 'P2', 'waits': 'P2'}}),
+    'MOV-0021-d': dict(canonical='FAIL', failing={'x': (1025, 32.9), 'y': (1028, 40.5), 'facing': (949, 53.9), 'order': (14, 852000)}, open={'u0': {'arrival': 'P2', 'final': 'P2', 'waits': 'P2'}, 'u1': {'arrival': 'P2', 'waits': 'P2'}}),
+    'MOV-0021-e': dict(canonical='FAIL', failing={'x': (1010, 111), 'y': (1010, 33.2), 'facing': (1008, 46.5), 'order': (37, 852000)}, open={'u0': {'arrival': 'P3', 'final': 'P2', 'waits': 'P3'}, 'u1': {'arrival': 'P3', 'final': 'P2', 'waits': 'P3'}}),
+    'MOV-0021-f': dict(canonical='FAIL', failing={'x': (1010, 31.1), 'y': (1010, 45.2), 'facing': (1008, 31.7), 'order': (13, 852000)}, open={'u0': {'arrival': 'P2', 'final': 'P2', 'waits': 'P2'}, 'u1': {'arrival': 'P2', 'final': 'P2', 'waits': 'P2'}}),
 }
 
 

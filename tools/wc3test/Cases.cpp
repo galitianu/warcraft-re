@@ -131,15 +131,12 @@ Trace run_scheduled(const scenario::Scenario& s, wc3::ModelVersion version, std:
 // a hard-coded MOV-0001..0010 table ran the same loop; the committed scenarios
 // reproduced it byte for byte (docs/phase-5-scenarios.md) before it was removed.
 Trace run(const scenario::Scenario& description, wc3::ModelVersion version, std::uint32_t seed,
-          bool before_due_update, const wc3::UnitPathing* pathing) {
+          bool before_due_update) {
     if (description.version == 2) {
-        if (pathing) throw std::invalid_argument(description.experiment + ": pathing overrides are for v1 scenarios");
         return run_scheduled(description, version, seed, before_due_update);
     }
     const auto& s = description;
-    auto parameters = wc3::model(version);
-    if (pathing) parameters.pathing = *pathing;
-    wc3::World world(parameters, seed);
+    wc3::World world(version, seed);
     const auto step_us = world.parameters().step_us;
     // Runner capability, separate from scenario validity: the C++ canonical timing
     // and footman-v4's library clock are defined for the demonstrated period only.

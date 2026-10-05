@@ -62,10 +62,8 @@ struct CaseIdentity {
 };
 // Runs a validated scenario description (docs/scenario-v1.md) on the World API.
 // Throws std::invalid_argument for schedules this runner cannot represent.
-// `pathing`, if given, replaces the model's unit pathing (predictions only; traces
-// still name the version, so canonical runs never pass it).
 Trace run(const scenario::Scenario& description, wc3::ModelVersion version, std::uint32_t seed = 1,
-          bool before_due_update = false, const wc3::UnitPathing* pathing = nullptr);
+          bool before_due_update = false);
 std::string samples_csv(const Trace& trace);
 std::string actions_csv(const Trace& trace);
 }

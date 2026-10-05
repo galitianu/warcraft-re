@@ -35,39 +35,15 @@ EXPERIMENTS = ('MOV-0018', 'MOV-0019', 'MOV-0020', 'MOV-0021')
 ARRIVAL_CALLBACKS = 2   # Issue #24: arrival within 1-2 frames.
 FINAL_UNITS = 1.0       # Well below P2 (several game units); the reviewed finals agree within 0.004.
 WAIT_CALLBACKS = 2      # A wait may start or end this many callbacks away from WC3's.
-# Reviewed after the model was fitted (docs/mov-0018.md#remaining-differences):
-# failing comparator property -> (failures, bound on the largest absolute difference),
-# and open P3-check failures: unit -> {check: rating}.
-KNOWN = {
-    'MOV-0018-a': dict(canonical='PASS', failing={}),
-    'MOV-0018-b': dict(canonical='FAIL', failing={'x': (511, .032), 'y': (101, .014), 'facing': (127, 1.81)}),
-    'MOV-0018-c': dict(canonical='FAIL', failing={'facing': (32, .119)}),
-    'MOV-0018-d': dict(canonical='PASS', failing={}),
-    # MOV-0019 to MOV-0021 after the post-hoc give-way refit; ratings in docs/mov-0020.md#results
-    # and docs/mov-0021.md#results.
-    'MOV-0019-a': dict(canonical='PASS', failing={}),
-    'MOV-0019-b': dict(canonical='FAIL', failing={'x': (592, 0.652), 'y': (592, 8.61), 'facing': (590, 10.6)}),
-    'MOV-0019-c': dict(canonical='FAIL', failing={'x': (592, 0.652), 'y': (592, 8.61), 'facing': (590, 10.6)}),
-    'MOV-0019-d': dict(canonical='FAIL', failing={'x': (592, 0.375), 'y': (592, 9.96), 'facing': (590, 4.55)}, open={'u0': {'final': 'P2'}}),
-    'MOV-0019-e': dict(canonical='FAIL', failing={'x': (594, 0.35), 'y': (595, 3.29), 'facing': (591, 11.3)}),
-    'MOV-0019-f': dict(canonical='PASS', failing={}),
-    'MOV-0019-g': dict(canonical='FAIL', failing={'x': (16, 8.1), 'facing': (25, 0.156)}),
-    'MOV-0019-h': dict(canonical='FAIL', failing={'x': (25, 16.2), 'y': (25, 0.033), 'facing': (36, 0.51)}, open={'u0': {'waits': 'P2'}}),
-    'MOV-0019-i': dict(canonical='FAIL', failing={'x': (513, 6.02), 'y': (514, 5.88), 'facing': (552, 36.3)}, open={'u0': {'side': 'P2'}, 'u1': {'final': 'P2'}}),
-    'MOV-0019-j': dict(canonical='FAIL', failing={'x': (1028, 162), 'y': (1027, 46.3), 'facing': (1028, 57.9), 'order': (34, 852000)}, open={'u0': {'arrival': 'P3', 'waits': 'P3'}, 'u1': {'final': 'P3', 'arrival': 'P3'}}),
-    'MOV-0020-a': dict(canonical='FAIL', failing={'x': (505, 6.39), 'y': (505, 0.516), 'facing': (534, 0.797)}, open={'u1': {'side': 'P2'}}),
-    'MOV-0020-b': dict(canonical='FAIL', failing={'x': (1026, 122), 'y': (1026, 35.0), 'facing': (1026, 68.8), 'order': (30, 852000)}, open={'u0': {'final': 'P3', 'arrival': 'P3'}, 'u1': {'arrival': 'P3', 'waits': 'P3'}}),
-    'MOV-0020-c': dict(canonical='FAIL', failing={'x': (505, 6.39), 'y': (505, 0.516), 'facing': (534, 0.797)}, open={'u0': {'side': 'P2'}}),
-    'MOV-0020-d': dict(canonical='FAIL', failing={'x': (1027, 101), 'y': (1027, 42.2), 'facing': (1028, 66.7), 'order': (28, 852000)}, open={'u0': {'final': 'P3', 'arrival': 'P3', 'waits': 'P3'}, 'u1': {'final': 'P3', 'arrival': 'P3', 'waits': 'P3'}}),
-    'MOV-0020-e': dict(canonical='FAIL', failing={'facing': (32, 0.119)}),
-    'MOV-0020-f': dict(canonical='FAIL', failing={'x': (16, 8.1), 'facing': (25, 0.156)}),
-    'MOV-0021-a': dict(canonical='FAIL', failing={'x': (1025, 51.6), 'y': (1025, 34.1), 'facing': (1028, 54.2), 'order': (11, 852000)}, open={'u0': {'arrival': 'P3', 'final': 'P2', 'waits': 'P3'}, 'u1': {'final': 'P2', 'waits': 'P2'}}),
-    'MOV-0021-b': dict(canonical='FAIL', failing={'x': (620, 11.0), 'y': (1028, 40.5), 'facing': (935, 34.4), 'order': (8, 852000)}, open={'u0': {'final': 'P2'}, 'u1': {'arrival': 'P2', 'waits': 'P2'}}),
-    'MOV-0021-c': dict(canonical='FAIL', failing={'x': (627, 37.2), 'y': (630, 40.5), 'facing': (953, 57.3), 'order': (13, 852000)}, open={'u0': {'arrival': 'P2', 'final': 'P2', 'waits': 'P2'}, 'u1': {'arrival': 'P2', 'waits': 'P2'}}),
-    'MOV-0021-d': dict(canonical='FAIL', failing={'x': (1025, 32.9), 'y': (1028, 40.5), 'facing': (949, 53.9), 'order': (14, 852000)}, open={'u0': {'arrival': 'P2', 'final': 'P2', 'waits': 'P2'}, 'u1': {'arrival': 'P2', 'waits': 'P2'}}),
-    'MOV-0021-e': dict(canonical='FAIL', failing={'x': (1010, 111), 'y': (1010, 33.2), 'facing': (1008, 46.5), 'order': (37, 852000)}, open={'u0': {'arrival': 'P3', 'final': 'P2', 'waits': 'P3'}, 'u1': {'arrival': 'P3', 'final': 'P2', 'waits': 'P3'}}),
-    'MOV-0021-f': dict(canonical='FAIL', failing={'x': (1010, 31.1), 'y': (1010, 45.2), 'facing': (1008, 31.7), 'order': (13, 852000)}, open={'u0': {'arrival': 'P2', 'final': 'P2', 'waits': 'P2'}, 'u1': {'arrival': 'P2', 'final': 'P2', 'waits': 'P2'}}),
-}
+# Reviewed differences: failing comparator property -> (failures, bound on the largest
+# absolute difference), and open P3-check failures: unit -> {check: rating}. The retail
+# pathing mechanism (docs/footman-v4-model.md) reproduces every capture exactly.
+KNOWN = {label: dict(canonical='PASS', failing={}) for label in (
+    'MOV-0018-a', 'MOV-0018-b', 'MOV-0018-c', 'MOV-0018-d',
+    'MOV-0019-a', 'MOV-0019-b', 'MOV-0019-c', 'MOV-0019-d', 'MOV-0019-e', 'MOV-0019-f', 'MOV-0019-g', 'MOV-0019-h', 'MOV-0019-i', 'MOV-0019-j',
+    'MOV-0020-a', 'MOV-0020-b', 'MOV-0020-c', 'MOV-0020-d', 'MOV-0020-e', 'MOV-0020-f',
+    'MOV-0021-a', 'MOV-0021-b', 'MOV-0021-c', 'MOV-0021-d', 'MOV-0021-e', 'MOV-0021-f',
+)}
 
 
 def acceptance(reference, actual):

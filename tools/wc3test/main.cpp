@@ -181,11 +181,12 @@ int main(int argc, char** argv) {
                          "scheduled += 0.02 per callback\",\n")
                 << "    \"arithmetic\": \"wc3::sf retail soft-float\",\n"
                 << "    \"unit_pathing\": {\"cell\": " << json_number(p.pathing.cell)
-                << ", \"blocked_cells\": \"3x3 around each other unit's cell\", \"line_clearance\": "
-                << json_number(p.pathing.line_clearance) << ", \"waypoint_radius\": " << json_number(p.pathing.waypoint_radius)
-                << ", \"block_radius\": " << json_number(p.pathing.block_radius) << ", \"block_lookahead\": "
-                << json_number(p.pathing.block_lookahead) << ", \"block_lateral\": " << json_number(p.pathing.block_lateral)
-                << ", \"recheck_updates\": " << p.pathing.recheck_updates << "}\n  }";
+                << ", \"grid_cells\": " << p.pathing.grid_cells << ", \"search_limit\": " << p.pathing.search_limit
+                << ", \"waypoint_radius\": " << json_number(p.pathing.waypoint_radius)
+                << ", \"footprint\": \"2x2 cells: the cell holding the unit and those west and south\""
+                << ", \"wait_updates\": " << p.pathing.wait_updates
+                << ", \"give_way_updates\": " << p.pathing.give_way_updates
+                << ", \"replan_updates\": " << p.pathing.replan_updates << "}\n  }";
         } else if (p.heading.enabled) {
             const auto& h = p.heading;
             parameters << "{\n"

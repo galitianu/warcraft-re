@@ -287,11 +287,23 @@ def validate_v4_parameters(parameters, library_clock=LIBRARY_CLOCK):
     keys(parameters, v4_keys + (('unit_pathing',) if 'unit_pathing' in parameters else ()))
     if 'unit_pathing' in parameters:
         pathing = parameters['unit_pathing']
-        keys(pathing, ('cell', 'blocked_cells', 'line_clearance', 'waypoint_radius', 'block_radius',
-                       'block_lookahead', 'block_lateral', 'recheck_updates'))
-        require(pathing['blocked_cells'] == "3x3 around each other unit's cell", 'unsupported unit pathing rule')
-        integer(pathing['recheck_updates'], 1, 1000)
-        for key in ('cell', 'line_clearance', 'waypoint_radius', 'block_radius', 'block_lookahead', 'block_lateral'):
+        if 'blocked_cells' in pathing:  # MOV-0018..0021 heuristic blocking, in retained traces
+            keys(pathing, ('cell', 'blocked_cells', 'line_clearance', 'waypoint_radius', 'block_radius',
+                           'block_lookahead', 'block_lateral', 'recheck_updates'))
+            require(pathing['blocked_cells'] == "3x3 around each other unit's cell", 'unsupported unit pathing rule')
+            counts, lengths = ('recheck_updates',), ('cell', 'line_clearance', 'waypoint_radius', 'block_radius',
+                                                     'block_lookahead', 'block_lateral')
+        else:  # retail grid A*, probe and blocking (docs/footman-v4-model.md)
+            keys(pathing, ('cell', 'grid_cells', 'search_limit', 'waypoint_radius', 'footprint', 'wait_updates',
+                           'give_way_updates', 'replan_updates'))
+            require(pathing['footprint'] == '2x2 cells: the cell holding the unit and those west and south',
+                    'unsupported unit footprint')
+            integer(pathing['grid_cells'], 1, 1 << 16)
+            integer(pathing['search_limit'], 1, 1 << 24)
+            counts, lengths = ('wait_updates', 'give_way_updates', 'replan_updates'), ('cell', 'waypoint_radius')
+        for key in counts:
+            integer(pathing[key], 0, 1000)
+        for key in lengths:
             require(type(pathing[key]) in (int, float) and pathing[key] >= 0, 'invalid unit pathing parameter')
     for key in ('update_period_steps', 'frame_steps'):
         integer(parameters[key], 1, 10000)

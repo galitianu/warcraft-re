@@ -31,13 +31,12 @@ class CollisionGateTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'required MOV-0018 gate'):
                     verify_collision(root, missing, 'MOV-0018')
             self.assertIsNone(verify_collision(root, {}, 'MOV-0018', legacy=True))
-            # A changed reviewed list is a failing gate, not a new expectation:
-            # a new pass, one failure more or less, and a tighter bound all fail.
-            for label, failing in (('MOV-0018-a', {'facing': (1, 1.0)}), ('MOV-0018-c', {}),
-                                   ('MOV-0018-b', dict(KNOWN['MOV-0018-b']['failing'], x=(510, .032))),
-                                   ('MOV-0018-b', dict(KNOWN['MOV-0018-b']['failing'], facing=(127, 1.0)))):
-                known = dict(KNOWN[label], failing=failing)
-                with self.subTest(label, failing=failing), mock.patch.dict(KNOWN, {label: known}):
+            # A changed reviewed list is a failing gate, not a new expectation: a claimed
+            # failure that does not occur and a claimed canonical failure both fail.
+            for label, change in (('MOV-0018-a', dict(failing={'facing': (1, 1.0)})),
+                                  ('MOV-0018-c', dict(canonical='FAIL'))):
+                known = dict(KNOWN[label], **change)
+                with self.subTest(label, **change), mock.patch.dict(KNOWN, {label: known}):
                     self.assertEqual(run(RUNNER, CODEGEN, root / 'again', root / 'again-reports'), 1)
             # Reviewed open P3 differences must be exactly the failing checks: one
             # claimed where every check passes fails the gate.

@@ -9,6 +9,9 @@
    distinct predicted description and which candidates predict it.
 
 Writes the variant scenarios and predictions.json. Nothing here reads a MOV-0019 capture.
+
+Historical: the model runs used tools/wc3pathing and the fitted heuristic pathing, both
+removed when the retail mechanism replaced them; predictions.json is the record.
 """
 import argparse
 import itertools

@@ -10,6 +10,9 @@ unit that waits. Three hypotheses name the unit that waits in each variant:
 
 Writes the variant scenarios and predictions.json: each hypothesis's waiting unit and
 the current footman-v4 model's P3 description of every variant. Reads no MOV-0020 capture.
+
+Historical: the model runs used tools/wc3pathing and the fitted heuristic pathing, both
+removed when the retail mechanism replaced them; predictions.json is the record.
 """
 import argparse
 import json

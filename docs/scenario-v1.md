@@ -58,7 +58,7 @@ Every field below is required unless marked optional. Unknown fields are errors.
 | `units[].type` | WC3 rawcode; v1 supports `hfoo` (Footman) only. |
 | `units[].position` | `[x, y]` world units, each in [−4096, 4096] (the 64×64 oracle map). |
 | `units[].facing` | Degrees in [0, 360). |
-| `units[].move_speed` | Optional. The **requested** `SetUnitMoveSpeed` value, > 0 and ≤ 10000, applied right after that unit's creation. It is never pre-clamped: the world applies its own clamp, and WATCH speed records the result (100 → 150, 522 → 400). |
+| `units[].move_speed` | Optional. The **requested** `SetUnitMoveSpeed` value, > 0 and ≤ 10000, applied after every unit is created, before the first game update. It is never pre-clamped: the world applies its own clamp, and WATCH speed records the result (100 → 150, 522 → 400). |
 | `observe.period` | Requested sampler period in seconds. |
 | `observe.callbacks` | Periodic callbacks after callback 0, 1–10000. |
 | `observe.properties` | Exactly `[x, "y", facing, order]`, in that order. v1 samples all four for every unit. |

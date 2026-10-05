@@ -159,12 +159,16 @@ def assess(label, canonical, exact_diffs, frames):
                 clock_callbacks=callbacks, clock_ulps=ulps if clock else 0, reviewed=reviewed)
 
 def regenerate(codegen, label, scenario):
-    """The same scenario through the generator: the retained case and record, byte for byte."""
+    """The same scenario through the generator: the retained case byte for byte, and its record.
+
+    The record keeps the source digests of the generator that produced the capture; a later
+    generator must reproduce the case exactly, so only those digests may differ."""
     files, generation = generate(codegen, [ROOT / scenario])
     if list(files) != [f'{label}.j'] or files[f'{label}.j'] != (CASES / f'{label}.j').read_bytes():
         raise ValueError(f'{label}: generated JASS differs from the retained case')
     generation['inputs'][0]['scenario']['path'] = scenario
-    if generation != load(CASES / f'{label}-generation.json'):
+    retained = load(CASES / f'{label}-generation.json')
+    if {**generation, 'sources': None} != {**retained, 'sources': None} or set(generation['sources']) != set(retained['sources']):
         raise ValueError(f'{label}: generation record differs from the retained record')
     return generation['inputs'][0]['case']['sha256']
 

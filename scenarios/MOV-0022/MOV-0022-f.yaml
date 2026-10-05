@@ -1,0 +1,31 @@
+# MOV-0022: a fast unit overtaking a slow one on its line (400 and 150)
+# Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0022
+map_revision: MOV-0022-f
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+    move_speed: 400
+  - name: u1
+    type: hfoo
+    position: [200, 0]
+    facing: 0
+    move_speed: 150
+observe:
+  period: 0.02
+  callbacks: 600
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1200, 0]
+  - at: 0
+    unit: u1
+    order: move
+    target: [1000, 0]
+...

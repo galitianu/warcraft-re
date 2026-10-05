@@ -66,6 +66,12 @@ EXPERIMENT_SHAPES.update({
                           scenario=f'scenarios/MOV-0021/MOV-0021-{v}.yaml', start_us=0, control=None,
                           state=None, definition='docs/mov-0021.md', version=1)
     for v in 'abcdef'})
+# MOV-0022 (docs/mov-0022.md): the same shape, new layouts for the retail pathing mechanism.
+EXPERIMENT_SHAPES.update({
+    f'MOV-0022-{v}': dict(experiment='MOV-0022', callbacks=600, period='0.020000', units=2,
+                          scenario=f'scenarios/MOV-0022/MOV-0022-{v}.yaml', start_us=0, control=None,
+                          state=None, definition='docs/mov-0022.md', version=1)
+    for v in 'abcdef'})
 STATE_KEYS = {'c10_9', 'x_9', 'y_9', 'facing_9'}
 # wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it
 # with cwd=ROOT and an absolute --out so recorded scenario paths stay repo-relative.

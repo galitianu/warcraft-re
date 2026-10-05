@@ -60,6 +60,12 @@ EXPERIMENT_SHAPES.update({
                           scenario=f'scenarios/MOV-0020/MOV-0020-{v}.yaml', start_us=0, control=None,
                           state=None, definition='docs/mov-0020.md', version=1)
     for v in 'abcdef'})
+# MOV-0021 (docs/mov-0021.md): the same shape, MOV-0019-j's offset head-on mirrored and turned.
+EXPERIMENT_SHAPES.update({
+    f'MOV-0021-{v}': dict(experiment='MOV-0021', callbacks=600, period='0.020000', units=2,
+                          scenario=f'scenarios/MOV-0021/MOV-0021-{v}.yaml', start_us=0, control=None,
+                          state=None, definition='docs/mov-0021.md', version=1)
+    for v in 'abcdef'})
 STATE_KEYS = {'c10_9', 'x_9', 'y_9', 'facing_9'}
 # wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it
 # with cwd=ROOT and an absolute --out so recorded scenario paths stay repo-relative.

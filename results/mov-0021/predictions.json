@@ -1,0 +1,261 @@
+{
+  "method": "tools/predict_mov0021.py",
+  "model": "footman-v4 at the MOV-0020 post-hoc give-way refit (give_way_updates 20)",
+  "parameters": {
+    "line_clearance": 4,
+    "waypoint_radius": 16,
+    "block_radius": 62,
+    "block_lookahead": 32,
+    "block_lateral": 40,
+    "recheck_updates": 5
+  },
+  "long_wait_callbacks": 7,
+  "variants": {
+    "MOV-0021-a": {
+      "question": "MOV-0019-j mirrored: the westward unit 32 south",
+      "hypotheses": {
+        "heading": "u0",
+        "rotation": "u0",
+        "line": "u1"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            991.0,
+            0.1,
+            0
+          ],
+          "side": "left",
+          "arrival": 190,
+          "waits": [
+            [
+              86,
+              89
+            ]
+          ],
+          "deviation": 7.5
+        },
+        "u1": {
+          "final": [
+            9.3,
+            -36.7,
+            0
+          ],
+          "side": "left",
+          "arrival": 194,
+          "waits": [
+            [
+              86,
+              93
+            ]
+          ],
+          "deviation": 15.6
+        }
+      },
+      "model_waits": [
+        "u1"
+      ]
+    },
+    "MOV-0021-b": {
+      "question": "MOV-0019-j turned 90 degrees anticlockwise: north and south",
+      "hypotheses": {
+        "heading": "u0",
+        "rotation": "u0",
+        "line": "u1"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            0.3,
+            985.8,
+            0
+          ],
+          "side": "right",
+          "arrival": 185,
+          "waits": [],
+          "deviation": -10.3
+        },
+        "u1": {
+          "final": [
+            -36.7,
+            9.3,
+            0
+          ],
+          "side": "right",
+          "arrival": 194,
+          "waits": [
+            [
+              86,
+              93
+            ]
+          ],
+          "deviation": -15.6
+        }
+      },
+      "model_waits": [
+        "u1"
+      ]
+    },
+    "MOV-0021-c": {
+      "question": "MOV-0019-j turned 90 degrees clockwise: south and north",
+      "hypotheses": {
+        "heading": "u1",
+        "rotation": "u0",
+        "line": "u0"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            0.0,
+            -988.2,
+            0
+          ],
+          "side": "right",
+          "arrival": 184,
+          "waits": [],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            39.8,
+            0.8,
+            0
+          ],
+          "side": "right",
+          "arrival": 196,
+          "waits": [],
+          "deviation": -47.4
+        }
+      },
+      "model_waits": []
+    },
+    "MOV-0021-d": {
+      "question": "b mirrored: the southward unit 32 east",
+      "hypotheses": {
+        "heading": "u0",
+        "rotation": "u0",
+        "line": "u0"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            0.0,
+            988.1,
+            0
+          ],
+          "side": "left",
+          "arrival": 184,
+          "waits": [],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            39.8,
+            4.5,
+            0
+          ],
+          "side": "left",
+          "arrival": 191,
+          "waits": [],
+          "deviation": 47.4
+        }
+      },
+      "model_waits": []
+    },
+    "MOV-0021-e": {
+      "question": "MOV-0019-j without partial routes: no target covered at its order",
+      "hypotheses": {
+        "heading": "u0",
+        "rotation": "u0",
+        "line": "u0"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            985.5,
+            -1.3,
+            0
+          ],
+          "side": "right",
+          "arrival": 227,
+          "waits": [
+            [
+              95,
+              101
+            ],
+            [
+              103,
+              135
+            ]
+          ],
+          "deviation": -40.7
+        },
+        "u1": {
+          "final": [
+            115.0,
+            32.3,
+            0
+          ],
+          "side": "right",
+          "arrival": 193,
+          "waits": [
+            [
+              95,
+              102
+            ]
+          ],
+          "deviation": -10.0
+        }
+      },
+      "model_waits": [
+        "u0",
+        "u1"
+      ]
+    },
+    "MOV-0021-f": {
+      "question": "e mirrored: the westward unit 32 south",
+      "hypotheses": {
+        "heading": "u0",
+        "rotation": "u0",
+        "line": "u1"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            986.7,
+            0.1,
+            0
+          ],
+          "side": "left",
+          "arrival": 193,
+          "waits": [
+            [
+              98,
+              105
+            ]
+          ],
+          "deviation": 4.6
+        },
+        "u1": {
+          "final": [
+            114.8,
+            -32.3,
+            0
+          ],
+          "side": "left",
+          "arrival": 187,
+          "waits": [
+            [
+              95,
+              98
+            ]
+          ],
+          "deviation": 11.5
+        }
+      },
+      "model_waits": [
+        "u0"
+      ]
+    }
+  }
+}

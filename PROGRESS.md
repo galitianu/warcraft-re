@@ -509,7 +509,7 @@ maps were each captured in three payload-identical fresh WC3 runs.
 - **Status** over all 20 captures: P3 acceptance passes in 12. P2 differences remain in
   MOV-0019-d, h, i and MOV-0020-a, c (routes up to 10 units off, a 2-update wait onset,
   the side of a unit that does not move off its line). The **head-on offset family
-  (MOV-0019-j, MOV-0020-b, d) stays P3**: WC3's eastward unit waits 15 updates; the
+  (MOV-0019-j, MOV-0020-b, d) stays P3**: WC3's eastward unit waits about 20 updates; the
   model's waits 0–4 and the westward unit swings 39–47 units wide.
 - **Gate:** [run_mov0018.py](tools/run_mov0018.py) `--experiment MOV-0018|MOV-0019|MOV-0020`
   runs in CI for all three, recording every comparator failure and each open

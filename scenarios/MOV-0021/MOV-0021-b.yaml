@@ -1,0 +1,29 @@
+# MOV-0021: MOV-0019-j turned 90 degrees anticlockwise: north and south
+# Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0021
+map_revision: MOV-0021-b
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 90
+  - name: u1
+    type: hfoo
+    position: [-32, 1000]
+    facing: 270
+observe:
+  period: 0.02
+  callbacks: 600
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [0, 1000]
+  - at: 0
+    unit: u1
+    order: move
+    target: [-32, 0]
+...

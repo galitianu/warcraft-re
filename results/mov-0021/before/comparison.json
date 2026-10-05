@@ -1,0 +1,383 @@
+{
+  "scope": "footman-v4 as pre-registered: the MOV-0020 post-hoc give-way refit (src of fede5b0, unchanged at f1b2fd7; the build stamp names its configure commit). The C++ trace each capture bundle produced; same scenario bytes, unchanged comparator and tolerances",
+  "cases": {
+    "MOV-0021-a": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 266,
+        "actual_seq": 265,
+        "kind": "SAMPLE",
+        "sample_index": 172,
+        "callback": 86,
+        "unit": "u0",
+        "property": "facing",
+        "reference_t": "1.720032",
+        "actual_t": "1.72003174",
+        "reference_time": {
+          "requested": "1.720000",
+          "reported": "1.720032",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "1.720000",
+          "reported": "1.72003174",
+          "state_us": 1720000
+        },
+        "reference": "0.052614",
+        "actual": "0.108275414",
+        "delta": 0.055661414000013565,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "failures": 1025,
+          "samples": 1202,
+          "max_abs_delta": 51.52734400000003
+        },
+        "y": {
+          "failures": 1025,
+          "samples": 1202,
+          "max_abs_delta": 34.094238299999994
+        },
+        "facing": {
+          "failures": 1028,
+          "samples": 1202,
+          "max_abs_delta": 54.15086400000001
+        },
+        "order": {
+          "failures": 11,
+          "samples": 1202,
+          "max_abs_delta": 851986
+        },
+        "t": {
+          "failures": 0,
+          "samples": 1202,
+          "max_abs_delta": 5.000000005139782e-07
+        }
+      },
+      "cpp": {
+        "model": "footman-v4",
+        "git_commit": "0b4ee2ac9c513a061f38e5325679271326f06145",
+        "git_dirty_at_configure": true,
+        "source_sha256": "62673cf5e674d95d60e89f5915028af112f11b461fe799e7f77d697c5d551f23",
+        "trace_sha256": "be0f3047cf187cc6f61fa61facd16bc3fa1d8c4088f802ce25e26fee088e4ee6"
+      },
+      "reference_sha256": "f43164c1ce3138e653c9b51eeb70854b9abb532e7f41931c6ec8ec588198b88a"
+    },
+    "MOV-0021-b": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 269,
+        "actual_seq": 268,
+        "kind": "SAMPLE",
+        "sample_index": 174,
+        "callback": 87,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "1.740051",
+        "actual_t": "1.74005127",
+        "reference_time": {
+          "requested": "1.740000",
+          "reported": "1.740051",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "1.740000",
+          "reported": "1.74005127",
+          "state_us": 1740000
+        },
+        "reference": "467.077148",
+        "actual": "461.677734",
+        "delta": -5.399414000000036,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "failures": 620,
+          "samples": 1202,
+          "max_abs_delta": 10.913330299999998
+        },
+        "y": {
+          "failures": 1028,
+          "samples": 1202,
+          "max_abs_delta": 40.485840200000005
+        },
+        "facing": {
+          "failures": 935,
+          "samples": 1202,
+          "max_abs_delta": 34.377486800000014
+        },
+        "order": {
+          "failures": 8,
+          "samples": 1202,
+          "max_abs_delta": 851986
+        },
+        "t": {
+          "failures": 0,
+          "samples": 1202,
+          "max_abs_delta": 5.000000005139782e-07
+        }
+      },
+      "cpp": {
+        "model": "footman-v4",
+        "git_commit": "0b4ee2ac9c513a061f38e5325679271326f06145",
+        "git_dirty_at_configure": true,
+        "source_sha256": "62673cf5e674d95d60e89f5915028af112f11b461fe799e7f77d697c5d551f23",
+        "trace_sha256": "a502969e988b0678fc30d5c58ed5e2a4551b85d51bacabbe3062145274036c48"
+      },
+      "reference_sha256": "68918e15efb552ba5e9d194b2a2ede780363fd4a0c81ad308ebe6670e16d50a5"
+    },
+    "MOV-0021-c": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 269,
+        "actual_seq": 268,
+        "kind": "SAMPLE",
+        "sample_index": 174,
+        "callback": 87,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "1.740051",
+        "actual_t": "1.74005127",
+        "reference_time": {
+          "requested": "1.740000",
+          "reported": "1.740051",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "1.740000",
+          "reported": "1.74005127",
+          "state_us": 1740000
+        },
+        "reference": "-461.703613",
+        "actual": "-467.103516",
+        "delta": -5.399902999999995,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "failures": 627,
+          "samples": 1202,
+          "max_abs_delta": 37.1811523
+        },
+        "y": {
+          "failures": 630,
+          "samples": 1202,
+          "max_abs_delta": 40.46753000000001
+        },
+        "facing": {
+          "failures": 953,
+          "samples": 1202,
+          "max_abs_delta": 57.29540299999999
+        },
+        "order": {
+          "failures": 13,
+          "samples": 1202,
+          "max_abs_delta": 851986
+        },
+        "t": {
+          "failures": 0,
+          "samples": 1202,
+          "max_abs_delta": 5.000000005139782e-07
+        }
+      },
+      "cpp": {
+        "model": "footman-v4",
+        "git_commit": "0b4ee2ac9c513a061f38e5325679271326f06145",
+        "git_dirty_at_configure": true,
+        "source_sha256": "62673cf5e674d95d60e89f5915028af112f11b461fe799e7f77d697c5d551f23",
+        "trace_sha256": "2862594e46f94fe0895a1476fd67517038ce7fe5c1b32a69b59fab857074b665"
+      },
+      "reference_sha256": "ec22ed6678d1402d5e406dfa193cfae1e7a9ffe550fcb7cd97cf77a5ab7d4154"
+    },
+    "MOV-0021-d": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 269,
+        "actual_seq": 268,
+        "kind": "SAMPLE",
+        "sample_index": 174,
+        "callback": 87,
+        "unit": "u0",
+        "property": "y",
+        "reference_t": "1.740051",
+        "actual_t": "1.74005127",
+        "reference_time": {
+          "requested": "1.740000",
+          "reported": "1.740051",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "1.740000",
+          "reported": "1.74005127",
+          "state_us": 1740000
+        },
+        "reference": "461.677734",
+        "actual": "467.077148",
+        "delta": 5.399414000000036,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "failures": 1025,
+          "samples": 1202,
+          "max_abs_delta": 32.8662106
+        },
+        "y": {
+          "failures": 1028,
+          "samples": 1202,
+          "max_abs_delta": 40.466309100000004
+        },
+        "facing": {
+          "failures": 949,
+          "samples": 1202,
+          "max_abs_delta": 53.858093
+        },
+        "order": {
+          "failures": 14,
+          "samples": 1202,
+          "max_abs_delta": 851986
+        },
+        "t": {
+          "failures": 0,
+          "samples": 1202,
+          "max_abs_delta": 5.000000005139782e-07
+        }
+      },
+      "cpp": {
+        "model": "footman-v4",
+        "git_commit": "0b4ee2ac9c513a061f38e5325679271326f06145",
+        "git_dirty_at_configure": true,
+        "source_sha256": "62673cf5e674d95d60e89f5915028af112f11b461fe799e7f77d697c5d551f23",
+        "trace_sha256": "2b390864d98d7edc79fdae991b931a3479d99fca15943d608d4b01fbc8b212c7"
+      },
+      "reference_sha256": "c655c70e353912379a71696b2b97601cf66ac0e48102e738d39bf883eb4ff7fd"
+    },
+    "MOV-0021-e": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 296,
+        "actual_seq": 295,
+        "kind": "SAMPLE",
+        "sample_index": 192,
+        "callback": 96,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "1.920044",
+        "actual_t": "1.92004395",
+        "reference_time": {
+          "requested": "1.920000",
+          "reported": "1.920044",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "1.920000",
+          "reported": "1.92004395",
+          "state_us": 1920000
+        },
+        "reference": "515.671875",
+        "actual": "510.272461",
+        "delta": -5.399413999999979,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "failures": 1010,
+          "samples": 1202,
+          "max_abs_delta": 110.28613200000001
+        },
+        "y": {
+          "failures": 1010,
+          "samples": 1202,
+          "max_abs_delta": 33.10034175
+        },
+        "facing": {
+          "failures": 1008,
+          "samples": 1202,
+          "max_abs_delta": 46.41256600000003
+        },
+        "order": {
+          "failures": 37,
+          "samples": 1202,
+          "max_abs_delta": 851986
+        },
+        "t": {
+          "failures": 0,
+          "samples": 1202,
+          "max_abs_delta": 5.000000005139782e-07
+        }
+      },
+      "cpp": {
+        "model": "footman-v4",
+        "git_commit": "0b4ee2ac9c513a061f38e5325679271326f06145",
+        "git_dirty_at_configure": true,
+        "source_sha256": "62673cf5e674d95d60e89f5915028af112f11b461fe799e7f77d697c5d551f23",
+        "trace_sha256": "cf78eaf7f04fd5f849ad3fe136afcc47bf62a20acbf89412e9045b2fa1dbd7e7"
+      },
+      "reference_sha256": "04fe2ca698028e3656b6a9d0e2a86badbb8573d9440dd8870533ff0903de8f7d"
+    },
+    "MOV-0021-f": {
+      "status": "FAIL",
+      "first_divergence": {
+        "reference_seq": 296,
+        "actual_seq": 295,
+        "kind": "SAMPLE",
+        "sample_index": 192,
+        "callback": 96,
+        "unit": "u0",
+        "property": "x",
+        "reference_t": "1.920044",
+        "actual_t": "1.92004395",
+        "reference_time": {
+          "requested": "1.920000",
+          "reported": "1.920044",
+          "state_us": null
+        },
+        "actual_time": {
+          "requested": "1.920000",
+          "reported": "1.92004395",
+          "state_us": 1920000
+        },
+        "reference": "515.671875",
+        "actual": "510.272461",
+        "delta": -5.399413999999979,
+        "tolerance": 0.001
+      },
+      "properties": {
+        "x": {
+          "failures": 1010,
+          "samples": 1202,
+          "max_abs_delta": 31.049804999999992
+        },
+        "y": {
+          "failures": 1010,
+          "samples": 1202,
+          "max_abs_delta": 45.1899412
+        },
+        "facing": {
+          "failures": 1008,
+          "samples": 1202,
+          "max_abs_delta": 31.66767900000002
+        },
+        "order": {
+          "failures": 13,
+          "samples": 1202,
+          "max_abs_delta": 851986
+        },
+        "t": {
+          "failures": 0,
+          "samples": 1202,
+          "max_abs_delta": 5.000000005139782e-07
+        }
+      },
+      "cpp": {
+        "model": "footman-v4",
+        "git_commit": "0b4ee2ac9c513a061f38e5325679271326f06145",
+        "git_dirty_at_configure": true,
+        "source_sha256": "62673cf5e674d95d60e89f5915028af112f11b461fe799e7f77d697c5d551f23",
+        "trace_sha256": "d01db430083ddb7e54a39d00f43bc3ade677d7f9e9bc2a5524cc70bb759159de"
+      },
+      "reference_sha256": "76753030c76c94b85adc4860e31a9d99396572b345e28b854a878993fe730a7e"
+    }
+  }
+}

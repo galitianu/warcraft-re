@@ -95,7 +95,7 @@ storing it. The facing reading is `mul(f, 180/π)`.
 |---|---|
 | Arithmetic, tables, update order and constants above | **Inferred** from retail code, then confirmed bit for bit by every retained capture |
 | Stop radius 15.5, inclusive | **Fitted**: [MOV-0018](mov-0018.md#fitted-intervals) bounds it to [14.607, 15.90); MOV-0001–0010 agree with any value there. Not read from game data. |
-| Unit pathing (grid routes, waits) | **Fitted** to four two-Footman captures; see [MOV-0018](mov-0018.md#model). [MOV-0019](mov-0019.md#results) confirmed the footprint and tie order and refuted the wait corridor. Partial routes and idle units at the target were refitted post hoc. [MOV-0020](mov-0020.md#post-hoc-refit-giving-way) refitted who gives way post hoc; head-on offsets remain P3. Inactive with one unit. |
+| Unit pathing (grid routes, waits) | **Fitted** to four two-Footman captures; see [MOV-0018](mov-0018.md#model). [MOV-0019](mov-0019.md#results) confirmed the footprint and tie order and refuted the wait corridor. Partial routes and idle units at the target were refitted post hoc. [MOV-0020](mov-0020.md#post-hoc-refit-giving-way) refitted who gives way post hoc; head-on offsets remain P3; [MOV-0021](mov-0021.md#results) shows the outcome is not rotation-invariant. Inactive with one unit. |
 | Movement clock start 0.5 s | **Inferred**: the only start (of those tested) that reproduces every library-clock reading |
 | Which frame, and which side of an update, a callback observes | **Partly unexplained.** See the [results](footman-v4-results.md#sampling-order). The 20 ms runner rule (after the update at step 20k) is exact for all fixtures |
 | Speed clamp 150–400 | **Observed** endpoints, unchanged |

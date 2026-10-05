@@ -66,10 +66,13 @@ Start with:
   maps. The footprint and tie order hold; the wait corridor is refuted, and the
   eastward unit is the one that gives way. A post-hoc give-way rule fits all but the
   head-on offset family, which remains a P3 difference.
+- [MOV-0021](docs/mov-0021.md): six mirrored and turned head-ons. No hypothesis survives.
+  Turning the layout 90° changes who waits, so the head-on outcome depends on absolute
+  position or direction (P3, open).
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
-This repository holds the plan, 24 manually authored and thirty-five generated-case WC3 maps with their JASS,
+This repository holds the plan, 24 manually authored and forty-one generated-case WC3 maps with their JASS,
 plus five Phase 7 verification revisions, shared oracle instrumentation, raw captures with identities, parsers and derived
 CSVs, versioned v1/v2 scenarios, and a dependency-free C++20 simulation. Phases 0–6 are
 complete; compatibility

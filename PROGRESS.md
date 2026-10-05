@@ -9,6 +9,7 @@ captured variants match WC3's side, waits, arrival and final position; two are b
 and the rest differ only at P1. [MOV-0019/0020](#mov-0019-and-mov-0020-who-gives-way)
 (issue #27) find that the eastward unit gives way when two cross; a post-hoc give-way rule
 fits 12 of 20 captures at P3, and head-on offsets remain a P3 difference.
+[MOV-0021](#mov-0021-head-on-with-a-lateral-offset) shows that turning that head-on by 90° changes who waits.
 
 **Phase 7:** capture capability implemented for four reviewed v1 scenarios.
 One command completes generation, verified World Editor packaging, three fresh WC3
@@ -522,12 +523,31 @@ configurations and the aggregate (head `79abf58`). The downloaded artifacts
 [regrade](results/mov-0020/pr-verification/summary.md) to a scope report identical to the hosted one,
 with MOV-0018, 0019 and 0020 PASS in all five configurations.
 
+## MOV-0021 head-on with a lateral offset
+
+[Issue #27](https://github.com/galitianu/warcraft-re/issues/27), **P3**. The design and predictions were
+committed before capture (`f1b2fd7`). Six maps were each captured in three payload-identical fresh WC3
+runs ([results](docs/mov-0021.md#results)).
+
+- **No hypothesis survives** (heading, rotation, line). Turning MOV-0019-j by 90°
+  changes who stops: clockwise, u0 holds 2 updates and u1 5; anticlockwise, neither
+  stops. So absolute position or direction decides, not only the units' relative geometry.
+  Without partial routes (e), both units wait.
+- A float drift of the eastward unit across a cell boundary (y +0.0005 → −0.024)
+  separates the mirror (a, both stop) from the anticlockwise turn (b, neither stops).
+  A quick search over cell-overlap stop rules found none that fits all 26 captures.
+- **Status:** P3 open in a and e (plus MOV-0019-j and MOV-0020-b, d); P2 in b, c, d and f.
+  All are gated with their ratings in [run_mov0018.py](tools/run_mov0018.py), which CI runs for MOV-0018 to 0021.
+
+Local CI passes: CTest 3/3, Python 88/88, the generated loop and every gate.
+
 ## Exact next action
 
-MOV-0021 ([next experiment](docs/mov-0020.md#post-hoc-refit-giving-way)): pre-register the
-MOV-0019-j head-on offset rotated to north–south and mirrored (offset −32), with the
-give-way rule's predictions, to find whether travel direction or the side of the offset
-decides who waits head-on. Commit the design and predictions before capturing.
+MOV-0022 ([next experiment](docs/mov-0021.md#next-experiment)): shift the straight
+offset head-on by sub-cell steps along both axes, with lateral offsets just below and
+above a cell. Pre-register a cell-footprint stop rule and a continuous-distance rule,
+with their predictions, before capturing. If neither fits, record the stop updates and
+stop pursuing the head-on offset mechanism with variant sweeps.
 
 Deferred (P1): MOV-0016, which would pre-register the rounded sampler start with T7 and
 FU ([next experiment](docs/mov-0015.md#next-experiment)). Revisit it only when most

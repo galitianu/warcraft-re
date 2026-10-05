@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MOV-0018 to MOV-0021 (docs/mov-0018.md, mov-0019.md, mov-0020.md, mov-0021.md): two Footmen
+"""MOV-0018 to MOV-0022 (docs/mov-0018.md to mov-0022.md): two Footmen
 through WC3 and C++ footman-v4.
 
 For each variant this regenerates the case JASS from the committed scenario
@@ -31,7 +31,7 @@ from normalize_generated import normalize
 from trace_contract import BUILD, EXPERIMENT_SHAPES, load, sha256, write_json
 
 EXPERIMENT = 'MOV-0018'
-EXPERIMENTS = ('MOV-0018', 'MOV-0019', 'MOV-0020', 'MOV-0021')
+EXPERIMENTS = ('MOV-0018', 'MOV-0019', 'MOV-0020', 'MOV-0021', 'MOV-0022')
 ARRIVAL_CALLBACKS = 2   # Issue #24: arrival within 1-2 frames.
 FINAL_UNITS = 1.0       # Well below P2 (several game units); the reviewed finals agree within 0.004.
 WAIT_CALLBACKS = 2      # A wait may start or end this many callbacks away from WC3's.
@@ -43,6 +43,7 @@ KNOWN = {label: dict(canonical='PASS', failing={}) for label in (
     'MOV-0019-a', 'MOV-0019-b', 'MOV-0019-c', 'MOV-0019-d', 'MOV-0019-e', 'MOV-0019-f', 'MOV-0019-g', 'MOV-0019-h', 'MOV-0019-i', 'MOV-0019-j',
     'MOV-0020-a', 'MOV-0020-b', 'MOV-0020-c', 'MOV-0020-d', 'MOV-0020-e', 'MOV-0020-f',
     'MOV-0021-a', 'MOV-0021-b', 'MOV-0021-c', 'MOV-0021-d', 'MOV-0021-e', 'MOV-0021-f',
+    'MOV-0022-a', 'MOV-0022-b', 'MOV-0022-c', 'MOV-0022-d', 'MOV-0022-e', 'MOV-0022-f',
 )}
 
 

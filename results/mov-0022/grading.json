@@ -1,0 +1,3259 @@
+{
+  "status": "PASS",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "cases": [
+    {
+      "map_revision": "MOV-0022-a",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 1,
+        "path": "scenarios/MOV-0022/MOV-0022-a.yaml",
+        "sha256": "012fae85711fc2aab8467a7d5c449c67d4567f822a5155ea968d4a91afe99d0b"
+      },
+      "case_sha256": "0f48f76614c20c20ca50f8650c1bbc6594e8315d0e18697f7b45f9ea0103a6f1",
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0022-a",
+        "control_revision": null,
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 1,
+          "path": "scenarios/MOV-0022/MOV-0022-a.yaml",
+          "sha256": "012fae85711fc2aab8467a7d5c449c67d4567f822a5155ea968d4a91afe99d0b"
+        },
+        "completion": {
+          "complete": true,
+          "records": 1811,
+          "ticks": 601,
+          "samples": 1202,
+          "actions": 2,
+          "events": 0
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "eb0d44d95a1dfbb5f189d953bc744e84c1c51d92a1251d666b33afb543aeb030",
+            "eb0d44d95a1dfbb5f189d953bc744e84c1c51d92a1251d666b33afb543aeb030",
+            "eb0d44d95a1dfbb5f189d953bc744e84c1c51d92a1251d666b33afb543aeb030"
+          ],
+          "observation_payload_sha256": [
+            "8533b6be14163a7c1b109be488c8e617501d36a54021f4e238d73615317eea0c",
+            "8533b6be14163a7c1b109be488c8e617501d36a54021f4e238d73615317eea0c",
+            "8533b6be14163a7c1b109be488c8e617501d36a54021f4e238d73615317eea0c"
+          ],
+          "distinct_raw_files": 2,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 1808,
+          "control_sha256": null,
+          "generated_sha256": "50465843c628697f1d0b865a74bdfd150680ed432b16c6410700392754775168",
+          "first_divergence": null,
+          "scope": "new observation; no independent control exists"
+        },
+        "generated_preload": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0022-a.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "generated_footers": [
+          "call PreloadEnd( 12.0 )",
+          "call PreloadEnd( 12.0 )",
+          "call PreloadEnd( 12.1 )"
+        ],
+        "fixture_sha256": "166a22593f005264f4b78ae818cbb89401b61a9a48aef70a47cb096d20cf424a"
+      },
+      "comparison": {
+        "case": "MOV-0022",
+        "map_revision": "MOV-0022-a",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1811,
+        "actual_records": 1810,
+        "reference_samples": 1202,
+        "actual_samples": 1202,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 9.999999974752427e-07,
+              "u1": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": -3.0999999989234084e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000058430487e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 1.6000000013782767e-07,
+              "u1": 3.799999999110071e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 4.999999987376214e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.999999987376214e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "166a22593f005264f4b78ae818cbb89401b61a9a48aef70a47cb096d20cf424a",
+        "actual_sha256": "3921832ef268cf79c30915b4de1a8f64e0d270682ccd2d5a100ca018fde5163f"
+      },
+      "assessment": {
+        "status": "PASS",
+        "canonical": "PASS",
+        "observed": {},
+        "reviewed": {},
+        "first_divergence": null
+      },
+      "acceptance": {
+        "status": "PASS",
+        "checks": {
+          "u0": {
+            "final": true,
+            "side": true,
+            "arrival": true,
+            "waits": true
+          },
+          "u1": {
+            "final": true,
+            "side": true,
+            "arrival": true,
+            "waits": true
+          }
+        },
+        "wc3": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 991.651855,
+              "y": 1.467285,
+              "facing": 350.021515,
+              "order": 0
+            },
+            "max_displacement": 991.652941,
+            "ordered": true,
+            "target": [
+              1000.0,
+              0.0
+            ],
+            "arrival_callback": 182,
+            "largest_sideways_deviation": {
+              "callback": 107,
+              "units": 79.501953
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 110,
+              "distance": 64.357191
+            },
+            "waits": [
+              {
+                "first": 82,
+                "last": 84,
+                "callbacks": 2
+              }
+            ]
+          },
+          "u1": {
+            "start": [
+              1000.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 7.69043,
+              "y": 1.287109,
+              "facing": 189.507507,
+              "order": 0
+            },
+            "max_displacement": 992.310405,
+            "ordered": true,
+            "target": [
+              0.0,
+              0.0
+            ],
+            "arrival_callback": 217,
+            "largest_sideways_deviation": {
+              "callback": 199,
+              "units": -16.012207
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 110,
+              "distance": 64.357191
+            },
+            "waits": [
+              {
+                "first": 83,
+                "last": 113,
+                "callbacks": 30
+              }
+            ]
+          }
+        },
+        "cpp": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 991.651855,
+              "y": 1.46728516,
+              "facing": 350.021515,
+              "order": 0
+            },
+            "max_displacement": 991.652941,
+            "ordered": true,
+            "target": [
+              1000.0,
+              0.0
+            ],
+            "arrival_callback": 182,
+            "largest_sideways_deviation": {
+              "callback": 107,
+              "units": 79.501953
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 110,
+              "distance": 64.357191
+            },
+            "waits": [
+              {
+                "first": 82,
+                "last": 84,
+                "callbacks": 2
+              }
+            ]
+          },
+          "u1": {
+            "start": [
+              1000.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 7.69042969,
+              "y": 1.28710938,
+              "facing": 189.507507,
+              "order": 0
+            },
+            "max_displacement": 992.310405,
+            "ordered": true,
+            "target": [
+              0.0,
+              0.0
+            ],
+            "arrival_callback": 217,
+            "largest_sideways_deviation": {
+              "callback": 199,
+              "units": -16.012207
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 110,
+              "distance": 64.357191
+            },
+            "waits": [
+              {
+                "first": 83,
+                "last": 113,
+                "callbacks": 30
+              }
+            ]
+          }
+        },
+        "failing": {},
+        "open": {},
+        "reviewed": "PASS"
+      }
+    },
+    {
+      "map_revision": "MOV-0022-b",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 1,
+        "path": "scenarios/MOV-0022/MOV-0022-b.yaml",
+        "sha256": "c869f9bee2c6f5947703d539c0375fdf0c22db298ca1fa7f50f7817b77e5d9ba"
+      },
+      "case_sha256": "327ed8244e66c2b12fd81434bc9217e779b2b8f557591de8f97dfb4126c9a81a",
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0022-b",
+        "control_revision": null,
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 1,
+          "path": "scenarios/MOV-0022/MOV-0022-b.yaml",
+          "sha256": "c869f9bee2c6f5947703d539c0375fdf0c22db298ca1fa7f50f7817b77e5d9ba"
+        },
+        "completion": {
+          "complete": true,
+          "records": 1811,
+          "ticks": 601,
+          "samples": 1202,
+          "actions": 2,
+          "events": 0
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "90bba50b6c932321fc55c431f368df78143ee7691cfadaaaddb55270faec2efc",
+            "90bba50b6c932321fc55c431f368df78143ee7691cfadaaaddb55270faec2efc",
+            "90bba50b6c932321fc55c431f368df78143ee7691cfadaaaddb55270faec2efc"
+          ],
+          "observation_payload_sha256": [
+            "ca54fa68cfdd1cc0cbad5f5e5a3e4201c87daffc708f4f6dd5fd4cd9f8aebbde",
+            "ca54fa68cfdd1cc0cbad5f5e5a3e4201c87daffc708f4f6dd5fd4cd9f8aebbde",
+            "ca54fa68cfdd1cc0cbad5f5e5a3e4201c87daffc708f4f6dd5fd4cd9f8aebbde"
+          ],
+          "distinct_raw_files": 2,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 1808,
+          "control_sha256": null,
+          "generated_sha256": "16598fc48da1a9eb8a889aad9e5c7cfeaaad3d27ea4e1c753968f7da54a5561b",
+          "first_divergence": null,
+          "scope": "new observation; no independent control exists"
+        },
+        "generated_preload": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0022-b.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "generated_footers": [
+          "call PreloadEnd( 12.1 )",
+          "call PreloadEnd( 12.1 )",
+          "call PreloadEnd( 12.0 )"
+        ],
+        "fixture_sha256": "c93a90efd76ebf5ffa398027d0fd77a1d0b0e97702a6e89a0381e1624bf1ca8e"
+      },
+      "comparison": {
+        "case": "MOV-0022",
+        "map_revision": "MOV-0022-b",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1811,
+        "actual_records": 1810,
+        "reference_samples": 1202,
+        "actual_samples": 1202,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 9.999999974752427e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07,
+              "u1": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": -3.099999990041624e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000058430487e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07,
+              "u1": 5.000000058430487e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -2.344000000001345e-07,
+              "u1": -2.999999981767587e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 4.99000009313022e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.99000009313022e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 1.390000079481979e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "c93a90efd76ebf5ffa398027d0fd77a1d0b0e97702a6e89a0381e1624bf1ca8e",
+        "actual_sha256": "2c3131f96917a030113b7010f98344ec3f5b4abad1ba2b94657fcf26ec084081"
+      },
+      "assessment": {
+        "status": "PASS",
+        "canonical": "PASS",
+        "observed": {},
+        "reviewed": {},
+        "first_divergence": null
+      },
+      "acceptance": {
+        "status": "PASS",
+        "checks": {
+          "u0": {
+            "final": true,
+            "side": true,
+            "arrival": true,
+            "waits": true
+          },
+          "u1": {
+            "final": true,
+            "side": true,
+            "arrival": true,
+            "waits": true
+          }
+        },
+        "wc3": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 988.12793,
+              "y": -0.02124,
+              "facing": 0.295402,
+              "order": 0
+            },
+            "max_displacement": 988.12793,
+            "ordered": true,
+            "target": [
+              1000.0,
+              0.0
+            ],
+            "arrival_callback": 214,
+            "largest_sideways_deviation": {
+              "callback": 2,
+              "units": 0.043945
+            },
+            "passes_other_on": "right",
+            "closest_approach": {
+              "callback": 101,
+              "distance": 40.302494
+            },
+            "waits": [
+              {
+                "first": 83,
+                "last": 113,
+                "callbacks": 30
+              }
+            ]
+          },
+          "u1": {
+            "start": [
+              1000.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 9.362305,
+              "y": 7.940918,
+              "facing": 220.305664,
+              "order": 0
+            },
+            "max_displacement": 990.669522,
+            "ordered": true,
+            "target": [
+              0.0,
+              0.0
+            ],
+            "arrival_callback": 176,
+            "largest_sideways_deviation": {
+              "callback": 165,
+              "units": -47.756348
+            },
+            "passes_other_on": "right",
+            "closest_approach": {
+              "callback": 101,
+              "distance": 40.302494
+            },
+            "waits": [
+              {
+                "first": 83,
+                "last": 86,
+                "callbacks": 3
+              }
+            ]
+          }
+        },
+        "cpp": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 988.12793,
+              "y": -0.0212402344,
+              "facing": 0.295402139,
+              "order": 0
+            },
+            "max_displacement": 988.12793,
+            "ordered": true,
+            "target": [
+              1000.0,
+              0.0
+            ],
+            "arrival_callback": 214,
+            "largest_sideways_deviation": {
+              "callback": 2,
+              "units": 0.043945
+            },
+            "passes_other_on": "right",
+            "closest_approach": {
+              "callback": 101,
+              "distance": 40.302495
+            },
+            "waits": [
+              {
+                "first": 83,
+                "last": 113,
+                "callbacks": 30
+              }
+            ]
+          },
+          "u1": {
+            "start": [
+              1000.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 9.36230469,
+              "y": 7.94091797,
+              "facing": 220.305664,
+              "order": 0
+            },
+            "max_displacement": 990.669522,
+            "ordered": true,
+            "target": [
+              0.0,
+              0.0
+            ],
+            "arrival_callback": 176,
+            "largest_sideways_deviation": {
+              "callback": 165,
+              "units": -47.756348
+            },
+            "passes_other_on": "right",
+            "closest_approach": {
+              "callback": 101,
+              "distance": 40.302495
+            },
+            "waits": [
+              {
+                "first": 83,
+                "last": 86,
+                "callbacks": 3
+              }
+            ]
+          }
+        },
+        "failing": {},
+        "open": {},
+        "reviewed": "PASS"
+      }
+    },
+    {
+      "map_revision": "MOV-0022-c",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 1,
+        "path": "scenarios/MOV-0022/MOV-0022-c.yaml",
+        "sha256": "9cb482607e7d5c8772be6489fcb914892415291f07c457f3474359a244c85c0d"
+      },
+      "case_sha256": "76a7560465118bb0ce460583ff4e846e0408d1cefa75092f77c1e2ba06e92456",
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0022-c",
+        "control_revision": null,
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 1,
+          "path": "scenarios/MOV-0022/MOV-0022-c.yaml",
+          "sha256": "9cb482607e7d5c8772be6489fcb914892415291f07c457f3474359a244c85c0d"
+        },
+        "completion": {
+          "complete": true,
+          "records": 1811,
+          "ticks": 601,
+          "samples": 1202,
+          "actions": 2,
+          "events": 0
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "9fdeb36901c0f321c746e6d2b58350e6e0af7ec0b016268e9410719e8c5051b3",
+            "9fdeb36901c0f321c746e6d2b58350e6e0af7ec0b016268e9410719e8c5051b3",
+            "9fdeb36901c0f321c746e6d2b58350e6e0af7ec0b016268e9410719e8c5051b3"
+          ],
+          "observation_payload_sha256": [
+            "92f09818e63a1ac5b8e9467d07fec8c536fd3368a053ad20daffcac355907124",
+            "92f09818e63a1ac5b8e9467d07fec8c536fd3368a053ad20daffcac355907124",
+            "92f09818e63a1ac5b8e9467d07fec8c536fd3368a053ad20daffcac355907124"
+          ],
+          "distinct_raw_files": 1,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 1808,
+          "control_sha256": null,
+          "generated_sha256": "a2f007c703338d722e4fb9962d0e10cb2371c54527da0d14370519f2d4f49688",
+          "first_divergence": null,
+          "scope": "new observation; no independent control exists"
+        },
+        "generated_preload": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0022-c.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "generated_footers": [
+          "call PreloadEnd( 12.1 )",
+          "call PreloadEnd( 12.1 )",
+          "call PreloadEnd( 12.1 )"
+        ],
+        "fixture_sha256": "a82fc5e1c5f6f5f334b34be9c173a71d4e8c8039ef83bff9088c150e8959025b"
+      },
+      "comparison": {
+        "case": "MOV-0022",
+        "map_revision": "MOV-0022-c",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1811,
+        "actual_records": 1810,
+        "reference_samples": 1202,
+        "actual_samples": 1202,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06,
+              "u1": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 4.000000011217253e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000058430487e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07,
+              "u1": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.1000000011438544e-07,
+              "u1": -2.812500000000102e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 4.999999987376214e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.999999987376214e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0.0,
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0.0,
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0.0,
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "a82fc5e1c5f6f5f334b34be9c173a71d4e8c8039ef83bff9088c150e8959025b",
+        "actual_sha256": "94681f1f575bdfe834fd63111c8c164a72fecefcdb5f69ee618032f33e5fb88c"
+      },
+      "assessment": {
+        "status": "PASS",
+        "canonical": "PASS",
+        "observed": {},
+        "reviewed": {},
+        "first_divergence": null
+      },
+      "acceptance": {
+        "status": "PASS",
+        "checks": {
+          "u0": {
+            "final": true,
+            "side": true,
+            "arrival": true,
+            "waits": true
+          },
+          "u1": {
+            "final": true,
+            "side": true,
+            "arrival": true,
+            "waits": true
+          }
+        },
+        "wc3": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 990.287109,
+              "y": 1.69043,
+              "facing": 350.122681,
+              "order": 0
+            },
+            "max_displacement": 990.288552,
+            "ordered": true,
+            "target": [
+              1000.0,
+              0.0
+            ],
+            "arrival_callback": 179,
+            "largest_sideways_deviation": {
+              "callback": 104,
+              "units": 78.950684
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 109,
+              "distance": 75.090924
+            },
+            "waits": [
+              {
+                "first": 82,
+                "last": 84,
+                "callbacks": 2
+              }
+            ]
+          },
+          "u1": {
+            "start": [
+              1000.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 11.811523,
+              "y": -0.000488,
+              "facing": 179.71402,
+              "order": 0
+            },
+            "max_displacement": 988.188477,
+            "ordered": true,
+            "target": [
+              0.0,
+              0.0
+            ],
+            "arrival_callback": 214,
+            "largest_sideways_deviation": {
+              "callback": 2,
+              "units": -0.043945
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 109,
+              "distance": 75.090924
+            },
+            "waits": [
+              {
+                "first": 82,
+                "last": 111,
+                "callbacks": 29
+              }
+            ]
+          }
+        },
+        "cpp": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 990.287109,
+              "y": 1.69042969,
+              "facing": 350.122681,
+              "order": 0
+            },
+            "max_displacement": 990.288552,
+            "ordered": true,
+            "target": [
+              1000.0,
+              0.0
+            ],
+            "arrival_callback": 179,
+            "largest_sideways_deviation": {
+              "callback": 104,
+              "units": 78.950684
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 109,
+              "distance": 75.090924
+            },
+            "waits": [
+              {
+                "first": 82,
+                "last": 84,
+                "callbacks": 2
+              }
+            ]
+          },
+          "u1": {
+            "start": [
+              1000.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 11.8115234,
+              "y": -0.00048828125,
+              "facing": 179.71402,
+              "order": 0
+            },
+            "max_displacement": 988.188477,
+            "ordered": true,
+            "target": [
+              0.0,
+              0.0
+            ],
+            "arrival_callback": 214,
+            "largest_sideways_deviation": {
+              "callback": 2,
+              "units": -0.043945
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 109,
+              "distance": 75.090924
+            },
+            "waits": [
+              {
+                "first": 82,
+                "last": 111,
+                "callbacks": 29
+              }
+            ]
+          }
+        },
+        "failing": {},
+        "open": {},
+        "reviewed": "PASS"
+      }
+    },
+    {
+      "map_revision": "MOV-0022-d",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 1,
+        "path": "scenarios/MOV-0022/MOV-0022-d.yaml",
+        "sha256": "5e73fa3b282316004940c5d26423e584ba7e0452afbe3775ee26b1fad9bb8c10"
+      },
+      "case_sha256": "6469c14bec5529ac8d3002023e7f10b197174547fb54512f883df1b18c095372",
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0022-d",
+        "control_revision": null,
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 1,
+          "path": "scenarios/MOV-0022/MOV-0022-d.yaml",
+          "sha256": "5e73fa3b282316004940c5d26423e584ba7e0452afbe3775ee26b1fad9bb8c10"
+        },
+        "completion": {
+          "complete": true,
+          "records": 1811,
+          "ticks": 601,
+          "samples": 1202,
+          "actions": 2,
+          "events": 0
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "f8fb9e395c6a3b035e95db17928eecc73ee07d080bb38733f58bac0a43c0e897",
+            "f8fb9e395c6a3b035e95db17928eecc73ee07d080bb38733f58bac0a43c0e897",
+            "f8fb9e395c6a3b035e95db17928eecc73ee07d080bb38733f58bac0a43c0e897"
+          ],
+          "observation_payload_sha256": [
+            "007de4a554e38ce77fa1102d163e690d0440663af88f30da8bbc9ada1b4a4495",
+            "007de4a554e38ce77fa1102d163e690d0440663af88f30da8bbc9ada1b4a4495",
+            "007de4a554e38ce77fa1102d163e690d0440663af88f30da8bbc9ada1b4a4495"
+          ],
+          "distinct_raw_files": 1,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 1808,
+          "control_sha256": null,
+          "generated_sha256": "3841269a08f05cf82a2a79f0510bbd7892f63b0954d6eac7c93962b0560741f6",
+          "first_divergence": null,
+          "scope": "new observation; no independent control exists"
+        },
+        "generated_preload": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0022-d.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "generated_footers": [
+          "call PreloadEnd( 12.1 )",
+          "call PreloadEnd( 12.1 )",
+          "call PreloadEnd( 12.1 )"
+        ],
+        "fixture_sha256": "c3f91f7f2deed7bfd1363495124bd0a1239747fb701c76b9b800f79f5dfadef6"
+      },
+      "comparison": {
+        "case": "MOV-0022",
+        "map_revision": "MOV-0022-d",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1811,
+        "actual_records": 1810,
+        "reference_samples": 1202,
+        "actual_samples": 1202,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000058430487e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 9.999999974752427e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -4.690000000029393e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 4.999999987376214e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.999999987376214e-07,
+              "u1": 3.9999997625272954e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 3.9999997625272954e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "c3f91f7f2deed7bfd1363495124bd0a1239747fb701c76b9b800f79f5dfadef6",
+        "actual_sha256": "1f14d5cfcbc9c06d86bb55ed42d2f4b5f1416f064ad3aad5806fd6b3d4d22bb8"
+      },
+      "assessment": {
+        "status": "PASS",
+        "canonical": "PASS",
+        "observed": {},
+        "reviewed": {},
+        "first_divergence": null
+      },
+      "acceptance": {
+        "status": "PASS",
+        "checks": {
+          "u0": {
+            "final": true,
+            "side": true,
+            "arrival": true,
+            "waits": true
+          },
+          "u1": {
+            "final": true,
+            "side": true,
+            "arrival": true,
+            "waits": true
+          }
+        },
+        "wc3": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 989.186523,
+              "y": 0.316895,
+              "facing": 358.26709,
+              "order": 0
+            },
+            "max_displacement": 989.186574,
+            "ordered": true,
+            "target": [
+              1000.0,
+              0.0
+            ],
+            "arrival_callback": 188,
+            "largest_sideways_deviation": {
+              "callback": 95,
+              "units": 15.705566
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 98,
+              "distance": 71.302691
+            },
+            "waits": [
+              {
+                "first": 80,
+                "last": 83,
+                "callbacks": 3
+              }
+            ]
+          },
+          "u1": {
+            "start": [
+              500.0,
+              -380.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 500.0,
+              "y": 609.935059,
+              "facing": 89.999992,
+              "order": 0
+            },
+            "max_displacement": 989.935059,
+            "ordered": true,
+            "target": [
+              500.0,
+              620.0
+            ],
+            "arrival_callback": 278,
+            "largest_sideways_deviation": {
+              "callback": 0,
+              "units": 0.0
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 98,
+              "distance": 71.302691
+            },
+            "waits": [
+              {
+                "first": 82,
+                "last": 111,
+                "callbacks": 29
+              }
+            ]
+          }
+        },
+        "cpp": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 989.186523,
+              "y": 0.316894531,
+              "facing": 358.26709,
+              "order": 0
+            },
+            "max_displacement": 989.186574,
+            "ordered": true,
+            "target": [
+              1000.0,
+              0.0
+            ],
+            "arrival_callback": 188,
+            "largest_sideways_deviation": {
+              "callback": 95,
+              "units": 15.705566
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 98,
+              "distance": 71.30269
+            },
+            "waits": [
+              {
+                "first": 80,
+                "last": 83,
+                "callbacks": 3
+              }
+            ]
+          },
+          "u1": {
+            "start": [
+              500.0,
+              -380.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 500.0,
+              "y": 609.935059,
+              "facing": 89.9999924,
+              "order": 0
+            },
+            "max_displacement": 989.935059,
+            "ordered": true,
+            "target": [
+              500.0,
+              620.0
+            ],
+            "arrival_callback": 278,
+            "largest_sideways_deviation": {
+              "callback": 0,
+              "units": 0.0
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 98,
+              "distance": 71.30269
+            },
+            "waits": [
+              {
+                "first": 82,
+                "last": 111,
+                "callbacks": 29
+              }
+            ]
+          }
+        },
+        "failing": {},
+        "open": {},
+        "reviewed": "PASS"
+      }
+    },
+    {
+      "map_revision": "MOV-0022-e",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 1,
+        "path": "scenarios/MOV-0022/MOV-0022-e.yaml",
+        "sha256": "67af1e369d0ee19cfe76df47f187ca162bd9b0e1b4b3af694540b77ff056d769"
+      },
+      "case_sha256": "be194d945f2a46e18ff4cf7b09bfdb939c7f69c4c9906830707b244ae4546ff9",
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0022-e",
+        "control_revision": null,
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 1,
+          "path": "scenarios/MOV-0022/MOV-0022-e.yaml",
+          "sha256": "67af1e369d0ee19cfe76df47f187ca162bd9b0e1b4b3af694540b77ff056d769"
+        },
+        "completion": {
+          "complete": true,
+          "records": 1810,
+          "ticks": 601,
+          "samples": 1202,
+          "actions": 1,
+          "events": 0
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "a9365a464eea33e91ef0568ad154b5cd19ab1dc7726c7a0f8efc2aeafeb1c51c",
+            "a9365a464eea33e91ef0568ad154b5cd19ab1dc7726c7a0f8efc2aeafeb1c51c",
+            "a9365a464eea33e91ef0568ad154b5cd19ab1dc7726c7a0f8efc2aeafeb1c51c"
+          ],
+          "observation_payload_sha256": [
+            "5d4628fe3d25acf81e81a2212ac01166bda731ecb65a172ff40c093fc6f8a59b",
+            "5d4628fe3d25acf81e81a2212ac01166bda731ecb65a172ff40c093fc6f8a59b",
+            "5d4628fe3d25acf81e81a2212ac01166bda731ecb65a172ff40c093fc6f8a59b"
+          ],
+          "distinct_raw_files": 2,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 1807,
+          "control_sha256": null,
+          "generated_sha256": "212be0d621aa42500014cbb9781ac291dc8bc775d2aa0358d5a6c42d86494da7",
+          "first_divergence": null,
+          "scope": "new observation; no independent control exists"
+        },
+        "generated_preload": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0022-e.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "generated_footers": [
+          "call PreloadEnd( 12.0 )",
+          "call PreloadEnd( 12.1 )",
+          "call PreloadEnd( 12.1 )"
+        ],
+        "fixture_sha256": "18ec8c96453e3235cf54b560d0c2821d9015a06124cf3835618f85d8130a25a4"
+      },
+      "comparison": {
+        "case": "MOV-0022",
+        "map_revision": "MOV-0022-e",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1810,
+        "actual_records": 1809,
+        "reference_samples": 1202,
+        "actual_samples": 1202,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 1.0000001111620804e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 1.0000001111620804e-06,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 4.999999987376214e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.999999987376214e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": -1.9999998812636477e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 1,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "18ec8c96453e3235cf54b560d0c2821d9015a06124cf3835618f85d8130a25a4",
+        "actual_sha256": "550a0433f04573787b873111da9d881bfd65e6cc6b128dfa259f55534334eb57"
+      },
+      "assessment": {
+        "status": "PASS",
+        "canonical": "PASS",
+        "observed": {},
+        "reviewed": {},
+        "first_divergence": null
+      },
+      "acceptance": {
+        "status": "PASS",
+        "checks": {
+          "u0": {
+            "final": true,
+            "side": true,
+            "arrival": true,
+            "waits": true
+          },
+          "u1": {
+            "final": true
+          }
+        },
+        "wc3": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 992.785156,
+              "y": 994.468262,
+              "facing": 37.480366,
+              "order": 0
+            },
+            "max_displacement": 1405.200872,
+            "ordered": true,
+            "target": [
+              1000.0,
+              1000.0
+            ],
+            "arrival_callback": 265,
+            "largest_sideways_deviation": {
+              "callback": 140,
+              "units": 89.161746
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 128,
+              "distance": 80.655418
+            },
+            "waits": []
+          },
+          "u1": {
+            "start": [
+              500.0,
+              500.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 500.0,
+              "y": 500.0,
+              "facing": 0.0,
+              "order": 0
+            },
+            "max_displacement": 0.0,
+            "ordered": false
+          }
+        },
+        "cpp": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 992.785156,
+              "y": 994.468262,
+              "facing": 37.4803658,
+              "order": 0
+            },
+            "max_displacement": 1405.200872,
+            "ordered": true,
+            "target": [
+              1000.0,
+              1000.0
+            ],
+            "arrival_callback": 265,
+            "largest_sideways_deviation": {
+              "callback": 140,
+              "units": 89.161746
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 128,
+              "distance": 80.655418
+            },
+            "waits": []
+          },
+          "u1": {
+            "start": [
+              500.0,
+              500.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 500.0,
+              "y": 500.0,
+              "facing": 0.0,
+              "order": 0
+            },
+            "max_displacement": 0.0,
+            "ordered": false
+          }
+        },
+        "failing": {},
+        "open": {},
+        "reviewed": "PASS"
+      }
+    },
+    {
+      "map_revision": "MOV-0022-f",
+      "scenario": {
+        "schema": "wc3-scenario",
+        "version": 1,
+        "path": "scenarios/MOV-0022/MOV-0022-f.yaml",
+        "sha256": "33a8da2b51434bf627a21791a0cab1df282e9e65311c138bed42b70f1e575d3d"
+      },
+      "case_sha256": "2fd04aaae1597c117013937aeb10d6f44e35ac9f8388230ddf12078cab905ffc",
+      "status": "PASS",
+      "reproduction": {
+        "status": "PASS",
+        "map_revision": "MOV-0022-f",
+        "control_revision": null,
+        "scenario": {
+          "schema": "wc3-scenario",
+          "version": 1,
+          "path": "scenarios/MOV-0022/MOV-0022-f.yaml",
+          "sha256": "33a8da2b51434bf627a21791a0cab1df282e9e65311c138bed42b70f1e575d3d"
+        },
+        "completion": {
+          "complete": true,
+          "records": 1811,
+          "ticks": 601,
+          "samples": 1202,
+          "actions": 2,
+          "events": 0
+        },
+        "repeatability": {
+          "classification": "DETERMINISTIC",
+          "runs": 3,
+          "canonical_payload_sha256": [
+            "065ebd5667b908d2e2991ea40d90ede1f9586adb6c018c4e02bc59c029158d0d",
+            "065ebd5667b908d2e2991ea40d90ede1f9586adb6c018c4e02bc59c029158d0d",
+            "065ebd5667b908d2e2991ea40d90ede1f9586adb6c018c4e02bc59c029158d0d"
+          ],
+          "observation_payload_sha256": [
+            "f8eb28edd26e762ae27b50665d61d40fe3612fa23c1f4d3730de7c78f9abfcd1",
+            "f8eb28edd26e762ae27b50665d61d40fe3612fa23c1f4d3730de7c78f9abfcd1",
+            "f8eb28edd26e762ae27b50665d61d40fe3612fa23c1f4d3730de7c78f9abfcd1"
+          ],
+          "distinct_raw_files": 2,
+          "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+          "other_seeds_or_machines": "UNKNOWN"
+        },
+        "observations": {
+          "records": 1808,
+          "control_sha256": null,
+          "generated_sha256": "cf8d8af52eec44c41a6229c4ff1d98f28c281658f03653b1f5f80f9200a40ab3",
+          "first_divergence": null,
+          "scope": "new observation; no independent control exists"
+        },
+        "generated_preload": [
+          {
+            "after_record": 0,
+            "entry": "war3map.w3i"
+          },
+          {
+            "after_record": 0,
+            "entry": "war3map.wts"
+          },
+          {
+            "after_record": 0,
+            "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0022-f.w3m"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\Footman.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "Textures\\\\gutz.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+          },
+          {
+            "after_record": 0,
+            "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+          }
+        ],
+        "generated_footers": [
+          "call PreloadEnd( 12.1 )",
+          "call PreloadEnd( 12.0 )",
+          "call PreloadEnd( 12.1 )"
+        ],
+        "fixture_sha256": "182269b56fe1c67e252e31bb9eea293ec47566c6f50d22dbd4da3348cf9e9199"
+      },
+      "comparison": {
+        "case": "MOV-0022",
+        "map_revision": "MOV-0022-f",
+        "status": "PASS",
+        "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+        "observation_phase": "after-due-update",
+        "reference_records": 1811,
+        "actual_records": 1810,
+        "reference_samples": 1202,
+        "actual_samples": 1202,
+        "first_divergence": null,
+        "state_first_divergence": null,
+        "properties": {
+          "x": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000101063051e-06,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000101063051e-06,
+              "u1": 1.0000001111620804e-06
+            },
+            "final_delta_by_unit": {
+              "u0": 1.0000001111620804e-06,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000058430487e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07,
+              "u1": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.29999999992836e-07,
+              "u1": -3.125000000003125e-08
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 4.999999987376214e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.999999987376214e-07,
+              "u1": 4.979999914667133e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 1.9999998812636477e-07,
+              "u1": 3.4499998946557753e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_structural_divergence": null,
+        "unobserved_properties": [],
+        "observation_timing": {
+          "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+          "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+          "clock_status": "PASS"
+        },
+        "reference_sha256": "182269b56fe1c67e252e31bb9eea293ec47566c6f50d22dbd4da3348cf9e9199",
+        "actual_sha256": "3c49bdad65c4d712ef1e1f2beebdc3e887cdf4b33645f0b268dafd2779b5c23a"
+      },
+      "assessment": {
+        "status": "PASS",
+        "canonical": "PASS",
+        "observed": {},
+        "reviewed": {},
+        "first_divergence": null
+      },
+      "acceptance": {
+        "status": "PASS",
+        "checks": {
+          "u0": {
+            "final": true,
+            "side": true,
+            "arrival": true,
+            "waits": true
+          },
+          "u1": {
+            "final": true,
+            "side": true,
+            "arrival": true,
+            "waits": true
+          }
+        },
+        "wc3": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 1196.102539,
+              "y": -1.839111,
+              "facing": 25.268297,
+              "order": 0
+            },
+            "max_displacement": 1196.103953,
+            "ordered": true,
+            "target": [
+              1200.0,
+              0.0
+            ],
+            "arrival_callback": 175,
+            "largest_sideways_deviation": {
+              "callback": 161,
+              "units": -47.936768
+            },
+            "passes_other_on": "right",
+            "closest_approach": {
+              "callback": 59,
+              "distance": 35.33253
+            },
+            "waits": [
+              {
+                "first": 26,
+                "last": 29,
+                "callbacks": 3
+              },
+              {
+                "first": 31,
+                "last": 44,
+                "callbacks": 13
+              },
+              {
+                "first": 47,
+                "last": 50,
+                "callbacks": 3
+              }
+            ]
+          },
+          "u1": {
+            "start": [
+              200.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 987.414551,
+              "y": 0.003418,
+              "facing": 0.345365,
+              "order": 0
+            },
+            "max_displacement": 787.414551,
+            "ordered": true,
+            "target": [
+              1000.0,
+              0.0
+            ],
+            "arrival_callback": 301,
+            "largest_sideways_deviation": {
+              "callback": 2,
+              "units": 0.027344
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 59,
+              "distance": 35.33253
+            },
+            "waits": [
+              {
+                "first": 28,
+                "last": 57,
+                "callbacks": 29
+              },
+              {
+                "first": 70,
+                "last": 77,
+                "callbacks": 7
+              }
+            ]
+          }
+        },
+        "cpp": {
+          "u0": {
+            "start": [
+              0.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 1196.10254,
+              "y": -1.83911133,
+              "facing": 25.2682972,
+              "order": 0
+            },
+            "max_displacement": 1196.103954,
+            "ordered": true,
+            "target": [
+              1200.0,
+              0.0
+            ],
+            "arrival_callback": 175,
+            "largest_sideways_deviation": {
+              "callback": 161,
+              "units": -47.936768
+            },
+            "passes_other_on": "right",
+            "closest_approach": {
+              "callback": 59,
+              "distance": 35.33253
+            },
+            "waits": [
+              {
+                "first": 26,
+                "last": 29,
+                "callbacks": 3
+              },
+              {
+                "first": 31,
+                "last": 44,
+                "callbacks": 13
+              },
+              {
+                "first": 47,
+                "last": 50,
+                "callbacks": 3
+              }
+            ]
+          },
+          "u1": {
+            "start": [
+              200.0,
+              0.0
+            ],
+            "final": {
+              "callback": 600,
+              "x": 987.414551,
+              "y": 0.00341796875,
+              "facing": 0.345365345,
+              "order": 0
+            },
+            "max_displacement": 787.414551,
+            "ordered": true,
+            "target": [
+              1000.0,
+              0.0
+            ],
+            "arrival_callback": 301,
+            "largest_sideways_deviation": {
+              "callback": 2,
+              "units": 0.027344
+            },
+            "passes_other_on": "left",
+            "closest_approach": {
+              "callback": 59,
+              "distance": 35.33253
+            },
+            "waits": [
+              {
+                "first": 28,
+                "last": 57,
+                "callbacks": 29
+              },
+              {
+                "first": 70,
+                "last": 77,
+                "callbacks": 7
+              }
+            ]
+          }
+        },
+        "failing": {},
+        "open": {},
+        "reviewed": "PASS"
+      }
+    }
+  ]
+}

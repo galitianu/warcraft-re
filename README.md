@@ -62,10 +62,13 @@ Start with:
   (idle blocker, head-on, crossing, glancing, mirrored and turned head-ons). footman-v4 follows
   WC3's own grid pathing mechanism, read from the retail executable
   ([model](docs/footman-v4-model.md#unit-pathing)), and reproduces all 26 exactly.
+- [MOV-0022](docs/mov-0022.md): six pre-registered layouts the mechanism had not seen
+  (unequal speeds, issue order, a slow crossing unit, a diagonal, an overtake). All six
+  captures match the predicted traces exactly.
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
-This repository holds the plan, 24 manually authored and forty-one generated-case WC3 maps with their JASS,
+This repository holds the plan, 24 manually authored and forty-seven generated-case WC3 maps with their JASS,
 plus five Phase 7 verification revisions, shared oracle instrumentation, raw captures with identities, parsers and derived
 CSVs, versioned v1/v2 scenarios, and a dependency-free C++20 simulation. Phases 0–6 are
 complete; compatibility

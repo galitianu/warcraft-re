@@ -144,7 +144,7 @@ them in float32. Only a value within an ulp or so of a cell boundary could diffe
 |---|---|
 | Arithmetic, tables, update order and constants above | **Inferred** from retail code, then confirmed bit for bit by every retained capture |
 | Stop radius 15.5, inclusive | **Fitted**: [MOV-0018](mov-0018.md#fitted-intervals) bounds it to [14.607, 15.90); MOV-0001–0010 agree with any value there. Not read from game data. |
-| Unit pathing (above) | **Inferred** from retail code. Reproduces all 26 two-Footman captures (MOV-0018–0021) exactly. Those captures predate the analysis and guided it, and the processing order and the meaning of the `0x60000000` flag were chosen to fit them. Supersedes the fitted heuristics of [MOV-0018](mov-0018.md#model)–[MOV-0021](mov-0021.md#results). Not yet tested on a pre-registered capture. |
+| Unit pathing (above) | **Inferred** from retail code. Reproduces all 26 two-Footman captures (MOV-0018–0021) exactly. Those captures predate the analysis and guided it, and the processing order and the meaning of the `0x60000000` flag were chosen to fit them. Supersedes the fitted heuristics of [MOV-0018](mov-0018.md#model)–[MOV-0021](mov-0021.md#results). Pre-registered test: all six [MOV-0022](mov-0022.md#results) captures exact. |
 | Movement clock start 0.5 s | **Inferred**: the only start (of those tested) that reproduces every library-clock reading |
 | Which frame, and which side of an update, a callback observes | **Partly unexplained.** See the [results](footman-v4-results.md#sampling-order). The 20 ms runner rule (after the update at step 20k) is exact for all fixtures |
 | Speed clamp 150–400 | **Observed** endpoints, unchanged |

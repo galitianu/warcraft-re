@@ -6,8 +6,10 @@ As of 5 October 2026.
 [issue #27](https://github.com/galitianu/warcraft-re/issues/27)). footman-v4 now follows WC3's own pathing
 mechanism, read from the retail executable ([model](docs/footman-v4-model.md#unit-pathing)): grid footprints, a
 one-cell probe, waits decided by squared speed, and the retail A*. It reproduces **all 26** two-Footman captures
-(MOV-0018 to MOV-0021) exactly, so no P3, P2 or P1 difference remains in them. Those captures guided the analysis;
-[MOV-0022](#exact-next-action) is to test the mechanism on layouts it has not seen.
+(MOV-0018 to MOV-0021) exactly. Those captures guided the analysis, so [MOV-0022](docs/mov-0022.md) pre-registered
+six new layouts: unequal speeds, reversed issue order, a slow crossing unit, a diagonal past an idle unit and an
+overtake. All six captures match the predicted traces exactly. No P3, P2 or P1 difference remains in the 32
+two-Footman captures; issue #27's acceptance is met.
 
 **Phase 7:** capture capability implemented for four reviewed v1 scenarios.
 One command completes generation, verified World Editor packaging, three fresh WC3
@@ -556,23 +558,24 @@ implements them without game code ([model](docs/footman-v4-model.md#unit-pathing
 - **Interpreted, not read:** two choices were made because they fit the captures. The most
   recently ordered unit updates first, and units with a nonzero velocity are not obstacles to
   planning or to the straight-line test. The A* expansion budget is unknown (32768 is used).
+- **Held-out test:** [MOV-0022](docs/mov-0022.md) predicted six new layouts from the clean build
+  `2ab1e5c` before capture. All six are canonical PASS and each prediction is byte-identical to the
+  C++ trace in its capture bundle ([report](results/mov-0022/grading.md)). The interpreted rules held
+  on layouts they were not chosen for.
 - **Gate:** [run_mov0018.py](tools/run_mov0018.py) now expects no differences for any of the
-  26 captures, so any new one fails CI.
+  32 captures, so any new one fails CI.
+- **Generator:** speed setters on several units are now generated (every CreateUnit, then the
+  setters, as in MOV-0002's control). MOV-0022's WATCH records show the speeds applied.
 
-Local native ARM64 AppleClang Release CI passes: CTest 3/3, Python 88/88, the generated loop and
-every gate (MOV-0013/0014/0015 and MOV-0018 to 0021).
+Local native ARM64 AppleClang Release CI passes: CTest 3/3, Python 90/90, the generated loop and
+every gate (MOV-0013/0014/0015 and MOV-0018 to 0022).
 
 ## Exact next action
 
-MOV-0022: test the retail mechanism on layouts it has not seen. Pre-register its
-predictions before capturing:
-
-- unequal speeds head-on (the faster unit goes, the slower one is held 20 updates);
-- the same layout with the order of issue reversed (processing order);
-- a unit ordered across another unit's moving path, and a target behind a stationary unit
-  on a diagonal (planning ignores moving units; A* tie order).
-
-Pass means exact or P1-only agreement.
+Merge [PR #28](https://github.com/galitianu/warcraft-re/pull/28) and close issue #27. Then
+the next collision question, pre-registered the same way: three Footmen meeting at one
+point (more than two units is still out of scope). It tests the blocker list order and
+recorded blockers, and partial routes around a moving group.
 
 Deferred (P1): MOV-0016, which would pre-register the rounded sampler start with T7 and
 FU ([next experiment](docs/mov-0015.md#next-experiment)). Revisit it only when most

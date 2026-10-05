@@ -540,6 +540,10 @@ runs ([results](docs/mov-0021.md#results)).
   All are gated with their ratings in [run_mov0018.py](tools/run_mov0018.py), which CI runs for MOV-0018 to 0021.
 
 Local CI passes: CTest 3/3, Python 88/88, the generated loop and every gate.
+PR #28's [workflow 37271683517](https://github.com/galitianu/warcraft-re/actions/runs/37271683517)
+passes all five configurations and the aggregate (head `35ba687`). The downloaded artifacts
+[regrade](results/mov-0021/pr-verification/summary.md) to a report identical to the hosted one,
+with MOV-0018 to 0021 PASS in all five configurations.
 
 ## Exact next action
 

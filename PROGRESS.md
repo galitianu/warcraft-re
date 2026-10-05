@@ -569,6 +569,8 @@ implements them without game code ([model](docs/footman-v4-model.md#unit-pathing
 
 Local native ARM64 AppleClang Release CI passes: CTest 3/3, Python 90/90, the generated loop and
 every gate (MOV-0013/0014/0015 and MOV-0018 to 0022).
+PR #28's [workflow 37299662085](https://github.com/galitianu/warcraft-re/actions/runs/37299662085)
+passes all five configurations and the aggregate (head `003ae9e`).
 
 ## Exact next action
 

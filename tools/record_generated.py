@@ -38,7 +38,11 @@ def main():
     scenario = Path(experiment['scenario'] if experiment else f'scenarios/{exp}.yaml')
     # Do not bind a pasted/edited case to an unrelated generation manifest.
     cases, expected_generation = generate(args.codegen, [scenario], label)
-    if cases[label + '.j'] != case.read_bytes() or load(args.generation) != expected_generation:
+    # A capture from an earlier generator keeps that generator's source digests; the
+    # current generator must still reproduce its case byte for byte.
+    generation = load(args.generation)
+    if (cases[label + '.j'] != case.read_bytes() or {**generation, 'sources': None} != {**expected_generation, 'sources': None}
+            or set(generation['sources']) != set(expected_generation['sources'])):
         parser.error('generated case or generation manifest differs from the exact scenario')
     checked = check(map_path, library, case)
     if not checked['ok']:

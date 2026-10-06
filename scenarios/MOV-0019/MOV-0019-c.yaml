@@ -1,0 +1,25 @@
+# MOV-0019: footprint: idle blocker at (500, -8), the same cell as b
+# Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0019
+map_revision: MOV-0019-c
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+  - name: u1
+    type: hfoo
+    position: [500, -8]
+    facing: 180
+observe:
+  period: 0.02
+  callbacks: 600
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 0]
+...

@@ -1,0 +1,25 @@
+# MOV-0019: tie order: centred idle blocker, u0 travelling north
+# Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0019
+map_revision: MOV-0019-f
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 90
+  - name: u1
+    type: hfoo
+    position: [0, 500]
+    facing: 270
+observe:
+  period: 0.02
+  callbacks: 600
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [0, 1000]
+...

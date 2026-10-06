@@ -1,0 +1,321 @@
+{
+  "long_wait_callbacks": 7,
+  "variants": {
+    "MOV-0021-a": {
+      "question": "MOV-0019-j mirrored: the westward unit 32 south",
+      "wc3": {
+        "u0": {
+          "final": [
+            988.1,
+            0.0,
+            0
+          ],
+          "side": "left",
+          "arrival": 199,
+          "waits": [
+            [
+              86,
+              101
+            ]
+          ],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            10.9,
+            -36.2,
+            0
+          ],
+          "side": "left",
+          "arrival": 196,
+          "waits": [
+            [
+              88,
+              90
+            ]
+          ],
+          "deviation": 47.7
+        }
+      },
+      "wc3_waits": [
+        "u0"
+      ],
+      "hypotheses": {
+        "heading": "u0",
+        "rotation": "u0",
+        "line": "u1"
+      },
+      "supported": {
+        "heading": true,
+        "rotation": true,
+        "line": false
+      },
+      "model_waits": [
+        "u1"
+      ],
+      "model_matches_waits": false
+    },
+    "MOV-0021-b": {
+      "question": "MOV-0019-j turned 90 degrees anticlockwise: north and south",
+      "wc3": {
+        "u0": {
+          "final": [
+            0.0,
+            988.1,
+            0
+          ],
+          "side": "right",
+          "arrival": 184,
+          "waits": [],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            -36.7,
+            9.3,
+            0
+          ],
+          "side": "right",
+          "arrival": 187,
+          "waits": [],
+          "deviation": -15.6
+        }
+      },
+      "wc3_waits": [],
+      "hypotheses": {
+        "heading": "u0",
+        "rotation": "u0",
+        "line": "u1"
+      },
+      "supported": {
+        "heading": false,
+        "rotation": false,
+        "line": false
+      },
+      "model_waits": [
+        "u1"
+      ],
+      "model_matches_waits": false
+    },
+    "MOV-0021-c": {
+      "question": "MOV-0019-j turned 90 degrees clockwise: south and north",
+      "wc3": {
+        "u0": {
+          "final": [
+            -0.1,
+            -991.1,
+            0
+          ],
+          "side": "right",
+          "arrival": 190,
+          "waits": [
+            [
+              86,
+              89
+            ]
+          ],
+          "deviation": -7.5
+        },
+        "u1": {
+          "final": [
+            39.8,
+            0.8,
+            0
+          ],
+          "side": "right",
+          "arrival": 203,
+          "waits": [
+            [
+              86,
+              93
+            ]
+          ],
+          "deviation": -47.4
+        }
+      },
+      "wc3_waits": [
+        "u1"
+      ],
+      "hypotheses": {
+        "heading": "u1",
+        "rotation": "u0",
+        "line": "u0"
+      },
+      "supported": {
+        "heading": true,
+        "rotation": false,
+        "line": false
+      },
+      "model_waits": [],
+      "model_matches_waits": false
+    },
+    "MOV-0021-d": {
+      "question": "b mirrored: the southward unit 32 east",
+      "wc3": {
+        "u0": {
+          "final": [
+            -0.1,
+            991.0,
+            0
+          ],
+          "side": "left",
+          "arrival": 190,
+          "waits": [
+            [
+              86,
+              89
+            ]
+          ],
+          "deviation": 7.5
+        },
+        "u1": {
+          "final": [
+            38.9,
+            4.6,
+            0
+          ],
+          "side": "left",
+          "arrival": 199,
+          "waits": [
+            [
+              86,
+              93
+            ]
+          ],
+          "deviation": 47.4
+        }
+      },
+      "wc3_waits": [
+        "u1"
+      ],
+      "hypotheses": {
+        "heading": "u0",
+        "rotation": "u0",
+        "line": "u0"
+      },
+      "supported": {
+        "heading": false,
+        "rotation": false,
+        "line": false
+      },
+      "model_waits": [],
+      "model_matches_waits": false
+    },
+    "MOV-0021-e": {
+      "question": "MOV-0019-j without partial routes: no target covered at its order",
+      "wc3": {
+        "u0": {
+          "final": [
+            987.8,
+            -5.9,
+            0
+          ],
+          "side": "right",
+          "arrival": 211,
+          "waits": [
+            [
+              98,
+              101
+            ],
+            [
+              103,
+              116
+            ],
+            [
+              122,
+              125
+            ]
+          ],
+          "deviation": -39.1
+        },
+        "u1": {
+          "final": [
+            111.8,
+            32.0,
+            0
+          ],
+          "side": "right",
+          "arrival": 214,
+          "waits": [
+            [
+              100,
+              129
+            ]
+          ],
+          "deviation": -0.0
+        }
+      },
+      "wc3_waits": [
+        "u0",
+        "u1"
+      ],
+      "hypotheses": {
+        "heading": "u0",
+        "rotation": "u0",
+        "line": "u0"
+      },
+      "supported": {
+        "heading": false,
+        "rotation": false,
+        "line": false
+      },
+      "model_waits": [
+        "u0",
+        "u1"
+      ],
+      "model_matches_waits": true
+    },
+    "MOV-0021-f": {
+      "question": "e mirrored: the westward unit 32 south",
+      "wc3": {
+        "u0": {
+          "final": [
+            988.1,
+            0.0,
+            0
+          ],
+          "side": "left",
+          "arrival": 199,
+          "waits": [
+            [
+              97,
+              111
+            ]
+          ],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            108.4,
+            -35.3,
+            0
+          ],
+          "side": "left",
+          "arrival": 194,
+          "waits": [],
+          "deviation": 47.6
+        }
+      },
+      "wc3_waits": [
+        "u0"
+      ],
+      "hypotheses": {
+        "heading": "u0",
+        "rotation": "u0",
+        "line": "u1"
+      },
+      "supported": {
+        "heading": true,
+        "rotation": true,
+        "line": false
+      },
+      "model_waits": [
+        "u0"
+      ],
+      "model_matches_waits": true
+    }
+  },
+  "surviving": [],
+  "straight_matches_j": false,
+  "status": "NONE-SURVIVES"
+}

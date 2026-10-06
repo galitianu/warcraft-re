@@ -1,0 +1,343 @@
+{
+  "long_wait_callbacks": 7,
+  "variants": {
+    "MOV-0020-a": {
+      "question": "MOV-0019-i with the units swapped: u0 crosses north, u1 travels east",
+      "roles": {
+        "u0": "cross",
+        "u1": "east"
+      },
+      "ordered_first": "u0",
+      "wc3": {
+        "u0": {
+          "final": [
+            500.8,
+            446.6,
+            0
+          ],
+          "side": "right",
+          "arrival": 187,
+          "waits": [],
+          "deviation": -27.3
+        },
+        "u1": {
+          "final": [
+            988.1,
+            -0.0,
+            0
+          ],
+          "side": "left",
+          "arrival": 214,
+          "waits": [
+            [
+              88,
+              117
+            ]
+          ],
+          "deviation": 0.0
+        }
+      },
+      "wc3_waits": [
+        "u1"
+      ],
+      "hypotheses": {
+        "index": "u0",
+        "order": "u0",
+        "role": "u1"
+      },
+      "supported": {
+        "index": false,
+        "order": false,
+        "role": true
+      },
+      "model_waits": [
+        "u0"
+      ],
+      "model_matches_waits": false
+    },
+    "MOV-0020-b": {
+      "question": "MOV-0019-j with the units swapped: u0 travels west, u1 east",
+      "roles": {
+        "u0": "west",
+        "u1": "east"
+      },
+      "ordered_first": "u0",
+      "wc3": {
+        "u0": {
+          "final": [
+            13.3,
+            32.1,
+            0
+          ],
+          "side": "right",
+          "arrival": 185,
+          "waits": [],
+          "deviation": -4.6
+        },
+        "u1": {
+          "final": [
+            996.9,
+            -8.1,
+            0
+          ],
+          "side": "right",
+          "arrival": 218,
+          "waits": [
+            [
+              88,
+              117
+            ]
+          ],
+          "deviation": -15.6
+        }
+      },
+      "wc3_waits": [
+        "u1"
+      ],
+      "hypotheses": {
+        "index": "u0",
+        "order": "u0",
+        "role": "u1"
+      },
+      "supported": {
+        "index": false,
+        "order": false,
+        "role": true
+      },
+      "model_waits": [
+        "u1"
+      ],
+      "model_matches_waits": true
+    },
+    "MOV-0020-c": {
+      "question": "MOV-0019-i with u1 ordered first",
+      "roles": {
+        "u0": "east",
+        "u1": "cross"
+      },
+      "ordered_first": "u1",
+      "wc3": {
+        "u0": {
+          "final": [
+            988.1,
+            -0.0,
+            0
+          ],
+          "side": "left",
+          "arrival": 214,
+          "waits": [
+            [
+              88,
+              117
+            ]
+          ],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            500.8,
+            446.6,
+            0
+          ],
+          "side": "right",
+          "arrival": 187,
+          "waits": [],
+          "deviation": -27.3
+        }
+      },
+      "wc3_waits": [
+        "u0"
+      ],
+      "hypotheses": {
+        "index": "u0",
+        "order": "u1",
+        "role": "u0"
+      },
+      "supported": {
+        "index": true,
+        "order": false,
+        "role": true
+      },
+      "model_waits": [
+        "u1"
+      ],
+      "model_matches_waits": false
+    },
+    "MOV-0020-d": {
+      "question": "MOV-0019-j with u1 ordered first",
+      "roles": {
+        "u0": "east",
+        "u1": "west"
+      },
+      "ordered_first": "u1",
+      "wc3": {
+        "u0": {
+          "final": [
+            996.9,
+            -8.1,
+            0
+          ],
+          "side": "right",
+          "arrival": 218,
+          "waits": [
+            [
+              88,
+              117
+            ]
+          ],
+          "deviation": -15.6
+        },
+        "u1": {
+          "final": [
+            13.3,
+            32.1,
+            0
+          ],
+          "side": "right",
+          "arrival": 185,
+          "waits": [],
+          "deviation": -4.6
+        }
+      },
+      "wc3_waits": [
+        "u0"
+      ],
+      "hypotheses": {
+        "index": "u0",
+        "order": "u1",
+        "role": "u0"
+      },
+      "supported": {
+        "index": true,
+        "order": false,
+        "role": true
+      },
+      "model_waits": [
+        "u1"
+      ],
+      "model_matches_waits": false
+    },
+    "MOV-0020-e": {
+      "question": "MOV-0018-c with the units swapped: u0 crosses north, u1 travels east",
+      "roles": {
+        "u0": "cross",
+        "u1": "east"
+      },
+      "ordered_first": "u0",
+      "wc3": {
+        "u0": {
+          "final": [
+            500.0,
+            488.2,
+            0
+          ],
+          "side": "right",
+          "arrival": 184,
+          "waits": [],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            988.1,
+            -0.0,
+            0
+          ],
+          "side": "left",
+          "arrival": 206,
+          "waits": [
+            [
+              83,
+              105
+            ]
+          ],
+          "deviation": 0.0
+        }
+      },
+      "wc3_waits": [
+        "u1"
+      ],
+      "hypotheses": {
+        "index": "u0",
+        "order": "u0",
+        "role": "u1"
+      },
+      "supported": {
+        "index": false,
+        "order": false,
+        "role": true
+      },
+      "model_waits": [
+        "u0"
+      ],
+      "model_matches_waits": false
+    },
+    "MOV-0020-f": {
+      "question": "MOV-0019-g with the units swapped: u0 crosses north, u1 travels east",
+      "roles": {
+        "u0": "cross",
+        "u1": "east"
+      },
+      "ordered_first": "u0",
+      "wc3": {
+        "u0": {
+          "final": [
+            500.0,
+            548.2,
+            0
+          ],
+          "side": "right",
+          "arrival": 184,
+          "waits": [],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            988.1,
+            0.0,
+            0
+          ],
+          "side": "right",
+          "arrival": 199,
+          "waits": [
+            [
+              79,
+              93
+            ]
+          ],
+          "deviation": 0.0
+        }
+      },
+      "wc3_waits": [
+        "u1"
+      ],
+      "hypotheses": {
+        "index": "u0",
+        "order": "u0",
+        "role": "u1"
+      },
+      "supported": {
+        "index": false,
+        "order": false,
+        "role": true
+      },
+      "model_waits": [
+        "u1"
+      ],
+      "model_matches_waits": true
+    }
+  },
+  "surviving": [
+    "role"
+  ],
+  "partial_routes": {
+    "MOV-0020-b": {
+      "largest_xy_difference": 1e-06,
+      "status": "PASS"
+    },
+    "MOV-0020-d": {
+      "largest_xy_difference": 1e-06,
+      "status": "PASS"
+    }
+  },
+  "status": "ONE-SURVIVES"
+}

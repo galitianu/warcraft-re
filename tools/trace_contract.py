@@ -48,6 +48,30 @@ EXPERIMENT_SHAPES.update({
                           scenario=f'scenarios/MOV-0018/MOV-0018-{v}.yaml', start_us=0, control=None,
                           state=None, definition='docs/mov-0018.md', version=1)
     for v in 'abcd'})
+# MOV-0019 (docs/mov-0019.md): the same shape, ten variants pinning MOV-0018's pathing fits.
+EXPERIMENT_SHAPES.update({
+    f'MOV-0019-{v}': dict(experiment='MOV-0019', callbacks=600, period='0.020000', units=2,
+                          scenario=f'scenarios/MOV-0019/MOV-0019-{v}.yaml', start_us=0, control=None,
+                          state=None, definition='docs/mov-0019.md', version=1)
+    for v in 'abcdefghij'})
+# MOV-0020 (docs/mov-0020.md): the same shape, MOV-0019's crossings with the units' roles swapped.
+EXPERIMENT_SHAPES.update({
+    f'MOV-0020-{v}': dict(experiment='MOV-0020', callbacks=600, period='0.020000', units=2,
+                          scenario=f'scenarios/MOV-0020/MOV-0020-{v}.yaml', start_us=0, control=None,
+                          state=None, definition='docs/mov-0020.md', version=1)
+    for v in 'abcdef'})
+# MOV-0021 (docs/mov-0021.md): the same shape, MOV-0019-j's offset head-on mirrored and turned.
+EXPERIMENT_SHAPES.update({
+    f'MOV-0021-{v}': dict(experiment='MOV-0021', callbacks=600, period='0.020000', units=2,
+                          scenario=f'scenarios/MOV-0021/MOV-0021-{v}.yaml', start_us=0, control=None,
+                          state=None, definition='docs/mov-0021.md', version=1)
+    for v in 'abcdef'})
+# MOV-0022 (docs/mov-0022.md): the same shape, new layouts for the retail pathing mechanism.
+EXPERIMENT_SHAPES.update({
+    f'MOV-0022-{v}': dict(experiment='MOV-0022', callbacks=600, period='0.020000', units=2,
+                          scenario=f'scenarios/MOV-0022/MOV-0022-{v}.yaml', start_us=0, control=None,
+                          state=None, definition='docs/mov-0022.md', version=1)
+    for v in 'abcdef'})
 STATE_KEYS = {'c10_9', 'x_9', 'y_9', 'facing_9'}
 # wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it
 # with cwd=ROOT and an absolute --out so recorded scenario paths stay repo-relative.
@@ -269,11 +293,23 @@ def validate_v4_parameters(parameters, library_clock=LIBRARY_CLOCK):
     keys(parameters, v4_keys + (('unit_pathing',) if 'unit_pathing' in parameters else ()))
     if 'unit_pathing' in parameters:
         pathing = parameters['unit_pathing']
-        keys(pathing, ('cell', 'blocked_cells', 'line_clearance', 'waypoint_radius', 'block_radius',
-                       'block_lookahead', 'block_lateral', 'recheck_updates'))
-        require(pathing['blocked_cells'] == "3x3 around each other unit's cell", 'unsupported unit pathing rule')
-        integer(pathing['recheck_updates'], 1, 1000)
-        for key in ('cell', 'line_clearance', 'waypoint_radius', 'block_radius', 'block_lookahead', 'block_lateral'):
+        if 'blocked_cells' in pathing:  # MOV-0018..0021 heuristic blocking, in retained traces
+            keys(pathing, ('cell', 'blocked_cells', 'line_clearance', 'waypoint_radius', 'block_radius',
+                           'block_lookahead', 'block_lateral', 'recheck_updates'))
+            require(pathing['blocked_cells'] == "3x3 around each other unit's cell", 'unsupported unit pathing rule')
+            counts, lengths = ('recheck_updates',), ('cell', 'line_clearance', 'waypoint_radius', 'block_radius',
+                                                     'block_lookahead', 'block_lateral')
+        else:  # retail grid A*, probe and blocking (docs/footman-v4-model.md)
+            keys(pathing, ('cell', 'grid_cells', 'search_limit', 'waypoint_radius', 'footprint', 'wait_updates',
+                           'give_way_updates', 'replan_updates'))
+            require(pathing['footprint'] == '2x2 cells: the cell holding the unit and those west and south',
+                    'unsupported unit footprint')
+            integer(pathing['grid_cells'], 1, 1 << 16)
+            integer(pathing['search_limit'], 1, 1 << 24)
+            counts, lengths = ('wait_updates', 'give_way_updates', 'replan_updates'), ('cell', 'waypoint_radius')
+        for key in counts:
+            integer(pathing[key], 0, 1000)
+        for key in lengths:
             require(type(pathing[key]) in (int, float) and pathing[key] >= 0, 'invalid unit pathing parameter')
     for key in ('update_period_steps', 'frame_steps'):
         integer(parameters[key], 1, 10000)

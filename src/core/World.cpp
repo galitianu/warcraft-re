@@ -4,8 +4,6 @@
 #include <limits>
 #include <map>
 #include <numbers>
-#include <queue>
-#include <tuple>
 
 namespace wc3 {
 namespace {
@@ -92,8 +90,7 @@ Model model(ModelVersion version) {
     return {.name = "footman-v2", .position_period_steps = 5, .facing_period_steps = 30,
             .facing_phase_steps = 10, .move_delay_steps = 10};
 }
-World::World(ModelVersion version, std::uint32_t seed)
-    : model_(model(version)), random_(seed) {
+World::World(ModelVersion version, std::uint32_t seed) : model_(model(version)), random_(seed) {
     clock_.push_back(model_.heading.clock_start);
 }
 
@@ -118,6 +115,7 @@ std::size_t World::create_footman(Vec2 position, float facing) {
     }
     unit.speed_ = model_.default_speed;
     units_.push_back(unit);
+    sequence_.push_back(units_.size() - 1);
     return units_.size() - 1;
 }
 void World::set_move_speed(std::size_t id, float requested) {
@@ -132,6 +130,8 @@ bool World::issue_point_order(std::size_t id, std::uint32_t order, Vec2 target) 
     unit.target_ = target;
     unit.command_step_ = steps_;
     unit.turn_updates_ = 0;
+    unit.hold_ = 0;
+    unit.blocker_ = no_unit;
     // A replaced order abandons the rest of the current batch where it is shown.
     unit.batch_active_ = false;
     if (model_.soft_float) {
@@ -140,7 +140,14 @@ bool World::issue_point_order(std::size_t id, std::uint32_t order, Vec2 target) 
         unit.soft_.target_x = sf::sub(sf::bits(target.x), origin);
         unit.soft_.target_y = sf::sub(sf::bits(target.y), origin);
     }
-    if (model_.pathing.enabled) plan(id);
+    if (model_.pathing.enabled) {
+        // The route is planned at the unit's next update, without waiting out a replan.
+        unit.route_.clear();
+        unit.planned_update_ = update_index() - model_.pathing.replan_updates;
+        // Retail processes the most recently ordered unit first (MOV-0018-b, MOV-0020-c).
+        sequence_.erase(std::find(sequence_.begin(), sequence_.end(), id));
+        sequence_.insert(sequence_.begin(), id);
+    }
     return true;
 }
 bool World::issue_immediate_order(std::size_t id, std::uint32_t order) {
@@ -149,7 +156,8 @@ bool World::issue_immediate_order(std::size_t id, std::uint32_t order) {
     unit.order_ = order_none;
     unit.batch_active_ = false;
     unit.route_.clear();
-    unit.waiting_ = false;
+    unit.hold_ = 0;
+    unit.blocker_ = no_unit;
     if (model_.soft_float) {
         soft_halt(unit);
         unit.soft_.settle = true;
@@ -324,7 +332,7 @@ void World::step_soft() {
     constexpr F turn_epsilon = 0x3456bf95;     // 2e-7
     constexpr F velocity_epsilon = 0x3456bf95; // 2e-7, squared speed
     constexpr F retarget_epsilon = 0x34d6bf95; // 4e-7, squared speed
-    for (std::size_t id = 0; id < units_.size(); ++id) {
+    for (const std::size_t id : sequence_) {
         auto& unit = units_[id];
         auto& s = unit.soft_;
         if (!update) {
@@ -351,7 +359,7 @@ void World::step_soft() {
             } else {
                 F error = angle_to(vector_angle(dx, dy, distance), current);
                 if (less(abs(error), turn_epsilon)) error = 0;
-                if (!greater(abs(error), window)) speed = s.speed;
+                if (!hold && !greater(abs(error), window)) speed = s.speed;
                 if (abs(error)) {
                     const F turn = greater(abs(error), turn_rate) ? turn_rate : abs(error);
                     heading = add(current, error & 0x80000000u ? neg(turn) : turn);
@@ -388,9 +396,6 @@ void World::step_soft() {
                 s.heading = wrap_angle(heading);
             }
         }
-        // Held by unit pathing: the update steers as usual (heading, facing target),
-        // then the unit does not move (MOV-0018-c's facing while it waits).
-        if (hold) s.vx = s.vy = 0;
         // Reported facing: accelerate, cap by min(cap, err) * min(err/range, 1)^0.25.
         const F error = angle_to(s.facing_target, s.facing);
         const F magnitude = abs(error);
@@ -414,45 +419,13 @@ void World::step_soft() {
     }
 }
 
-// Unit pathing (MOV-0018, docs/mov-0018.md). Geometry is evaluated in double from the
-// float32 positions with correctly rounded +, -, *, / and sqrt only, so every host
-// makes the same discrete choices; the soft-float movement itself is unchanged.
+// Unit pathing: retail's grid mechanism (docs/footman-v4-model.md#unit-pathing). Grid
+// geometry is evaluated in double from the float32 positions with correctly rounded
+// +, -, *, / and sqrt only, so every host makes the same discrete choices.
 namespace {
-struct P2 { double x, y; };
+
 P2 p2(Vec2 v) { return {v.x, v.y}; }
 double distance(P2 a, P2 b) { return std::sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y)); }
-double segment_distance(P2 p, P2 a, P2 b) {
-    const double dx = b.x - a.x, dy = b.y - a.y, d2 = dx * dx + dy * dy;
-    double t = d2 == 0 ? 0 : ((p.x - a.x) * dx + (p.y - a.y) * dy) / d2;
-    t = t < 0 ? 0 : t > 1 ? 1 : t;
-    return distance(p, {a.x + t * dx, a.y + t * dy});
-}
-// Distance from segment ab to the rectangle [lx, hx] x [ly, hy]; 0 if they meet.
-double rectangle_distance(P2 a, P2 b, double lx, double hx, double ly, double hy) {
-    auto in = [&](P2 p) { return p.x >= lx && p.x <= hx && p.y >= ly && p.y <= hy; };
-    if (in(a) || in(b)) return 0;
-    // Liang-Barsky clip: does the segment cross the rectangle?
-    double t0 = 0, t1 = 1;
-    const double d[2] = {b.x - a.x, b.y - a.y};
-    const double lo[2] = {lx - a.x, ly - a.y}, hi[2] = {hx - a.x, hy - a.y};
-    bool crosses = true;
-    for (int k = 0; k < 2 && crosses; ++k) {
-        if (d[k] == 0) { crosses = lo[k] <= 0 && hi[k] >= 0; continue; }
-        double u = lo[k] / d[k], v = hi[k] / d[k];
-        if (u > v) std::swap(u, v);
-        t0 = std::max(t0, u);
-        t1 = std::min(t1, v);
-        crosses = t0 <= t1;
-    }
-    if (crosses) return 0;
-    auto box = [&](P2 p) {
-        const double x = p.x < lx ? lx - p.x : p.x > hx ? p.x - hx : 0;
-        const double y = p.y < ly ? ly - p.y : p.y > hy ? p.y - hy : 0;
-        return std::sqrt(x * x + y * y);
-    };
-    return std::min({box(a), box(b), segment_distance({lx, ly}, a, b), segment_distance({lx, hy}, a, b),
-                     segment_distance({hx, ly}, a, b), segment_distance({hx, hy}, a, b)});
-}
 }
 Vec2 World::soft_position(const Unit& unit) const {
     if (!model_.soft_float) return unit.position_;
@@ -462,202 +435,265 @@ Vec2 World::soft_position(const Unit& unit) const {
     return {sf::value(sf::add(sf::add(s.x, sf::mul(s.vx, dt)), origin)),
             sf::value(sf::add(sf::add(s.y, sf::mul(s.vy, dt)), origin))};
 }
-// A unit following its route counts as moving even while it turns on the spot.
+// Moving: a nonzero velocity (as floats: -0 is still).
 bool World::moving(const Unit& unit) const {
-    return unit.order_ == order_move && !unit.waiting_;
+    return (unit.soft_.vx | unit.soft_.vy) & 0x7fffffffu;
 }
-// Plan a route from the unit's position to its order target around the other units.
-// A clear straight line is taken as it is. Otherwise A* runs over 32-unit cell centres
-// (8-connected, no corner cutting); the start cell is dropped, the first step kept, and
-// the rest string-pulled. A target covered by a unit ends the route at the last free
-// node before it (partial; replanned on arrival). An idle unit standing on the target
-// is ignored (MOV-0018-b).
+// Logical updates completed so far.
+std::uint64_t World::update_index() const {
+    const auto& h = model_.heading;
+    return steps_ < h.update_phase_steps ? 0 : (steps_ - h.update_phase_steps) / h.update_period_steps + 1;
+}
+// Plan a route to the order target with retail's grid A* (0x8bd560). A node is a cell,
+// standing for a Footman whose footprint is anchored there; a move is open when the
+// cells it newly covers are free of stationary units' footprints. Straight moves cost
+// 15, diagonal ones 21, and the heuristic is retail's integer distance estimate; the
+// open list is retail's binary heap, which decides between equal paths. If the search
+// never met an occupied cell the unit walks straight at the target; otherwise it
+// follows the node centres, skipping ahead as it reaches them (route()). An unreachable
+// target routes to the first-found node nearest it: a partial route, replanned on arrival.
 void World::plan(std::size_t id) {
     auto& unit = units_[id];
-    const auto& P = model_.pathing;
     unit.route_.clear();
     unit.route_index_ = 0;
-    unit.route_partial_ = unit.waiting_ = false;
-    const P2 start = p2(soft_position(unit)), goal = p2(unit.target_);
-    const double cell = P.cell;
-    auto index = [&](double v) { return static_cast<long>(std::floor(v / cell)); };
-    auto centre = [&](long i) { return (static_cast<double>(i) + 0.5) * cell; };
-    // Each other unit blocks the 3x3 cells around the cell holding its centre.
-    struct Block { long x, y; };
-    std::vector<Block> blocks;
-    for (std::size_t j = 0; j < units_.size(); ++j) {
-        if (j == id) continue;
-        const P2 q = p2(soft_position(units_[j]));
-        if (units_[j].order_ != order_move && distance(q, goal) <= model_.stop_radius) continue;
-        blocks.push_back({index(q.x), index(q.y)});
-    }
-    auto inside = [](const Block& b, long x, long y) { return std::abs(x - b.x) <= 1 && std::abs(y - b.y) <= 1; };
-    auto visible = [&](P2 a, P2 b, const std::vector<Block>& set) {
-        for (const auto& k : set) {
-            const double lx = (k.x - 1) * cell, hx = (k.x + 2) * cell, ly = (k.y - 1) * cell, hy = (k.y + 2) * cell;
-            if (rectangle_distance(a, b, lx, hx, ly, hy) < P.line_clearance) return false;
-        }
-        return true;
-    };
-    const long sx = index(start.x), sy = index(start.y), gx = index(goal.x), gy = index(goal.y);
-    if (visible(start, goal, blocks) || (sx == gx && sy == gy)) {
+    unit.route_partial_ = false;
+    unit.planned_update_ = update_index();
+    const P2 p = cell(unit), g = grid(unit.target_);
+    const long sx = std::floor(p.x), sy = std::floor(p.y), gx = std::floor(g.x), gy = std::floor(g.y);
+    if (sx == gx && sy == gy) {
         unit.route_.push_back(unit.target_);
         return;
     }
-    // Units covering the target node are searched through, then cut off (partial route).
-    std::vector<Block> covering, others;
-    for (const auto& k : blocks) (inside(k, gx, gy) ? covering : others).push_back(k);
-    auto free_of = [&](long x, long y, const std::vector<Block>& set) {
-        for (const auto& k : set)
-            if (inside(k, x, y)) return false;
-        return true;
-    };
-    auto passable = [&](long x, long y) { return (x == sx && y == sy) || free_of(x, y, others); };
-    const long margin = 16;
-    const long x0 = std::min(sx, gx) - margin, x1 = std::max(sx, gx) + margin;
-    const long y0 = std::min(sy, gy) - margin, y1 = std::max(sy, gy) + margin;
-    // Octile costs as exact (straight, diagonal) step counts: equal paths tie exactly.
-    struct Cost {
-        long s = 0, d = 0;
-        Cost operator+(Cost o) const { return {s + o.s, d + o.d}; }
-        bool operator<(Cost o) const {  // s + d*sqrt(2) < o.s + o.d*sqrt(2)
-            const long a = s - o.s, b = o.d - d;  // a < b*sqrt(2)?
-            if (b >= 0) return a < 0 || a * a < 2 * b * b;
-            return a < 0 && a * a > 2 * b * b;
+    std::vector<std::pair<long, long>> fixed;  // footprint cells of the units the search sees
+    for (std::size_t j = 0; j < units_.size(); ++j)
+        if (j != id && !moving(units_[j])) {
+            const P2 q = cell(units_[j]);
+            fixed.push_back({std::floor(q.x), std::floor(q.y)});
         }
-        bool operator==(Cost o) const { return s == o.s && d == o.d; }
+    bool touched = false;
+    const long size = model_.pathing.grid_cells;
+    auto blocked = [&](long x, long y) {
+        bool hit = x < 0 || y < 0 || x >= size || y >= size;
+        for (const auto& [fx, fy] : fixed) hit = hit || (x >= fx - 1 && x <= fx && y >= fy - 1 && y <= fy);
+        touched = touched || hit;
+        return hit;
     };
-    auto heuristic = [&](long x, long y) {
-        const long dx = std::abs(x - gx), dy = std::abs(y - gy);
-        return Cost{std::max(dx, dy) - std::min(dx, dy), std::min(dx, dy)};
+    auto estimate = [&](long x, long y) -> std::uint32_t {
+        const std::uint32_t dx = std::abs(x - gx) * 15, dy = std::abs(y - gy) * 15;
+        const std::uint32_t lo = std::min(dx, dy), hi = std::max(dx, dy);
+        if (lo <= hi >> 2) return hi;
+        const std::uint32_t u = lo + (lo >> 1);
+        return (u >> 2) + (u >> 7) + hi + (hi >> 6) - (hi >> 4);
     };
-    using Node = std::pair<long, long>;
-    std::map<Node, Cost> cost{{{sx, sy}, Cost{}}};
-    struct Entry { Cost f, h; std::uint64_t serial; long x, y; };
-    // Ties: lower f, then lower h, then first queued.
-    auto later = [](const Entry& a, const Entry& b) {
-        if (!(a.f == b.f)) return b.f < a.f;
-        if (!(a.h == b.h)) return b.h < a.h;
-        return a.serial > b.serial;
+    struct Node { long x, y; std::uint32_t g = 0, h = 0, version = 0; long parent = -1; int state = 0; };
+    enum { unseen = 0, open = 1, closed = 2 };
+    std::vector<Node> nodes;
+    std::map<std::pair<long, long>, long> index;
+    auto node = [&](long x, long y) {
+        const auto [it, fresh] = index.try_emplace({x, y}, static_cast<long>(nodes.size()));
+        if (fresh) nodes.push_back({x, y});
+        return it->second;
     };
-    std::priority_queue<Entry, std::vector<Entry>, decltype(later)> open(later);
-    std::uint64_t serial = 0;
-    open.push({heuristic(sx, sy), heuristic(sx, sy), serial++, sx, sy});
-    static constexpr int steps[8][2] = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}, {1, -1}, {-1, -1}, {-1, 1}, {1, 1}};
+    // 1-based binary heap of (f, node, version); stale versions are skipped.
+    struct Entry { std::uint32_t f; long node; std::uint32_t version; };
+    std::vector<Entry> heap(1);
+    auto push = [&](Entry e) {
+        heap.push_back(e);
+        std::size_t i = heap.size() - 1;
+        for (; i > 1 && !(heap[i / 2].f < e.f); i /= 2) heap[i] = heap[i / 2];
+        heap[i] = e;
+    };
+    auto pop = [&] {
+        const Entry top = heap[1], last = heap.back();
+        heap.pop_back();
+        if (const std::size_t n = heap.size() - 1; n >= 1) {
+            std::size_t i = 1;
+            for (std::size_t c = 2; i <= n / 2; i = c, c = 2 * i) {
+                if (c < n && heap[c + 1].f <= heap[c].f) ++c;
+                if (last.f <= heap[c].f) break;
+                heap[i] = heap[c];
+            }
+            heap[i] = last;
+        }
+        return top;
+    };
+    const long start = node(sx, sy), goal = node(gx, gy);
+    long best = start;
+    std::uint64_t best_distance = (sx - gx) * (sx - gx) + (sy - gy) * (sy - gy);
+    auto relax = [&](long n, long from, std::uint32_t step) {
+        const std::uint32_t cost = nodes[from].g + step, h = estimate(nodes[n].x, nodes[n].y);
+        auto& m = nodes[n];
+        if (m.state == unseen) {
+            const std::uint64_t d = (m.x - gx) * (m.x - gx) + (m.y - gy) * (m.y - gy);
+            if (d < best_distance) {
+                best_distance = d;
+                best = n;
+            }
+        } else if (m.g <= cost) {
+            return;
+        }
+        m.g = cost;
+        m.h = h;
+        m.parent = from;
+        m.state = open;
+        push({cost + h, n, ++m.version});
+    };
+    nodes[start].h = estimate(sx, sy);
+    nodes[start].state = open;
+    push({nodes[start].h, start, ++nodes[start].version});
     bool found = false;
-    while (!open.empty()) {
-        const Entry e = open.top();
-        open.pop();
-        const long x = e.x, y = e.y;
-        if (cost[{x, y}] + heuristic(x, y) < e.f) continue;  // stale entry
-        // Finish every node that can still tie the goal, so equal paths are all seen.
-        if (found && cost[{gx, gy}] < e.f) break;
-        if (x == gx && y == gy) { found = true; continue; }
-        for (const auto& step : steps) {
-            const long nx = x + step[0], ny = y + step[1];
-            if (nx < x0 || nx > x1 || ny < y0 || ny > y1 || !passable(nx, ny)) continue;
-            if (step[0] && step[1] && (!passable(x + step[0], y) || !passable(x, y + step[1]))) continue;
-            const Cost next = cost[{x, y}] + (step[0] && step[1] ? Cost{0, 1} : Cost{1, 0});
-            const auto known = cost.find({nx, ny});
-            if (known != cost.end() && !(next < known->second)) continue;
-            cost[{nx, ny}] = next;
-            open.push({next + heuristic(nx, ny), heuristic(nx, ny), serial++, nx, ny});
-        }
-    }
-    if (!found) {  // Unreachable: keep walking straight at the target.
-        unit.route_.push_back(unit.target_);
-        return;
-    }
-    // Walk back from the goal over equal-cost predecessors: diagonal steps first, each
-    // group clockwise from east. Equal paths so take their diagonals as late as possible
-    // (MOV-0018-b's (976, -16)), and an exact tie between sides of a blocker on an
-    // eastward line passes south (MOV-0018-a/d, one observed tie).
-    static constexpr int back[8][2] = {{1, -1}, {-1, -1}, {-1, 1}, {1, 1}, {1, 0}, {0, -1}, {-1, 0}, {0, 1}};
-    std::vector<Node> nodes{{gx, gy}};
-    while (nodes.back() != Node{sx, sy}) {
-        const auto [x, y] = nodes.back();
-        const Cost here = cost.at({x, y});
-        bool stepped = false;
-        for (const auto& step : back) {
-            const long px = x + step[0], py = y + step[1];
-            const auto known = cost.find({px, py});
-            if (known == cost.end() || !passable(px, py)) continue;
-            if (step[0] && step[1] && (!passable(px, y) || !passable(x, py))) continue;
-            if (!(known->second + (step[0] && step[1] ? Cost{0, 1} : Cost{1, 0}) == here)) continue;
-            nodes.push_back({px, py});
-            stepped = true;
+    for (std::uint32_t expanded = 0; heap.size() > 1 && expanded < model_.pathing.search_limit; ++expanded) {
+        const Entry e = pop();
+        if (e.version != nodes[e.node].version) continue;
+        ++nodes[e.node].version;
+        if (e.node == goal) {
+            found = true;
             break;
         }
-        if (!stepped) break;  // cannot happen with exact costs
+        const long x = nodes[e.node].x, y = nodes[e.node].y;
+        // The 12 cells around the footprint, from the south-west corner anticlockwise;
+        // each move needs the ones it newly covers.
+        static constexpr int ring[12][2] = {{-2, -2}, {-1, -2}, {0, -2}, {1, -2}, {1, -1}, {1, 0},
+                                            {1, 1}, {0, 1}, {-1, 1}, {-2, 1}, {-2, 0}, {-2, -1}};
+        unsigned mask = 0;
+        for (int b = 0; b < 12; ++b)
+            if (blocked(x + ring[b][0], y + ring[b][1])) mask |= 1u << b;
+        static constexpr struct { int dx, dy; unsigned needs; std::uint32_t cost; } moves[8] = {
+            {-1, -1, 0xc07, 21}, {0, -1, 0x6, 15}, {1, -1, 0x3e, 21}, {-1, 0, 0xc00, 15},
+            {1, 0, 0x30, 15}, {-1, 1, 0xf80, 21}, {0, 1, 0x180, 15}, {1, 1, 0x1f0, 21}};
+        for (const auto& m : moves)
+            if (!(mask & m.needs)) relax(node(x + m.dx, y + m.dy), e.node, m.cost);
+        nodes[e.node].state = closed;
     }
-    std::reverse(nodes.begin(), nodes.end());
-    std::vector<P2> raw;
-    bool partial = false;
-    for (std::size_t i = 1; i < nodes.size(); ++i) {
-        if (!free_of(nodes[i].first, nodes[i].second, covering)) { partial = true; break; }
-        raw.push_back({centre(nodes[i].first), centre(nodes[i].second)});
+    const long end = found ? goal : best;
+    const double origin = model_.heading.frame_origin, size_cell = model_.pathing.cell;
+    for (long n = end; n != start && n >= 0; n = nodes[n].parent)
+        unit.route_.push_back({static_cast<float>((nodes[n].x + 0.5) * size_cell + origin),
+                               static_cast<float>((nodes[n].y + 0.5) * size_cell + origin)});
+    if (unit.route_.empty() || end == goal) {
+        if (unit.route_.empty()) unit.route_.push_back(unit.target_);
+        unit.route_.front() = unit.target_;
     }
-    if (raw.empty()) {
-        unit.route_.push_back(unit.target_);
-        return;
-    }
-    std::vector<P2> route{raw.front()};
-    for (std::size_t i = 0; i + 1 < raw.size();) {
-        std::size_t j = raw.size() - 1;
-        while (j > i + 1 && !visible(raw[i], raw[j], blocks)) --j;
-        route.push_back(raw[j]);
-        i = j;
-    }
-    for (const auto& w : route) unit.route_.push_back({static_cast<float>(w.x), static_cast<float>(w.y)});
-    if (!partial) unit.route_.back() = unit.target_;
-    unit.route_partial_ = partial;
+    unit.route_partial_ = end != goal && end != start;
+    if (!touched) unit.route_.erase(unit.route_.begin() + 1, unit.route_.end());
+    std::reverse(unit.route_.begin(), unit.route_.end());
 }
-// True when another unit lies within block_radius of the next block_lookahead of the
-// path, and is (or, if moving, soon will be) within block_lateral of the path line.
-bool World::blocked_by(const Unit& unit, Vec2 direction, std::size_t& blocker) const {
-    const auto& P = model_.pathing;
-    const P2 p = p2(soft_position(unit));
-    const double dx = direction.x, dy = direction.y;
-    for (std::size_t j = 0; j < units_.size(); ++j) {
-        const auto& other = units_[j];
-        if (&other == &unit) continue;
-        const P2 q = p2(soft_position(other));
-        const double rx = q.x - p.x, ry = q.y - p.y;
-        const double along = rx * dx + ry * dy, perp = ry * dx - rx * dy;
-        if (along <= 0) continue;
-        const double beyond = along > P.block_lookahead ? along - P.block_lookahead : 0;
-        if (std::sqrt(beyond * beyond + perp * perp) >= P.block_radius) continue;
-        // A moving unit's distance from the path line, the nearer of now and after the
-        // time this unit needs to cover the lookahead (0 if it crosses the line by then).
-        double lateral = std::abs(perp);
-        if (moving(other)) {
-            const double vx = sf::value(other.soft_.vx), vy = sf::value(other.soft_.vy);
-            const double later = perp + (vy * dx - vx * dy) * P.block_lookahead / sf::value(unit.soft_.speed);
-            lateral = (perp > 0) != (later > 0) ? 0 : std::min(lateral, std::abs(later));
-        }
-        if (lateral < P.block_lateral) {
-            blocker = j;
-            return true;
-        }
-    }
-    return false;
+// Grid position in cells from the map corner.
+P2 World::grid(Vec2 v) const {
+    const double origin = model_.heading.frame_origin, cell = model_.pathing.cell;
+    return {(v.x - origin) / cell, (v.y - origin) / cell};
 }
-// Per update, before steering: advance waypoints, wait for or route around units in
-// the way, and point the soft-float target at the current waypoint. True holds the
-// unit in place this update.
+// The grid position a unit occupies: where it was last integrated, so a unit not yet
+// processed this update still covers last update's cells.
+P2 World::cell(const Unit& unit) const {
+    const double cell = model_.pathing.cell;
+    return {sf::value(unit.soft_.x) / cell, sf::value(unit.soft_.y) / cell};
+}
+// Other units whose footprints cover any of the cells a Footman entering cell (x, y)
+// from the given octant (retail class-1 walker: 8 west, 2 east, 1 south, 4 north) newly
+// covers. A Footman's footprint is the 2x2 cells {fx-1, fx} x {fy-1, fy}, f the cell
+// holding it: the walker checks the whole footprint with no cell change, the leading
+// edge for a straight one, and the L of the swept box for a diagonal one.
+std::vector<std::size_t> World::occupants(std::size_t id, long x, long y, int octant, bool moving_too) const {
+    std::vector<std::pair<long, long>> cells;
+    auto row = [&](long cx, long cy, int n) { for (int i = 0; i < n; ++i) cells.push_back({cx + i, cy}); };
+    auto column = [&](long cx, long cy, int n) { for (int i = 0; i < n; ++i) cells.push_back({cx, cy + i}); };
+    switch (octant) {
+    case 1: row(x - 1, y - 1, 2); break;
+    case 2: column(x, y - 1, 2); break;
+    case 4: row(x - 1, y, 2); break;
+    case 8: column(x - 1, y - 1, 2); break;
+    case 3: row(x - 2, y - 1, 3); column(x, y, 2); break;
+    case 6: row(x - 2, y, 3); column(x, y - 2, 2); break;
+    case 9: row(x - 1, y - 1, 3); column(x - 1, y, 2); break;
+    case 12: row(x - 1, y, 3); column(x - 1, y - 2, 2); break;
+    default: row(x - 1, y - 1, 2); row(x - 1, y, 2);
+    }
+    std::vector<std::size_t> found;
+    for (const auto& [cx, cy] : cells)
+        for (std::size_t j = 0; j < units_.size(); ++j) {
+            const P2 q = cell(units_[j]);
+            const long fx = std::floor(q.x), fy = std::floor(q.y);
+            if (j == id || cx < fx - 1 || cx > fx || cy < fy - 1 || cy > fy) continue;
+            if (!moving_too && moving(units_[j])) continue;
+            if (std::find(found.begin(), found.end(), j) == found.end()) found.push_back(j);
+        }
+    return found;
+}
+namespace {
+int octant(long fx, long fy, long tx, long ty) {
+    return (tx < fx ? 8 : tx > fx ? 2 : 0) | (ty < fy ? 1 : ty > fy ? 4 : 0);
+}
+}
+// The units in the way of a step toward the waypoint: the walker for the cell one cell
+// ahead (or the waypoint, if nearer).
+std::vector<std::size_t> World::probe(std::size_t id, Vec2 waypoint) const {
+    const P2 p = cell(units_[id]), w = grid(waypoint);
+    double dx = w.x - p.x, dy = w.y - p.y;
+    if (const double length = std::sqrt(dx * dx + dy * dy); length > 1) {
+        dx /= length;
+        dy /= length;
+    }
+    const long ex = std::floor(p.x + dx), ey = std::floor(p.y + dy);
+    return occupants(id, ex, ey, octant(std::floor(p.x), std::floor(p.y), ex, ey), true);
+}
+// Whether the unit could walk straight to the waypoint: the walker at each whole-cell
+// step along the line that enters a new cell. Retail starts the previous cell at the
+// grid corner (0, 0), so the first step always checks the north-east L.
+bool World::clear(std::size_t id, Vec2 waypoint) const {
+    const P2 p = cell(units_[id]), w = grid(waypoint);
+    double dx = w.x - p.x, dy = w.y - p.y;
+    const double length = std::sqrt(dx * dx + dy * dy);
+    if (length > 1) {
+        dx /= length;
+        dy /= length;
+    }
+    long px = 0, py = 0;
+    for (double t = 1; t < length; t += 1) {
+        const long x = std::floor(p.x + dx * t), y = std::floor(p.y + dy * t);
+        if ((x != px || y != py) && !occupants(id, x, y, octant(px, py, x, y), false).empty()) return false;
+        px = x;
+        py = y;
+    }
+    return true;
+}
+// Per update, before steering: advance waypoints, probe for units in the way, and
+// point the soft-float target at the current waypoint. True holds the unit in place
+// this update; it still steers toward the waypoint.
 bool World::route(std::size_t id) {
     auto& unit = units_[id];
     auto& s = unit.soft_;
     const auto& P = model_.pathing;
-    if (unit.route_.empty()) plan(id);
+    const sf::F origin = sf::bits(model_.heading.frame_origin);
+    auto aim = [&](Vec2 point) {
+        s.target_x = sf::sub(sf::bits(point.x), origin);
+        s.target_y = sf::sub(sf::bits(point.y), origin);
+    };
+    // Holding out a wait, or waiting to replan, the unit steers for its order target.
+    if (unit.hold_) {
+        --unit.hold_;
+        aim(unit.target_);
+        return true;
+    }
+    if (unit.route_.empty()) {
+        if (update_index() - unit.planned_update_ < P.replan_updates) {
+            aim(unit.target_);
+            return true;
+        }
+        plan(id);
+    }
     auto point = [&] { return p2(soft_position(unit)); };
     // At the end of a partial route the unit replans at once and holds for this update,
     // already steering toward the new route (MOV-0018-b's u1).
     bool hold = false;
     for (;;) {
-        while (unit.route_index_ + 1 < unit.route_.size()
-               && distance(point(), p2(unit.route_[unit.route_index_])) <= P.waypoint_radius)
+        // Reaching a waypoint skips on to the last of the following ones in straight reach.
+        if (unit.route_index_ + 1 < unit.route_.size()
+            && distance(point(), p2(unit.route_[unit.route_index_])) <= P.waypoint_radius) {
             ++unit.route_index_;
+            while (unit.route_index_ + 1 < unit.route_.size() && clear(id, unit.route_[unit.route_index_ + 1]))
+                ++unit.route_index_;
+        }
         if (hold || !unit.route_partial_ || unit.route_index_ + 1 != unit.route_.size()
             || distance(point(), p2(unit.route_.back())) > P.waypoint_radius)
             break;
@@ -665,36 +701,32 @@ bool World::route(std::size_t id) {
         hold = true;
     }
     const Vec2 waypoint = unit.route_[unit.route_index_];
-    const sf::F origin = sf::bits(model_.heading.frame_origin);
-    s.target_x = sf::sub(sf::bits(waypoint.x), origin);
-    s.target_y = sf::sub(sf::bits(waypoint.y), origin);
+    aim(waypoint);
     if (hold) return true;
-    const double to_x = waypoint.x - point().x, to_y = waypoint.y - point().y;
-    const double length = std::sqrt(to_x * to_x + to_y * to_y);
-    if (length <= model_.stop_radius) return false;  // arrival is the movement code's
-    const Vec2 direction{static_cast<float>(to_x / length), static_cast<float>(to_y / length)};
-    std::size_t blocker = 0;
-    if (unit.waiting_) {
-        ++unit.wait_updates_;
-        if (!moving(units_[unit.blocker_])) {
-            plan(id);  // the unit in the way has stopped: route around it
-            return route(id);
-        }
-        if (unit.wait_updates_ % P.recheck_updates) return true;
-        if (blocked_by(unit, direction, blocker)) {
-            unit.blocker_ = blocker;
+    if (distance(point(), p2(waypoint)) <= model_.stop_radius) return false;  // arrival is the movement code's
+    const auto in_way = probe(id, waypoint);
+    unit.blocker_ = no_unit;
+    if (in_way.empty()) return false;
+    // A moving unit that is not itself held for another: wait for it if it is at least
+    // as fast (squared speeds, so ulp differences decide equal speeds); a slower one
+    // holds for this unit instead. Stationary units are routed around.
+    auto squared = [](const Unit& u) { return sf::add(sf::mul(u.soft_.vx, u.soft_.vx), sf::mul(u.soft_.vy, u.soft_.vy)); };
+    const sf::F mine = squared(unit);
+    for (const std::size_t j : in_way) {
+        auto& other = units_[j];
+        const sf::F theirs = squared(other);
+        if (!theirs || other.blocker_ != no_unit) continue;
+        if (!sf::less(theirs, mine)) {
+            unit.blocker_ = j;
+            unit.hold_ = std::max(unit.hold_, P.wait_updates);
             return true;
         }
-        unit.waiting_ = false;
-        return false;
+        other.blocker_ = id;
+        other.hold_ = std::max(other.hold_, P.give_way_updates);
     }
-    if (blocked_by(unit, direction, blocker)) {
-        unit.waiting_ = true;
-        unit.wait_updates_ = 0;
-        unit.blocker_ = blocker;
-        return true;
-    }
-    return false;
+    // Nothing to wait for: drop the route and plan around what is in the way.
+    unit.route_.clear();
+    aim(unit.target_);
+    return true;
 }
 }
-

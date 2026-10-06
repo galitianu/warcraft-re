@@ -132,7 +132,9 @@ Trace run_scheduled(const scenario::Scenario& s, wc3::ModelVersion version, std:
 // reproduced it byte for byte (docs/phase-5-scenarios.md) before it was removed.
 Trace run(const scenario::Scenario& description, wc3::ModelVersion version, std::uint32_t seed,
           bool before_due_update) {
-    if (description.version == 2) return run_scheduled(description, version, seed, before_due_update);
+    if (description.version == 2) {
+        return run_scheduled(description, version, seed, before_due_update);
+    }
     const auto& s = description;
     wc3::World world(version, seed);
     const auto step_us = world.parameters().step_us;

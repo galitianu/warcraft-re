@@ -84,6 +84,14 @@ class OracleGeneratorTests(unittest.TestCase):
             self.assertIn('"MOV-0006", "MOV-0006-g1", 1000', text)
             self.assertIn('"MOV-0006", "MOV-0006", 1000', generate(CODEGEN, [path])[0]['MOV-0006.j'].decode())
 
+    def test_multi_unit_speed_setters_follow_every_creation(self):
+        # MOV-0002's control order: every CreateUnit, then each unit's setters.
+        text = generate(CODEGEN, [ROOT / 'scenarios/MOV-0022/MOV-0022-a.yaml'])[0]['MOV-0022-a.j'].decode()
+        calls = [line.split('(')[0].split()[-1] for line in text.splitlines()
+                 if 'CreateUnit(' in line or 'SetUnitMoveSpeed(' in line]
+        self.assertEqual(calls, ['CreateUnit', 'CreateUnit', 'SetUnitMoveSpeed'])
+        self.assertIn('u0_requested_move_speed=300', text)
+
     def test_unsupported_input_is_rejected_not_approximated(self):
         base = (ROOT / 'scenarios/MOV-0006.yaml').read_text()
         cases = (
@@ -93,7 +101,6 @@ class OracleGeneratorTests(unittest.TestCase):
             (base.replace('position: [0, 0]', 'position: [3329, 0]'), 'outside template'),
             (base.replace('target: [1000, 0]', 'target: [0, 3072.000001]'), 'outside template'),
             (base.replace('offset: [0, 1000]', 'offset: [0, 7000]'), 'playable span'),
-            (base.replace('    facing: 0', '    facing: 0\n    move_speed: 100\n  - name: u1\n    type: hfoo\n    position: [0, 384]\n    facing: 0'), 'multi-unit property'),
             (base.replace('\n', '\r\n'), 'carriage return'),
             (base.replace('...\n', ''), 'missing document end'),
         )

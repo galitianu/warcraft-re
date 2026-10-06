@@ -1,0 +1,313 @@
+{
+  "method": "MOV-0019 (docs/mov-0019.md#results): where each WC3 wait began, from the fixtures alone.",
+  "cases": {
+    "MOV-0018-b": {
+      "u0": [
+        {
+          "stop": 57,
+          "resume": 59,
+          "held_updates": 2,
+          "at_stop": {
+            "update": 57,
+            "t": 1.72,
+            "along": 79.3,
+            "left": 13.1,
+            "distance": 80.4,
+            "other_velocity_along": -270.0,
+            "other_velocity_left": 0.7,
+            "other_moving": true
+          },
+          "update_before": {
+            "update": 56,
+            "t": 1.69,
+            "along": 95.6,
+            "left": 12.5,
+            "distance": 96.4,
+            "other_velocity_along": -270.0,
+            "other_velocity_left": 2.4,
+            "other_moving": true
+          }
+        },
+        {
+          "stop": 64,
+          "resume": 65,
+          "held_updates": 1,
+          "at_stop": {
+            "update": 64,
+            "t": 1.93,
+            "along": -52.6,
+            "left": 76.1,
+            "distance": 92.5,
+            "other_velocity_along": -0.0,
+            "other_velocity_left": 0.0,
+            "other_moving": false
+          },
+          "update_before": {
+            "update": 63,
+            "t": 1.9,
+            "along": -45.8,
+            "left": 76.1,
+            "distance": 88.8,
+            "other_velocity_along": -0.0,
+            "other_velocity_left": 0.0,
+            "other_moving": false
+          }
+        }
+      ],
+      "u1": [
+        {
+          "stop": 57,
+          "resume": 67,
+          "held_updates": 10,
+          "at_stop": {
+            "update": 57,
+            "t": 1.72,
+            "along": 79.3,
+            "left": 13.3,
+            "distance": 80.4,
+            "other_velocity_along": -270.0,
+            "other_velocity_left": -0.7,
+            "other_moving": true
+          },
+          "update_before": {
+            "update": 56,
+            "t": 1.69,
+            "along": 95.5,
+            "left": 13.4,
+            "distance": 96.4,
+            "other_velocity_along": -270.0,
+            "other_velocity_left": -2.4,
+            "other_moving": true
+          }
+        },
+        {
+          "stop": 122,
+          "resume": 123,
+          "held_updates": 1,
+          "at_stop": {
+            "update": 122,
+            "t": 3.67,
+            "along": -827.8,
+            "left": 29.6,
+            "distance": 828.4,
+            "other_velocity_along": -269.5,
+            "other_velocity_left": -16.1,
+            "other_moving": true
+          },
+          "update_before": {
+            "update": 121,
+            "t": 3.64,
+            "along": -813.0,
+            "left": 30.7,
+            "distance": 813.6,
+            "other_velocity_along": -269.5,
+            "other_velocity_left": -15.9,
+            "other_moving": true
+          }
+        }
+      ]
+    },
+    "MOV-0018-c": {
+      "u0": [
+        {
+          "stop": 55,
+          "resume": 70,
+          "held_updates": 15,
+          "at_stop": {
+            "update": 55,
+            "t": 1.66,
+            "along": 54.7,
+            "left": -54.3,
+            "distance": 77.1,
+            "other_velocity_along": -0.9,
+            "other_velocity_left": 270.0,
+            "other_moving": true
+          },
+          "update_before": {
+            "update": 54,
+            "t": 1.63,
+            "along": 62.6,
+            "left": -62.7,
+            "distance": 88.6,
+            "other_velocity_along": 0.3,
+            "other_velocity_left": 270.0,
+            "other_moving": true
+          }
+        }
+      ],
+      "u1": []
+    },
+    "MOV-0019-g": {
+      "u0": [
+        {
+          "stop": 52,
+          "resume": 62,
+          "held_updates": 10,
+          "at_stop": {
+            "update": 52,
+            "t": 1.57,
+            "along": 80.2,
+            "left": -18.8,
+            "distance": 82.3,
+            "other_velocity_along": 0.0,
+            "other_velocity_left": 270.0,
+            "other_moving": true
+          },
+          "update_before": {
+            "update": 51,
+            "t": 1.54,
+            "along": 87.1,
+            "left": -26.4,
+            "distance": 91.0,
+            "other_velocity_along": -1.6,
+            "other_velocity_left": 270.0,
+            "other_moving": true
+          }
+        }
+      ],
+      "u1": []
+    },
+    "MOV-0019-h": {
+      "u0": [
+        {
+          "stop": 52,
+          "resume": 67,
+          "held_updates": 15,
+          "at_stop": {
+            "update": 52,
+            "t": 1.57,
+            "along": 80.2,
+            "left": -58.8,
+            "distance": 99.4,
+            "other_velocity_along": 0.0,
+            "other_velocity_left": 270.0,
+            "other_moving": true
+          },
+          "update_before": {
+            "update": 51,
+            "t": 1.54,
+            "along": 87.3,
+            "left": -66.4,
+            "distance": 109.7,
+            "other_velocity_along": -1.6,
+            "other_velocity_left": 270.0,
+            "other_moving": true
+          }
+        }
+      ],
+      "u1": []
+    },
+    "MOV-0019-i": {
+      "u0": [
+        {
+          "stop": 58,
+          "resume": 78,
+          "held_updates": 20,
+          "at_stop": {
+            "update": 58,
+            "t": 1.75,
+            "along": 31.3,
+            "left": -71.7,
+            "distance": 78.2,
+            "other_velocity_along": 0.9,
+            "other_velocity_left": 202.5,
+            "other_moving": true
+          },
+          "update_before": {
+            "update": 57,
+            "t": 1.72,
+            "along": 38.7,
+            "left": -78.1,
+            "distance": 87.2,
+            "other_velocity_along": -1.1,
+            "other_velocity_left": 270.0,
+            "other_moving": true
+          }
+        }
+      ],
+      "u1": [
+        {
+          "stop": 58,
+          "resume": 59,
+          "held_updates": 1,
+          "at_stop": {
+            "update": 58,
+            "t": 1.75,
+            "along": 71.6,
+            "left": 31.6,
+            "distance": 78.2,
+            "other_velocity_along": 0.9,
+            "other_velocity_left": -202.5,
+            "other_moving": true
+          },
+          "update_before": {
+            "update": 57,
+            "t": 1.72,
+            "along": 78.3,
+            "left": 38.3,
+            "distance": 87.2,
+            "other_velocity_along": -1.1,
+            "other_velocity_left": -270.0,
+            "other_moving": true
+          }
+        }
+      ]
+    },
+    "MOV-0019-j": {
+      "u0": [
+        {
+          "stop": 57,
+          "resume": 77,
+          "held_updates": 20,
+          "at_stop": {
+            "update": 57,
+            "t": 1.72,
+            "along": 79.4,
+            "left": 59.3,
+            "distance": 99.1,
+            "other_velocity_along": -269.8,
+            "other_velocity_left": 9.7,
+            "other_moving": true
+          },
+          "update_before": {
+            "update": 56,
+            "t": 1.69,
+            "along": 96.0,
+            "left": 58.4,
+            "distance": 112.4,
+            "other_velocity_along": -269.8,
+            "other_velocity_left": 11.4,
+            "other_moving": true
+          }
+        }
+      ],
+      "u1": [
+        {
+          "stop": 57,
+          "resume": 58,
+          "held_updates": 1,
+          "at_stop": {
+            "update": 57,
+            "t": 1.72,
+            "along": 77.3,
+            "left": 62.1,
+            "distance": 99.1,
+            "other_velocity_along": -269.8,
+            "other_velocity_left": -9.7,
+            "other_moving": true
+          },
+          "update_before": {
+            "update": 56,
+            "t": 1.69,
+            "along": 93.5,
+            "left": 62.4,
+            "distance": 112.4,
+            "other_velocity_along": -269.7,
+            "other_velocity_left": -11.4,
+            "other_moving": true
+          }
+        }
+      ]
+    }
+  }
+}

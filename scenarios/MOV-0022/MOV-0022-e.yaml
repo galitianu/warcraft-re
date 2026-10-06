@@ -1,0 +1,25 @@
+# MOV-0022: a diagonal past an idle unit on the line
+# Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0022
+map_revision: MOV-0022-e
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 45
+  - name: u1
+    type: hfoo
+    position: [500, 500]
+    facing: 0
+observe:
+  period: 0.02
+  callbacks: 600
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 1000]
+...

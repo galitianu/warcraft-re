@@ -1,12 +1,15 @@
 # Progress
 
-As of 3 October 2026.
+As of 5 October 2026.
 
-**Current stage:** Phase 8, first P3 behavior. [MOV-0018](docs/mov-0018.md)
-([issue #24](https://github.com/galitianu/warcraft-re/issues/24), merged and verified on main) adds unit–unit collision:
-footman-v4 plans grid routes around other Footmen and waits for moving ones. All four
-captured variants match WC3's side, waits, arrival and final position; two are bit-identical
-and the rest differ only at P1.
+**Current stage:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
+[issue #27](https://github.com/galitianu/warcraft-re/issues/27)). footman-v4 now follows WC3's own pathing
+mechanism, read from the retail executable ([model](docs/footman-v4-model.md#unit-pathing)): grid footprints, a
+one-cell probe, waits decided by squared speed, and the retail A*. It reproduces **all 26** two-Footman captures
+(MOV-0018 to MOV-0021) exactly. Those captures guided the analysis, so [MOV-0022](docs/mov-0022.md) pre-registered
+six new layouts: unequal speeds, reversed issue order, a slow crossing unit, a diagonal past an idle unit and an
+overtake. All six captures match the predicted traces exactly. No P3, P2 or P1 difference remains in the 32
+two-Footman captures; issue #27's acceptance is met.
 
 **Phase 7:** capture capability implemented for four reviewed v1 scenarios.
 One command completes generation, verified World Editor packaging, three fresh WC3
@@ -488,13 +491,93 @@ PR #26 merged as `89042fc`. Its
 configurations and the aggregate. The downloaded artifacts [regrade](results/mov-0018/main-verification/summary.md)
 to a report identical to the hosted one, and every MOV-0018 C++ trace record equals the PR run's.
 
+## MOV-0019 and MOV-0020 who gives way
+
+[Issue #27](https://github.com/galitianu/warcraft-re/issues/27), **P3**. Both designs and
+predictions were committed before capture (`d6da91c`, `bff0067`). Ten MOV-0019 and six MOV-0020
+maps were each captured in three payload-identical fresh WC3 runs.
+
+- **MOV-0019** ([results](docs/mov-0019.md#results)) confirms the 3×3 footprint and the
+  tie order, and **refutes** the wait corridor: in i and j the wrong unit waits (P3).
+  Post hoc, partial routes now go to the free node nearest the target, and an idle
+  unit covering the target is ignored.
+- **MOV-0020** ([results](docs/mov-0020.md#results)) swaps the units' roles. Only
+  **role** survives: the eastward unit waits in all six variants, whatever its
+  index or order of issue. The partial-route rule passes its pre-registered test (1e-6).
+- **Model (post hoc):** a unit blocked by a moving unit on its left that does not see
+  it holds one update, routes around it, and that unit holds 20 updates
+  ([rule](docs/mov-0020.md#post-hoc-refit-giving-way)).
+- **Status** over all 20 captures: P3 acceptance passes in 12. P2 differences remain in
+  MOV-0019-d, h, i and MOV-0020-a, c (routes up to 10 units off, a 2-update wait onset,
+  the side of a unit that does not move off its line). The **head-on offset family
+  (MOV-0019-j, MOV-0020-b, d) stays P3**: WC3's eastward unit waits about 20 updates; the
+  model's waits 0–4 and the westward unit swings 39–47 units wide.
+- **Gate:** [run_mov0018.py](tools/run_mov0018.py) `--experiment MOV-0018|MOV-0019|MOV-0020`
+  runs in CI for all three, recording every comparator failure and each open
+  difference with its rating.
+
+Local CI passes: CTest 3/3, Python 87/87, the generated loop, and the
+MOV-0013/0014/0015/0018/0019/0020 gates. [PR #28](https://github.com/galitianu/warcraft-re/pull/28)'s
+[workflow 37148140178](https://github.com/galitianu/warcraft-re/actions/runs/37148140178) passes all five
+configurations and the aggregate (head `79abf58`). The downloaded artifacts
+[regrade](results/mov-0020/pr-verification/summary.md) to a scope report identical to the hosted one,
+with MOV-0018, 0019 and 0020 PASS in all five configurations.
+
+## MOV-0021 head-on with a lateral offset
+
+[Issue #27](https://github.com/galitianu/warcraft-re/issues/27), **P3**. The design and predictions were
+committed before capture (`f1b2fd7`). Six maps were each captured in three payload-identical fresh WC3
+runs ([results](docs/mov-0021.md#results)).
+
+- **No hypothesis survives** (heading, rotation, line). Turning MOV-0019-j by 90°
+  changes who stops: clockwise, u0 holds 2 updates and u1 5; anticlockwise, neither
+  stops. So absolute position or direction decides, not only the units' relative geometry.
+  Without partial routes (e), both units wait.
+- A float drift of the eastward unit across a cell boundary (y +0.0005 → −0.024)
+  separates the mirror (a, both stop) from the anticlockwise turn (b, neither stops).
+  A quick search over cell-overlap stop rules found none that fits all 26 captures.
+- **Status:** P3 open in a and e (plus MOV-0019-j and MOV-0020-b, d); P2 in b, c, d and f.
+  All are gated with their ratings in [run_mov0018.py](tools/run_mov0018.py), which CI runs for MOV-0018 to 0021.
+
+Local CI passes: CTest 3/3, Python 88/88, the generated loop and every gate.
+PR #28's [workflow 37271683517](https://github.com/galitianu/warcraft-re/actions/runs/37271683517)
+passes all five configurations and the aggregate (head `35ba687`). The downloaded artifacts
+[regrade](results/mov-0021/pr-verification/summary.md) to a report identical to the hosted one,
+with MOV-0018 to 0021 PASS in all five configurations.
+
+## Retail pathing mechanism
+
+[Issue #27](https://github.com/galitianu/warcraft-re/issues/27). The fitted collision heuristics
+(blocking corridor, give-way side rule, plan-time smoothing) are replaced by the mechanism in WC3's own
+movement library. Ghidra decompilation of the retail `Warcraft III.exe` gave the rules, and C++
+implements them without game code ([model](docs/footman-v4-model.md#unit-pathing),
+[World.cpp](src/core/World.cpp)).
+
+- **Result:** all 26 MOV-0018–0021 captures are canonical PASS: every sample, facing included,
+  within the comparator's exact tolerances. Before, 14 failed P3-level acceptance (5 rated P3, 9 P2) and 4 were exact.
+- **Interpreted, not read:** two choices were made because they fit the captures. The most
+  recently ordered unit updates first, and units with a nonzero velocity are not obstacles to
+  planning or to the straight-line test. The A* expansion budget is unknown (32768 is used).
+- **Held-out test:** [MOV-0022](docs/mov-0022.md) predicted six new layouts from the clean build
+  `2ab1e5c` before capture. All six are canonical PASS and each prediction is byte-identical to the
+  C++ trace in its capture bundle ([report](results/mov-0022/grading.md)). The interpreted rules held
+  on layouts they were not chosen for.
+- **Gate:** [run_mov0018.py](tools/run_mov0018.py) now expects no differences for any of the
+  32 captures, so any new one fails CI.
+- **Generator:** speed setters on several units are now generated (every CreateUnit, then the
+  setters, as in MOV-0002's control). MOV-0022's WATCH records show the speeds applied.
+
+Local native ARM64 AppleClang Release CI passes: CTest 3/3, Python 90/90, the generated loop and
+every gate (MOV-0013/0014/0015 and MOV-0018 to 0022).
+PR #28's [workflow 37299662085](https://github.com/galitianu/warcraft-re/actions/runs/37299662085)
+passes all five configurations and the aggregate (head `003ae9e`).
+
 ## Exact next action
 
-Run [issue #27](https://github.com/galitianu/warcraft-re/issues/27) (MOV-0019), the
-[next collision experiment](docs/mov-0018.md#next-experiment): a sweep that pins the wait corridor,
-the south-first tie order and the 3×3 footprint. Those constants rest on one or two
-observations, and their errors would be P3 (wrong side, missing wait) in other layouts. Commit
-its design and predictions before capturing.
+Merge [PR #28](https://github.com/galitianu/warcraft-re/pull/28) and close issue #27. Then
+the next collision question, pre-registered the same way: three Footmen meeting at one
+point (more than two units is still out of scope). It tests the blocker list order and
+recorded blockers, and partial routes around a moving group.
 
 Deferred (P1): MOV-0016, which would pre-register the rounded sampler start with T7 and
 FU ([next experiment](docs/mov-0015.md#next-experiment)). Revisit it only when most

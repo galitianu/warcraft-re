@@ -1,0 +1,1136 @@
+{
+  "MOV-0019-a": {
+    "wc3": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 985.967773,
+          "y": 0.144531,
+          "facing": 359.301605,
+          "order": 0
+        },
+        "max_displacement": 985.967784,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 184,
+        "largest_sideways_deviation": {
+          "callback": 8,
+          "units": 12.806641
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 94,
+          "distance": 46.505121
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -40.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": -40.0,
+          "facing": 179.999985,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    },
+    "cpp": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 985.967773,
+          "y": 0.14453125,
+          "facing": 359.301605,
+          "order": 0
+        },
+        "max_displacement": 985.967784,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 184,
+        "largest_sideways_deviation": {
+          "callback": 8,
+          "units": 12.806641
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 94,
+          "distance": 46.505121
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -40.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": -40.0,
+          "facing": 179.999985,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    }
+  },
+  "MOV-0019-b": {
+    "wc3": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 989.549805,
+          "y": 1.708008,
+          "facing": 350.711029,
+          "order": 0
+        },
+        "max_displacement": 989.551279,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 185,
+        "largest_sideways_deviation": {
+          "callback": 132,
+          "units": 47.341309
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 93,
+          "distance": 60.591154
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -24.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": -24.0,
+          "facing": 179.999985,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    },
+    "cpp": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 990.118652,
+          "y": 1.31445312,
+          "facing": 352.410675,
+          "order": 0
+        },
+        "max_displacement": 990.119525,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 185,
+        "largest_sideways_deviation": {
+          "callback": 120,
+          "units": 47.218262
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 93,
+          "distance": 63.029498
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -24.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": -24.0,
+          "facing": 179.999985,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    }
+  },
+  "MOV-0019-c": {
+    "wc3": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 989.549805,
+          "y": 1.708008,
+          "facing": 350.711029,
+          "order": 0
+        },
+        "max_displacement": 989.551279,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 185,
+        "largest_sideways_deviation": {
+          "callback": 132,
+          "units": 47.341309
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 93,
+          "distance": 44.621748
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -8.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": -8.0,
+          "facing": 179.999985,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    },
+    "cpp": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 990.118652,
+          "y": 1.31445312,
+          "facing": 352.410675,
+          "order": 0
+        },
+        "max_displacement": 990.119525,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 185,
+        "largest_sideways_deviation": {
+          "callback": 120,
+          "units": 47.218262
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 93,
+          "distance": 47.05979
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -8.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": -8.0,
+          "facing": 179.999985,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    }
+  },
+  "MOV-0019-d": {
+    "wc3": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 984.71582,
+          "y": -1.88208,
+          "facing": 7.029719,
+          "order": 0
+        },
+        "max_displacement": 984.717619,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 184,
+        "largest_sideways_deviation": {
+          "callback": 162,
+          "units": -15.653564
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 93,
+          "distance": 43.066304
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          500.0,
+          40.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": 40.0,
+          "facing": 179.999985,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    },
+    "cpp": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 985.083984,
+          "y": -0.645019531,
+          "facing": 2.48577118,
+          "order": 0
+        },
+        "max_displacement": 985.084195,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 184,
+        "largest_sideways_deviation": {
+          "callback": 121,
+          "units": -15.388428
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 93,
+          "distance": 48.7201
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          500.0,
+          40.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": 40.0,
+          "facing": 179.999985,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    }
+  },
+  "MOV-0019-e": {
+    "wc3": {
+      "u0": {
+        "start": [
+          1000.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 11.64209,
+          "y": -1.208252,
+          "facing": 174.066849,
+          "order": 0
+        },
+        "max_displacement": 988.358649,
+        "ordered": true,
+        "target": [
+          0.0,
+          0.0
+        ],
+        "arrival_callback": 185,
+        "largest_sideways_deviation": {
+          "callback": 104,
+          "units": 46.477051
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 93,
+          "distance": 40.744784
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          500.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": 0.0,
+          "facing": 0.0,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    },
+    "cpp": {
+      "u0": {
+        "start": [
+          1000.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 11.6386719,
+          "y": -1.1237793,
+          "facing": 174.479431,
+          "order": 0
+        },
+        "max_displacement": 988.361967,
+        "ordered": true,
+        "target": [
+          0.0,
+          0.0
+        ],
+        "arrival_callback": 185,
+        "largest_sideways_deviation": {
+          "callback": 98,
+          "units": 46.314453
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 93,
+          "distance": 43.774709
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          500.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": 0.0,
+          "facing": 0.0,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    }
+  },
+  "MOV-0019-f": {
+    "wc3": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 1.408203,
+          "y": 991.422852,
+          "facing": 99.324577,
+          "order": 0
+        },
+        "max_displacement": 991.423852,
+        "ordered": true,
+        "target": [
+          0.0,
+          1000.0
+        ],
+        "arrival_callback": 187,
+        "largest_sideways_deviation": {
+          "callback": 98,
+          "units": -78.885742
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 92,
+          "distance": 75.474164
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          0.0,
+          500.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 0.0,
+          "y": 500.0,
+          "facing": 269.999969,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    },
+    "cpp": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 1.40820312,
+          "y": 991.422852,
+          "facing": 99.3245773,
+          "order": 0
+        },
+        "max_displacement": 991.423852,
+        "ordered": true,
+        "target": [
+          0.0,
+          1000.0
+        ],
+        "arrival_callback": 187,
+        "largest_sideways_deviation": {
+          "callback": 98,
+          "units": -78.885742
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 92,
+          "distance": 75.474164
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          0.0,
+          500.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 0.0,
+          "y": 500.0,
+          "facing": 269.999969,
+          "order": 0
+        },
+        "max_displacement": 0.0,
+        "ordered": false
+      }
+    }
+  },
+  "MOV-0019-g": {
+    "wc3": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 988.130859,
+          "y": 0.0,
+          "facing": 359.622131,
+          "order": 0
+        },
+        "max_displacement": 988.130859,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 199,
+        "largest_sideways_deviation": {
+          "callback": 2,
+          "units": 0.043945
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 82,
+          "distance": 78.820888
+        },
+        "waits": [
+          {
+            "first": 79,
+            "last": 93,
+            "callbacks": 14
+          }
+        ]
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -440.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": 548.161133,
+          "facing": 89.999992,
+          "order": 0
+        },
+        "max_displacement": 988.161133,
+        "ordered": true,
+        "target": [
+          500.0,
+          560.0
+        ],
+        "arrival_callback": 184,
+        "largest_sideways_deviation": {
+          "callback": 0,
+          "units": 0.0
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 82,
+          "distance": 78.820888
+        },
+        "waits": []
+      }
+    },
+    "cpp": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 988.130859,
+          "y": 0.0,
+          "facing": 359.622131,
+          "order": 0
+        },
+        "max_displacement": 988.130859,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 199,
+        "largest_sideways_deviation": {
+          "callback": 2,
+          "units": 0.043945
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 82,
+          "distance": 86.920489
+        },
+        "waits": [
+          {
+            "first": 77,
+            "last": 92,
+            "callbacks": 15
+          }
+        ]
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -440.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": 548.161133,
+          "facing": 89.9999924,
+          "order": 0
+        },
+        "max_displacement": 988.161133,
+        "ordered": true,
+        "target": [
+          500.0,
+          560.0
+        ],
+        "arrival_callback": 184,
+        "largest_sideways_deviation": {
+          "callback": 0,
+          "units": 0.0
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 82,
+          "distance": 86.920489
+        },
+        "waits": []
+      }
+    }
+  },
+  "MOV-0019-h": {
+    "wc3": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 988.128906,
+          "y": -0.002686,
+          "facing": 359.739838,
+          "order": 0
+        },
+        "max_displacement": 988.128906,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 206,
+        "largest_sideways_deviation": {
+          "callback": 2,
+          "units": 0.043945
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 89,
+          "distance": 78.848359
+        },
+        "waits": [
+          {
+            "first": 79,
+            "last": 101,
+            "callbacks": 22
+          }
+        ]
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -480.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": 508.161133,
+          "facing": 89.999992,
+          "order": 0
+        },
+        "max_displacement": 988.161133,
+        "ordered": true,
+        "target": [
+          500.0,
+          520.0
+        ],
+        "arrival_callback": 184,
+        "largest_sideways_deviation": {
+          "callback": 0,
+          "units": 0.0
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 89,
+          "distance": 78.848359
+        },
+        "waits": []
+      }
+    },
+    "cpp": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 988.128906,
+          "y": -0.00268554688,
+          "facing": 359.739838,
+          "order": 0
+        },
+        "max_displacement": 988.128906,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 206,
+        "largest_sideways_deviation": {
+          "callback": 2,
+          "units": 0.043945
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 89,
+          "distance": 62.65737
+        },
+        "waits": [
+          {
+            "first": 82,
+            "last": 104,
+            "callbacks": 22
+          }
+        ]
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -480.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": 508.161133,
+          "facing": 89.9999924,
+          "order": 0
+        },
+        "max_displacement": 988.161133,
+        "ordered": true,
+        "target": [
+          500.0,
+          520.0
+        ],
+        "arrival_callback": 184,
+        "largest_sideways_deviation": {
+          "callback": 0,
+          "units": 0.0
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 89,
+          "distance": 62.65737
+        },
+        "waits": []
+      }
+    }
+  },
+  "MOV-0019-i": {
+    "wc3": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 988.12793,
+          "y": -0.02124,
+          "facing": 0.295402,
+          "order": 0
+        },
+        "max_displacement": 988.12793,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 214,
+        "largest_sideways_deviation": {
+          "callback": 2,
+          "units": 0.043945
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 103,
+          "distance": 56.936035
+        },
+        "waits": [
+          {
+            "first": 88,
+            "last": 117,
+            "callbacks": 29
+          }
+        ]
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -540.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.834961,
+          "y": 445.755859,
+          "facing": 93.354965,
+          "order": 0
+        },
+        "max_displacement": 985.756213,
+        "ordered": true,
+        "target": [
+          500.0,
+          460.0
+        ],
+        "arrival_callback": 187,
+        "largest_sideways_deviation": {
+          "callback": 104,
+          "units": -26.931641
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 103,
+          "distance": 56.936035
+        },
+        "waits": []
+      }
+    },
+    "cpp": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 988.133301,
+          "y": 0.033203125,
+          "facing": 0.388643175,
+          "order": 0
+        },
+        "max_displacement": 988.133302,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 184,
+        "largest_sideways_deviation": {
+          "callback": 2,
+          "units": 0.043945
+        },
+        "passes_other_on": "left",
+        "closest_approach": {
+          "callback": 93,
+          "distance": 78.300848
+        },
+        "waits": []
+      },
+      "u1": {
+        "start": [
+          500.0,
+          -540.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 500.0,
+          "y": 448.15625,
+          "facing": 89.9999924,
+          "order": 0
+        },
+        "max_displacement": 988.15625,
+        "ordered": true,
+        "target": [
+          500.0,
+          460.0
+        ],
+        "arrival_callback": 199,
+        "largest_sideways_deviation": {
+          "callback": 0,
+          "units": 0.0
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 93,
+          "distance": 78.300848
+        },
+        "waits": [
+          {
+            "first": 86,
+            "last": 101,
+            "callbacks": 15
+          }
+        ]
+      }
+    }
+  },
+  "MOV-0019-j": {
+    "wc3": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 988.12793,
+          "y": -0.02124,
+          "facing": 0.295402,
+          "order": 0
+        },
+        "max_displacement": 988.12793,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 214,
+        "largest_sideways_deviation": {
+          "callback": 2,
+          "units": 0.043945
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 103,
+          "distance": 48.691409
+        },
+        "waits": [
+          {
+            "first": 86,
+            "last": 116,
+            "callbacks": 30
+          }
+        ]
+      },
+      "u1": {
+        "start": [
+          1000.0,
+          32.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 8.070801,
+          "y": 32.286621,
+          "facing": 182.064453,
+          "order": 0
+        },
+        "max_displacement": 991.92924,
+        "ordered": true,
+        "target": [
+          0.0,
+          32.0
+        ],
+        "arrival_callback": 187,
+        "largest_sideways_deviation": {
+          "callback": 86,
+          "units": -26.937012
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 103,
+          "distance": 48.691409
+        },
+        "waits": []
+      }
+    },
+    "cpp": {
+      "u0": {
+        "start": [
+          0.0,
+          0.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 989.102051,
+          "y": 0.03515625,
+          "facing": 0.36089474,
+          "order": 0
+        },
+        "max_displacement": 989.102052,
+        "ordered": true,
+        "target": [
+          1000.0,
+          0.0
+        ],
+        "arrival_callback": 191,
+        "largest_sideways_deviation": {
+          "callback": 86,
+          "units": 14.891113
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 101,
+          "distance": 48.108272
+        },
+        "waits": [
+          {
+            "first": 86,
+            "last": 89,
+            "callbacks": 3
+          }
+        ]
+      },
+      "u1": {
+        "start": [
+          1000.0,
+          32.0
+        ],
+        "final": {
+          "callback": 600,
+          "x": 7.68701172,
+          "y": 33.2851562,
+          "facing": 189.498322,
+          "order": 0
+        },
+        "max_displacement": 992.31382,
+        "ordered": true,
+        "target": [
+          0.0,
+          32.0
+        ],
+        "arrival_callback": 194,
+        "largest_sideways_deviation": {
+          "callback": 176,
+          "units": -15.992676
+        },
+        "passes_other_on": "right",
+        "closest_approach": {
+          "callback": 101,
+          "distance": 48.108272
+        },
+        "waits": [
+          {
+            "first": 86,
+            "last": 93,
+            "callbacks": 7
+          }
+        ]
+      }
+    }
+  }
+}

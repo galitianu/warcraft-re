@@ -1,0 +1,290 @@
+{
+  "method": "tools/predict_mov0020.py",
+  "model": "footman-v4 at the MOV-0019 post-hoc refit",
+  "parameters": {
+    "line_clearance": 4,
+    "waypoint_radius": 16,
+    "block_radius": 62,
+    "block_lookahead": 32,
+    "block_lateral": 40,
+    "recheck_updates": 5
+  },
+  "long_wait_callbacks": 7,
+  "variants": {
+    "MOV-0020-a": {
+      "question": "MOV-0019-i with the units swapped: u0 crosses north, u1 travels east",
+      "roles": {
+        "u0": "cross",
+        "u1": "east"
+      },
+      "ordered_first": "u0",
+      "hypotheses": {
+        "index": "u0",
+        "order": "u0",
+        "role": "u1"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            500.0,
+            448.2,
+            0
+          ],
+          "side": "right",
+          "arrival": 199,
+          "waits": [
+            [
+              86,
+              101
+            ]
+          ],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            988.1,
+            0.0,
+            0
+          ],
+          "side": "left",
+          "arrival": 184,
+          "waits": [],
+          "deviation": 0.0
+        }
+      },
+      "model_waits": [
+        "u0"
+      ]
+    },
+    "MOV-0020-b": {
+      "question": "MOV-0019-j with the units swapped: u0 travels west, u1 east",
+      "roles": {
+        "u0": "west",
+        "u1": "east"
+      },
+      "ordered_first": "u0",
+      "hypotheses": {
+        "index": "u0",
+        "order": "u0",
+        "role": "u1"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            11.8,
+            32.9,
+            0
+          ],
+          "side": "right",
+          "arrival": 193,
+          "waits": [],
+          "deviation": -39.2
+        },
+        "u1": {
+          "final": [
+            996.9,
+            -8.1,
+            0
+          ],
+          "side": "right",
+          "arrival": 196,
+          "waits": [
+            [
+              86,
+              93
+            ]
+          ],
+          "deviation": -15.6
+        }
+      },
+      "model_waits": [
+        "u1"
+      ]
+    },
+    "MOV-0020-c": {
+      "question": "MOV-0019-i with u1 ordered first",
+      "roles": {
+        "u0": "east",
+        "u1": "cross"
+      },
+      "ordered_first": "u1",
+      "hypotheses": {
+        "index": "u0",
+        "order": "u1",
+        "role": "u0"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            988.1,
+            0.0,
+            0
+          ],
+          "side": "left",
+          "arrival": 184,
+          "waits": [],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            500.0,
+            448.2,
+            0
+          ],
+          "side": "right",
+          "arrival": 199,
+          "waits": [
+            [
+              86,
+              101
+            ]
+          ],
+          "deviation": 0.0
+        }
+      },
+      "model_waits": [
+        "u1"
+      ]
+    },
+    "MOV-0020-d": {
+      "question": "MOV-0019-j with u1 ordered first",
+      "roles": {
+        "u0": "east",
+        "u1": "west"
+      },
+      "ordered_first": "u1",
+      "hypotheses": {
+        "index": "u0",
+        "order": "u1",
+        "role": "u0"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            986.7,
+            -6.2,
+            0
+          ],
+          "side": "right",
+          "arrival": 196,
+          "waits": [
+            [
+              86,
+              89
+            ]
+          ],
+          "deviation": -42.2
+        },
+        "u1": {
+          "final": [
+            11.8,
+            32.0,
+            0
+          ],
+          "side": "right",
+          "arrival": 191,
+          "waits": [
+            [
+              86,
+              93
+            ]
+          ],
+          "deviation": -0.0
+        }
+      },
+      "model_waits": [
+        "u1"
+      ]
+    },
+    "MOV-0020-e": {
+      "question": "MOV-0018-c with the units swapped: u0 crosses north, u1 travels east",
+      "roles": {
+        "u0": "cross",
+        "u1": "east"
+      },
+      "ordered_first": "u0",
+      "hypotheses": {
+        "index": "u0",
+        "order": "u0",
+        "role": "u1"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            500.0,
+            488.2,
+            0
+          ],
+          "side": "right",
+          "arrival": 206,
+          "waits": [
+            [
+              83,
+              105
+            ]
+          ],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            988.1,
+            0.0,
+            0
+          ],
+          "side": "left",
+          "arrival": 184,
+          "waits": [],
+          "deviation": 0.0
+        }
+      },
+      "model_waits": [
+        "u0"
+      ]
+    },
+    "MOV-0020-f": {
+      "question": "MOV-0019-g with the units swapped: u0 crosses north, u1 travels east",
+      "roles": {
+        "u0": "cross",
+        "u1": "east"
+      },
+      "ordered_first": "u0",
+      "hypotheses": {
+        "index": "u0",
+        "order": "u0",
+        "role": "u1"
+      },
+      "model": {
+        "u0": {
+          "final": [
+            500.0,
+            548.2,
+            0
+          ],
+          "side": "right",
+          "arrival": 184,
+          "waits": [],
+          "deviation": 0.0
+        },
+        "u1": {
+          "final": [
+            988.1,
+            0.0,
+            0
+          ],
+          "side": "right",
+          "arrival": 199,
+          "waits": [
+            [
+              77,
+              92
+            ]
+          ],
+          "deviation": 0.0
+        }
+      },
+      "model_waits": [
+        "u1"
+      ]
+    }
+  }
+}

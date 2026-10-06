@@ -53,8 +53,6 @@ std::string generate(const scenario::Scenario& s, const std::string& hash,
             if (std::floor(value) != value)
                 throw scenario::Error("fractional CreateUnit placement is unobserved; v1 has no SetUnitX/Y");
         }
-        if (s.units.size() > 1 && u.move_speed)
-            throw scenario::Error("multi-unit property-setter ordering is unobserved");
     }
     for (const auto& action : s.actions) {
         if (action.order == scenario::Order::stop) continue;

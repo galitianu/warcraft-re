@@ -1,0 +1,29 @@
+# MOV-0019: wait corridor: crossing, u1 (500, -480) -> (500, 520)
+# Semantics: docs/scenario-v1.md.
+schema: wc3-scenario
+version: 1
+experiment: MOV-0019
+map_revision: MOV-0019-h
+units:
+  - name: u0
+    type: hfoo
+    position: [0, 0]
+    facing: 0
+  - name: u1
+    type: hfoo
+    position: [500, -480]
+    facing: 90
+observe:
+  period: 0.02
+  callbacks: 600
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [1000, 0]
+  - at: 0
+    unit: u1
+    order: move
+    target: [500, 520]
+...

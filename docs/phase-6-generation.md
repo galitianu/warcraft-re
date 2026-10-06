@@ -26,7 +26,7 @@ local venv, never an ordinary-CI requirement. VM authoring/capture remains manua
 through rdpipe; Phase 7 owns unattended VM orchestration.
 
 The generator supports the demonstrated v1 20 ms sampler, Footmen, named watch
-order, requested speed setters on a single unit, absolute moves, relative moves,
+order, requested speed setters, absolute moves, relative moves,
 and stop. Literal tokens are emitted unchanged, including `707.106781`. A zero
 relative component emits the bare getter. Negative offsets emit subtraction;
 nonzero offsets are evaluated from WC3's own state at the action callback.
@@ -35,7 +35,7 @@ Actions sharing a callback run in file order. Bootstrap is the same single
 SHA-256 and ordered declared setup/actions; these are inputs, not predictions.
 
 Reject unsupported periods, fractional CreateUnit positions (v1 cannot request
-an observed setter), multi-unit speed-setter setups, expired clocks, oversized
+an observed setter), expired clocks, oversized
 record/SETUP counts, and coordinates outside the template's playable bounds.
 CreateUnit placement at arbitrary integer positions is still unobserved: passing
 validation does not establish a retail result. Relative displacement cannot exceed
@@ -64,8 +64,10 @@ metadata. Unknown executable statements/operators fail the audit.
 All ten cases pass [the audit](../results/phase-6/generator-audit.json) and
 [pjass](../results/phase-6/pjass.json). There is no unexplained API/callback/timer
 order or argument difference. MOV-0002 creates both units before acquisition
-setters, exactly as its control does. Multi-unit property setters are rejected
-rather than extending that call-order finding. The other nine controls configure
+setters, exactly as its control does. Multi-unit speed setters follow the same
+order: every CreateUnit, then each unit's setters, all before the first game update.
+[MOV-0022](mov-0022.md) is their first capture; its WATCH records show the resulting
+speeds. The other nine controls configure
 their single unit directly after creation.
 
 ## Reproduce one flow

@@ -58,14 +58,17 @@ Start with:
 - [MOV-0015](docs/mov-0015.md): four generated maps test that candidate (T7) and a 30 ms
   update-event facing clock (FU). Both held in three maps. The fourth started one ulp
   later than modelled; from that start, fitted after capture, both fit every map.
-- [MOV-0018](docs/mov-0018.md): two colliding Footmen in four variants (idle blocker,
-  head-on, crossing, glancing). WC3 routes over a 32-unit grid and waits for moving
-  units. footman-v4 now does too; it matches every variant's side, waits, arrival and
-  final position, with two variants bit-identical and P1 differences in the others.
+- [MOV-0018](docs/mov-0018.md) to [MOV-0021](docs/mov-0021.md): 26 two-Footman collision maps
+  (idle blocker, head-on, crossing, glancing, mirrored and turned head-ons). footman-v4 follows
+  WC3's own grid pathing mechanism, read from the retail executable
+  ([model](docs/footman-v4-model.md#unit-pathing)), and reproduces all 26 exactly.
+- [MOV-0022](docs/mov-0022.md): six pre-registered layouts the mechanism had not seen
+  (unequal speeds, issue order, a slow crossing unit, a diagonal, an overtake). All six
+  captures match the predicted traces exactly.
 - [Agent workflow notes](docs/agent-wc3-workflow.md): how to author and capture maps
   efficiently through rdpipe.
 
-This repository holds the plan, 24 manually authored and nineteen generated-case WC3 maps with their JASS,
+This repository holds the plan, 24 manually authored and forty-seven generated-case WC3 maps with their JASS,
 plus five Phase 7 verification revisions, shared oracle instrumentation, raw captures with identities, parsers and derived
 CSVs, versioned v1/v2 scenarios, and a dependency-free C++20 simulation. Phases 0–6 are
 complete; compatibility

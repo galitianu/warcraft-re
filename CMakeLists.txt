@@ -8,7 +8,7 @@ include(CTest)
 
 # A fresh, dependency-free build. Consulted the archived sim/CMakeLists.txt for
 # its standalone static-library boundary; no archived code or flags imported.
-add_library(wc3world STATIC src/core/World.cpp src/core/SoftFloat.cpp)
+add_library(wc3world STATIC src/core/World.cpp src/core/SoftFloat.cpp src/core/Session.cpp)
 target_include_directories(wc3world PUBLIC src)
 target_compile_options(wc3world PUBLIC
   $<$<CXX_COMPILER_ID:AppleClang,Clang,GNU>:-Wall;-Wextra;-Wpedantic;-fno-fast-math;-ffp-contract=off>
@@ -67,6 +67,36 @@ add_executable(math_scope tools/math_scope.cpp)
 target_link_libraries(math_scope PRIVATE wc3world)
 add_executable(oracle_codegen tools/oracle_codegen/main.cpp)
 target_link_libraries(oracle_codegen PRIVATE movement_cases)
+# Client state that reads the world (pacing, camera, picking, selection); no raylib.
+add_library(wc3view STATIC src/client/View.cpp)
+target_link_libraries(wc3view PUBLIC wc3world)
+add_executable(wc3replay tools/wc3replay/main.cpp)
+target_link_libraries(wc3replay PRIVATE wc3view movement_cases)
+
+# Optional interactive client (docs/client-v1.md). The default build, tests and
+# compatibility CI never need raylib or a window.
+option(WC3_CLIENT "Build the interactive raylib client" OFF)
+if(WC3_CLIENT)
+  if(APPLE)
+    enable_language(OBJCXX)
+  endif()
+  find_package(raylib 5.5 CONFIG QUIET)
+  if(NOT raylib_FOUND)
+    include(FetchContent)
+    set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+    set(BUILD_GAMES OFF CACHE BOOL "" FORCE)
+    FetchContent_Declare(raylib
+      URL https://github.com/raysan5/raylib/archive/refs/tags/5.5.tar.gz
+      URL_HASH SHA256=aea98ecf5bc5c5e0b789a76de0083a21a70457050ea4cc2aec7566935f5e258e)
+    FetchContent_MakeAvailable(raylib)
+  endif()
+  add_executable(wc3client src/client/main.cpp)
+  if(APPLE)
+    target_sources(wc3client PRIVATE src/client/SmokeInput.mm)
+    target_link_libraries(wc3client PRIVATE "-framework Cocoa")
+  endif()
+  target_link_libraries(wc3client PRIVATE wc3view movement_cases raylib)
+endif()
 if(BUILD_TESTING)
   add_executable(world_tests tests/world_tests.cpp)
   target_link_libraries(world_tests PRIVATE movement_cases)
@@ -80,5 +110,16 @@ if(BUILD_TESTING)
     "${CMAKE_SOURCE_DIR}/tools/run_footman_v4.py" --runner $<TARGET_FILE:wc3test>
     --states $<TARGET_FILE:wc3states> --out "${CMAKE_BINARY_DIR}/footman-v4-test"
     --reports "${CMAKE_BINARY_DIR}/footman-v4-test/reports")
-  set_tests_properties(world_invariants scenario_v1 footman_v4_wc3 PROPERTIES TIMEOUT 180)
+  add_executable(session_tests tests/session_tests.cpp)
+  target_link_libraries(session_tests PRIVATE wc3view)
+  add_test(NAME session_commands COMMAND session_tests)
+  # The retained live recording replays identically under every render schedule
+  # and matches the checkpoints the live client recorded.
+  foreach(run 0001 0002)
+    add_test(NAME client_replay_${run} COMMAND wc3replay
+      "${CMAKE_SOURCE_DIR}/results/client-v1/live-${run}.rec"
+      --live "${CMAKE_SOURCE_DIR}/results/client-v1/live-${run}.portable.checkpoints")
+  endforeach()
+  set_tests_properties(world_invariants scenario_v1 footman_v4_wc3 session_commands client_replay_0001 client_replay_0002
+    PROPERTIES TIMEOUT 180)
 endif()

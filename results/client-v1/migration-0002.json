@@ -1,0 +1,15 @@
+{
+  "recording_sha256": "d7a6375791c1a7efa216330dc33ae2e107df75d641d120bd6ee17caebda52a69",
+  "legacy_file_sha256": "bf3bd1e4d4adc02a039373ea8e6ab80ea7df41332d9cb1c26493a3e6c2944da2",
+  "checkpoints": [
+    {"time_us": 0, "legacy_sha256": "ca4f7e06d4645dfa9ba2165f956879f0f4a7e507544cc5a17b5f111ce2db4709", "verified": true, "portable_sha256": "df9ed4c03dd0119e00f8fe48d133419b76ed8f2a8d66464dad2f95a3b7639f51"},
+    {"time_us": 1000000, "legacy_sha256": "5c3d0e4be39c140133e5d4a6969ab0d79210c8ba6e9e2c0a00d87418c776d8fd", "verified": true, "portable_sha256": "0260fd37c9723c9ca16bb880df2d9c7ba465ddff3d9ef1625ae8c4b37f62c9ce"},
+    {"time_us": 2000000, "legacy_sha256": "81f3447518e225ea28a8edefece538fc77c37189d41a8a4c2c91d333c159c212", "verified": true, "portable_sha256": "844a80811356396d39bac5a349b4890950bf23c70ae0bc3646dd93491805b35a"},
+    {"time_us": 3000000, "legacy_sha256": "32c1c715f0f632de0e0ea52a8f358dffc066d6febaf976b1edc48bbf77147163", "verified": true, "portable_sha256": "cd65e3f1fc81f99fc166a3dff47781334e08bfef27def1844f73b5cc7c54f465"},
+    {"time_us": 4000000, "legacy_sha256": "51ba0299605174019efaaa9b5fa379d66d9ed2dca505f0abb64faef89abf50a6", "verified": true, "portable_sha256": "bede70824c880d99f46147519902890e8d79664b7e8fed6d820b0999d1e638bd"},
+    {"time_us": 5000000, "legacy_sha256": "1d86de1fb219b6fda881481fbabc58d91020458961e2fcb599b6db2625f09dab", "verified": true, "portable_sha256": "207b1b61600d5f4f358e737ee78273d5dbe42bf840e2973874e020b49c057a36"},
+    {"time_us": 5275000, "legacy_sha256": "19deda4d4ff0a6c94c42d79b63156e52a934a5201ba7647ecc4c42d42e80370a", "verified": true, "portable_sha256": "99b908a1089a478bb8f9528ae1cb50375505cadcbd4f5eadf822d482aec5dd8d"}
+  ],
+  "portable_file_sha256": "8e0e6be9a95e919444f4fda6c411531a52ed3d2862ea578928f7df70db7cd210",
+  "status": "PASS"
+}

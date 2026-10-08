@@ -3,6 +3,7 @@
 #include "core/SoftFloat.h"
 #include <cstddef>
 #include <cstdint>
+#include <string>
 #include <vector>
 
 namespace wc3 {
@@ -133,6 +134,9 @@ public:
     // footman-v4: the movement clock at a 5 ms frame (frame 0 is clock_start).
     sf::F frame_clock(std::uint64_t frame) const { return clock_at(frame); }
     Random& random() { return random_; }
+    // Every simulation field as bytes: equal snapshots mean identical worlds.
+    // Comparison only; the format is host-endian and not a save file.
+    std::string snapshot() const;
 private:
     void step_heading();
     void step_soft();

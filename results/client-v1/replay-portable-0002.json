@@ -1,0 +1,20 @@
+{
+  "recording": "results/client-v1/live-0002.rec",
+  "recording_sha256": "d7a6375791c1a7efa216330dc33ae2e107df75d641d120bd6ee17caebda52a69",
+  "scene": "flat-footmen-3",
+  "model": "footman-v4",
+  "seed": 1,
+  "frame_us": 5000,
+  "commands": 6,
+  "end_us": 5275000,
+  "commands_sharing_a_time": 2,
+  "checkpoint_us": 1000000,
+  "headless": {"sim_frames": 1055, "checkpoints": [{"time_us": 0, "sha256": "df9ed4c03dd0119e00f8fe48d133419b76ed8f2a8d66464dad2f95a3b7639f51"}, {"time_us": 1000000, "sha256": "0260fd37c9723c9ca16bb880df2d9c7ba465ddff3d9ef1625ae8c4b37f62c9ce"}, {"time_us": 2000000, "sha256": "844a80811356396d39bac5a349b4890950bf23c70ae0bc3646dd93491805b35a"}, {"time_us": 3000000, "sha256": "cd65e3f1fc81f99fc166a3dff47781334e08bfef27def1844f73b5cc7c54f465"}, {"time_us": 4000000, "sha256": "bede70824c880d99f46147519902890e8d79664b7e8fed6d820b0999d1e638bd"}, {"time_us": 5000000, "sha256": "207b1b61600d5f4f358e737ee78273d5dbe42bf840e2973874e020b49c057a36"}, {"time_us": 5275000, "sha256": "99b908a1089a478bb8f9528ae1cb50375505cadcbd4f5eadf822d482aec5dd8d"}]},
+  "comparisons": [
+    {"name": "render-30hz", "schedule": "33333/33333/33334 us render intervals", "checkpoints_compared": 7, "render_frames": 159, "sim_frames": 1055, "presentation_checks": 159, "identical": true, "first_divergence_us": null},
+    {"name": "render-60hz", "schedule": "16666/16667/16667 us render intervals", "checkpoints_compared": 7, "render_frames": 317, "sim_frames": 1055, "presentation_checks": 317, "identical": true, "first_divergence_us": null},
+    {"name": "render-irregular", "schedule": "repeating 7000,41000,16667,1000,0,250000,3000,25000,9999,33334,4999,5001 us", "checkpoints_compared": 7, "render_frames": 258, "sim_frames": 1055, "presentation_checks": 258, "identical": true, "first_divergence_us": null},
+    {"name": "live-client", "schedule": "checkpoints the live client recorded while playing", "checkpoints_compared": 7, "identical": true, "first_divergence_us": null}
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,36 @@
+# wc3client smoke script (docs/client-v1.md). Run: wc3client --smoke tools/client/smoke-v1.txt
+# Waits count render frames (about 1/60 s each with vsync). @N aims at Footman N's
+# body on screen; "ground X Y" aims at a world point, both through the live camera.
+wait 30
+screenshot 01-start
+left @1                  # select the middle Footman
+wait 10
+screenshot 02-selected
+right ground 0 640       # move north
+wait 90
+screenshot 03-moving
+key s                    # stop part-way
+wait 60
+screenshot 04-stopped
+right ground 420 320     # move north-east
+wait 90
+screenshot 05-moving-again
+right ground -320 200    # move and stop in the same render frame: equal time,
+key s                    # stop has the later sequence, so the Footman halts
+wait 60
+screenshot 06-equal-time-move-stop
+left @0                  # pick another Footman
+wait 5
+right ground -520 560
+wait 45
+key up 30                # pan north for 30 frames
+wait 35
+scroll 3                 # zoom in with the wheel
+key plus                 # and with the keyboard
+wait 20
+screenshot 07-camera-panned-zoomed
+left ground 700 -500     # empty ground clears the selection
+wait 10
+screenshot 08-deselected
+wait 60
+quit

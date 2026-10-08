@@ -178,8 +178,11 @@ int main(int argc, char** argv) {
             const auto views = client::unit_views(session, controller);
             const auto route = client::selected_route(session, controller);
             const auto route_unit = controller.selected();  // as drawn, before smoke actions
-            const auto log_route = [&, now = session.time_us()](const std::string& shot) {
-                routes_log += "# " + shot + '\n';
+            // Later render frames may submit commands at this same simulation time; the
+            // count lets the replay rebuild exactly the commands known when it was drawn.
+            const auto log_route = [&, now = session.time_us(), submitted = session.recording().commands.size()](
+                                       const std::string& shot) {
+                routes_log += "screenshot " + shot + ' ' + std::to_string(submitted) + '\n';
                 if (route_unit) routes_log += client::serialize(now, *route_unit, route) + '\n';
             };
             const auto cam = raylib_camera(camera);

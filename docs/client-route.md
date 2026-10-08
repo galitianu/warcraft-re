@@ -32,10 +32,12 @@ model replans as blockers move. Placeholder geometry claims no visual fidelity.
   the green destination X, an orange ring at a partial route's end, and a HUD line
   `route: STATE, N waypoints left`. The old straight unit→destination line is gone.
 - With each screenshot the client appends the displayed route to `BASE.routes`
-  (`wc3-routes 1`; one canonical `route TIME UNIT STATE N X Y ...` line in float32
-  bits after a `# SHOT` comment). `wc3replay REC --routes BASE.routes` replays
-  headlessly and requires every displayed route to equal the replay's route view at
-  that simulation time, exactly.
+  (`wc3-routes 1`): `screenshot NAME SUBMITTED`, then (with a selection) one canonical
+  `route TIME UNIT STATE N X Y ...` line in float32 bits. SUBMITTED counts commands
+  submitted when it was drawn: a later render frame can submit a command at the same
+  simulation time, which the client had not seen. `wc3replay REC --routes BASE.routes`
+  rebuilds each such session headlessly (those commands, simulated to TIME) and
+  requires the displayed route to equal its route view exactly.
 
 ## Checks
 
@@ -52,6 +54,12 @@ model replans as blockers move. Placeholder geometry claims no visual fidelity.
   world's plan, and fails if the snapshot changed. Its JSON reports counts per state.
 
 ## Pre-registered expectations (committed before the retained run)
+
+A non-retained trial on the same machine debugged the procedure: its `03-arrived`
+screenshot came before arrival (wait lengthened from 110 to 170 render frames), and
+its route log could not express a move submitted at a screenshot's own simulation
+time in a later render frame (now recorded as SUBMITTED). Its detour image already
+showed the route passing south of Footman 1.
 
 Smoke script [`tools/client/smoke-route.txt`](../tools/client/smoke-route.txt) in the
 three-Footman scene, at most two units moving, scripted Cocoa input (as client v1).

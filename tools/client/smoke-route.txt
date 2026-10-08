@@ -9,7 +9,7 @@ wait 5
 right ground 450 300     # unobstructed move: a straight planned route
 wait 20
 screenshot 02-unobstructed
-wait 110                 # it arrives: the route clears
+wait 170                 # it arrives: the route clears
 screenshot 03-arrived
 left @0                  # select the west Footman
 wait 5

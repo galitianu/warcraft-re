@@ -52,36 +52,35 @@ void finish(const wc3::Session& session, Run& run, const wc3::Recording& recordi
     run.applied = session.applied();
     run.accepted = session.accepted();
 }
-// Routes the live client logged with its screenshots: time_us -> canonical lines.
-using Routes = std::multimap<std::uint64_t, std::string>;
-struct RouteCheck {
-    std::uint64_t compared = 0;
-    std::string first_mismatch;  // empty when every line matched
+// Routes the live client displayed with its screenshots, and how many commands had
+// been submitted then (later ones may share the screenshot's simulation time).
+struct ShownRoute {
+    std::string screenshot;
+    std::size_t submitted = 0;
+    std::uint64_t time_us = 0;
+    std::size_t unit = 0;
+    std::string line;
 };
-// Compares the logged route lines due now with the headless session's route views.
-void check_routes(const wc3::Session& session, const Routes& routes, RouteCheck& check) {
-    const auto [begin, end] = routes.equal_range(session.time_us());
-    for (auto it = begin; it != end; ++it) {
-        std::istringstream fields(it->second);
-        std::string key;
-        std::uint64_t time;
-        std::size_t unit;
-        fields >> key >> time >> unit;
-        const auto line = client::serialize(time, unit, client::route_view(session, unit));
-        ++check.compared;
-        if (line != it->second && check.first_mismatch.empty()) check.first_mismatch = "live: " + it->second + "\nreplay: " + line;
-    }
+// Rebuilds the session as the client knew it when drawing (the submitted commands,
+// simulated to the shown time) and compares its route view with the logged line.
+std::string check_route_line(const wc3::Recording& recording, const ShownRoute& shown) {
+    if (shown.submitted > recording.commands.size() || shown.time_us > recording.end_us)
+        throw std::invalid_argument("route line beyond the recording: " + shown.line);
+    for (std::size_t i = shown.submitted; i < recording.commands.size(); ++i)
+        if (recording.commands[i].time_us < shown.time_us)
+            throw std::invalid_argument("command " + std::to_string(i) + " precedes the route it was not known to: " + shown.line);
+    wc3::Session session(recording.seed);
+    for (std::size_t i = 0; i < shown.submitted; ++i) session.schedule(recording.commands[i]);
+    while (session.time_us() < shown.time_us) session.advance_frame();
+    const auto line = client::serialize(shown.time_us, shown.unit, client::route_view(session, shown.unit));
+    return line == shown.line ? "" : shown.screenshot + "\n  live:   " + shown.line + "\n  replay: " + line;
 }
-Run headless(const wc3::Recording& recording, const Routes& routes, RouteCheck& route_check) {
+Run headless(const wc3::Recording& recording) {
     Run run;
     run.name = "headless";
     run.description = "no renderer: frames back to back until the recorded end";
     auto session = start(recording, run);
-    check_routes(session, routes, route_check);
-    while (session.time_us() < recording.end_us) {
-        frame(session, run);
-        check_routes(session, routes, route_check);
-    }
+    while (session.time_us() < recording.end_us) frame(session, run);
     finish(session, run, recording);
     return run;
 }
@@ -164,19 +163,28 @@ Checkpoints read_live(const std::string& text) {
     }
     return out;
 }
-Routes read_routes(const std::string& text) {
+std::vector<ShownRoute> read_routes(const std::string& text) {
     std::istringstream in(text);
     std::string line;
     if (!std::getline(in, line) || line != "wc3-routes 1") throw std::invalid_argument("expected wc3-routes 1");
-    Routes out;
+    std::vector<ShownRoute> out;
+    std::string screenshot;
+    std::size_t submitted = 0;
+    bool shot = false;
     while (std::getline(in, line)) {
-        if (line.rfind('#', 0) == 0) continue;  // the screenshot each route was shown with
         std::istringstream fields(line);
         std::string key;
-        std::uint64_t time;
-        std::size_t unit;
-        if (!(fields >> key >> time >> unit) || key != "route") throw std::invalid_argument("invalid route line: " + line);
-        out.emplace(time, line);
+        if (!(fields >> key)) throw std::invalid_argument("empty routes line");
+        if (key == "screenshot") {
+            if (!(fields >> screenshot >> submitted)) throw std::invalid_argument("invalid screenshot line: " + line);
+            shot = true;
+            continue;
+        }
+        ShownRoute shown{screenshot, submitted, 0, 0, line};
+        if (key != "route" || !shot || !(fields >> shown.time_us >> shown.unit))
+            throw std::invalid_argument("invalid route line: " + line);
+        shot = false;  // one route per screenshot
+        out.push_back(shown);
     }
     return out;
 }
@@ -205,10 +213,7 @@ int main(int argc, char** argv) {
         const auto bytes = read(recording_path);
         const auto recording = wc3::parse_recording(bytes);
         if (wc3::serialize(recording) != bytes) throw std::invalid_argument("recording is not in canonical form");
-        Routes routes;
-        if (!routes_path.empty()) routes = read_routes(read(routes_path));
-        RouteCheck route_check;
-        const auto reference = headless(recording, routes, route_check);
+        const auto reference = headless(recording);
         // Irregular: a fixed, repeating mix of short, long, zero and capped stalls (wall µs).
         const std::vector<std::uint64_t> irregular{7000, 41000, 16667, 1000, 0, 250000, 3000, 25000, 9999, 33334, 4999, 5001};
         std::vector<Run> runs;
@@ -271,13 +276,20 @@ int main(int argc, char** argv) {
                                         read_live(read(live_path)), nullptr);
         report << "\n  ]";
         if (!routes_path.empty()) {
-            const bool same = route_check.compared == routes.size() && route_check.first_mismatch.empty();
+            const auto routes = read_routes(read(routes_path));
+            std::string first_mismatch;
+            for (const auto& shown : routes)
+                if (const auto m = check_route_line(recording, shown); !m.empty() && first_mismatch.empty()) first_mismatch = m;
+            const bool same = first_mismatch.empty();
             pass &= same;
-            report << ",\n  \"live_routes\": {\"lines\": " << routes.size() << ", \"compared\": "
-                   << route_check.compared << ", \"identical\": " << (same ? "true" : "false") << "}";
-            std::cout << "live-routes: " << (same ? "IDENTICAL" : "DIFFERS") << " (" << route_check.compared << " of "
-                      << routes.size() << " displayed routes)\n";
-            if (!route_check.first_mismatch.empty()) std::cout << route_check.first_mismatch << '\n';
+            report << ",\n  \"live_routes\": {\"displayed_routes\": " << routes.size() << ", \"identical\": "
+                   << (same ? "true" : "false") << ", \"routes\": [";
+            for (std::size_t i = 0; i < routes.size(); ++i)
+                report << (i ? ", " : "") << "{\"screenshot\": " << json(routes[i].screenshot) << ", \"submitted\": "
+                       << routes[i].submitted << ", \"time_us\": " << routes[i].time_us << ", \"unit\": " << routes[i].unit << "}";
+            report << "]}";
+            std::cout << "live-routes: " << (same ? "IDENTICAL" : "DIFFERS at " + first_mismatch) << " (" << routes.size()
+                      << " displayed routes)\n";
         }
         report << ",\n  \"status\": " << json(pass ? "PASS" : "FAIL") << "\n}\n";
         if (!json_path.empty()) {

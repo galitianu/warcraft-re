@@ -1,5 +1,11 @@
 # Warcraft III reimplementation plan
 
+**Continuation, 8 October 2026:** the bootstrap and first measured collision
+increment are delivered. [The playable roadmap](docs/next-roadmap.md) governs new
+work, with [continuous BB development](docs/continuous-development.md). This file
+retains the bootstrap sequence, evidence decisions and historical appendix; do
+not treat unchecked historical lists as instructions to repeat completed work.
+
 > Build the smallest measurable piece of Warcraft III compatibility first, then grow the C++ engine and its experimental tools together.
 
 Prepared 28 September 2026; updated 29 September 2026 from [Reimplementation Strategy](chatgpt-conversation://6abac337-5df8-83ed-9214-817dea88fc50).

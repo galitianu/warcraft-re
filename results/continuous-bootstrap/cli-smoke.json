@@ -1,0 +1,11 @@
+{
+  "bb_version": "0.45.0",
+  "thread_id": "thr_k37cszbmva",
+  "scope": "deferred creation/bypass/queue cleanup; zero model requests",
+  "status": "PASS",
+  "deferred_status": "pending",
+  "queued_messages": 1,
+  "thread_local_bypass": "verified",
+  "provisioned_environment": false,
+  "cleanup": "scheduled message removed; thread stopped and archived"
+}

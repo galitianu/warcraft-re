@@ -1,8 +1,25 @@
 # Progress
 
-As of 5 October 2026.
+As of 8 October 2026.
 
-**Current stage:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
+**Next roadmap:** [playable Human skirmish](docs/next-roadmap.md), with measured
+mechanics and an interactive raylib client advancing together. The delivered
+bootstrap is retained below; PR #28 was merged on 6 October and issue #27 is closed.
+The [continuous-development controller](docs/continuous-development.md) adds
+project-scoped 80% reported-usage admission/stops, alternating eligible providers,
+automatic quota resumption, issue dispatch, independent review and CI-bound
+integration. Provider pair, activation and merge preferences are being clarified;
+continuous product work is not yet activated. No shared BB pool/concurrency/provider
+setting is changed. The cutoff has documented reporting/in-flight limits.
+Both schedules are installed **paused**; their stored launchers completed manual
+disabled-policy checks with exit 0 and no model work. Thirty-six controller/install
+negative-control tests pass; the full Python suite passes 126/126. Native ARM64
+Release archival compatibility CI passes (CTest 3/3, protected movement/collision
+and existing P1 gates). [Bootstrap verification](results/continuous-bootstrap/README.md)
+records scope and the zero-request live BB CLI smoke check. No new WC3 captures
+or playable-client behavior is claimed by these infrastructure checks.
+
+**Latest measured gameplay:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
 [issue #27](https://github.com/galitianu/warcraft-re/issues/27)). footman-v4 now follows WC3's own pathing
 mechanism, read from the retail executable ([model](docs/footman-v4-model.md#unit-pathing)): grid footprints, a
 one-cell probe, waits decided by squared speed, and the retail A*. It reproduces **all 26** two-Footman captures
@@ -574,10 +591,13 @@ passes all five configurations and the aggregate (head `003ae9e`).
 
 ## Exact next action
 
-Merge [PR #28](https://github.com/galitianu/warcraft-re/pull/28) and close issue #27. Then
-the next collision question, pre-registered the same way: three Footmen meeting at one
-point (more than two units is still out of scope). It tests the blocker list order and
-recorded blockers, and partial routes around a moving group.
+Finish publishing/activating the continuous-development bootstrap under the chosen
+provider and merge policy. Its first two issue increments are milestone 1's
+interactive Footman (optional raylib client, ordered live input and headless replay)
+and milestone 2's pre-registered three-Footman collision question (blocker list
+order, recorded blockers and partial routes around a moving group). More than two
+units remains unobserved until that experiment; an interactive client is not yet
+implemented. [PR #28](https://github.com/galitianu/warcraft-re/pull/28) is already merged.
 
 Deferred (P1): MOV-0016, which would pre-register the rounded sampler start with T7 and
 FU ([next experiment](docs/mov-0015.md#next-experiment)). Revisit it only when most
@@ -595,6 +615,6 @@ comparable behavior is in place, or if these differences block something more no
 | 5 | Declarative scenarios extracted from repeated manual tests | Complete — [results](docs/phase-5-scenarios.md); PR and main push pass; [evidence](results/phase-5/main-verification.md) |
 | 6 | One scenario drives C++ and generates a runnable WC3 map | Complete — four maps/12 runs; five-configuration PR and main push PASS; [evidence](results/phase-6/main-verification/summary.md) |
 | 7 | Reliable unattended capture for four v1 scenarios; 12 fresh runs, exact reproduction, zero intervention | Complete — [captures](results/phase-7/summary.json); five-configuration PR and [main-push verification](results/phase-7/main-verification/summary.md) |
-| 8 | Microscopic tests, sweeps, and measured compatibility expansion | Planned |
+| 8 | Movement/two-unit collision increment and six held-out pathing layouts | First increment delivered; continued through [the playable roadmap](docs/next-roadmap.md) |
 
 Advance with actual artifacts and verification. Infrastructure checks are not gameplay passes.

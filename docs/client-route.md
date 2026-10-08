@@ -96,3 +96,7 @@ recordings.
 **Limits.** Scripted, not physical, input; macOS ARM64 only. No partial route was
 displayed live (headless tests cover it). The route is model feedback, not
 Warcraft visual fidelity or a WC3 behavior claim.
+
+Multiple selection now uses the lowest selected unit index for route focus; see
+[issue #36](client-selection.md). All selected units retain individual order and
+destination feedback. The retained single-selection evidence above is unchanged.

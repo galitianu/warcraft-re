@@ -1,0 +1,13 @@
+wc3-routes 1
+screenshot 01-start 0
+screenshot 02-box-outline 0
+screenshot 03-selected 0
+route 640000 0 none 0
+screenshot 04-group-move 3
+route 900000 0 planned 2 0xc322e1a0 0x425b6200 0x42c80099 0x44097f0d # (-162.881348, 54.8457031) (100.001167, 549.985168)
+screenshot 05-shift-removed 3
+route 1050000 0 planned 2 0xc30fe410 0x42b53ac0 0x42c80099 0x44097f0d # (-143.890869, 90.6147461) (100.001167, 549.985168)
+screenshot 06-group-stopped 5
+route 1240000 0 none 0
+screenshot 07-later 5
+route 2760000 0 none 0

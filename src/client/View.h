@@ -47,16 +47,35 @@ std::optional<std::size_t> pick(const wc3::World& world, const Ray& ray);
 // Where the ray meets flat ground (z = 0), if it points down.
 std::optional<wc3::Vec2> ground(const Ray& ray);
 
-// Single-unit selection and the player's orders. Owns no simulation state.
+struct ScreenPoint { float x = 0, y = 0; };
+inline constexpr float drag_threshold = 5; // pixels; strictly greater starts a box
+Ray screen_ray(const Camera& camera, ScreenPoint point, float width, float height);
+ScreenPoint project(const Camera& camera, Vec3 point, float width, float height);
+std::vector<std::size_t> box_pick(const wc3::World& world, const Camera& camera,
+    ScreenPoint a, ScreenPoint b, float width, float height);
+
+// Multiple-unit selection and the player's orders. Owns no simulation state.
 class Controller {
 public:
-    std::optional<std::size_t> selected() const { return selected_; }
-    void left_click(const wc3::World& world, const Ray& ray);
-    // Right-click and stop issue a command for the selected unit, if any.
-    std::optional<wc3::Command> right_click(wc3::Session& session, const Ray& ray);
-    std::optional<wc3::Command> stop(wc3::Session& session);
+    std::optional<std::size_t> selected() const {
+        return selected_.empty() ? std::nullopt : std::optional{selected_.front()};
+    } // route focus is the lowest index
+    const std::vector<std::size_t>& selection() const { return selected_; }
+    bool contains(std::size_t id) const;
+    void press(ScreenPoint point, bool shift);
+    void motion(ScreenPoint point);
+    bool dragging() const { return pressed_ && box_; }
+    ScreenPoint anchor() const { return anchor_; }
+    ScreenPoint pointer() const { return pointer_; }
+    void release(const wc3::World& world, const Camera& camera, ScreenPoint point, float width, float height);
+    void left_click(const wc3::World& world, const Ray& ray, bool shift = false);
+    // Right-click and stop issue one command per selected index, ascending.
+    std::vector<wc3::Command> right_click(wc3::Session& session, const Ray& ray);
+    std::vector<wc3::Command> stop(wc3::Session& session);
 private:
-    std::optional<std::size_t> selected_;
+    std::vector<std::size_t> selected_;
+    ScreenPoint anchor_, pointer_;
+    bool pressed_ = false, box_ = false, shift_ = false;
 };
 
 // What the renderer draws for each unit, read from the session after a frame.

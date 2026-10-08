@@ -48,7 +48,19 @@ south of idle Footman 1, a redirect and a part-way stop; `wc3replay` matches hea
 [design](docs/client-route.md)). Limits: scripted Cocoa input, no partial route shown live (headless tests cover
 it), no replan fell inside a screenshot although the model can replan mid-route. Native ARM64 Release
 `run_ci.py --archive` passes with all protected gates unchanged. Milestone 1 is not complete: next are the roadmap's
-remaining client increments (box/multiple selection, pause, diagnostic overlay).
+remaining client increments (pause, diagnostic overlay; multiple selection is recorded below).
+
+**Multiple selection (milestone 1, [issue #36](https://github.com/galitianu/warcraft-re/issues/36), P3):**
+box selection, shift-click toggle and shift-box add use a sorted presentation-only selection in `wc3view`.
+Group move/stop submits existing per-unit commands in ascending index at equal simulation time.
+All selected Footmen show rings, destinations and individual orders; the lowest index shows its route.
+SEL-0001's scripted macOS ARM64 run shows three-unit selection/move, shift removal and a two-unit
+part-way stop; four live checkpoints and five displayed routes match headless and 30 Hz/60 Hz/irregular
+replays exactly ([evidence](results/client-selection/README.md), [rules](docs/client-selection.md)).
+Native client CTest passes 8/8; native ARM64 Release archival CI passes with protected references/tolerances unchanged.
+Every unit receives the same target: WC3 assignment/formations remain unmeasured, a likely **P3** difference,
+and three-unit interactions are model behavior (issue #32). Placeholder geometry claims no visual fidelity.
+Milestone 1 remains open; next client action is a bounded pause/diagnostic-overlay increment.
 
 **Latest measured gameplay:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
 [issue #27](https://github.com/galitianu/warcraft-re/issues/27)). footman-v4 now follows WC3's own pathing

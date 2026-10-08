@@ -21,6 +21,35 @@ and existing P1 gates). [Bootstrap verification](results/continuous-bootstrap/RE
 records scope and the zero-request live BB CLI smoke check. No new WC3 captures
 or playable-client behavior is claimed by these infrastructure checks.
 
+**Interactive client (milestone 1, first increment, [issue #31](https://github.com/galitianu/warcraft-re/issues/31)):**
+an optional raylib executable (`-DWC3_CLIENT=ON`, macOS ARM64) controls three footman-v4 Footmen on
+flat placeholder ground: camera pan/zoom, single-unit picking with a selection ring, right-click move
+and `S` stop. Input becomes `Session` commands (time, sequence, unit, order, target) applied only
+between 5 ms frames. Live play and headless replay share that path; wall time only paces frames.
+Two retained smoke recordings replay **identically** under 30 Hz, 60 Hz and irregular render
+schedules, headlessly, and against the live client's own checkpoints. The screenshots show move,
+a part-way stop and an equal-time move+stop. They were driven by scripted Cocoa events, not physical
+input ([evidence](results/client-v1/README.md), [design](docs/client-v1.md)). Default build/CI need
+no raylib. Native ARM64 Release `run_ci.py --archive` passes with all movement, 32 collision and
+gated P1 checks unchanged. A CI revision fixes platform-dependent RNG snapshot text:
+original live hashes are retained and verified before deriving portable v2 checkpoints
+([migration evidence](results/client-v1/README.md#portable-snapshot-revision)). Native checks pass;
+new-head hosted Linux/Windows checks remain with the controller. Placeholder geometry
+claims no visual fidelity.
+
+**Route display (milestone 1, [issue #34](https://github.com/galitianu/warcraft-re/issues/34), P3):** the
+selected Footman shows footman-v4's current computed route (cyan polyline from the unit through the remaining
+waypoints) instead of a straight destination line; a partial route stops where the plan ends; an unapplied or
+unplanned move shows `pending` with no path; stop, arrival, redirect and deselection replace or clear it. The view
+copies `Unit::route()`/cursor/partial flag through a const boundary and never plans or mutates; the route algorithm
+and command semantics are unchanged. Retained scripted run 0001 (macOS ARM64) shows an unobstructed move, a detour
+south of idle Footman 1, a redirect and a part-way stop; `wc3replay` matches headless under 30 Hz/60 Hz/irregular,
+6 live checkpoints and all 7 displayed routes exactly ([evidence](results/client-route/README.md),
+[design](docs/client-route.md)). Limits: scripted Cocoa input, no partial route shown live (headless tests cover
+it), no replan fell inside a screenshot although the model can replan mid-route. Native ARM64 Release
+`run_ci.py --archive` passes with all protected gates unchanged. Milestone 1 is not complete: next are the roadmap's
+remaining client increments (box/multiple selection, pause, diagnostic overlay).
+
 **Latest measured gameplay:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
 [issue #27](https://github.com/galitianu/warcraft-re/issues/27)). footman-v4 now follows WC3's own pathing
 mechanism, read from the retail executable ([model](docs/footman-v4-model.md#unit-pathing)): grid footprints, a

@@ -1,0 +1,20 @@
+{
+  "recording": "live-0001.rec",
+  "recording_sha256": "4c341b9a9359a5bc01837232f3d50771c2f0d3bb7c7984b66c013ce7aab2d0fe",
+  "scene": "flat-footmen-3",
+  "model": "footman-v4",
+  "seed": 1,
+  "frame_us": 5000,
+  "commands": 6,
+  "end_us": 21985000,
+  "commands_sharing_a_time": 2,
+  "checkpoint_us": 1000000,
+  "headless": {"sim_frames": 4397, "checkpoints": [{"time_us": 0, "sha256": "ca4f7e06d4645dfa9ba2165f956879f0f4a7e507544cc5a17b5f111ce2db4709"}, {"time_us": 1000000, "sha256": "2c31b12a83c708c9937941ed3aa1885b09db77df6f371c8c3d5374e33eb1c506"}, {"time_us": 2000000, "sha256": "78173c5a1d9dadcbcbdf57ee41b59b24ff158a44119fcf35b9ee7f69d298a7ab"}, {"time_us": 3000000, "sha256": "d3369e876414ede630e6d5fa3e4e6016d8328194a3ee66c1596a7be7e7a987e7"}, {"time_us": 4000000, "sha256": "3f4e07d23c16ae402ef6ba2185dca2285a773e0e626e50efd254a88be4759e03"}, {"time_us": 5000000, "sha256": "4a8b013af93bee29afd1956c7eb14d1a9a3530bcc4fabf191786cad2276cb77b"}, {"time_us": 6000000, "sha256": "d571cdc9714b9c9c75957d75ea8301911dde8de9cd352cf0d123c0851bc826a5"}, {"time_us": 7000000, "sha256": "d8e0fd318211693d342795dce4af8c13e9ea6a708fd54d2ba38918c74587f84c"}, {"time_us": 8000000, "sha256": "520ad27975874d706dbdfb6a32aa27751825f1d60346e9d4fea7b8710ea316dc"}, {"time_us": 9000000, "sha256": "4e0347b360c01fbba536184d9f2fce5798bc7ed2511e75beed968a7f312993c8"}, {"time_us": 10000000, "sha256": "bd31370520134081dc225dc97fd8a3a17a3294c50383f3abc7688986981ff850"}, {"time_us": 11000000, "sha256": "414478b3c20b8888b16625a241ab37143583b1b9af425051f7f3ee8e7f577ab3"}, {"time_us": 12000000, "sha256": "c68a22012c6a62720c6efa423822646d15350482dd976d1c992fe1acb9d95a50"}, {"time_us": 13000000, "sha256": "9cfdbfbffd3a035892185f405a32bcc5148f5cfc8af7f3508b7b64089973e868"}, {"time_us": 14000000, "sha256": "95126613e52f738da3370252055fc2c90bfeb597b960df4810f4c5714b9f15aa"}, {"time_us": 15000000, "sha256": "4f0c32bd6f55caeba41ce9e2e41ee369b081fde350a0e2a3684f616aac4ec07a"}, {"time_us": 16000000, "sha256": "04cbdcd1c8df1816e01e700c0bc0c4414712947a06ba83f16f13eb99eab7cfb1"}, {"time_us": 17000000, "sha256": "e0941b349b7bf3e5dbde024109176a8e050483f96c1238891cab496f688459fa"}, {"time_us": 18000000, "sha256": "33b09ce592eb6b30c1350b0c37f09806881f1ad0f5d21a050c08c2d2164e60cc"}, {"time_us": 19000000, "sha256": "cc91a37c312213974342ce71b979c17d230bb4aca34b8d14d65c62b22c6c0272"}, {"time_us": 20000000, "sha256": "b2f15e00461d47934b6c0af4d3004fac29ab3d2ce3b2803e6f1900b55bfc93c5"}, {"time_us": 21000000, "sha256": "83031a49c550936e643e9a0debc6327ab706b83b712dba63b9e72e8c78d116a5"}, {"time_us": 21985000, "sha256": "983758a804065a807ba2d6389ae25d45596d32a3db3c69f3b5e0c4c268687f40"}]},
+  "comparisons": [
+    {"name": "render-30hz", "schedule": "33333/33333/33334 us render intervals", "checkpoints_compared": 23, "render_frames": 660, "sim_frames": 4397, "presentation_checks": 660, "identical": true, "first_divergence_us": null},
+    {"name": "render-60hz", "schedule": "16666/16667/16667 us render intervals", "checkpoints_compared": 23, "render_frames": 1320, "sim_frames": 4397, "presentation_checks": 1320, "identical": true, "first_divergence_us": null},
+    {"name": "render-irregular", "schedule": "repeating 7000,41000,16667,1000,0,250000,3000,25000,9999,33334,4999,5001 us", "checkpoints_compared": 23, "render_frames": 1076, "sim_frames": 4397, "presentation_checks": 1076, "identical": true, "first_divergence_us": null},
+    {"name": "live-client", "schedule": "checkpoints the live client recorded while playing", "checkpoints_compared": 23, "identical": true, "first_divergence_us": null}
+  ],
+  "status": "PASS"
+}

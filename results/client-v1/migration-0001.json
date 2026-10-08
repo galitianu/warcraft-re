@@ -1,0 +1,31 @@
+{
+  "recording_sha256": "4c341b9a9359a5bc01837232f3d50771c2f0d3bb7c7984b66c013ce7aab2d0fe",
+  "legacy_file_sha256": "d06d3da5235cc85d553e0d9db9cd22dda2efbcc3da7f97e91b41ae4bed7e3cb9",
+  "checkpoints": [
+    {"time_us": 0, "legacy_sha256": "ca4f7e06d4645dfa9ba2165f956879f0f4a7e507544cc5a17b5f111ce2db4709", "verified": true, "portable_sha256": "df9ed4c03dd0119e00f8fe48d133419b76ed8f2a8d66464dad2f95a3b7639f51"},
+    {"time_us": 1000000, "legacy_sha256": "2c31b12a83c708c9937941ed3aa1885b09db77df6f371c8c3d5374e33eb1c506", "verified": true, "portable_sha256": "1d97984958d7bcc7e1c057c2323d16d2192312053be2c68b5b3d5545929ef8d8"},
+    {"time_us": 2000000, "legacy_sha256": "78173c5a1d9dadcbcbdf57ee41b59b24ff158a44119fcf35b9ee7f69d298a7ab", "verified": true, "portable_sha256": "c1b7bafb4af7ebe299033d9b613c17e74c3d0055ee25cf037699f9991bc54fc0"},
+    {"time_us": 3000000, "legacy_sha256": "d3369e876414ede630e6d5fa3e4e6016d8328194a3ee66c1596a7be7e7a987e7", "verified": true, "portable_sha256": "47d52c2454ef815948b0c0b7e16b615e1e7e6727af53b6c2b3a14b9a474c34b4"},
+    {"time_us": 4000000, "legacy_sha256": "3f4e07d23c16ae402ef6ba2185dca2285a773e0e626e50efd254a88be4759e03", "verified": true, "portable_sha256": "b1b03c296d46dfab2a1586d9f168755c2570016cd872ce89e090108fed3a5f47"},
+    {"time_us": 5000000, "legacy_sha256": "4a8b013af93bee29afd1956c7eb14d1a9a3530bcc4fabf191786cad2276cb77b", "verified": true, "portable_sha256": "5f252552fa70a4749022a7a0bcb1e40d6fc879295e4ab9795886fbfddec48760"},
+    {"time_us": 6000000, "legacy_sha256": "d571cdc9714b9c9c75957d75ea8301911dde8de9cd352cf0d123c0851bc826a5", "verified": true, "portable_sha256": "305c8798ce397bf62bfa749d4468341bf8d91939ff38a432d00c0fab3f02ac27"},
+    {"time_us": 7000000, "legacy_sha256": "d8e0fd318211693d342795dce4af8c13e9ea6a708fd54d2ba38918c74587f84c", "verified": true, "portable_sha256": "5093ad17a22bf42488d29f7d2719349444f3d9b3291e5349a2bb04b4996cb799"},
+    {"time_us": 8000000, "legacy_sha256": "520ad27975874d706dbdfb6a32aa27751825f1d60346e9d4fea7b8710ea316dc", "verified": true, "portable_sha256": "070ef0de87b9ce6cb73fd0ac34808fd1f0db90200827384e437af5beef15e7a8"},
+    {"time_us": 9000000, "legacy_sha256": "4e0347b360c01fbba536184d9f2fce5798bc7ed2511e75beed968a7f312993c8", "verified": true, "portable_sha256": "c5b460118cab9cc3a4d37644790a91d5366eef77d331db21f73c1f6a01e085a9"},
+    {"time_us": 10000000, "legacy_sha256": "bd31370520134081dc225dc97fd8a3a17a3294c50383f3abc7688986981ff850", "verified": true, "portable_sha256": "830ddff08c2153653d5b8c3d6a3dfc361c62cda46fab45c3cca79e5a117d0fa1"},
+    {"time_us": 11000000, "legacy_sha256": "414478b3c20b8888b16625a241ab37143583b1b9af425051f7f3ee8e7f577ab3", "verified": true, "portable_sha256": "ddbca4bd7517971eb0447b67d659cdf42d8dd5fa0c767420f1f80f8418e285af"},
+    {"time_us": 12000000, "legacy_sha256": "c68a22012c6a62720c6efa423822646d15350482dd976d1c992fe1acb9d95a50", "verified": true, "portable_sha256": "5908d81b357c8cf51b88e4ea20fe91477a8c6e1b4fb3727d588f06e9a5518510"},
+    {"time_us": 13000000, "legacy_sha256": "9cfdbfbffd3a035892185f405a32bcc5148f5cfc8af7f3508b7b64089973e868", "verified": true, "portable_sha256": "84c4e879433946ce865d4a626011154077b5fe7d0136fe010eef29a1e1bec614"},
+    {"time_us": 14000000, "legacy_sha256": "95126613e52f738da3370252055fc2c90bfeb597b960df4810f4c5714b9f15aa", "verified": true, "portable_sha256": "bb725d614d068df28f44a095c8429d2c7ec1c2f4bf27904f11fe6bb0bfe09e19"},
+    {"time_us": 15000000, "legacy_sha256": "4f0c32bd6f55caeba41ce9e2e41ee369b081fde350a0e2a3684f616aac4ec07a", "verified": true, "portable_sha256": "f00fd332145232f5b8f728ffb6272d19c13a0b1a42a176264d194190c1c908ba"},
+    {"time_us": 16000000, "legacy_sha256": "04cbdcd1c8df1816e01e700c0bc0c4414712947a06ba83f16f13eb99eab7cfb1", "verified": true, "portable_sha256": "4c5f25e11a7aeb4b60c6a10d3a22de37b2e913f36bcec328c258ff19b5ae3447"},
+    {"time_us": 17000000, "legacy_sha256": "e0941b349b7bf3e5dbde024109176a8e050483f96c1238891cab496f688459fa", "verified": true, "portable_sha256": "058cb74598fa557d2943551bb144b44b52bb5917144d89d92bfe1de6c588c404"},
+    {"time_us": 18000000, "legacy_sha256": "33b09ce592eb6b30c1350b0c37f09806881f1ad0f5d21a050c08c2d2164e60cc", "verified": true, "portable_sha256": "e41f1b291ce71e57b28c9de3f84e121180a1276bcb17fe6ac2ac24ce3c8e37d3"},
+    {"time_us": 19000000, "legacy_sha256": "cc91a37c312213974342ce71b979c17d230bb4aca34b8d14d65c62b22c6c0272", "verified": true, "portable_sha256": "3997f686d4007a2597a610c7889b51eaebdbbe7cd3931684f70fe435223f8c75"},
+    {"time_us": 20000000, "legacy_sha256": "b2f15e00461d47934b6c0af4d3004fac29ab3d2ce3b2803e6f1900b55bfc93c5", "verified": true, "portable_sha256": "0230c818acba55c0d19c404464706458957c7e8f1ce8db9a0ba573407192b6f0"},
+    {"time_us": 21000000, "legacy_sha256": "83031a49c550936e643e9a0debc6327ab706b83b712dba63b9e72e8c78d116a5", "verified": true, "portable_sha256": "46ac8987c849bd078e122d9ed11fc72b06f71d6fe4ae8815c755ce21777e6220"},
+    {"time_us": 21985000, "legacy_sha256": "983758a804065a807ba2d6389ae25d45596d32a3db3c69f3b5e0c4c268687f40", "verified": true, "portable_sha256": "b4827003d6d0594c4e602f213e42cc28b573732c3f5cc58851f4a41367482ce4"}
+  ],
+  "portable_file_sha256": "c3e6d4c32a50323b86a8603c265c726bea98f6946c135bc4e512ed9e2649a5d6",
+  "status": "PASS"
+}

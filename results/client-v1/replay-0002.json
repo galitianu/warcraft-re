@@ -1,0 +1,20 @@
+{
+  "recording": "live-0002.rec",
+  "recording_sha256": "d7a6375791c1a7efa216330dc33ae2e107df75d641d120bd6ee17caebda52a69",
+  "scene": "flat-footmen-3",
+  "model": "footman-v4",
+  "seed": 1,
+  "frame_us": 5000,
+  "commands": 6,
+  "end_us": 5275000,
+  "commands_sharing_a_time": 2,
+  "checkpoint_us": 1000000,
+  "headless": {"sim_frames": 1055, "checkpoints": [{"time_us": 0, "sha256": "ca4f7e06d4645dfa9ba2165f956879f0f4a7e507544cc5a17b5f111ce2db4709"}, {"time_us": 1000000, "sha256": "5c3d0e4be39c140133e5d4a6969ab0d79210c8ba6e9e2c0a00d87418c776d8fd"}, {"time_us": 2000000, "sha256": "81f3447518e225ea28a8edefece538fc77c37189d41a8a4c2c91d333c159c212"}, {"time_us": 3000000, "sha256": "32c1c715f0f632de0e0ea52a8f358dffc066d6febaf976b1edc48bbf77147163"}, {"time_us": 4000000, "sha256": "51ba0299605174019efaaa9b5fa379d66d9ed2dca505f0abb64faef89abf50a6"}, {"time_us": 5000000, "sha256": "1d86de1fb219b6fda881481fbabc58d91020458961e2fcb599b6db2625f09dab"}, {"time_us": 5275000, "sha256": "19deda4d4ff0a6c94c42d79b63156e52a934a5201ba7647ecc4c42d42e80370a"}]},
+  "comparisons": [
+    {"name": "render-30hz", "schedule": "33333/33333/33334 us render intervals", "checkpoints_compared": 7, "render_frames": 159, "sim_frames": 1055, "presentation_checks": 159, "identical": true, "first_divergence_us": null},
+    {"name": "render-60hz", "schedule": "16666/16667/16667 us render intervals", "checkpoints_compared": 7, "render_frames": 317, "sim_frames": 1055, "presentation_checks": 317, "identical": true, "first_divergence_us": null},
+    {"name": "render-irregular", "schedule": "repeating 7000,41000,16667,1000,0,250000,3000,25000,9999,33334,4999,5001 us", "checkpoints_compared": 7, "render_frames": 258, "sim_frames": 1055, "presentation_checks": 258, "identical": true, "first_divergence_us": null},
+    {"name": "live-client", "schedule": "checkpoints the live client recorded while playing", "checkpoints_compared": 7, "identical": true, "first_divergence_us": null}
+  ],
+  "status": "PASS"
+}

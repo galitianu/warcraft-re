@@ -1,0 +1,36 @@
+# wc3client route-display smoke script (docs/client-route.md, issue #34).
+# Run: wc3client --smoke tools/client/smoke-route.txt --screenshots DIR --record BASE
+# Waits count render frames (about 1/60 s each with vsync). @N aims at Footman N's
+# body; "ground X Y" aims at a world point, both through the live camera.
+wait 30
+screenshot 01-start
+left @2                  # select the east Footman
+wait 5
+right ground 450 300     # unobstructed move: a straight planned route
+wait 20
+screenshot 02-unobstructed
+wait 170                 # it arrives: the route clears
+screenshot 03-arrived
+left @0                  # select the west Footman
+wait 5
+right ground 200 0       # the straight line crosses the idle Footman 1
+wait 12
+screenshot 04-detour
+wait 20
+screenshot 05-detour-later
+wait 15
+right ground -100 400    # redirect while moving: the old route is replaced
+wait 12
+screenshot 06-redirected
+wait 15
+key s                    # stop part-way: the route clears
+wait 15
+screenshot 07-stopped
+right ground -300 500    # move again, then deselect while it is moving
+wait 15
+screenshot 08-moving-again
+left ground 700 -500     # empty ground clears the selection and its route
+wait 10
+screenshot 09-deselected
+wait 120
+quit

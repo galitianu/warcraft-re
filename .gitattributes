@@ -15,3 +15,4 @@ oracle/environment/mov-0015-verification.json -text
 # Isolated Phase 7 evidence bundles preserve original Windows transport bytes.
 results/phase-7/**/oracle/captures/** -text -whitespace
 results/phase-7/**/oracle/environment/** -text whitespace=cr-at-eol
+*.mp4 binary

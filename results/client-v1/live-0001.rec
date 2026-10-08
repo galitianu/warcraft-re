@@ -1,0 +1,12 @@
+wc3-command-recording 1
+scene flat-footmen-3
+model footman-v4
+seed 1
+frame_us 5000
+command 1690000 1 1 move 0x00000000 0x441ffcf5 # 0 639.952454
+command 5640000 2 1 stop
+command 8020000 3 1 move 0x43d20080 0x439ffeca # 420.003906 319.99054
+command 11610000 4 1 move 0xc3a00007 0x4347fcdc # -320.000214 199.987732
+command 11610000 5 1 stop
+command 14470000 6 0 move 0xc4020063 0x440c0047 # -520.006042 560.004333
+end 21985000

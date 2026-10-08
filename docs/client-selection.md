@@ -49,4 +49,18 @@ macOS ARM64 client; scripted Cocoa events, not physical input.
    cover threshold/ties/union/body intersection, snapshot isolation and two-unit
    equal-time move then stop. Existing references and tolerances stay unchanged.
 
-Results and build/environment identity will be linked after the retained run.
+## Results
+
+[SEL-0001 retained run 0001](../results/client-selection/README.md) meets expectations
+1–5: the outline covers all three Footmen, three rings appear, all three move,
+shift removes Footman 1, and the two remaining selected units stop part-way while
+Footman 1 continues. The shared-target X overlaps by design; the HUD lists each
+selected unit's current order and the cyan route belongs to Footman 0.
+`wc3replay` matches all four live checkpoints and five displayed routes exactly
+under all named schedules. The native Release client and default headless build
+pass their CTests; native archival CI results are recorded with the evidence.
+
+Limits: scripted Cocoa input only, macOS ARM64; no physical-input session or other
+window platform tested. Shared targets and three-unit interactions are model
+behavior, not WC3 compatibility. Milestone 1 remains open: pause and diagnostic
+overlay are the next scoped client increments.

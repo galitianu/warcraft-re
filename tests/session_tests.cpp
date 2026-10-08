@@ -204,6 +204,13 @@ int main() {
             const auto edge=client::box_pick(s.world(),camera,{p2.x+8,p2.y-4},{p2.x+10,p2.y+4},1280,720);
             check(edge==std::vector<std::size_t>{2}, "box intersects picked body without centre");
             check(client::box_pick(s.world(),camera,{0,0},{20,20},1280,720).empty(), "empty box");
+            check(client::box_pick(s.world(),camera,{p2.x+16,p2.y+16},{p2.x+20,p2.y+20},1280,720).empty(),
+                  "sphere versus frustum rejects diagonal corner miss");
+            const auto probe=client::screen_ray(camera,p2,1280,720);
+            check(client::pick(s.world(),probe)==2, "headless screen ray matches projection");
+            wc3::World tied(wc3::ModelVersion::v4,1);
+            tied.create_footman({0,0},0); tied.create_footman({0,0},0);
+            check(client::pick(tied,ray_at(camera,{0,0},client::unit_height/2))==0, "equal-distance pick ties favor lowest index");
             c.left_click(s.world(),ray_at(camera,{0,0},client::unit_height/2),true);
             check(c.selection()==std::vector<std::size_t>{0}, "shift removes");
             c.left_click(s.world(),ray_at(camera,{192,0},client::unit_height/2),true);

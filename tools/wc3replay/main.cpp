@@ -127,7 +127,10 @@ Run rendered(const wc3::Recording& recording, std::string name, std::string desc
         const auto eye = camera.eye();
         const auto target = session.world().unit(n % session.world().unit_count()).position();
         const client::Ray ray{eye, {target.x - eye.x, target.y - eye.y, client::unit_height / 2 - eye.z}};
-        controller.left_click(session.world(), ray);
+        controller.left_click(session.world(), ray, n % 2 == 0);
+        controller.press({100,100}, n % 3 == 0);
+        controller.motion({1100,600});
+        controller.release(session.world(),camera,{1100,600},1280,720);
         client::ground(ray);
         const auto views = client::unit_views(session, controller);
         // Route views for every unit and the selection, built twice: reading must not plan.

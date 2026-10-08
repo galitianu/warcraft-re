@@ -3,15 +3,15 @@
 8 October 2026. BB CLI **0.45.0**, native ARM Mac. This verifies controller policy
 and deployment plumbing, not new Warcraft gameplay or rendering fidelity.
 
-- `python3 -m unittest discover -s tools -p 'test_dispatch*.py'`: **42/42 PASS**.
+- `python3 -m unittest discover -s tools -p 'test_dispatch*.py'`: **45/45 PASS**.
   Fakes exercise 80% short/weekly/family limits, missing/expired usage, alternating
   providers/fallback/reset resumption, preserved worktrees, pending questions,
   duplicate dispatch/crash recovery, changed issue scope, label removal, independent
   review/CI/head gates, paused installation and scoped health recovery.
-- Full Python integrity suite: **132/132 PASS**.
+- Full Python integrity suite: **135/135 PASS**.
 - `python3 tools/run_ci.py --build build-continuous --compiler /usr/bin/clang++
-  --config Release --archive`: **PASS**, CTest **3/3**, Python **132/132** after the
-  independently requested stop-confirmation fix. Existing movement/collision gates and historical/P1
+  --config Release --archive`: **PASS**, CTest **3/3**, Python **135/135** after the
+  independently requested controller fixes. Existing movement/collision gates and historical/P1
   observed-difference gates remain accepted. Build/logs remain outside git.
 - [Live CLI smoke](cli-smoke.json): a real deferred pending thread was created,
   scoped pool bypass applied, then its one initial message was removed and its
@@ -43,6 +43,14 @@ cleanup and active/starting/runtime status. Unconfirmed stops retain their
 slot/worktree and retry on later ticks; quota stops still do not count as failure.
 These controls use a fake CLI; no real subscription exhaustion or failed
 interrupt is claimed. Deployment still requires fresh exact-head review and CI.
+
+A later review found that retry backoff released a retained increment's lane
+([finding](https://github.com/galitianu/warcraft-re/pull/30#pullrequestreview-5457925530)).
+Retained revisions now reserve that lane until completion or explicit parking,
+while the other lane continues. Three additional controls cover unsuccessful
+implementation backoff, CHANGES_REQUESTED revisions and review quota handoffs
+preserving the implementation predecessor. Native archival CI passes at 135 tests;
+fresh exact-head review and hosted CI remain the deployment gate.
 
 The cutoff is against reported usage before dispatch and each minute while
 working. Reporting lag/in-flight requests can overshoot; this is not an exact

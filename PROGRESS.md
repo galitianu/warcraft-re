@@ -14,8 +14,8 @@ pool/concurrency/provider setting is changed. The cutoff has documented
 reporting/in-flight limits. Live enabled state and worker receipts are maintained
 in the controller's BB thread storage, outside git.
 Both schedules were installed **paused**; their stored launchers completed manual
-disabled-policy checks with exit 0 and no model work. Forty-two controller/install
-negative-control tests pass; the full Python suite passes 132/132. Native ARM64
+disabled-policy checks with exit 0 and no model work. Forty-five controller/install
+negative-control tests pass; the full Python suite passes 135/135. Native ARM64
 Release archival compatibility CI passes (CTest 3/3, protected movement/collision
 and existing P1 gates). [Bootstrap verification](results/continuous-bootstrap/README.md)
 records scope and the zero-request live BB CLI smoke check. No new WC3 captures
@@ -593,9 +593,10 @@ passes all five configurations and the aggregate (head `003ae9e`).
 
 ## Exact next action
 
-Integrate [the continuous-development bootstrap PR #30](https://github.com/galitianu/warcraft-re/pull/30)
-through independent review and hosted CI, then activate its saved controller/health
-schedules with Claude Code/Codex and automatic merges. The controller's first two
+For controller deployment, independent review and hosted CI evidence, see
+[bootstrap PR #30](https://github.com/galitianu/warcraft-re/pull/30). Live activation
+and worker receipts reside in BB thread storage; the configured policy uses Claude
+Code/Codex and automatic merges. The controller's first two
 product issue increments are milestone 1's
 interactive Footman (optional raylib client, ordered live input and headless replay)
 and milestone 2's pre-registered three-Footman collision question (blocker list

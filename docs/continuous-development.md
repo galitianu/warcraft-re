@@ -80,6 +80,9 @@ acceptance and starts a fresh implementation handoff. Malformed issue metadata
 is reported without stalling the other lane.
 
 At most two workers run by default. Each lane has one in-flight increment.
+Retained implementation work and review-requested revisions keep their lane
+reserved during retry backoff; fresh issues cannot overtake that increment.
+An explicitly parked issue releases its lane while retaining its partial work.
 An implementation completes acceptance, commits, pushes and opens a ready PR with
 `Closes #N` and `<!-- war3-job:N -->`. An independent reviewer starts in a separate
 worktree at the immutable PR head, grades against the current main, reproduces

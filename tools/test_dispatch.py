@@ -475,6 +475,46 @@ class LifecycleTests(unittest.TestCase):
         self.d.tick()
         self.assertEqual(len(self.cli.threads), 1)
 
+    def test_retained_implementation_reserves_lane_during_backoff(self):
+        self.cli.issues = [issue(30), issue(31)]
+        self.d.tick()
+        launch = next(iter(self.state['launches'].values()))
+        self.receipt(launch, head_sha='d' * 40)
+        self.d.reconcile(self.d.gates())
+        self.cli.issues.append(issue(32, lane='mechanics'))
+        self.d.tick()
+        running = [l['issue'] for l in self.state['launches'].values() if l['state'] == 'running']
+        self.assertEqual(running, [32])  # Other lane continues; #31 cannot overtake.
+        self.d.now = self.state['jobs']['30']['retry_after'] + 1
+        self.d.tick()
+        running = [l['issue'] for l in self.state['launches'].values() if l['state'] == 'running']
+        self.assertEqual(running, [32, 30])
+        self.assertEqual(self.cli.threads['thr_3']['environment']['id'], 'env_1')
+
+    def test_changes_requested_reserves_lane_for_author_revision(self):
+        self.cli.issues = [issue(30), issue(31)]
+        self.job(state='review_ready', environment='author_env', previous_thread='author')
+        launch = self.d.launch('review', 'claude-code', number=30, base_sha=BASE)
+        self.receipt(launch, status='CHANGES_REQUESTED', findings=['Fix acceptance.'])
+        self.d.reconcile(self.d.gates())
+        self.d.tick()
+        self.assertEqual(len(self.cli.threads), 1)
+        self.d.now = self.state['jobs']['30']['retry_after'] + 1
+        self.d.tick()
+        self.assertEqual(len(self.cli.threads), 2)
+        self.assertEqual(self.cli.threads['thr_2']['environment']['id'], 'author_env')
+        self.assertEqual(self.state['jobs']['31']['state'], 'implement_ready')
+
+    def test_review_quota_handoff_preserves_implementation_predecessor(self):
+        job = self.job(state='review_ready', environment='author_env', previous_thread='author')
+        launch = self.d.launch('review', 'claude-code', number=30, base_sha=BASE)
+        self.cli.reports['claude-code'] = usage(80)
+        self.d.reconcile(self.d.gates())
+        self.assertEqual(launch['state'], 'retained')
+        self.assertEqual(job['previous_thread'], 'author')
+        self.assertEqual(job['environment'], 'author_env')
+        self.assertEqual(job['state'], 'review_ready')
+
     def test_no_planner_busywork_while_issue_awaits_manual_merge(self):
         self.job(state='awaiting_merge')
         self.config['auto_merge'] = False

@@ -632,7 +632,8 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
                 if launch['issue']:
                     job = self.s['jobs'][str(launch['issue'])]
                     job['state'] = 'review_ready' if launch['stage'] == 'review' else 'implement_ready'
-                    job['previous_thread'] = launch['thread']
+                    if launch['stage'] == 'implement':
+                        job['previous_thread'] = launch['thread']
                 launch['state'] = 'retained'
                 self.persist()
 
@@ -746,6 +747,14 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
         occupied = {j['lane'] for j in self.s['jobs'].values() if j['state'] not in
                     {'done', 'blocked', 'implement_ready'}}
         occupied.update(self.s['jobs'][str(l['issue'])]['lane'] for l in running if l['issue'])
+        # A revision/backoff retains its increment's lane even between turns.
+        # If recovering an older state with several retained jobs, drain the
+        # oldest first; fresh issues cannot overtake retained work.
+        reserved = {}
+        for job in sorted(self.s['jobs'].values(), key=lambda j: j['issue']):
+            if job['state'] == 'implement_ready' and any(job.get(k) for k in
+                    ('pr', 'environment', 'previous_thread', 'attempts')):
+                reserved.setdefault(job['lane'], job['issue'])
         eligible = []
         for job in self.s['jobs'].values():
             if (job['issue'] not in open_numbers or str(job['issue']) in self.s.get('queue_errors', {}) or
@@ -754,7 +763,8 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
                 continue
             if job['state'] not in {'implement_ready', 'review_ready'}:
                 continue
-            if job['state'] == 'implement_ready' and job['lane'] in occupied:
+            if job['state'] == 'implement_ready' and (job['lane'] in occupied or
+                    reserved.get(job['lane'], job['issue']) != job['issue']):
                 continue
             dependencies_closed = True
             for dep in job['depends_on']:

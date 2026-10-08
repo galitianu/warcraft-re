@@ -51,7 +51,7 @@ draw list, and fails if the snapshot changed. Snapshot hashes are compared at
 every whole simulated second and at the end; applied commands and acceptance
 must also match. With `--live`, the live client's own checkpoints are compared too.
 Exit 0 only if all are identical. CTest runs it on the retained recording
-(`client_replay`) and `session_tests` covers equal-time ordering, live versus
+(`client_replay_0001`, `client_replay_0002`) and `session_tests` covers equal-time ordering, live versus
 replay equality frame by frame, validation and presentation isolation.
 
 ## Pre-registered expectations (before the retained run)
@@ -92,3 +92,20 @@ input (no accessibility permission needed, nothing posted to other applications)
 Targets are aimed through the live camera (`@N` = Footman N's body). The HUD labels
 such runs `SMOKE RUN`. GLFW finds no monitor while the display sleeps; wake it
 first (`caffeinate -u -t 120`).
+
+## Results
+
+[Evidence](../results/client-v1/README.md). Run 0002 met expectation 1: select,
+move, a part-way stop, and an equal-time move+stop (2.905 s, sequences 4 and 5)
+after which Footman 1 stayed idle. Run 0001 did **not** show a part-way stop:
+exporting video frames stalled rendering and the pacer cap stretched each scripted
+wait, so the unit arrived first. That was a scripting/evidence problem, not a
+simulation difference. Expectation 2 held for both runs: 30 Hz, 60 Hz, irregular
+and live-client checkpoints are identical to the headless replay (23 and 7
+checkpoints). Expectation 3 held: native ARM64 Release `tools/run_ci.py --archive` passes.
+
+**Limits.** The screenshots come from scripted Cocoa events, not hand-operated hardware.
+They are macOS ARM64 only; no Windows/Linux window was run. Within one render frame,
+input order is fixed (left, right, `S`). No render interpolation is used (units
+draw at the latest 5 ms frame). Box/group selection, path display, formations,
+assets, combat and audio are out of scope.

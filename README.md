@@ -22,6 +22,8 @@ Start with:
   project-only quota enforcement, worktrees, review/CI and recovery.
 - [Bootstrap plan](Warcraft-III-Reimplementation-Plan.md): delivered foundation and
   enduring evidence decisions. Its appendix is historical, not completed work.
+- [Client v1](docs/client-v1.md): the optional raylib client, command recording
+  and render-schedule replay check.
 - [Progress](PROGRESS.md): current state and the next concrete action.
 - [Agent guidance](AGENTS.md): scope, evidence, Windows access, and working rules.
 - [Salvage assessment](docs/salvage.md): what the previous work actually contains

@@ -21,6 +21,19 @@ and existing P1 gates). [Bootstrap verification](results/continuous-bootstrap/RE
 records scope and the zero-request live BB CLI smoke check. No new WC3 captures
 or playable-client behavior is claimed by these infrastructure checks.
 
+**Interactive client (milestone 1, first increment, [issue #31](https://github.com/galitianu/warcraft-re/issues/31)):**
+an optional raylib executable (`-DWC3_CLIENT=ON`, macOS ARM64) controls three footman-v4 Footmen on
+flat placeholder ground: camera pan/zoom, single-unit picking with a selection ring, right-click move
+and `S` stop. Input becomes `Session` commands (time, sequence, unit, order, target) applied only
+between 5 ms frames. Live play and headless replay share that path; wall time only paces frames.
+Two retained smoke recordings replay **identically** under 30 Hz, 60 Hz and irregular render
+schedules, headlessly, and against the live client's own checkpoints. The screenshots show move,
+a part-way stop and an equal-time move+stop. They were driven by scripted Cocoa events, not physical
+input ([evidence](results/client-v1/README.md), [design](docs/client-v1.md)). Default build/CI need
+no raylib. Native ARM64 Release `run_ci.py --archive` passes with all movement, 32 collision and
+gated P1 checks unchanged. Placeholder geometry claims no visual fidelity. Next: the roadmap's
+follow-up client increments (box/multiple selection, order feedback, pause).
+
 **Latest measured gameplay:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
 [issue #27](https://github.com/galitianu/warcraft-re/issues/27)). footman-v4 now follows WC3's own pathing
 mechanism, read from the retail executable ([model](docs/footman-v4-model.md#unit-pathing)): grid footprints, a

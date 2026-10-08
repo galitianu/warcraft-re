@@ -115,9 +115,11 @@ if(BUILD_TESTING)
   add_test(NAME session_commands COMMAND session_tests)
   # The retained live recording replays identically under every render schedule
   # and matches the checkpoints the live client recorded.
-  add_test(NAME client_replay COMMAND wc3replay
-    "${CMAKE_SOURCE_DIR}/results/client-v1/live-0001.rec"
-    --live "${CMAKE_SOURCE_DIR}/results/client-v1/live-0001.checkpoints")
-  set_tests_properties(world_invariants scenario_v1 footman_v4_wc3 session_commands client_replay
+  foreach(run 0001 0002)
+    add_test(NAME client_replay_${run} COMMAND wc3replay
+      "${CMAKE_SOURCE_DIR}/results/client-v1/live-${run}.rec"
+      --live "${CMAKE_SOURCE_DIR}/results/client-v1/live-${run}.checkpoints")
+  endforeach()
+  set_tests_properties(world_invariants scenario_v1 footman_v4_wc3 session_commands client_replay_0001 client_replay_0002
     PROPERTIES TIMEOUT 180)
 endif()

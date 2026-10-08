@@ -168,12 +168,81 @@ int main() {
             const client::Ray at_ground{eye, {600 - eye.x, 300 - eye.y, -eye.z}};
             controller.left_click(s.world(), at_ground);
             check(!controller.selected(), "ground click clears selection");
-            check(!controller.right_click(s, at_ground) && !controller.stop(s), "no selection, no command");
+            check(controller.right_click(s, at_ground).empty() && controller.stop(s).empty(), "no selection, no command");
             check(s.world().snapshot() == before && s.pending() == 0, "presentation mutated the world");
             controller.left_click(s.world(), at_unit2);
             const auto c = controller.right_click(s, at_ground);
-            check(c && c->unit == 2 && c->order == wc3::order_move && std::abs(c->target.x - 600) < 0.1f &&
-                  std::abs(c->target.y - 300) < 0.1f, "right-click moves the selected unit to the ground point");
+            check(c.size() == 1 && c[0].unit == 2 && c[0].order == wc3::order_move && std::abs(c[0].target.x - 600) < 0.1f &&
+                  std::abs(c[0].target.y - 300) < 0.1f, "right-click moves the selected unit to the ground point");
+        }
+        // Multiple selection: screen-space threshold, body intersection, shift and commands.
+        {
+            wc3::Session s;
+            client::Camera camera;
+            client::Controller c;
+            const auto before = s.world().snapshot();
+            const auto centre = [&](std::size_t id) {
+                const auto p=s.world().unit(id).position();
+                return client::project(camera,{p.x,p.y,client::unit_height/2},1280,720);
+            };
+            const auto p0=centre(0), p1=centre(1), p2=centre(2);
+            const auto drag=[&](client::ScreenPoint a, client::ScreenPoint b, bool shift) {
+                c.press(a,shift); c.motion(b); c.release(s.world(),camera,b,1280,720);
+            };
+            // Exactly five pixels remains a click; once crossed, the gesture stays a box.
+            c.press(p0,false); c.motion({p0.x+5,p0.y});
+            check(!c.dragging(), "threshold equality is click");
+            c.motion({p0.x+5.01f,p0.y}); check(c.dragging(), "strict threshold starts box");
+            c.motion(p0); check(c.dragging(), "box gesture is latched");
+            c.release(s.world(),camera,p0,1280,720);
+            check(c.selection().empty(), "zero-area box hits nothing");
+            c.press(p2,false); c.release(s.world(),camera,p2,1280,720);
+            check(c.selection()==std::vector<std::size_t>{2}, "plain click picks");
+            drag({p1.x+12,p1.y+12},{p0.x-12,p0.y-12},false);
+            check(c.selection()==std::vector<std::size_t>({0,1}), "reversed box selects two in index order");
+            // The centre is outside this thin box but the picked sphere intersects it.
+            const auto edge=client::box_pick(s.world(),camera,{p2.x+8,p2.y-4},{p2.x+10,p2.y+4},1280,720);
+            check(edge==std::vector<std::size_t>{2}, "box intersects picked body without centre");
+            check(client::box_pick(s.world(),camera,{0,0},{20,20},1280,720).empty(), "empty box");
+            c.left_click(s.world(),ray_at(camera,{0,0},client::unit_height/2),true);
+            check(c.selection()==std::vector<std::size_t>{0}, "shift removes");
+            c.left_click(s.world(),ray_at(camera,{192,0},client::unit_height/2),true);
+            check(c.selection()==std::vector<std::size_t>({0,2}), "shift inserts sorted");
+            c.left_click(s.world(),ray_at(camera,{600,-300},0),true);
+            check(c.selection()==std::vector<std::size_t>({0,2}), "shift empty click preserves");
+            drag({p1.x-12,p1.y-12},{p2.x+12,p2.y+12},true);
+            check(c.selection()==std::vector<std::size_t>({0,1,2}), "shift box unions without duplicates");
+            check(s.world().snapshot()==before && s.pending()==0, "selection changes are presentation only");
+            c.left_click(s.world(),ray_at(camera,{192,0},client::unit_height/2),true);
+            check(c.selected()==0, "route focus lowest index");
+            const auto moves=c.right_click(s,ray_at(camera,{300,400},0));
+            const auto stops=c.stop(s);
+            check(moves.size()==2 && stops.size()==2, "one command per selected unit");
+            const std::vector<wc3::Command> all{moves[0],moves[1],stops[0],stops[1]};
+            for (std::size_t i=0;i<all.size();++i) {
+                check(all[i].unit==i%2 && all[i].time_us==0 && all[i].sequence==i+1, "group stable sequence/time/index");
+                if (i<2) check(same(all[i].target,moves[0].target), "same placeholder target");
+            }
+            advance(s,200);
+            wc3::Session idle; advance(idle,200);
+            check(s.world().snapshot()==idle.world().snapshot(), "equal-time group move then stop matches idle world");
+            for (auto id:c.selection()) {
+                check(!client::unit_views(s,c)[id].destination, "stop clears group destinations");
+                check(client::route_view(s,id).state==RouteState::none, "stop clears group routes");
+            }
+            const auto recording=s.recording();
+            // Named render schedules consume the exact group recording through Session.
+            for (const auto& schedule:std::vector<std::vector<std::uint64_t>>{{33333,33333,33334},{16666,16667,16667},
+                    {7000,41000,16667,1000,0,250000,3000,25000,9999,33334,4999,5001}}) {
+                wc3::Session replay(recording.seed);
+                for (const auto& command:recording.commands) replay.schedule(command);
+                client::Pacer pacer{replay.frame_us()};
+                for (std::size_t n=0;replay.time_us()<recording.end_us;++n) {
+                    const auto frames=pacer.frames_for(schedule[n%schedule.size()]);
+                    for (std::uint64_t i=0;i<frames && replay.time_us()<recording.end_us;++i) replay.advance_frame();
+                }
+                check(replay.world().snapshot()==s.world().snapshot() && replay.accepted()==s.accepted(), "group replay schedule equality");
+            }
         }
         // Route views (docs/client-route.md): idle and pending states show no path.
         {

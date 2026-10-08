@@ -131,11 +131,12 @@ int main(int argc, char** argv) {
             write_file(record + ".routes", routes_log);
         };
         std::string last_command = "-";
-        const auto issued = [&](const std::optional<wc3::Command>& c) {
-            if (!c) return;
-            last_command = wc3::serialize(*c);
-            std::cout << last_command << '\n';
-            save();
+        const auto issued = [&](const std::vector<wc3::Command>& commands) {
+            for (const auto& c : commands) {
+                last_command = wc3::serialize(c);
+                std::cout << last_command << '\n';
+            }
+            if (!commands.empty()) save();
         };
 
         SetTraceLogLevel(std::getenv("WC3CLIENT_LOG") ? LOG_INFO : LOG_WARNING);
@@ -150,8 +151,12 @@ int main(int argc, char** argv) {
             const auto cam3d = raylib_camera(camera);
             // Player input first: commands are stamped with the current simulation time
             // and apply before the next frame is simulated.
+            const auto mouse = GetMousePosition();
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-                controller.left_click(session.world(), world_ray(GetScreenToWorldRay(GetMousePosition(), cam3d)));
+                controller.press({mouse.x, mouse.y}, IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT));
+            controller.motion({mouse.x, mouse.y});
+            if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+                controller.release(session.world(), camera, {mouse.x, mouse.y}, GetScreenWidth(), GetScreenHeight());
             if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
                 issued(controller.right_click(session, world_ray(GetScreenToWorldRay(GetMousePosition(), cam3d))));
             if (IsKeyPressed(KEY_S)) issued(controller.stop(session));
@@ -210,7 +215,7 @@ int main(int argc, char** argv) {
                 }
                 // The current computed route, not a line to the destination. A partial
                 // route stops where the plan ends (orange ring); pending shows no path.
-                if (v.selected && route.points.size() > 1) {
+                if (route_unit == v.id && route.points.size() > 1) {
                     const Color path{90, 210, 255, 255};
                     for (std::size_t i = 1; i < route.points.size(); ++i) {
                         const auto a = route.points[i - 1], b = route.points[i];
@@ -245,23 +250,27 @@ int main(int argc, char** argv) {
                           GetFPS(), session.recording().commands.size());
             DrawText(hud, 12, 10, 20, RAYWHITE);
             std::string selection = "selected: none";
-            if (const auto s = controller.selected()) {
-                const auto& u = world.unit(*s);
-                char text[160];
-                std::snprintf(text, sizeof text, "selected: Footman %zu  at (%.2f, %.2f)  facing %.1f  order %s",
-                              *s, u.position().x, u.position().y, u.facing(), order_name(u.current_order()).c_str());
-                selection = text;
+            if (!controller.selection().empty()) {
+                selection = "selected:";
+                for (auto id : controller.selection())
+                    selection += " Footman " + std::to_string(id) + " (" + order_name(world.unit(id).current_order()) + ")";
             }
             DrawText(selection.c_str(), 12, 36, 20, {150, 255, 150, 255});
             if (controller.selected()) {
-                std::string text = std::string("route: ") + client::route_state_name(route.state);
+                std::string text = "route Footman " + std::to_string(*controller.selected()) + ": " + client::route_state_name(route.state);
                 if (route.points.size() > 1) text += ", " + std::to_string(route.points.size() - 1) + " waypoints left";
                 if (route.state == client::RouteState::partial) text += " (ends short of the destination)";
                 if (route.state == client::RouteState::pending) text += " (no computed path yet)";
                 DrawText(text.c_str(), 12, 62, 18, {90, 210, 255, 255});
             }
             DrawText(("last: " + last_command).c_str(), 12, 86, 16, LIGHTGRAY);
-            DrawText("left-click select | right-click move | S stop | arrows / middle-drag pan | wheel or +/- zoom | Esc quit",
+            DrawText("Group target: same point for every unit. WC3 assignment unmeasured (likely P3); no formation compatibility.",
+                     12, 110, 16, ORANGE);
+            if (controller.dragging()) {
+                const auto a = controller.anchor(), b = controller.pointer();
+                DrawRectangleLinesEx({std::min(a.x,b.x),std::min(a.y,b.y),std::abs(a.x-b.x),std::abs(a.y-b.y)},2,{80,255,80,255});
+            }
+            DrawText("click / drag select | Shift toggle / add | right-click move | S stop | arrows pan | wheel zoom | Esc quit",
                      12, GetScreenHeight() - 26, 16, LIGHTGRAY);
             if (smoke) DrawText("SMOKE RUN: scripted Cocoa input events", GetScreenWidth() - 380, 10, 18, ORANGE);
 
@@ -283,7 +292,11 @@ int main(int argc, char** argv) {
                     const auto& op = w[0];
                     if (op == "wait") smoke->waiting = std::stoi(w.at(1));
                     else if (op == "point") { const auto p = aim(1); client::smoke::mouse_move(window, p.x, p.y); }
-                    else if (op == "left" || op == "right") {
+                    else if (op == "down" || op == "up" || op == "drag") {
+                        const auto p = aim(1);
+                        client::smoke::mouse_move(window,p.x,p.y);
+                        if (op != "drag") client::smoke::mouse_button(window,false,op == "down",p.x,p.y);
+                    } else if (op == "left" || op == "right") {
                         const auto p = aim(1);
                         const bool right = op == "right";
                         client::smoke::mouse_move(window, p.x, p.y);
@@ -291,7 +304,7 @@ int main(int argc, char** argv) {
                         smoke->release.emplace_back(1, [=] { client::smoke::mouse_button(window, right, false, p.x, p.y); });
                     } else if (op == "key") {
                         const std::map<std::string, client::smoke::Key> keys{
-                            {"s", client::smoke::Key::s}, {"left", client::smoke::Key::left},
+                            {"s", client::smoke::Key::s}, {"shift", client::smoke::Key::shift}, {"left", client::smoke::Key::left},
                             {"right", client::smoke::Key::right}, {"up", client::smoke::Key::up},
                             {"down", client::smoke::Key::down}, {"plus", client::smoke::Key::plus},
                             {"minus", client::smoke::Key::minus}};

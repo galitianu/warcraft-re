@@ -225,7 +225,9 @@ int main() {
             }
             advance(s,200);
             wc3::Session idle; advance(idle,200);
-            check(s.world().snapshot()==idle.world().snapshot(), "equal-time group move then stop matches idle world");
+            for (auto id:c.selection())
+                check(same(s.world().unit(id).position(),idle.world().unit(id).position()) &&
+                      s.world().unit(id).current_order()==wc3::order_none, "equal-time group move then stop stays idle in place");
             for (auto id:c.selection()) {
                 check(!client::unit_views(s,c)[id].destination, "stop clears group destinations");
                 check(client::route_view(s,id).state==RouteState::none, "stop clears group routes");

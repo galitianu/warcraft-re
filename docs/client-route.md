@@ -77,3 +77,22 @@ three-Footman scene, at most two units moving, scripted Cocoa input (as client v
 5. `wc3replay --live --routes` is PASS: 30 Hz, 60 Hz, irregular and live checkpoints
    identical to headless, and every logged displayed route identical to the replay's.
 6. Existing movement, 32 collision fixtures, client recordings and P1 gates unchanged.
+
+## Results
+
+[Evidence](../results/client-route/README.md), run 0001, scripted Cocoa input on
+macOS 27.0.1 arm64. Expectations 1, 3, 4 and 5 held: the unobstructed move showed a
+straight one-waypoint route and cleared on arrival; the redirect replaced the route
+with one ending at (−100, 400); the part-way stop and deselection cleared it; the
+replay matched headless under all schedules, the 6 live checkpoints and all 7
+displayed routes, exactly. Expectation 2 held: the detour route passed south of the
+idle Footman 1 to the destination, following the model's waypoints; no replan fell
+inside a screenshot in this run (one occurs in headless trials about 0.59 s after
+the order), so a live route change is possible but was not shown. Expectation 6
+held: native ARM64 Release `tools/run_ci.py --archive` passes with movement, 32
+collision and P1 gates unchanged, CTest 7/7 including the two retained client-v1
+recordings.
+
+**Limits.** Scripted, not physical, input; macOS ARM64 only. No partial route was
+displayed live (headless tests cover it). The route is model feedback, not
+Warcraft visual fidelity or a WC3 behavior claim.

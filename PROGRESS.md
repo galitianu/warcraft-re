@@ -62,7 +62,18 @@ Every unit receives the same target: WC3 assignment/formations remain unmeasured
 and three-unit interactions are model behavior (issue #32). Placeholder geometry claims no visual fidelity.
 Milestone 1 remains open; next client action is a bounded pause/diagnostic-overlay increment.
 
-**Latest measured gameplay:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
+**Latest mechanics evidence (MOV-0023, [issue #32](https://github.com/galitianu/warcraft-re/issues/32)):**
+four three-Footman layouts were predicted and committed before capture, then each captured in three
+fresh WC3 processes on the verified 1.29.2.9231 x86 / Windows 11 Pro ARM64 oracle. All twelve runs
+validate and repeat exactly within their layout. **All four frozen predictions fail compatibility (P3):**
+central occupied-target move completion is missing, and an opposing pair produces different initial
+holds, routes and arrival times. Creation-permuted central physical traces agree exactly with the original.
+No model refit or tolerance change; the three-unit gameplay gate remains **not met**. The finite CI gate
+reproduces these explicit failures and protects all prior cases ([design/results](docs/mov-0023.md),
+[per-unit evidence](results/mov-0023/results.md)). Native ARM64 Release archival CI passes, including
+143 Python tests; existing movement, all 32 two-unit and known P1 gates remain protected.
+
+**Delivered two-unit gameplay:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
 [issue #27](https://github.com/galitianu/warcraft-re/issues/27)). footman-v4 now follows WC3's own pathing
 mechanism, read from the retail executable ([model](docs/footman-v4-model.md#unit-pathing)): grid footprints, a
 one-cell probe, waits decided by squared speed, and the retail A*. It reproduces **all 26** two-Footman captures
@@ -637,13 +648,14 @@ passes all five configurations and the aggregate (head `003ae9e`).
 For controller deployment, independent review and hosted CI evidence, see
 [bootstrap PR #30](https://github.com/galitianu/warcraft-re/pull/30). Live activation
 and worker receipts reside in BB thread storage; the configured policy uses Claude
-Code/Codex and automatic merges. The controller's first two
-product issue increments are milestone 1's
-interactive Footman (optional raylib client, ordered live input and headless replay)
-and milestone 2's pre-registered three-Footman collision question (blocker list
-order, recorded blockers and partial routes around a moving group). More than two
-units remains unobserved until that experiment; an interactive client is not yet
-implemented. [PR #28](https://github.com/galitianu/warcraft-re/pull/28) is already merged.
+Code/Codex and automatic merges. Milestone 1 now has the optional interactive client,
+computed route display and multiple selection; next is a bounded pause/diagnostic-overlay
+increment. Mechanics next: pre-register a new experiment isolating MOV-0023-d's initial
+hold when two partial-route targets cover the third unit's footprint, using shifted targets
+and one-order removal controls before any refit ([exact proposed question](docs/mov-0023.md#regression-and-exact-next-action)).
+Then isolate close occupied-target order completion. Three-unit behavior has been observed
+in four layouts and fails the current model; its gameplay gate remains open. Group target
+assignment/formations, larger groups and other footprints remain unmeasured.
 
 Deferred (P1): MOV-0016, which would pre-register the rounded sampler start with T7 and
 FU ([next experiment](docs/mov-0015.md#next-experiment)). Revisit it only when most

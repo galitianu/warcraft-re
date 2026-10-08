@@ -32,6 +32,7 @@ def main():
     parser.add_argument('--runner', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
     args = parser.parse_args()
+    args.out = args.out.resolve()
     args.out.mkdir(parents=True, exist_ok=False)
     cases = {}
     for label in LABELS:

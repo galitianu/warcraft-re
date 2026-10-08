@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "utmctl",
+    "status",
+    "012B6237-1E3E-40AE-9D80-2782BA75E69E"
+  ],
+  "stdin": null,
+  "timeout_seconds": 15,
+  "exit": 0,
+  "stdout": "started\n",
+  "stderr": ""
+}

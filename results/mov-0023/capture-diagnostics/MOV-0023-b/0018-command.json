@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; $p=Start-Process -FilePath \"C:\\Program Files (x86)\\Warcraft III\\World Editor.exe\" -WorkingDirectory \"C:\\Program Files (x86)\\Warcraft III\" -ArgumentList @(\"-loadfile\", \"`\"C:\\Users\\rdpipe\\Documents\\Warcraft III\\Maps\\Oracle\\MOV-0023-b.w3m`\"\") -PassThru; $p.Refresh(); $r=@{pid=$p.Id; start=$p.StartTime.ToUniversalTime().Ticks.ToString(); path=\"C:\\Program Files (x86)\\Warcraft III\\World Editor.exe\"; role=\"editor\"}; $r | ConvertTo-Json | Set-Content -LiteralPath \"C:\\Users\\rdpipe\\oracle-oracle-fe6a72531de1425b9341832f1e00453f\\editor.json\"; $r | ConvertTo-Json; exit 0",
+  "timeout_seconds": 30,
+  "exit": 0,
+  "stdout": "{\n    \"path\":  \"C:\\\\Program Files (x86)\\\\Warcraft III\\\\World Editor.exe\",\n    \"pid\":  11136,\n    \"role\":  \"editor\",\n    \"start\":  \"639270718063184325\"\n}\n",
+  "stderr": ""
+}

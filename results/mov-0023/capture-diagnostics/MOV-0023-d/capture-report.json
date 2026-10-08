@@ -1,0 +1,598 @@
+{
+  "status": "FINDING",
+  "capture": "VALIDATED",
+  "candidate": "candidate/MOV-0023-d.json",
+  "canonical_promotion": false,
+  "reproduction": {
+    "status": "PASS",
+    "map_revision": "MOV-0023-d",
+    "control_revision": null,
+    "scenario": {
+      "schema": "wc3-scenario",
+      "version": 1,
+      "path": "scenarios/MOV-0023/MOV-0023-d.yaml",
+      "sha256": "59cc35a6c82d8d5f46112424c49f2d817c3f00ec0e1b8f8cceb78f2807faeff3"
+    },
+    "completion": {
+      "complete": true,
+      "records": 2414,
+      "ticks": 601,
+      "samples": 1803,
+      "actions": 3,
+      "events": 0
+    },
+    "repeatability": {
+      "classification": "DETERMINISTIC",
+      "runs": 3,
+      "canonical_payload_sha256": [
+        "ef08283ff9825404d0567aab8ec470c4db6b8edb6b7264030d8d16604779d2c6",
+        "ef08283ff9825404d0567aab8ec470c4db6b8edb6b7264030d8d16604779d2c6",
+        "ef08283ff9825404d0567aab8ec470c4db6b8edb6b7264030d8d16604779d2c6"
+      ],
+      "observation_payload_sha256": [
+        "7f00904fa202ed2475c0c3cb92447d29bac1a8c5a93b2cc4537e6e4d504994c0",
+        "7f00904fa202ed2475c0c3cb92447d29bac1a8c5a93b2cc4537e6e4d504994c0",
+        "7f00904fa202ed2475c0c3cb92447d29bac1a8c5a93b2cc4537e6e4d504994c0"
+      ],
+      "distinct_raw_files": 1,
+      "scope": "generated retained map/build/selected Windows 11 Pro ARM64 VM; 3 fresh processes",
+      "other_seeds_or_machines": "UNKNOWN"
+    },
+    "observations": {
+      "records": 2411,
+      "control_sha256": null,
+      "generated_sha256": "4d074a4286d4842b474571dbdd9dc8dcc3d2a3b244eca101f3b4c149953e318b",
+      "first_divergence": null,
+      "scope": "new observation; no independent control exists"
+    },
+    "generated_preload": [
+      {
+        "after_record": 0,
+        "entry": "war3map.w3i"
+      },
+      {
+        "after_record": 0,
+        "entry": "war3map.wts"
+      },
+      {
+        "after_record": 0,
+        "entry": "C:/Users/rdpipe/Documents/Warcraft III/Maps/Oracle/MOV-0023-d.w3m"
+      },
+      {
+        "after_record": 0,
+        "entry": "units\\\\human\\\\Footman\\\\Footman.mdx"
+      },
+      {
+        "after_record": 0,
+        "entry": "Textures\\\\Footman.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "Textures\\\\gutz.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNMove.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNMove.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNPatrol.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNPatrol.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNHoldPosition.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNHoldPosition.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttack.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttack.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNAttackGround.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNAttackGround.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefend.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefend.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNDefendStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNDefendStop.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\Shadows\\\\Shadow.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtons\\\\BTNCancel.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "ReplaceableTextures\\\\CommandButtonsDisabled\\\\DISBTNCancel.blp"
+      },
+      {
+        "after_record": 0,
+        "entry": "units\\\\human\\\\Footman\\\\Footman_portrait.mdx"
+      }
+    ],
+    "generated_footers": [
+      "call PreloadEnd( 12.1 )",
+      "call PreloadEnd( 12.1 )",
+      "call PreloadEnd( 12.1 )"
+    ],
+    "fixture_sha256": "297a7350b479b07e70e4c125df6e7efabcd21e34a1b41a24190b628487b01747"
+  },
+  "comparison": {
+    "case": "MOV-0023",
+    "map_revision": "MOV-0023-d",
+    "status": "FAIL",
+    "scope": "declared samples, unit types and ordered commands/targets; unavailable event properties excluded and UNOBSERVED",
+    "observation_phase": "after-due-update",
+    "reference_records": 2414,
+    "actual_records": 2413,
+    "reference_samples": 1803,
+    "actual_samples": 1803,
+    "first_divergence": {
+      "reference_seq": 14,
+      "actual_seq": 13,
+      "kind": "SAMPLE",
+      "sample_index": 3,
+      "callback": 1,
+      "unit": "u0",
+      "property": "x",
+      "reference_t": "0.020020",
+      "actual_t": "0.0200195312",
+      "reference_time": {
+        "requested": "0.020000",
+        "reported": "0.020020",
+        "state_us": null
+      },
+      "actual_time": {
+        "requested": "0.020000",
+        "reported": "0.0200195312",
+        "state_us": 20000
+      },
+      "reference": "0.000000",
+      "actual": "2.69970703",
+      "delta": 2.69970703,
+      "tolerance": 0.001
+    },
+    "state_first_divergence": {
+      "reference_seq": 14,
+      "actual_seq": 13,
+      "kind": "SAMPLE",
+      "sample_index": 3,
+      "callback": 1,
+      "unit": "u0",
+      "property": "x",
+      "reference_t": "0.020020",
+      "actual_t": "0.0200195312",
+      "reference_time": {
+        "requested": "0.020000",
+        "reported": "0.020020",
+        "state_us": null
+      },
+      "actual_time": {
+        "requested": "0.020000",
+        "reported": "0.0200195312",
+        "state_us": 20000
+      },
+      "reference": "0.000000",
+      "actual": "2.69970703",
+      "delta": 2.69970703,
+      "tolerance": 0.001
+    },
+    "properties": {
+      "x": {
+        "samples": 1803,
+        "failures": 1240,
+        "max_abs_delta": 64.79394600000006,
+        "max_abs_delta_by_unit": {
+          "u0": 64.79394600000006,
+          "u1": 55.252441600000004,
+          "u2": 41.359375299999996
+        },
+        "final_delta_by_unit": {
+          "u0": 0.0004890000000159489,
+          "u1": 1.5141606000000003,
+          "u2": 0.9814457800000005
+        },
+        "first_divergence": {
+          "reference_seq": 14,
+          "actual_seq": 13,
+          "kind": "SAMPLE",
+          "sample_index": 3,
+          "callback": 1,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "0.020020",
+          "actual_t": "0.0200195312",
+          "reference_time": {
+            "requested": "0.020000",
+            "reported": "0.020020",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "0.020000",
+            "reported": "0.0200195312",
+            "state_us": 20000
+          },
+          "reference": "0.000000",
+          "actual": "2.69970703",
+          "delta": 2.69970703,
+          "tolerance": 0.001
+        },
+        "status": "FAIL"
+      },
+      "y": {
+        "samples": 1803,
+        "failures": 1612,
+        "max_abs_delta": 47.212890800000004,
+        "max_abs_delta_by_unit": {
+          "u0": 0.06958028120000001,
+          "u1": 33.07226599999999,
+          "u2": 47.212890800000004
+        },
+        "final_delta_by_unit": {
+          "u0": -0.011963234399999998,
+          "u1": 0.5393070000000009,
+          "u2": -5.882323900000003
+        },
+        "first_divergence": {
+          "reference_seq": 14,
+          "actual_seq": 13,
+          "kind": "SAMPLE",
+          "sample_index": 3,
+          "callback": 1,
+          "unit": "u0",
+          "property": "y",
+          "reference_t": "0.020020",
+          "actual_t": "0.0200195312",
+          "reference_time": {
+            "requested": "0.020000",
+            "reported": "0.020020",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "0.020000",
+            "reported": "0.0200195312",
+            "state_us": 20000
+          },
+          "reference": "0.000000",
+          "actual": "0.0146484375",
+          "delta": 0.0146484375,
+          "tolerance": 0.001
+        },
+        "status": "FAIL"
+      },
+      "facing": {
+        "samples": 1803,
+        "failures": 1628,
+        "max_abs_delta": 54.154358,
+        "max_abs_delta_by_unit": {
+          "u0": 0.6865151389999937,
+          "u1": 54.154358,
+          "u2": 38.964890000000025
+        },
+        "final_delta_by_unit": {
+          "u0": 0.6865151389999937,
+          "u1": 5.736618000000021,
+          "u2": -38.964890000000025
+        },
+        "first_divergence": {
+          "reference_seq": 14,
+          "actual_seq": 13,
+          "kind": "SAMPLE",
+          "sample_index": 3,
+          "callback": 1,
+          "unit": "u0",
+          "property": "facing",
+          "reference_t": "0.020020",
+          "actual_t": "0.0200195312",
+          "reference_time": {
+            "requested": "0.020000",
+            "reported": "0.020020",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "0.020000",
+            "reported": "0.0200195312",
+            "state_us": 20000
+          },
+          "reference": "0.127437",
+          "actual": "0.174245179",
+          "delta": 0.046808179000009886,
+          "tolerance": 0.001
+        },
+        "status": "FAIL"
+      },
+      "order": {
+        "samples": 1803,
+        "failures": 31,
+        "max_abs_delta": 851986,
+        "max_abs_delta_by_unit": {
+          "u0": 851986,
+          "u1": 851986,
+          "u2": 851986
+        },
+        "final_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "first_divergence": {
+          "reference_seq": 759,
+          "actual_seq": 758,
+          "kind": "SAMPLE",
+          "sample_index": 562,
+          "callback": 187,
+          "unit": "u1",
+          "property": "order",
+          "reference_t": "3.740051",
+          "actual_t": "3.74005127",
+          "reference_time": {
+            "requested": "3.740000",
+            "reported": "3.740051",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "3.740000",
+            "reported": "3.74005127",
+            "state_us": 3740000
+          },
+          "reference": "0",
+          "actual": "851986",
+          "delta": 851986,
+          "tolerance": 0
+        },
+        "status": "FAIL"
+      },
+      "t": {
+        "samples": 1803,
+        "failures": 0,
+        "max_abs_delta": 5.000000005139782e-07,
+        "max_abs_delta_by_unit": {
+          "u0": 5.000000005139782e-07,
+          "u1": 5.000000005139782e-07,
+          "u2": 5.000000005139782e-07
+        },
+        "final_delta_by_unit": {
+          "u0": 0.0,
+          "u1": 0.0,
+          "u2": 0.0
+        },
+        "first_divergence": null,
+        "status": "PASS"
+      }
+    },
+    "action_properties": {
+      "callback": {
+        "samples": 3,
+        "failures": 0,
+        "max_abs_delta": 0,
+        "max_abs_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "final_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "first_divergence": null,
+        "status": "PASS"
+      },
+      "unit": {
+        "samples": 3,
+        "failures": 0,
+        "max_abs_delta": 0,
+        "max_abs_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "final_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "first_divergence": null,
+        "status": "PASS"
+      },
+      "command": {
+        "samples": 3,
+        "failures": 0,
+        "max_abs_delta": 0,
+        "max_abs_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "final_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "first_divergence": null,
+        "status": "PASS"
+      },
+      "accepted": {
+        "samples": 3,
+        "failures": 0,
+        "max_abs_delta": 0,
+        "max_abs_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "final_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "first_divergence": null,
+        "status": "PASS"
+      },
+      "t": {
+        "samples": 3,
+        "failures": 0,
+        "max_abs_delta": 0,
+        "max_abs_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "final_delta_by_unit": {
+          "u0": 0.0,
+          "u1": 0.0,
+          "u2": 0.0
+        },
+        "first_divergence": null,
+        "status": "PASS"
+      },
+      "target_x": {
+        "samples": 3,
+        "failures": 0,
+        "max_abs_delta": 0,
+        "max_abs_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "final_delta_by_unit": {
+          "u0": 0.0,
+          "u1": 0.0,
+          "u2": 0.0
+        },
+        "first_divergence": null,
+        "status": "PASS"
+      },
+      "target_y": {
+        "samples": 3,
+        "failures": 0,
+        "max_abs_delta": 0,
+        "max_abs_delta_by_unit": {
+          "u0": 0,
+          "u1": 0,
+          "u2": 0
+        },
+        "final_delta_by_unit": {
+          "u0": 0.0,
+          "u1": 0.0,
+          "u2": 0.0
+        },
+        "first_divergence": null,
+        "status": "PASS"
+      }
+    },
+    "event_properties": {},
+    "structural_differences": [],
+    "first_structural_divergence": null,
+    "unobserved_properties": [],
+    "observation_timing": {
+      "primary_alignment": "callback/unit then ordered actions/events; no resampling",
+      "phase_resolution": "unresolved retail update boundary; diagnostic phase never replaces primary",
+      "clock_status": "PASS"
+    }
+  },
+  "intervention_count": 0,
+  "elapsed_seconds": 172.202,
+  "tool_sha256": {
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/scenarios/MOV-0023/MOV-0023-d.yaml": "59cc35a6c82d8d5f46112424c49f2d817c3f00ec0e1b8f8cceb78f2807faeff3",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/oracle/jass/lib/oracle-v1.j": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/oracle/environment/wc3-1.29.2-9231-x86.json": "dad738060886d7c75feb0ff14ddc3c276d3e861842bbb8bfead09dd89f23a5a1",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/oracle-maps/MOV-0002.w3m": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/editor-menu.ps1": "312ba6d8ea7f0becbe22e3393ffcddbe08053f4480e77bdfa215a99d9d44456c",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/analyze_heading.py": "bb03224e78686efc5089de8ad127c87fe2ab8b05a7bac2a9006d83202d263def",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/analyze_mov0018.py": "571e8f7d24ac54013a29faf5d29d59d582e2e81b73f6665167f7d6c824190565",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/audit_oracle.py": "e3001958b9945d6bed18ef5ad81d2922b14dbd305f900d43439c26fab98f05b9",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/capture_oracle.py": "cd7600a3279effd2edbf566ad05cdd54a41cfa282d9d878c59975e3029e36117",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/capture_runs.py": "c749a19ceb861f9e7595be07b58893acb75af707e1c121d0f062d1843153ce10",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/check_map.py": "cbea6ddcb05f51f5b8d9417f3637647b8762b405fc91cba4fa410a1316b95b9c",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/compare_exact.py": "f3c366ba2484dc0d9726c825f531331fd0485c5da2f627605f12a258c09ca746",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/compare_movement.py": "8d3c2277f3e776151b29b8603f626f4806d34a3ab4799958e59c188c992f186a",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/compare_states.py": "109d7809132afca64646e3611634a87d594a41f34daef4279ed4fa774b88b40f",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/compare_traces.py": "3b28a133a6153640be30630340a8887ff885265e3a41b8622457efc0cfc2a69f",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/dispatch.py": "e87345ce7f6c3d4e98e3fb086248fff69bc8c471f2601c155bb85c6b0935fad0",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/dispatch_health.py": "2eb6cded767d27ed0c28e537dc13de4e24950b6a263c26ef0548b1fc440df59d",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/generate_oracle.py": "e5071a472b39fd81638d694da3c4e2acd3b2dbc69fdc0435421f1263da3f7363",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/grade_mov0019.py": "262aac11bd120d97814ca3c804bbc20f090ac5ad455228f9ce4925edc92d9d95",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/grade_mov0020.py": "c9f597ed2ec03cfeeae6bc6d50e62c145a1e23a59c80073a442330d50ae1ebc8",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/grade_mov0021.py": "d01191e0bb206ae6afce892d661895e11fd61b2a34f661ec39c4a2a705cbd5c7",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/inspect_mov0002.py": "946edeedbb386ba85243a86bd6922d0924078bea02041efdf72075cc6c3aa1ef",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/install_dispatch.py": "8110353c279f79824f3e6ed8c54ae57390f79e5137ff40e1033f6a29fa9899e6",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/normalize_generated.py": "f691a849f4f9069a67081c19d26f159db2c37a770cb185e6e419b9524b4a37b3",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/normalize_traces.py": "8b5fc4a07c028ed27da6a4ee2bc383c13124405940e159553180491354e88e20",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/onsets_mov0019.py": "fbd787c4a59205f27c6867d2836b6d7ad2e9bfda8f03e31d9942239da3cbf8df",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/oracle_parse.py": "52e53e7572473ef9d4f54a8e3de2c3f494f870b82356b01e8db5c694b2dc487c",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/predict_mov0014.py": "b9a66391862a16580c4b284381fe1e043ae817e2275715a1e14d9ac40e10ccd6",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/predict_mov0015.py": "8570f3695389f522af8b89968d6c3175bfec0fed718f077b31dcc599f6250db7",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/predict_mov0019.py": "579e675ad27fba0c0a7e2ac71709302a6fd1c49a8e2ea7a51414eaeb6bafb16e",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/predict_mov0020.py": "f072072a20fed331e37ac5b392724fe2612469976f33244cbfc2333698176978",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/predict_mov0021.py": "b72763f2ab2c06c8cac66614943d4b5dfa023c5276b0b256c1683143852001fe",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/predict_mov0022.py": "68342f5a041c60af94717fd8a10bab87d70f802254312027ce007a631fcafb9b",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/predict_mov0023.py": "fe12fb4d292eeb12933d3b6306ec1a4f5e9f2353c295eee522fbe8b5b3f9997d",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/record_generated.py": "f3d5670b9d07a5054a14564a2dede53ca4b52203e73e38b6a83ff00904aee255",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/regrade_capture.py": "7d2d985c7d8c0dd5e2f9713ceeeb685eeefb76ae0e6d91ffecc0397ffaf6c42d",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/regression.py": "a871b0f946861c3f4a36a099458d5726eea5d2eae4282553c99f26c3ff6a85da",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/run_ci.py": "3c3cbdadd29ade844e816049bb22779c14ebf09d71a193a4d32c1a5a71015925",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/run_footman_v3.py": "dffcd88bd9d1ef543c64666d21e6b4ad1d48484040a4bf1f822b24167baca5aa",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/run_footman_v4.py": "d2015a92b5e8e6affbaf133e23c180a3b818e88e2d0debd693b0814228617f99",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/run_generated.py": "af828cd33624f8bb08b63c2a573b550d81c282e3fd3615b7b1ba64b96a8e39fa",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/run_mov0013.py": "2874f63bce158f696eb13bc7d04ca14b1b5e82bfdc00e86f8ff01cfb7ce62695",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/run_mov0018.py": "ae8deda6e0500fd68244b909b3377631bfb0762a24c5c2ebd2feae8d21b6c6ad",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/run_mov0023.py": "f1f0f6798204f58906caad61f121ec3f4d1154ad579b5c420e0da9b2e996e08c",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/run_phase2.py": "3cc74133c8c2d124c11e0c1e7d02e7e3eb1b8d3eaf47dbc216c138c23e638ecf",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/run_phase3.py": "ed546fd00667c3532b16575c6cdfdc4f94266620bb6f25e9085d5624378abc08",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/summarize_ci.py": "89391afb512df4bd3e2a6430c8a969978bf8f7b2847ce7c966548c785178ce7d",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/summarize_phase1.py": "fecbdde5506090f1af8f6654fcc07469bd28dd74f61e970122bc39f0f91d47c0",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/template_bounds.py": "cfa3e204b3d6ac17c17b0f7b3ef6427f49f6596b60050eadd8ce6c9cb693a725",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/trace_contract.py": "ce1f479ff602c7dbf05598f9da31b63bd88a9e074ab02948525526a99b0ee78e",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/wc3_float.py": "e453064f735b711a01c270131cdc4e8f951b4c95e862fff5692bef9c24c7a6c1",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/we_author.py": "e15dc814ce106b95a20509b90e9448bf2569cb36bd9348034e2641cc89be5048",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/tools/verify_oracle.ps1": "629e72699f784a63ab215d55e5645cc167c88ed67fb1cdd6dfe9ef7507549a85",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/build/oracle_codegen": "b7fbcb9da0eb7609f238859ccc60d363db5359978b603049b5efe24b359d33db",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/build/wc3test": "1d28080c4bf7c2873a8feaf7faefb244bb47b86fe0e5e1ca21c310691d821ed8",
+    "/private/tmp/war3-32-pjass/pjass": "900c37ae3d893b1368f84739c7a61bf9142ad9a44bfbe4b9d599cc5de2140ab2",
+    "/Users/andrei/Desktop/war3-workspace/local/War3.mpq-common.j": "3c21e998bf80d1e04718bd3f2ee7ef2bf1b83359e5b303a56cf59cd61a2afdcd",
+    "/Users/andrei/Desktop/war3-workspace/local/War3.mpq-Blizzard.j": "7ca28f0ce47712a9ab6832c22bb0d0c9d2844b5831fb465b9d792731a3d5243e"
+  },
+  "limits": "selected VM/map/build; other machines/seeds and retail RNG UNKNOWN"
+}

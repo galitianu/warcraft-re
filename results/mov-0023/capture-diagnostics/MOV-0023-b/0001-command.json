@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/private/tmp/war3-32-pjass/pjass",
+    "/Users/andrei/Desktop/war3-workspace/local/War3.mpq-common.j",
+    "/Users/andrei/Desktop/war3-workspace/local/War3.mpq-Blizzard.j",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/local/mov0023/capture-b/diagnostics/syntax.j"
+  ],
+  "stdin": null,
+  "timeout_seconds": 60,
+  "exit": 0,
+  "stdout": "Parse successful:     2542 lines: /Users/andrei/Desktop/war3-workspace/local/War3.mpq-common.j\nParse successful:    10252 lines: /Users/andrei/Desktop/war3-workspace/local/War3.mpq-Blizzard.j\nParse successful:      193 lines: /Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/local/mov0023/capture-b/diagnostics/syntax.j\nParse successful:    12987 lines: <total>\n",
+  "stderr": ""
+}

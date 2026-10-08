@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "cases": 4,
+  "cpp_payload_sha256": {
+    "MOV-0023-a": "5c04ca36912e703047e78965666665886f626ec55a5c431e11a1116a132dff18",
+    "MOV-0023-b": "1d1bf57be6d48d6d26a29a94db1027866ec9ef6ba5e03b36b58203cc0cfa6223",
+    "MOV-0023-c": "01b24e3e28d704e07ee7f148c2670856c61557099695aa89bde9795d9d111f6e",
+    "MOV-0023-d": "bddfd0000f76fe9b8f20b7f60b5c8922927c9eedf2ddbf4a1f2ac280bc65b0c6"
+  }
+}

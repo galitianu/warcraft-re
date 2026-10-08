@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "--json",
+    "ui",
+    "--image-dir",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/local/mov0023/capture-c/diagnostics",
+    "bring_to_front",
+    "-"
+  ],
+  "stdin": "{\"pid\": 9836, \"window_id\": 197728}",
+  "timeout_seconds": 20,
+  "exit": 0,
+  "stdout": "{\"content\":[{\"text\":\"\u2705 bring_to_front: pid 9836 hwnd 0x30460 is now foreground (was 0x30460).\",\"type\":\"text\"}],\"structuredContent\":{\"landed_on_target\":true,\"now_fg_hwnd\":\"0x30460\",\"previous_fg_hwnd\":\"0x30460\",\"raised\":true,\"restored\":false,\"target_hwnd\":\"0x30460\"}}\n",
+  "stderr": ""
+}

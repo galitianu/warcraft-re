@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/build/wc3test",
+    "--scenario",
+    "scenarios/MOV-0023/MOV-0023-c.yaml",
+    "--model",
+    "v4",
+    "--seed",
+    "1",
+    "--out",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/local/mov0023/capture-c/cpp"
+  ],
+  "stdin": null,
+  "timeout_seconds": 60,
+  "exit": 0,
+  "stdout": "footman-v4: wrote 1 finite scenario traces to \"/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/local/mov0023/capture-c/cpp\"\n",
+  "stderr": ""
+}

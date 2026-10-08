@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "pull",
+    "C:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData\\MOV-0023-d.txt",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/local/mov0023/capture-d/oracle/captures/wc3-1.29.2-9231-x86/MOV-0023-d/run-03.txt"
+  ],
+  "stdin": null,
+  "timeout_seconds": 60,
+  "exit": 0,
+  "stdout": "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/local/mov0023/capture-d/oracle/captures/wc3-1.29.2-9231-x86/MOV-0023-d/run-03.txt: 177363 bytes from C:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData\\MOV-0023-d.txt, sha256 dc1eef83d9ad9b9d831e7a6ba1907d02545eb1402d09de782ebf887aa1e01a72\n",
+  "stderr": "\nC:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData\\MOV-0023-d.txt: 100%\n"
+}

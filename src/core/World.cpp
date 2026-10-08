@@ -1,6 +1,7 @@
 #include "core/World.h"
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 #include <limits>
 #include <map>
 #include <numbers>
@@ -117,6 +118,56 @@ std::size_t World::create_footman(Vec2 position, float facing) {
     units_.push_back(unit);
     sequence_.push_back(units_.size() - 1);
     return units_.size() - 1;
+}
+namespace {
+template <class T> void put(std::string& out, const T& value) {
+    char bytes[sizeof(T)];
+    std::memcpy(bytes, &value, sizeof(T));
+    out.append(bytes, sizeof(T));
+}
+void put(std::string& out, Vec2 v) {
+    put(out, v.x);
+    put(out, v.y);
+}
+}
+std::string World::snapshot() const {
+    std::string out;
+    put(out, steps_);
+    put(out, static_cast<std::uint64_t>(units_.size()));
+    for (const auto& u : units_) {
+        put(out, u.position_);
+        put(out, u.target_);
+        put(out, u.facing_);
+        put(out, u.speed_);
+        put(out, u.order_);
+        put(out, u.command_step_);
+        put(out, u.turn_updates_);
+        put(out, u.facing_radians_);
+        put(out, u.heading_radians_);
+        put(out, u.facing_velocity_);
+        put(out, u.batch_active_);
+        put(out, u.batch_step_);
+        put(out, u.batch_start_);
+        put(out, u.batch_end_);
+        const auto& s = u.soft_;
+        for (const sf::F f : {s.x, s.y, s.vx, s.vy, s.heading, s.facing, s.facing_velocity,
+                              s.facing_target, s.target_x, s.target_y, s.speed})
+            put(out, f);
+        put(out, s.integrated_step);
+        put(out, s.settle);
+        put(out, static_cast<std::uint64_t>(u.route_.size()));
+        for (const auto& waypoint : u.route_) put(out, waypoint);
+        put(out, static_cast<std::uint64_t>(u.route_index_));
+        put(out, u.route_partial_);
+        put(out, u.hold_);
+        put(out, static_cast<std::uint64_t>(u.blocker_));
+        put(out, u.planned_update_);
+    }
+    for (const auto id : sequence_) put(out, static_cast<std::uint64_t>(id));
+    const auto rng = random_.state();
+    put(out, random_.seed());
+    out += rng;
+    return out;
 }
 void World::set_move_speed(std::size_t id, float requested) {
     auto& unit = units_.at(id);

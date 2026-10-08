@@ -1,0 +1,22 @@
+wc3-routes 1
+screenshot 01-start 0
+screenshot 02-moving 2
+route 715000 0 planned 2 0xc3275000 0x4239ff80 0x42c80099 0x44097f0d # (-167.3125, 46.4995117) (100.001167, 549.985168)
+screenshot 03-paused 2
+route 715000 0 planned 2 0xc3275000 0x4239ff80 0x42c80099 0x44097f0d # (-167.3125, 46.4995117) (100.001167, 549.985168)
+screenshot 04-paused-diagnostics 2
+route 715000 0 planned 2 0xc3275000 0x4239ff80 0x42c80099 0x44097f0d # (-167.3125, 46.4995117) (100.001167, 549.985168)
+screenshot 05-paused-camera-selection 2
+route 715000 2 none 0
+screenshot 06-paused-queued 6
+route 715000 0 pending 0
+screenshot 07-paused-queued-hidden 6
+route 715000 0 pending 0
+screenshot 08-resumed 6
+route 970000 0 none 0
+screenshot 09-new-move 8
+route 1305000 0 planned 2 0xc2e46060 0x42dad4c0 0x4395fe28 0x4415fd1b # (-114.188232, 109.415527) (299.985596, 599.954773)
+screenshot 10-stopped 10
+route 1460000 0 none 0
+screenshot 11-later-diagnostics 10
+route 2030000 0 none 0

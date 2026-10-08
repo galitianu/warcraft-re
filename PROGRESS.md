@@ -60,7 +60,25 @@ replays exactly ([evidence](results/client-selection/README.md), [rules](docs/cl
 Native client CTest passes 8/8; native ARM64 Release archival CI passes with protected references/tolerances unchanged.
 Every unit receives the same target: WC3 assignment/formations remain unmeasured, a likely **P3** difference,
 and three-unit interactions are model behavior (issue #32). Placeholder geometry claims no visual fidelity.
-Milestone 1 remains open; next client action is a bounded pause/diagnostic-overlay increment.
+Milestone 1 remained open for pause and the diagnostic overlay (below).
+
+**Pause and diagnostics (milestone 1, [issue #38](https://github.com/galitianu/warcraft-re/issues/38), P3):**
+Space pauses/resumes as client pacing state only: paused renders and the resume render simulate
+nothing and drop their wall time (no catch-up); the sub-frame carry is kept. Move/stop while paused
+are ordinary `Session` commands at the frozen time, shown as queued/pending and applied in sequence
+at the first resumed frame. F3 toggles a const-built overlay (time, PAUSED/running, FPS, command
+counts, per-unit order/route); the player HUD keeps selection, queued markers, PAUSED banner, the
+shared-target P3 note and controls. Recording/checkpoint formats are unchanged; no pause event is
+recorded. PAU-0001's scripted macOS ARM64 runs at 1280×720 and 960×540 queue a two-unit move then
+stop while paused: five observations per run over 80+ renders keep time, applied count and snapshot
+digest identical until resume. `wc3replay` matches headless, 30 Hz/60 Hz/irregular schedules and new
+paused variants, live checkpoints, 10 displayed routes and 7 observations exactly
+([evidence](results/client-pause/README.md), [design](docs/client-pause.md)). Paused variants also
+pass on all earlier client recordings. Limits: scripted input; the scripted wheel produced no
+visible zoom. **Milestone 1 assessment:** every listed interaction increment now has replay
+evidence, but all live evidence is scripted Cocoa input. It stays open until a physical-input play
+session (the [manual procedure](docs/client-v1.md#smoke-procedure)) is retained; group target
+assignment is measured in milestone 2, not claimed here.
 
 **Latest measured gameplay:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
 [issue #27](https://github.com/galitianu/warcraft-re/issues/27)). footman-v4 now follows WC3's own pathing

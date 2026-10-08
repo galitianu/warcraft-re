@@ -99,3 +99,19 @@ trial runs (one per size) were used to debug the overlay layout before this comm
    routes and observations exactly. Text is legible and non-overlapping in both
    overlay states at both sizes. Existing movement/collision/P1 gates and retained
    client recordings pass with unchanged references and tolerances.
+
+## Results
+
+[PAU-0001 runs 0001 (1280×720) and 0002 (960×540)](../results/client-pause/README.md)
+meet expectations 1–5. Five paused observations per run, spread over renders 74–157,
+share one simulation time, applied count 2 and snapshot digest; pending rises 0 → 4
+when the group move then stop is queued. The resume render simulates nothing; by the
+second render after it the four queued commands are applied in sequence and Footmen 0
+and 1 are idle where they froze. The new move is stopped part-way and all ten
+commands are applied before final evidence. `wc3replay` matches headless, all six
+render schedules, the live checkpoints, 10 displayed routes and 7 observations per
+run exactly. The overlay is legible and non-overlapping at both sizes in both states.
+
+Limits: scripted Cocoa input only, macOS ARM64; the scripted wheel event produced no
+visible zoom, so only pan is visually shown while paused. WC3 pause semantics and
+group target assignment remain unmeasured (the latter a likely P3 difference).

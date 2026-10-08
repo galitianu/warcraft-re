@@ -63,4 +63,4 @@ pass their CTests; native archival CI results are recorded with the evidence.
 Limits: scripted Cocoa input only, macOS ARM64; no physical-input session or other
 window platform tested. Shared targets and three-unit interactions are model
 behavior, not WC3 compatibility. Milestone 1 remains open: pause and diagnostic
-overlay are the next scoped client increments.
+overlay are the next scoped client increments (delivered in [issue #38](client-pause.md)).

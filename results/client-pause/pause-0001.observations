@@ -1,0 +1,8 @@
+wc3-pause-observations 1
+observe paused-start 74 paused 770000 2 2 0 f8fd43b1e80fdc84d5cc3b5748c623a15e3bb26cbc9031df88ee95f4606f77de
+observe diagnostics-on 77 paused 770000 2 2 0 f8fd43b1e80fdc84d5cc3b5748c623a15e3bb26cbc9031df88ee95f4606f77de
+observe camera-selection 99 paused 770000 2 2 0 f8fd43b1e80fdc84d5cc3b5748c623a15e3bb26cbc9031df88ee95f4606f77de
+observe queued 123 paused 770000 6 2 4 f8fd43b1e80fdc84d5cc3b5748c623a15e3bb26cbc9031df88ee95f4606f77de
+observe before-resume 157 paused 770000 6 2 4 f8fd43b1e80fdc84d5cc3b5748c623a15e3bb26cbc9031df88ee95f4606f77de
+observe resumed 160 running 795000 6 6 0 42595787386691beb00f9826324c8132dea690e3f80f585a19acb29ef65f626b
+observe final 278 running 1980000 10 10 0 c11e67dec3cd630ffe133a1eeb3c8915aa1a709111c73a894543030b4ebc0137

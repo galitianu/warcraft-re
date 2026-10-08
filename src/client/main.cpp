@@ -1,7 +1,8 @@
 // wc3client: the first interactive client (docs/client-v1.md). Placeholder geometry
 // on flat ground establishes interaction, not Warcraft III visual fidelity.
 // raylib stays in this file: input becomes Session commands, wall time becomes a
-// frame count through client::Pacer, and drawing reads client::unit_views.
+// frame count through client::Pacer, and drawing reads client::unit_views and
+// client::selected_route.
 #include "Scenario.h"
 #include "client/SmokeInput.h"
 #include "client/View.h"
@@ -102,7 +103,8 @@ int main(int argc, char** argv) {
         else {
             std::cerr << "usage: wc3client [--record BASE] [--seed N] [--screenshots DIR]\n"
                          "                 [--smoke SCRIPT] [--frames DIR]\n"
-                         "Writes BASE.rec (commands) and BASE.checkpoints (state digests).\n";
+                         "Writes BASE.rec (commands), BASE.checkpoints (state digests) and\n"
+                         "BASE.routes (the selected route displayed with each screenshot).\n";
             return 2;
         }
     }
@@ -116,6 +118,8 @@ int main(int argc, char** argv) {
         client::Pacer pacer{session.frame_us()};
         client::Camera camera;
         client::Controller controller;
+        // The selected route as displayed with each screenshot, for wc3replay --routes.
+        std::string routes_log = "wc3-routes 1\n";
         std::map<std::uint64_t, std::string> checkpoints{{0, scenario::sha256_hex(session.world().snapshot())}};
         const auto save = [&] {
             write_file(record + ".rec", wc3::serialize(session.recording()));
@@ -124,6 +128,7 @@ int main(int argc, char** argv) {
             all[session.time_us()] = scenario::sha256_hex(session.world().snapshot());
             for (const auto& [time, hash] : all) text += "checkpoint " + std::to_string(time) + ' ' + hash + '\n';
             write_file(record + ".checkpoints", text);
+            write_file(record + ".routes", routes_log);
         };
         std::string last_command = "-";
         const auto issued = [&](const std::optional<wc3::Command>& c) {
@@ -171,6 +176,15 @@ int main(int argc, char** argv) {
             }
 
             const auto views = client::unit_views(session, controller);
+            const auto route = client::selected_route(session, controller);
+            const auto route_unit = controller.selected();  // as drawn, before smoke actions
+            // Later render frames may submit commands at this same simulation time; the
+            // count lets the replay rebuild exactly the commands known when it was drawn.
+            const auto log_route = [&, now = session.time_us(), submitted = session.recording().commands.size()](
+                                       const std::string& shot) {
+                routes_log += "screenshot " + shot + ' ' + std::to_string(submitted) + '\n';
+                if (route_unit) routes_log += client::serialize(now, *route_unit, route) + '\n';
+            };
             const auto cam = raylib_camera(camera);
             BeginDrawing();
             ClearBackground({24, 28, 34, 255});
@@ -193,7 +207,22 @@ int main(int argc, char** argv) {
                     const auto d = *v.destination;
                     DrawLine3D(render(d.x - 14, d.y - 14, 1), render(d.x + 14, d.y + 14, 1), {80, 255, 80, 255});
                     DrawLine3D(render(d.x - 14, d.y + 14, 1), render(d.x + 14, d.y - 14, 1), {80, 255, 80, 255});
-                    DrawLine3D(render(v.position.x, v.position.y, 1), render(d.x, d.y, 1), {80, 200, 80, 120});
+                }
+                // The current computed route, not a line to the destination. A partial
+                // route stops where the plan ends (orange ring); pending shows no path.
+                if (v.selected && route.points.size() > 1) {
+                    const Color path{90, 210, 255, 255};
+                    for (std::size_t i = 1; i < route.points.size(); ++i) {
+                        const auto a = route.points[i - 1], b = route.points[i];
+                        DrawLine3D(render(a.x, a.y, 2), render(b.x, b.y, 2), path);
+                        DrawLine3D(render(a.x, a.y + 1.5f, 2), render(b.x, b.y + 1.5f, 2), path);
+                        DrawSphere(render(b.x, b.y, 2), 3.5f * scale, path);
+                    }
+                    if (route.state == client::RouteState::partial) {
+                        const auto e = route.points.back();
+                        DrawCircle3D(render(e.x, e.y, 2), 12 * scale, {1, 0, 0}, 90, ORANGE);
+                        DrawCircle3D(render(e.x, e.y, 2.5f), 14 * scale, {1, 0, 0}, 90, ORANGE);
+                    }
                 }
                 const Color body = v.selected ? Color{90, 150, 255, 255} : Color{50, 90, 190, 255};
                 DrawCylinder(base, client::unit_radius * scale, client::unit_radius * scale,
@@ -224,7 +253,14 @@ int main(int argc, char** argv) {
                 selection = text;
             }
             DrawText(selection.c_str(), 12, 36, 20, {150, 255, 150, 255});
-            DrawText(("last: " + last_command).c_str(), 12, 62, 16, LIGHTGRAY);
+            if (controller.selected()) {
+                std::string text = std::string("route: ") + client::route_state_name(route.state);
+                if (route.points.size() > 1) text += ", " + std::to_string(route.points.size() - 1) + " waypoints left";
+                if (route.state == client::RouteState::partial) text += " (ends short of the destination)";
+                if (route.state == client::RouteState::pending) text += " (no computed path yet)";
+                DrawText(text.c_str(), 12, 62, 18, {90, 210, 255, 255});
+            }
+            DrawText(("last: " + last_command).c_str(), 12, 86, 16, LIGHTGRAY);
             DrawText("left-click select | right-click move | S stop | arrows / middle-drag pan | wheel or +/- zoom | Esc quit",
                      12, GetScreenHeight() - 26, 16, LIGHTGRAY);
             if (smoke) DrawText("SMOKE RUN: scripted Cocoa input events", GetScreenWidth() - 380, 10, 18, ORANGE);
@@ -266,6 +302,7 @@ int main(int argc, char** argv) {
                     } else if (op == "scroll") {
                         client::smoke::scroll(window, std::stof(w.at(1)), GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f);
                     } else if (op == "screenshot" && !shots.empty()) {
+                        log_route(w.at(1));
                         std::filesystem::create_directories(shots);
                         Image image = capture();
                         ExportImage(image, (std::filesystem::path(shots) / (w.at(1) + ".png")).string().c_str());
@@ -287,10 +324,11 @@ int main(int argc, char** argv) {
                 UnloadImage(image);
             }
             if (!shots.empty() && IsKeyPressed(KEY_F12)) {
+                const auto name = "manual-" + std::to_string(session.time_us());
+                log_route(name);
                 std::filesystem::create_directories(shots);
                 Image image = capture();
-                ExportImage(image, (std::filesystem::path(shots) /
-                                    ("manual-" + std::to_string(session.time_us()) + ".png")).string().c_str());
+                ExportImage(image, (std::filesystem::path(shots) / (name + ".png")).string().c_str());
                 UnloadImage(image);
             }
             EndDrawing();

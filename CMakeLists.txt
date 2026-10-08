@@ -120,6 +120,10 @@ if(BUILD_TESTING)
       "${CMAKE_SOURCE_DIR}/results/client-v1/live-${run}.rec"
       --live "${CMAKE_SOURCE_DIR}/results/client-v1/live-${run}.portable.checkpoints")
   endforeach()
+  # The retained route-display run: also every route the live client displayed.
+  add_test(NAME client_route_0001 COMMAND wc3replay "${CMAKE_SOURCE_DIR}/results/client-route/route-0001.rec"
+    --live "${CMAKE_SOURCE_DIR}/results/client-route/route-0001.checkpoints"
+    --routes "${CMAKE_SOURCE_DIR}/results/client-route/route-0001.routes")
   set_tests_properties(world_invariants scenario_v1 footman_v4_wc3 session_commands client_replay_0001 client_replay_0002
-    PROPERTIES TIMEOUT 180)
+    client_route_0001 PROPERTIES TIMEOUT 180)
 endif()

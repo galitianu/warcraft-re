@@ -1,0 +1,21 @@
+{
+  "recording": "results/client-route/route-0001.rec",
+  "recording_sha256": "3ad1b4ad8d9a6d8c12598362303e91837a9fd46439f8c946bde8adb2bf796a12",
+  "scene": "flat-footmen-3",
+  "model": "footman-v4",
+  "seed": 1,
+  "frame_us": 5000,
+  "commands": 5,
+  "end_us": 4570000,
+  "commands_sharing_a_time": 0,
+  "checkpoint_us": 1000000,
+  "headless": {"sim_frames": 914, "checkpoints": [{"time_us": 0, "sha256": "df9ed4c03dd0119e00f8fe48d133419b76ed8f2a8d66464dad2f95a3b7639f51"}, {"time_us": 1000000, "sha256": "a76f08091e3e6930cb4eb335bb37095f3b52c2fd3bc19a0fdb6ee27d8cc63415"}, {"time_us": 2000000, "sha256": "d1ef57bbae4b8f3dd8a3803c5ad6f9ad805c79b702b27072520426b97a395b41"}, {"time_us": 3000000, "sha256": "1fe6b360c7b0f815582047ebd86c5881863240617bcd723d6187d0e3b3e25136"}, {"time_us": 4000000, "sha256": "02df7fbbfb50dd7b0de470900953dad8b367b4fa2268c2a311b1efe424d3ac34"}, {"time_us": 4570000, "sha256": "b9a7492cf6fb2e644fe28ea807bb73f8def18f4cbe1f17ac075a1f93ed0dd102"}]},
+  "comparisons": [
+    {"name": "render-30hz", "schedule": "33333/33333/33334 us render intervals", "checkpoints_compared": 6, "render_frames": 138, "sim_frames": 914, "presentation_checks": 138, "route_views": {"none": 302, "pending": 3, "planned": 109, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-60hz", "schedule": "16666/16667/16667 us render intervals", "checkpoints_compared": 6, "render_frames": 275, "sim_frames": 914, "presentation_checks": 275, "route_views": {"none": 604, "pending": 6, "planned": 215, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-irregular", "schedule": "repeating 7000,41000,16667,1000,0,250000,3000,25000,9999,33334,4999,5001 us", "checkpoints_compared": 6, "render_frames": 222, "sim_frames": 914, "presentation_checks": 222, "route_views": {"none": 488, "pending": 7, "planned": 171, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "live-client", "schedule": "checkpoints the live client recorded while playing", "checkpoints_compared": 6, "identical": true, "first_divergence_us": null}
+  ],
+  "live_routes": {"displayed_routes": 7, "identical": true, "routes": [{"screenshot": "02-unobstructed", "submitted": 1, "time_us": 570000, "unit": 2}, {"screenshot": "03-arrived", "submitted": 1, "time_us": 2065000, "unit": 2}, {"screenshot": "04-detour", "submitted": 2, "time_us": 2325000, "unit": 0}, {"screenshot": "05-detour-later", "submitted": 2, "time_us": 2595000, "unit": 0}, {"screenshot": "06-redirected", "submitted": 3, "time_us": 2880000, "unit": 0}, {"screenshot": "07-stopped", "submitted": 4, "time_us": 3225000, "unit": 0}, {"screenshot": "08-moving-again", "submitted": 5, "time_us": 3415000, "unit": 0}]},
+  "status": "PASS"
+}

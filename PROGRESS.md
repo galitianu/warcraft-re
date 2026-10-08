@@ -35,8 +35,20 @@ gated P1 checks unchanged. A CI revision fixes platform-dependent RNG snapshot t
 original live hashes are retained and verified before deriving portable v2 checkpoints
 ([migration evidence](results/client-v1/README.md#portable-snapshot-revision)). Native checks pass;
 new-head hosted Linux/Windows checks remain with the controller. Placeholder geometry
-claims no visual fidelity. Next: the roadmap's
-follow-up client increments (box/multiple selection, order feedback, pause).
+claims no visual fidelity.
+
+**Route display (milestone 1, [issue #34](https://github.com/galitianu/warcraft-re/issues/34), P3):** the
+selected Footman shows footman-v4's current computed route (cyan polyline from the unit through the remaining
+waypoints) instead of a straight destination line; a partial route stops where the plan ends; an unapplied or
+unplanned move shows `pending` with no path; stop, arrival, redirect and deselection replace or clear it. The view
+copies `Unit::route()`/cursor/partial flag through a const boundary and never plans or mutates; the route algorithm
+and command semantics are unchanged. Retained scripted run 0001 (macOS ARM64) shows an unobstructed move, a detour
+south of idle Footman 1, a redirect and a part-way stop; `wc3replay` matches headless under 30 Hz/60 Hz/irregular,
+6 live checkpoints and all 7 displayed routes exactly ([evidence](results/client-route/README.md),
+[design](docs/client-route.md)). Limits: scripted Cocoa input, no partial route shown live (headless tests cover
+it), no replan fell inside a screenshot although the model can replan mid-route. Native ARM64 Release
+`run_ci.py --archive` passes with all protected gates unchanged. Milestone 1 is not complete: next are the roadmap's
+remaining client increments (box/multiple selection, pause, diagnostic overlay).
 
 **Latest measured gameplay:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
 [issue #27](https://github.com/galitianu/warcraft-re/issues/27)). footman-v4 now follows WC3's own pathing

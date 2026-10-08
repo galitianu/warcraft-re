@@ -112,8 +112,9 @@ checkpoints). Expectation 3 held: native ARM64 Release `tools/run_ci.py --archiv
 **Limits.** The screenshots come from scripted Cocoa events, not hand-operated hardware.
 They are macOS ARM64 only; no Windows/Linux window was run. Within one render frame,
 input order is fixed (left, right, `S`). No render interpolation is used (units
-draw at the latest 5 ms frame). Box/group selection, path display, formations,
-assets, combat and audio are out of scope.
+draw at the latest 5 ms frame). Box/group selection, formations,
+assets, combat and audio are out of scope. Path display
+followed in [issue #34](client-route.md).
 
 **Portable snapshot revision.** The original hosted Linux jobs failed only the two
 live-client comparisons, at time zero: their render schedules matched headless,

@@ -50,6 +50,9 @@ public:
     const std::vector<Command>& applied() const { return applied_; }
     const std::vector<bool>& accepted() const { return accepted_; }
     std::size_t pending() const { return pending_.size() - next_; }
+    // Whether a command for this unit is due now but not yet applied: live input
+    // between submission and the next frame. Later scheduled commands do not count.
+    bool pending_for(std::size_t unit) const;
     Recording recording() const;
 private:
     World world_;

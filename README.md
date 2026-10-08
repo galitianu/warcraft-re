@@ -24,6 +24,7 @@ Start with:
   enduring evidence decisions. Its appendix is historical, not completed work.
 - [Client v1](docs/client-v1.md): the optional raylib client, command recording
   and render-schedule replay check.
+- [Route display](docs/client-route.md): the selected unit's computed route.
 - [Progress](PROGRESS.md): current state and the next concrete action.
 - [Agent guidance](AGENTS.md): scope, evidence, Windows access, and working rules.
 - [Salvage assessment](docs/salvage.md): what the previous work actually contains

@@ -1,0 +1,16 @@
+{
+  "method": "read-only private-field diagnostic linked against unchanged build/libwc3world.a; no state writes",
+  "source_sha256": "04fa22f75f8b9c4471f17705990e80d4a4196823f25f65e555260d21cda9deb5",
+  "binary_sha256": "9630fe43da8dc1b6b83e5418ff986c6a66a45b24a60890a01620e2d918b39e0a",
+  "world_library_sha256": "0fa36d0f13e1e3cc4992fb9169346f2ceb948a089f7c25352a307e2184e6e259",
+  "command": "/usr/bin/clang++ -std=c++20 -I src -I tools/wc3test results/mov-0023/partial-route-probe.cpp build/libmovement_cases.a build/libwc3world.a -o local/mov0023/probe",
+  "scenario": "scenarios/MOV-0023/MOV-0023-d.yaml",
+  "scenario_sha256": "59cc35a6c82d8d5f46112424c49f2d817c3f00ec0e1b8f8cceb78f2807faeff3",
+  "output_sha256": "3e706e99e921f252298d8aa32e52e9d6dd3c8dc0b61e847d9fff3b3298f86a2c",
+  "columns": [
+    "step_ms",
+    "unit_creation_index",
+    "route_partial"
+  ],
+  "finding": "u1 and u2 have partial routes at 10 ms, clearing at 1780 and 1750 ms respectively. Initial plans see ordered units before they gain nonzero velocities. This is model diagnostics, not WC3 observation."
+}

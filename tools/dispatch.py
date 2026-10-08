@@ -127,6 +127,10 @@ def validate_config(config):
             'max_workers must be 1..3')
     require(type(config['enabled']) is bool and type(config['auto_merge']) is bool,
             'enabled and auto_merge must be boolean')
+    if 'required_checks' in config:
+        require(isinstance(config['required_checks'], list) and
+                all(isinstance(name, str) and name.strip() for name in config['required_checks']),
+                'additional required_checks must be a list of nonempty names')
     for key in ('checkout', 'state_dir'):
         require(Path(config[key]).is_absolute(), f'{key} must be absolute')
     require(Path(config['checkout']).is_dir(), 'checkout does not exist')
@@ -379,6 +383,7 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
                   'state': 'intent'}
         if number:
             launch['issue_sha'] = self.s['jobs'][str(number)].get('body_sha')
+            launch['lane'] = self.s['jobs'][str(number)]['lane']
         self.s['launches'][token] = launch
         if number:
             self.s['jobs'][str(number)].update(
@@ -666,7 +671,7 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
                              json_output=False)
         checks = json.loads(checks)
         named = {c['name']: c for c in checks if c.get('workflow') == 'Primitive compatibility'}
-        required = self.c.get('required_checks', CHECKS)
+        required = list(dict.fromkeys(CHECKS + self.c.get('required_checks', [])))
         if any(name not in named for name in required):
             return  # Absence of required checks is never success.
         if any(named[name]['bucket'] in {'fail', 'cancel'} for name in required):
@@ -746,7 +751,12 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
         # Entire unfinished jobs occupy their lane, keeping core/client edits focused.
         occupied = {j['lane'] for j in self.s['jobs'].values() if j['state'] not in
                     {'done', 'blocked', 'implement_ready'}}
-        occupied.update(self.s['jobs'][str(l['issue'])]['lane'] for l in running if l['issue'])
+        for launch in running:
+            if launch['issue']:
+                # Mutable issue metadata cannot release the old worker's lane.
+                # Legacy launches without an assignment reserve both until stop.
+                occupied.update([launch['lane']] if launch.get('lane') in {'client', 'mechanics'}
+                                else ['client', 'mechanics'])
         # A revision/backoff retains its increment's lane even between turns.
         # If recovering an older state with several retained jobs, drain the
         # oldest first; fresh issues cannot overtake retained work.

@@ -37,6 +37,9 @@ bookkeeping and is stored outside the repository.
   while retrying that stop on later ticks, even if usage returns or issue scope
   changes. Grade receipts and release finished environments only after confirmed
   runtime release. Pending user decisions remain pending.
+  Each launch records its original lane; editing issue metadata cannot release
+  that lane before its worker stops. Legacy active launches without a recorded
+  lane conservatively reserve both lanes until confirmed release.
 - Provider choice is fixed for a BB thread. Alternation is between newly started
   threads, not changes to the provider within a thread. A handoff retains the
   implementation environment and points to the previous thread/artifacts.
@@ -100,6 +103,8 @@ and its head must include current main. A main/head change invalidates acceptanc
 or requires re-integration and a fresh independent review. Automatic merge, when
 configured, uses a squash merge pinned to the reviewed head, never `--admin`.
 Manual merge policy keeps accepted PRs awaiting the user's merge.
+The six compatibility checks are a fixed minimum; optional runtime
+`required_checks` only adds names from that workflow and cannot remove the minimum.
 
 When there is no unfinished runnable queue, a bounded planning worker uses the
 earliest unfinished roadmap gates to create at most two narrow issues. It checks

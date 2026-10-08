@@ -515,6 +515,63 @@ class LifecycleTests(unittest.TestCase):
         self.assertEqual(job['environment'], 'author_env')
         self.assertEqual(job['state'], 'review_ready')
 
+    def assert_changed_lane_waits_for_old_worker(self, legacy=False):
+        self.cli.issues = [issue()]
+        self.d.tick()
+        launch = next(iter(self.state['launches'].values()))
+        if legacy:
+            launch.pop('lane')
+        else:
+            self.assertEqual(launch['lane'], 'client')
+        self.cli.issues = [issue(30, lane='mechanics'), issue(31)]
+        self.cli.stop_status = 'stopping'
+        self.d.tick()
+        self.state = json.loads(json.dumps(self.state))
+        self.d = Dispatcher(self.config, self.state, self.cli, lambda s: None, now=NOW + 60)
+        self.d.tick()
+        self.assertEqual(self.state['jobs']['30']['lane'], 'mechanics')
+        self.assertEqual(len(self.cli.threads), 1)
+        self.cli.stop_status = 'idle'
+        self.d.tick()
+        self.assertEqual(len(self.cli.threads), 3)
+        self.assertEqual(self.cli.threads['thr_1']['thread']['status'], 'idle')
+        self.assertEqual(self.cli.threads['thr_2']['environment']['id'], 'env_1')
+
+    def test_changed_lane_reserves_original_assignment_until_stop(self):
+        self.assert_changed_lane_waits_for_old_worker()
+
+    def test_legacy_launch_with_unknown_lane_is_reserved_until_stop(self):
+        self.assert_changed_lane_waits_for_old_worker(legacy=True)
+
+    def test_configured_checks_cannot_remove_mandatory_ci_minimum(self):
+        job = self.job(state='integration_ready')
+        for configured in ([], [CHECKS[0]]):
+            for present in ([], [self.cli.checks[0]]):
+                with self.subTest(configured=configured, present=present):
+                    self.config['required_checks'] = configured
+                    original = self.cli.checks
+                    self.cli.checks = present
+                    self.d.integration(job)
+                    self.assertFalse(self.cli.pr_data['merged'])
+                    self.cli.checks = original
+
+    def test_configured_checks_can_only_add_requirements(self):
+        job = self.job(state='integration_ready')
+        self.config['required_checks'] = ['Additional compatibility gate']
+        self.d.integration(job)
+        self.assertFalse(self.cli.pr_data['merged'])
+        self.cli.checks.append({'name': 'Additional compatibility gate', 'bucket': 'pass',
+                                'workflow': 'Primitive compatibility'})
+        self.d.integration(job)
+        self.assertTrue(self.cli.pr_data['merged'])
+
+    def test_invalid_additional_check_config_fails_closed(self):
+        for checks in (None, 'a check', {}, [''], [False]):
+            with self.subTest(checks=checks):
+                self.config['required_checks'] = checks
+                with self.assertRaises(ControlError):
+                    validate_config(self.config)
+
     def test_no_planner_busywork_while_issue_awaits_manual_merge(self):
         self.job(state='awaiting_merge')
         self.config['auto_merge'] = False

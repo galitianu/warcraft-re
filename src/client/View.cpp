@@ -1,5 +1,7 @@
 #include "client/View.h"
 #include <algorithm>
+#include <bit>
+#include <cstdio>
 #include <cmath>
 #include <numbers>
 
@@ -78,5 +80,42 @@ std::vector<UnitView> unit_views(const wc3::Session& session, const Controller& 
         views.push_back(view);
     }
     return views;
+}
+
+RouteView route_view(const wc3::Session& session, std::size_t id) {
+    const auto& unit = session.world().unit(id);
+    // An unapplied command makes any current plan stale; a move not yet planned
+    // (the plan comes at the unit's next update) has no computed path to show.
+    if (session.pending_for(id)) return {RouteState::pending, {}};
+    if (unit.current_order() != wc3::order_move) return {};
+    const auto& route = unit.route();
+    if (unit.route_index() >= route.size()) return {RouteState::pending, {}};
+    RouteView view{unit.route_partial() ? RouteState::partial : RouteState::planned, {unit.position()}};
+    view.points.insert(view.points.end(), route.begin() + static_cast<std::ptrdiff_t>(unit.route_index()), route.end());
+    return view;
+}
+RouteView selected_route(const wc3::Session& session, const Controller& controller) {
+    return controller.selected() ? route_view(session, *controller.selected()) : RouteView{};
+}
+const char* route_state_name(RouteState state) {
+    switch (state) {
+    case RouteState::pending: return "pending";
+    case RouteState::planned: return "planned";
+    case RouteState::partial: return "partial";
+    default: return "none";
+    }
+}
+std::string serialize(std::uint64_t time_us, std::size_t unit, const RouteView& route) {
+    std::string out = "route " + std::to_string(time_us) + ' ' + std::to_string(unit) + ' ' +
+                      route_state_name(route.state) + ' ' + std::to_string(route.points.size());
+    std::string comment;
+    for (const auto& p : route.points) {
+        char text[64];
+        std::snprintf(text, sizeof text, " 0x%08x 0x%08x", std::bit_cast<std::uint32_t>(p.x), std::bit_cast<std::uint32_t>(p.y));
+        out += text;
+        std::snprintf(text, sizeof text, " (%.9g, %.9g)", p.x, p.y);
+        comment += text;
+    }
+    return comment.empty() ? out : out + " #" + comment;
 }
 }

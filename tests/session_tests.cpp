@@ -23,6 +23,28 @@ void advance(wc3::Session& s, int frames) {
     for (int i = 0; i < frames; ++i) s.advance_frame();
 }
 bool same(wc3::Vec2 a, wc3::Vec2 b) { return a.x == b.x && a.y == b.y; }
+using client::RouteState;
+// A route view must be the unit's position followed by the world's waypoints from the cursor.
+void copies_plan(const wc3::Session& s, std::size_t id, const client::RouteView& v, const std::string& what) {
+    const auto& u = s.world().unit(id);
+    check(v.state == RouteState::planned || v.state == RouteState::partial, what + ": not a computed route");
+    check(v.points.size() == u.route().size() - u.route_index() + 1 && same(v.points[0], u.position()),
+          what + ": route view does not start at the unit");
+    for (std::size_t i = 1; i < v.points.size(); ++i)
+        check(same(v.points[i], u.route()[u.route_index() + i - 1]), what + ": waypoint order");
+}
+// Advances until the unit's route view leaves `state`, at most `limit` frames.
+client::RouteView advance_while(wc3::Session& s, std::size_t id, RouteState state, int limit) {
+    for (int i = 0; i < limit; ++i) {
+        s.advance_frame();
+        if (const auto v = client::route_view(s, id); v.state != state) return v;
+    }
+    throw std::runtime_error("route state did not change");
+}
+client::Ray ray_at(const client::Camera& camera, wc3::Vec2 p, float z) {
+    const auto eye = camera.eye();
+    return {eye, {p.x - eye.x, p.y - eye.y, z - eye.z}};
+}
 }
 
 int main() {
@@ -152,6 +174,93 @@ int main() {
             const auto c = controller.right_click(s, at_ground);
             check(c && c->unit == 2 && c->order == wc3::order_move && std::abs(c->target.x - 600) < 0.1f &&
                   std::abs(c->target.y - 300) < 0.1f, "right-click moves the selected unit to the ground point");
+        }
+        // Route views (docs/client-route.md): idle and pending states show no path.
+        {
+            wc3::Session s;
+            for (std::size_t id = 0; id < 3; ++id)
+                check(client::route_view(s, id).state == RouteState::none && client::route_view(s, id).points.empty(),
+                      "idle units have no route");
+            advance(s, 10);
+            s.submit(0, wc3::order_move, {96, 0});
+            check(client::route_view(s, 0).state == RouteState::pending && client::route_view(s, 0).points.empty(),
+                  "an unapplied move is pending, not a path");
+            check(client::route_view(s, 1).state == RouteState::none, "pending is per unit");
+            s.advance_frame();
+            check(s.world().unit(0).current_order() == wc3::order_move && s.world().unit(0).route().empty() &&
+                  client::route_view(s, 0).state == RouteState::pending, "an applied move awaiting its plan is pending");
+            // A detour around the idle Footman 1 at the origin, ending at the target (Footman 2 idles at x = 192).
+            const auto v = advance_while(s, 0, RouteState::pending, 20);
+            copies_plan(s, 0, v, "detour");
+            check(v.state == RouteState::planned && same(v.points.back(), {96, 0}) && v.points.size() > 3,
+                  "detour reaches the target through waypoints");
+            for (std::size_t i = 1; i + 1 < v.points.size(); ++i)
+                check(std::hypot(v.points[i].x, v.points[i].y) >= 32, "detour waypoint inside the blocker");
+            // Repeated construction reads only.
+            const auto before = s.world().snapshot();
+            for (int i = 0; i < 100; ++i) client::route_view(s, i % 3);
+            check(s.world().snapshot() == before, "route view construction changed the world");
+            // While the plan stands, the remaining waypoints only shrink from the front.
+            auto previous = v;
+            int advanced = 0;
+            for (int frame = 0; frame < 60; ++frame) {
+                s.advance_frame();
+                const auto now = client::route_view(s, 0);
+                if (now.state != RouteState::planned) break;
+                copies_plan(s, 0, now, "detour frame " + std::to_string(frame));
+                const auto offset = previous.points.size() - now.points.size();
+                check(now.points.size() <= previous.points.size(), "remaining waypoints grew without a replan");
+                for (std::size_t i = 1; i < now.points.size(); ++i)
+                    check(same(now.points[i], previous.points[i + offset]), "remaining waypoints reordered");
+                advanced += offset > 0;
+                previous = now;
+            }
+            check(advanced > 0, "the route cursor never advanced");
+            // A redirect never shows the stale route: pending until the new plan, which ends at the new target.
+            s.submit(0, wc3::order_move, {-100, 400});
+            check(client::route_view(s, 0).state == RouteState::pending, "redirect is pending before it applies");
+            const auto redirected = advance_while(s, 0, RouteState::pending, 20);
+            copies_plan(s, 0, redirected, "redirect");
+            check(same(redirected.points.back(), {-100, 400}), "redirected route ends at the new target");
+            // A stop clears it: pending until applied, then no route.
+            s.submit(0, wc3::order_stop);
+            check(client::route_view(s, 0).state == RouteState::pending, "unapplied stop hides the route");
+            s.advance_frame();
+            check(client::route_view(s, 0).state == RouteState::none && client::route_view(s, 0).points.empty(),
+                  "stop clears the route");
+        }
+        // Arrival clears the route; deselection clears the selected-unit feedback while moving.
+        {
+            wc3::Session s;
+            client::Camera camera;
+            client::Controller controller;
+            controller.left_click(s.world(), ray_at(camera, {192, 0}, client::unit_height / 2));
+            check(controller.selected() == std::size_t{2}, "picked unit 2");
+            s.submit(2, wc3::order_move, {450, 300});
+            const auto straight = advance_while(s, 2, RouteState::pending, 20);
+            check(straight.state == RouteState::planned && straight.points.size() == 2 &&
+                  same(straight.points.back(), {450, 300}), "unobstructed move is a straight planned route");
+            check(client::selected_route(s, controller).points.size() == 2, "selected route");
+            controller.left_click(s.world(), ray_at(camera, {600, -300}, 0));
+            check(!controller.selected() && client::selected_route(s, controller).state == RouteState::none,
+                  "deselection clears route feedback");
+            check(client::route_view(s, 2).state == RouteState::planned, "the unit still has its plan");
+            const auto arrived = advance_while(s, 2, RouteState::planned, 1000);
+            check(arrived.state == RouteState::none && s.world().unit(2).current_order() == wc3::order_none,
+                  "arrival clears the route");
+        }
+        // A blocked target: the route is partial and ends where the plan ends, short of the target.
+        {
+            wc3::Session s;
+            s.submit(0, wc3::order_move, {0, 0});  // onto the idle Footman 1
+            const auto v = advance_while(s, 0, RouteState::pending, 20);
+            copies_plan(s, 0, v, "partial");
+            check(v.state == RouteState::partial && s.world().unit(0).route_partial(), "blocked target routes partially");
+            check(!same(v.points.back(), {0, 0}) && std::hypot(v.points.back().x, v.points.back().y) >= 32,
+                  "partial route ends short of the target");
+            const auto line = client::serialize(s.time_us(), 0, v);
+            check(line.rfind("route " + std::to_string(s.time_us()) + " 0 partial " + std::to_string(v.points.size()) + " 0x", 0) == 0,
+                  "route line format");
         }
         std::cout << "session tests passed\n";
         return 0;

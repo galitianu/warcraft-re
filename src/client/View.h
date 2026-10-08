@@ -6,6 +6,7 @@
 #include "core/Session.h"
 #include <cstdint>
 #include <optional>
+#include <string>
 #include <vector>
 
 namespace client {
@@ -67,4 +68,27 @@ struct UnitView {
     std::optional<wc3::Vec2> destination;  // the applied move order still being carried out
 };
 std::vector<UnitView> unit_views(const wc3::Session& session, const Controller& controller);
+
+// A unit's current computed route (docs/client-route.md), copied from the world's
+// existing plan. Building it never plans, steps or changes route state. The plan may
+// change as blockers move; it does not promise where the unit will actually walk.
+enum class RouteState {
+    none,     // no move order being carried out (idle, stopped, arrived)
+    pending,  // a command is due but unapplied, or the move has no plan yet
+    planned,  // the route reaches the order target
+    partial,  // the route ends short of a blocked target, where the plan ends
+};
+struct RouteView {
+    RouteState state = RouteState::none;
+    // planned/partial: the unit's displayed position, then the remaining waypoints
+    // from the route cursor in traversal order; empty otherwise.
+    std::vector<wc3::Vec2> points;
+};
+RouteView route_view(const wc3::Session& session, std::size_t unit);
+// The selected unit's route; none without a selection.
+RouteView selected_route(const wc3::Session& session, const Controller& controller);
+const char* route_state_name(RouteState state);
+// One canonical line, "route TIME_US UNIT STATE N X Y ..." with float32 bits and a
+// decimal comment, so a route shown live can be compared exactly with a replay.
+std::string serialize(std::uint64_t time_us, std::size_t unit, const RouteView& route);
 }

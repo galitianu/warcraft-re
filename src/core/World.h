@@ -79,6 +79,12 @@ public:
     float facing() const { return facing_; }
     float move_speed() const { return speed_; }
     std::uint32_t current_order() const { return order_; }
+    // The current plan, read-only, for presentation: waypoints in traversal order, the
+    // cursor at the one being steered for, and whether it ends short of the target.
+    // Meaningful only while a move order is being carried out.
+    const std::vector<Vec2>& route() const { return route_; }
+    std::size_t route_index() const { return route_index_; }
+    bool route_partial() const { return route_partial_; }
 private:
     friend class World;
     Vec2 position_;

@@ -148,6 +148,11 @@ void Session::advance_frame() {
     const auto steps = world_.parameters().heading.exposure_period_steps;
     for (std::uint32_t i = 0; i < steps; ++i) world_.step();
 }
+bool Session::pending_for(std::size_t unit) const {
+    for (auto i = next_; i < pending_.size() && pending_[i].time_us == time_us(); ++i)
+        if (pending_[i].unit == unit) return true;
+    return false;
+}
 Recording Session::recording() const {
     return {scene_name, seed_, pending_, time_us()};
 }

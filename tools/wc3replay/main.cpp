@@ -1,8 +1,10 @@
 // Replays a command recording headlessly and under named render schedules, and
 // compares exact world state at identical simulation checkpoints (docs/client-v1.md).
-// Usage: wc3replay RECORDING [--live CHECKPOINTS] [--routes ROUTES] [--json REPORT]
-// Exit 0: every schedule (and the live client's checkpoints and displayed routes,
-// when given) matches the headless replay; 1: a difference; 2: invalid input.
+// Usage: wc3replay RECORDING [--live CHECKPOINTS] [--routes ROUTES]
+//                  [--observations OBSERVATIONS] [--json REPORT]
+// Exit 0: every schedule (and the live client's checkpoints, displayed routes and
+// pause observations, when given) matches the headless replay; 1: a difference;
+// 2: invalid input.
 #include "Scenario.h"
 #include "client/View.h"
 #include <fstream>
@@ -31,6 +33,8 @@ struct Run {
     std::uint64_t render_frames = 0;
     std::uint64_t sim_frames = 0;
     std::uint64_t presentation_checks = 0;
+    std::uint64_t paused_renders = 0;    // including each resume render
+    std::uint64_t pauses = 0;
     std::map<client::RouteState, std::uint64_t> route_views;  // per unit per render frame
     std::vector<wc3::Command> applied;
     std::vector<bool> accepted;
@@ -104,11 +108,15 @@ void check_route(const wc3::Session& session, std::size_t id, const client::Rout
     }
     if (!ok) throw std::logic_error(name + ": route view does not copy unit " + std::to_string(id) + "'s plan");
 }
+// Paused variants (docs/client-pause.md): every 37 renders, pause at render 5 and
+// resume at render 14 of the cycle, each frozen render reporting this much wall time.
+constexpr std::uint64_t pause_cycle = 37, pause_at = 5, resume_at = 14, paused_wall_us = 2500000;
 // A render loop as the client runs it: wall time -> Pacer -> frames, then camera,
-// picking/selection and the draw list read the world. Presentation must not change
-// the snapshot; any change fails the run.
+// picking/selection, diagnostics and the draw list read the world. Presentation must
+// not change the snapshot; any change fails the run. With `pauses`, frozen renders
+// (paused, and the resume render) must simulate nothing and change nothing.
 Run rendered(const wc3::Recording& recording, std::string name, std::string description,
-             const std::function<std::uint64_t(std::uint64_t)>& wall_us) {
+             const std::function<std::uint64_t(std::uint64_t)>& wall_us, bool pauses = false) {
     Run run;
     run.name = std::move(name);
     run.description = std::move(description);
@@ -116,12 +124,29 @@ Run rendered(const wc3::Recording& recording, std::string name, std::string desc
     client::Pacer pacer{session.frame_us()};
     client::Camera camera;
     client::Controller controller;
+    std::uint64_t running_renders = 0;
     while (session.time_us() < recording.end_us) {
-        const auto frames = pacer.frames_for(wall_us(run.render_frames));
+        const auto n = run.render_frames;
+        // Input poll order as in the client: Space toggles before this render's pacing.
+        if (pauses && n % pause_cycle == pause_at) pacer.pause(), ++run.pauses;
+        if (pauses && n % pause_cycle == resume_at) pacer.resume();
+        const bool frozen = pacer.paused || pacer.resuming;
+        const auto time_before = session.time_us();
+        const auto applied_before = session.applied().size();
+        const auto carry_before = pacer.carry_us;
+        const auto snapshot_before = frozen ? session.world().snapshot() : std::string();
+        const auto frames = pacer.frames_for(frozen ? paused_wall_us : wall_us(running_renders++));
+        if (frozen) {
+            // No catch-up: paused wall time, including the resume render's, is discarded.
+            if (frames != 0 || pacer.carry_us != carry_before || session.time_us() != time_before ||
+                session.applied().size() != applied_before || session.world().snapshot() != snapshot_before)
+                throw std::logic_error(run.name + ": a paused render advanced the simulation");
+            ++run.paused_renders;
+        }
         for (std::uint64_t i = 0; i < frames && session.time_us() < recording.end_us; ++i) frame(session, run);
         const auto before = session.world().snapshot();
-        // Exercise every presentation path: pan/zoom, picking each unit, selection.
-        const auto n = run.render_frames;
+        // Exercise every presentation path: pan/zoom, picking each unit, selection,
+        // and the diagnostics overlay built both ways.
         camera.pan(n % 7 == 0 ? 3.0f : -1.0f, n % 5 == 0 ? -2.0f : 1.0f);
         camera.zoom(n % 11 == 0 ? 1.0f : n % 13 == 0 ? -1.0f : 0.0f);
         const auto eye = camera.eye();
@@ -133,6 +158,10 @@ Run rendered(const wc3::Recording& recording, std::string name, std::string desc
         controller.release(session.world(),camera,{1100,600},1280,720);
         client::ground(ray);
         const auto views = client::unit_views(session, controller);
+        client::diagnostics(session, controller, {pacer.paused, static_cast<int>(n % 120), "-"});
+        client::diagnostics(session, controller, {!pacer.paused, 0, "x"});
+        client::pending_summary(session);
+        client::observation("render", n, pacer.paused, session, "-");
         // Route views for every unit and the selection, built twice: reading must not plan.
         for (int pass = 0; pass < 2; ++pass) {
             for (std::size_t id = 0; id < session.world().unit_count(); ++id) {
@@ -191,6 +220,60 @@ std::vector<ShownRoute> read_routes(const std::string& text) {
     }
     return out;
 }
+// Pause observations the live smoke run logged (client::observation lines).
+struct Observed {
+    std::string name;
+    std::uint64_t render_frame = 0;
+    bool paused = false;
+    std::uint64_t time_us = 0;
+    std::size_t submitted = 0, applied = 0, pending = 0;
+    std::string sha256;
+    std::string line;
+};
+std::vector<Observed> read_observations(const std::string& text) {
+    std::istringstream in(text);
+    std::string line;
+    if (!std::getline(in, line) || line != "wc3-pause-observations 1")
+        throw std::invalid_argument("expected wc3-pause-observations 1");
+    std::vector<Observed> out;
+    while (std::getline(in, line)) {
+        std::istringstream fields(line);
+        std::string key, state;
+        Observed o;
+        o.line = line;
+        if (!(fields >> key >> o.name >> o.render_frame >> state >> o.time_us >> o.submitted >> o.applied >> o.pending >> o.sha256) ||
+            key != "observe" || (state != "paused" && state != "running") || o.sha256.size() != 64)
+            throw std::invalid_argument("invalid observation line: " + line);
+        o.paused = state == "paused";
+        out.push_back(o);
+    }
+    return out;
+}
+// Rebuilds the session from the commands submitted by then, simulated to the observed
+// time, and compares the counts and snapshot digest. Consecutive paused observations
+// (one pause interval) must also share time, applied count and digest.
+std::string check_observations(const wc3::Recording& recording, const std::vector<Observed>& observed) {
+    for (std::size_t k = 0; k < observed.size(); ++k) {
+        const auto& o = observed[k];
+        if (o.submitted > recording.commands.size() || o.time_us > recording.end_us)
+            throw std::invalid_argument("observation beyond the recording: " + o.line);
+        for (std::size_t i = o.submitted; i < recording.commands.size(); ++i)
+            if (recording.commands[i].time_us < o.time_us)
+                throw std::invalid_argument("command " + std::to_string(i) + " precedes the observation it was not known to: " + o.line);
+        wc3::Session session(recording.seed);
+        for (std::size_t i = 0; i < o.submitted; ++i) session.schedule(recording.commands[i]);
+        while (session.time_us() < o.time_us) session.advance_frame();
+        const auto line = client::observation(o.name, o.render_frame, o.paused, session, digest(session));
+        if (line != o.line) return o.name + "\n  live:   " + o.line + "\n  replay: " + line;
+        if (k > 0 && o.render_frame <= observed[k - 1].render_frame) return o.name + ": render frames do not increase";
+        if (k > 0 && o.paused && observed[k - 1].paused) {
+            const auto& p = observed[k - 1];
+            if (o.time_us != p.time_us || o.applied != p.applied || o.sha256 != p.sha256 || o.pending < p.pending)
+                return o.name + ": the simulation advanced during a pause";
+        }
+    }
+    return "";
+}
 bool same_commands(const std::vector<wc3::Command>& a, const std::vector<wc3::Command>& b) {
     if (a.size() != b.size()) return false;
     for (std::size_t i = 0; i < a.size(); ++i)
@@ -201,13 +284,15 @@ std::string json(const std::string& s) { return '"' + s + '"'; }
 }
 
 int main(int argc, char** argv) {
-    std::string recording_path, live_path, routes_path, json_path;
-    const char* usage = "usage: wc3replay RECORDING [--live CHECKPOINTS] [--routes ROUTES] [--json REPORT]\n";
+    std::string recording_path, live_path, routes_path, observations_path, json_path;
+    const char* usage = "usage: wc3replay RECORDING [--live CHECKPOINTS] [--routes ROUTES]\n"
+                        "                 [--observations OBSERVATIONS] [--json REPORT]\n";
     for (int i = 1; i < argc; ++i) {
         const std::string arg = argv[i];
         if (arg == "--live" && i + 1 < argc) live_path = argv[++i];
         else if (arg == "--routes" && i + 1 < argc) routes_path = argv[++i];
         else if (arg == "--json" && i + 1 < argc) json_path = argv[++i];
+        else if (arg == "--observations" && i + 1 < argc) observations_path = argv[++i];
         else if (recording_path.empty() && arg.rfind("--", 0) != 0) recording_path = arg;
         else { std::cerr << usage; return 2; }
     }
@@ -227,6 +312,14 @@ int main(int argc, char** argv) {
         runs.push_back(rendered(recording, "render-irregular",
                                 "repeating 7000,41000,16667,1000,0,250000,3000,25000,9999,33334,4999,5001 us",
                                 [&](std::uint64_t n) { return irregular[n % irregular.size()]; }));
+        // The same schedules with pauses inserted at frame boundaries (running renders keep the schedule).
+        const std::string paused_note = "; paused renders 5-13 of every 37, resume at 14, 2500000 us each frozen render";
+        runs.push_back(rendered(recording, "render-30hz-paused", "33333/33333/33334 us" + paused_note,
+                                [](std::uint64_t n) { return n % 3 == 2 ? 33334 : 33333; }, true));
+        runs.push_back(rendered(recording, "render-60hz-paused", "16666/16667/16667 us" + paused_note,
+                                [](std::uint64_t n) { return n % 3 == 0 ? 16666 : 16667; }, true));
+        runs.push_back(rendered(recording, "render-irregular-paused", "repeating irregular schedule" + paused_note,
+                                [&](std::uint64_t n) { return irregular[n % irregular.size()]; }, true));
         bool pass = true;
         std::ostringstream report;
         report << "{\n  \"recording\": " << json(recording_path) << ",\n  \"recording_sha256\": "
@@ -263,7 +356,10 @@ int main(int argc, char** argv) {
                    << json(description) << ", \"checkpoints_compared\": " << reference.checkpoints.size();
             if (run) {
                 report << ", \"render_frames\": " << run->render_frames << ", \"sim_frames\": " << run->sim_frames
-                       << ", \"presentation_checks\": " << run->presentation_checks << ", \"route_views\": {";
+                       << ", \"presentation_checks\": " << run->presentation_checks;
+                if (run->pauses)
+                    report << ", \"pauses\": " << run->pauses << ", \"paused_renders\": " << run->paused_renders;
+                report << ", \"route_views\": {";
                 for (auto s : {client::RouteState::none, client::RouteState::pending, client::RouteState::planned,
                                client::RouteState::partial})
                     report << (s == client::RouteState::none ? "" : ", ") << json(client::route_state_name(s)) << ": "
@@ -293,6 +389,24 @@ int main(int argc, char** argv) {
             report << "]}";
             std::cout << "live-routes: " << (same ? "IDENTICAL" : "DIFFERS at " + first_mismatch) << " (" << routes.size()
                       << " displayed routes)\n";
+        }
+        if (!observations_path.empty()) {
+            const auto observed = read_observations(read(observations_path));
+            const auto mismatch = check_observations(recording, observed);
+            const bool same = mismatch.empty();
+            pass &= same;
+            report << ",\n  \"pause_observations\": {\"observations\": " << observed.size() << ", \"identical\": "
+                   << (same ? "true" : "false") << ", \"observed\": [";
+            for (std::size_t i = 0; i < observed.size(); ++i) {
+                const auto& o = observed[i];
+                report << (i ? ",\n    " : "\n    ") << "{\"name\": " << json(o.name) << ", \"render_frame\": " << o.render_frame
+                       << ", \"state\": " << json(o.paused ? "paused" : "running") << ", \"time_us\": " << o.time_us
+                       << ", \"submitted\": " << o.submitted << ", \"applied\": " << o.applied << ", \"pending\": "
+                       << o.pending << ", \"sha256\": " << json(o.sha256) << "}";
+            }
+            report << "]}";
+            std::cout << "pause-observations: " << (same ? "IDENTICAL" : "DIFFERS at " + mismatch) << " (" << observed.size()
+                      << " observations)\n";
         }
         report << ",\n  \"status\": " << json(pass ? "PASS" : "FAIL") << "\n}\n";
         if (!json_path.empty()) {

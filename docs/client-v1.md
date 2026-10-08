@@ -115,6 +115,8 @@ input order is fixed (left, right, `S`). No render interpolation is used (units
 draw at the latest 5 ms frame). Formations, assets, combat and audio remain outside the delivered client scope. Path display
 followed in [issue #34](client-route.md); box/shift multiple selection and placeholder
 per-unit group commands followed in [issue #36](client-selection.md).
+Pause/resume and the F3 diagnostics overlay followed in [issue #38](client-pause.md);
+`wc3replay` now also runs paused variants of each schedule and checks `--observations`.
 
 **Portable snapshot revision.** The original hosted Linux jobs failed only the two
 live-client comparisons, at time zero: their render schedules matched headless,

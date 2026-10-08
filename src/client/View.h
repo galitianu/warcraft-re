@@ -12,12 +12,22 @@
 namespace client {
 // Converts elapsed wall time into whole simulation frames. Wall time only decides
 // how much work to do now; the simulation clock advances in frames of frame_us.
+// Pause is pacing state only (docs/client-pause.md): no command, no world change.
 struct Pacer {
     std::uint64_t frame_us;
     // A stalled render (window drag, breakpoint) simulates at most this many frames
     // and drops the rest of its wall time, so the game slows instead of jumping.
     std::uint64_t max_frames = 20;
     std::uint64_t carry_us = 0;
+    bool paused = false;
+    // Set by resume(): the next frames_for() call measures paused wall time, which is
+    // discarded, so resuming never produces a catch-up burst.
+    bool resuming = false;
+    // Takes effect at the next frames_for(): the render that pauses simulates nothing
+    // and drops its interval. The sub-frame carry is kept unchanged across a pause.
+    void pause() { paused = true; resuming = false; }
+    void resume() { if (paused) paused = false, resuming = true; }
+    void toggle() { paused ? resume() : pause(); }
     std::uint64_t frames_for(std::uint64_t elapsed_us);
 };
 
@@ -110,4 +120,20 @@ const char* route_state_name(RouteState state);
 // One canonical line, "route TIME_US UNIT STATE N X Y ..." with float32 bits and a
 // decimal comment, so a route shown live can be compared exactly with a replay.
 std::string serialize(std::uint64_t time_us, std::size_t unit, const RouteView& route);
+
+// The togglable implementation overlay (docs/client-pause.md), built only from const
+// state; the caller supplies the render rate it measured. Lines in display order.
+struct DiagnosticsInput {
+    bool paused = false;
+    int render_fps = 0;
+    std::string last_command = "-";
+};
+std::vector<std::string> diagnostics(const wc3::Session& session, const Controller& controller,
+                                     const DiagnosticsInput& input);
+// The always-visible pause banner's second line, e.g. "2 orders queued; they apply on resume".
+std::string pending_summary(const wc3::Session& session);
+// One canonical line for a pause observation: "observe NAME RENDER STATE TIME_US
+// SUBMITTED APPLIED PENDING SHA256", with the snapshot digest supplied by the caller.
+std::string observation(const std::string& name, std::uint64_t render_frame, bool paused,
+                        const wc3::Session& session, const std::string& snapshot_sha256);
 }

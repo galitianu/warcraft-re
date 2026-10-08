@@ -48,6 +48,7 @@ class FakeCLI:
         self.fail_usage = False
         self.fail_after_spawn = False
         self.dirty = False
+        self.stop_status = 'idle'
 
     def bb(self, *args, **kwargs):
         self.calls.append(('bb', args, kwargs))
@@ -86,7 +87,7 @@ class FakeCLI:
             self.queue[args[3]] = []
             return {}
         if args[:2] == ('thread', 'stop'):
-            self.threads[args[2]]['thread']['status'] = 'idle'
+            self.threads[args[2]]['thread']['status'] = self.stop_status
             return {}
         if args[:2] == ('thread', 'archive'):
             return {}
@@ -259,6 +260,99 @@ class LifecycleTests(unittest.TestCase):
         self.d.tick()
         self.d.tick()
         self.assertEqual(len(self.cli.threads), 1)
+
+    def test_unconfirmed_quota_stop_retains_ownership_until_confirmed_after_restart(self):
+        self.cli.issues = [issue()]
+        launch = self.launch()
+        self.cli.reports['claude-code'] = usage(80)
+        self.cli.stop_status = 'stopping'
+        self.d.tick()
+        self.assertEqual(launch['state'], 'running')
+        self.assertEqual(launch['stop_action'], 'quota')
+        self.assertEqual(self.state['jobs']['30']['state'], 'implementing')
+        # A controller restart and refreshed allowance cannot bypass the old stop.
+        self.d = Dispatcher(self.config, self.state, self.cli, lambda s: None, now=NOW + 60)
+        self.cli.reports['claude-code'] = usage()
+        self.d.tick()
+        self.assertEqual(len(self.cli.threads), 1)
+        self.assertEqual(self.state['jobs']['30'].get('attempts', 0), 0)
+        self.cli.stop_status = 'idle'
+        self.d.tick()
+        self.assertEqual(len(self.cli.threads), 2)
+        self.assertEqual(self.cli.threads['thr_2']['environment']['id'], 'env_1')
+        self.assertEqual(self.cli.threads['thr_1']['thread']['status'], 'idle')
+        self.assertEqual(self.state['jobs']['30'].get('attempts', 0), 0)
+
+    def test_unconfirmed_scope_stop_reserves_lane_even_when_job_is_ready(self):
+        self.cli.issues = [issue()]
+        self.d.tick()
+        launch = next(iter(self.state['launches'].values()))
+        self.cli.stop_status = 'stopping'
+        self.cli.issues[0]['body'] += '\nA revised acceptance gate.\n'
+        self.cli.issues.append(issue(31))
+        self.d.tick()
+        self.d.tick()
+        self.assertEqual(len(self.cli.threads), 1)
+        self.assertEqual(launch['stop_action'], 'park')
+        self.cli.stop_status = 'idle'
+        self.d.tick()
+        self.assertEqual(len(self.cli.threads), 2)
+        self.assertEqual(self.cli.threads['thr_2']['environment']['id'], 'env_1')
+        self.assertEqual(launch['state'], 'cancelled')
+
+    def test_unconfirmed_timeout_does_not_count_failure_or_start_replacement(self):
+        self.cli.issues = [issue()]
+        launch = self.launch()
+        self.d.now += 14401
+        self.cli.stop_status = 'stopping'
+        self.d.tick()
+        self.assertEqual(launch['stop_action'], 'timeout')
+        self.assertEqual(len(self.cli.threads), 1)
+        self.assertEqual(self.state['jobs']['30'].get('attempts', 0), 0)
+        self.cli.stop_status = 'idle'
+        self.d.tick()
+        self.assertEqual(launch['state'], 'failed')
+        self.assertEqual(self.state['jobs']['30']['attempts'], 1)
+
+    def test_idle_receipt_is_not_accepted_until_runtime_stop_is_confirmed(self):
+        launch = self.launch()
+        self.receipt(launch)
+        self.cli.stop_status = 'stopping'
+        self.d.reconcile(self.d.gates())
+        self.assertEqual(launch['stop_action'], 'receipt')
+        self.assertEqual(self.state['jobs']['30']['state'], 'implementing')
+        self.assertNotIn('receipt', launch)
+        self.cli.stop_status = 'idle'
+        self.d.reconcile(self.d.gates())
+        self.assertEqual(launch['state'], 'finished')
+        self.assertEqual(self.state['jobs']['30']['state'], 'review_ready')
+
+    def test_cleanup_keeps_slot_and_worktree_until_confirmed_stop(self):
+        launch = self.launch()
+        self.receipt(launch)
+        self.d.reconcile(self.d.gates())
+        self.state['jobs']['30']['state'] = 'done'
+        self.cli.stop_status = 'stopping'
+        self.d.settle_finished()
+        self.assertEqual(launch['stop_action'], 'cleanup')
+        self.assertEqual(launch['state'], 'running')
+        self.assertFalse(any(args[:2] == ('thread', 'archive') for name, args, _ in self.cli.calls if name == 'bb'))
+        self.cli.stop_status = 'idle'
+        self.d.reconcile(self.d.gates())
+        self.assertTrue(launch['settled'])
+        self.assertEqual(launch['state'], 'finished')
+
+    def test_active_starting_and_runtime_status_all_require_stop_confirmation(self):
+        launch = self.launch()
+        for status in ('active', 'starting', 'stopping'):
+            with self.subTest(status=status):
+                self.cli.stop_status = status
+                self.assertFalse(self.d.stop(launch))
+        self.cli.stop_status = 'idle'
+        self.cli.threads[launch['thread']]['thread']['runtime'] = {'displayStatus': 'active'}
+        self.assertFalse(self.d.stop(launch))
+        self.cli.threads[launch['thread']]['thread']['runtime'] = {'displayStatus': 'idle'}
+        self.assertTrue(self.d.stop(launch))
 
     def test_removed_label_stops_registered_work_and_retains_partial_work(self):
         self.cli.issues = [issue()]

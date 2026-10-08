@@ -254,6 +254,45 @@ class Dispatcher:
         self.thread(launch)  # Recheck ownership immediately before every stop.
         self.cancel_queue(launch)
         self.cli.bb('thread', 'stop', launch['thread'])
+        thread = self.thread(launch)  # A successful CLI call can leave stopping.
+        executing = {'starting', 'active', 'stopping'}
+        confirmed = (thread['status'] not in executing and
+                     (thread.get('runtime') or {}).get('displayStatus') not in executing)
+        if not confirmed:
+            self.event(f"Stop unconfirmed for {launch['thread']}; ownership retained.")
+        return confirmed
+
+    def request_stop(self, launch, action):
+        if action == 'cleanup':
+            launch['stop_prior_state'] = launch['state']
+            launch['state'] = 'running'  # Keep its slot until runtime release.
+        launch['stop_action'] = action
+        self.persist()  # Preserve the reason across failed interrupts/restarts.
+        return self.complete_stop(launch)
+
+    def complete_stop(self, launch):
+        if not self.stop(launch):
+            return False
+        action = launch['stop_action']
+        if action == 'cleanup':
+            # Keep the action durable if archive fails after runtime release.
+            self.cli.bb('thread', 'archive', launch['thread'])
+        launch.pop('stop_action')
+        if action == 'receipt':
+            self.finish_receipt(launch)
+        elif action == 'timeout':
+            launch['state'] = 'failed'
+            self.stage_failure(launch, ['Stage time limit; inspect partial work.'])
+        elif action == 'cleanup':
+            launch['state'] = launch.pop('stop_prior_state')
+            launch['settled'] = True
+        else:
+            require(action in {'quota', 'park'}, 'unknown stop disposition')
+            launch['state'] = 'quota_paused' if action == 'quota' else 'cancelled'
+            if action == 'quota':
+                self.event(f"Stopped registered worker {launch['thread']} at quota/unavailability; work retained.")
+        self.persist()
+        return True
 
     def prompt(self, launch):
         stage, number = launch['stage'], launch.get('issue')
@@ -376,11 +415,7 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
             self.cli.bb('pool', 'bypass', launch['thread'])
         gates = self.gates()
         if not self.c['enabled'] or not gates[launch['provider']]['eligible']:
-            self.cli.bb('thread', 'stop', launch['thread'])
-            for queued in self.cli.bb('thread', 'queue', 'list', launch['thread']):
-                self.cli.bb('thread', 'queue', 'delete', launch['thread'], queued['id'])
-            launch['state'] = 'quota_paused'
-            self.persist()
+            self.request_stop(launch, 'quota')
             return
         rows = self.cli.bb('thread', 'queue', 'list', launch['thread'])
         require(len(rows) == 1, 'expected one deferred initial message')
@@ -521,12 +556,7 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
                     require(thread['projectId'] == self.c['project'] and
                             thread['providerId'] == launch['provider'] and
                             thread['title'] == launch['title'], 'cleanup identity changed')
-                    if thread['status'] in LIVE:
-                        continue
-                    self.cli.bb('thread', 'archive', launch['thread'])
-                    self.cli.bb('thread', 'stop', launch['thread'])
-                    launch['settled'] = True
-                    self.persist()
+                    self.request_stop(launch, 'cleanup')
 
     def failure(self, job, findings):
         job['attempts'] = job.get('attempts', 0) + 1
@@ -535,19 +565,43 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
         job['retry_after'] = self.now + min(1800, 120 * 2 ** job['attempts'])
 
     def park(self, job, reason):
+        job.update(state='blocked', findings=[reason])
+        self.persist()
         for launch in self.s['launches'].values():
-            if launch['issue'] == job['issue'] and launch['state'] == 'running':
-                self.stop(launch)
-                launch['state'] = 'cancelled'
+            if launch['issue'] == job['issue'] and launch['state'] in {'running', 'pending_bypass'}:
+                self.request_stop(launch, 'park')
                 if launch['stage'] == 'implement':
                     job['environment'] = launch.get('environment')
                     job['previous_thread'] = launch['thread']
-        job.update(state='blocked', findings=[reason])
+        self.persist()
+
+    def stage_failure(self, launch, findings):
+        if launch['issue']:
+            self.failure(self.s['jobs'][str(launch['issue'])], findings)
+        else:
+            self.s['last_plan_at'] = self.now
+            self.s['plan_failures'] = self.s.get('plan_failures', 0) + 1
+            if self.s['plan_failures'] >= 3:
+                self.s['planning_blocked'] = 'Three planning stages failed; inspect worker output.'
+
+    def finish_receipt(self, launch):
+        try:
+            result = self.receipt(launch)
+            if result:
+                self.accept_receipt(launch, result)
+                return
+        except ControlError as error:
+            self.event(f"Rejected receipt from {launch['thread']}: {error}.")
+        launch['state'] = 'failed'
+        self.stage_failure(launch, ['Previous stage ended without a valid receipt; inspect partial work.'])
         self.persist()
 
     def reconcile(self, gates):
         self.recover_intents()
         for launch in list(self.s['launches'].values()):
+            if launch.get('stop_action'):
+                self.complete_stop(launch)
+                continue  # No grading or handoff while a stop is unconfirmed.
             if launch['state'] == 'pending_bypass':
                 self.start_pending(launch)
             if launch['state'] != 'running':
@@ -567,41 +621,11 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
             if thread['status'] not in LIVE:
                 # Provider-retry rows may outlive an errored turn. Cancel them
                 # before another stage is allowed to use this worktree.
-                self.stop(launch)
-                try:
-                    result = self.receipt(launch)
-                    if result:
-                        self.accept_receipt(launch, result)
-                        continue
-                except ControlError as error:
-                    result = None
-                    self.event(f"Rejected receipt from {launch['thread']}: {error}.")
-                if result:
-                    self.accept_receipt(launch, result)
-                else:
-                    launch['state'] = 'failed'
-                    if launch['issue']:
-                        self.failure(self.s['jobs'][str(launch['issue'])],
-                                     ['Previous stage ended without a valid receipt; inspect partial work.'])
-                    else:
-                        self.s['last_plan_at'] = self.now
-                        self.s['plan_failures'] = self.s.get('plan_failures', 0) + 1
-                        if self.s['plan_failures'] >= 3:
-                            self.s['planning_blocked'] = 'Three planning stages failed; inspect worker output.'
-                    self.persist()
+                self.request_stop(launch, 'receipt')
             elif not self.c['enabled'] or not gates[launch['provider']]['eligible']:
-                self.stop(launch)
-                launch['state'] = 'quota_paused'
-                if launch['issue'] and launch.get('environment') and launch['stage'] == 'implement':
-                    self.s['jobs'][str(launch['issue'])]['environment'] = launch['environment']
-                self.persist()
-                self.event(f"Stopped registered worker {launch['thread']} at quota/unavailability; work retained.")
+                self.request_stop(launch, 'quota')
             elif self.now - launch['created_at'] > self.c.get('stage_timeout_seconds', 14400):
-                self.stop(launch)
-                launch['state'] = 'failed'
-                if launch['issue']:
-                    self.failure(self.s['jobs'][str(launch['issue'])], ['Stage time limit; inspect partial work.'])
-                self.persist()
+                self.request_stop(launch, 'timeout')
         # Quota stops do not count as unsuccessful attempts.
         for launch in self.s['launches'].values():
             if launch['state'] == 'quota_paused':
@@ -721,6 +745,7 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
         # Entire unfinished jobs occupy their lane, keeping core/client edits focused.
         occupied = {j['lane'] for j in self.s['jobs'].values() if j['state'] not in
                     {'done', 'blocked', 'implement_ready'}}
+        occupied.update(self.s['jobs'][str(l['issue'])]['lane'] for l in running if l['issue'])
         eligible = []
         for job in self.s['jobs'].values():
             if (job['issue'] not in open_numbers or str(job['issue']) in self.s.get('queue_errors', {}) or

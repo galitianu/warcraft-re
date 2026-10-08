@@ -32,6 +32,11 @@ bookkeeping and is stored outside the repository.
   restart outside the controller policy. Preserve their worktree and continue the
   implementation in a fresh eligible-provider thread. Quota stops do not count
   as failed attempts. If both are spent, retain work until one becomes eligible.
+- Re-read the registered thread after every stop. A successful stop command can
+  leave it starting/active/stopping. Keep its slot, lane and worktree ownership
+  while retrying that stop on later ticks, even if usage returns or issue scope
+  changes. Grade receipts and release finished environments only after confirmed
+  runtime release. Pending user decisions remain pending.
 - Provider choice is fixed for a BB thread. Alternation is between newly started
   threads, not changes to the provider within a thread. A handoff retains the
   implementation environment and points to the previous thread/artifacts.

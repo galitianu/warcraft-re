@@ -3,16 +3,15 @@
 8 October 2026. BB CLI **0.45.0**, native ARM Mac. This verifies controller policy
 and deployment plumbing, not new Warcraft gameplay or rendering fidelity.
 
-- `python3 -m unittest discover -s tools -p 'test_dispatch*.py'`: **36/36 PASS**.
+- `python3 -m unittest discover -s tools -p 'test_dispatch*.py'`: **42/42 PASS**.
   Fakes exercise 80% short/weekly/family limits, missing/expired usage, alternating
   providers/fallback/reset resumption, preserved worktrees, pending questions,
   duplicate dispatch/crash recovery, changed issue scope, label removal, independent
   review/CI/head gates, paused installation and scoped health recovery.
-- Full Python integrity suite: **126/126 PASS**.
+- Full Python integrity suite: **132/132 PASS**.
 - `python3 tools/run_ci.py --build build-continuous --compiler /usr/bin/clang++
-  --config Release --archive`: **PASS**, CTest **3/3**, Python **121/121** at that
-  run (five additional dispatcher controls were added afterward and passed in
-  the full 126-test suite). Existing movement/collision gates and historical/P1
+  --config Release --archive`: **PASS**, CTest **3/3**, Python **132/132** after the
+  independently requested stop-confirmation fix. Existing movement/collision gates and historical/P1
   observed-difference gates remain accepted. Build/logs remain outside git.
 - [Live CLI smoke](cli-smoke.json): a real deferred pending thread was created,
   scoped pool bypass applied, then its one initial message was removed and its
@@ -35,6 +34,15 @@ The first independent review reproduced native archival CI (CTest 3/3, Python
 without a receipt. The controller rejected it. Worker instructions now require
 synchronous completion and receipts before returning; hosted CI waits belong to
 the controller. A fresh exact-head review is required after this change.
+
+The next review reproduced an unconfirmed-stop handoff at the CLI boundary
+([finding](https://github.com/galitianu/warcraft-re/pull/30#pullrequestreview-5457766191)).
+Stops now require fresh thread/runtime confirmation. Six new negative controls
+cover quota/restart, changed scope/lane ownership, timeout, idle receipt grading,
+cleanup and active/starting/runtime status. Unconfirmed stops retain their
+slot/worktree and retry on later ticks; quota stops still do not count as failure.
+These controls use a fake CLI; no real subscription exhaustion or failed
+interrupt is claimed. Deployment still requires fresh exact-head review and CI.
 
 The cutoff is against reported usage before dispatch and each minute while
 working. Reporting lag/in-flight requests can overshoot; this is not an exact

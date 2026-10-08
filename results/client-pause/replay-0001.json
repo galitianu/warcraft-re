@@ -1,0 +1,32 @@
+{
+  "recording": "results/client-pause/pause-0001.rec",
+  "recording_sha256": "7f6f2c89f32d529ff5427408178d1543b3a355de619b20cecfe962a13f59ebfd",
+  "scene": "flat-footmen-3",
+  "model": "footman-v4",
+  "seed": 1,
+  "frame_us": 5000,
+  "commands": 10,
+  "end_us": 1980000,
+  "commands_sharing_a_time": 10,
+  "checkpoint_us": 1000000,
+  "headless": {"sim_frames": 396, "checkpoints": [{"time_us": 0, "sha256": "df9ed4c03dd0119e00f8fe48d133419b76ed8f2a8d66464dad2f95a3b7639f51"}, {"time_us": 1000000, "sha256": "720b6dddd131620066550f24fef4ee80936e513dd5462b1345622f7afc53ddb3"}, {"time_us": 1980000, "sha256": "c11e67dec3cd630ffe133a1eeb3c8915aa1a709111c73a894543030b4ebc0137"}]},
+  "comparisons": [
+    {"name": "render-30hz", "schedule": "33333/33333/33334 us render intervals", "checkpoints_compared": 3, "render_frames": 60, "sim_frames": 396, "presentation_checks": 60, "route_views": {"none": 144, "pending": 4, "planned": 32, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-60hz", "schedule": "16666/16667/16667 us render intervals", "checkpoints_compared": 3, "render_frames": 119, "sim_frames": 396, "presentation_checks": 119, "route_views": {"none": 287, "pending": 4, "planned": 66, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-irregular", "schedule": "repeating 7000,41000,16667,1000,0,250000,3000,25000,9999,33334,4999,5001 us", "checkpoints_compared": 3, "render_frames": 98, "sim_frames": 396, "presentation_checks": 98, "route_views": {"none": 232, "pending": 6, "planned": 56, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-30hz-paused", "schedule": "33333/33333/33334 us; paused renders 5-13 of every 37, resume at 14, 2500000 us each frozen render", "checkpoints_compared": 3, "render_frames": 90, "sim_frames": 396, "presentation_checks": 90, "pauses": 3, "paused_renders": 30, "route_views": {"none": 214, "pending": 4, "planned": 52, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-60hz-paused", "schedule": "16666/16667/16667 us; paused renders 5-13 of every 37, resume at 14, 2500000 us each frozen render", "checkpoints_compared": 3, "render_frames": 169, "sim_frames": 396, "presentation_checks": 169, "pauses": 5, "paused_renders": 50, "route_views": {"none": 417, "pending": 4, "planned": 86, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-irregular-paused", "schedule": "repeating irregular schedule; paused renders 5-13 of every 37, resume at 14, 2500000 us each frozen render", "checkpoints_compared": 3, "render_frames": 138, "sim_frames": 396, "presentation_checks": 138, "pauses": 4, "paused_renders": 40, "route_views": {"none": 312, "pending": 6, "planned": 96, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "live-client", "schedule": "checkpoints the live client recorded while playing", "checkpoints_compared": 3, "identical": true, "first_divergence_us": null}
+  ],
+  "live_routes": {"displayed_routes": 10, "identical": true, "routes": [{"screenshot": "02-moving", "submitted": 2, "time_us": 770000, "unit": 0}, {"screenshot": "03-paused", "submitted": 2, "time_us": 770000, "unit": 0}, {"screenshot": "04-paused-diagnostics", "submitted": 2, "time_us": 770000, "unit": 0}, {"screenshot": "05-paused-camera-selection", "submitted": 2, "time_us": 770000, "unit": 2}, {"screenshot": "06-paused-queued", "submitted": 6, "time_us": 770000, "unit": 0}, {"screenshot": "07-paused-queued-hidden", "submitted": 6, "time_us": 770000, "unit": 0}, {"screenshot": "08-resumed", "submitted": 6, "time_us": 960000, "unit": 0}, {"screenshot": "09-new-move", "submitted": 8, "time_us": 1325000, "unit": 0}, {"screenshot": "10-stopped", "submitted": 10, "time_us": 1430000, "unit": 0}, {"screenshot": "11-later-diagnostics", "submitted": 10, "time_us": 1980000, "unit": 0}]},
+  "pause_observations": {"observations": 7, "identical": true, "observed": [
+    {"name": "paused-start", "render_frame": 74, "state": "paused", "time_us": 770000, "submitted": 2, "applied": 2, "pending": 0, "sha256": "f8fd43b1e80fdc84d5cc3b5748c623a15e3bb26cbc9031df88ee95f4606f77de"},
+    {"name": "diagnostics-on", "render_frame": 77, "state": "paused", "time_us": 770000, "submitted": 2, "applied": 2, "pending": 0, "sha256": "f8fd43b1e80fdc84d5cc3b5748c623a15e3bb26cbc9031df88ee95f4606f77de"},
+    {"name": "camera-selection", "render_frame": 99, "state": "paused", "time_us": 770000, "submitted": 2, "applied": 2, "pending": 0, "sha256": "f8fd43b1e80fdc84d5cc3b5748c623a15e3bb26cbc9031df88ee95f4606f77de"},
+    {"name": "queued", "render_frame": 123, "state": "paused", "time_us": 770000, "submitted": 6, "applied": 2, "pending": 4, "sha256": "f8fd43b1e80fdc84d5cc3b5748c623a15e3bb26cbc9031df88ee95f4606f77de"},
+    {"name": "before-resume", "render_frame": 157, "state": "paused", "time_us": 770000, "submitted": 6, "applied": 2, "pending": 4, "sha256": "f8fd43b1e80fdc84d5cc3b5748c623a15e3bb26cbc9031df88ee95f4606f77de"},
+    {"name": "resumed", "render_frame": 160, "state": "running", "time_us": 795000, "submitted": 6, "applied": 6, "pending": 0, "sha256": "42595787386691beb00f9826324c8132dea690e3f80f585a19acb29ef65f626b"},
+    {"name": "final", "render_frame": 278, "state": "running", "time_us": 1980000, "submitted": 10, "applied": 10, "pending": 0, "sha256": "c11e67dec3cd630ffe133a1eeb3c8915aa1a709111c73a894543030b4ebc0137"}]},
+  "status": "PASS"
+}

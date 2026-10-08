@@ -25,6 +25,8 @@ Start with:
 - [Client v1](docs/client-v1.md): the optional raylib client, command recording
   and render-schedule replay check.
 - [Route display](docs/client-route.md): the selected unit's computed route.
+- [Multiple selection](docs/client-selection.md) and [pause/diagnostics](docs/client-pause.md):
+  box/shift selection, Space pause, F3 overlay.
 - [Progress](PROGRESS.md): current state and the next concrete action.
 - [Agent guidance](AGENTS.md): scope, evidence, Windows access, and working rules.
 - [Salvage assessment](docs/salvage.md): what the previous work actually contains

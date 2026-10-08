@@ -128,6 +128,13 @@ if(BUILD_TESTING)
     "${CMAKE_SOURCE_DIR}/results/client-selection/selection-0001.rec"
     --live "${CMAKE_SOURCE_DIR}/results/client-selection/selection-0001.checkpoints"
     --routes "${CMAKE_SOURCE_DIR}/results/client-selection/selection-0001.routes")
+  # PAU-0001 (docs/client-pause.md): live pause observations as well, at two window sizes.
+  foreach(run 0001 0002)
+    add_test(NAME client_pause_${run} COMMAND wc3replay "${CMAKE_SOURCE_DIR}/results/client-pause/pause-${run}.rec"
+      --live "${CMAKE_SOURCE_DIR}/results/client-pause/pause-${run}.checkpoints"
+      --routes "${CMAKE_SOURCE_DIR}/results/client-pause/pause-${run}.routes"
+      --observations "${CMAKE_SOURCE_DIR}/results/client-pause/pause-${run}.observations")
+  endforeach()
   set_tests_properties(world_invariants scenario_v1 footman_v4_wc3 session_commands client_replay_0001 client_replay_0002
-    client_route_0001 client_selection_0001 PROPERTIES TIMEOUT 180)
+    client_route_0001 client_selection_0001 client_pause_0001 client_pause_0002 PROPERTIES TIMEOUT 180)
 endif()

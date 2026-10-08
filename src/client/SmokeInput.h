@@ -5,7 +5,7 @@
 // accessibility permission because it never posts to another application.
 // Coordinates are window points from the top-left, as raylib reports the mouse.
 namespace client::smoke {
-enum class Key { s, shift, left, right, up, down, plus, minus };
+enum class Key { s, shift, left, right, up, down, plus, minus, space, f3 };
 bool available();
 void focus(void* window);
 void mouse_move(void* window, float x, float y);

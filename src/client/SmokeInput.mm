@@ -43,6 +43,8 @@ void key(void* window, Key key, bool down) {
     case Key::down: code = kVK_DownArrow; text = @""; break;
     case Key::plus: code = kVK_ANSI_Equal; text = @"="; break;
     case Key::minus: code = kVK_ANSI_Minus; text = @"-"; break;
+    case Key::space: code = kVK_Space; text = @" "; break;
+    case Key::f3: code = kVK_F3; text = [NSString stringWithFormat:@"%C", (unichar)NSF3FunctionKey]; break;
     }
     if (key == Key::shift) {
         post([NSEvent keyEventWithType:NSEventTypeFlagsChanged location:NSZeroPoint

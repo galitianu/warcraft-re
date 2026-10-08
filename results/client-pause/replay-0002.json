@@ -1,0 +1,32 @@
+{
+  "recording": "results/client-pause/pause-0002.rec",
+  "recording_sha256": "440127f876d1dafa817a31bd3bac803b7a174a0f7af22f0a6b5bb1e8e9ff1edc",
+  "scene": "flat-footmen-3",
+  "model": "footman-v4",
+  "seed": 1,
+  "frame_us": 5000,
+  "commands": 10,
+  "end_us": 2030000,
+  "commands_sharing_a_time": 10,
+  "checkpoint_us": 1000000,
+  "headless": {"sim_frames": 406, "checkpoints": [{"time_us": 0, "sha256": "df9ed4c03dd0119e00f8fe48d133419b76ed8f2a8d66464dad2f95a3b7639f51"}, {"time_us": 1000000, "sha256": "fe31433aa22dd6a4c5207c49c2e9c608bcabcc70986dc26e8e496cff2bd1bb12"}, {"time_us": 2000000, "sha256": "5bd351d65aebc547d6ab315b382734c596e73c87f441780ecf540ed7efeca80d"}, {"time_us": 2030000, "sha256": "2569712c15fc08c457dc7de412f4925cc52f22d0188c30e6bea4a151311556f6"}]},
+  "comparisons": [
+    {"name": "render-30hz", "schedule": "33333/33333/33334 us render intervals", "checkpoints_compared": 4, "render_frames": 61, "sim_frames": 406, "presentation_checks": 61, "route_views": {"none": 151, "pending": 0, "planned": 32, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-60hz", "schedule": "16666/16667/16667 us render intervals", "checkpoints_compared": 4, "render_frames": 122, "sim_frames": 406, "presentation_checks": 122, "route_views": {"none": 300, "pending": 6, "planned": 60, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-irregular", "schedule": "repeating 7000,41000,16667,1000,0,250000,3000,25000,9999,33334,4999,5001 us", "checkpoints_compared": 4, "render_frames": 102, "sim_frames": 406, "presentation_checks": 102, "route_views": {"none": 250, "pending": 8, "planned": 48, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-30hz-paused", "schedule": "33333/33333/33334 us; paused renders 5-13 of every 37, resume at 14, 2500000 us each frozen render", "checkpoints_compared": 4, "render_frames": 91, "sim_frames": 406, "presentation_checks": 91, "pauses": 3, "paused_renders": 30, "route_views": {"none": 221, "pending": 0, "planned": 52, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-60hz-paused", "schedule": "16666/16667/16667 us; paused renders 5-13 of every 37, resume at 14, 2500000 us each frozen render", "checkpoints_compared": 4, "render_frames": 172, "sim_frames": 406, "presentation_checks": 172, "pauses": 5, "paused_renders": 50, "route_views": {"none": 410, "pending": 26, "planned": 80, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-irregular-paused", "schedule": "repeating irregular schedule; paused renders 5-13 of every 37, resume at 14, 2500000 us each frozen render", "checkpoints_compared": 4, "render_frames": 142, "sim_frames": 406, "presentation_checks": 142, "pauses": 4, "paused_renders": 40, "route_views": {"none": 330, "pending": 8, "planned": 88, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "live-client", "schedule": "checkpoints the live client recorded while playing", "checkpoints_compared": 4, "identical": true, "first_divergence_us": null}
+  ],
+  "live_routes": {"displayed_routes": 10, "identical": true, "routes": [{"screenshot": "02-moving", "submitted": 2, "time_us": 715000, "unit": 0}, {"screenshot": "03-paused", "submitted": 2, "time_us": 715000, "unit": 0}, {"screenshot": "04-paused-diagnostics", "submitted": 2, "time_us": 715000, "unit": 0}, {"screenshot": "05-paused-camera-selection", "submitted": 2, "time_us": 715000, "unit": 2}, {"screenshot": "06-paused-queued", "submitted": 6, "time_us": 715000, "unit": 0}, {"screenshot": "07-paused-queued-hidden", "submitted": 6, "time_us": 715000, "unit": 0}, {"screenshot": "08-resumed", "submitted": 6, "time_us": 970000, "unit": 0}, {"screenshot": "09-new-move", "submitted": 8, "time_us": 1305000, "unit": 0}, {"screenshot": "10-stopped", "submitted": 10, "time_us": 1460000, "unit": 0}, {"screenshot": "11-later-diagnostics", "submitted": 10, "time_us": 2030000, "unit": 0}]},
+  "pause_observations": {"observations": 7, "identical": true, "observed": [
+    {"name": "paused-start", "render_frame": 74, "state": "paused", "time_us": 715000, "submitted": 2, "applied": 2, "pending": 0, "sha256": "62374d694e1dd56a5222597b0026c6b8a3b06425bbe03674ca36ee219252e5ee"},
+    {"name": "diagnostics-on", "render_frame": 77, "state": "paused", "time_us": 715000, "submitted": 2, "applied": 2, "pending": 0, "sha256": "62374d694e1dd56a5222597b0026c6b8a3b06425bbe03674ca36ee219252e5ee"},
+    {"name": "camera-selection", "render_frame": 99, "state": "paused", "time_us": 715000, "submitted": 2, "applied": 2, "pending": 0, "sha256": "62374d694e1dd56a5222597b0026c6b8a3b06425bbe03674ca36ee219252e5ee"},
+    {"name": "queued", "render_frame": 123, "state": "paused", "time_us": 715000, "submitted": 6, "applied": 2, "pending": 4, "sha256": "62374d694e1dd56a5222597b0026c6b8a3b06425bbe03674ca36ee219252e5ee"},
+    {"name": "before-resume", "render_frame": 157, "state": "paused", "time_us": 715000, "submitted": 6, "applied": 2, "pending": 4, "sha256": "62374d694e1dd56a5222597b0026c6b8a3b06425bbe03674ca36ee219252e5ee"},
+    {"name": "resumed", "render_frame": 160, "state": "running", "time_us": 735000, "submitted": 6, "applied": 6, "pending": 0, "sha256": "345dfbde0cc02e784dd815c5c3f25c88cae7d9f9695ddefe3a99c613e88658cf"},
+    {"name": "final", "render_frame": 278, "state": "running", "time_us": 2030000, "submitted": 10, "applied": 10, "pending": 0, "sha256": "2569712c15fc08c457dc7de412f4925cc52f22d0188c30e6bea4a151311556f6"}]},
+  "status": "PASS"
+}

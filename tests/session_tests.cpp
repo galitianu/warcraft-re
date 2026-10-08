@@ -152,6 +152,103 @@ int main() {
             check(p.frames_for(16667) == 3 && p.carry_us == 1667, "60 Hz");
             check(p.frames_for(1000000) == 20 && p.carry_us == 0, "stall cap");
         }
+        // Pause (docs/client-pause.md): a pacing state that keeps the sub-frame carry,
+        // drops paused wall time including the resume render's, and never catches up.
+        {
+            client::Pacer p{5000};
+            check(p.frames_for(7500) == 1 && p.carry_us == 2500, "sub-frame remainder before pause");
+            p.pause();
+            check(p.frames_for(16667) == 0 && p.carry_us == 2500, "the pausing render drops its interval");
+            for (int i = 0; i < 1000; ++i) check(p.frames_for(10000000) == 0, "long paused intervals simulate nothing");
+            p.resume();
+            check(!p.paused && p.frames_for(60000000) == 0 && p.carry_us == 2500, "resume render discards paused wall time");
+            check(p.frames_for(2500) == 1 && p.carry_us == 0, "carry continues after resume");
+            check(p.frames_for(16667) == 3 && p.carry_us == 1667, "no catch-up burst after resume");
+            for (int i = 0; i < 7; ++i) p.toggle();  // odd count: paused
+            check(p.paused && p.frames_for(1000000) == 0 && p.carry_us == 1667, "repeated toggles in one render");
+            p.toggle();
+            p.toggle();  // resume then pause before pacing: still paused, no pending resume
+            check(p.paused && !p.resuming && p.frames_for(5000) == 0, "resume then pause stays paused");
+            p.resume();
+            p.resume();
+            check(p.frames_for(5000) == 0 && p.frames_for(5000) == 1, "repeated resume discards once");
+            p.resume();
+            check(!p.resuming && p.frames_for(3333) == 1, "resume while running changes nothing");
+        }
+        // Paused group orders: a multi-unit move then stop queued at the frozen time
+        // stays pending, changes nothing until the first resumed frame, then applies
+        // in sequence. Camera, selection and diagnostics on/off cannot mutate the world.
+        {
+            wc3::Session s;
+            client::Pacer pacer{s.frame_us()};
+            client::Camera camera;
+            client::Controller c;
+            c.left_click(s.world(), ray_at(camera, {-192, 0}, client::unit_height / 2));
+            c.left_click(s.world(), ray_at(camera, {0, 0}, client::unit_height / 2), true);
+            check(c.selection() == std::vector<std::size_t>({0, 1}), "two selected");
+            c.right_click(s, ray_at(camera, {100, 550}, 0));
+            for (int render = 0; render < 30; ++render)
+                for (auto f = pacer.frames_for(16667); f > 0; --f) s.advance_frame();
+            const auto frozen = s.time_us();
+            check(s.world().unit(0).current_order() == wc3::order_move && pacer.carry_us != 0, "moving with a remainder");
+            pacer.pause();
+            const auto carry = pacer.carry_us;
+            const auto snapshot = s.world().snapshot();
+            const auto applied = s.applied().size();
+            const auto at0 = s.world().unit(0).position(), at1 = s.world().unit(1).position();
+            std::vector<wc3::Command> queued;
+            for (int render = 0; render < 40; ++render) {
+                check(pacer.frames_for(render % 2 ? 3000000 : 16667) == 0, "paused render simulated");
+                camera.pan(render % 3 ? 40.0f : -25.0f, 10);
+                camera.zoom(render % 5 == 0 ? 1.0f : 0.0f);
+                if (render == 4) c.left_click(s.world(), ray_at(camera, s.world().unit(2).position(), client::unit_height / 2));
+                if (render == 6) {
+                    c.left_click(s.world(), ray_at(camera, at0, client::unit_height / 2));
+                    c.left_click(s.world(), ray_at(camera, at1, client::unit_height / 2), true);
+                }
+                if (render == 10) for (const auto& q : c.right_click(s, ray_at(camera, {-300, 400}, 0))) queued.push_back(q);
+                if (render == 12) for (const auto& q : c.stop(s)) queued.push_back(q);
+                if (render % 2) client::diagnostics(s, c, {pacer.paused, 60, "-"});  // overlay on/off
+                client::unit_views(s, c);
+                client::selected_route(s, c);
+                check(s.time_us() == frozen && s.world().snapshot() == snapshot && s.applied().size() == applied,
+                      "paused render changed the world");
+            }
+            check(c.selection() == std::vector<std::size_t>({0, 1}) && queued.size() == 4, "queued group move then stop");
+            for (std::size_t i = 0; i < queued.size(); ++i)
+                check(queued[i].time_us == frozen && queued[i].unit == i % 2 && queued[i].sequence == queued[0].sequence + i &&
+                      queued[i].order == (i < 2 ? wc3::order_move : wc3::order_stop), "equal-time stamps and sequences");
+            check(s.pending() == 4 && s.pending_for(0) && s.pending_for(1) && !s.pending_for(2), "queued orders pending");
+            check(client::route_view(s, 0).state == RouteState::pending, "queued unit shows pending, not a stale path");
+            check(client::pending_summary(s) == "4 orders queued; applied on resume", "pending banner");
+            const auto lines = client::diagnostics(s, c, {true, 60, "-"});
+            check(lines[1].find("PAUSED") != std::string::npos && lines[3] == "commands: submitted 6, applied 2, pending 4" &&
+                  lines[5].find("command pending") != std::string::npos, "diagnostics report frozen state");
+            check(client::diagnostics(s, c, {false, 0, "-"})[1].find("running") != std::string::npos, "running state");
+            check(s.world().snapshot() == snapshot, "diagnostics mutated the world");
+            pacer.resume();
+            check(pacer.frames_for(90000000) == 0 && s.applied().size() == applied && pacer.carry_us == carry,
+                  "resume render: no catch-up, nothing applied");
+            const auto frames = pacer.frames_for(16667);
+            check(frames == (carry + 16667) / 5000, "first resumed render paces only its own interval");
+            s.advance_frame();
+            check(s.applied().size() == applied + 4 && s.accepted().back(), "queued orders apply on the first resumed frame");
+            for (std::size_t i = 0; i < 4; ++i) check(s.applied()[applied + i].sequence == queued[i].sequence, "sequence order");
+            for (int i = 0; i < 100; ++i) s.advance_frame();
+            check(s.world().unit(0).current_order() == wc3::order_none && s.world().unit(1).current_order() == wc3::order_none &&
+                  same(s.world().unit(0).position(), at0) && same(s.world().unit(1).position(), at1),
+                  "paused move then stop leaves the group idle where it froze");
+            // Headless replay needs no pause event: the recording alone reproduces it.
+            const auto recording = s.recording();
+            const auto text = wc3::serialize(recording);
+            check(text.rfind("wc3-command-recording 1\n", 0) == 0 && recording.commands.size() == 6, "unchanged format, no pause command");
+            wc3::Session replay(recording.seed);
+            for (const auto& command : wc3::parse_recording(text).commands) replay.schedule(command);
+            while (replay.time_us() < frozen) replay.advance_frame();
+            check(replay.applied().size() == applied, "replay applied count at the frozen time");
+            while (replay.time_us() < recording.end_us) replay.advance_frame();
+            check(replay.world().snapshot() == s.world().snapshot() && replay.accepted() == s.accepted(), "replay of a paused session");
+        }
         // Presentation reads: camera, picking, selection and views leave the world unchanged.
         {
             wc3::Session s;

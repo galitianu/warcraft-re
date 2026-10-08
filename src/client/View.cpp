@@ -7,6 +7,11 @@
 
 namespace client {
 std::uint64_t Pacer::frames_for(std::uint64_t elapsed_us) {
+    // Paused renders, and the resume render's interval (spent paused), are dropped.
+    if (paused || resuming) {
+        resuming = false;
+        return 0;
+    }
     carry_us += elapsed_us;
     const auto frames = std::min(carry_us / frame_us, max_frames);
     carry_us = frames == max_frames ? 0 : carry_us - frames * frame_us;
@@ -198,5 +203,51 @@ std::string serialize(std::uint64_t time_us, std::size_t unit, const RouteView& 
         comment += text;
     }
     return comment.empty() ? out : out + " #" + comment;
+}
+
+namespace {
+std::string order_text(std::uint32_t order) {
+    return order == wc3::order_move ? "move" : order == wc3::order_stop ? "stop" : "none";
+}
+std::string seconds(std::uint64_t us) {
+    char text[32];
+    std::snprintf(text, sizeof text, "%.3f s", us / 1e6);
+    return text;
+}
+}
+std::vector<std::string> diagnostics(const wc3::Session& session, const Controller& controller,
+                                     const DiagnosticsInput& input) {
+    std::vector<std::string> lines{"DIAGNOSTICS (F3 hides)"};
+    lines.push_back("sim " + seconds(session.time_us()) + "  frame " + std::to_string(session.time_us() / session.frame_us()) +
+                    " (5 ms)  " + (input.paused ? "PAUSED" : "running"));
+    lines.push_back("render " + std::to_string(input.render_fps) + " fps (wall time only paces frames)");
+    const auto submitted = session.recording().commands.size();
+    lines.push_back("commands: submitted " + std::to_string(submitted) + ", applied " +
+                    std::to_string(session.applied().size()) + ", pending " + std::to_string(session.pending()));
+    lines.push_back("last: " + input.last_command);
+    if (controller.selection().empty()) lines.push_back("selected: none");
+    for (const auto id : controller.selection()) {
+        const auto route = route_view(session, id);
+        std::string line = "Footman " + std::to_string(id) + ": order " + order_text(session.world().unit(id).current_order()) +
+                           ", route " + route_state_name(route.state);
+        if (route.points.size() > 1) line += " (" + std::to_string(route.points.size() - 1) + " waypoints left)";
+        if (route.state == RouteState::partial) line += ", ends short";
+        if (session.pending_for(id)) line += ", command pending";
+        lines.push_back(line);
+    }
+    lines.push_back("Group orders give every unit the same point: WC3 assignment and");
+    lines.push_back("formations are unmeasured (likely P3); no formation compatibility.");
+    return lines;
+}
+std::string pending_summary(const wc3::Session& session) {
+    const auto n = session.pending();
+    if (n == 0) return "no orders queued";
+    return std::to_string(n) + (n == 1 ? " order" : " orders") + " queued; applied on resume";
+}
+std::string observation(const std::string& name, std::uint64_t render_frame, bool paused,
+                        const wc3::Session& session, const std::string& snapshot_sha256) {
+    return "observe " + name + ' ' + std::to_string(render_frame) + ' ' + (paused ? "paused" : "running") + ' ' +
+           std::to_string(session.time_us()) + ' ' + std::to_string(session.recording().commands.size()) + ' ' +
+           std::to_string(session.applied().size()) + ' ' + std::to_string(session.pending()) + ' ' + snapshot_sha256;
 }
 }

@@ -1,0 +1,64 @@
+# PAU-0001: scripted Cocoa pause/diagnostics smoke, flat-footmen-3, seed 1.
+# Box-select Footmen 0 and 1, move them, pause part-way; while paused change the
+# camera/selection, toggle diagnostics and queue a group move then stop; resume,
+# then a new move stopped part-way. "observe" logs frozen time, counts and digest.
+wait 30
+screenshot 01-start
+down ground -270 100
+wait 5
+drag ground 60 -100
+wait 5
+up ground 60 -100
+wait 8
+right ground 100 550
+wait 24
+screenshot 02-moving
+key space
+wait 2
+observe paused-start
+screenshot 03-paused
+key f3
+wait 3
+observe diagnostics-on
+screenshot 04-paused-diagnostics
+key left 12
+wait 2
+scroll 2
+wait 14
+left @2
+wait 6
+observe camera-selection
+screenshot 05-paused-camera-selection
+left @0
+wait 4
+key shift 8
+wait 2
+left @1
+wait 8
+right ground -300 400
+wait 4
+key s
+wait 6
+observe queued
+screenshot 06-paused-queued
+key f3
+wait 4
+screenshot 07-paused-queued-hidden
+wait 30
+observe before-resume
+key space
+wait 3
+observe resumed
+wait 20
+screenshot 08-resumed
+right ground 300 600
+wait 30
+screenshot 09-new-move
+key s
+wait 8
+screenshot 10-stopped
+key f3
+wait 60
+observe final
+screenshot 11-later-diagnostics
+quit

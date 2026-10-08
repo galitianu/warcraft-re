@@ -9,15 +9,19 @@ Repository: [galitianu/warcraft-re](https://github.com/galitianu/warcraft-re) (p
 **Target:** Warcraft III **1.29.2 (9231), x86 32-bit**
 (`wc3-1.29.2-9231-x86`), running in the user's working Windows 11 Pro ARM64 VM.
 
-**First release, v0.0.1:** one Footman moves, and its movement can be compared
-numerically with the same experiment in WC3. The comparison can initially fail;
-having trustworthy observations comes first.
+The bootstrap movement/oracle gates are delivered. **Next destination:** a playable
+Human skirmish, with measured mechanics and an interactive raylib client advancing
+together. The project-scoped BB dispatcher supports an 80%
+reported-usage cutoff, alternating eligible providers and automatic quota resumption.
 
 Start with:
 
-- [Implementation plan](Warcraft-III-Reimplementation-Plan.md): decisions, Phase 0–8
-  sequence, and acceptance gates. The appendix contains older suggestions and
-  example results, not completed work.
+- [Playable roadmap](docs/next-roadmap.md): interactive Footman → small battlefield
+  → recognizable scene → Human base → skirmish → broader compatibility.
+- [Continuous development](docs/continuous-development.md): BB installation,
+  project-only quota enforcement, worktrees, review/CI and recovery.
+- [Bootstrap plan](Warcraft-III-Reimplementation-Plan.md): delivered foundation and
+  enduring evidence decisions. Its appendix is historical, not completed work.
 - [Progress](PROGRESS.md): current state and the next concrete action.
 - [Agent guidance](AGENTS.md): scope, evidence, Windows access, and working rules.
 - [Salvage assessment](docs/salvage.md): what the previous work actually contains
@@ -99,8 +103,10 @@ build/wc3test --model v4 --scenario scenarios --out build/scenario-v4   # direct
 ```
 
 Use GitHub issues for concrete work and `PROGRESS.md` for the concise status. Keep
-results linked to their experiments and commits. There is no separate agent harness
-or task database to maintain here.
+results linked to experiments and commits. `tools/dispatch.py` consumes the issue
+queue; its runtime bookkeeping stays outside git. It changes no shared pool
+threshold or other project's settings/threads. See the continuous-development
+procedure for the cutoff's reporting/in-flight limits and selected-account scope.
 
 Windows access is available through `rdpipe`; run `rdpipe guide` before using it.
 Reproduce the complete compatibility CI locally with

@@ -118,7 +118,7 @@ if(BUILD_TESTING)
   foreach(run 0001 0002)
     add_test(NAME client_replay_${run} COMMAND wc3replay
       "${CMAKE_SOURCE_DIR}/results/client-v1/live-${run}.rec"
-      --live "${CMAKE_SOURCE_DIR}/results/client-v1/live-${run}.checkpoints")
+      --live "${CMAKE_SOURCE_DIR}/results/client-v1/live-${run}.portable.checkpoints")
   endforeach()
   set_tests_properties(world_invariants scenario_v1 footman_v4_wc3 session_commands client_replay_0001 client_replay_0002
     PROPERTIES TIMEOUT 180)

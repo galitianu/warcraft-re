@@ -131,7 +131,7 @@ void put(std::string& out, Vec2 v) {
 }
 }
 std::string World::snapshot() const {
-    std::string out;
+    std::string out = "wc3-world-snapshot 2\n";
     put(out, steps_);
     put(out, static_cast<std::uint64_t>(units_.size()));
     for (const auto& u : units_) {

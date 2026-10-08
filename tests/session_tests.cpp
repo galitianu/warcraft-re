@@ -27,6 +27,22 @@ bool same(wc3::Vec2 a, wc3::Vec2 b) { return a.x == b.x && a.y == b.y; }
 
 int main() {
     try {
+        // Portable full RNG identity, including a consumed stream and copies.
+        // Pin the standard mt19937 outputs; snapshots must detect RNG draws even
+        // when no unit state changes.
+        {
+            wc3::Random random(1);
+            check(random.state() == "mt19937 seed=1 draws=0", "initial RNG identity");
+            check(random.next() == 1791095845u, "mt19937 first output");
+            check(random.state() == "mt19937 seed=1 draws=1", "consumed RNG identity");
+            auto copy = random;
+            check(copy.next() == random.next() && random.next() == 3093770124u, "copied RNG stream");
+            check(copy.state() == "mt19937 seed=1 draws=2", "independent copy draw count");
+            wc3::World world(wc3::ModelVersion::v4, 1);
+            const auto before = world.snapshot();
+            world.random().next();
+            check(world.snapshot() != before, "snapshot ignores RNG consumption");
+        }
         // Equal time: the later sequence wins. Move then stop leaves the unit idle where it stood.
         {
             wc3::Session s;

@@ -119,7 +119,7 @@ int main(int argc, char** argv) {
         std::map<std::uint64_t, std::string> checkpoints{{0, scenario::sha256_hex(session.world().snapshot())}};
         const auto save = [&] {
             write_file(record + ".rec", wc3::serialize(session.recording()));
-            std::string text = "wc3-checkpoints 1\n";
+            std::string text = "wc3-checkpoints 2\n";
             auto all = checkpoints;
             all[session.time_us()] = scenario::sha256_hex(session.world().snapshot());
             for (const auto& [time, hash] : all) text += "checkpoint " + std::to_string(time) + ' ' + hash + '\n';

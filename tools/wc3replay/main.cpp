@@ -97,7 +97,8 @@ Run rendered(const wc3::Recording& recording, std::string name, std::string desc
 Checkpoints read_live(const std::string& text) {
     std::istringstream in(text);
     std::string line;
-    if (!std::getline(in, line) || line != "wc3-checkpoints 1") throw std::invalid_argument("not a checkpoint file");
+    if (!std::getline(in, line) || line != "wc3-checkpoints 2")
+        throw std::invalid_argument("expected wc3-checkpoints 2 (portable RNG snapshots); legacy v1 needs verified migration");
     Checkpoints out;
     while (std::getline(in, line)) {
         std::istringstream fields(line);

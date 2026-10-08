@@ -47,11 +47,16 @@ schedules: **30 Hz** (33333/33333/33334 µs), **60 Hz** (16666/16667/16667 µs) 
 **irregular** (repeating 7000, 41000, 16667, 1000, 0, 250000, 3000, 25000, 9999,
 33334, 4999, 5001 µs: sub-frame, zero, multi-frame and capped stalls). Every
 render frame pans/zooms the camera, picks a unit, updates selection and builds the
-draw list, and fails if the snapshot changed. Snapshot hashes are compared at
+draw list, and fails if the snapshot changed. Version 2 snapshots identify RNG
+state by its seed and draw count, which uniquely
+determine the implementation mt19937 stream; they avoid standard-library-specific
+engine insertion text. This does not establish WC3 RNG compatibility. Snapshot
+hashes are compared at
 every whole simulated second and at the end; applied commands and acceptance
 must also match. With `--live`, the live client's own checkpoints are compared too.
 Exit 0 only if all are identical. CTest runs it on the retained recording
-(`client_replay_0001`, `client_replay_0002`) and `session_tests` covers equal-time ordering, live versus
+(`client_replay_0001`, `client_replay_0002`, using verified portable v2 checkpoints).
+`session_tests` covers equal-time ordering, live versus
 replay equality frame by frame, validation and presentation isolation.
 
 ## Pre-registered expectations (before the retained run)
@@ -109,3 +114,15 @@ They are macOS ARM64 only; no Windows/Linux window was run. Within one render fr
 input order is fixed (left, right, `S`). No render interpolation is used (units
 draw at the latest 5 ms frame). Box/group selection, path display, formations,
 assets, combat and audio are out of scope.
+
+**Portable snapshot revision.** The original hosted Linux jobs failed only the two
+live-client comparisons, at time zero: their render schedules matched headless,
+and all protected gates passed. `std::mt19937` insertion text differs between
+libc++ and libstdc++. Snapshot/checkpoint v2 encodes the seed and number of draws
+instead. The original `.checkpoints` and replay reports remain unchanged. Each
+`.portable.checkpoints` is derived only after reconstructing and verifying every
+original live hash on macOS/libc++; [migration reports and reproduction](../results/client-v1/README.md#portable-snapshot-revision)
+retain both digests. These are verified format conversions, not fresh live runs.
+Legacy checkpoint files are explicitly rejected by the v2 replay reader. The
+client now records v2. Native validation passes; revised hosted CI is pending the
+controller. No simulation mechanics or fixture tolerances changed.

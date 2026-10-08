@@ -31,7 +31,11 @@ schedules, headlessly, and against the live client's own checkpoints. The screen
 a part-way stop and an equal-time move+stop. They were driven by scripted Cocoa events, not physical
 input ([evidence](results/client-v1/README.md), [design](docs/client-v1.md)). Default build/CI need
 no raylib. Native ARM64 Release `run_ci.py --archive` passes with all movement, 32 collision and
-gated P1 checks unchanged. Placeholder geometry claims no visual fidelity. Next: the roadmap's
+gated P1 checks unchanged. A CI revision fixes platform-dependent RNG snapshot text:
+original live hashes are retained and verified before deriving portable v2 checkpoints
+([migration evidence](results/client-v1/README.md#portable-snapshot-revision)). Native checks pass;
+new-head hosted Linux/Windows checks remain with the controller. Placeholder geometry
+claims no visual fidelity. Next: the roadmap's
 follow-up client increments (box/multiple selection, order feedback, pause).
 
 **Latest measured gameplay:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),

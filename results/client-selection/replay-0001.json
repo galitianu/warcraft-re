@@ -1,0 +1,21 @@
+{
+  "recording": "results/client-selection/selection-0001.rec",
+  "recording_sha256": "d2065b76346f3a911754be7b6f6fa6206e15f38ebfd56d4db52c1f1dd4364c7b",
+  "scene": "flat-footmen-3",
+  "model": "footman-v4",
+  "seed": 1,
+  "frame_us": 5000,
+  "commands": 5,
+  "end_us": 2760000,
+  "commands_sharing_a_time": 5,
+  "checkpoint_us": 1000000,
+  "headless": {"sim_frames": 552, "checkpoints": [{"time_us": 0, "sha256": "df9ed4c03dd0119e00f8fe48d133419b76ed8f2a8d66464dad2f95a3b7639f51"}, {"time_us": 1000000, "sha256": "139ba93acd44c3107249081051e3d06053cf2109fd4c85581e8996cbc8640bbb"}, {"time_us": 2000000, "sha256": "1dea193bbb1e5ed5acda4206e488a7d0b36d1ccdb512b4647864796d7c11e65d"}, {"time_us": 2760000, "sha256": "ab91fd8d340353e2419b0257cbee1cd4828412a4b864f81dd855f49608aeb113"}]},
+  "comparisons": [
+    {"name": "render-30hz", "schedule": "33333/33333/33334 us render intervals", "checkpoints_compared": 4, "render_frames": 83, "sim_frames": 552, "presentation_checks": 83, "route_views": {"none": 163, "pending": 3, "planned": 83, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-60hz", "schedule": "16666/16667/16667 us render intervals", "checkpoints_compared": 4, "render_frames": 166, "sim_frames": 552, "presentation_checks": 166, "route_views": {"none": 324, "pending": 8, "planned": 166, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "render-irregular", "schedule": "repeating 7000,41000,16667,1000,0,250000,3000,25000,9999,33334,4999,5001 us", "checkpoints_compared": 4, "render_frames": 135, "sim_frames": 552, "presentation_checks": 135, "route_views": {"none": 253, "pending": 6, "planned": 146, "partial": 0}, "identical": true, "first_divergence_us": null},
+    {"name": "live-client", "schedule": "checkpoints the live client recorded while playing", "checkpoints_compared": 4, "identical": true, "first_divergence_us": null}
+  ],
+  "live_routes": {"displayed_routes": 5, "identical": true, "routes": [{"screenshot": "03-selected", "submitted": 0, "time_us": 640000, "unit": 0}, {"screenshot": "04-group-move", "submitted": 3, "time_us": 900000, "unit": 0}, {"screenshot": "05-shift-removed", "submitted": 3, "time_us": 1050000, "unit": 0}, {"screenshot": "06-group-stopped", "submitted": 5, "time_us": 1240000, "unit": 0}, {"screenshot": "07-later", "submitted": 5, "time_us": 2760000, "unit": 0}]},
+  "status": "PASS"
+}

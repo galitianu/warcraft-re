@@ -1,0 +1,6 @@
+command 640000 1 0 move 0x42c80099 0x44097f0d # 100.001167 549.985168
+command 640000 2 1 move 0x42c80099 0x44097f0d # 100.001167 549.985168
+command 640000 3 2 move 0x42c80099 0x44097f0d # 100.001167 549.985168
+command 1050000 4 0 stop
+command 1050000 5 2 stop
+recorded 5 commands to results/client-selection/selection-0001.rec; ended at 2760000 us

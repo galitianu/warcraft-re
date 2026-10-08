@@ -36,12 +36,20 @@ void key(void* window, Key key, bool down) {
     NSString* text = @"s";
     switch (key) {
     case Key::s: break;
+    case Key::shift: code = kVK_Shift; text = @""; break;
     case Key::left: code = kVK_LeftArrow; text = @""; break;
     case Key::right: code = kVK_RightArrow; text = @""; break;
     case Key::up: code = kVK_UpArrow; text = @""; break;
     case Key::down: code = kVK_DownArrow; text = @""; break;
     case Key::plus: code = kVK_ANSI_Equal; text = @"="; break;
     case Key::minus: code = kVK_ANSI_Minus; text = @"-"; break;
+    }
+    if (key == Key::shift) {
+        post([NSEvent keyEventWithType:NSEventTypeFlagsChanged location:NSZeroPoint
+                         modifierFlags:down ? NSEventModifierFlagShift : 0 timestamp:now()
+                         windowNumber:w.windowNumber context:nil characters:text
+                         charactersIgnoringModifiers:text isARepeat:NO keyCode:code]);
+        return;
     }
     post([NSEvent keyEventWithType:down ? NSEventTypeKeyDown : NSEventTypeKeyUp location:NSZeroPoint
                      modifierFlags:0 timestamp:now() windowNumber:w.windowNumber context:nil

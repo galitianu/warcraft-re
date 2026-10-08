@@ -1,0 +1,25 @@
+# SEL-0001: scripted Cocoa selection smoke, flat-footmen-3, seed 1.
+wait 30
+screenshot 01-start
+down ground -270 100
+wait 5
+drag ground 270 -100
+wait 5
+screenshot 02-box-outline
+up ground 270 -100
+wait 8
+screenshot 03-selected
+right ground 100 550
+wait 24
+screenshot 04-group-move
+key shift 8
+wait 2
+left @1
+wait 10
+screenshot 05-shift-removed
+key s
+wait 8
+screenshot 06-group-stopped
+wait 150
+screenshot 07-later
+quit

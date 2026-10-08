@@ -269,6 +269,10 @@ Write your final JSON receipt atomically to {receipt} (outside git), then return
 Receipt common fields: run_id, stage, status, summary, checks (array of strings),
 limitations (array of strings). Status is PASS, CHANGES_REQUESTED, or BLOCKED.
 Verify every assertion. Include material limitations, not invented passes.
+Complete required tool commands synchronously. Do not end a turn waiting for a
+background task/notification: idle means the stage ended, and no receipt means
+failure. Write the supported receipt before returning. Do not wait for hosted CI;
+the controller checks it after independent review and before integration.
 """
         if stage == 'plan':
             return common + f"""

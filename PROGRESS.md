@@ -8,10 +8,12 @@ bootstrap is retained below; PR #28 was merged on 6 October and issue #27 is clo
 The [continuous-development controller](docs/continuous-development.md) adds
 project-scoped 80% reported-usage admission/stops, alternating eligible providers,
 automatic quota resumption, issue dispatch, independent review and CI-bound
-integration. Provider pair, activation and merge preferences are being clarified;
-continuous product work is not yet activated. No shared BB pool/concurrency/provider
-setting is changed. The cutoff has documented reporting/in-flight limits.
-Both schedules are installed **paused**; their stored launchers completed manual
+integration. The user selected **Claude Code/Codex**, total reported account usage,
+and automatic merges after independent review and passing CI. No shared BB
+pool/concurrency/provider setting is changed. The cutoff has documented
+reporting/in-flight limits. Live enabled state and worker receipts are maintained
+in the controller's BB thread storage, outside git.
+Both schedules were installed **paused**; their stored launchers completed manual
 disabled-policy checks with exit 0 and no model work. Thirty-six controller/install
 negative-control tests pass; the full Python suite passes 126/126. Native ARM64
 Release archival compatibility CI passes (CTest 3/3, protected movement/collision
@@ -591,8 +593,10 @@ passes all five configurations and the aggregate (head `003ae9e`).
 
 ## Exact next action
 
-Finish publishing/activating the continuous-development bootstrap under the chosen
-provider and merge policy. Its first two issue increments are milestone 1's
+Integrate [the continuous-development bootstrap PR #30](https://github.com/galitianu/warcraft-re/pull/30)
+through independent review and hosted CI, then activate its saved controller/health
+schedules with Claude Code/Codex and automatic merges. The controller's first two
+product issue increments are milestone 1's
 interactive Footman (optional raylib client, ordered live input and headless replay)
 and milestone 2's pre-registered three-Footman collision question (blocker list
 order, recorded blockers and partial routes around a moving group). More than two

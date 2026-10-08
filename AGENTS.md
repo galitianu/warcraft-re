@@ -138,3 +138,6 @@ Complete one bounded stage, write a useful handoff, and return. If blocked, reco
 the precise obstacle and partial work rather than trying unrelated features. Ask
 through the question tool when a decision is genuinely the user's; do not invent
 an answer or relax acceptance. The dispatcher can advance another eligible issue.
+Finish required commands synchronously and write the receipt before returning;
+an idle turn without a receipt is a failed stage. Do not wait for a background
+notification or hosted CI. The controller owns the hosted CI wait and merge gate.

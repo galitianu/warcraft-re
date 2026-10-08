@@ -124,6 +124,10 @@ PR. Review adds `base_sha`, `review_id`, and `findings` (empty for PASS). Planni
 adds `created_issues` (at most two actual verified issue numbers). Use BLOCKED for
 missing capabilities/decisions, CHANGES_REQUESTED for specific fixes. Do not write
 PASS for an acceptance gate the available observations cannot establish.
+Complete required commands synchronously and write the receipt before returning.
+An idle turn without a receipt is a failed stage; background notification waits
+cannot keep it active. Workers report independently verified local results and
+material limitations; the controller waits for hosted CI before integration.
 
 Runtime state is atomic and process-locked. A persisted launch intent and unique
 thread title reconcile a crash after BB accepted a spawn, preventing duplicate

@@ -25,11 +25,16 @@ and deployment plumbing, not new Warcraft gameplay or rendering fidelity.
   account identifiers. Shared pool threshold remains **0.98**.
 
 Runtime configuration/state/script snapshots are in BB thread storage, outside
-git. The paused provisional pair is Claude Code/Codex; Cursor is also supported
-when BB exposes valid local usage windows. The final pair, activation and merge
-policy await the user's requested clarification. No continuous product workers
-have started, no new captures ran, no renderer was implemented, and hosted CI for
-this change is not established by the local checks.
+git. The user selected Claude Code/Codex, total account usage and automatic merges
+after independent review and CI. Deployment follows [PR #30](https://github.com/galitianu/warcraft-re/pull/30);
+the runtime's live enabled state/receipts record actual activation and execution.
+The installation checks above started no continuous product workers, ran no new
+captures and implemented no renderer. Hosted CI is separate from local checks.
+The first independent review reproduced native archival CI (CTest 3/3, Python
+126/126, protected MOV gates), but ended waiting for a background CI notification
+without a receipt. The controller rejected it. Worker instructions now require
+synchronous completion and receipts before returning; hosted CI waits belong to
+the controller. A fresh exact-head review is required after this change.
 
 The cutoff is against reported usage before dispatch and each minute while
 working. Reporting lag/in-flight requests can overshoot; this is not an exact

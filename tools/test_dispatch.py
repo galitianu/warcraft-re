@@ -635,6 +635,27 @@ class LifecycleTests(unittest.TestCase):
         self.assertEqual(launch['state'], 'quota_paused')
         self.assertFalse(any(args[:3] == ('thread', 'queue', 'send') for kind, args, _ in self.cli.calls if kind == 'bb'))
 
+    def test_remote_pending_retry_ignores_unavailable_default_host_login(self):
+        self.cli.reports['claude-code'] = {'status': 'unauthenticated'}
+        launch = self.remote_review()
+        tid = launch['thread']
+        self.cli.threads[tid]['thread']['status'] = 'pending'
+        self.cli.queue[tid] = [{'id': 'original_row'}]
+        self.d.reconcile(self.d.gates())
+        self.assertEqual(self.cli.threads[tid]['thread']['status'], 'active')
+        self.assertFalse(self.cli.queue[tid])
+
+    def test_remote_pending_retry_cannot_spend_past_remote_cutoff(self):
+        launch = self.remote_review()
+        tid = launch['thread']
+        self.cli.threads[tid]['thread']['status'] = 'pending'
+        self.cli.queue[tid] = [{'id': 'original_row'}]
+        self.cli.reports_by_host['nas']['claude-code'] = usage(80)
+        self.cli.calls.clear()
+        self.d.reconcile(self.d.gates())
+        self.assertFalse(any(args[:3] == ('thread', 'queue', 'send') for kind, args, _ in self.cli.calls if kind == 'bb'))
+        self.assertEqual(self.cli.threads[tid]['thread']['status'], 'idle')
+
     def test_remote_review_fetch_failure_closes_terminal_without_spawning(self):
         self.cli.fetch_exit = 1
         with self.assertRaises(ControlError):

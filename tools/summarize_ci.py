@@ -160,7 +160,8 @@ def verify_collision(root, result, experiment, legacy=False):
 def summarize(artifacts, out, legacy_before_generated_captures=False, include_windows=False):
     # Windows is temporarily disabled by the owner (15 October 2026).
     # Retain the five-platform mode for explicit historical artifact regrading.
-    configurations = CONFIGURATIONS if include_windows else CONFIGURATIONS[:-1]
+    configurations = (CONFIGURATIONS if include_windows else
+                      tuple(name for name in CONFIGURATIONS if name != 'windows-msvc-release'))
     out.mkdir(parents=True, exist_ok=True)
     report = dict(status='FAIL', configurations={}, errors={}, models={},
                   required_configurations=list(configurations),

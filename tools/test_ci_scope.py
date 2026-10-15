@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from summarize_ci import summarize
 
@@ -27,6 +28,17 @@ class ScopeTests(unittest.TestCase):
             report = json.loads((root / 'report/scope.json').read_text())
             self.assertIn('windows-msvc-release', report['errors'])
             self.assertEqual(report['disabled_configurations'], [])
+
+    def test_disabling_windows_does_not_depend_on_configuration_order(self):
+        configurations = ('windows-msvc-release', 'mac-arm-release', 'linux-clang-debug',
+                          'mac-arm-debug', 'linux-gcc-release')
+        with tempfile.TemporaryDirectory() as directory, redirect_stdout(io.StringIO()), \
+                patch('summarize_ci.CONFIGURATIONS', configurations):
+            root = Path(directory)
+            self.assertEqual(summarize(root / 'missing', root / 'report'), 1)
+            report = json.loads((root / 'report/scope.json').read_text())
+            self.assertNotIn('windows-msvc-release', report['required_configurations'])
+            self.assertEqual(set(report['errors']), set(configurations) - {'windows-msvc-release'})
 
 
 if __name__ == '__main__':

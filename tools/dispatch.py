@@ -685,12 +685,14 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
             thread = self.thread(launch)
             if thread.get('hasPendingInteraction'):
                 continue  # No model work; keep the user's unanswered decision pending.
+            launch_gates = (gates if launch.get('machine', self.c['machine']) == self.c['machine']
+                            else self.gates(launch['machine']))
             if thread['status'] == 'pending':
                 # A CLI timeout after queue-send acceptance must not strand the
                 # initial deferred message. Retry the EXISTING queue row only;
                 # never create another input. Check quota before touching it.
                 rows = self.cli.bb('thread', 'queue', 'list', launch['thread'])
-                if rows and self.c['enabled'] and gates[launch['provider']]['eligible']:
+                if rows and self.c['enabled'] and launch_gates[launch['provider']]['eligible']:
                     require(len(rows) == 1, 'unexpected pending worker messages')
                     self.cli.bb('thread', 'queue', 'send', launch['thread'], rows[0]['id'])
                     continue
@@ -698,9 +700,7 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
                 # Provider-retry rows may outlive an errored turn. Cancel them
                 # before another stage is allowed to use this worktree.
                 self.request_stop(launch, 'receipt')
-            elif not self.c['enabled'] or not (
-                    gates if launch.get('machine', self.c['machine']) == self.c['machine'] else
-                    self.gates(launch['machine']))[launch['provider']]['eligible']:
+            elif not self.c['enabled'] or not launch_gates[launch['provider']]['eligible']:
                 self.request_stop(launch, 'quota')
             elif self.now - launch['created_at'] > self.c.get('stage_timeout_seconds', 14400):
                 self.request_stop(launch, 'timeout')

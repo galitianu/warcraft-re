@@ -51,18 +51,11 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
-        if: runner.os != 'Linux'
-        with:
-          python-version: '3.12'
-      - name: Select native x64 MSVC environment
-        if: runner.os == 'Windows'
-        uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1
-        with:
-          arch: x64
+      - name: Verify provisioned Python
+        run: python3 -c "import sys; assert sys.version_info[:2] == (3, 12), sys.version; print(sys.version)"
       - name: Build, validate evidence and assess compatibility
         run: >-
-          ${{ runner.os == 'Linux' && 'python3' || 'python' }} tools/run_ci.py --build build-ci --compiler "${{ matrix.compiler }}"
+          python3 tools/run_ci.py --build build-ci --compiler "${{ matrix.compiler }}"
           --config ${{ matrix.config }} --expect-arch ${{ matrix.arch }} ${{ matrix.archive }}
       - name: Publish summary even when the gate fails
         if: always()

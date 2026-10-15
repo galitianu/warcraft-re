@@ -11,7 +11,10 @@ The workflow uses repository-scoped labels `war3-ci,war3-linux` and
 `war3-ci,war3-mac`, in addition to GitHub's OS/architecture labels. It has no
 GitHub-hosted fallback. One runner per machine bounds concurrency. Linux uses
 Ubuntu's Python 3.12, CMake, Ninja, GCC and Clang. macOS uses the system
-AppleClang, Homebrew CMake/Ninja and setup-python's pinned Python 3.12.
+AppleClang and Homebrew CMake/Ninja/Python 3.12. The Mac runner's private `.path`
+prepends Homebrew's Python 3.12 `libexec/bin`; the user's normal Python selection
+is unchanged. A preflight rejects a different Python minor version. GitHub's
+setup-python action is not used: its macOS package assumes `/Users/runner`.
 
 The repository is public at installation time. Fork pull requests are excluded
 from these jobs, and approval is required for **all external contributors**.

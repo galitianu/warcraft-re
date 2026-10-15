@@ -157,12 +157,18 @@ def verify_collision(root, result, experiment, legacy=False):
     return dict(status='PASS', cases=len(report['cases']), cpp_payload_sha256=cpp)
 
 
-def summarize(artifacts, out, legacy_before_generated_captures=False):
+def summarize(artifacts, out, legacy_before_generated_captures=False, include_windows=False):
+    # Windows is temporarily disabled by the owner (15 October 2026).
+    # Retain the five-platform mode for explicit historical artifact regrading.
+    configurations = (CONFIGURATIONS if include_windows else
+                      tuple(name for name in CONFIGURATIONS if name != 'windows-msvc-release'))
     out.mkdir(parents=True, exist_ok=True)
     report = dict(status='FAIL', configurations={}, errors={}, models={},
+                  required_configurations=list(configurations),
+                  disabled_configurations=[] if include_windows else ['windows-msvc-release'],
                   scope='measured artifact-producing configurations of this workflow run only; '
                         'movement RNG unused; retail RNG/other hosts remain UNKNOWN')
-    for config in CONFIGURATIONS:
+    for config in configurations:
         root = artifacts / f'compatibility-{config}'
         try:
             result = load(root / 'reports/result.json')
@@ -224,12 +230,12 @@ def summarize(artifacts, out, legacy_before_generated_captures=False):
                     compatibility_passes={k: v['compatibility_passes'] for k, v in configs.items()})
     generators = {k: v['oracle_generation'] for k, v in report['configurations'].items() if v['oracle_generation']}
     variants = {digest(g['manifest']) for g in generators.values()}
-    if generators and (len(generators) != len(CONFIGURATIONS) or len(variants) != 1):
+    if generators and (len(generators) != len(configurations) or len(variants) != 1):
         report['errors']['oracle-generation'] = 'missing configuration evidence or different generated JASS/inputs'
     report['oracle_generation'] = dict(status='IDENTICAL' if generators and len(variants) == 1 else 'UNOBSERVED',
                                       configurations_compared=list(generators))
     loops = {k: v['generated_capture_loop'] for k, v in report['configurations'].items() if v['generated_capture_loop']}
-    if loops and (len(loops) != len(CONFIGURATIONS) or len({digest(v) for v in loops.values()}) != 1):
+    if loops and (len(loops) != len(configurations) or len({digest(v) for v in loops.values()}) != 1):
         report['errors']['generated-capture-loop'] = 'missing configuration evidence or different scenario/observation inputs'
     report['generated_capture_loop'] = dict(status=('FAIL' if 'generated-capture-loop' in report['errors']
                                                   else 'PASS' if loops else 'UNOBSERVED'),
@@ -239,14 +245,16 @@ def summarize(artifacts, out, legacy_before_generated_captures=False):
     for experiment in [*EXPERIMENTS, *COLLISIONS]:
         studies = {k: v['experiments'][experiment] for k, v in report['configurations'].items()
                    if v['experiments'][experiment]}
-        if studies and (len(studies) != len(CONFIGURATIONS) or len({digest(v) for v in studies.values()}) != 1):
+        if studies and (len(studies) != len(configurations) or len({digest(v) for v in studies.values()}) != 1):
             report['errors'][experiment.lower()] = f'missing configuration evidence or different C++ {experiment} payloads'
         report['experiments'][experiment] = dict(
             status='FAIL' if experiment.lower() in report['errors'] else 'PASS' if studies else 'UNOBSERVED',
             configurations_compared=list(studies))
-    report['status'] = 'PASS' if not report['errors'] and len(report['configurations']) == len(CONFIGURATIONS) else 'FAIL'
+    report['status'] = 'PASS' if not report['errors'] and len(report['configurations']) == len(configurations) else 'FAIL'
     write_json(out / 'scope.json', report)
     lines = ['# Measured build scope', '', f"CI scope gate: **{report['status']}**.", '', report['scope'], '',
+             ('Windows/MSVC: **DISABLED / UNOBSERVED for this run** (owner decision, 15 October 2026).'
+              if not include_windows else 'Windows/MSVC included in this explicit five-configuration regrade.'), '',
              'Payload hashes exclude build/transport identity; full trace hashes include it.',
              'Cross-configuration byte differences are reported, while each configuration is graded against the same WC3 fixtures.', '',
              f"Oracle generation: **{report['oracle_generation']['status']}** across {len(generators)} configurations.", '',
@@ -266,7 +274,7 @@ def summarize(artifacts, out, legacy_before_generated_captures=False):
     for config, error in report['errors'].items():
         lines += ['', f'**{config}:** {error}']
     (out / 'summary.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
-    print(f"Build scope {report['status']}; {len(report['configurations'])}/{len(CONFIGURATIONS)} configurations measured")
+    print(f"Build scope {report['status']}; {len(report['configurations'])}/{len(configurations)} configurations measured")
     return int(report['status'] != 'PASS')
 
 
@@ -276,8 +284,10 @@ def main():
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--legacy-before-generated-captures', action='store_true',
                         help='explicit historical recheck only: workflow predates the committed generated captures')
+    parser.add_argument('--include-windows', action='store_true',
+                        help='explicit five-configuration regrade, including temporarily disabled Windows/MSVC')
     args = parser.parse_args()
-    return summarize(args.artifacts, args.out, args.legacy_before_generated_captures)
+    return summarize(args.artifacts, args.out, args.legacy_before_generated_captures, args.include_windows)
 
 
 if __name__ == '__main__':

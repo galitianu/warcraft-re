@@ -33,6 +33,11 @@ class FakeCLI:
         self.root = root
         self.calls = []
         self.reports = {'claude-code': usage(), 'codex': usage()}
+        self.reports_by_host = {}
+        self.remote_receipt = None
+        self.remote_head = HEAD
+        self.remote_clean = True
+        self.fetch_exit = 0
         self.threads = {}
         self.queue = {}
         self.issues = []
@@ -55,7 +60,20 @@ class FakeCLI:
         if args[:2] == ('settings', 'usage'):
             if self.fail_usage:
                 raise ControlError('collector offline')
-            return copy.deepcopy(self.reports)
+            return copy.deepcopy(self.reports_by_host.get(args[args.index('--machine') + 1], self.reports))
+        if args[:2] == ('terminal', 'create'):
+            return {'id': 'fetch-terminal'}
+        if args[:2] == ('terminal', 'wait'):
+            return {'exitCode': self.fetch_exit}
+        if args[:2] == ('terminal', 'close'):
+            return {}
+        if args[:2] == ('file', 'read'):
+            return {'contentEncoding': 'utf8', 'content': json.dumps(self.remote_receipt)}
+        if args[:2] == ('environment', 'status'):
+            return {'outcome': 'available', 'workspace': {
+                'checkout': {'headSha': self.remote_head},
+                'workingTree': {'state': 'clean' if self.remote_clean else 'dirty',
+                                'hasUncommittedChanges': not self.remote_clean}}}
         if args[:2] == ('thread', 'spawn'):
             number = len(self.threads) + 1
             tid = f'thr_{number}'
@@ -66,7 +84,8 @@ class FakeCLI:
             path.mkdir(exist_ok=True)
             self.threads[tid] = {'thread': {'id': tid, 'projectId': 'proj', 'providerId': provider,
                                            'title': title, 'status': 'pending'},
-                                 'environment': {'id': eid, 'projectId': 'proj', 'hostId': 'host',
+                                 'environment': {'id': eid, 'projectId': 'proj',
+                                                 'hostId': args[args.index('--machine') + 1] if '--machine' in args else 'host',
                                                  'path': str(path)}}
             self.queue[tid] = [{'id': 'queued_initial'}]
             if self.fail_after_spawn:
@@ -554,6 +573,109 @@ class LifecycleTests(unittest.TestCase):
                     self.d.integration(job)
                     self.assertFalse(self.cli.pr_data['merged'])
                     self.cli.checks = original
+
+    def test_each_active_native_build_and_comparison_is_required(self):
+        job = self.job(state='integration_ready')
+        original = self.cli.checks
+        for missing in CHECKS:
+            with self.subTest(missing=missing):
+                self.cli.checks = [check for check in original if check['name'] != missing]
+                self.d.integration(job)
+                self.assertFalse(self.cli.pr_data['merged'])
+        self.cli.checks = original
+        self.d.integration(job)
+        self.assertTrue(self.cli.pr_data['merged'])
+
+    def remote_review(self):
+        self.config['review_hosts'] = {'claude-code': {'machine': 'nas', 'checkout': '/repo'}}
+        self.cli.reports_by_host['nas'] = {'claude-code': usage(), 'codex': usage()}
+        job = self.job(state='review_ready')
+        launch = self.d.launch('review', 'claude-code', number=job['issue'], base_sha=BASE)
+        self.d.thread(launch)
+        return launch
+
+    def test_remote_review_uses_target_host_allowance_and_identity(self):
+        self.cli.reports['claude-code'] = {'status': 'unauthenticated'}
+        launch = self.remote_review()
+        self.assertEqual(launch['machine'], 'nas')
+        self.assertEqual(launch['state'], 'running')
+        gates = self.d.review_gates(self.d.gates())
+        self.assertTrue(gates['claude-code']['eligible'])
+        self.assertFalse(self.d.gates()['claude-code']['eligible'])
+        self.config['review_hosts']['claude-code']['machine'] = 'another-host'
+        self.d.thread(launch)  # Host ownership stays pinned to the launch.
+        self.cli.threads[launch['thread']]['environment']['hostId'] = 'host'
+        with self.assertRaises(ControlError):
+            self.d.thread(launch)
+
+    def test_tick_admits_remote_claude_when_default_host_is_unauthenticated(self):
+        self.config['review_hosts'] = {'claude-code': {'machine': 'nas', 'checkout': '/repo'}}
+        self.cli.reports_by_host['nas'] = {'claude-code': usage(), 'codex': usage()}
+        self.cli.reports['claude-code'] = {'status': 'unauthenticated'}
+        self.cli.issues = [issue()]
+        self.job(state='review_ready')
+        self.d.tick()
+        launch = next(iter(self.state['launches'].values()))
+        self.assertEqual((launch['provider'], launch['machine'], launch['state']),
+                         ('claude-code', 'nas', 'running'))
+
+    def test_remote_quota_cutoff_stops_only_its_registered_worker(self):
+        launch = self.remote_review()
+        self.cli.reports_by_host['nas']['claude-code'] = usage(80)
+        self.d.reconcile(self.d.gates())
+        self.assertEqual(launch['state'], 'retained')
+        self.assertEqual(self.cli.threads[launch['thread']]['thread']['status'], 'idle')
+        self.assertTrue(self.d.gates()['claude-code']['eligible'])
+
+    def test_remote_cutoff_before_dispatch_never_sends_initial_message(self):
+        self.config['review_hosts'] = {'claude-code': {'machine': 'nas', 'checkout': '/repo'}}
+        self.cli.reports_by_host['nas'] = {'claude-code': usage(80), 'codex': usage()}
+        job = self.job(state='review_ready')
+        launch = self.d.launch('review', 'claude-code', number=job['issue'], base_sha=BASE)
+        self.assertEqual(launch['state'], 'quota_paused')
+        self.assertFalse(any(args[:3] == ('thread', 'queue', 'send') for kind, args, _ in self.cli.calls if kind == 'bb'))
+
+    def test_remote_pending_retry_ignores_unavailable_default_host_login(self):
+        self.cli.reports['claude-code'] = {'status': 'unauthenticated'}
+        launch = self.remote_review()
+        tid = launch['thread']
+        self.cli.threads[tid]['thread']['status'] = 'pending'
+        self.cli.queue[tid] = [{'id': 'original_row'}]
+        self.d.reconcile(self.d.gates())
+        self.assertEqual(self.cli.threads[tid]['thread']['status'], 'active')
+        self.assertFalse(self.cli.queue[tid])
+
+    def test_remote_pending_retry_cannot_spend_past_remote_cutoff(self):
+        launch = self.remote_review()
+        tid = launch['thread']
+        self.cli.threads[tid]['thread']['status'] = 'pending'
+        self.cli.queue[tid] = [{'id': 'original_row'}]
+        self.cli.reports_by_host['nas']['claude-code'] = usage(80)
+        self.cli.calls.clear()
+        self.d.reconcile(self.d.gates())
+        self.assertFalse(any(args[:3] == ('thread', 'queue', 'send') for kind, args, _ in self.cli.calls if kind == 'bb'))
+        self.assertEqual(self.cli.threads[tid]['thread']['status'], 'idle')
+
+    def test_remote_review_fetch_failure_closes_terminal_without_spawning(self):
+        self.cli.fetch_exit = 1
+        with self.assertRaises(ControlError):
+            self.remote_review()
+        self.assertFalse(self.cli.threads)
+        self.assertTrue(any(args[:2] == ('terminal', 'close') for kind, args, _ in self.cli.calls if kind == 'bb'))
+
+    def test_remote_receipt_requires_actual_clean_head(self):
+        launch = self.remote_review()
+        self.cli.remote_receipt = dict(run_id=launch['token'], stage='review', status='PASS',
+            summary='verified', checks=['actual independent checks'], limitations=[],
+            issue=launch['issue'], pr_number=40, head_sha=HEAD)
+        self.assertEqual(self.d.receipt(launch)['head_sha'], HEAD)
+        self.cli.remote_head = BASE
+        with self.assertRaises(ControlError):
+            self.d.receipt(launch)
+        self.cli.remote_head = HEAD
+        self.cli.remote_clean = False
+        with self.assertRaises(ControlError):
+            self.d.receipt(launch)
 
     def test_configured_checks_can_only_add_requirements(self):
         job = self.job(state='integration_ready')

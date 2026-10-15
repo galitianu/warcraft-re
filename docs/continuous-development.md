@@ -112,6 +112,19 @@ Windows remains unobserved for new heads. Restore its workflow entry, summary
 requirement and controller minimum together when a Windows runner is available.
 See [self-hosted CI](self-hosted-ci.md) for services and recovery.
 
+Optional private runtime `review_hosts` maps a provider to a BB execution machine
+and its existing source checkout, for example
+`{"claude-code":{"machine":"<nas BB host id>","checkout":"/home/andrei/war3-workspace"}}`.
+Implementations/planning stay on the controller's default host. Reviews use the
+configured host's own login and reported usage; the original launch pins that
+host even if configuration changes. Remote worktrees receive a fresh exact-head
+fetch. BB file/environment APIs retrieve receipts and verify actual clean heads;
+the controller does not interpret remote paths as local files. All hosts share
+the same worker count, lanes, stop confirmation and integration gate.
+GitHub-authenticated operations remain on the controller host through BB machine
+terminals; credentials are not copied. `host_quota` in controller state records
+the per-machine admission observations. The installer preserves this override.
+
 When there is no unfinished runnable queue, a bounded planning worker uses the
 earliest unfinished roadmap gates to create at most two narrow issues. It checks
 existing issues and delivered evidence first. If all useful work needs a user

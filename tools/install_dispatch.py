@@ -106,6 +106,12 @@ def main(argv=None):
               'state_dir': str(args.state_dir), 'providers': args.providers,
               'enabled': args.activate, 'auto_merge': args.auto_merge,
               'max_workers': args.max_workers, 'threshold_percent': 80, 'base_branch': 'main'}
+    previous_file = args.state_dir / 'config.json'
+    if previous_file.exists():
+        previous = json.loads(previous_file.read_text())
+        if (previous.get('project') == config['project'] and
+                previous.get('repository') == config['repository'] and 'review_hosts' in previous):
+            config['review_hosts'] = previous['review_hosts']
     ids = install(config, cli)
     print(json.dumps({'automations': ids, 'enabled': config['enabled'],
                       'config': str(args.state_dir / 'config.json')}, indent=2))

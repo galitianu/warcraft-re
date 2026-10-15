@@ -45,6 +45,14 @@ self-hosting removes the dependency on GitHub-hosted compute minutes.
 The Mac's container VM is not used for CI. WC3/rdpipe and its Windows VM remain
 capture tools; routine CI does not run the original game.
 
+The owner also requested a Claude worker on `nas-pc`. Its existing local Claude
+login is used without transferring credentials. The private controller's
+`review_hosts` override directs Claude reviews to an isolated Linux worktree,
+checks usage on that machine, and retrieves its receipt and actual git state
+through BB. This is distinct from the unprivileged GitHub runner account.
+GitHub-authenticated CLI operations use the Mac through machine-scoped BB
+terminals; the Linux agent does not receive the Mac's GitHub token.
+
 ## Evidence and scope
 
 Every active job builds and executes its native architecture and retains the

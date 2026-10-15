@@ -12,6 +12,7 @@ import math
 import os
 from pathlib import Path
 import re
+import shlex
 import subprocess
 import sys
 import time
@@ -131,6 +132,14 @@ def validate_config(config):
         require(isinstance(config['required_checks'], list) and
                 all(isinstance(name, str) and name.strip() for name in config['required_checks']),
                 'additional required_checks must be a list of nonempty names')
+    hosts = config.get('review_hosts', {})
+    require(isinstance(hosts, dict) and set(hosts) <= set(config['providers']),
+            'review_hosts must map configured providers to execution hosts')
+    for host in hosts.values():
+        require(isinstance(host, dict) and set(host) == {'machine', 'checkout'} and
+                isinstance(host['machine'], str) and bool(host['machine'].strip()) and
+                isinstance(host['checkout'], str) and Path(host['checkout']).is_absolute(),
+                'review host needs a machine and absolute source checkout')
     for key in ('checkout', 'state_dir'):
         require(Path(config[key]).is_absolute(), f'{key} must be absolute')
     require(Path(config['checkout']).is_dir(), 'checkout does not exist')
@@ -206,9 +215,10 @@ class Dispatcher:
     def persist(self):
         self.save(self.s)
 
-    def gates(self):
+    def gates(self, machine=None):
+        machine = machine or self.c['machine']
         try:
-            reports = self.cli.bb('settings', 'usage', '--machine', self.c['machine'])
+            reports = self.cli.bb('settings', 'usage', '--machine', machine)
         except ControlError:
             reports = {}  # Unknown usage stops only registered workers.
         if not isinstance(reports, dict):
@@ -216,8 +226,20 @@ class Dispatcher:
         gates = {p: quota_gate(reports.get(p), self.now, self.c['threshold_percent'],
                              tuple(self.c.get('quota_families', {}).get(p, [])))
                  for p in self.c['providers']}
-        self.s['quota'] = gates  # Deliberately excludes emails and account keys.
+        if machine == self.c['machine']:
+            self.s['quota'] = gates  # Excludes emails and account keys.
+        self.s.setdefault('host_quota', {})[machine] = gates
         self.s['last_tick_at'] = self.now
+        return gates
+
+    def review_gates(self, default):
+        gates = dict(default)
+        observed = {self.c['machine']: default}
+        for provider, host in self.c.get('review_hosts', {}).items():
+            machine = host['machine']
+            if machine not in observed:
+                observed[machine] = self.gates(machine)
+            gates[provider] = observed[machine][provider]
         return gates
 
     def thread(self, launch):
@@ -228,7 +250,7 @@ class Dispatcher:
                 thread['title'] == launch['title'], 'registered thread identity changed')
         if not environment and thread['status'] in {'pending', 'starting'}:
             return thread
-        require(environment and environment['hostId'] == self.c['machine'] and
+        require(environment and environment['hostId'] == launch.get('machine', self.c['machine']) and
                 environment['projectId'] == self.c['project'], 'registered environment changed')
         if launch.get('environment'):
             require(environment['id'] == launch['environment'], 'worktree identity changed')
@@ -333,6 +355,21 @@ blocks all useful work, report BLOCKED with evidence; never invent busywork.
 """
         job = self.s['jobs'][str(number)]
         extra = f"\nIssue #{number}: retrieve its current body with gh issue view.\n"
+        if launch.get('machine', self.c['machine']) != self.c['machine']:
+            extra += f"""
+You are on a registered remote review host. GitHub authentication remains on
+controller host {self.c['machine']}; do not copy credentials or log in again.
+For GitHub commands use `bb terminal create --machine {self.c['machine']}` with
+`--cwd {self.c['checkout']}` and retrieve that terminal's output through bb.
+For a posted review, use bb file write --host {self.c['machine']} --stdin
+--create-parents to write its JSON input at
+{self.c['state_dir']}/remote-reviews/{launch['token']}.json, then execute gh api
+--input with that path on the controller host. This writes no project source.
+Read and test product code only in your assigned isolated worktree. Your final
+receipt still belongs at the assigned local path on your remote worker host.
+For Linux service verification, systemctl/id and a readability-only check as
+war3-ci are sufficient; never read the BB credential file itself.
+"""
         if launch.get('previous_thread'):
             extra += (f"Continue work from @thread:{launch['previous_thread']}. Read its output, "
                       "git status, prior receipts and actual artifacts; do not discard work.\n")
@@ -371,16 +408,29 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
 
     def launch(self, stage, provider, *, number=None, environment=None, base_sha=None,
                previous_thread=None):
+        host = (self.c.get('review_hosts', {}).get(provider, {}) if stage == 'review' else {})
+        machine = host.get('machine', self.c['machine'])
         if not environment:
             ref = (f"refs/pull/{self.s['jobs'][str(number)]['pr']}/head" if stage == 'review'
                    else self.c['base_branch'])
-            self.cli.git(self.c['checkout'], 'fetch', 'origin', ref)
+            if machine == self.c['machine']:
+                self.cli.git(self.c['checkout'], 'fetch', 'origin', ref)
+            else:
+                terminal = self.cli.bb('terminal', 'create', '--machine', machine,
+                    '--cwd', host['checkout'], '--title', 'Fetch registered review head',
+                    '--command', 'git fetch origin ' + shlex.quote(ref))
+                try:
+                    result = self.cli.bb('terminal', 'wait', terminal['id'], '--exit',
+                                         '--timeout', '60s', timeout=70)
+                    require(result.get('exitCode') == 0, 'remote review fetch failed')
+                finally:
+                    self.cli.bb('terminal', 'close', terminal['id'])
         token = uuid.uuid4().hex
         title = f'[war3-auto:{token}] {stage}' + (f' #{number}' if number else '')
         launch = {'token': token, 'title': title, 'stage': stage, 'provider': provider,
                   'issue': number, 'environment': environment, 'base_sha': base_sha,
                   'previous_thread': previous_thread, 'created_at': self.now,
-                  'state': 'intent'}
+                  'state': 'intent', 'machine': machine}
         if number:
             launch['issue_sha'] = self.s['jobs'][str(number)].get('body_sha')
             launch['lane'] = self.s['jobs'][str(number)]['lane']
@@ -397,7 +447,7 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
             args += ['--environment', environment]
         else:
             ref = self.s['jobs'][str(number)]['head'] if stage == 'review' else f"origin/{self.c['base_branch']}"
-            args += ['--machine', self.c['machine'], '--new-environment', 'worktree',
+            args += ['--machine', machine, '--new-environment', 'worktree',
                      '--base-branch', ref]
         if self.c.get('models', {}).get(provider):
             args += ['--model', self.c['models'][provider]]
@@ -418,7 +468,7 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
                 'pending thread identity mismatch')
         if launch['provider'] in {'claude-code', 'codex'}:
             self.cli.bb('pool', 'bypass', launch['thread'])
-        gates = self.gates()
+        gates = self.gates(launch.get('machine'))
         if not self.c['enabled'] or not gates[launch['provider']]['eligible']:
             self.request_stop(launch, 'quota')
             return
@@ -456,13 +506,24 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
     def receipt(self, launch):
         if not launch.get('path'):
             return None
-        # All selected workers are on this server-host checkout's machine.
         path = Path(launch['path']) / 'local' / 'dispatch' / f"{launch['token']}.json"
-        if not path.exists():
-            return None
-        require(path.stat().st_size <= 65536, 'oversized worker receipt')
+        remote = launch.get('machine', self.c['machine']) != self.c['machine']
+        if remote:
+            file = self.cli.bb('file', 'read', str(path), '--host', launch['machine'])
+            require(file.get('contentEncoding') == 'utf8' and
+                    isinstance(file.get('content'), str), 'remote receipt is not UTF-8')
+            content = file['content']
+            require(len(content.encode('utf-8')) <= 65536, 'oversized worker receipt')
+        else:
+            if not path.exists():
+                return None
+            require(path.stat().st_size <= 65536, 'oversized worker receipt')
+            try:
+                content = path.read_text(encoding='utf-8')
+            except OSError as error:
+                raise ControlError('unreadable worker receipt') from error
         try:
-            result = json.loads(path.read_text(encoding='utf-8'))
+            result = json.loads(content)
         except (OSError, ValueError) as error:
             raise ControlError('invalid worker receipt') from error
         require(isinstance(result, dict) and result.get('run_id') == launch['token'] and
@@ -482,10 +543,20 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
             require(isinstance(result.get('head_sha'), str) and SHA.fullmatch(result['head_sha']),
                     'receipt commit missing')
             require(bool(result['checks']), 'PASS must name verification actually performed')
-            require(self.cli.git(launch['path'], 'rev-parse', 'HEAD') == result['head_sha'],
-                    'receipt commit is not the actual worktree HEAD')
-            require(not self.cli.git(launch['path'], 'status', '--porcelain', '--untracked-files=normal'),
-                    'PASS worktree has uncommitted files')
+            if remote:
+                workspace = self.cli.bb('environment', 'status', launch['environment'])
+                require(workspace.get('outcome') == 'available', 'remote git status unavailable')
+                workspace = workspace['workspace']
+                require(workspace['checkout']['headSha'] == result['head_sha'],
+                        'receipt commit is not the actual remote worktree HEAD')
+                tree = workspace['workingTree']
+                require(tree.get('state') == 'clean' and tree.get('hasUncommittedChanges') is False,
+                        'PASS remote worktree is dirty or unknown')
+            else:
+                require(self.cli.git(launch['path'], 'rev-parse', 'HEAD') == result['head_sha'],
+                        'receipt commit is not the actual worktree HEAD')
+                require(not self.cli.git(launch['path'], 'status', '--porcelain', '--untracked-files=normal'),
+                        'PASS worktree has uncommitted files')
         return result
 
     def pr(self, number):
@@ -627,7 +698,9 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
                 # Provider-retry rows may outlive an errored turn. Cancel them
                 # before another stage is allowed to use this worktree.
                 self.request_stop(launch, 'receipt')
-            elif not self.c['enabled'] or not gates[launch['provider']]['eligible']:
+            elif not self.c['enabled'] or not (
+                    gates if launch.get('machine', self.c['machine']) == self.c['machine'] else
+                    self.gates(launch['machine']))[launch['provider']]['eligible']:
                 self.request_stop(launch, 'quota')
             elif self.now - launch['created_at'] > self.c.get('stage_timeout_seconds', 14400):
                 self.request_stop(launch, 'timeout')
@@ -787,7 +860,8 @@ Report CHANGES_REQUESTED for concrete fixes or BLOCKED for missing information.
         for job in eligible:
             if free <= 0:
                 break
-            provider = choose_provider(self.c['providers'], self.s['next_provider'], gates)
+            stage_gates = self.review_gates(gates) if job['state'] == 'review_ready' else gates
+            provider = choose_provider(self.c['providers'], self.s['next_provider'], stage_gates)
             if provider is None:
                 break
             if job['state'] == 'implement_ready' and job['lane'] in occupied:

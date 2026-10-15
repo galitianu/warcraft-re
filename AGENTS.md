@@ -134,6 +134,13 @@ its claims are supported; never claim a capture, test, commit, or PR exists with
 verifying it. The dispatcher integrates only independently accepted, current-head
 changes whose required CI passes under the configured merge policy.
 
+CI runs on self-hosted runners: Linux x64 on `nas-pc`, macOS ARM64 on the Mac
+mini. The owner temporarily disabled Windows/MSVC on 15 October 2026. Require all
+four active build configurations and their comparison; do not claim a new Windows
+pass from historical artifacts. See `docs/self-hosted-ci.md`. Never approve fork
+workflows to execute untrusted code on these machines. Preserve fixture and
+property tolerances through infrastructure changes.
+
 Complete one bounded stage, write a useful handoff, and return. If blocked, record
 the precise obstacle and partial work rather than trying unrelated features. Ask
 through the question tool when a decision is genuinely the user's; do not invent

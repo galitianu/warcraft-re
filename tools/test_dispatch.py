@@ -555,6 +555,18 @@ class LifecycleTests(unittest.TestCase):
                     self.assertFalse(self.cli.pr_data['merged'])
                     self.cli.checks = original
 
+    def test_each_active_native_build_and_comparison_is_required(self):
+        job = self.job(state='integration_ready')
+        original = self.cli.checks
+        for missing in CHECKS:
+            with self.subTest(missing=missing):
+                self.cli.checks = [check for check in original if check['name'] != missing]
+                self.d.integration(job)
+                self.assertFalse(self.cli.pr_data['merged'])
+        self.cli.checks = original
+        self.d.integration(job)
+        self.assertTrue(self.cli.pr_data['merged'])
+
     def test_configured_checks_can_only_add_requirements(self):
         job = self.job(state='integration_ready')
         self.config['required_checks'] = ['Additional compatibility gate']

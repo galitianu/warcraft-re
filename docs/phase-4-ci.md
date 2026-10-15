@@ -105,12 +105,13 @@ runner failure, missing artifacts and timeout. Oracle evidence is untouched.
 ## Artifacts and build scope
 
 [The workflow](../.github/workflows/compatibility.yml) runs on pull requests,
-main pushes and manual dispatch. Its small proposed matrix is macOS ARM64
-AppleClang Release/Debug, Linux x64 GCC Release/Clang Debug, and Windows x64 MSVC
-Release. The host is measured through Python and runner environment, and the
+main pushes and manual dispatch. Since 15 October 2026, the active matrix is macOS
+ARM64 AppleClang Release/Debug on the Mac mini and Linux x64 GCC Release/Clang Debug
+on `nas-pc`, all self-hosted. The owner temporarily disabled Windows x64 MSVC;
+historical five-configuration results below remain valid for their named commits
+only. See [self-hosted CI](self-hosted-ci.md). The host is measured through Python and runner environment, and the
 compiled target is checked through C++ architecture macros; labels alone are
-insufficient. GitHub documents the selected standard runners in its
-[runner reference](https://docs.github.com/en/actions/reference/runners/github-hosted-runners).
+insufficient. Runner labels route jobs; execution evidence establishes scope.
 Account/repository availability is established by actual executions, not this table.
 The Windows CI host does not change the x86 retail reference identity.
 

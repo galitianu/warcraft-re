@@ -25,7 +25,7 @@ SHA = re.compile(r'^[0-9a-f]{40}$')
 LIVE = {'pending', 'starting', 'active', 'stopping'}
 CHECKS = ['macOS ARM64 AppleClang Release', 'macOS ARM64 AppleClang Debug',
           'Linux x64 GCC Release', 'Linux x64 Clang Debug',
-          'Windows x64 MSVC Release', 'Compare measured build scopes']
+          'Compare measured build scopes']
 
 
 class ControlError(RuntimeError):

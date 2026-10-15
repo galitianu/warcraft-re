@@ -1,6 +1,13 @@
 # Progress
 
-As of 8 October 2026.
+As of 15 October 2026.
+
+**CI recovery:** the owner selected self-hosted Linux x64 on `nas-pc` and macOS
+ARM64 on the Mac mini, with Windows/MSVC temporarily disabled. Four active build
+configurations plus their comparison remain mandatory. The comparison explicitly
+reports Windows as disabled/unobserved; historical Windows evidence is retained.
+See [self-hosted CI operations and recovery](docs/self-hosted-ci.md). No gameplay
+model, fixture or tolerance changes are part of this infrastructure increment.
 
 **Next roadmap:** [playable Human skirmish](docs/next-roadmap.md), with measured
 mechanics and an interactive raylib client advancing together. The delivered

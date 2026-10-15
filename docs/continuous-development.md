@@ -96,15 +96,21 @@ New worktrees refresh the base branch (or exact PR ref for review) before creati
 so later increments include previously merged work rather than a stale local main.
 
 The controller verifies the receipt's run/stage/issue, actual clean worktree HEAD,
-PR identity/head/base, and posted review. It requires all five measured CI jobs and
+PR identity/head/base, and posted review. It requires all four active measured CI jobs and
 the build-scope aggregate from `Primitive compatibility`; missing checks cannot
 count as success. Every reported check must pass, the PR must be ready/mergeable,
 and its head must include current main. A main/head change invalidates acceptance
 or requires re-integration and a fresh independent review. Automatic merge, when
 configured, uses a squash merge pinned to the reviewed head, never `--admin`.
 Manual merge policy keeps accepted PRs awaiting the user's merge.
-The six compatibility checks are a fixed minimum; optional runtime
+The five compatibility checks are a fixed minimum; optional runtime
 `required_checks` only adds names from that workflow and cannot remove the minimum.
+As of 15 October 2026, the owner temporarily disabled Windows/MSVC. macOS ARM64
+Release/Debug run on the Mac mini; Linux x64 GCC Release/Clang Debug and the
+comparison run on `nas-pc`. All are self-hosted; no GitHub-hosted fallback is used.
+Windows remains unobserved for new heads. Restore its workflow entry, summary
+requirement and controller minimum together when a Windows runner is available.
+See [self-hosted CI](self-hosted-ci.md) for services and recovery.
 
 When there is no unfinished runnable queue, a bounded planning worker uses the
 earliest unfinished roadmap gates to create at most two narrow issues. It checks

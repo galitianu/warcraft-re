@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; (Get-FileHash -Algorithm SHA256 -LiteralPath \"C:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData\\MOV-0023-b.txt\").Hash; exit 0",
+  "timeout_seconds": 30,
+  "exit": 0,
+  "stdout": "68FBD1F49D38F74797E10117C861A42D5860C9E809FA8DC1C3A9B697B02D3CF4\n",
+  "stderr": ""
+}

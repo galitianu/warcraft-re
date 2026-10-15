@@ -1,0 +1,906 @@
+{
+  "model": "unchanged footman-v4",
+  "runner_sha256": "1d28080c4bf7c2873a8feaf7faefb244bb47b86fe0e5e1ca21c310691d821ed8",
+  "method": "tools/predict_mov0023.py",
+  "cases": {
+    "MOV-0023-a": {
+      "scenario": "scenarios/MOV-0023/MOV-0023-a.yaml",
+      "scenario_sha256": "d1f56ccbd3ad10a35e98c05fad2a2182c9d234cd72837f2250ed03b81ab932a4",
+      "trace": "results/mov-0023/predicted/MOV-0023-a.json",
+      "sha256": "1947cc48383eecf3d342519b119cd8a87da54a64e0fec964deee362cf694052b",
+      "description": {
+        "u0": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -21.4182129,
+            "y": 10.6113281,
+            "facing": 333.644226,
+            "order": 851986
+          },
+          "max_displacement": 478.699412,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": null,
+          "largest_sideways_deviation": {
+            "callback": 92,
+            "units": 14.20752
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 86,
+              "callbacks": 3
+            },
+            {
+              "first": 95,
+              "last": 600,
+              "callbacks": 505
+            }
+          ],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 72.939136
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 169,
+                "distance": 73.269607
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 51.4536133,
+            "y": 7.47851562,
+            "facing": 188.273834,
+            "order": 851986
+          },
+          "max_displacement": 448.608726,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": null,
+          "largest_sideways_deviation": {
+            "callback": 118,
+            "units": -7.478516
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 116,
+              "callbacks": 33
+            },
+            {
+              "first": 118,
+              "last": 600,
+              "callbacks": 482
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 72.939136
+              }
+            },
+            "u2": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 162,
+                "distance": 50.006441
+              }
+            }
+          }
+        },
+        "u2": {
+          "start": [
+            0.0,
+            -500.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 24.0097656,
+            "y": -46.8754883,
+            "facing": 117.121513,
+            "order": 851986
+          },
+          "max_displacement": 519.989367,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": null,
+          "largest_sideways_deviation": {
+            "callback": 127,
+            "units": -111.821289
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 89,
+              "callbacks": 6
+            },
+            {
+              "first": 127,
+              "last": 132,
+              "callbacks": 5
+            },
+            {
+              "first": 136,
+              "last": 146,
+              "callbacks": 10
+            },
+            {
+              "first": 169,
+              "last": 600,
+              "callbacks": 431
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 169,
+                "distance": 73.269607
+              }
+            },
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 162,
+                "distance": 50.006441
+              }
+            }
+          }
+        }
+      },
+      "build": {
+        "git_commit": "1cca1cadc4beb3c5ab8607b28cc314f3607888e1",
+        "git_dirty_at_configure": false,
+        "source_sha256": "71484bc1f1c25637742df461ba63c1e14a9bd1c8054a10d6183f10b76c3d9735",
+        "compiler": "AppleClang 21.0.0.21000334",
+        "build_type": "Release",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 15.5,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float",
+          "unit_pathing": {
+            "cell": 32,
+            "grid_cells": 256,
+            "search_limit": 32768,
+            "waypoint_radius": 15.6800003,
+            "footprint": "2x2 cells: the cell holding the unit and those west and south",
+            "wait_updates": 4,
+            "give_way_updates": 20,
+            "replan_updates": 10
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0023",
+            "callbacks": 600,
+            "units": 3,
+            "samples": 1803
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0023",
+            "map_revision": "MOV-0023-a",
+            "path": "scenarios/MOV-0023/MOV-0023-a.yaml",
+            "sha256": "d1f56ccbd3ad10a35e98c05fad2a2182c9d234cd72837f2250ed03b81ab932a4"
+          }
+        ]
+      }
+    },
+    "MOV-0023-b": {
+      "scenario": "scenarios/MOV-0023/MOV-0023-b.yaml",
+      "scenario_sha256": "b302f48031140286521e7b19a4e5a987293959fff8c80347ae5bafd31b785938",
+      "trace": "results/mov-0023/predicted/MOV-0023-b.json",
+      "sha256": "eb34635d7fd8c6a20f6a7a157fbc7118782396ceddf9349d3eb7a7071193dd25",
+      "description": {
+        "u0": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -21.4182129,
+            "y": 10.6113281,
+            "facing": 333.644226,
+            "order": 851986
+          },
+          "max_displacement": 478.699412,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": null,
+          "largest_sideways_deviation": {
+            "callback": 92,
+            "units": 14.20752
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 86,
+              "callbacks": 3
+            },
+            {
+              "first": 95,
+              "last": 600,
+              "callbacks": 505
+            }
+          ],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 72.939136
+              }
+            },
+            "u2": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 155,
+                "distance": 82.107549
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 51.4536133,
+            "y": 7.47851562,
+            "facing": 188.273834,
+            "order": 851986
+          },
+          "max_displacement": 448.608726,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": null,
+          "largest_sideways_deviation": {
+            "callback": 118,
+            "units": -7.478516
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 116,
+              "callbacks": 33
+            },
+            {
+              "first": 118,
+              "last": 600,
+              "callbacks": 482
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 72.939136
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 125,
+                "distance": 60.421137
+              }
+            }
+          }
+        },
+        "u2": {
+          "start": [
+            0.0,
+            -500.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 24.144043,
+            "y": 78.9174805,
+            "facing": 252.989059,
+            "order": 851986
+          },
+          "max_displacement": 579.420731,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": null,
+          "largest_sideways_deviation": {
+            "callback": 137,
+            "units": -111.98291
+          },
+          "waits": [
+            {
+              "first": 82,
+              "last": 87,
+              "callbacks": 5
+            },
+            {
+              "first": 155,
+              "last": 600,
+              "callbacks": 445
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 155,
+                "distance": 82.107549
+              }
+            },
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 125,
+                "distance": 60.421137
+              }
+            }
+          }
+        }
+      },
+      "build": {
+        "git_commit": "1cca1cadc4beb3c5ab8607b28cc314f3607888e1",
+        "git_dirty_at_configure": false,
+        "source_sha256": "71484bc1f1c25637742df461ba63c1e14a9bd1c8054a10d6183f10b76c3d9735",
+        "compiler": "AppleClang 21.0.0.21000334",
+        "build_type": "Release",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 15.5,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float",
+          "unit_pathing": {
+            "cell": 32,
+            "grid_cells": 256,
+            "search_limit": 32768,
+            "waypoint_radius": 15.6800003,
+            "footprint": "2x2 cells: the cell holding the unit and those west and south",
+            "wait_updates": 4,
+            "give_way_updates": 20,
+            "replan_updates": 10
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0023",
+            "callbacks": 600,
+            "units": 3,
+            "samples": 1803
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0023",
+            "map_revision": "MOV-0023-b",
+            "path": "scenarios/MOV-0023/MOV-0023-b.yaml",
+            "sha256": "b302f48031140286521e7b19a4e5a987293959fff8c80347ae5bafd31b785938"
+          }
+        ]
+      }
+    },
+    "MOV-0023-c": {
+      "scenario": "scenarios/MOV-0023/MOV-0023-c.yaml",
+      "scenario_sha256": "fa32c5124b7f10d8d12570e58a122e140b935ec0b192266f6dbe538483ee4bc1",
+      "trace": "results/mov-0023/predicted/MOV-0023-c.json",
+      "sha256": "83df275643e2aff1a85c9c9e82575df63b9b3fb1f3ac8b1273a6d4757ff45392",
+      "description": {
+        "u0": {
+          "start": [
+            0.0,
+            -500.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 24.0097656,
+            "y": -46.8754883,
+            "facing": 117.121513,
+            "order": 851986
+          },
+          "max_displacement": 519.989367,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": null,
+          "largest_sideways_deviation": {
+            "callback": 127,
+            "units": -111.821289
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 89,
+              "callbacks": 6
+            },
+            {
+              "first": 127,
+              "last": 132,
+              "callbacks": 5
+            },
+            {
+              "first": 136,
+              "last": 146,
+              "callbacks": 10
+            },
+            {
+              "first": 169,
+              "last": 600,
+              "callbacks": 431
+            }
+          ],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 169,
+                "distance": 73.269607
+              }
+            },
+            "u2": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 162,
+                "distance": 50.006441
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -21.4182129,
+            "y": 10.6113281,
+            "facing": 333.644226,
+            "order": 851986
+          },
+          "max_displacement": 478.699412,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": null,
+          "largest_sideways_deviation": {
+            "callback": 92,
+            "units": 14.20752
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 86,
+              "callbacks": 3
+            },
+            {
+              "first": 95,
+              "last": 600,
+              "callbacks": 505
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 169,
+                "distance": 73.269607
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 72.939136
+              }
+            }
+          }
+        },
+        "u2": {
+          "start": [
+            500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 51.4536133,
+            "y": 7.47851562,
+            "facing": 188.273834,
+            "order": 851986
+          },
+          "max_displacement": 448.608726,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": null,
+          "largest_sideways_deviation": {
+            "callback": 118,
+            "units": -7.478516
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 116,
+              "callbacks": 33
+            },
+            {
+              "first": 118,
+              "last": 600,
+              "callbacks": 482
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 162,
+                "distance": 50.006441
+              }
+            },
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 72.939136
+              }
+            }
+          }
+        }
+      },
+      "build": {
+        "git_commit": "1cca1cadc4beb3c5ab8607b28cc314f3607888e1",
+        "git_dirty_at_configure": false,
+        "source_sha256": "71484bc1f1c25637742df461ba63c1e14a9bd1c8054a10d6183f10b76c3d9735",
+        "compiler": "AppleClang 21.0.0.21000334",
+        "build_type": "Release",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 15.5,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float",
+          "unit_pathing": {
+            "cell": 32,
+            "grid_cells": 256,
+            "search_limit": 32768,
+            "waypoint_radius": 15.6800003,
+            "footprint": "2x2 cells: the cell holding the unit and those west and south",
+            "wait_updates": 4,
+            "give_way_updates": 20,
+            "replan_updates": 10
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0023",
+            "callbacks": 600,
+            "units": 3,
+            "samples": 1803
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0023",
+            "map_revision": "MOV-0023-c",
+            "path": "scenarios/MOV-0023/MOV-0023-c.yaml",
+            "sha256": "fa32c5124b7f10d8d12570e58a122e140b935ec0b192266f6dbe538483ee4bc1"
+          }
+        ]
+      }
+    },
+    "MOV-0023-d": {
+      "scenario": "scenarios/MOV-0023/MOV-0023-d.yaml",
+      "scenario_sha256": "59cc35a6c82d8d5f46112424c49f2d817c3f00ec0e1b8f8cceb78f2807faeff3",
+      "trace": "results/mov-0023/predicted/MOV-0023-d.json",
+      "sha256": "290056700b2479199ec69452fd460995a45cc5035a2da6b73075c90e43dd3335",
+      "description": {
+        "u0": {
+          "start": [
+            0.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 988.12793,
+            "y": -0.0212402344,
+            "facing": 0.295402139,
+            "order": 0
+          },
+          "max_displacement": 988.12793,
+          "ordered": true,
+          "target": [
+            1000.0,
+            0.0
+          ],
+          "arrival_callback": 214,
+          "largest_sideways_deviation": {
+            "callback": 2,
+            "units": 0.043945
+          },
+          "waits": [
+            {
+              "first": 86,
+              "last": 116,
+              "callbacks": 30
+            }
+          ],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 110,
+                "distance": 70.599771
+              }
+            },
+            "u2": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 103,
+                "distance": 48.691408
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            1000.0,
+            -32.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 10.8603516,
+            "y": -36.166748,
+            "facing": 159.008911,
+            "order": 0
+          },
+          "max_displacement": 989.148425,
+          "ordered": true,
+          "target": [
+            0.0,
+            -32.0
+          ],
+          "arrival_callback": 196,
+          "largest_sideways_deviation": {
+            "callback": 173,
+            "units": 47.685791
+          },
+          "waits": [
+            {
+              "first": 88,
+              "last": 90,
+              "callbacks": 2
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 110,
+                "distance": 70.599771
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 3,
+                "distance": 63.999512
+              }
+            }
+          }
+        },
+        "u2": {
+          "start": [
+            1000.0,
+            32.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 8.07080078,
+            "y": 32.2866211,
+            "facing": 182.064453,
+            "order": 0
+          },
+          "max_displacement": 991.929241,
+          "ordered": true,
+          "target": [
+            0.0,
+            32.0
+          ],
+          "arrival_callback": 187,
+          "largest_sideways_deviation": {
+            "callback": 86,
+            "units": -26.937012
+          },
+          "waits": [],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 103,
+                "distance": 48.691408
+              }
+            },
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 3,
+                "distance": 63.999512
+              }
+            }
+          }
+        }
+      },
+      "build": {
+        "git_commit": "1cca1cadc4beb3c5ab8607b28cc314f3607888e1",
+        "git_dirty_at_configure": false,
+        "source_sha256": "71484bc1f1c25637742df461ba63c1e14a9bd1c8054a10d6183f10b76c3d9735",
+        "compiler": "AppleClang 21.0.0.21000334",
+        "build_type": "Release",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 15.5,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float",
+          "unit_pathing": {
+            "cell": 32,
+            "grid_cells": 256,
+            "search_limit": 32768,
+            "waypoint_radius": 15.6800003,
+            "footprint": "2x2 cells: the cell holding the unit and those west and south",
+            "wait_updates": 4,
+            "give_way_updates": 20,
+            "replan_updates": 10
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0023",
+            "callbacks": 600,
+            "units": 3,
+            "samples": 1803
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0023",
+            "map_revision": "MOV-0023-d",
+            "path": "scenarios/MOV-0023/MOV-0023-d.yaml",
+            "sha256": "59cc35a6c82d8d5f46112424c49f2d817c3f00ec0e1b8f8cceb78f2807faeff3"
+          }
+        ]
+      }
+    }
+  }
+}

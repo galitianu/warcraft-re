@@ -1,0 +1,7 @@
+{
+  "source_bundle": "local/mov0023/capture-c",
+  "original_manifest_sha256": "85fc86119605ddbb9be245077e509a6969265a6f993556807a3599a97d3a20af",
+  "retained_manifest_sha256": "8c780b493bacf18958aa15683be5b3ded934ee9295dddac43cd5d19faa15dc16",
+  "changes": "manifest definition and environment paths rebound to repository; raw/map/source bytes unchanged; fixture regenerated from all runs",
+  "intermediate_screenshots": "local only"
+}

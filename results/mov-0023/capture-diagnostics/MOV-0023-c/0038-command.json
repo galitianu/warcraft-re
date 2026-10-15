@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "--json",
+    "ui",
+    "--image-dir",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/local/mov0023/capture-c/diagnostics",
+    "get_window_state",
+    "-"
+  ],
+  "stdin": "{\"pid\": 9836, \"window_id\": 197728, \"include_accessibility_tree\": false}",
+  "timeout_seconds": 20,
+  "exit": 0,
+  "stdout": "{\"content\":[{\"bytes\":400503,\"mimeType\":\"image/png\",\"path\":\"/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/local/mov0023/capture-c/diagnostics/get_window_state-1791475290557.png\",\"type\":\"image\"}],\"structuredContent\":{\"app_name\":\"World Editor.exe\",\"pid\":9836,\"screenshot_height\":745,\"screenshot_mime_type\":\"image/png\",\"screenshot_width\":1568,\"window_bounds\":{\"height\":835,\"width\":1756,\"x\":77,\"y\":70},\"window_id\":197728,\"window_title\":\"Trigger Editor\"}}\n",
+  "stderr": ""
+}

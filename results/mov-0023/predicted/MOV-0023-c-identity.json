@@ -1,0 +1,38 @@
+{
+  "git_commit": "1cca1cadc4beb3c5ab8607b28cc314f3607888e1",
+  "git_dirty_at_configure": false,
+  "source_sha256": "71484bc1f1c25637742df461ba63c1e14a9bd1c8054a10d6183f10b76c3d9735",
+  "compiler": "AppleClang 21.0.0.21000334",
+  "build_type": "Release",
+  "architecture": "arm64",
+  "fp_contract": "off",
+  "model": "footman-v4",
+  "time_unit": "seconds",
+  "step_us": 1000,
+  "seed": 1,
+  "rng": "std::mt19937; unused by movement",
+  "observation_phase": "after-due-update",
+  "sample_period_us": 20000,
+  "state_lag_us": 0,
+  "parameters": {
+    "update_period_steps": 30,
+    "update_phase_steps": 10,
+    "frame_steps": 5,
+    "stop_radius": 15.5,
+    "default_speed": 270, "speed_clamp": [150, 400],
+    "turn_rate_radians": "atof(0.6)",
+    "propulsion_window_degrees": 60,
+    "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+    "frame_origin": -4096,
+    "clock_start_seconds": 0.5,
+    "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+    "arithmetic": "wc3::sf retail soft-float",
+    "unit_pathing": {"cell": 32, "grid_cells": 256, "search_limit": 32768, "waypoint_radius": 15.6800003, "footprint": "2x2 cells: the cell holding the unit and those west and south", "wait_updates": 4, "give_way_updates": 20, "replan_updates": 10}
+  },
+  "cases": [
+    {"test": "MOV-0023", "callbacks": 600, "units": 3, "samples": 1803}
+  ],
+  "scenarios": [
+    {"experiment": "MOV-0023", "map_revision": "MOV-0023-c", "path": "scenarios/MOV-0023/MOV-0023-c.yaml", "sha256": "fa32c5124b7f10d8d12570e58a122e140b935ec0b192266f6dbe538483ee4bc1"}
+  ]
+}

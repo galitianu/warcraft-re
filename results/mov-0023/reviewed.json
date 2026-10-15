@@ -1,0 +1,2003 @@
+{
+  "method": "unchanged comparator against committed preregistration; observed failures pinned without fitting",
+  "cases": {
+    "MOV-0023-a": {
+      "comparison": {
+        "status": "FAIL",
+        "properties": {
+          "x": {
+            "samples": 1803,
+            "failures": 507,
+            "max_abs_delta": 7.2575681,
+            "max_abs_delta_by_unit": {
+              "u0": 7.2575681,
+              "u1": 9.999999974752427e-07,
+              "u2": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 7.2575681,
+              "u1": 3.0000000350582923e-07,
+              "u2": -3.999999975690116e-07
+            },
+            "first_divergence": {
+              "reference_seq": 386,
+              "actual_seq": 385,
+              "kind": "SAMPLE",
+              "sample_index": 282,
+              "callback": 94,
+              "unit": "u0",
+              "property": "x",
+              "reference_t": "1.880005",
+              "actual_t": "1.88000488",
+              "reference_time": {
+                "requested": "1.880000",
+                "reported": "1.880005",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.880000",
+                "reported": "1.88000488",
+                "state_us": 1880000
+              },
+              "reference": "-28.675781",
+              "actual": "-26.2565918",
+              "delta": 2.4191892000000017,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "y": {
+            "samples": 1803,
+            "failures": 507,
+            "max_abs_delta": 3.596191900000001,
+            "max_abs_delta_by_unit": {
+              "u0": 3.596191900000001,
+              "u1": 5.000000000005e-07,
+              "u2": 5.000000058430487e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.596191900000001,
+              "u1": -3.800000003550963e-07,
+              "u2": -3.0000000350582923e-07
+            },
+            "first_divergence": {
+              "reference_seq": 386,
+              "actual_seq": 385,
+              "kind": "SAMPLE",
+              "sample_index": 282,
+              "callback": 94,
+              "unit": "u0",
+              "property": "y",
+              "reference_t": "1.880005",
+              "actual_t": "1.88000488",
+              "reference_time": {
+                "requested": "1.880000",
+                "reported": "1.880005",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.880000",
+                "reported": "1.88000488",
+                "state_us": 1880000
+              },
+              "reference": "14.207520",
+              "actual": "13.0087891",
+              "delta": -1.198730900000001,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "facing": {
+            "samples": 1803,
+            "failures": 921,
+            "max_abs_delta": 2.1234130000000278,
+            "max_abs_delta_by_unit": {
+              "u0": 0.0017399999999838656,
+              "u1": 0,
+              "u2": 2.1234130000000278
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0017389999999863903,
+              "u1": 0.0,
+              "u2": -2.1234130000000278
+            },
+            "first_divergence": {
+              "reference_seq": 422,
+              "actual_seq": 421,
+              "kind": "SAMPLE",
+              "sample_index": 309,
+              "callback": 103,
+              "unit": "u0",
+              "property": "facing",
+              "reference_t": "2.060059",
+              "actual_t": "2.06005859",
+              "reference_time": {
+                "requested": "2.060000",
+                "reported": "2.060059",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "2.060000",
+                "reported": "2.06005859",
+                "state_us": 2060000
+              },
+              "reference": "334.269104",
+              "actual": "334.270416",
+              "delta": 0.0013119999999844367,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "order": {
+            "samples": 1803,
+            "failures": 1399,
+            "max_abs_delta": 851986,
+            "max_abs_delta_by_unit": {
+              "u0": 851986,
+              "u1": 851986,
+              "u2": 851986
+            },
+            "final_delta_by_unit": {
+              "u0": 851986,
+              "u1": 851986,
+              "u2": 851986
+            },
+            "first_divergence": {
+              "reference_seq": 414,
+              "actual_seq": 413,
+              "kind": "SAMPLE",
+              "sample_index": 303,
+              "callback": 101,
+              "unit": "u0",
+              "property": "order",
+              "reference_t": "2.020020",
+              "actual_t": "2.02001953",
+              "reference_time": {
+                "requested": "2.020000",
+                "reported": "2.020020",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "2.020000",
+                "reported": "2.02001953",
+                "state_us": 2020000
+              },
+              "reference": "0",
+              "actual": "851986",
+              "delta": 851986,
+              "tolerance": 0
+            },
+            "status": "FAIL"
+          },
+          "t": {
+            "samples": 1803,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07,
+              "u2": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0,
+              "u2": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0,
+              "u2": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0,
+              "u2": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0,
+              "u2": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_divergence": {
+          "reference_seq": 386,
+          "actual_seq": 385,
+          "kind": "SAMPLE",
+          "sample_index": 282,
+          "callback": 94,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "1.880005",
+          "actual_t": "1.88000488",
+          "reference_time": {
+            "requested": "1.880000",
+            "reported": "1.880005",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "1.880000",
+            "reported": "1.88000488",
+            "state_us": 1880000
+          },
+          "reference": "-28.675781",
+          "actual": "-26.2565918",
+          "delta": 2.4191892000000017,
+          "tolerance": 0.001
+        },
+        "unobserved_properties": []
+      },
+      "wc3_description": {
+        "u0": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -28.675781,
+            "y": 14.20752,
+            "facing": 333.642487,
+            "order": 0
+          },
+          "max_displacement": 471.538305,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 101,
+          "largest_sideways_deviation": {
+            "callback": 92,
+            "units": 14.20752
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 86,
+              "callbacks": 3
+            },
+            {
+              "first": 92,
+              "last": 100,
+              "callbacks": 8
+            }
+          ],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 80.411437
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 77.071711
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 51.453613,
+            "y": 7.478516,
+            "facing": 188.273834,
+            "order": 0
+          },
+          "max_displacement": 448.608727,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 131,
+          "largest_sideways_deviation": {
+            "callback": 118,
+            "units": -7.478516
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 116,
+              "callbacks": 33
+            },
+            {
+              "first": 118,
+              "last": 130,
+              "callbacks": 12
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 80.411437
+              }
+            },
+            "u2": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 162,
+                "distance": 50.006441
+              }
+            }
+          }
+        },
+        "u2": {
+          "start": [
+            0.0,
+            -500.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 24.009766,
+            "y": -46.875488,
+            "facing": 119.244926,
+            "order": 0
+          },
+          "max_displacement": 519.989367,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 172,
+          "largest_sideways_deviation": {
+            "callback": 127,
+            "units": -111.821289
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 89,
+              "callbacks": 6
+            },
+            {
+              "first": 127,
+              "last": 132,
+              "callbacks": 5
+            },
+            {
+              "first": 136,
+              "last": 146,
+              "callbacks": 10
+            },
+            {
+              "first": 169,
+              "last": 171,
+              "callbacks": 2
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 77.071711
+              }
+            },
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 162,
+                "distance": 50.006441
+              }
+            }
+          }
+        }
+      },
+      "rating": "P3"
+    },
+    "MOV-0023-b": {
+      "comparison": {
+        "status": "FAIL",
+        "properties": {
+          "x": {
+            "samples": 1803,
+            "failures": 507,
+            "max_abs_delta": 7.2575681,
+            "max_abs_delta_by_unit": {
+              "u0": 7.2575681,
+              "u1": 9.999999974752427e-07,
+              "u2": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 7.2575681,
+              "u1": 3.0000000350582923e-07,
+              "u2": 0.0
+            },
+            "first_divergence": {
+              "reference_seq": 386,
+              "actual_seq": 385,
+              "kind": "SAMPLE",
+              "sample_index": 282,
+              "callback": 94,
+              "unit": "u0",
+              "property": "x",
+              "reference_t": "1.880005",
+              "actual_t": "1.88000488",
+              "reference_time": {
+                "requested": "1.880000",
+                "reported": "1.880005",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.880000",
+                "reported": "1.88000488",
+                "state_us": 1880000
+              },
+              "reference": "-28.675781",
+              "actual": "-26.2565918",
+              "delta": 2.4191892000000017,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "y": {
+            "samples": 1803,
+            "failures": 507,
+            "max_abs_delta": 3.596191900000001,
+            "max_abs_delta_by_unit": {
+              "u0": 3.596191900000001,
+              "u1": 5.000000000005e-07,
+              "u2": 5.000000058430487e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.596191900000001,
+              "u1": -3.800000003550963e-07,
+              "u2": 4.999999987376214e-07
+            },
+            "first_divergence": {
+              "reference_seq": 386,
+              "actual_seq": 385,
+              "kind": "SAMPLE",
+              "sample_index": 282,
+              "callback": 94,
+              "unit": "u0",
+              "property": "y",
+              "reference_t": "1.880005",
+              "actual_t": "1.88000488",
+              "reference_time": {
+                "requested": "1.880000",
+                "reported": "1.880005",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.880000",
+                "reported": "1.88000488",
+                "state_us": 1880000
+              },
+              "reference": "14.207520",
+              "actual": "13.0087891",
+              "delta": -1.198730900000001,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "facing": {
+            "samples": 1803,
+            "failures": 498,
+            "max_abs_delta": 0.0017399999999838656,
+            "max_abs_delta_by_unit": {
+              "u0": 0.0017399999999838656,
+              "u1": 0,
+              "u2": 4.999999987376214e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0017389999999863903,
+              "u1": 0.0,
+              "u2": 0.0
+            },
+            "first_divergence": {
+              "reference_seq": 422,
+              "actual_seq": 421,
+              "kind": "SAMPLE",
+              "sample_index": 309,
+              "callback": 103,
+              "unit": "u0",
+              "property": "facing",
+              "reference_t": "2.060059",
+              "actual_t": "2.06005859",
+              "reference_time": {
+                "requested": "2.060000",
+                "reported": "2.060059",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "2.060000",
+                "reported": "2.06005859",
+                "state_us": 2060000
+              },
+              "reference": "334.269104",
+              "actual": "334.270416",
+              "delta": 0.0013119999999844367,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "order": {
+            "samples": 1803,
+            "failures": 1411,
+            "max_abs_delta": 851986,
+            "max_abs_delta_by_unit": {
+              "u0": 851986,
+              "u1": 851986,
+              "u2": 851986
+            },
+            "final_delta_by_unit": {
+              "u0": 851986,
+              "u1": 851986,
+              "u2": 851986
+            },
+            "first_divergence": {
+              "reference_seq": 414,
+              "actual_seq": 413,
+              "kind": "SAMPLE",
+              "sample_index": 303,
+              "callback": 101,
+              "unit": "u0",
+              "property": "order",
+              "reference_t": "2.020020",
+              "actual_t": "2.02001953",
+              "reference_time": {
+                "requested": "2.020000",
+                "reported": "2.020020",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "2.020000",
+                "reported": "2.02001953",
+                "state_us": 2020000
+              },
+              "reference": "0",
+              "actual": "851986",
+              "delta": 851986,
+              "tolerance": 0
+            },
+            "status": "FAIL"
+          },
+          "t": {
+            "samples": 1803,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07,
+              "u2": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0,
+              "u2": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u2": 0,
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u2": 0,
+              "u1": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u2": 0,
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u2": 0,
+              "u1": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u2": 0,
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u2": 0,
+              "u1": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u2": 0,
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u2": 0,
+              "u1": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u2": 0,
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u2": 0.0,
+              "u1": 0.0,
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u2": 0,
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u2": 0.0,
+              "u1": 0.0,
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u2": 0,
+              "u1": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u2": 0.0,
+              "u1": 0.0,
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_divergence": {
+          "reference_seq": 386,
+          "actual_seq": 385,
+          "kind": "SAMPLE",
+          "sample_index": 282,
+          "callback": 94,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "1.880005",
+          "actual_t": "1.88000488",
+          "reference_time": {
+            "requested": "1.880000",
+            "reported": "1.880005",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "1.880000",
+            "reported": "1.88000488",
+            "state_us": 1880000
+          },
+          "reference": "-28.675781",
+          "actual": "-26.2565918",
+          "delta": 2.4191892000000017,
+          "tolerance": 0.001
+        },
+        "unobserved_properties": []
+      },
+      "wc3_description": {
+        "u0": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -28.675781,
+            "y": 14.20752,
+            "facing": 333.642487,
+            "order": 0
+          },
+          "max_displacement": 471.538305,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 101,
+          "largest_sideways_deviation": {
+            "callback": 92,
+            "units": 14.20752
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 86,
+              "callbacks": 3
+            },
+            {
+              "first": 92,
+              "last": 100,
+              "callbacks": 8
+            }
+          ],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 80.411437
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 82.994616
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 51.453613,
+            "y": 7.478516,
+            "facing": 188.273834,
+            "order": 0
+          },
+          "max_displacement": 448.608727,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 131,
+          "largest_sideways_deviation": {
+            "callback": 118,
+            "units": -7.478516
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 116,
+              "callbacks": 33
+            },
+            {
+              "first": 118,
+              "last": 130,
+              "callbacks": 12
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 80.411437
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 125,
+                "distance": 60.421137
+              }
+            }
+          }
+        },
+        "u2": {
+          "start": [
+            0.0,
+            -500.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 24.144043,
+            "y": 78.91748,
+            "facing": 252.989059,
+            "order": 0
+          },
+          "max_displacement": 579.420731,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 160,
+          "largest_sideways_deviation": {
+            "callback": 137,
+            "units": -111.98291
+          },
+          "waits": [
+            {
+              "first": 82,
+              "last": 87,
+              "callbacks": 5
+            },
+            {
+              "first": 155,
+              "last": 159,
+              "callbacks": 4
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 82.994616
+              }
+            },
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 125,
+                "distance": 60.421137
+              }
+            }
+          }
+        }
+      },
+      "rating": "P3"
+    },
+    "MOV-0023-c": {
+      "comparison": {
+        "status": "FAIL",
+        "properties": {
+          "x": {
+            "samples": 1803,
+            "failures": 507,
+            "max_abs_delta": 7.2575681,
+            "max_abs_delta_by_unit": {
+              "u0": 9.999999974752427e-07,
+              "u1": 7.2575681,
+              "u2": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.999999975690116e-07,
+              "u1": 7.2575681,
+              "u2": 3.0000000350582923e-07
+            },
+            "first_divergence": {
+              "reference_seq": 387,
+              "actual_seq": 386,
+              "kind": "SAMPLE",
+              "sample_index": 283,
+              "callback": 94,
+              "unit": "u1",
+              "property": "x",
+              "reference_t": "1.880005",
+              "actual_t": "1.88000488",
+              "reference_time": {
+                "requested": "1.880000",
+                "reported": "1.880005",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.880000",
+                "reported": "1.88000488",
+                "state_us": 1880000
+              },
+              "reference": "-28.675781",
+              "actual": "-26.2565918",
+              "delta": 2.4191892000000017,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "y": {
+            "samples": 1803,
+            "failures": 507,
+            "max_abs_delta": 3.596191900000001,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000058430487e-07,
+              "u1": 3.596191900000001,
+              "u2": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": -3.0000000350582923e-07,
+              "u1": -3.596191900000001,
+              "u2": -3.800000003550963e-07
+            },
+            "first_divergence": {
+              "reference_seq": 387,
+              "actual_seq": 386,
+              "kind": "SAMPLE",
+              "sample_index": 283,
+              "callback": 94,
+              "unit": "u1",
+              "property": "y",
+              "reference_t": "1.880005",
+              "actual_t": "1.88000488",
+              "reference_time": {
+                "requested": "1.880000",
+                "reported": "1.880005",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.880000",
+                "reported": "1.88000488",
+                "state_us": 1880000
+              },
+              "reference": "14.207520",
+              "actual": "13.0087891",
+              "delta": -1.198730900000001,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "facing": {
+            "samples": 1803,
+            "failures": 921,
+            "max_abs_delta": 2.1234130000000278,
+            "max_abs_delta_by_unit": {
+              "u0": 2.1234130000000278,
+              "u1": 0.0017399999999838656,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": -2.1234130000000278,
+              "u1": 0.0017389999999863903,
+              "u2": 0.0
+            },
+            "first_divergence": {
+              "reference_seq": 423,
+              "actual_seq": 422,
+              "kind": "SAMPLE",
+              "sample_index": 310,
+              "callback": 103,
+              "unit": "u1",
+              "property": "facing",
+              "reference_t": "2.060059",
+              "actual_t": "2.06005859",
+              "reference_time": {
+                "requested": "2.060000",
+                "reported": "2.060059",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "2.060000",
+                "reported": "2.06005859",
+                "state_us": 2060000
+              },
+              "reference": "334.269104",
+              "actual": "334.270416",
+              "delta": 0.0013119999999844367,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "order": {
+            "samples": 1803,
+            "failures": 1399,
+            "max_abs_delta": 851986,
+            "max_abs_delta_by_unit": {
+              "u0": 851986,
+              "u1": 851986,
+              "u2": 851986
+            },
+            "final_delta_by_unit": {
+              "u0": 851986,
+              "u1": 851986,
+              "u2": 851986
+            },
+            "first_divergence": {
+              "reference_seq": 415,
+              "actual_seq": 414,
+              "kind": "SAMPLE",
+              "sample_index": 304,
+              "callback": 101,
+              "unit": "u1",
+              "property": "order",
+              "reference_t": "2.020020",
+              "actual_t": "2.02001953",
+              "reference_time": {
+                "requested": "2.020000",
+                "reported": "2.020020",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "2.020000",
+                "reported": "2.02001953",
+                "state_us": 2020000
+              },
+              "reference": "0",
+              "actual": "851986",
+              "delta": 851986,
+              "tolerance": 0
+            },
+            "status": "FAIL"
+          },
+          "t": {
+            "samples": 1803,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07,
+              "u2": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0,
+              "u2": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u2": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0,
+              "u2": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u2": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0,
+              "u2": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u2": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0,
+              "u2": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u2": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0,
+              "u2": 0,
+              "u0": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u2": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0.0,
+              "u2": 0.0,
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u2": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0.0,
+              "u2": 0.0,
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u1": 0,
+              "u2": 0,
+              "u0": 0
+            },
+            "final_delta_by_unit": {
+              "u1": 0.0,
+              "u2": 0.0,
+              "u0": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_divergence": {
+          "reference_seq": 387,
+          "actual_seq": 386,
+          "kind": "SAMPLE",
+          "sample_index": 283,
+          "callback": 94,
+          "unit": "u1",
+          "property": "x",
+          "reference_t": "1.880005",
+          "actual_t": "1.88000488",
+          "reference_time": {
+            "requested": "1.880000",
+            "reported": "1.880005",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "1.880000",
+            "reported": "1.88000488",
+            "state_us": 1880000
+          },
+          "reference": "-28.675781",
+          "actual": "-26.2565918",
+          "delta": 2.4191892000000017,
+          "tolerance": 0.001
+        },
+        "unobserved_properties": []
+      },
+      "wc3_description": {
+        "u0": {
+          "start": [
+            0.0,
+            -500.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 24.009766,
+            "y": -46.875488,
+            "facing": 119.244926,
+            "order": 0
+          },
+          "max_displacement": 519.989367,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 172,
+          "largest_sideways_deviation": {
+            "callback": 127,
+            "units": -111.821289
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 89,
+              "callbacks": 6
+            },
+            {
+              "first": 127,
+              "last": 132,
+              "callbacks": 5
+            },
+            {
+              "first": 136,
+              "last": 146,
+              "callbacks": 10
+            },
+            {
+              "first": 169,
+              "last": 171,
+              "callbacks": 2
+            }
+          ],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 77.071711
+              }
+            },
+            "u2": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 162,
+                "distance": 50.006441
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -28.675781,
+            "y": 14.20752,
+            "facing": 333.642487,
+            "order": 0
+          },
+          "max_displacement": 471.538305,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 101,
+          "largest_sideways_deviation": {
+            "callback": 92,
+            "units": 14.20752
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 86,
+              "callbacks": 3
+            },
+            {
+              "first": 92,
+              "last": 100,
+              "callbacks": 8
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 77.071711
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 80.411437
+              }
+            }
+          }
+        },
+        "u2": {
+          "start": [
+            500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 51.453613,
+            "y": 7.478516,
+            "facing": 188.273834,
+            "order": 0
+          },
+          "max_displacement": 448.608727,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 131,
+          "largest_sideways_deviation": {
+            "callback": 118,
+            "units": -7.478516
+          },
+          "waits": [
+            {
+              "first": 83,
+              "last": 116,
+              "callbacks": 33
+            },
+            {
+              "first": 118,
+              "last": 130,
+              "callbacks": 12
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 162,
+                "distance": 50.006441
+              }
+            },
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 118,
+                "distance": 80.411437
+              }
+            }
+          }
+        }
+      },
+      "rating": "P3"
+    },
+    "MOV-0023-d": {
+      "comparison": {
+        "status": "FAIL",
+        "properties": {
+          "x": {
+            "samples": 1803,
+            "failures": 1240,
+            "max_abs_delta": 64.79394600000006,
+            "max_abs_delta_by_unit": {
+              "u0": 64.79394600000006,
+              "u1": 55.252441600000004,
+              "u2": 41.359375299999996
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0004890000000159489,
+              "u1": 1.5141606000000003,
+              "u2": 0.9814457800000005
+            },
+            "first_divergence": {
+              "reference_seq": 14,
+              "actual_seq": 13,
+              "kind": "SAMPLE",
+              "sample_index": 3,
+              "callback": 1,
+              "unit": "u0",
+              "property": "x",
+              "reference_t": "0.020020",
+              "actual_t": "0.0200195312",
+              "reference_time": {
+                "requested": "0.020000",
+                "reported": "0.020020",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.020000",
+                "reported": "0.0200195312",
+                "state_us": 20000
+              },
+              "reference": "0.000000",
+              "actual": "2.69970703",
+              "delta": 2.69970703,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "y": {
+            "samples": 1803,
+            "failures": 1612,
+            "max_abs_delta": 47.212890800000004,
+            "max_abs_delta_by_unit": {
+              "u0": 0.06958028120000001,
+              "u1": 33.07226599999999,
+              "u2": 47.212890800000004
+            },
+            "final_delta_by_unit": {
+              "u0": -0.011963234399999998,
+              "u1": 0.5393070000000009,
+              "u2": -5.882323900000003
+            },
+            "first_divergence": {
+              "reference_seq": 14,
+              "actual_seq": 13,
+              "kind": "SAMPLE",
+              "sample_index": 3,
+              "callback": 1,
+              "unit": "u0",
+              "property": "y",
+              "reference_t": "0.020020",
+              "actual_t": "0.0200195312",
+              "reference_time": {
+                "requested": "0.020000",
+                "reported": "0.020020",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.020000",
+                "reported": "0.0200195312",
+                "state_us": 20000
+              },
+              "reference": "0.000000",
+              "actual": "0.0146484375",
+              "delta": 0.0146484375,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "facing": {
+            "samples": 1803,
+            "failures": 1628,
+            "max_abs_delta": 54.154358,
+            "max_abs_delta_by_unit": {
+              "u0": 0.6865151389999937,
+              "u1": 54.154358,
+              "u2": 38.964890000000025
+            },
+            "final_delta_by_unit": {
+              "u0": 0.6865151389999937,
+              "u1": 5.736618000000021,
+              "u2": -38.964890000000025
+            },
+            "first_divergence": {
+              "reference_seq": 14,
+              "actual_seq": 13,
+              "kind": "SAMPLE",
+              "sample_index": 3,
+              "callback": 1,
+              "unit": "u0",
+              "property": "facing",
+              "reference_t": "0.020020",
+              "actual_t": "0.0200195312",
+              "reference_time": {
+                "requested": "0.020000",
+                "reported": "0.020020",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "0.020000",
+                "reported": "0.0200195312",
+                "state_us": 20000
+              },
+              "reference": "0.127437",
+              "actual": "0.174245179",
+              "delta": 0.046808179000009886,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "order": {
+            "samples": 1803,
+            "failures": 31,
+            "max_abs_delta": 851986,
+            "max_abs_delta_by_unit": {
+              "u0": 851986,
+              "u1": 851986,
+              "u2": 851986
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "first_divergence": {
+              "reference_seq": 759,
+              "actual_seq": 758,
+              "kind": "SAMPLE",
+              "sample_index": 562,
+              "callback": 187,
+              "unit": "u1",
+              "property": "order",
+              "reference_t": "3.740051",
+              "actual_t": "3.74005127",
+              "reference_time": {
+                "requested": "3.740000",
+                "reported": "3.740051",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "3.740000",
+                "reported": "3.74005127",
+                "state_us": 3740000
+              },
+              "reference": "0",
+              "actual": "851986",
+              "delta": 851986,
+              "tolerance": 0
+            },
+            "status": "FAIL"
+          },
+          "t": {
+            "samples": 1803,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07,
+              "u2": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0,
+              "u2": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0,
+              "u2": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0,
+              "u2": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0,
+              "u2": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0,
+              "u2": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_divergence": {
+          "reference_seq": 14,
+          "actual_seq": 13,
+          "kind": "SAMPLE",
+          "sample_index": 3,
+          "callback": 1,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "0.020020",
+          "actual_t": "0.0200195312",
+          "reference_time": {
+            "requested": "0.020000",
+            "reported": "0.020020",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "0.020000",
+            "reported": "0.0200195312",
+            "state_us": 20000
+          },
+          "reference": "0.000000",
+          "actual": "2.69970703",
+          "delta": 2.69970703,
+          "tolerance": 0.001
+        },
+        "unobserved_properties": []
+      },
+      "wc3_description": {
+        "u0": {
+          "start": [
+            0.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 988.127441,
+            "y": -0.009277,
+            "facing": 359.608887,
+            "order": 0
+          },
+          "max_displacement": 988.127441,
+          "ordered": true,
+          "target": [
+            1000.0,
+            0.0
+          ],
+          "arrival_callback": 202,
+          "largest_sideways_deviation": {
+            "callback": 5,
+            "units": 0.043945
+          },
+          "waits": [
+            {
+              "first": 1,
+              "last": 3,
+              "callbacks": 2
+            },
+            {
+              "first": 88,
+              "last": 95,
+              "callbacks": 7
+            },
+            {
+              "first": 97,
+              "last": 104,
+              "callbacks": 7
+            }
+          ],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 101,
+                "distance": 36.624972
+              }
+            },
+            "u2": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 107,
+                "distance": 68.907662
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            1000.0,
+            -32.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 9.346191,
+            "y": -36.706055,
+            "facing": 153.272293,
+            "order": 0
+          },
+          "max_displacement": 990.664987,
+          "ordered": true,
+          "target": [
+            0.0,
+            -32.0
+          ],
+          "arrival_callback": 187,
+          "largest_sideways_deviation": {
+            "callback": 181,
+            "units": 15.632813
+          },
+          "waits": [],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 101,
+                "distance": 36.624972
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 3,
+                "distance": 63.999512
+              }
+            }
+          }
+        },
+        "u2": {
+          "start": [
+            1000.0,
+            32.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 7.089355,
+            "y": 38.168945,
+            "facing": 221.029343,
+            "order": 0
+          },
+          "max_displacement": 992.929809,
+          "ordered": true,
+          "target": [
+            0.0,
+            32.0
+          ],
+          "arrival_callback": 197,
+          "largest_sideways_deviation": {
+            "callback": 185,
+            "units": -47.789551
+          },
+          "waits": [
+            {
+              "first": 89,
+              "last": 93,
+              "callbacks": 4
+            },
+            {
+              "first": 95,
+              "last": 98,
+              "callbacks": 3
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 107,
+                "distance": 68.907662
+              }
+            },
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 3,
+                "distance": 63.999512
+              }
+            }
+          }
+        }
+      },
+      "rating": "P3"
+    }
+  }
+}

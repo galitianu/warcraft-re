@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "lease",
+    "acquire",
+    "--ttl",
+    "300"
+  ],
+  "stdin": null,
+  "timeout_seconds": 15,
+  "exit": 0,
+  "stdout": "lease b5ba7fa3ca30866f held by oracle-e3345eeb935240a7a0b884c2f341087b for 300 s more\n",
+  "stderr": ""
+}

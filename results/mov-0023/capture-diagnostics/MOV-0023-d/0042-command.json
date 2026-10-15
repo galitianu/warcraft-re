@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "exec",
+    "--",
+    "powershell.exe",
+    "-NoProfile",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "C:\\Users\\rdpipe\\oracle-oracle-963e8ce8bc9c48049627f106d3cb9550\\editor-menu.ps1",
+    "-Window",
+    "984158",
+    "-Command",
+    "4"
+  ],
+  "stdin": null,
+  "timeout_seconds": 60,
+  "exit": 0,
+  "stdout": "Posted menu command 4\n",
+  "stderr": ""
+}

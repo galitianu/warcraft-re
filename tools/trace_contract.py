@@ -72,6 +72,12 @@ EXPERIMENT_SHAPES.update({
                           scenario=f'scenarios/MOV-0022/MOV-0022-{v}.yaml', start_us=0, control=None,
                           state=None, definition='docs/mov-0022.md', version=1)
     for v in 'abcdef'})
+# MOV-0023: pre-registered three-Footman layouts, unchanged v1 timing.
+EXPERIMENT_SHAPES.update({
+    f'MOV-0023-{v}': dict(experiment='MOV-0023', callbacks=600, period='0.020000', units=3,
+                          scenario=f'scenarios/MOV-0023/MOV-0023-{v}.yaml', start_us=0, control=None,
+                          state=None, definition='docs/mov-0023.md', version=1)
+    for v in 'abcd'})
 STATE_KEYS = {'c10_9', 'x_9', 'y_9', 'facing_9'}
 # wc3test arguments selecting the committed scenarios (docs/scenario-v1.md). Run it
 # with cwd=ROOT and an absolute --out so recorded scenario paths stay repo-relative.

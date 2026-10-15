@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "utmctl",
+    "ip-address",
+    "012B6237-1E3E-40AE-9D80-2782BA75E69E"
+  ],
+  "stdin": null,
+  "timeout_seconds": 10,
+  "exit": 0,
+  "stdout": "192.168.64.2\nfdf9:6a51:4ced:8dd9:285d:7e34:7773:9163\nfdf9:6a51:4ced:8dd9:9441:1e20:7638:47f9\nfe80::318f:63c:53b7:daa3%6\n",
+  "stderr": ""
+}

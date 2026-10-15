@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "--json",
+    "ui",
+    "--image-dir",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/local/mov0023/capture-a2/diagnostics",
+    "hotkey",
+    "-"
+  ],
+  "stdin": "{\"pid\": 13124, \"window_id\": 852776, \"keys\": [\"f4\"], \"delivery_mode\": \"foreground\"}",
+  "timeout_seconds": 20,
+  "exit": 0,
+  "stdout": "{\"content\":[{\"text\":\"\u2705 Pressed f4 on pid 13124 via SendInput (Win32 target).\",\"type\":\"text\"}],\"structuredContent\":{\"delivery\":{\"mode\":\"foreground\"},\"effect\":\"unverifiable\",\"route\":\"global_input\"}}\n",
+  "stderr": ""
+}

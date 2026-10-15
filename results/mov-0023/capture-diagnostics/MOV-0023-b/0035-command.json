@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "--json",
+    "ui",
+    "--image-dir",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_w7g8b2w25q-1/war3-workspace/local/mov0023/capture-b/diagnostics",
+    "click",
+    "-"
+  ],
+  "stdin": "{\"pid\": 11136, \"window_id\": 132192, \"x\": 800, \"y\": 500, \"delivery_mode\": \"foreground\"}",
+  "timeout_seconds": 20,
+  "exit": 0,
+  "stdout": "{\"content\":[{\"text\":\"\u2705 Sent click via SendInput to pid 11136 at (972,630) (delivery_mode:foreground).\",\"type\":\"text\"}],\"structuredContent\":{\"delivery\":{\"mode\":\"foreground\"},\"effect\":\"unverifiable\",\"route\":\"global_input\"}}\n",
+  "stderr": ""
+}

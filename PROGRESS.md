@@ -1,6 +1,13 @@
 # Progress
 
-As of 8 October 2026.
+As of 16 October 2026.
+
+**CI recovery:** the owner selected self-hosted Linux x64 on `nas-pc` and macOS
+ARM64 on the Mac mini, with Windows/MSVC temporarily disabled. Four active build
+configurations plus their comparison remain mandatory. The comparison explicitly
+reports Windows as disabled/unobserved; historical Windows evidence is retained.
+See [self-hosted CI operations and recovery](docs/self-hosted-ci.md). No gameplay
+model, fixture or tolerance changes are part of this infrastructure increment.
 
 **Next roadmap:** [playable Human skirmish](docs/next-roadmap.md), with measured
 mechanics and an interactive raylib client advancing together. The delivered
@@ -90,6 +97,11 @@ No model refit or tolerance change; the three-unit gameplay gate remains **not m
 reproduces these explicit failures and protects all prior cases ([design/results](docs/mov-0023.md),
 [per-unit evidence](results/mov-0023/results.md)). Native ARM64 Release archival CI passes, including
 143 Python tests; existing movement, all 32 two-unit and known P1 gates remain protected.
+Integration revision (16 October): PR #39 includes the self-hosted CI recovery from
+main (#43); native ARM64 Release archival CI passes (155 Python tests, CTest 10/10).
+All four pinned P3 failures, fixtures and tolerances are unchanged. Four active
+configurations plus their aggregate remain required; Windows is disabled/unobserved.
+Fresh independent review and current-head workflow checks remain with the controller.
 
 **Delivered two-unit gameplay:** Phase 8, first P3 behavior: unit–unit collision ([issue #24](https://github.com/galitianu/warcraft-re/issues/24),
 [issue #27](https://github.com/galitianu/warcraft-re/issues/27)). footman-v4 now follows WC3's own pathing

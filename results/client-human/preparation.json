@@ -1,0 +1,29 @@
+{
+  "experiment": "HUM-0001",
+  "issue": 44,
+  "source_commit": "c66335858b4ac873fed03d3679a221e8abb063f3",
+  "integrated_main": "d9adfa63c302e8308748741c9da8ea9e35a48f8d",
+  "build_options": [
+    "-G Ninja",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DWC3_CLIENT=ON"
+  ],
+  "binary": "build-client/wc3client",
+  "binary_sha256": "e3c648427b305b6bf5c7701d3d246e30a64fcc29e54adbe26aedf6bfafd05407",
+  "os": "macOS 27.0.1 (26A434)",
+  "architecture": "arm64",
+  "planned_window_points": [
+    1280,
+    720
+  ],
+  "actual_input_method": null,
+  "session_status": "NOT_RUN",
+  "client_ctest": "10/10 PASS",
+  "archival_ci": {
+    "command": "python3 tools/run_ci.py --build build-ci --compiler /usr/bin/clang++ --config Release --expect-arch arm64 --archive",
+    "status": "PASS",
+    "python_tests": 155,
+    "report": "build-ci/ci/reports/result.json",
+    "report_sha256": "c4a926dcf095aff8bb9c71cd88764727faa7d731ff68704523f924c24e31b6ee"
+  }
+}

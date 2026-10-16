@@ -51,3 +51,25 @@ build-client/wc3replay local/client-human/human-0001.rec --live local/client-hum
 Inspect screenshots, retain suitable evidence and the operator report, and assess
 each interaction explicitly. Physical input and operator availability are required;
 if absent, preserve preparation and return BLOCKED. Milestone 1 remains open.
+
+## Preparation verification / handoff (16 October 2026)
+
+Source `c66335858b4ac873fed03d3679a221e8abb063f3` includes current main
+`d9adfa63c302e8308748741c9da8ea9e35a48f8d`. The retained
+[preparation identity](preparation.json) was rechecked against the actual ARM64
+binary and OS. Rebuild required no work; client CTest passed 10/10. Native
+AppleClang ARM64 Release `tools/run_ci.py --archive` exited 0: CI PASS,
+155 Python tests passed, protected movement/collision and known P1 gates held,
+and MOV-0023's four known P3 compatibility failures remained explicitly gated.
+Full local report: `build-ci/ci/reports/result.json`; its digest is in the identity.
+No simulation source, reference or tolerance changed. Hosted CI remains with
+the controller; Windows is disabled/unobserved.
+
+**BLOCKED:** operator availability was requested through the question tool but
+no human session was supplied during this stage. No physical-input recording,
+live checkpoints, screenshots, operator observations or human replay result
+exists. None of the requested human interactions, including visible zoom, is
+claimed observed. This is an unmet P3 interaction-validation gate, not a newly
+observed product defect. Milestone 1 remains open. The exact next action is to
+arrange the operator's availability, launch the command above, follow the
+procedure and retain/inspect the real artifacts before replay and assessment.

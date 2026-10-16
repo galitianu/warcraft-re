@@ -87,6 +87,14 @@ evidence, but all live evidence is scripted Cocoa input. It stays open until a p
 session (the [manual procedure](docs/client-v1.md#smoke-procedure)) is retained; group target
 assignment is measured in milestone 2, not claimed here.
 
+**Physical-input validation preparation ([issue #44](https://github.com/galitianu/warcraft-re/issues/44), P3 gate):**
+HUM-0001's [procedure](results/client-human/README.md) is committed before any session.
+The native macOS ARM64 Release client is prepared at 1280×720; its binary identity
+is retained in [preparation.json](results/client-human/preparation.json), and client
+CTest passes 10/10. No human recording, screenshots, operator observations or replay
+result exists yet. Milestone 1 remains open: the next client action is the physical
+mouse/keyboard session, including visible zoom, followed by exact live replay.
+
 **Latest mechanics evidence (MOV-0023, [issue #32](https://github.com/galitianu/warcraft-re/issues/32)):**
 four three-Footman layouts were predicted and committed before capture, then each captured in three
 fresh WC3 processes on the verified 1.29.2.9231 x86 / Windows 11 Pro ARM64 oracle. All twelve runs
@@ -679,8 +687,8 @@ For controller deployment, independent review and hosted CI evidence, see
 [bootstrap PR #30](https://github.com/galitianu/warcraft-re/pull/30). Live activation
 and worker receipts reside in BB thread storage; the configured policy uses Claude
 Code/Codex and automatic merges. Milestone 1 now has the optional interactive client,
-computed route display and multiple selection; next is a bounded pause/diagnostic-overlay
-increment. Mechanics next: pre-register a new experiment isolating MOV-0023-d's initial
+computed route display, multiple selection, pause and diagnostics; next is the
+HUM-0001 physical-input session and live replay validation (issue #44). Mechanics next: pre-register a new experiment isolating MOV-0023-d's initial
 hold when two partial-route targets cover the third unit's footprint, using shifted targets
 and one-order removal controls before any refit ([exact proposed question](docs/mov-0023.md#regression-and-exact-next-action)).
 Then isolate close occupied-target order completion. Three-unit behavior has been observed

@@ -9,6 +9,17 @@ reports Windows as disabled/unobserved; historical Windows evidence is retained.
 See [self-hosted CI operations and recovery](docs/self-hosted-ci.md). No gameplay
 model, fixture or tolerance changes are part of this infrastructure increment.
 
+**Binary analysis (research tooling, no gameplay change):** the owner adopted static analysis
+of the reference executable as a hypothesis source ranked below WC3 observations and the inferred
+model, above Warsmash, under a clean-room rule: decompiled output stays in ignored `local/re/`, the
+repository receives specs with addresses, and a finding counts only after a capture confirms a
+prediction made from it ([procedure](docs/binary-analysis.md)). `Warcraft III.exe` 1.29.2.9231
+(SHA-256 `a1950f17…2cc8f1`) is analyzed in Ghidra 12.1.4 with a locally built ARM64 decompiler.
+`tools/re/jass_natives.py` recovers all 1,260 `common.j` natives (plus 139 more) from the
+registration table and names them in the project. No binary finding is accepted yet. Next: trace
+the move/point-order path from `jass_IssuePointOrder` into a pathing spec and pre-register a
+new experiment that tests its predictions.
+
 **Next roadmap:** [playable Human skirmish](docs/next-roadmap.md), with measured
 mechanics and an interactive raylib client advancing together. The delivered
 bootstrap is retained below; PR #28 was merged on 6 October and issue #27 is closed.

@@ -94,7 +94,58 @@ Use `pyghidra.open_project` with an absolute path. `open_program` with a project
 location nests a new project inside it and silently imports a fresh, unanalyzed
 copy.
 
+## Class names (RTTI)
+
+The executable keeps MSVC RTTI. `tools/re/rtti_vtables.py` recovers 3,883
+vtables with class names, e.g. `CUnit` `0x00E9C504`, `CAbilityMove` `0x00F24FC8`,
+`CMoveReq`, `MovementRequest`, `MovementGroup`, and the pathing library
+`NIpse::CPrBehavior`, `NIpse::CLrPath`, `NIpse::CLrPathingSys`.
+
 ## Findings
 
-None accepted yet. Record each as a short spec with addresses, the experiment ID
-that tests it, and its status.
+Each finding is a hypothesis until its experiment passes. Addresses refer to the
+identity above. Game constants come from `War3x.mpq` (SHA-256
+`69fb8fd8aefe1657d75d53f970e20dbd9d9c23d42a3c2582cca4a97a16becfc7`).
+
+### BIN-0001: move-order arrival and give-up (for #41 / MOV-0024)
+
+Status: **hypothesis**, partly corroborated by footman-v4's measured constant.
+
+1. `CAbilityMove`'s order dispatch (`0x00B65470`) sends `move` (`0xD0012`) to
+   `0x00B686A0`, which expands it into a queue of internal sub-orders
+   (go-to-point `0xD016B`–`0xD016E` and bookkeeping orders). Go-to-point
+   (`0x00B6A010`) creates a pathing request (`0x007FF950`) with two callbacks:
+   reached → `0xD0196` (`0x00B666F0`) and failed → `0xD0198` (`0x00BA8580`).
+2. The request converts world coordinates to pathing cells by dividing by 32,
+   after clamping to the map bounds. Its goal tolerance is
+   `max(0.49 cells, order range / 32)`; a range of `FLT_MAX` means any distance.
+   A plain move therefore arrives only within **0.49 cells = 15.68 units**,
+   matching footman-v4's independently measured `waypoint_radius` (15.68).
+3. The speed passed to the request is the unit speed clamped to
+   `MinUnitSpeed`/`MaxUnitSpeed` (150/400 in `MiscGame.txt`).
+4. `CloseEnoughRange` (100, `MiscData.txt`) is **not** the arrival rule: its only
+   use found is the radius of a unit search in target-picking code
+   (`0x00644000`).
+5. The pathing library ends a request from `0x008AC3E0` through `0x008AD5A0` →
+   `0x008B15A0`; a result flag (bit 17 of the result's flag word) selects failed
+   instead of reached. The agent dispatch slot (`0x007F2B20`) maps library codes
+   `0x6370266F`/`0x63702670` to failed and `0x63702661`/`0x706A7E65` to reached.
+6. **Give-up rule.** For a finished result flagged failed (no complete path to
+   the goal), `0x008AC3E0` replans instead of failing only if (a) more than one
+   result is pending, (b) its per-agent tick counter is below 20, and (c) the
+   squared distance between the agent's current position (affine-transformed by
+   `0x00613110`) and a point stored in the result exceeds **256** (parsed from
+   `"256.0"` at startup, `0x00ECACFC` → `0x01162BC4`). Otherwise the request
+   fails and the move order ends; the counter resets when any result finishes.
+
+Candidate rule for MOV-0024: when no complete path to an occupied goal exists,
+the unit follows its partial route and, once within 16 units (if the transform
+yields world units; 16 cells = 512 units if not) of the stored point, ends the
+move order instead of replanning. footman-v4 replans indefinitely at the end of a
+partial route, which matches the P3 difference observed in MOV-0023 a/b/c.
+
+Open before freezing predictions: which point the result stores (partial-route
+end or goal), the units of the transform, what "more than one result pending"
+means for a single unit, and whether `0xD0198` clears the order immediately. The
+MOV-0024 layouts (occupied by a blocked mover versus by an idle unit) separate
+the reading of (c).

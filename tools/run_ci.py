@@ -231,11 +231,12 @@ def run(args):
         if (build / 'footman-v4-test').exists():
             shutil.rmtree(build / 'footman-v4-test')
         # Keep executing evidence stages after a test failure so diagnostics survive.
-        for name, command in (
-            ('ctest', ['ctest', '--test-dir', build, '--output-on-failure', '--timeout', '180']),
-            ('python-integrity', [sys.executable, '-m', 'unittest', 'discover', '-s', 'tools', '-p', 'test_*.py', '-v'])):
+        # CTest's step limit covers the long human-session replay in Debug (client_human_0002).
+        for name, command, limit in (
+            ('ctest', ['ctest', '--test-dir', build, '--output-on-failure', '--timeout', '180'], 1800),
+            ('python-integrity', [sys.executable, '-m', 'unittest', 'discover', '-s', 'tools', '-p', 'test_*.py', '-v'], 300)):
             try:
-                execute(command, logs, name, env=test_env, timeout=300)
+                execute(command, logs, name, env=test_env, timeout=limit)
             except (OSError, ValueError) as error:
                 result['errors'][name] = str(error)
         references = build / 'ci/references'

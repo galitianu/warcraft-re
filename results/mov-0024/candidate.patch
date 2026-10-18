@@ -1,0 +1,14 @@
+--- a/src/core/World.cpp
++++ b/src/core/World.cpp
+@@ -758,6 +758,11 @@
+     const auto in_way = probe(id, waypoint);
+     unit.blocker_ = no_unit;
+     if (in_way.empty()) return false;
++    // MOV-0024 C96 hypothesis, not adopted retail behavior.
++    if (distance(point(), p2(unit.target_)) <= 96.0) {
++        issue_immediate_order(id, order_stop);
++        return true;
++    }
+     // A moving unit that is not itself held for another: wait for it if it is at least
+     // as fast (squared speeds, so ulp differences decide equal speeds); a slower one
+     // holds for this unit instead. Stationary units are routed around.

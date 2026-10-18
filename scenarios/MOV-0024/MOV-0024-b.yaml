@@ -1,0 +1,28 @@
+# MOV-0024: see docs/mov-0024.md
+schema: wc3-scenario
+version: 1
+experiment: MOV-0024
+map_revision: MOV-0024-b
+units:
+  - name: u0
+    type: hfoo
+    position: [-500, 0]
+    facing: 0
+  - name: u1
+    type: hfoo
+    position: [0, -500]
+    facing: 90
+observe:
+  period: 0.02
+  callbacks: 600
+  properties: [x, "y", facing, order]
+actions:
+  - at: 0
+    unit: u0
+    order: move
+    target: [0, 0]
+  - at: 0
+    unit: u1
+    order: move
+    target: [0, 0]
+...

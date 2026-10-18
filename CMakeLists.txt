@@ -143,6 +143,8 @@ if(BUILD_TESTING)
       --observations "${CMAKE_SOURCE_DIR}/results/client-human/human-${run}.observations")
   endforeach()
   set_tests_properties(world_invariants scenario_v1 footman_v4_wc3 session_commands client_replay_0001 client_replay_0002
-    client_route_0001 client_selection_0001 client_pause_0001 client_pause_0002 client_human_0001 client_human_0002
+    client_route_0001 client_selection_0001 client_pause_0001 client_pause_0002 client_human_0001
     PROPERTIES TIMEOUT 180)
+  # The 278 s human session replays seven times; Debug builds need about 11 minutes.
+  set_tests_properties(client_human_0002 PROPERTIES TIMEOUT 1200)
 endif()

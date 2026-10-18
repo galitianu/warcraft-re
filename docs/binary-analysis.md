@@ -131,21 +131,35 @@ Status: **hypothesis**, partly corroborated by footman-v4's measured constant.
    instead of reached. The agent dispatch slot (`0x007F2B20`) maps library codes
    `0x6370266F`/`0x63702670` to failed and `0x63702661`/`0x706A7E65` to reached.
 6. **Give-up rule.** For a finished result flagged failed (no complete path to
-   the goal), `0x008AC3E0` replans instead of failing only if (a) more than one
-   result is pending, (b) its per-agent tick counter is below 20, and (c) the
-   squared distance between the agent's current position (affine-transformed by
-   `0x00613110`) and a point stored in the result exceeds **256** (parsed from
-   `"256.0"` at startup, `0x00ECACFC` → `0x01162BC4`). Otherwise the request
-   fails and the move order ends; the counter resets when any result finishes.
+   the goal), `0x008AC3E0` replans instead of failing only if (a) the batch it
+   is processing holds more than one result, (b) the per-agent counter at
+   `+0x60` is below 20, and (c) the squared distance between the agent's current
+   position and a point stored in the result (`+0x18/+0x1C`) exceeds **256**
+   (parsed from `"256.0"` at startup, `0x00ECACFC` → `0x01162BC4`). Otherwise
+   the request fails and the move order ends. The counter resets when any
+   result in the batch finishes.
+7. **Units.** The agent position is extrapolated as position + velocity × t
+   (`0x00613110` on the agent's `+0x78`–`+0x84`; finishing zeroes the velocity).
+   The library works in cells relative to the map origin (the request divides
+   world offsets by 32), so the threshold is 16 cells = **512 world units**.
+   Entries are copied whole from a template (`0x008ADB20`); which point the
+   template stores (the goal or the partial-route end) was not traced, because
+   it is reached only through an indirect call.
 
-Candidate rule for MOV-0024: when no complete path to an occupied goal exists,
-the unit follows its partial route and, once within 16 units (if the transform
-yields world units; 16 cells = 512 units if not) of the stored point, ends the
-move order instead of replanning. footman-v4 replans indefinitely at the end of a
-partial route, which matches the P3 difference observed in MOV-0023 a/b/c.
+Candidate rule for MOV-0024: when a unit's path search finds no complete path
+to its goal (for example, because the goal is occupied), the unit keeps
+replanning while it is more than 512 units from the stored point, and abandons
+the move order at the first failed search within 512 units. footman-v4 instead
+replans indefinitely at the end of a partial route, which is the P3 difference
+in MOV-0023 a/b/c: all units start 500 units from the shared goal, so after the
+first unit takes the goal, the others' next failed searches end their orders
+short of it (WC3: 32–83 units).
 
-Open before freezing predictions: which point the result stores (partial-route
-end or goal), the units of the transform, what "more than one result pending"
-means for a single unit, and whether `0xD0198` clears the order immediately. The
-MOV-0024 layouts (occupied by a blocked mover versus by an idle unit) separate
-the reading of (c).
+Falsifiable predictions that separate the readings:
+- A unit ordered onto an occupied point from **more than 512 units** away keeps
+  moving until within 512 and then stops at its next failed search; a fixed
+  "close enough" radius would instead stop it at a constant distance.
+- If the stored point is the goal, the stopping distance depends on when the
+  search fails; if it is the partial-route end, the unit stops near that end.
+- Condition (a) and the 20-count limit are not yet understood for a single
+  unit; a lone unit ordered onto an idle occupied point tests them.

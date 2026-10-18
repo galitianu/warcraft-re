@@ -58,9 +58,11 @@ block something more noticeable. Never hide a P1 difference by loosening a toler
 
 ## Evidence and experiments
 
-- Authority: WC3 observations → inferred model → optional Warsmash research →
-  other research. Source reading and agreement with Java are hypotheses or separate
-  implementation checks, not retail compatibility.
+- Authority: WC3 observations → inferred model → binary analysis of the reference
+  executable → optional Warsmash research → other research. Binary analysis, source
+  reading and agreement with Java are hypotheses or separate implementation checks,
+  not retail compatibility. A binary finding is accepted only after a WC3 capture
+  confirms a prediction made from it; follow `docs/binary-analysis.md`.
 - Use permanent experiment IDs: `MOV-0001` is stationary, `MOV-0002` is straight
   movement. Never reuse an ID for a different question.
 - Record exact game identity, map/source identity, environment, procedure, time

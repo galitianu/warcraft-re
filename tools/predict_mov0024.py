@@ -39,6 +39,7 @@ def main():
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--name', required=True, choices=['H0', 'C96'])
     parser.add_argument('--supplement-f', action='store_true')
+    parser.add_argument('--manifest-prefix', default=None)
     args = parser.parse_args()
     args.out = args.out.resolve()
     args.out.mkdir(parents=True, exist_ok=False)
@@ -57,7 +58,7 @@ def main():
                                 trace=str(destination.relative_to(ROOT)), sha256=sha256(destination),
                                 description=describe(trace), build=trace['identity']['build'])
             print(label, {u: (d.get('arrival_callback'), d.get('waits')) for u, d in cases[label]['description'].items()})
-    write_json(args.out.parent / (('f-' if args.supplement_f else '') + args.name + '-predictions.json'), dict(model=args.name,
+    write_json(args.out.parent / ((args.manifest_prefix if args.manifest_prefix is not None else ('f-' if args.supplement_f else '')) + args.name + '-predictions.json'), dict(model=args.name,
                runner_sha256=sha256(args.runner), method='tools/predict_mov0024.py', cases=cases))
 
 

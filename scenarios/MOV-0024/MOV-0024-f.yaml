@@ -14,7 +14,7 @@ units:
     facing: 180
   - name: u2
     type: hfoo
-    position: [-30.222656, 96]
+    position: [-32, 96]
     facing: 270
 observe:
   period: 0.02

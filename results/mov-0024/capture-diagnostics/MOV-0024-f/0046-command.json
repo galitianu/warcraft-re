@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "--json",
+    "ui",
+    "--image-dir",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0024/capture-f-complete2/diagnostics",
+    "hotkey",
+    "-"
+  ],
+  "stdin": "{\"pid\": 9228, \"window_id\": 721758, \"keys\": [\"enter\"], \"delivery_mode\": \"foreground\"}",
+  "timeout_seconds": 20,
+  "exit": 0,
+  "stdout": "{\"content\":[{\"text\":\"\u2705 Pressed enter on pid 9228 via SendInput (Win32 target).\",\"type\":\"text\"}],\"structuredContent\":{\"delivery\":{\"mode\":\"foreground\"},\"effect\":\"unverifiable\",\"route\":\"global_input\"}}\n",
+  "stderr": ""
+}

@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; (Get-FileHash -Algorithm SHA256 -LiteralPath \"C:\\Users\\rdpipe\\oracle-oracle-46b6dfcc6d13446cb4ed5fb070dd9646\\editor-menu.ps1\").Hash; exit 0",
+  "timeout_seconds": 30,
+  "exit": 0,
+  "stdout": "312BA6D8EA7F0BECBE22E3393FFCDDBE08053F4480E77BDFA215A99D9D44456C\n",
+  "stderr": ""
+}

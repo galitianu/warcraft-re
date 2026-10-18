@@ -87,6 +87,16 @@ evidence, but all live evidence is scripted Cocoa input. It stays open until a p
 session (the [manual procedure](docs/client-v1.md#smoke-procedure)) is retained; group target
 assignment is measured in milestone 2, not claimed here.
 
+**MOV-0024 partial evidence ([issue #41](https://github.com/galitianu/warcraft-re/issues/41), P3):**
+six preregistered layouts now have eighteen validated, repeatable fresh WC3 runs.
+H0 and candidate C96 fail all six comparisons; the model and tolerances are unchanged.
+The required same-point moving/idle intervention remains **unmet**: overlapping
+creation displaced a unit, and the sixth adaptive layout's explicit stop relocated
+the occupant before reissue. Negative evidence and inconclusive interventions are
+retained in a finite regression ([results](docs/mov-0024.md#results-and-acceptance-limit-18-october-2026)).
+Next: review this bounded evidence, then preregister idle-transition relocation and
+a matched non-overlapping occupant-state experiment under a new permanent ID.
+
 **Latest mechanics evidence (MOV-0023, [issue #32](https://github.com/galitianu/warcraft-re/issues/32)):**
 four three-Footman layouts were predicted and committed before capture, then each captured in three
 fresh WC3 processes on the verified 1.29.2.9231 x86 / Windows 11 Pro ARM64 oracle. All twelve runs

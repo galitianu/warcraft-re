@@ -149,3 +149,14 @@ them in float32. Only a value within an ulp or so of a cell boundary could diffe
 | Which frame, and which side of an update, a callback observes | **Partly unexplained.** See the [results](footman-v4-results.md#sampling-order). The 20 ms runner rule (after the update at step 20k) is exact for all fixtures |
 | Speed clamp 150–400 | **Observed** endpoints, unchanged |
 | An exact reversal | Never exercised, as in v3 |
+
+
+### MOV-0024 occupied-goal negative evidence
+
+[MOV-0024](mov-0024.md) rejects the experimental C96 rule (stop on a blocked probe
+within 96 units of the goal): all six layouts fail canonical comparisons, with
+P3 order/path outcomes. Production footman-v4 is unchanged. Eighteen fresh runs
+repeat within their maps. Overlap spawn displacement and stop-time relocation
+make the moving/idle same-point intervention inconclusive; occupied-goal completion
+remains unresolved. Next measure the idle-transition relocation in a separately
+preregistered experiment before another matched occupant-state comparison.

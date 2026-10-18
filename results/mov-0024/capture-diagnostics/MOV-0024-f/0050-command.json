@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; $p=Get-Process -Id 9228 -ErrorAction SilentlyContinue; if ($p) { if ($p.Path -ne \"C:\\Program Files (x86)\\Warcraft III\\World Editor.exe\" -or $p.StartTime.ToUniversalTime().Ticks.ToString() -ne \"639279408448342342\") { throw \"PID reused; refusing to stop unowned process\" }; $p | Stop-Process; $p | Wait-Process -Timeout 10 }; exit 0",
+  "timeout_seconds": 15,
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

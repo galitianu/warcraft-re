@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; if (Test-Path -LiteralPath \"C:\\Users\\rdpipe\\Documents\\Warcraft III\\Maps\\Oracle\\MOV-0024-c.w3m\") { throw \"map exists; use a new revision\" }; Copy-Item -LiteralPath \"C:\\Users\\rdpipe\\oracle-oracle-96e117bc296c46eca5d8eb1c14cb205c\\MOV-0002.w3m\" -Destination \"C:\\Users\\rdpipe\\Documents\\Warcraft III\\Maps\\Oracle\\MOV-0024-c.w3m\"; exit 0",
+  "timeout_seconds": 30,
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

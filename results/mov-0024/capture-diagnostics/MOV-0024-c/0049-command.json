@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "--json",
+    "ui",
+    "--image-dir",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0024/capture-c/diagnostics",
+    "get_window_state",
+    "-"
+  ],
+  "stdin": "{\"pid\": 9612, \"window_id\": 1835734, \"include_accessibility_tree\": false}",
+  "timeout_seconds": 20,
+  "exit": 0,
+  "stdout": "{\"content\":[{\"bytes\":3086895,\"mimeType\":\"image/png\",\"path\":\"/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0024/capture-c/diagnostics/get_window_state-1792341839825.png\",\"type\":\"image\"}],\"structuredContent\":{\"app_name\":\"World Editor.exe\",\"pid\":9612,\"screenshot_height\":1028,\"screenshot_mime_type\":\"image/png\",\"screenshot_width\":1568,\"window_bounds\":{\"height\":1093,\"width\":1666,\"x\":7,\"y\":0},\"window_id\":1835734,\"window_title\":\"Warcraft III World Editor - [C:/.../Warcraft III/Maps/Oracle/MOV-0024-c.w3m]\"}}\n",
+  "stderr": ""
+}

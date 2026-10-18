@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; $p=Start-Process -FilePath \"C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe\" -WorkingDirectory \"C:\\Program Files (x86)\\Warcraft III\" -ArgumentList @(\"-loadfile\", \"`\"C:\\Users\\rdpipe\\Documents\\Warcraft III\\Maps\\Oracle\\MOV-0024-c.w3m`\"\") -PassThru; $p.Refresh(); $r=@{pid=$p.Id; start=$p.StartTime.ToUniversalTime().Ticks.ToString(); path=\"C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe\"; role=\"game-3\"}; $r | ConvertTo-Json | Set-Content -LiteralPath \"C:\\Users\\rdpipe\\oracle-oracle-96e117bc296c46eca5d8eb1c14cb205c\\game-3.json\"; $r | ConvertTo-Json; exit 0",
+  "timeout_seconds": 30,
+  "exit": 0,
+  "stdout": "{\n    \"path\":  \"C:\\\\Program Files (x86)\\\\Warcraft III\\\\Warcraft III.exe\",\n    \"pid\":  10540,\n    \"role\":  \"game-3\",\n    \"start\":  \"639279386870595607\"\n}\n",
+  "stderr": ""
+}

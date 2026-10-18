@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; $p=\"C:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData\\MOV-0024-a.txt\"; if (Test-Path -LiteralPath $p) { $t=Get-Content -Raw -LiteralPath $p; if ($t.Contains(\"|END|\") -and $t.Contains(\"call PreloadEnd(\" ) -and $t.TrimEnd().EndsWith(\"endfunction\")) { Get-Item -LiteralPath $p | Select-Object Length,LastWriteTimeUtc | ConvertTo-Json } }; exit 0",
+  "timeout_seconds": 15,
+  "exit": 0,
+  "stdout": "{\n    \"Length\":  127262,\n    \"LastWriteTimeUtc\":  \"\\/Date(1792341560362)\\/\"\n}\n",
+  "stderr": ""
+}

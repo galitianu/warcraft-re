@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; $env:COMPUTERNAME; exit 0",
+  "timeout_seconds": 10,
+  "exit": 0,
+  "stdout": "WIN-5OII4GM1ENR\n",
+  "stderr": ""
+}

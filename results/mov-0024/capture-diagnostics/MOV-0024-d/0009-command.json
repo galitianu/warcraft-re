@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; Get-Process -Name \"Warcraft III\",\"World Editor\" -ErrorAction SilentlyContinue | Select-Object Id | ConvertTo-Json; exit 0",
+  "timeout_seconds": 30,
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

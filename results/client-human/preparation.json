@@ -16,8 +16,8 @@
     1280,
     720
   ],
-  "actual_input_method": null,
-  "session_status": "NOT_RUN",
+  "actual_input_method": "physical mouse/trackpad and keyboard (owner, Mac mini, 18 October 2026)",
+  "session_status": "RUN: human-0001, human-0002; pause with queued orders not demonstrated physically",
   "client_ctest": "10/10 PASS",
   "archival_ci": {
     "command": "python3 tools/run_ci.py --build build-ci --compiler /usr/bin/clang++ --config Release --expect-arch arm64 --archive",

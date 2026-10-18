@@ -87,13 +87,17 @@ evidence, but all live evidence is scripted Cocoa input. It stays open until a p
 session (the [manual procedure](docs/client-v1.md#smoke-procedure)) is retained; group target
 assignment is measured in milestone 2, not claimed here.
 
-**Physical-input validation preparation ([issue #44](https://github.com/galitianu/warcraft-re/issues/44), P3 gate):**
-HUM-0001's [procedure](results/client-human/README.md) is committed before any session.
-The native macOS ARM64 Release client is prepared at 1280×720; its binary identity
-is retained in [preparation.json](results/client-human/preparation.json), and client
-CTest passes 10/10. No human recording, screenshots, operator observations or replay
-result exists yet. Milestone 1 remains open: the next client action is the physical
-mouse/keyboard session, including visible zoom, followed by exact live replay.
+**Physical-input validation ([issue #44](https://github.com/galitianu/warcraft-re/issues/44), P3 gate):**
+HUM-0001's [procedure](results/client-human/README.md) was committed before two owner sessions on
+the Mac mini (18 October) using a physical mouse/trackpad and keyboard, binary identical to
+[preparation.json](results/client-human/preparation.json). Their 31- and 32-command recordings replay
+**identically** to the live checkpoints (36 and 279) under headless, 30 Hz, 60 Hz, irregular and paused
+schedules, plus 7 displayed routes; both are now CTest gates. Screenshots show single move/route,
+part-way stop, group selection with stops, deselection, visible zoom (wheel and +/- both worked, per the
+operator) and F3. **Not shown physically:** Space pause with queued orders (still scripted PAU-0001 only),
+shift add/remove as such, and pan. **Milestone 1 assessment:** met for every control except physical
+pause/queueing; no visual fidelity or formation claim. Next client action: milestone 3's first increment
+or a physical pause check if needed; mechanics continue with MOV-0024 (#41).
 
 **Latest mechanics evidence (MOV-0023, [issue #32](https://github.com/galitianu/warcraft-re/issues/32)):**
 four three-Footman layouts were predicted and committed before capture, then each captured in three

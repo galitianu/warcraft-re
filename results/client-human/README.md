@@ -1,8 +1,8 @@
 # HUM-0001: physical-input client validation preparation
 
 Issue #44, P3 interaction gate; no new WC3 mismatch claimed. HUM-0001 was
-unused in the repository and GitHub issue search before this design. No session
-has yet been observed. This design must be committed before any retained session.
+unused in the repository and GitHub issue search before this design. The design
+was committed (`c663358`) before the two sessions recorded below.
 
 ## Prediction and acceptance
 
@@ -73,3 +73,67 @@ claimed observed. This is an unmet P3 interaction-validation gate, not a newly
 observed product defect. Milestone 1 remains open. The exact next action is to
 arrange the operator's availability, launch the command above, follow the
 procedure and retain/inspect the real artifacts before replay and assessment.
+
+## Sessions (18 October 2026)
+
+Operator: the project owner, at the Mac mini (macOS 27.0.1, arm64), physical
+mouse/trackpad and keyboard. No `--smoke`, UI automation or synthetic events.
+Binary rebuilt from `da8cb5b` with the prepared options; its SHA-256 equals
+[preparation.json](preparation.json) (`e3c64842…`). Window 1280×720 points
+(2560×1440 Retina screenshots). The first launch attempt crashed (exit 139,
+`GLFW: Failed to determine Monitor`) while the screen was locked; after unlocking,
+both sessions ran normally. That crash is outside this gate and not investigated.
+
+| Session | Commands | Stops | End | Checkpoints | Displayed routes | Screenshots |
+|---|---|---|---|---|---|---|
+| [human-0001](human-0001.rec) | 31 | 0 | 34.82 s | 36 | 0 | none taken |
+| [human-0002](human-0002.rec) | 32 | 7 | 277.77 s | 279 | 7 | 20 taken, 7 retained |
+
+`wc3replay --live … --routes … --observations …` ([0001](replay-0001.json),
+[0002](replay-0002.json)): headless, 30 Hz, 60 Hz, irregular and the three paused
+schedules are **IDENTICAL** to the live client's checkpoints in both sessions;
+session 0002's seven displayed routes match. Both are CTest gates
+(`client_human_0001/0002`). The empty observation files are correct: observations
+are only recorded by scripted runs.
+
+### Interactions demonstrated by artifacts
+
+- **Single selection, move, part-way stop:** 0002 commands 1–2; screenshots
+  [01](screenshots-0002/01-single-route-189245000.png) (ring, cyan route,
+  destination) and [02](screenshots-0002/02-single-stopped-199315000.png) (order none).
+  Session 0001 also has four single-unit moves/redirects of Footman 1.
+- **Group move and stop:** many three-unit equal-time moves in both sessions;
+  two three-unit stops in 0002 (commands 21–26). Screenshots
+  [06](screenshots-0002/06-group-selected-diagnostics-271340000.png) and
+  [07](screenshots-0002/07-group-diagnostics-later-272975000.png) show three
+  selected rings and per-unit orders.
+- **Empty-ground deselection:** [03](screenshots-0002/03-deselected-211360000.png).
+- **Visible zoom:** [04](screenshots-0002/04-zoomed-in-213700000.png) and
+  [05](screenshots-0002/05-zoomed-out-224560000.png). The operator reports both
+  the wheel and +/- zoomed visibly (the scripted wheel had not).
+- **F3 diagnostics:** shown in 06/07 (time, running, FPS, command counts, per-unit
+  order/route). F3 off is visible in later screenshots without the panel.
+
+### Not demonstrated
+
+- **Space pause with a queued move then stop:** no retained screenshot shows the
+  PAUSED banner, and neither recording has a move and stop issued at one frozen
+  time. Pause pacing/queueing remains covered only by scripted PAU-0001 and tests.
+- **Shift-click remove/add and box drag as such:** selection is not recorded and
+  no screenshot isolates those states; only the resulting three-unit selections
+  (06/07) are shown.
+- **Pan:** no before/after pan screenshot pair was retained.
+
+Operator report: "looks great"; no responsiveness or readability problem reported.
+No new difference from WC3 is observed; the shared-target group behavior visible in
+07 (one unit idle, two still moving near the point) is the known MOV-0023/MOV-0024
+**P3** difference.
+
+### Assessment
+
+Physical mouse/keyboard input drives selection, single and group move/stop, route
+and destination feedback, deselection, visible zoom and F3, and the real command
+streams replay exactly under every render schedule. Milestone 1's interaction gate
+is met for those controls; physical pause/queueing is the one listed control not
+shown with physical input and remains scripted-only evidence. No visual fidelity
+or WC3 group formation is claimed.

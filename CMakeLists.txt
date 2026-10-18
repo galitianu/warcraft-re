@@ -135,6 +135,14 @@ if(BUILD_TESTING)
       --routes "${CMAKE_SOURCE_DIR}/results/client-pause/pause-${run}.routes"
       --observations "${CMAKE_SOURCE_DIR}/results/client-pause/pause-${run}.observations")
   endforeach()
+  # HUM-0001 (results/client-human): the physical-input sessions' actual command streams.
+  foreach(run 0001 0002)
+    add_test(NAME client_human_${run} COMMAND wc3replay "${CMAKE_SOURCE_DIR}/results/client-human/human-${run}.rec"
+      --live "${CMAKE_SOURCE_DIR}/results/client-human/human-${run}.checkpoints"
+      --routes "${CMAKE_SOURCE_DIR}/results/client-human/human-${run}.routes"
+      --observations "${CMAKE_SOURCE_DIR}/results/client-human/human-${run}.observations")
+  endforeach()
   set_tests_properties(world_invariants scenario_v1 footman_v4_wc3 session_commands client_replay_0001 client_replay_0002
-    client_route_0001 client_selection_0001 client_pause_0001 client_pause_0002 PROPERTIES TIMEOUT 180)
+    client_route_0001 client_selection_0001 client_pause_0001 client_pause_0002 client_human_0001 client_human_0002
+    PROPERTIES TIMEOUT 180)
 endif()

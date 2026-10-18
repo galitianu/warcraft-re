@@ -94,6 +94,8 @@ The required same-point moving/idle intervention remains **unmet**: overlapping
 creation displaced a unit, and the sixth adaptive layout's explicit stop relocated
 the occupant before reissue. Negative evidence and inconclusive interventions are
 retained in a finite regression ([results](docs/mov-0024.md#results-and-acceptance-limit-18-october-2026)).
+Native ARM64 Release archival CI passes (CTest 12/12, Python 159/159; protected
+movement/collision/P1 gates unchanged). The PR remains draft pending the acceptance gap.
 Next: review this bounded evidence, then preregister idle-transition relocation and
 a matched non-overlapping occupant-state experiment under a new permanent ID.
 

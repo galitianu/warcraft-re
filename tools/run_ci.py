@@ -232,9 +232,11 @@ def run(args):
             shutil.rmtree(build / 'footman-v4-test')
         # Keep executing evidence stages after a test failure so diagnostics survive.
         # CTest's step limit covers the long human-session replay in Debug (client_human_0002).
+        # The Python suite regrades the MOV-0023/MOV-0024 finite gates with the built runner,
+        # about 240 s on a Debug build and more on the Linux runner; 300 s no longer fits.
         for name, command, limit in (
             ('ctest', ['ctest', '--test-dir', build, '--output-on-failure', '--timeout', '180'], 1800),
-            ('python-integrity', [sys.executable, '-m', 'unittest', 'discover', '-s', 'tools', '-p', 'test_*.py', '-v'], 300)):
+            ('python-integrity', [sys.executable, '-m', 'unittest', 'discover', '-s', 'tools', '-p', 'test_*.py', '-v'], 900)):
             try:
                 execute(command, logs, name, env=test_env, timeout=limit)
             except (OSError, ValueError) as error:

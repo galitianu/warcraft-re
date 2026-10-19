@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; Test-Path -LiteralPath \"C:\\Users\\rdpipe\\oracle-oracle-8f93f524ad894cbca800427b75a0090e\\editor-menu.ps1\"; exit 0",
+  "timeout_seconds": 30,
+  "exit": 0,
+  "stdout": "False\n",
+  "stderr": ""
+}

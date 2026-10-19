@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "--json",
+    "ui",
+    "--image-dir",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0026/capture-b/diagnostics",
+    "get_window_state",
+    "-"
+  ],
+  "stdin": "{\"pid\": 2488, \"window_id\": 1835478, \"include_accessibility_tree\": false}",
+  "timeout_seconds": 20,
+  "exit": 0,
+  "stdout": "{\"content\":[{\"bytes\":12021,\"mimeType\":\"image/png\",\"path\":\"/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0026/capture-b/diagnostics/get_window_state-1792427904240.png\",\"type\":\"image\"}],\"structuredContent\":{\"app_name\":\"World Editor.exe\",\"pid\":2488,\"screenshot_height\":152,\"screenshot_mime_type\":\"image/png\",\"screenshot_width\":389,\"window_bounds\":{\"height\":154,\"width\":391,\"x\":769,\"y\":465},\"window_id\":1835478,\"window_title\":\"Reminder\"}}\n",
+  "stderr": ""
+}

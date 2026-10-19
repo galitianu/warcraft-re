@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "lease",
+    "release"
+  ],
+  "stdin": null,
+  "timeout_seconds": 10,
+  "exit": 0,
+  "stdout": "released the lease of oracle-1356c38b83ef44c18e8255a6a4d68bc2\n",
+  "stderr": ""
+}

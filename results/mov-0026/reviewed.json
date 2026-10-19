@@ -1,0 +1,1531 @@
+{
+  "cases": {
+    "MOV-0026-a": {
+      "comparison": {
+        "status": "FAIL",
+        "properties": {
+          "x": {
+            "samples": 1202,
+            "failures": 1020,
+            "max_abs_delta": 17.7773438,
+            "max_abs_delta_by_unit": {
+              "u0": 17.7773438,
+              "u1": 8.099609
+            },
+            "final_delta_by_unit": {
+              "u0": 17.7773438,
+              "u1": 8.099609
+            },
+            "first_divergence": {
+              "reference_seq": 282,
+              "actual_seq": 281,
+              "kind": "SAMPLE",
+              "sample_index": 182,
+              "callback": 91,
+              "unit": "u0",
+              "property": "x",
+              "reference_t": "1.820007",
+              "actual_t": "1.82000732",
+              "reference_time": {
+                "requested": "1.820000",
+                "reported": "1.820007",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.820000",
+                "reported": "1.82000732",
+                "state_us": 1820000
+              },
+              "reference": "-48.000000",
+              "actual": "-30.2226562",
+              "delta": 17.7773438,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "y": {
+            "samples": 1202,
+            "failures": 1020,
+            "max_abs_delta": 47.9873046875,
+            "max_abs_delta_by_unit": {
+              "u0": 47.9873046875,
+              "u1": 0.0385739688
+            },
+            "final_delta_by_unit": {
+              "u0": -47.9873046875,
+              "u1": 0.0385739688
+            },
+            "first_divergence": {
+              "reference_seq": 282,
+              "actual_seq": 281,
+              "kind": "SAMPLE",
+              "sample_index": 182,
+              "callback": 91,
+              "unit": "u0",
+              "property": "y",
+              "reference_t": "1.820007",
+              "actual_t": "1.82000732",
+              "reference_time": {
+                "requested": "1.820000",
+                "reported": "1.820007",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.820000",
+                "reported": "1.82000732",
+                "state_us": 1820000
+              },
+              "reference": "48.000000",
+              "actual": "0.0126953125",
+              "delta": -47.9873046875,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "facing": {
+            "samples": 1202,
+            "failures": 510,
+            "max_abs_delta": 0.09849599999998304,
+            "max_abs_delta_by_unit": {
+              "u0": 4.830000079891761e-07,
+              "u1": 0.09849599999998304
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": -0.09849599999998304
+            },
+            "first_divergence": {
+              "reference_seq": 283,
+              "actual_seq": 282,
+              "kind": "SAMPLE",
+              "sample_index": 183,
+              "callback": 91,
+              "unit": "u1",
+              "property": "facing",
+              "reference_t": "1.820007",
+              "actual_t": "1.82000732",
+              "reference_time": {
+                "requested": "1.820000",
+                "reported": "1.820007",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.820000",
+                "reported": "1.82000732",
+                "state_us": 1820000
+              },
+              "reference": "180.178162",
+              "actual": "180.129593",
+              "delta": -0.04856899999998632,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "order": {
+            "samples": 1202,
+            "failures": 509,
+            "max_abs_delta": 851986,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 851986
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 851986
+            },
+            "first_divergence": {
+              "reference_seq": 286,
+              "actual_seq": 285,
+              "kind": "SAMPLE",
+              "sample_index": 185,
+              "callback": 92,
+              "unit": "u1",
+              "property": "order",
+              "reference_t": "1.840027",
+              "actual_t": "1.84002686",
+              "reference_time": {
+                "requested": "1.840000",
+                "reported": "1.840027",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.840000",
+                "reported": "1.84002686",
+                "state_us": 1840000
+              },
+              "reference": "0",
+              "actual": "851986",
+              "delta": 851986,
+              "tolerance": 0
+            },
+            "status": "FAIL"
+          },
+          "t": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 1.7000000007705296e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 1.7000000007705296e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": -1.7000000007705296e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_divergence": {
+          "reference_seq": 282,
+          "actual_seq": 281,
+          "kind": "SAMPLE",
+          "sample_index": 182,
+          "callback": 91,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "1.820007",
+          "actual_t": "1.82000732",
+          "reference_time": {
+            "requested": "1.820000",
+            "reported": "1.820007",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "1.820000",
+            "reported": "1.82000732",
+            "state_us": 1820000
+          },
+          "reference": "-48.000000",
+          "actual": "-30.2226562",
+          "delta": 17.7773438,
+          "tolerance": 0.001
+        },
+        "unobserved_properties": []
+      },
+      "wc3_description": {
+        "u0": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -48.0,
+            "y": 48.0,
+            "facing": 359.681061,
+            "order": 0
+          },
+          "max_displacement": 469.777344,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 91,
+          "largest_sideways_deviation": {
+            "callback": 91,
+            "units": 48.0
+          },
+          "waits": [
+            {
+              "first": 88,
+              "last": 90,
+              "callbacks": 2
+            }
+          ],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 89,
+                "distance": 52.319824
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 13.997559,
+            "y": -0.019531,
+            "facing": 180.371155,
+            "order": 0
+          },
+          "max_displacement": 486.002441,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 92,
+          "largest_sideways_deviation": {
+            "callback": 2,
+            "units": -0.043945
+          },
+          "waits": [],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 89,
+                "distance": 52.319824
+              }
+            }
+          }
+        }
+      },
+      "transition": {
+        "callback": 90,
+        "pre": [
+          90,
+          -30.222656,
+          0.012695,
+          359.83136,
+          851986
+        ],
+        "post": [
+          91,
+          -48.0,
+          48.0,
+          359.780487,
+          0
+        ],
+        "delta_xy": [
+          -17.777344,
+          47.987305
+        ],
+        "displacement": 51.17436273034927,
+        "grid_center_error": [
+          0.0,
+          0.0
+        ],
+        "initial_positions_match": true,
+        "pre_stop_stationary": true,
+        "pre_stop_move_order": true,
+        "setup": "PASS",
+        "post_stop_idle": true,
+        "stopped_position_stable": true,
+        "hypotheses": {
+          "stop_in_place": "REFUTED",
+          "blocked_grid": "SURVIVES",
+          "unconditional_grid": "SURVIVES"
+        }
+      },
+      "rating": "P3"
+    },
+    "MOV-0026-b": {
+      "comparison": {
+        "status": "FAIL",
+        "properties": {
+          "x": {
+            "samples": 1202,
+            "failures": 1008,
+            "max_abs_delta": 17.7773438,
+            "max_abs_delta_by_unit": {
+              "u0": 17.7773438,
+              "u1": 8.099609
+            },
+            "final_delta_by_unit": {
+              "u0": 17.7773438,
+              "u1": 8.099609
+            },
+            "first_divergence": {
+              "reference_seq": 300,
+              "actual_seq": 299,
+              "kind": "SAMPLE",
+              "sample_index": 194,
+              "callback": 97,
+              "unit": "u0",
+              "property": "x",
+              "reference_t": "1.940002",
+              "actual_t": "1.94000244",
+              "reference_time": {
+                "requested": "1.940000",
+                "reported": "1.940002",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.940000",
+                "reported": "1.94000244",
+                "state_us": 1940000
+              },
+              "reference": "-48.000000",
+              "actual": "-30.2226562",
+              "delta": 17.7773438,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "y": {
+            "samples": 1202,
+            "failures": 1008,
+            "max_abs_delta": 47.9873046875,
+            "max_abs_delta_by_unit": {
+              "u0": 47.9873046875,
+              "u1": 0.0385739688
+            },
+            "final_delta_by_unit": {
+              "u0": -47.9873046875,
+              "u1": 0.0385739688
+            },
+            "first_divergence": {
+              "reference_seq": 300,
+              "actual_seq": 299,
+              "kind": "SAMPLE",
+              "sample_index": 194,
+              "callback": 97,
+              "unit": "u0",
+              "property": "y",
+              "reference_t": "1.940002",
+              "actual_t": "1.94000244",
+              "reference_time": {
+                "requested": "1.940000",
+                "reported": "1.940002",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.940000",
+                "reported": "1.94000244",
+                "state_us": 1940000
+              },
+              "reference": "48.000000",
+              "actual": "0.0126953125",
+              "delta": -47.9873046875,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "facing": {
+            "samples": 1202,
+            "failures": 504,
+            "max_abs_delta": 0.09849599999998304,
+            "max_abs_delta_by_unit": {
+              "u0": 4.830000079891761e-07,
+              "u1": 0.09849599999998304
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": -0.09849599999998304
+            },
+            "first_divergence": {
+              "reference_seq": 301,
+              "actual_seq": 300,
+              "kind": "SAMPLE",
+              "sample_index": 195,
+              "callback": 97,
+              "unit": "u1",
+              "property": "facing",
+              "reference_t": "1.940002",
+              "actual_t": "1.94000244",
+              "reference_time": {
+                "requested": "1.940000",
+                "reported": "1.940002",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.940000",
+                "reported": "1.94000244",
+                "state_us": 1940000
+              },
+              "reference": "180.273819",
+              "actual": "180.272659",
+              "delta": -0.0011599999999987176,
+              "tolerance": 0.001
+            },
+            "status": "FAIL"
+          },
+          "order": {
+            "samples": 1202,
+            "failures": 503,
+            "max_abs_delta": 851986,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 851986
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 851986
+            },
+            "first_divergence": {
+              "reference_seq": 304,
+              "actual_seq": 303,
+              "kind": "SAMPLE",
+              "sample_index": 197,
+              "callback": 98,
+              "unit": "u1",
+              "property": "order",
+              "reference_t": "1.960022",
+              "actual_t": "1.96002197",
+              "reference_time": {
+                "requested": "1.960000",
+                "reported": "1.960022",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.960000",
+                "reported": "1.96002197",
+                "state_us": 1960000
+              },
+              "reference": "0",
+              "actual": "851986",
+              "delta": 851986,
+              "tolerance": 0
+            },
+            "status": "FAIL"
+          },
+          "t": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 5.000000014021566e-08,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000014021566e-08,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": -5.000000014021566e-08,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_divergence": {
+          "reference_seq": 300,
+          "actual_seq": 299,
+          "kind": "SAMPLE",
+          "sample_index": 194,
+          "callback": 97,
+          "unit": "u0",
+          "property": "x",
+          "reference_t": "1.940002",
+          "actual_t": "1.94000244",
+          "reference_time": {
+            "requested": "1.940000",
+            "reported": "1.940002",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "1.940000",
+            "reported": "1.94000244",
+            "state_us": 1940000
+          },
+          "reference": "-48.000000",
+          "actual": "-30.2226562",
+          "delta": 17.7773438,
+          "tolerance": 0.001
+        },
+        "unobserved_properties": []
+      },
+      "wc3_description": {
+        "u0": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -48.0,
+            "y": 48.0,
+            "facing": 359.681061,
+            "order": 0
+          },
+          "max_displacement": 469.777344,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 97,
+          "largest_sideways_deviation": {
+            "callback": 97,
+            "units": 48.0
+          },
+          "waits": [
+            {
+              "first": 88,
+              "last": 96,
+              "callbacks": 8
+            }
+          ],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 89,
+                "distance": 52.319824
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 13.997559,
+            "y": -0.019531,
+            "facing": 180.371155,
+            "order": 0
+          },
+          "max_displacement": 486.002441,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 98,
+          "largest_sideways_deviation": {
+            "callback": 2,
+            "units": -0.043945
+          },
+          "waits": [
+            {
+              "first": 89,
+              "last": 96,
+              "callbacks": 7
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 89,
+                "distance": 52.319824
+              }
+            }
+          }
+        }
+      },
+      "transition": {
+        "callback": 96,
+        "pre": [
+          96,
+          -30.222656,
+          0.012695,
+          359.681061,
+          851986
+        ],
+        "post": [
+          97,
+          -48.0,
+          48.0,
+          359.681061,
+          0
+        ],
+        "delta_xy": [
+          -17.777344,
+          47.987305
+        ],
+        "displacement": 51.17436273034927,
+        "grid_center_error": [
+          0.0,
+          0.0
+        ],
+        "initial_positions_match": true,
+        "pre_stop_stationary": true,
+        "pre_stop_move_order": true,
+        "setup": "PASS",
+        "post_stop_idle": true,
+        "stopped_position_stable": true,
+        "hypotheses": {
+          "stop_in_place": "REFUTED",
+          "blocked_grid": "SURVIVES",
+          "unconditional_grid": "SURVIVES"
+        }
+      },
+      "rating": "P3"
+    },
+    "MOV-0026-c": {
+      "comparison": {
+        "status": "PASS",
+        "properties": {
+          "x": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 9.999999974752427e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 9.999999974752427e-07,
+              "u1": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 4.0000000467443897e-07,
+              "u1": -4.000000011217253e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000000005e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000000005e-07,
+              "u1": 5.000000000005e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 1.874999999984528e-07,
+              "u1": -2.5000000000025e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 4.830000079891761e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.830000079891761e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 3.799999999110071e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 3.799999999110071e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": -3.799999999110071e-07,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_divergence": null,
+        "unobserved_properties": []
+      },
+      "wc3_description": {
+        "u0": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -70.719727,
+            "y": 0.041992,
+            "facing": 359.661438,
+            "order": 0
+          },
+          "max_displacement": 429.280275,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 81,
+          "largest_sideways_deviation": {
+            "callback": 2,
+            "units": 0.043945
+          },
+          "waits": [],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 91,
+                "distance": 84.717308
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 13.997559,
+            "y": -0.019531,
+            "facing": 180.371155,
+            "order": 0
+          },
+          "max_displacement": 486.002441,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 91,
+          "largest_sideways_deviation": {
+            "callback": 2,
+            "units": -0.043945
+          },
+          "waits": [],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 91,
+                "distance": 84.717308
+              }
+            }
+          }
+        }
+      },
+      "transition": {
+        "callback": 80,
+        "pre": [
+          80,
+          -70.719727,
+          0.041992,
+          359.928528,
+          851986
+        ],
+        "post": [
+          81,
+          -70.719727,
+          0.041992,
+          359.928528,
+          0
+        ],
+        "delta_xy": [
+          0.0,
+          0.0
+        ],
+        "displacement": 0.0,
+        "grid_center_error": [
+          9.280272999999994,
+          15.958008
+        ],
+        "initial_positions_match": true,
+        "pre_stop_stationary": false,
+        "pre_stop_move_order": true,
+        "setup": "PASS",
+        "post_stop_idle": true,
+        "stopped_position_stable": true,
+        "hypotheses": {
+          "stop_in_place": "SURVIVES",
+          "blocked_grid": "SURVIVES",
+          "unconditional_grid": "REFUTED"
+        }
+      },
+      "rating": "none"
+    },
+    "MOV-0026-d": {
+      "comparison": {
+        "status": "FAIL",
+        "properties": {
+          "x": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 9.999999974752427e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 9.999999974752427e-07,
+              "u1": 9.999999974752427e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 2.9999999995311555e-07,
+              "u1": -3.0000000350582923e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "y": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 1.999999987845058e-07,
+              "u1": 2.9999999995311555e-07
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "facing": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 4.640000099698227e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 4.640000099698227e-07,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": -3.7000006614107406e-08,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "order": {
+            "samples": 1202,
+            "failures": 514,
+            "max_abs_delta": 851986,
+            "max_abs_delta_by_unit": {
+              "u0": 851986,
+              "u1": 851986
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 851986
+            },
+            "first_divergence": {
+              "reference_seq": 276,
+              "actual_seq": 275,
+              "kind": "SAMPLE",
+              "sample_index": 179,
+              "callback": 89,
+              "unit": "u1",
+              "property": "order",
+              "reference_t": "1.780029",
+              "actual_t": "1.7800293",
+              "reference_time": {
+                "requested": "1.780000",
+                "reported": "1.780029",
+                "state_us": null
+              },
+              "actual_time": {
+                "requested": "1.780000",
+                "reported": "1.7800293",
+                "state_us": 1780000
+              },
+              "reference": "0",
+              "actual": "851986",
+              "delta": 851986,
+              "tolerance": 0
+            },
+            "status": "FAIL"
+          },
+          "t": {
+            "samples": 1202,
+            "failures": 0,
+            "max_abs_delta": 5.000000005139782e-07,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000005139782e-07,
+              "u1": 5.000000005139782e-07
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "action_properties": {
+          "callback": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "unit": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "command": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "accepted": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "t": {
+            "samples": 3,
+            "failures": 0,
+            "max_abs_delta": 5.000000014021566e-08,
+            "max_abs_delta_by_unit": {
+              "u0": 5.000000014021566e-08,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": -5.000000014021566e-08,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_x": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          },
+          "target_y": {
+            "samples": 2,
+            "failures": 0,
+            "max_abs_delta": 0,
+            "max_abs_delta_by_unit": {
+              "u0": 0,
+              "u1": 0
+            },
+            "final_delta_by_unit": {
+              "u0": 0.0,
+              "u1": 0.0
+            },
+            "first_divergence": null,
+            "status": "PASS"
+          }
+        },
+        "event_properties": {},
+        "structural_differences": [],
+        "first_divergence": {
+          "reference_seq": 276,
+          "actual_seq": 275,
+          "kind": "SAMPLE",
+          "sample_index": 179,
+          "callback": 89,
+          "unit": "u1",
+          "property": "order",
+          "reference_t": "1.780029",
+          "actual_t": "1.7800293",
+          "reference_time": {
+            "requested": "1.780000",
+            "reported": "1.780029",
+            "state_us": null
+          },
+          "actual_time": {
+            "requested": "1.780000",
+            "reported": "1.7800293",
+            "state_us": 1780000
+          },
+          "reference": "0",
+          "actual": "851986",
+          "delta": 851986,
+          "tolerance": 0
+        },
+        "unobserved_properties": []
+      },
+      "wc3_description": {
+        "u0": {
+          "start": [
+            -484.0,
+            16.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -30.421387,
+            "y": 15.998535,
+            "facing": 0.247019,
+            "order": 0
+          },
+          "max_displacement": 453.578613,
+          "ordered": true,
+          "target": [
+            16.0,
+            16.0
+          ],
+          "arrival_callback": 95,
+          "largest_sideways_deviation": {
+            "callback": 2,
+            "units": 0.043945
+          },
+          "waits": [
+            {
+              "first": 85,
+              "last": 94,
+              "callbacks": 9
+            }
+          ],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 86,
+                "distance": 84.717776
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            516.0,
+            16.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 54.296387,
+            "y": 15.981445,
+            "facing": 179.681076,
+            "order": 0
+          },
+          "max_displacement": 461.703613,
+          "ordered": true,
+          "target": [
+            16.0,
+            16.0
+          ],
+          "arrival_callback": 89,
+          "largest_sideways_deviation": {
+            "callback": 2,
+            "units": -0.043945
+          },
+          "waits": [
+            {
+              "first": 86,
+              "last": 88,
+              "callbacks": 2
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 86,
+                "distance": 84.717776
+              }
+            }
+          }
+        }
+      },
+      "transition": {
+        "callback": 96,
+        "pre": [
+          96,
+          -30.421387,
+          15.998535,
+          0.247019,
+          0
+        ],
+        "post": [
+          97,
+          -30.421387,
+          15.998535,
+          0.247019,
+          0
+        ],
+        "delta_xy": [
+          0.0,
+          0.0
+        ],
+        "displacement": 0.0,
+        "grid_center_error": [
+          14.421386999999996,
+          0.0014649999999996055
+        ],
+        "initial_positions_match": true,
+        "pre_stop_stationary": true,
+        "pre_stop_move_order": false,
+        "setup": "INCONCLUSIVE",
+        "post_stop_idle": true,
+        "stopped_position_stable": true,
+        "hypotheses": {
+          "stop_in_place": "INCONCLUSIVE",
+          "blocked_grid": "INCONCLUSIVE",
+          "unconditional_grid": "INCONCLUSIVE"
+        }
+      },
+      "rating": "P3"
+    }
+  },
+  "hypotheses": {
+    "stop_in_place": "REFUTED",
+    "blocked_grid": "INCONCLUSIVE",
+    "unconditional_grid": "REFUTED"
+  }
+}

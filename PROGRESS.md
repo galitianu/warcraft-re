@@ -1,6 +1,6 @@
 # Progress
 
-As of 16 October 2026.
+As of 19 October 2026.
 
 **CI recovery:** the owner selected self-hosted Linux x64 on `nas-pc` and macOS
 ARM64 on the Mac mini, with Windows/MSVC temporarily disabled. Four active build
@@ -86,6 +86,31 @@ visible zoom. **Milestone 1 assessment:** every listed interaction increment now
 evidence, but all live evidence is scripted Cocoa input. It stays open until a physical-input play
 session (the [manual procedure](docs/client-v1.md#smoke-procedure)) is retained; group target
 assignment is measured in milestone 2, not claimed here.
+
+**MOV-0026 relocation evidence ([issue #49](https://github.com/galitianu/warcraft-re/issues/49), P3):**
+four preregistered layouts have twelve fresh, validated WC3 runs, identical within
+each map. Blocked stops at callbacks 90/96 relocate u0 about 51 units to (-48,48);
+the moving-stop control stays in place and passes the full unchanged-model trace.
+The translated unit idles naturally before its stop, so that intervention is
+inconclusive. H0 passes 1/4; three P3 failures remain explicit. Always-in-place and
+unconditional-grid rules are refuted; the blocked-only grid rule is inconclusive
+overall. No model/tolerance change ([results](docs/mov-0026.md#observed-results)).
+Native ARM64 Release archival CI passes (CTest 12/12, Python 165/165), preserving
+all movement/collision/P1 gates. The evidence increment is ready for independent review.
+Next: preregister the translated stop at callback 90 under a new ID and verify it
+still holds move; #41's same-point moving/idle comparison remains unresolved.
+
+**MOV-0024 partial evidence ([issue #41](https://github.com/galitianu/warcraft-re/issues/41), P3):**
+six preregistered layouts now have eighteen validated, repeatable fresh WC3 runs.
+H0 and candidate C96 fail all six comparisons; the model and tolerances are unchanged.
+The required same-point moving/idle intervention remains **unmet**: overlapping
+creation displaced a unit, and the sixth adaptive layout's explicit stop relocated
+the occupant before reissue. Negative evidence and inconclusive interventions are
+retained in a finite regression ([results](docs/mov-0024.md#results-and-acceptance-limit-18-october-2026)).
+Native ARM64 Release archival CI passes (CTest 12/12, Python 159/159; protected
+movement/collision/P1 gates unchanged). The acceptance gap remains open.
+The user-authorized MOV-0026 follow-up above measures relocation; its results define
+the next control needed before a matched occupant-state comparison.
 
 **Physical-input validation ([issue #44](https://github.com/galitianu/warcraft-re/issues/44), P3 gate):**
 HUM-0001's [procedure](results/client-human/README.md) was committed before two owner sessions on

@@ -1,0 +1,14 @@
+{
+  "map": "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0026/capture-b/oracle-maps/MOV-0026-b.w3m",
+  "bytes": 22602,
+  "sha256": "52b86bec3778a909f9a3fe326b126293baf77fc7f70b093f089966743008d3d0",
+  "w3i_format": 18,
+  "custom_text_triggers": 1,
+  "trigger_matches_source": true,
+  "war3map_j_contains_source": true,
+  "war3map_j_runs_init_triggers": false,
+  "generated_war3map_j_sha256": "5ca502183a65437ad1f3a511cafd9c7a9904475e19453f73e4563d28d76ea272",
+  "library_sha256": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca",
+  "case_sha256": "9c95e86869fa66082fef092b3f9085953b2d20fa86c21459feea8f6c41c42a84",
+  "ok": true
+}

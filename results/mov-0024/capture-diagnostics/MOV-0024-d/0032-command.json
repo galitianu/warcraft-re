@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "--json",
+    "ui",
+    "--image-dir",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0024/capture-d/diagnostics",
+    "click",
+    "-"
+  ],
+  "stdin": "{\"pid\": 9896, \"window_id\": 459614, \"x\": 90, \"y\": 106, \"delivery_mode\": \"foreground\"}",
+  "timeout_seconds": 20,
+  "exit": 0,
+  "stdout": "{\"content\":[{\"text\":\"\u2705 Sent click via SendInput to pid 9896 at (178,189) (delivery_mode:foreground).\",\"type\":\"text\"}],\"structuredContent\":{\"delivery\":{\"mode\":\"foreground\"},\"effect\":\"unverifiable\",\"route\":\"global_input\"}}\n",
+  "stderr": ""
+}

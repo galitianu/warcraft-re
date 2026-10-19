@@ -15,6 +15,8 @@ from audit_oracle import audit
 from run_mov0013 import CASES as GENERATED_CASES, EXPERIMENTS, FIXTURES as EXPERIMENT_FIXTURES, assess as assess_experiment, exact, labels
 from run_mov0018 import EXPERIMENTS as COLLISIONS, gate_key, grade as grade_collision
 from run_mov0023 import verify_download as verify_three_footmen
+from run_mov0024 import verify_download as verify_occupied_goal
+from run_mov0026 import verify_download as verify_stop_relocation
 from trace_contract import EXPERIMENT_SHAPES, GENERATED_SHAPES, digest, load, payload, sha256, validate, write_json
 
 CONFIGURATIONS = ('mac-arm-release', 'mac-arm-debug', 'linux-gcc-release',
@@ -181,6 +183,8 @@ def summarize(artifacts, out, legacy_before_generated_captures=False, include_wi
             for experiment in COLLISIONS:
                 experiments[experiment] = verify_collision(root, result, experiment, legacy_before_generated_captures)
             experiments['MOV-0023'] = verify_three_footmen(root, result, legacy_before_generated_captures)
+            experiments['MOV-0024'] = verify_occupied_goal(root, result, legacy_before_generated_captures)
+            experiments['MOV-0026'] = verify_stop_relocation(root, result, legacy_before_generated_captures)
             suites = {}
             for model in BASELINES:
                 suite = validate_report(load(root / 'reports' / model / 'comparison.json'))
@@ -244,7 +248,7 @@ def summarize(artifacts, out, legacy_before_generated_captures=False, include_wi
                                           configurations_compared=list(loops),
                                           compatibility_passes={k: v['compatibility_passes'] for k, v in loops.items()})
     report['experiments'] = {}
-    for experiment in [*EXPERIMENTS, *COLLISIONS, 'MOV-0023']:
+    for experiment in [*EXPERIMENTS, *COLLISIONS, 'MOV-0023', 'MOV-0024', 'MOV-0026']:
         studies = {k: v['experiments'][experiment] for k, v in report['configurations'].items()
                    if v['experiments'][experiment]}
         if studies and (len(studies) != len(configurations) or len({digest(v) for v in studies.values()}) != 1):

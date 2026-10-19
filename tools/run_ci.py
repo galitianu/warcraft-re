@@ -16,6 +16,8 @@ from run_generated import run as run_generated
 from run_mov0013 import EXPERIMENTS, run as run_experiment
 from run_mov0018 import EXPERIMENTS as COLLISIONS, run as run_collision
 from run_mov0023 import run as run_three_footmen
+from run_mov0024 import run as run_occupied_goal
+from run_mov0026 import run as run_stop_relocation
 from normalize_traces import normalize_all
 from regression import assess, markdown as regression_markdown
 from trace_contract import BUILD, LABELS, ROOT, SCENARIOS, digest, load, payload, sha256, validate, write_json
@@ -114,7 +116,7 @@ def summarize(result, reports):
              f"Oracle generator: **{result.get('oracle_generation', {}).get('status', 'UNVERIFIED')}**. "
              f"Generated-map WC3 capture loop: **{result.get('generated_capture_loop', {}).get('status', 'UNVERIFIED')}**. "
              'Reviewed-difference gates: ' + ', '.join(
-                 f"{e} **{result.get(gate_key(e), {}).get('status', 'UNVERIFIED')}**" for e in [*EXPERIMENTS, *COLLISIONS, 'MOV-0023']) + '.', '',
+                 f"{e} **{result.get(gate_key(e), {}).get('status', 'UNVERIFIED')}**" for e in [*EXPERIMENTS, *COLLISIONS, 'MOV-0023', 'MOV-0024', 'MOV-0026']) + '.', '',
              '| Model / phase | Compatibility | Regression gate | Improvements |', '|---|---|---|---|']
     for name, info in result['models'].items():
         lines.append(f"| {name} | {info['compatibility_passes']}/10 PASS | {info['regression_verdict']} | {info['improvements']} |")
@@ -231,9 +233,11 @@ def run(args):
             shutil.rmtree(build / 'footman-v4-test')
         # Keep executing evidence stages after a test failure so diagnostics survive.
         # CTest's step limit covers the long human-session replay in Debug (client_human_0002).
+        # The Python suite regrades the MOV-0023/MOV-0024 finite gates with the built runner,
+        # about 240 s on a Debug build and more on the Linux runner; 300 s no longer fits.
         for name, command, limit in (
             ('ctest', ['ctest', '--test-dir', build, '--output-on-failure', '--timeout', '180'], 1800),
-            ('python-integrity', [sys.executable, '-m', 'unittest', 'discover', '-s', 'tools', '-p', 'test_*.py', '-v'], 300)):
+            ('python-integrity', [sys.executable, '-m', 'unittest', 'discover', '-s', 'tools', '-p', 'test_*.py', '-v'], 900)):
             try:
                 execute(command, logs, name, env=test_env, timeout=limit)
             except (OSError, ValueError) as error:
@@ -313,6 +317,18 @@ def run(args):
         result['mov0023'] = dict(status='PASS' if code == 0 else 'FAIL')
         if code:
             result['errors']['mov-0023'] = 'three-unit evidence or frozen prediction verdict changed'
+        result['mov0024_required'] = True
+        code = run_occupied_goal(build / f'wc3test{ext}', build / f'oracle_codegen{ext}',
+                                 build / 'ci/mov-0024', reports)
+        result['mov0024'] = dict(status='PASS' if code == 0 else 'FAIL')
+        if code:
+            result['errors']['mov-0024'] = 'occupied-goal evidence or frozen verdict changed'
+        result['mov0026_required'] = True
+        code = run_stop_relocation(build / f'wc3test{ext}', build / f'oracle_codegen{ext}',
+                                   build / 'ci/mov-0026', reports)
+        result['mov0026'] = dict(status='PASS' if code == 0 else 'FAIL')
+        if code:
+            result['errors']['mov-0026'] = 'stop-relocation evidence or frozen verdict changed'
         result['status'] = 'PASS' if not result['errors'] and len(result['models']) == 5 else 'FAIL'
     except (OSError, ValueError, KeyError, TypeError, IndexError, OverflowError) as error:
         result['errors']['pipeline'] = str(error)

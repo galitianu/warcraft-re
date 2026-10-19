@@ -1,0 +1,30 @@
+{
+  "generator": "oracle_codegen-v1",
+  "template": {
+    "path": "oracle-maps/MOV-0002.w3m",
+    "bytes": 19009,
+    "sha256": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd"
+  },
+  "template_bounds_sha256": "6c1a65e24867e04fb399ddc51abb068dffde3e6a721b0553b00bcf69cd79de96",
+  "sources": {
+    "tools/oracle_codegen/main.cpp": "ec798cf9d58f30b855c7f3e3f4bb254e7523d5e0bd1132de09318e5158f59158",
+    "tools/wc3test/Scenario.cpp": "8cd855659edb355d6b4e4ace2d6bf52ac06484e1d4e52024e7370f521c25514d",
+    "tools/wc3test/Scenario.h": "c586d54076e285d5ed0ea55bb977aa8682d00d80f5bd93aaa441df831d169ddb",
+    "tools/generate_oracle.py": "e5071a472b39fd81638d694da3c4e2acd3b2dbc69fdc0435421f1263da3f7363"
+  },
+  "inputs": [
+    {
+      "experiment": "MOV-0024",
+      "map_revision": "MOV-0024-f",
+      "scenario": {
+        "path": "scenarios/MOV-0024/MOV-0024-f.yaml",
+        "sha256": "0b8801033832ebc08139c32351e6a1716e95169736af26913ea24d6a729c9c3e",
+        "version": 1
+      },
+      "case": {
+        "file": "MOV-0024-f.j",
+        "sha256": "5409c4303494245f1b905ba122e6234c89706c336f04cb0cba77898f19239ffa"
+      }
+    }
+  ]
+}

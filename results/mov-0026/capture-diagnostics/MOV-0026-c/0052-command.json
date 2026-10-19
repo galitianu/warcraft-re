@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "pull",
+    "C:\\Users\\rdpipe\\Documents\\Warcraft III\\Maps\\Oracle\\MOV-0026-c.w3m",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0026/capture-c/oracle-maps/MOV-0026-c.w3m"
+  ],
+  "stdin": null,
+  "timeout_seconds": 60,
+  "exit": 0,
+  "stdout": "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0026/capture-c/oracle-maps/MOV-0026-c.w3m: 22431 bytes from C:\\Users\\rdpipe\\Documents\\Warcraft III\\Maps\\Oracle\\MOV-0026-c.w3m, sha256 82fb96c3c0ce604dec083b4f328ce2c470d16406b78f0ece2bbcc4804cfb4dd6\n",
+  "stderr": "\nC:\\Users\\rdpipe\\Documents\\Warcraft III\\Maps\\Oracle\\MOV-0026-c.w3m: 100%\n"
+}

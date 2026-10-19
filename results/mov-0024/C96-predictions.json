@@ -1,0 +1,797 @@
+{
+  "model": "C96",
+  "runner_sha256": "bb18284eda320325d4aa771201db775be1cd4e4c74250a1eb76273e23edb0cf2",
+  "method": "tools/predict_mov0024.py",
+  "cases": {
+    "MOV-0024-a": {
+      "scenario": "scenarios/MOV-0024/MOV-0024-a.yaml",
+      "scenario_sha256": "068758647ffb6d5f28c6f0a27d6d0d0e56466945edb4758eac4c380fe6b26cf4",
+      "trace": "results/mov-0024/C96/MOV-0024-a.json",
+      "sha256": "b50dea0aa7bc0222d7f16bab9d0e4b2fb031cfce2032f746b4b7a075d810bafe",
+      "description": {
+        "u0": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -30.2226562,
+            "y": 0.0126953125,
+            "facing": 0.388643175,
+            "order": 0
+          },
+          "max_displacement": 469.777344,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 88,
+          "largest_sideways_deviation": {
+            "callback": 2,
+            "units": 0.043945
+          },
+          "waits": [],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 89,
+                "distance": 52.319825
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 22.097168,
+            "y": 0.0190429688,
+            "facing": 179.592697,
+            "order": 0
+          },
+          "max_displacement": 477.902832,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 89,
+          "largest_sideways_deviation": {
+            "callback": 2,
+            "units": -0.043945
+          },
+          "waits": [],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 89,
+                "distance": 52.319825
+              }
+            }
+          }
+        }
+      },
+      "build": {
+        "git_commit": "d9adfa63c302e8308748741c9da8ea9e35a48f8d",
+        "git_dirty_at_configure": true,
+        "source_sha256": "2f76c910eca3db4b4cf77952727e2a22c047ae386a522ab916f5ea1c802b23fd",
+        "compiler": "AppleClang 21.0.0.21000334",
+        "build_type": "Release",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 15.5,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float",
+          "unit_pathing": {
+            "cell": 32,
+            "grid_cells": 256,
+            "search_limit": 32768,
+            "waypoint_radius": 15.6800003,
+            "footprint": "2x2 cells: the cell holding the unit and those west and south",
+            "wait_updates": 4,
+            "give_way_updates": 20,
+            "replan_updates": 10
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0024",
+            "callbacks": 600,
+            "units": 2,
+            "samples": 1202
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0024",
+            "map_revision": "MOV-0024-a",
+            "path": "scenarios/MOV-0024/MOV-0024-a.yaml",
+            "sha256": "068758647ffb6d5f28c6f0a27d6d0d0e56466945edb4758eac4c380fe6b26cf4"
+          }
+        ]
+      }
+    },
+    "MOV-0024-b": {
+      "scenario": "scenarios/MOV-0024/MOV-0024-b.yaml",
+      "scenario_sha256": "d726a6018069c1630049eeaf839a310b803c89f4cd429f3a7307d6cd69b032a5",
+      "trace": "results/mov-0024/C96/MOV-0024-b.json",
+      "sha256": "2f4e19c84d822f1874d03e9f93a60b9940bfec78dec794400808388c83b7f785",
+      "description": {
+        "u0": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -54.520752,
+            "y": -0.0344238281,
+            "facing": 359.595551,
+            "order": 0
+          },
+          "max_displacement": 445.479249,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 83,
+          "largest_sideways_deviation": {
+            "callback": 2,
+            "units": 0.043945
+          },
+          "waits": [],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 91,
+                "distance": 56.283837
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            0.0,
+            -500.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 0.0,
+            "y": -14.0114746,
+            "facing": 89.9999924,
+            "order": 0
+          },
+          "max_displacement": 485.988525,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 91,
+          "largest_sideways_deviation": {
+            "callback": 0,
+            "units": 0.0
+          },
+          "waits": [],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 91,
+                "distance": 56.283837
+              }
+            }
+          }
+        }
+      },
+      "build": {
+        "git_commit": "d9adfa63c302e8308748741c9da8ea9e35a48f8d",
+        "git_dirty_at_configure": true,
+        "source_sha256": "2f76c910eca3db4b4cf77952727e2a22c047ae386a522ab916f5ea1c802b23fd",
+        "compiler": "AppleClang 21.0.0.21000334",
+        "build_type": "Release",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 15.5,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float",
+          "unit_pathing": {
+            "cell": 32,
+            "grid_cells": 256,
+            "search_limit": 32768,
+            "waypoint_radius": 15.6800003,
+            "footprint": "2x2 cells: the cell holding the unit and those west and south",
+            "wait_updates": 4,
+            "give_way_updates": 20,
+            "replan_updates": 10
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0024",
+            "callbacks": 600,
+            "units": 2,
+            "samples": 1202
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0024",
+            "map_revision": "MOV-0024-b",
+            "path": "scenarios/MOV-0024/MOV-0024-b.yaml",
+            "sha256": "d726a6018069c1630049eeaf839a310b803c89f4cd429f3a7307d6cd69b032a5"
+          }
+        ]
+      }
+    },
+    "MOV-0024-c": {
+      "scenario": "scenarios/MOV-0024/MOV-0024-c.yaml",
+      "scenario_sha256": "bbe18f42d6a58efa33c2d995a25e65f2a491b383c939455c8a09ae6c113933f8",
+      "trace": "results/mov-0024/C96/MOV-0024-c.json",
+      "sha256": "217ca94c71af3f844bc868284a48852604f5bb9786f0e61843853e89cb741579",
+      "description": {
+        "u0": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -56.6530762,
+            "y": 15.9091797,
+            "facing": 344.313751,
+            "order": 0
+          },
+          "max_displacement": 443.632277,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 85,
+          "largest_sideways_deviation": {
+            "callback": 83,
+            "units": 15.90918
+          },
+          "waits": [],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 58.844482
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 58.844482
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            0.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 0.0,
+            "y": 0.0,
+            "facing": 0.313376963,
+            "order": 851986
+          },
+          "max_displacement": 0.0,
+          "ordered": true,
+          "target": [
+            1000.0,
+            0.0
+          ],
+          "arrival_callback": null,
+          "largest_sideways_deviation": {
+            "callback": 0,
+            "units": 0.0
+          },
+          "waits": [
+            {
+              "first": 1,
+              "last": 600,
+              "callbacks": 599
+            }
+          ],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 58.844482
+              }
+            },
+            "u2": {
+              "passes_other_on": "through",
+              "closest_approach": {
+                "callback": 0,
+                "distance": 0.0
+              }
+            }
+          }
+        },
+        "u2": {
+          "start": [
+            0.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 0.0,
+            "y": 0.0,
+            "facing": 0.0,
+            "order": 0
+          },
+          "max_displacement": 0.0,
+          "ordered": false,
+          "pairs": {
+            "u0": {},
+            "u1": {}
+          }
+        }
+      },
+      "build": {
+        "git_commit": "d9adfa63c302e8308748741c9da8ea9e35a48f8d",
+        "git_dirty_at_configure": true,
+        "source_sha256": "2f76c910eca3db4b4cf77952727e2a22c047ae386a522ab916f5ea1c802b23fd",
+        "compiler": "AppleClang 21.0.0.21000334",
+        "build_type": "Release",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 15.5,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float",
+          "unit_pathing": {
+            "cell": 32,
+            "grid_cells": 256,
+            "search_limit": 32768,
+            "waypoint_radius": 15.6800003,
+            "footprint": "2x2 cells: the cell holding the unit and those west and south",
+            "wait_updates": 4,
+            "give_way_updates": 20,
+            "replan_updates": 10
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0024",
+            "callbacks": 600,
+            "units": 3,
+            "samples": 1803
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0024",
+            "map_revision": "MOV-0024-c",
+            "path": "scenarios/MOV-0024/MOV-0024-c.yaml",
+            "sha256": "bbe18f42d6a58efa33c2d995a25e65f2a491b383c939455c8a09ae6c113933f8"
+          }
+        ]
+      }
+    },
+    "MOV-0024-d": {
+      "scenario": "scenarios/MOV-0024/MOV-0024-d.yaml",
+      "scenario_sha256": "ab3bd9d8ad64811f263ea148e6683f3e5f4a71e23081c6b565734c6acdb37c25",
+      "trace": "results/mov-0024/C96/MOV-0024-d.json",
+      "sha256": "2c0dee29297a005ccd0c51c8f8844236aac98eea7729ab6405ae787aea44aaff",
+      "description": {
+        "u0": {
+          "start": [
+            -500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": -56.6530762,
+            "y": 15.9091797,
+            "facing": 344.313751,
+            "order": 0
+          },
+          "max_displacement": 443.632277,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 85,
+          "largest_sideways_deviation": {
+            "callback": 83,
+            "units": 15.90918
+          },
+          "waits": [],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 58.844482
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 58.844482
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            0.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 0.0,
+            "y": 0.0,
+            "facing": 0.0,
+            "order": 0
+          },
+          "max_displacement": 0.0,
+          "ordered": false,
+          "pairs": {
+            "u0": {},
+            "u2": {}
+          }
+        },
+        "u2": {
+          "start": [
+            0.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 0.0,
+            "y": 0.0,
+            "facing": 0.0,
+            "order": 0
+          },
+          "max_displacement": 0.0,
+          "ordered": false,
+          "pairs": {
+            "u0": {},
+            "u1": {}
+          }
+        }
+      },
+      "build": {
+        "git_commit": "d9adfa63c302e8308748741c9da8ea9e35a48f8d",
+        "git_dirty_at_configure": true,
+        "source_sha256": "2f76c910eca3db4b4cf77952727e2a22c047ae386a522ab916f5ea1c802b23fd",
+        "compiler": "AppleClang 21.0.0.21000334",
+        "build_type": "Release",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 15.5,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float",
+          "unit_pathing": {
+            "cell": 32,
+            "grid_cells": 256,
+            "search_limit": 32768,
+            "waypoint_radius": 15.6800003,
+            "footprint": "2x2 cells: the cell holding the unit and those west and south",
+            "wait_updates": 4,
+            "give_way_updates": 20,
+            "replan_updates": 10
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0024",
+            "callbacks": 600,
+            "units": 3,
+            "samples": 1803
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0024",
+            "map_revision": "MOV-0024-d",
+            "path": "scenarios/MOV-0024/MOV-0024-d.yaml",
+            "sha256": "ab3bd9d8ad64811f263ea148e6683f3e5f4a71e23081c6b565734c6acdb37c25"
+          }
+        ]
+      }
+    },
+    "MOV-0024-e": {
+      "scenario": "scenarios/MOV-0024/MOV-0024-e.yaml",
+      "scenario_sha256": "bf5dbc84229b489fa9bf2e873805558885df9e78c0b92e9deb3c6c3d0405f831",
+      "trace": "results/mov-0024/C96/MOV-0024-e.json",
+      "sha256": "74f6253fc3bee0c23bdc02e226e59bc5389d497ee89a8ef2c46ceed87615af5d",
+      "description": {
+        "u0": {
+          "start": [
+            0.0,
+            500.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 0.0,
+            "y": 62.5947266,
+            "facing": 270.0,
+            "order": 0
+          },
+          "max_displacement": 437.405273,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 82,
+          "largest_sideways_deviation": {
+            "callback": 0,
+            "units": 0.0
+          },
+          "waits": [],
+          "pairs": {
+            "u1": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 82,
+                "distance": 125.203857
+              }
+            },
+            "u2": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 83.014327
+              }
+            }
+          }
+        },
+        "u1": {
+          "start": [
+            0.0,
+            -500.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 0.0,
+            "y": -62.6091309,
+            "facing": 89.9999924,
+            "order": 0
+          },
+          "max_displacement": 437.390869,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 82,
+          "largest_sideways_deviation": {
+            "callback": 0,
+            "units": 0.0
+          },
+          "waits": [],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 82,
+                "distance": 125.203857
+              }
+            },
+            "u2": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 82.983575
+              }
+            }
+          }
+        },
+        "u2": {
+          "start": [
+            500.0,
+            0.0
+          ],
+          "final": {
+            "callback": 600,
+            "x": 54.4960938,
+            "y": -0.0275878906,
+            "facing": 180.333923,
+            "order": 0
+          },
+          "max_displacement": 445.503907,
+          "ordered": true,
+          "target": [
+            0.0,
+            0.0
+          ],
+          "arrival_callback": 83,
+          "largest_sideways_deviation": {
+            "callback": 2,
+            "units": -0.043945
+          },
+          "waits": [],
+          "pairs": {
+            "u0": {
+              "passes_other_on": "left",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 83.014327
+              }
+            },
+            "u1": {
+              "passes_other_on": "right",
+              "closest_approach": {
+                "callback": 83,
+                "distance": 82.983575
+              }
+            }
+          }
+        }
+      },
+      "build": {
+        "git_commit": "d9adfa63c302e8308748741c9da8ea9e35a48f8d",
+        "git_dirty_at_configure": true,
+        "source_sha256": "2f76c910eca3db4b4cf77952727e2a22c047ae386a522ab916f5ea1c802b23fd",
+        "compiler": "AppleClang 21.0.0.21000334",
+        "build_type": "Release",
+        "architecture": "arm64",
+        "fp_contract": "off",
+        "model": "footman-v4",
+        "time_unit": "seconds",
+        "step_us": 1000,
+        "seed": 1,
+        "rng": "std::mt19937; unused by movement",
+        "observation_phase": "after-due-update",
+        "sample_period_us": 20000,
+        "state_lag_us": 0,
+        "parameters": {
+          "update_period_steps": 30,
+          "update_phase_steps": 10,
+          "frame_steps": 5,
+          "stop_radius": 15.5,
+          "default_speed": 270,
+          "speed_clamp": [
+            150,
+            400
+          ],
+          "turn_rate_radians": "atof(0.6)",
+          "propulsion_window_degrees": 60,
+          "facing": "atof(0.07, 0.2, 0.2, 0.25, 0.001)",
+          "frame_origin": -4096,
+          "clock_start_seconds": 0.5,
+          "library_clock": "sub(1000, sub(add(start, 1000), scheduled)); scheduled += 0.02 per callback",
+          "arithmetic": "wc3::sf retail soft-float",
+          "unit_pathing": {
+            "cell": 32,
+            "grid_cells": 256,
+            "search_limit": 32768,
+            "waypoint_radius": 15.6800003,
+            "footprint": "2x2 cells: the cell holding the unit and those west and south",
+            "wait_updates": 4,
+            "give_way_updates": 20,
+            "replan_updates": 10
+          }
+        },
+        "cases": [
+          {
+            "test": "MOV-0024",
+            "callbacks": 600,
+            "units": 3,
+            "samples": 1803
+          }
+        ],
+        "scenarios": [
+          {
+            "experiment": "MOV-0024",
+            "map_revision": "MOV-0024-e",
+            "path": "scenarios/MOV-0024/MOV-0024-e.yaml",
+            "sha256": "bf5dbc84229b489fa9bf2e873805558885df9e78c0b92e9deb3c6c3d0405f831"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; if (Test-Path -LiteralPath \"C:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData\\MOV-0024-d.txt\") { Remove-Item -LiteralPath \"C:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData\\MOV-0024-d.txt\" }; if (Test-Path -LiteralPath \"C:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData\\MOV-0024-d.txt\") { throw \"stale output remains\" }; exit 0",
+  "timeout_seconds": 30,
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; (Get-FileHash -Algorithm SHA256 -LiteralPath \"C:\\Users\\rdpipe\\oracle-oracle-1356c38b83ef44c18e8255a6a4d68bc2\\MOV-0002.w3m\").Hash; exit 0",
+  "timeout_seconds": 30,
+  "exit": 0,
+  "stdout": "BB67F103CC5C17507FCF63F4928799939F7875538E8CED6B9512B525C8D23EFD\n",
+  "stderr": ""
+}

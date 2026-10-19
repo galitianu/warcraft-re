@@ -1,0 +1,114 @@
+{
+  "experiment": "MOV-0024",
+  "map_label": "MOV-0024-f",
+  "reference_build": "wc3-1.29.2-9231-x86",
+  "definition": "docs/mov-0024.md",
+  "procedure": "tools/capture_oracle.py",
+  "map": {
+    "path": "oracle-maps/MOV-0024-f.w3m",
+    "sha256": "b905ec9d870c1c0019a19bf5f65282f5cb5fb8b9e6f03e644d9ff858b1687382",
+    "bytes": 22801
+  },
+  "library": {
+    "path": "oracle/jass/lib/oracle-v1.j",
+    "sha256": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca"
+  },
+  "case": {
+    "path": "oracle/generated/maps/MOV-0024-f.j",
+    "sha256": "5409c4303494245f1b905ba122e6234c89706c336f04cb0cba77898f19239ffa"
+  },
+  "scenario": {
+    "schema": "wc3-scenario",
+    "version": 1,
+    "path": "scenarios/MOV-0024/MOV-0024-f.yaml",
+    "sha256": "0b8801033832ebc08139c32351e6a1716e95169736af26913ea24d6a729c9c3e"
+  },
+  "generation": {
+    "path": "oracle/generated/maps/MOV-0024-f-generation.json",
+    "sha256": "3355431842f0411c850c7ef3f0c3c626d1fcdb563ca7ae9e3077f9ad99537d83"
+  },
+  "verification": {
+    "path": "oracle/environment/MOV-0024-f-verification.json",
+    "sha256": "816dd245940c23cdae7dd445f73ed85f9cc55ff56b15e479e2e98f4933ecc8e1"
+  },
+  "environment": {
+    "path": "oracle/environment/wc3-1.29.2-9231-x86.json",
+    "sha256": "dad738060886d7c75feb0ff14ddc3c276d3e861842bbb8bfead09dd89f23a5a1"
+  },
+  "check_map": {
+    "map": "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0024/capture-f-complete2/oracle-maps/MOV-0024-f.w3m",
+    "bytes": 22801,
+    "sha256": "b905ec9d870c1c0019a19bf5f65282f5cb5fb8b9e6f03e644d9ff858b1687382",
+    "w3i_format": 18,
+    "custom_text_triggers": 1,
+    "trigger_matches_source": true,
+    "war3map_j_contains_source": true,
+    "war3map_j_runs_init_triggers": false,
+    "generated_war3map_j_sha256": "9630cc0db2cfcef5905dc02a6fd087f65309d6e618c6aed99f30992bf98c7f3e",
+    "library_sha256": "2b873f8fe0602d07bfcc884d004026af82fa7a3fdab75dc8eb863c52b4de1fca",
+    "case_sha256": "5409c4303494245f1b905ba122e6234c89706c336f04cb0cba77898f19239ffa",
+    "ok": true
+  },
+  "rng_seed": "not set; retail seed influence unobserved",
+  "sampling": {
+    "requested_period_seconds": "0.020000",
+    "callbacks": 600,
+    "clock_duration_seconds": "1000",
+    "units": "seconds, world-units, degrees",
+    "numeric_format": "R2SW(value,1,6)"
+  },
+  "transport": "rdpipe pull; hashes checked before/after transfer and locally",
+  "runs": [
+    {
+      "run": 1,
+      "file": "run-01.txt",
+      "game_pid": 6668,
+      "start_unix_seconds": 1792344092.2143989,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0024-f.w3m",
+      "map_sha256": "b905ec9d870c1c0019a19bf5f65282f5cb5fb8b9e6f03e644d9ff858b1687382",
+      "output": {
+        "Length": 176089,
+        "LastWriteTimeUtc": "/Date(1792344109774)/"
+      },
+      "sha256": "6e5683f27b3611ff519a22d61f49ec71d0c6753c071bb28e5f9890d075eaa42b",
+      "payload_sha256": "1e0f4a8645e0881dc56f965e0ee9533dbd02520ebaff70e7696b9dc8254436b1",
+      "footer": "call PreloadEnd( 12.1 )"
+    },
+    {
+      "run": 2,
+      "file": "run-02.txt",
+      "game_pid": 7040,
+      "start_unix_seconds": 1792344113.52265,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0024-f.w3m",
+      "map_sha256": "b905ec9d870c1c0019a19bf5f65282f5cb5fb8b9e6f03e644d9ff858b1687382",
+      "output": {
+        "Length": 176089,
+        "LastWriteTimeUtc": "/Date(1792344130964)/"
+      },
+      "sha256": "f084e3b30a93c5a50299fe4ec3b714b1f305d5861dfec55d934f9b03c9a19c6d",
+      "payload_sha256": "1e0f4a8645e0881dc56f965e0ee9533dbd02520ebaff70e7696b9dc8254436b1",
+      "footer": "call PreloadEnd( 12.2 )"
+    },
+    {
+      "run": 3,
+      "file": "run-03.txt",
+      "game_pid": 10684,
+      "start_unix_seconds": 1792344142.8598971,
+      "fresh_game_process": true,
+      "previous_output_removed": true,
+      "launch": "WC3 -loadfile MOV-0024-f.w3m",
+      "map_sha256": "b905ec9d870c1c0019a19bf5f65282f5cb5fb8b9e6f03e644d9ff858b1687382",
+      "output": {
+        "Length": 176089,
+        "LastWriteTimeUtc": "/Date(1792344167840)/"
+      },
+      "sha256": "6e5683f27b3611ff519a22d61f49ec71d0c6753c071bb28e5f9890d075eaa42b",
+      "payload_sha256": "1e0f4a8645e0881dc56f965e0ee9533dbd02520ebaff70e7696b9dc8254436b1",
+      "footer": "call PreloadEnd( 12.1 )"
+    }
+  ]
+}

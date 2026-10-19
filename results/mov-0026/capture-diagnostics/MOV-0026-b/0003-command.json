@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "--json",
+    "status"
+  ],
+  "stdin": null,
+  "timeout_seconds": 10,
+  "exit": 0,
+  "stdout": "{\"daemon\":{\"pid\":71766,\"proto\":[1,1],\"restart_pending\":false,\"started_at\":1792340663,\"targets\":[{\"channel_open\":true,\"channel_opens\":2,\"commands_running\":0,\"frames\":64724,\"host\":\"192.168.64.2\",\"name\":\"vm\",\"port\":3389,\"rdp\":{\"desktop\":[1920,1080],\"since\":1792340696,\"state\":\"connected\"},\"relay\":{\"caps\":[\"files\",\"update\",\"driver\",\"cua\",\"update_trial\",\"update_chunk\",\"host\",\"get_file\",\"put_dir\",\"session\",\"exec\",\"exec_stream\"],\"info\":{\"arch\":\"aarch64\",\"cua\":{\"pid\":6372,\"starts\":1,\"state\":\"running\",\"version\":\"0.28.2\"},\"cua_driver\":true,\"elevated\":false,\"exec\":true,\"os\":\"Windows 11 Pro 25H2 (build 26200)\",\"relay_uptime_s\":87111,\"relay_version\":\"0.11.0\",\"session\":{\"dpi\":96,\"locked\":false,\"screen\":[1920,1080],\"secure_desktop\":false,\"state\":\"active\"},\"session_id\":2,\"user\":\"rdpipe\"},\"last_pong\":1792427812,\"proto\":[1,2],\"role\":\"relay\",\"version\":\"0.11.0\"},\"user\":\"rdpipe\"}],\"version\":\"0.11.0\"}}\n",
+  "stderr": ""
+}

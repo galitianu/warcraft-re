@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "ps",
+    "-"
+  ],
+  "stdin": "$ErrorActionPreference=\"Stop\"; New-Item -ItemType Directory -Path \"C:\\Users\\rdpipe\\oracle-oracle-fa331ae2f6864938a0cae35745ed5852\" -ErrorAction Stop | Out-Null; New-Item -ItemType Directory -Force -Path \"C:\\Users\\rdpipe\\Documents\\Warcraft III\\Maps\\Oracle\" | Out-Null; exit 0",
+  "timeout_seconds": 30,
+  "exit": 0,
+  "stdout": "",
+  "stderr": ""
+}

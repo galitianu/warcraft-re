@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "--json",
+    "ui",
+    "--image-dir",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0026/capture-a/diagnostics",
+    "list_windows",
+    "-"
+  ],
+  "stdin": "{}",
+  "timeout_seconds": 20,
+  "exit": 0,
+  "stdout": "{\"content\":[{\"text\":\"\u2705 Found 5 window(s) across 3 app(s); 5 on-screen. (SkyLight Space SPIs unavailable \u2014 on_current_space / space_ids omitted.)\\n- World Editor.exe (pid 9256) \\\"Tool Palette\\\" [window_id: 655754]\\n- World Editor.exe (pid 9256) \\\"Warcraft III World Editor - [C:/.../Warcraft III/Maps/Oracle/MOV-0026-a.w3m]\\\" [window_id: 3474322]\\n- cua-driver.exe (pid 6372) \\\"Cua.AgentCursorOverlay.default\\\" [window_id: 131696]\\n- World Editor.exe (pid 9256) \\\"Trigger Editor\\\" [window_id: 1770330]\\n- explorer.exe (pid 5044) \\\"Program Manager\\\" [window_id: 65786]\",\"type\":\"text\"}],\"structuredContent\":{\"_legacy_windows\":[{\"height\":572,\"is_on_screen\":true,\"minimized\":false,\"pid\":9256,\"title\":\"Tool Palette\",\"width\":242,\"window_id\":655754,\"x\":1671,\"y\":0},{\"height\":1093,\"is_on_screen\":true,\"minimized\":false,\"pid\":9256,\"title\":\"Warcraft III World Editor - [C:/.../Warcraft III/Maps/Oracle/MOV-0026-a.w3m]\",\"width\":1666,\"window_id\":3474322,\"x\":7,\"y\":0},{\"height\":1080,\"is_on_screen\":true,\"minimized\":false,\"pid\":6372,\"title\":\"Cua.AgentCursorOverlay.default\",\"width\":1920,\"window_id\":131696,\"x\":0,\"y\":0},{\"height\":835,\"is_on_screen\":true,\"minimized\":false,\"pid\":9256,\"title\":\"Trigger Editor\",\"width\":1756,\"window_id\":1770330,\"x\":77,\"y\":70},{\"height\":1080,\"is_on_screen\":true,\"minimized\":false,\"pid\":5044,\"title\":\"Program Manager\",\"width\":1920,\"window_id\":65786,\"x\":0,\"y\":0}],\"current_space_id\":null,\"windows\":[{\"app_name\":\"World Editor.exe\",\"bounds\":{\"height\":572,\"width\":242,\"x\":1671,\"y\":0},\"is_on_screen\":true,\"layer\":0,\"minimized\":false,\"pid\":9256,\"title\":\"Tool Palette\",\"window_id\":655754,\"z_index\":4},{\"app_name\":\"World Editor.exe\",\"bounds\":{\"height\":1093,\"width\":1666,\"x\":7,\"y\":0},\"is_on_screen\":true,\"layer\":0,\"minimized\":false,\"pid\":9256,\"title\":\"Warcraft III World Editor - [C:/.../Warcraft III/Maps/Oracle/MOV-0026-a.w3m]\",\"window_id\":3474322,\"z_index\":3},{\"app_name\":\"cua-driver.exe\",\"bounds\":{\"height\":1080,\"width\":1920,\"x\":0,\"y\":0},\"is_on_screen\":true,\"layer\":0,\"minimized\":false,\"pid\":6372,\"title\":\"Cua.AgentCursorOverlay.default\",\"window_id\":131696,\"z_index\":2},{\"app_name\":\"World Editor.exe\",\"bounds\":{\"height\":835,\"width\":1756,\"x\":77,\"y\":70},\"is_on_screen\":true,\"layer\":0,\"minimized\":false,\"pid\":9256,\"title\":\"Trigger Editor\",\"window_id\":1770330,\"z_index\":1},{\"app_name\":\"explorer.exe\",\"bounds\":{\"height\":1080,\"width\":1920,\"x\":0,\"y\":0},\"is_on_screen\":true,\"layer\":0,\"minimized\":false,\"pid\":5044,\"title\":\"Program Manager\",\"window_id\":65786,\"z_index\":0}]}}\n",
+  "stderr": ""
+}

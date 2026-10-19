@@ -160,3 +160,14 @@ repeat within their maps. Overlap spawn displacement and stop-time relocation
 make the moving/idle same-point intervention inconclusive; occupied-goal completion
 remains unresolved. Next measure the idle-transition relocation in a separately
 preregistered experiment before another matched occupant-state comparison.
+
+
+### MOV-0026 stop-relocation evidence
+
+[MOV-0026](mov-0026.md#observed-results) adds four held-out stop controls, twelve
+repeatable fresh runs. The unchanged model passes the moving-stop control but
+fails two blocked stops and a translated layout (P3). Blocked stops relocate the
+retail unit about 51 units to (-48,48); the moving control stays in place. The
+translated unit idles before the scheduled stop, leaving the grid-phase test
+inconclusive. This rejects unconditional relocation and universal stop-in-place;
+it does not establish a complete conditional rule. No production model change.

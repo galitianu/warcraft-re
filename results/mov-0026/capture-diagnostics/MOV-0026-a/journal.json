@@ -1,0 +1,157 @@
+{
+  "status": "FINDING",
+  "stage": "complete",
+  "completed_stages": [
+    "inputs",
+    "generated-and-syntax-checked",
+    "guest-preflight",
+    "installation-verification",
+    "editor-authoring",
+    "saved-map-validation",
+    "capture-01",
+    "capture-02",
+    "capture-03",
+    "final-integrity",
+    "normalization",
+    "same-scenario-comparison"
+  ],
+  "owned_processes": [
+    {
+      "role": "editor",
+      "receipt": "C:\\Users\\rdpipe\\oracle-oracle-fa6eb33f8b2143a0bfaca736fac0a54e\\editor.json",
+      "status": "stopped",
+      "path": "C:\\Program Files (x86)\\Warcraft III\\World Editor.exe",
+      "pid": 9256,
+      "start": "639280244929201692"
+    },
+    {
+      "role": "game-1",
+      "receipt": "C:\\Users\\rdpipe\\oracle-oracle-fa6eb33f8b2143a0bfaca736fac0a54e\\game-1.json",
+      "status": "stopped",
+      "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+      "pid": 6292,
+      "start": "639280245415472387"
+    },
+    {
+      "role": "game-2",
+      "receipt": "C:\\Users\\rdpipe\\oracle-oracle-fa6eb33f8b2143a0bfaca736fac0a54e\\game-2.json",
+      "status": "stopped",
+      "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+      "pid": 9272,
+      "start": "639280245660781042"
+    },
+    {
+      "role": "game-3",
+      "receipt": "C:\\Users\\rdpipe\\oracle-oracle-fa6eb33f8b2143a0bfaca736fac0a54e\\game-3.json",
+      "status": "stopped",
+      "path": "C:\\Program Files (x86)\\Warcraft III\\Warcraft III.exe",
+      "pid": 10760,
+      "start": "639280245875155828"
+    }
+  ],
+  "transfers": [
+    {
+      "direction": "push",
+      "remote": "C:\\Users\\rdpipe\\oracle-oracle-fa6eb33f8b2143a0bfaca736fac0a54e\\MOV-0002.w3m",
+      "sha256": "bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd"
+    },
+    {
+      "direction": "push",
+      "remote": "C:\\Users\\rdpipe\\oracle-oracle-fa6eb33f8b2143a0bfaca736fac0a54e\\editor-menu.ps1",
+      "sha256": "312ba6d8ea7f0becbe22e3393ffcddbe08053f4480e77bdfa215a99d9d44456c"
+    },
+    {
+      "direction": "pull",
+      "remote": "C:\\Users\\rdpipe\\Documents\\Warcraft III\\Maps\\Oracle\\MOV-0026-a.w3m",
+      "local": "oracle-maps/MOV-0026-a.w3m",
+      "before_sha256": "afe5c72f9bf54e12582b097c3f6e30f36da1023f900c0ab2bf7ca99d9589ee09",
+      "after_sha256": "afe5c72f9bf54e12582b097c3f6e30f36da1023f900c0ab2bf7ca99d9589ee09",
+      "local_sha256": "afe5c72f9bf54e12582b097c3f6e30f36da1023f900c0ab2bf7ca99d9589ee09"
+    },
+    {
+      "direction": "pull",
+      "remote": "C:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData\\MOV-0026-a.txt",
+      "local": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0026-a/run-01.txt",
+      "before_sha256": "2ab5b50a6000aa35312b3354f46e97978b43d513fe4cf510dcb7fe516af93d85",
+      "after_sha256": "2ab5b50a6000aa35312b3354f46e97978b43d513fe4cf510dcb7fe516af93d85",
+      "local_sha256": "2ab5b50a6000aa35312b3354f46e97978b43d513fe4cf510dcb7fe516af93d85"
+    },
+    {
+      "direction": "pull",
+      "remote": "C:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData\\MOV-0026-a.txt",
+      "local": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0026-a/run-02.txt",
+      "before_sha256": "0e17049cf43d9c88a50d3f9e03c47b5cb796e8f2712fba4fdec8fc255aaf061d",
+      "after_sha256": "0e17049cf43d9c88a50d3f9e03c47b5cb796e8f2712fba4fdec8fc255aaf061d",
+      "local_sha256": "0e17049cf43d9c88a50d3f9e03c47b5cb796e8f2712fba4fdec8fc255aaf061d"
+    },
+    {
+      "direction": "pull",
+      "remote": "C:\\Users\\rdpipe\\Documents\\Warcraft III\\CustomMapData\\MOV-0026-a.txt",
+      "local": "oracle/captures/wc3-1.29.2-9231-x86/MOV-0026-a/run-03.txt",
+      "before_sha256": "0e17049cf43d9c88a50d3f9e03c47b5cb796e8f2712fba4fdec8fc255aaf061d",
+      "after_sha256": "0e17049cf43d9c88a50d3f9e03c47b5cb796e8f2712fba4fdec8fc255aaf061d",
+      "local_sha256": "0e17049cf43d9c88a50d3f9e03c47b5cb796e8f2712fba4fdec8fc255aaf061d"
+    }
+  ],
+  "events": [
+    {
+      "event": "utm-state",
+      "detail": "started"
+    }
+  ],
+  "stage_times": [
+    {
+      "stage": "generated-and-syntax-checked",
+      "elapsed_seconds": 0.052
+    },
+    {
+      "stage": "guest-preflight",
+      "elapsed_seconds": 0.052
+    },
+    {
+      "stage": "installation-verification",
+      "elapsed_seconds": 2.492
+    },
+    {
+      "stage": "editor-authoring",
+      "elapsed_seconds": 32.372
+    },
+    {
+      "stage": "saved-map-validation",
+      "elapsed_seconds": 80.796
+    },
+    {
+      "stage": "capture-01",
+      "elapsed_seconds": 80.799
+    },
+    {
+      "stage": "capture-02",
+      "elapsed_seconds": 105.361
+    },
+    {
+      "stage": "capture-03",
+      "elapsed_seconds": 126.783
+    },
+    {
+      "stage": "final-integrity",
+      "elapsed_seconds": 149.352
+    },
+    {
+      "stage": "normalization",
+      "elapsed_seconds": 176.605
+    },
+    {
+      "stage": "same-scenario-comparison",
+      "elapsed_seconds": 176.709
+    },
+    {
+      "stage": "complete",
+      "elapsed_seconds": 176.785
+    }
+  ],
+  "intervention_count": 0,
+  "vm": "012B6237-1E3E-40AE-9D80-2782BA75E69E",
+  "target": "vm",
+  "map_revision": "MOV-0026-a",
+  "elapsed_seconds": 176.792
+}

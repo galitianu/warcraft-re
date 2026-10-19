@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "--json",
+    "ui",
+    "--image-dir",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0026/capture-d/diagnostics",
+    "bring_to_front",
+    "-"
+  ],
+  "stdin": "{\"pid\": 2076, \"window_id\": 2032486}",
+  "timeout_seconds": 20,
+  "exit": 0,
+  "stdout": "{\"content\":[{\"text\":\"\u2705 bring_to_front: pid 2076 hwnd 0x1f0366 is now foreground (was 0x100fa).\",\"type\":\"text\"}],\"structuredContent\":{\"landed_on_target\":true,\"now_fg_hwnd\":\"0x1f0366\",\"previous_fg_hwnd\":\"0x100fa\",\"raised\":true,\"restored\":false,\"target_hwnd\":\"0x1f0366\"}}\n",
+  "stderr": ""
+}

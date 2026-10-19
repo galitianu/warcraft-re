@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "push",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0026/capture-a/tools/editor-menu.ps1",
+    "--to",
+    "C:\\Users\\rdpipe\\oracle-oracle-fa6eb33f8b2143a0bfaca736fac0a54e"
+  ],
+  "stdin": null,
+  "timeout_seconds": 60,
+  "exit": 0,
+  "stdout": "editor-menu.ps1: 1612 bytes, sha256 312ba6d8ea7f0becbe22e3393ffcddbe08053f4480e77bdfa215a99d9d44456c\n",
+  "stderr": "\neditor-menu.ps1: 100%\n"
+}

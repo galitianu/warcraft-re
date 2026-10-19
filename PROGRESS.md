@@ -87,6 +87,17 @@ evidence, but all live evidence is scripted Cocoa input. It stays open until a p
 session (the [manual procedure](docs/client-v1.md#smoke-procedure)) is retained; group target
 assignment is measured in milestone 2, not claimed here.
 
+**MOV-0026 relocation evidence ([issue #49](https://github.com/galitianu/warcraft-re/issues/49), P3):**
+four preregistered layouts have twelve fresh, validated WC3 runs, identical within
+each map. Blocked stops at callbacks 90/96 relocate u0 about 51 units to (-48,48);
+the moving-stop control stays in place and passes the full unchanged-model trace.
+The translated unit idles naturally before its stop, so that intervention is
+inconclusive. H0 passes 1/4; three P3 failures remain explicit. Always-in-place and
+unconditional-grid rules are refuted; the blocked-only grid rule is inconclusive
+overall. No model/tolerance change ([results](docs/mov-0026.md#observed-results)).
+Next: preregister the translated stop at callback 90 under a new ID and verify it
+still holds move; #41's same-point moving/idle comparison remains unresolved.
+
 **MOV-0024 partial evidence ([issue #41](https://github.com/galitianu/warcraft-re/issues/41), P3):**
 six preregistered layouts now have eighteen validated, repeatable fresh WC3 runs.
 H0 and candidate C96 fail all six comparisons; the model and tolerances are unchanged.

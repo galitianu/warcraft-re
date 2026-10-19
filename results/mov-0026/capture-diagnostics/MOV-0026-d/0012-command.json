@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "rdpipe",
+    "--target",
+    "vm",
+    "push",
+    "/Users/andrei/.bb/plugins/environment-git-worktree/host-data/worktrees/thr_yyre3s5xfh-1/war3-workspace/local/mov0026/capture-d/oracle-maps/MOV-0002.w3m",
+    "--to",
+    "C:\\Users\\rdpipe\\oracle-oracle-8f93f524ad894cbca800427b75a0090e"
+  ],
+  "stdin": null,
+  "timeout_seconds": 60,
+  "exit": 0,
+  "stdout": "MOV-0002.w3m: 19009 bytes, sha256 bb67f103cc5c17507fcf63f4928799939f7875538e8ced6b9512b525c8d23efd\n",
+  "stderr": "\nMOV-0002.w3m: 100%\n"
+}
